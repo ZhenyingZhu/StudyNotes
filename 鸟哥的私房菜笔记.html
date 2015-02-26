@@ -45,3 +45,26 @@ Chapter 3
 RAID：多个磁盘接成阵列。
 查看硬件支持：（鸟哥私房菜P80）。
 硬件配置在linux下都是档案。
+<href>
+网卡：/dev/eth[0-n]。
+磁盘分区：Partition在windows下为C, D, E，Linux下SATA按侦查到的顺序分配sda，sdb。
+磁盘第一个扇区，记录：
+1.	Master Boot Record (MBR) ，安装开机管理程序。
+2.	Partition table。总共记录4个Primary+ Extended，记作P1: /dev/hda1。Extended内的logic partition记录在额外的扇区，从/dev/hda5开始。
+开机流程：BIOS->MBR->boot loader->核心档案。
+CMOS记录硬件参数的存储器。
+BIOS开机时执行的第一个程序，找到MBR。然后执行boot loader。
+Boot loader提供多重引导开机选单Grub，载入核心档案，转交其他loader。
+Grub软件：开机启动选单软件。
+文本登录后的程序就是Shell。
+Mirror site：当地的下载较快的分流。
+FTP：客户端如Filezilla，可断点续传。传输再怎么地下化也容易被捉到。
+NAT：IP分享器，内网多用户连接外网时对外的IP分享给内部。
+SAMBA：加入Windows网络邻居。
+邮件服务：Sendmail和Postfix等Mail Server软件。
+WWW服务器：Web功能，许多软件用WWW作为显示接口。Apache软件提供WWW网站功能。
+DHCP：客户端自动获取IP功能。
+Proxy：有效解决带宽不足问题。
+硬盘问题有些可用fsck软件解决。
+Directory tree：从root directory /开始分支。
+
