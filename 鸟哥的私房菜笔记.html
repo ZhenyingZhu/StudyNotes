@@ -82,3 +82,22 @@ Directory tree：从root directory /开始分支。
 Quota：磁盘配额，分割磁盘后再改动。
 当机原因：除软件问题，可能机箱温度，CPU温度，不同厂商内存，电源供应。
 
+Chapter 4
+无法使用DHCP取得IP，参数设定为： IP: 192.168.1.100, mask：255.255.255.0。
+网卡卡号：Hardware address: 08:00:27:B9:01:BC
+主机名：通常为主机名.网域名，可以有句号，www.vbird.tsai。
+RAID：硬盘特殊应用，软件仿真磁盘阵列。建立两个硬盘分区然后合并，/dev/md0，
+LVM：弹性调整系统容量。
+Ext3：文件系统类型，有日志记录。系统默认。
+传统的文件格式为：ext2。Journaling有ext3及Reiserfs等。
+Vfat：linux，windows共用文件系统。
+Grub装载在MBR里。可以设置开机密码，但这样就无法远程登录了。
+系统安装过程写入/root/install.log，选择的软件写入/root/anaconda-ks.cfg。
+安装包分为多个档案，按需安装。
+memtest86：内存压力测试。
+因硬件配置无法安装：DVD开机时，boot: linux nofb apm=off acpi=off pci=noacpi
+	apm, acpi：电源管理模块；nofb：取消显卡缓存侦测； 
+SELinux：Access control设定，不是防火墙，推荐安装。
+Kdump：核心出错是将内存写入档案。较消耗硬盘空间。
+Windows双系统时，Linux所在分区在windows下不要挂载，以免被格式化。
+
