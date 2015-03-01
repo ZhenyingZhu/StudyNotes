@@ -1,11 +1,12 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head><meta http-equiv="Content-Type" content="text/html; charset=charset=utf-8">
-<title>读书笔记 </title>
+<title>《鸟哥的私房菜》读书笔记</title>
 </head>
 
 <body>
-Chapter 0
+<p>
+<h3>Chapter 0</h3>
 计算机五个部分：输入单元、 输出单元、CPU内部的控制单元、算数逻辑单元与主存储器
 容量1GB=1024^3，速度1GHz=1000^3
 Intel主板上的芯片组：北桥：负责链接速度较快的CPU、主存储器和显示适配器等组件，为系统总线，速度FSB，总线带宽FSB×总线宽度：每秒可传输最大数据量；南桥：负责连接速度较慢的周边接口如硬盘，为I/O总线；
@@ -30,7 +31,7 @@ System call：OS提供，用以开发软件的接口。
 Process control，Memory management, Filesystem management, Device drivers。
 查阅组件型号：查看/cat/proc/cpuinfo,或lspci
 
-Chapter 1
+<h3>Chapter 1</h3>
 GNU重要软件：Emacs, GCC, glibc, Bash shell。
 GUI：XFree86的X Window System。
 Assembly Language：汇编语言。
@@ -47,12 +48,29 @@ Linux可以多人同时在线。
 GUI：X Window，KDE，GNOME。
 查看核心版本：uname –r可查看Distribution版本，lsb_release –a可查看Linux Standard Base版本。
 
-Chapter 3
+<h3>Chapter 2</h3>
+网络服务器：WWW, Mail Server, File Server。
+Cluster：云计算机平行运算能力。
+Pidgin：实时通讯软件。
+各个Distribution。（鸟哥私房菜P68）
+软件列表（鸟哥私房菜P68）
+Free Maid：组织结构绘制软件。
+Dia：类似Visio。
+GanttProject：时程表绘制。
+基础概念：使用者/群组，权限，程序。
+文书编辑器vi：会被很多软件调用。
+Shell：文字接口软件。有正则表示法，管线命令，数据流重导向。Shell scripts也重要。
+FAQ和How-To：安装软件的帮助文档放在/usr/share/doc/下，或http://www.linux.org.tw/CLDP/或http://www.tldp.org/ 
+提示的网络服务错误信息，可到/var/log/里查看。
+How To: http://www.tldp.org
+
+<h3>Chapter 3</h3>
 图形接口运算：X Window内的Open GL。
 RAID：多个磁盘接成阵列。
 查看硬件支持：（鸟哥私房菜P80）。
 硬件配置在linux下都是档案。
-<href>
+
+
 网卡：/dev/eth[0-n]。
 磁盘分区：Partition在windows下为C, D, E，Linux下SATA按侦查到的顺序分配sda，sdb。
 磁盘第一个扇区，记录：
@@ -74,7 +92,8 @@ DHCP：客户端自动获取IP功能。
 Proxy：有效解决带宽不足问题。
 硬盘问题有些可用fsck软件解决。
 Directory tree：从root directory /开始分支。
-<img>
+
+
 需mount和硬盘档案联系。mnt/内的文件在硬盘上可能在别的地方。
 挂载：利用目录作为进入点，将磁盘分区的数据放入该目录。
 如/挂载到P1，/home挂载到P2，则/home下的文件都在P2下，而/etc就在P1下。
@@ -89,7 +108,7 @@ Directory tree：从root directory /开始分支。
 Quota：磁盘配额，分割磁盘后再改动。
 当机原因：除软件问题，可能机箱温度，CPU温度，不同厂商内存，电源供应。
 
-Chapter 4
+<h3>Chapter 4</h3>
 无法使用DHCP取得IP，参数设定为： IP: 192.168.1.100, mask：255.255.255.0。
 网卡卡号：Hardware address: 08:00:27:B9:01:BC
 主机名：通常为主机名.网域名，可以有句号，www.vbird.tsai。
@@ -107,6 +126,8 @@ memtest86：内存压力测试。
 SELinux：Access control设定，不是防火墙，推荐安装。
 Kdump：核心出错是将内存写入档案。较消耗硬盘空间。
 Windows双系统时，Linux所在分区在windows下不要挂载，以免被格式化。
+</p>
+
 
 </body>
 </html>
