@@ -21,7 +21,7 @@ ASCII: 英文编码表，1byte，256种。中文Big5，2bytes。Unicode：因特
 OS Kernel：驱动硬件。在内存中受保护，并且常驻。核心功能如下：<br />
 System call：OS提供，用以开发软件的接口。<br />
 Process control，Memory management, Filesystem management, Device drivers。<br />
-查阅组件型号：查看/cat/proc/cpuinfo,或lspci
+查阅组件型号：查看/cat/proc/cpuinfo,或<code>lspci</code> <br />
 
 
 <h3>Chapter 1</h3>
@@ -39,7 +39,7 @@ FHS：目录架构标准。<br />
 安装方式：不同Distribution的主要区别，分RPM和dpkg，Tarball原始码。<br />
 Linux可以多人同时在线。<br />
 GUI：X Window，KDE，GNOME。<br />
-查看核心版本：uname –r可查看Distribution版本，lsb_release –a可查看Linux Standard Base版本。<br />
+查看核心版本：<code>uname -r</code>可查看Distribution版本，<code>lsb_release –a</code>可查看Linux Standard Base版本。<br />
 
 
 <h3>Chapter 2</h3>
@@ -129,33 +129,33 @@ GNOME和KDE：Window Manager，图形接口。<br />
 在线升级：yum机制。<br />
 文件名开头为小数点的，即为隐藏文件。<br />
 SCIM：中文输入法软件，Ctrl+Space唤出。<br />
-Alt+Ctrl+Backspace：重启X Window。<br />
-Ctrl+Alt+F1~6：tty1~6的文字接口，run level 3；Ctrl+Alt+F7~8切回图形接口，run level 5。<br />
-	执行等级：run level 0：关机，run level 6：重启。用init 0切换模式。<br />
+<code>Alt+Ctrl+Backspace</code>：重启X Window。<br />
+<code>Ctrl+Alt+F1~6</code>：tty1~6的文字接口，run level 3；Ctrl+Alt+F7~8切回图形接口，run level 5。<br />
+	执行等级：run level 0：关机，run level 6：重启。用<code>init 0</code>切换模式。<br />
 	修改默认登录方式：修订/etc/inittab文件内容。？<br />
-Tab：自动补全。<br />
-Ctrl+C：当前程序中断。<br />
-Ctrl+D：键盘输入结束。<br />
+<code>Tab</code>：自动补全。<br />
+<code>Ctrl+C</code>：当前程序中断。<br />
+<code>Ctrl+D</code>：键盘输入结束。<br />
 终端界面下：startx启动图形界面。需tty7空，X server能启动，已启动如X Font Server和xfs等服务，并有Window Manager。<br />
 Terminal提示格式：[User@Localhost ~]$。<br />
 Localhost：主机名，取小数点前的名称。<br />
 @之前的为登录的用户名。<br />
-~：用户的主目录（工作目录），即/home/用户名，是个变量。对于root用户，~user是user用户的家目录。<br />
+<code>~</code>：用户的主目录（工作目录），即/home/用户名，是个变量。对于root用户，~user是user用户的家目录。<br />
 $：一般用户的提示字符，#是root用户的提示字符。<br />
 Shell：文字接口程序，是bash。<br />
 指令格式：command [-opt] par1 par2，--后是全称。多个空格视为1个，区分大小写。<br />
 	\接特殊字符换行。<br />
 	提示指令未发现，可能是bash没将该指令添加入搜索path。<br />
 	指令选项前常有-或+，选项全称带--，如—help。选项间可加可不加-。<br />
-列出文件夹列表：ls –al /home/ ，-a显示隐藏文件，-l以列表形式显示。-d显示目录。位置为/bin/ls。<br />
+列出文件夹列表：<code>ls –al /home/</code> ，-a显示隐藏文件，-l以列表形式显示。-d显示目录。位置为/bin/ls。<br />
 登录的login也是一个程序。<br />
-查看当前有谁在线：who。<br />
-查看网络联机状态：netstat –a。Sockets and ports. <br />
-查看背景执行的程序：ps –aux。<br />
+查看当前有谁在线：<code>who</code>。<br />
+查看网络联机状态：<code>netstat –a</code>。Sockets and ports. <br />
+查看背景执行的程序：<code>ps –aux</code>。<br />
 由以上返回信息判断是否可关机。<br />
-数据同步写入硬盘：sync，将内存中的数据写入硬盘，默认情况下不会写入，关机前执行。<br />
-注销：exit。<br />
-关机：shutdown，只有root可以，用远程登录如pietty用ssh登录须进入root权限。<br />
+数据同步写入硬盘：<code>sync</code>，将内存中的数据写入硬盘，默认情况下不会写入，关机前执行。<br />
+注销：<code>exit</code>。<br />
+关机：<code>shutdown</code>，只有root可以，用远程登录如pietty用ssh登录须进入root权限。<br />
 	/sbin/shutdown –t 秒 –a 时间 [讯息]<br />
 	-t sec ： -t 后面加秒数，过几秒后关机。<br />
 -k：不要真的关机，只是发送警告讯息出去！ <br />
@@ -166,27 +166,27 @@ Shell：文字接口程序，是bash。<br />
 -F：系统重启后，强制fsck 的磁盘检查。<br />
 -c： 取消进行的 shutdown。<br />
 时间：now 立即，21：00 定时，+10 10分钟后。<br />
-重启关机：reboot, halt硬件强行关机, poweroff。<br />
-显示时间日期：date +%H:%M%Y%m%d; %H”char”%M shows hour and miniute. <br />
-显示日历：cal 10 2009<br />
-显示系统语言：echo $LANG<br />
-修改系统语言：LANG=en_US，LANG=zh_TW.UTF-8, LANG=”en”。默认语系选择存于/etc/sysconfig/i18n。<br />
-计算器：bc，%求余。scale=小数点后位数。quit退出。<br />
-查看指令手册：man 指令。说明文件在/usr/share/man/内，可通过修改/etc/man.config或manpath.conf改变搜索路径。<br />
-man –f man搜索多个数值指令 show all the numbers of a command。man –k man查找关键字。man –K man查询整个系统。有多个数值的指令可通过man 7 man查看。<br />
-whatis相当于man –f，但是需用root身份makewhatis建立数据库。<br />
+重启关机：<code>reboot</code>, <code>halt</code>硬件强行关机, <code>poweroff</code>。<br />
+显示时间日期：<code>date</code> +%H:%M%Y%m%d; %H"char"%M shows hour and miniute. <br />
+显示日历：<code>cal</code> 10 2009<br />
+显示系统语言：<code>echo $LANG</code><br />
+修改系统语言：<code>LANG=en_US</code>，LANG=zh_TW.UTF-8, LANG="en"。默认语系选择存于/etc/sysconfig/i18n。<br />
+计算器：<code>bc</code>，%求余。scale=小数点后位数。quit退出。<br />
+查看指令手册：<code>man</code> 指令。说明文件在/usr/share/man/内，可通过修改/etc/man.config或manpath.conf改变搜索路径。<br />
+<code>man –f man</code>搜索多个数值指令 show all the numbers of a command。<code>man –k man</code>查找关键字。<code>man –K man</code>查询整个系统。有多个数值的指令可通过<code>man 7 man</code>查看。<br />
+<code>whatis</code>相当于man –f，但是需用root身份<code>makewhatis</code>建立数据库。<br />
 指令手册名称边括号里的数值：<br />
  1可执行指令，5配置，8系统管理指令。<br />
  <img src="./LinuxStudy_files/chapter5-01.png" /> <br /><br />
  man手册查看快捷键：<br />
 空格键翻页，q退出。/string搜索。<br />
 <img src="./LinuxStudy_files/chapter5-02.png" /> <br /><br />
-在线查看指令帮助：info 指令，输出的为含链接的段落。/usr/share/info/。<br />
+在线查看指令帮助：<code>info</code> 指令，输出的为含链接的段落。/usr/share/info/。<br />
 	N, P, U去下、上、上一层node。<br />
 <img src="./LinuxStudy_files/chapter5-03.png" /><br />
 <img src="./LinuxStudy_files/chapter5-04.png" /> <br /><br />
 /usr/share/doc/介绍packages，如/usr/share/doc/bash-3.2/介绍bash。<br />
-简单文本编辑器nano text.txt：^代表ctrl，M代表alt。^O存档，^X退出。<br />
+简单文本编辑器<code>nano</code> text.txt：^代表ctrl，M代表alt。^O存档，^X退出。<br />
 [ctrl]：取得联机help。<br />
 [ctrl]-X：离开naon软件，若有修改过档案会提示是否需要储存喔！ <br />
 [ctrl]-O：储存档案，若你有权限的话就能够储存档案了； <br />
@@ -196,10 +196,10 @@ whatis相当于man –f，但是需用root身份makewhatis建立数据库。<br 
 [ctrl]-_：可以直接输入行号，让光标忚速移动到该行； <br />
 [alt]-Y：校正语法功能开启关闭 (单击开、再单击关) 。<br />
 [alt]-M：可以支持鼠标来移动光标的功能。<br />
-文件系统错误：如根目录未损毁，登入root，fsck /dev/sda7 修复错误的partition。<br />
-	根目录损毁，不mount该硬盘，执行fsck /dev/sdb1。<br />
+文件系统错误：如根目录未损毁，登入root，<code>fsck /dev/sda7</code> 修复错误的partition。<br />
+	根目录损毁，不mount该硬盘，执行<code>fsck /dev/sdb1</code>。<br />
 主机通电后尽量不动，降低温度。<br />
 忘记root密码：重启是按e进入grub编辑模式，在kernel行按e，输入single，回车后按b启动。<br />
-	修改密码：passwd。（鸟哥私房菜P171）<br />
+	修改密码：<code>passwd</code>。（鸟哥私房菜P171）<br />
 欢迎画面：/etc/issue。<br />
-“\”用escape表示。<br />
+"\"用escape表示。<br />
