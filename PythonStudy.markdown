@@ -30,4 +30,12 @@ file: 从给定的文件运行 Python 脚本(参阅后文)<br />
 <code>abs(-4)</code><br />
 执行后可以有输出，可以没有(返回None)。<br />
 
-P33
+变量赋值: 
+<code>mystring = 'Hello World!'</code>
+用print显示字符串,结果没有引号,调用了str()函数。
+<code>print mystring</code>
+直接用变量名，为区分其他类型变量，字符串型变量有单引号，调用了repr()函数。
+<code>mystring</code>
+
+<code>\_</code>表示前一个表达式的值。
+
