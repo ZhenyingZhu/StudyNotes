@@ -52,14 +52,11 @@ print语句：用%d表示整数，%s表示字符串，%f表示浮点数。<br />
 <code>logfile.close()</code><br />
 <br />
 输出多字符串：,自带空格，+不带。<br />
-<code><br />
-print a, b <br />
-print a + b <br />
-</code><br />
+<code>print a, b</code> <br />
+<code>print a + b </code><br />
 <br />
 键盘输入：<br />
-<code><br />
-num = raw_input('Please input a number: ')<br />
-print 'double the number is %d' % (int(num) * 2)<br />
-</code><br />
+<code>num = raw_input('Please input a number: ')</code><br />
+<code>print 'double the number is %d' % (int(num) * 2)</code><br />
 <br />
+
