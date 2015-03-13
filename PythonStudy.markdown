@@ -29,13 +29,41 @@ file: 从给定的文件运行 Python 脚本(参阅后文)<br />
 表达式没有关键字，可以用运算符或括号调用的函数。<br />
 <code>abs(-4)</code><br />
 执行后可以有输出，可以没有(返回None)。<br />
-
-变量赋值: 
-<code>mystring = 'Hello World!'</code>
-用print显示字符串,结果没有引号,调用了str()函数。
-<code>print mystring</code>
-直接用变量名，为区分其他类型变量，字符串型变量有单引号，调用了repr()函数。
-<code>mystring</code>
-
-<code>\_</code>表示前一个表达式的值。
-
+<br />
+<code>\_</code>表示前一个表达式的值。<br />
+<br />
+变量赋值: <br />
+<code>mystring = 'Hello World!'</code><br />
+<br />
+用print显示字符串,结果没有引号,调用了str()函数。<br />
+<code>print mystring</code><br />
+直接用变量名，为区分其他类型变量，字符串型变量有单引号，调用了repr()函数。<br />
+<code>mystring</code><br />
+<br />
+print语句：用%d表示整数，%s表示字符串，%f表示浮点数。<br />
+<code>print "%s is number %d" % ("Python", 1)</code><br />
+可以用>>重导向导出到屏幕上作为系统报错<br />
+<code><br />
+import sys<br />
+print >> sys.stderr, 'Error'<br />
+</code><br />
+<br />
+或导出到文件，这里是增加到文本末尾。当关闭文件后才会写入。<br />
+<code><br />
+logfile = open('/tmp/mylog.txt', 'a')<br />
+print >> logfile, 'Error'<br />
+logfile.close()<br />
+</code><br />
+<br />
+输出多字符串：,自带空格，+不带。<br />
+<code><br />
+print a, b<br />
+print a + b<br />
+</code><br />
+<br />
+键盘输入：<br />
+<code><br />
+num = raw_input('Please input a number: ')<br />
+print 'double the number is %d' % (int(num) * 2)<br />
+</code><br />
+<br />
