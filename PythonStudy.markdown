@@ -43,22 +43,18 @@ file: 从给定的文件运行 Python 脚本(参阅后文)<br />
 print语句：用%d表示整数，%s表示字符串，%f表示浮点数。<br />
 <code>print "%s is number %d" % ("Python", 1)</code><br />
 可以用>>重导向导出到屏幕上作为系统报错<br />
-<code><br />
-import sys<br />
-print >> sys.stderr, 'Error'<br />
-</code><br />
+<code>import sys</code><br />
+<code>print >> sys.stderr, 'Error'</code><br />
 <br />
 或导出到文件，这里是增加到文本末尾。当关闭文件后才会写入。<br />
-<code><br />
-logfile = open('/tmp/mylog.txt', 'a')<br />
-print >> logfile, 'Error'<br />
-logfile.close()<br />
-</code><br />
+<code>logfile = open('/tmp/mylog.txt', 'a')</code><br />
+<code>print >> logfile, 'Error'</code><br />
+<code>logfile.close()</code><br />
 <br />
 输出多字符串：,自带空格，+不带。<br />
 <code><br />
-print a, b<br />
-print a + b<br />
+print a, b <br />
+print a + b <br />
 </code><br />
 <br />
 键盘输入：<br />
