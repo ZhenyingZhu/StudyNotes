@@ -206,3 +206,6 @@ Shell：文字接口程序，是bash。<br />
 	修改密码：<code>passwd</code>。（鸟哥私房菜P171）<br />
 欢迎画面：/etc/issue。<br />
 "\"用escape表示。<br />
+
+
+<h3>Chapter 6</h3>
