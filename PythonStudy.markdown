@@ -63,7 +63,7 @@ print语句：用%d表示整数，%s表示字符串，%f表示浮点数。<br />
 注释：<code>#</code>到行尾。<br />
 在线文档：在函数定义起始的字符串。 <br />
 <code>
-def foo()
+def foo() <br />
     "This is a function"
 	return True
 </code>
