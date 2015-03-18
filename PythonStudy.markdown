@@ -65,5 +65,9 @@ print语句：用%d表示整数，%s表示字符串，%f表示浮点数。<br />
 <code>def foo() </code>
 <code>    "This is a function"</code>
 <code>	return True</code>
-
+```
+def foo()
+    "This is a function"
+    return True
+```
 P36
