@@ -59,4 +59,13 @@ print语句：用%d表示整数，%s表示字符串，%f表示浮点数。<br />
 <code>num = raw_input('Please input a number: ')</code><br />
 <code>print 'double the number is %d' % (int(num) * 2)</code><br />
 <br />
+帮助：<code>help(func)</code> <br />
+注释：<code>#</code>到行尾。<br />
+在线文档：在函数定义起始的字符串。 <br />
+<code>
+def foo()
+    "This is a function"
+	return True
+</code>
 
+P36
