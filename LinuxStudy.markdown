@@ -2,6 +2,8 @@ killall nc
 
 sh-bang: 可用指令<code>env</code>，如#! /usr/bin/env python。
 
+http://serverfault.com/questions/416222/concatenate-first-line-to-the-end-of-second-line-in-a-text-file
+
 <h3>Chapter 0</h3>
 计算机五个部分：输入单元、 输出单元、CPU内部的控制单元、算数逻辑单元与主存储器<br />
 容量1GB=1024^3，速度1GHz=1000^3<br />
