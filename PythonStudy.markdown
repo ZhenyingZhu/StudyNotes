@@ -64,12 +64,22 @@ print语句：用%d表示整数，%s表示字符串，%f表示浮点数。<br />
 帮助：<code>help(func)</code> <br />
 注释：<code>#</code>到行尾。<br />
 在线文档：在函数定义起始的字符串。 <br />
-<code>def foo() </code>
-<code>    "This is a function"</code>
-<code>	return True</code>
 ```
-def foo()
+def foo():
     "This is a function"
     return True
 ```
-P36
+
+运算符：
++, -, *, /整形除, **指数, //浮点除, %。
+<, <=, >, >=, ==, !=, <>等同于前者。支持3<4<5的操作，用and连接。
+and, or, not。
+
+变量名：大小写敏感，字母开始。
+
+动态类型语言：不需要先声明。
+
+不支持自增++，支持增量赋值 <code>n *= 10 </code>
+
+数字：int(0x80, -0X92), long(-20L, 0xAEL), bool(True = 1), float(-6.0e23, 1.5E-19), complex(0+1j, -1.23-875J)。导入后可用decimal类型，用以处理十进制小数的误差（outdate）。
+
