@@ -4,6 +4,28 @@ sh-bang: 可用指令<code>env</code>，如#! /usr/bin/env python。
 
 http://serverfault.com/questions/416222/concatenate-first-line-to-the-end-of-second-line-in-a-text-file
 
+<code>grep -f Key.txt All.txt</code>
+<code>sleep 60</code> to sleep 60 seconds. 
+<code>mail -s "test script" account@mail.com < /dev/null</code> send an email with title "test script". 
+<code>head -q -n 2 *.txt</code> Output several files without show the file name. 
+<code>sed -e 'N;s/\(.*\)n\(.*\)/\1\2/' </code> let the second lines append to the first lines. 
+
+```
+while read line; do
+    SOMETHING
+done < readfile
+```
+
+SSH: 
+```
+eval `ssh-agent -s`
+ssh-add ~/.ssh/id_rsa
+ssh -A $HOST
+```
+
+Vim: 
+<code> set paste</code> and <code> set nopaste</code>
+
 <h3>Chapter 0</h3>
 计算机五个部分：输入单元、 输出单元、CPU内部的控制单元、算数逻辑单元与主存储器<br />
 容量1GB=1024^3，速度1GHz=1000^3<br />
