@@ -1,8 +1,8 @@
 https://docs.python.org/2/library/subprocess.html
 
-<h1>Python核心编程</h1>
+#Python核心编程
 
-<h2>Chapter 01</h2>
+##Chapter 01
 源文件.py，编译文件.pyc或.pyo。<br />
 <br />
 命令行启动python的选项:<br />
@@ -25,7 +25,7 @@ file: 从给定的文件运行 Python 脚本(参阅后文)<br />
 <br />
 栈帧: 用stackless的解释器来避开C 函数调用的限制。(Python核心编程P29)<br />
 <br />
-<h2>Chapter 02</h2><br />
+##Chapter 02
 语句用关键字组成命令。<br />
 <code>print 'Hello World'</code><br />
 表达式没有关键字，可以用运算符或括号调用的函数。<br />
@@ -70,7 +70,7 @@ def foo():
     return True
 ```
 
-###### 运算符：
+### 运算符：
 +, -, *, /整形除, **指数, //浮点除, %。
 
 <, <=, >, >=, ==, !=, <>等同于前者。支持3<4<5的操作，用and连接。
