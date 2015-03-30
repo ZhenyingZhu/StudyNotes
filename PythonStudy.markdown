@@ -80,26 +80,17 @@ def foo():
 ```
 
 ### 运算符：
-+, -, \*, /整形除, \*\*指数, //浮点除, %。
-
-几乎所有数据类型都可以用+运算符。数组和字符串为串接操作。
-
-
-<, <=, >, >=, ==, !=, <>等同于前者。支持3<4<5的操作，用and连接。
-
-and, or, not。
-
-变量名：大小写敏感，字母开始。
-
-动态类型语言：不需要先声明。
-
-不支持自增++，支持增量赋值 <code>n *= 10 </code>
-
-数字：int(0x80, -0X92), long(-20L, 0xAEL), bool(True = 1), float(-6.0e23, 1.5E-19), complex(0+1j, -1.23-875J)。导入后可用decimal类型，用以处理十进制小数的误差（outdate）。
-
-Python 支持使用成对的单引号或双引号，三引号（三个连续的单引号或者双引号）可以用来包含特殊字符。
-第一个字符的索引是0，最后一个字符的索引是-1。字符串连接运算+，字符串重复*。
-使用[ ]和[:]可以得到子字符串。
++, -, \*, /整形除, \*\*指数, //浮点除, %。  
+几乎所有数据类型都可以用+运算符。数组和字符串为串接操作。  
+<, <=, >, >=, ==, !=, <>等同于前者。支持3<4<5的操作，用and连接。  
+and, or, not。  
+变量名：大小写敏感，字母开始。  
+动态类型语言：不需要先声明。  
+不支持自增++，支持增量赋值 <code>n *= 10 </code>  
+数字：int(0x80, -0X92), long(-20L, 0xAEL), bool(True = 1), float(-6.0e23, 1.5E-19), complex(0+1j, -1.23-875J)。导入后可用decimal类型，用以处理十进制小数的误差（outdate）。  
+Python 支持使用成对的单引号或双引号，三引号（三个连续的单引号或者双引号）可以用来包含特殊字符。  
+第一个字符的索引是0，最后一个字符的索引是-1。字符串连接运算+，字符串重复*。  
+使用[ ]和[:]可以得到子字符串。  
 ```
 pystr = 'python'
 pystr[0] # 'p'
@@ -112,10 +103,8 @@ is cool
 ```
 
 ### 数组：
-可以混合储存任何类型。
-
-List用[]创建，可以通过下标重新赋值。
-
+可以混合储存任何类型。  
+List用[]创建，可以通过下标重新赋值。  
 Tuple用()表示，不可以重新赋值。
 ```
 aList = [1, 2, 3, 4] # Create a list
@@ -169,8 +158,7 @@ Enumerate:
 for i, ch in enumerate(str): 
     print i, ch
 ```
-实际上该函数返回的是一个元组(idx, element)集合。
-
+实际上该函数返回的是一个元组(idx, element)集合。  
 用循环创建列表：
 
 ```
@@ -185,10 +173,8 @@ for eachLine in handle:
     print eachLine, # Output change lines automatically
 handle.close()
 ```
-access_mode 默认为r，还有w, a为添加，U为读写，b为用二进制读取（过时）。
-
-注意当有同名文件时，w会覆盖。
-
+access_mode 默认为r，还有w, a为添加，U为读写，b为用二进制读取（过时）。  
+注意当有同名文件时，w会覆盖。  
 Attribute 可以是数据，也可以是方法。
 
 ### 处理异常：
@@ -206,16 +192,14 @@ except IOError, e: # instance an IOError class e
 或使用raise。
 
 ### 函数：
-必须在调用前定义。
-
+必须在调用前定义。  
 Python 通过引用调用函数，对参数的改动会在函数外起作用。
 ```
 def add2Me(x = 1): # default value is 1
     "Add myself twice"
     return x + x
 ```
-函数名中的括号一定需要。
-
+函数名中的括号一定需要。  
 无return语句时返回None 对象。
 
 ### 类：
@@ -242,12 +226,9 @@ class FooClass(object):
         """apply + operation to argument"""
         return x + x
 ```
-由`__`开头和结尾的方法是特殊方法或属性。
-
-`__init__()`为构造函数，但是Python 中并不由该函数实例化，只是实例化后自动执行的动作。
-
-self变量为类中方法必须的参数。
-
+由`__`开头和结尾的方法是特殊方法或属性。  
+`__init__()`为构造函数，但是Python 中并不由该函数实例化，只是实例化后自动执行的动作。  
+self变量为类中方法必须的参数。  
 实例化：
 ```
 fool = FooClass('Jane')
@@ -263,9 +244,8 @@ sys.stdout.write("Hello World\n")
 sys.platform
 sys.version
 ```
-write()函数不会自动换行。
-
-PEP(Python Enhancement Proposal)： 用以增加新特性。[PEP](http://python.org/dev/peps)。
+write()函数不会自动换行。  
+PEP(Python Enhancement Proposal)： 用以增加新特性。[PEP](http://python.org/dev/peps)。  
 
 
 P48
