@@ -164,6 +164,8 @@ for i, ch in enumerate(str):
 ```
 sqdEven = [x ** 2 for x in range(8) if not x % 2]
 ```
+`range([start, ]stop[, step])`：起始于start，结束于step - 1。默认start 为0，step 为1。
+
 
 ### 读取文件： 
 ```
@@ -247,5 +249,14 @@ sys.version
 write()函数不会自动换行。  
 PEP(Python Enhancement Proposal)： 用以增加新特性。[PEP](http://python.org/dev/peps)。  
 
+### 内建函数：
+`dir(obj)`：显示对象的属性。不提供参数则显示全局变量名称。  
+`help(ojb)`：显示帮助。  
+`int(obj)`：转换为整型。  
+`str(obj)`：转换为字符串。  
+`len(obj)`：得到长度。  
+`type(obj)`：返回对象类型。返回值为type 类的实例。  
 
-P48
+
+###### PS:
+P56
