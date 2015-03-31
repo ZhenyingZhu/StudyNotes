@@ -15,6 +15,8 @@ end
 </code>
 run a function: <code>h var</code> or <code>h(var)</code>
 
+Thread.join: http://ruby-doc.org/core-1.9.3/Thread.html
+
 <code>"Hello #{var}"</code>turn var into string and append to outside. 
 
 define a class: 
