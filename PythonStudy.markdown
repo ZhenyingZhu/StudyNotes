@@ -40,7 +40,7 @@ file: 从给定的文件运行 Python 脚本
 用print显示字符串,结果没有引号,调用了str()函数。  
 `print mystring`  
 直接用变量名，为区分其他类型变量，字符串型变量有单引号，调用了repr()函数。  
-`mystring`  
+`mystring # 'apple'`  
   
 print语句：用%d表示整数，%s表示字符串，%f表示浮点数。
 ```
@@ -54,22 +54,31 @@ print 'We are the %s who say %s' % (who, ((what + ' ') * 4))
 
 `print "%s is number %d" % ("Python", 1)`  
 可以用>>重导向导出到屏幕上作为系统报错  
-`import sys`  
-`print >> sys.stderr, 'Error'`  
+```
+import sys
+print >> sys.stderr, 'Error'
+```
   
 或导出到文件，这里是增加到文本末尾。当关闭文件后才会写入。  
-`logfile = open('/tmp/mylog.txt', 'a')`  
-`print >> logfile, 'Error'`  
-`logfile.close()`  
-  
+```
+logfile = open('/tmp/mylog.txt', 'a')
+print >> logfile, 'Error'
+logfile.close()
+```
+
 输出多字符串：,自带空格，+不带。  
-`print a, b`   
-`print a + b `  
+```
+print a, b
+print a + b
+```
   
 键盘输入：  
-`num = raw_input('Please input a number: ')`  
-`print 'double the number is %d' % (int(num) * 2)`  
-  
+```
+num = raw_input('Please input a number: ')
+if num.isdigit(): 
+    print 'double the number is %d' % (int(num) * 2)
+```
+
 帮助：`help(func)`   
 注释：`#`到行尾。  
 在线文档：在函数定义起始的字符串。   
@@ -111,6 +120,13 @@ aList = [1, 2, 3, 4] # Create a list
 aList[1] = 5
 
 aTuple = ('apple'， 2， 3) # cannot do aTuple[1] = 5
+```
+元组可用加法相连。
+```
+tuple = (for ele in list,) # without ',' it is list element not tuple
+for ele in list:
+    tmp = (ele,)
+    tuple += tmp
 ```
 
 ### 字典：
