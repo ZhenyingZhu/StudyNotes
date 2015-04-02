@@ -1,22 +1,39 @@
 Thread.join: http://ruby-doc.org/core-1.9.3/Thread.html
 
+
+Comment: after hash mark # 
+
+### Output: 
 print and return nil:  
 ```
 puts "Hello World"
 ```
 
+turn var into string and append to outside:  
+```
+puts "Hello #{var}"
+```
+
+### Operations: 
 Math is a build-in module. Operations return float numbers. 
 ```
 a = 3 ** 2
 Math.sqrt(6)
 ```
 
+Convert to int, `to\_i`. Convert to string `to\_s`:  
+```
+Class.to_s
+```
+
+# Method: 
 define a method: 
 ```
 def h
     puts "Hello World"
 end
 ```
+
 or
 ```
 def h(name = "World")
@@ -24,17 +41,13 @@ def h(name = "World")
 end
 ```
 
-excute a method: 
+excute a method:  
 ```
 h var
 h(var)
 ```
 
-turn var into string and append to outside. 
-```
-puts "Hello #{var}"
-```
-
+# Class: 
 define a class: 
 ```
 class Greeter
@@ -48,14 +61,63 @@ end
 ```
 
 Create an Object: 
-<code>g = Greeter.new("name")</code> which will call initialize method. g.say\_hi to call say\_hi method. 
-cannot access to @name directly
+```
+g = Greeter.new("name")
+```
+which will call initialize method. 
 
-Use <code>Class.instance\_methods(false) to not see the ancestors. 
-<code>Class.to\_s</code> convert to string. 
+```
+g.say_hi
+```
+to call say\_hi method.  
+But cannot access to @name directly.  
 
-See if a class has a method: <code>g.respond\_to?("method")```
+See All the methods: 
+```
+Class.instance_methods(false)
+```
+`true` can see methods from the ancestors and protected methods. 
 
+See if a class has a method:  
+```
+g.respond_to?("method")
+```
+
+
+# Script: 
+Start Script: 
+```
+#!/usr/bin/env ruby
+```
+
+`\_\_FILE\_\_` contains the name of this script. 
+`$0` is the file that start the program. 
+```
+if __FILE__ == $0 # it is the main function 
+```
+in irb mode, `\_\_FILE\_\_` is `(irb)` while `$0` is `irb`, which is not same. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+???
 Modify class. Will affect instances that has built and new in the furture. 
 ```
 class Greeter
@@ -66,7 +128,7 @@ end
 ```
 if @name.nil?
     puts "..."
-elsif @name.respond\_to?("each") # So it is a list
+elsif @name.respond_to?("each") # So it is a list
     @name.each do |name|
         puts "Hello #{name}"
     end
@@ -77,26 +139,20 @@ end
 
 List has each and join method: 
 ```
-if @name.response\_to?("join")
+if @name.response_to?("join")
     puts "Hello @name.join(", ")" # this is one string after join
 end
 ```
+
 ```
 @name.each do |name|
     puts "#{name}" # run this block of code for each elements in name. 
 end
 ```
 
-Comment: after hash mark #
 
-
-<code>\_\_FILE\_\_</code> contains the name of this script. 
-<code>$0</code> is the file that start the program. 
-<code> if \_\_FILE\_\_ == $0 </code> means it is the main function 
-in irb mode, \_\_FILE\_\_ is (irb) while $0 is irb, which is not same. 
-
-#!/usr/bin/env ruby
-
+# Real Code
+```
 require 'date'
 require\_relative 'taskqueue'
 
@@ -130,8 +186,10 @@ $guard.synchronize do
     $tests_fail += 1 if not rc
     $log.info "[#{100*$tests_done/$tests_total}%] Test #{test_id} #{rc ? 'PASSED' : 'FAILED'}"
 end 
+```
 
 http://stackoverflow.com/questions/3672586/what-is-the-difference-between-require-relative-and-require-in-ruby
+
 
 ```
 class Greeter
