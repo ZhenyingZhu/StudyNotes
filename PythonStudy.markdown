@@ -128,7 +128,15 @@ for ele in list:
     tmp = (ele,)
     tuple += tmp
 ```
+Tuple can use for several varables.  
+```
+def change(a, b): 
+    a = 5
+    b = 4
+    return a, b # return a tuple
 
+c, d = change(a, b) # get value from tuple
+```
 ### 字典：
 键值对用{}创建。
 
@@ -218,7 +226,8 @@ def add2Me(x = 1): # default value is 1
     return x + x
 ```
 函数名中的括号一定需要。  
-无return语句时返回None 对象。
+无return语句时返回None 对象。  
+调用时，如果不带括号和参数时，显示函数来源。  
 
 ### 类：
 没有定义基类的话，就使用object类。
@@ -266,14 +275,17 @@ sys.version
 write()函数不会自动换行。  
 PEP(Python Enhancement Proposal)： 用以增加新特性。[PEP](http://python.org/dev/peps)。  
 
+```
+if __name__ == "__main__":
+    main()
+```
+Is a way to run the script with self defined function  
+
 ### 内建函数：
-`dir(obj)`：显示对象的属性。不提供参数则显示全局变量名称。  
+`dir(obj)`：显示对象的属性。不提供参数则显示全局对象名称。  
 `help(ojb)`：显示帮助。  
 `int(obj)`：转换为整型。  
 `str(obj)`：转换为字符串。  
 `len(obj)`：得到长度。  
 `type(obj)`：返回对象类型。返回值为type 类的实例。  
-
-
-###### PS:
-P56
+`obj.__doc__`：显示帮助文档。  
