@@ -1,26 +1,42 @@
-<code>puts "Hello World"</code> print and return nil. 
-<code>a = 3 \*\* 2</code>. <code>Math.sqrt(6)</code> return a float number. 
-Math is a build-in module. 
-define a function: 
-<code>
+Thread.join: http://ruby-doc.org/core-1.9.3/Thread.html
+
+print and return nil:  
+```
+puts "Hello World"
+```
+
+Math is a build-in module. Operations return float numbers. 
+```
+a = 3 ** 2
+Math.sqrt(6)
+```
+
+define a method: 
+```
 def h
     puts "Hello World"
 end
-</code>
+```
 or
-<code>
+```
 def h(name = "World")
     puts "Hello #{name}!"
 end
-</code>
-run a function: <code>h var</code> or <code>h(var)</code>
+```
 
-Thread.join: http://ruby-doc.org/core-1.9.3/Thread.html
+excute a method: 
+```
+h var
+h(var)
+```
 
-<code>"Hello #{var}"</code>turn var into string and append to outside. 
+turn var into string and append to outside. 
+```
+puts "Hello #{var}"
+```
 
 define a class: 
-<code>
+```
 class Greeter
     def initialize(name = "World") #must have one
         @name = name
@@ -29,7 +45,7 @@ class Greeter
         puts "Hello #{@name}"
     end
 end
-</code>
+```
 
 Create an Object: 
 <code>g = Greeter.new("name")</code> which will call initialize method. g.say\_hi to call say\_hi method. 
@@ -38,16 +54,16 @@ cannot access to @name directly
 Use <code>Class.instance\_methods(false) to not see the ancestors. 
 <code>Class.to\_s</code> convert to string. 
 
-See if a class has a method: <code>g.respond\_to?("method")</code>
+See if a class has a method: <code>g.respond\_to?("method")```
 
 Modify class. Will affect instances that has built and new in the furture. 
-<code>
+```
 class Greeter
     attr_accessor :name
 end
-</code>
+```
 
-<code>
+```
 if @name.nil?
     puts "..."
 elsif @name.respond\_to?("each") # So it is a list
@@ -57,19 +73,19 @@ elsif @name.respond\_to?("each") # So it is a list
 else
     puts "Hello #{name}"
 end
-</code>
+```
 
 List has each and join method: 
-<code>
+```
 if @name.response\_to?("join")
     puts "Hello @name.join(", ")" # this is one string after join
 end
-</code>
-<code>
+```
+```
 @name.each do |name|
     puts "#{name}" # run this block of code for each elements in name. 
 end
-<code>
+```
 
 Comment: after hash mark #
 
@@ -152,3 +168,18 @@ class Greeter
     end
 end
 ```
+
++, -, or backslash at the end of a line, they indicate the continuation of a statement.  
+
+Reserved Words:  
+```
+BEGIN, do, next, then, END, else, nil, true, alias, elsif, 
+not, undef, and, end, or, unless, begin, ensure, redo, until, 
+break, false, rescue, when, case, for, retry, while, class, 
+if, return, while, def, in, self, __FILE__, defined?, module, 
+super, __LINE__
+```
+
+a + b is interpreted as a+b ( Here a is a local variable)  
+a  +b is interpreted as a(+b) ( Here a is a method call)  
+
