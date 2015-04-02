@@ -1,7 +1,20 @@
 Thread.join: http://ruby-doc.org/core-1.9.3/Thread.html
+http://stackoverflow.com/questions/3672586/what-is-the-difference-between-require-relative-and-require-in-ruby
 
-
+### Syntax: 
 Comment: after hash mark # 
++, -, or backslash at the end of a line, they indicate the continuation of a statement.  
+a + b is interpreted as a+b ( Here a is a local variable)  
+a  +b is interpreted as a(+b) ( Here a is a method call)  
+
+Reserved Words:  
+```
+BEGIN, do, next, then, END, else, nil, true, alias, elsif, 
+not, undef, and, end, or, unless, begin, ensure, redo, until, 
+break, false, rescue, when, case, for, retry, while, class, 
+if, return, while, def, in, self, __FILE__, defined?, module, 
+super, __LINE__
+```
 
 ### Output: 
 print and return nil:  
@@ -21,12 +34,39 @@ a = 3 ** 2
 Math.sqrt(6)
 ```
 
-Convert to int, `to\_i`. Convert to string `to\_s`:  
+Convert to int: `to_i`. Convert to string:`to_s`:  
 ```
 Class.to_s
 ```
 
-# Method: 
+### Judge: 
+```
+if @name.nil?
+    puts "..."
+elsif @name.respond_to?("each") # So it is a list
+    @name.each do |name|
+        puts "Hello #{name}"
+    end
+else
+    puts "Hello #{name}"
+end
+```
+
+### Loop: 
+List has each and join method: 
+```
+if @name.response_to?("join")
+    puts "Hello @name.join(", ")" # this is one string after join
+end
+```
+
+```
+@name.each do |name|
+    puts "#{name}" # run this block of code for each elements in name. 
+end
+```
+
+### Method: 
 define a method: 
 ```
 def h
@@ -47,7 +87,7 @@ h var
 h(var)
 ```
 
-# Class: 
+### Class: 
 define a class: 
 ```
 class Greeter
@@ -84,18 +124,18 @@ g.respond_to?("method")
 ```
 
 
-# Script: 
+### Script: 
 Start Script: 
 ```
 #!/usr/bin/env ruby
 ```
 
-`\_\_FILE\_\_` contains the name of this script. 
+`__FILE__` contains the name of this script. 
 `$0` is the file that start the program. 
 ```
 if __FILE__ == $0 # it is the main function 
 ```
-in irb mode, `\_\_FILE\_\_` is `(irb)` while `$0` is `irb`, which is not same. 
+in irb mode, `__FILE__` is `(irb)` while `$0` is `irb`, which is not same. 
 
 
 
@@ -124,32 +164,6 @@ class Greeter
     attr_accessor :name
 end
 ```
-
-```
-if @name.nil?
-    puts "..."
-elsif @name.respond_to?("each") # So it is a list
-    @name.each do |name|
-        puts "Hello #{name}"
-    end
-else
-    puts "Hello #{name}"
-end
-```
-
-List has each and join method: 
-```
-if @name.response_to?("join")
-    puts "Hello @name.join(", ")" # this is one string after join
-end
-```
-
-```
-@name.each do |name|
-    puts "#{name}" # run this block of code for each elements in name. 
-end
-```
-
 
 # Real Code
 ```
@@ -188,7 +202,6 @@ $guard.synchronize do
 end 
 ```
 
-http://stackoverflow.com/questions/3672586/what-is-the-difference-between-require-relative-and-require-in-ruby
 
 
 ```
@@ -226,18 +239,4 @@ class Greeter
     end
 end
 ```
-
-+, -, or backslash at the end of a line, they indicate the continuation of a statement.  
-
-Reserved Words:  
-```
-BEGIN, do, next, then, END, else, nil, true, alias, elsif, 
-not, undef, and, end, or, unless, begin, ensure, redo, until, 
-break, false, rescue, when, case, for, retry, while, class, 
-if, return, while, def, in, self, __FILE__, defined?, module, 
-super, __LINE__
-```
-
-a + b is interpreted as a+b ( Here a is a local variable)  
-a  +b is interpreted as a(+b) ( Here a is a method call)  
 
