@@ -1,6 +1,35 @@
 Thread.join: http://ruby-doc.org/core-1.9.3/Thread.html
 http://stackoverflow.com/questions/3672586/what-is-the-difference-between-require-relative-and-require-in-ruby
 
+### Enviroment: 
+To run a single commend: 
+```
+ruby -e 'puts "Hello World"'
+```
+
+To run input/evaluation loop:  
+```
+ruby
+puts "Hello World"
+ # EOF, then the previous lines will excuted. 
+```
+
+To use interpreter: `irb`  
+To run a script: 
+```
+ruby my-script.rb
+```
+
+Replaces foo with bar in all C source and header files in the current working directory, backing up the original files with ".bak" appended:  
+```
+ruby -i.bak -pe 'sub "foo", "bar"' *.[ch]
+```
+
+### Variable: 
+Integer in ruby is allowed by memory. 400! can also be caculated.  
+String: 'str' doesn't [STOP HERE http://www.rubyist.net/~slagell/ruby/strings.html]
+
+
 ### Syntax: 
 Comment: after hash mark # 
 +, -, or backslash at the end of a line, they indicate the continuation of a statement.  
@@ -16,7 +45,7 @@ if, return, while, def, in, self, __FILE__, defined?, module,
 super, __LINE__
 ```
 
-### Output: 
+Output: 
 print and return nil:  
 ```
 puts "Hello World"
@@ -27,7 +56,7 @@ turn var into string and append to outside:
 puts "Hello #{var}"
 ```
 
-### Operations: 
+Operations: 
 Math is a build-in module. Operations return float numbers. 
 ```
 a = 3 ** 2
@@ -81,6 +110,8 @@ def h(name = "World")
 end
 ```
 
+By default ruby function returns the last thing that was evaluated in it. 
+
 excute a method:  
 ```
 h var
@@ -125,9 +156,15 @@ g.respond_to?("method")
 
 
 ### Script: 
-Start Script: 
+Define Script interpreter: 
 ```
 #!/usr/bin/env ruby
+```
+
+Ruby don't use main to find where to start. It start from the first line that is not in a method.  
+`ARGV` is the array of inputs.  
+```
+ruby fact.rb 1 # ARGV[0] is 1
 ```
 
 `__FILE__` contains the name of this script. 
@@ -137,6 +174,8 @@ if __FILE__ == $0 # it is the main function
 ```
 in irb mode, `__FILE__` is `(irb)` while `$0` is `irb`, which is not same. 
 
+# Reference: 
+http://www.rubyist.net/~slagell/ruby/examples.html
 
 
 
