@@ -3,6 +3,8 @@ http://stackoverflow.com/questions/3672586/what-is-the-difference-between-requir
 http://stackoverflow.com/questions/2416372/static-variables-in-ruby
 (http://en.wikibooks.org/wiki/Ruby_Programming/Syntax/Variables_and_Constants)_
 http://stackoverflow.com/questions/2199282/killing-all-thread-workers-when-one-thread-found-the-answer-ruby
+[mutex](http://ruby-doc.org/core-1.9.3/Mutex.html)
+
 
 ### Enviroment: 
 To run a single commend: 
