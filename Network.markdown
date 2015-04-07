@@ -3,5 +3,7 @@
 `sudo iptables -L`
 
 [monit](http://linux.die.net/man/1/monit)
-
+```
+monit unmonitor name
 monit monitor name
+```
