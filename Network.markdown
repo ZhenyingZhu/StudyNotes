@@ -116,3 +116,42 @@ Compile Python:
 ### Networking
 DNS use udp by default. when using tcp, send to many traffic.  
 
+Switch: MAC bridge, connect devices together.   
+Router: send packages.   
+Internet Protocol address version 4: 32-bit number=FF.FF.FF.FF.   
+IPv6:128 bits.   
+CIDR: Classless internet domain routing   
+DHCP: Dynamic host configuration protocol   
+VIF: virtual interface. Protocol layer. Has network address.   
+ASIC: application specific integrated circuit.   
+RPM: RPM package manager for install software in Linux.   
+Metric: The set of properties of a router.   
+NAT: Network address translation   
+Scope: The main feature of a product.   
+Wrapper: a subroutine in a software library or a computer program whose main purpose is to call a second subroutine. a system call with little or no additional computation. To make the call of updated package much easier.   
+verbose: debug or not.   
+Subnet: a range of IP address.   
+Security Group: a white list that allow which protocol(TCP or UDP) can access which port(e.g. SSH 22) from where(e.g. 0.0.0.0/0 or another SG). It is stateful.   
+Stateless: treat every requests as independent transaction. Like HTTP.   
+Stateful: create an interactive session with user. Like FTP.   
+MIS: Management Information System  
+Open Systems Interconnection model (OSI Model): 
+1. physical layer: transmittion medium. 
+2. data link layer: node to node. MAC. 
+3. network layer: datagrams(variable length data sequences). Routing. IP is in internet layer.  
+4. transport layer: while transmit, how to maintain quailty. TCP(on top of IP). 
+5. session layer: dialogues between computers. Full/Half-duplex. 
+6. presentation layer: syntax and semantics for app layer to present. 
+7. application layer: show to end user. 
+
+TCP/IP model: 
+1. Link layer: how host attached. Hardware independent. 
+2. Internet layer: routing, IP protocol. 
+3. Transport layer: establish a basic data channel. TCP or UDP. 
+4. Application layer: HTTP, FTP, SMTP, DHCP. 
+
+IRQ: interrupt request.   
+p55 latency: 55% of the targets should be faster than the given latency.  
+SLA: service-level agreement. where a service is formally defined. Particular aspects of the service - scope, quality, responsibilities - are agreed between the service provider and the service user.  core dumps: record working state.  
+
+
