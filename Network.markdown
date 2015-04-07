@@ -4,4 +4,4 @@
 
 [monit](http://linux.die.net/man/1/monit)
 
-
+monit monitor name
