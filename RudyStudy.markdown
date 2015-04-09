@@ -4,6 +4,15 @@ http://stackoverflow.com/questions/2416372/static-variables-in-ruby
 (http://en.wikibooks.org/wiki/Ruby_Programming/Syntax/Variables_and_Constants)_
 http://stackoverflow.com/questions/2199282/killing-all-thread-workers-when-one-thread-found-the-answer-ruby
 [mutex](http://ruby-doc.org/core-1.9.3/Mutex.html)
+`<=>`: Combined comparison operator. Returns 0 if first operand equals second, 1 if first operand is greater than the second and -1 if first operand is less than the second.  
+
+
+```
+kid_io = IO.popen(cmd)
+o = IO.read()
+kid_io.close() if kid_io and !kid_io.closed?
+```
+
 
 
 ### Enviroment: 

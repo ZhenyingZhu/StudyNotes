@@ -1,3 +1,12 @@
+Wrapper: ensure have the right path and enviroment.  
+Output of programs should goes to /var/your-program/xxx.yaml
+Put first execute file into bin. Modules into lib  
+
+ruby enviroment for eclipse https://eclipse.org/dltk/install.php
+
+[pgrep](http://linux.die.net/man/1/pgrep)
+search processes  
+
 [IptablesHowTo](https://help.ubuntu.com/community/IptablesHowTo)
 
 `sudo iptables -L`
