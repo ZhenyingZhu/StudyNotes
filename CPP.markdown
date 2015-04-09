@@ -1,7 +1,7 @@
 
 
 # C++ Primer 中文版
-# Chapter 1
+## Chapter 1
 主函数
 ```
 int main()
@@ -19,9 +19,10 @@ g++ hello.cc –o hello
 echo $? # see the return value from main
 ```
 
-include尖括号中是头文件。  
-标准库iostream：用<>括起来。自定义库用””  
-istream：cin。输入值与存入的变量类型不符合时，或读入ctrl+Z时，返回的值为假，可用于while的中。  
+include尖括号中是头文件。标准库用`<>`括起来。自定义库用`""`。  
+
+### iostream
+istream：cin。输入值与存入的变量类型不符合时，或读入ctrl+D时，返回的值为假，可用于while的中。  
 ostream：cout， cerror, clog。  
 iostream库能所有处理内置类型的输出。  
 ```
@@ -35,43 +36,67 @@ int main()
 }
 ```
 
-`<<`操作符：每次接受两个操作数，左边为ostream对象，右边为内容。该表达式执行完后，返回ostream对象。  
+`<<`操作符：每次接受两个操作数，左边为ostream对象，右边为内容。该表达式执行完后，返回void*的ostream对象。  
 Manipulator操作符：endl，换行并刷新缓冲区（buff）。  
 
 调用前需有std::是使用命名空间(namespace)std内的函数或操作符避免定义变量时冲突。  
 作用域（Scope）操作符：取namespace中的对象。  
 
+对于出错的情况：
+```
+    std::cerr << "Error" << std::endl;
+    return -1;
+```
+
 内置类型：如int。最好都赋初值。  
 
 
-×××××××××××××××××××××××××××××××××××××××××××
+区块注释：
+```
+/*
+ *
+ */
+```
 
+### 控制结构
+迭代while：括号内条件式返回非0时执行。  
+```
+int sum = 0, val;
+while(std::cin >> val) 
+    sum += val;
+```
 
-对于出错的情况：
-	std::cerr<<"Error"<<std::endl;
-	return -1;
-
-控制结构：
-迭代while：括号内条件式非0时执行。
-int sum=0; int val=1;
-while(val<=10)
-{
-	sum+=val;
-	++val;
-}
-简化循环变量for：循环结束后循环变量释放，不可再用。
+简化循环变量for：循环结束后循环变量释放，不可再用。  
+```
 int sum=0;
-for(int val=1; val<=10; ++val)
-	sum+=val;
-条件执行if：
+for(int val = 1; val <= 10; ++val)
+	sum += val;
+```
+
+条件执行if：  
+```
 if(条件)
 	执行;
 else
 	执行;
-类：自定义数据类型。istream也是。
-	三要素：名字、定义域、可执行操作。
-Sales_item item; Sales_item是类，item是对象。
-	成员函数：item1.same_isbn(item2)，是函数。
+```
+
+
+### 类（class）
+自定义数据类型。istream也是。  
+三要素：名字、定义域、可执行操作。  
+保存在一个与类名相同且后缀为`.h`文件中。  
+实例化：
+```
+Sales_item item; 
+```
+Sales_item是类，item是对象。
+
+成员函数：`item.same_isbn(item2)`是函数。  
+可以覆写操作符。  
+
+××××××××××××××××××××××××××××××××××P18
+
 
 点操作符.：左操作数是类的对象，右操作数是成员。
 调用操作符()：扩住实参。
