@@ -1,3 +1,5 @@
+`/usr/bin/file`: output the message of a file.  
+
 Wrapper: ensure have the right path and enviroment.  
 Output of programs should goes to /var/your-program/xxx.yaml
 Put first execute file into bin. Modules into lib  

@@ -1,6 +1,7 @@
 killall nc
 Ctrl+z and fg
 service lightdm stop to stop X windows. 
+who -b
 
 sh-bang: 可用指令<code>env</code>，如#! /usr/bin/env python。
 

@@ -5,15 +5,24 @@ http://stackoverflow.com/questions/2416372/static-variables-in-ruby
 http://stackoverflow.com/questions/2199282/killing-all-thread-workers-when-one-thread-found-the-answer-ruby
 [mutex](http://ruby-doc.org/core-1.9.3/Mutex.html)
 `<=>`: Combined comparison operator. Returns 0 if first operand equals second, 1 if first operand is greater than the second and -1 if first operand is less than the second.  
-
+`=~`: string regular express. (http://stackoverflow.com/questions/3025838/what-is-the-operator-in-ruby)
+`%r{}`: regular express (http://stackoverflow.com/questions/12384704/the-ruby-r-expression)  
+[ways to excute](http://tech.natemurray.com/2007/03/ruby-shell-commands.html)  
 
 ```
 kid_io = IO.popen(cmd)
 o = IO.read()
 kid_io.close() if kid_io and !kid_io.closed?
 ```
+```
+if array.find { |c| dosomething?(c) }.nil? # if find, execute next
+    puts "null"
+end
+```
 
+`@@var` is class var: (http://stackoverflow.com/questions/5890118/what-does-variable-mean-in-ruby)  
 
+`$&` the match part of previous regular express: (http://jimneath.org/2010/01/04/cryptic-ruby-global-variables-and-their-meanings.html)  
 
 ### Enviroment: 
 To run a single commend: 
