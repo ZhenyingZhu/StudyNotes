@@ -21,10 +21,10 @@ echo $? # see the return value from main
 
 include尖括号中是头文件。标准库用`<>`括起来。自定义库用`""`。  
 
-### iostream
-istream：cin。输入值与存入的变量类型不符合时，或读入ctrl+D时，返回的值为假，可用于while的中。  
-ostream：cout， cerror, clog。  
-iostream库能所有处理内置类型的输出。  
+iostream
+* istream：cin。输入值与存入的变量类型不符合时，或读入ctrl+D时，返回的值为假，可用于while的中。  
+* ostream：cout， cerror, clog。  
+* iostream库能所有处理内置类型的输出。  
 ```
 #include <iosteam>
 int main()
