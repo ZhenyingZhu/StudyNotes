@@ -33,8 +33,8 @@ ruby -e 'puts "Hello World"'
 To run input/evaluation loop:  
 ```
 ruby
-puts "Hello World"
- # EOF, then the previous lines will excuted. 
+puts "Hello World" # print and return nil. 
+ctrl + D # EOF, then the previous lines will excuted. 
 ```
 
 To use interpreter: `irb`  

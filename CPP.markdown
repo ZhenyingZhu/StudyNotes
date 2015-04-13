@@ -7,7 +7,7 @@
 int main()
 {
     return 0; # Means success
-}
+} # this is curly brace
 ```
 
 函数必须指定4个元素：返回类型，函数名，形参表，函数体。  
@@ -19,7 +19,8 @@ g++ hello.cc –o hello
 echo $? # see the return value from main
 ```
 
-include尖括号中是头文件。标准库用`<>`括起来。自定义库用`""`。  
+
+Preprocessor directive: include尖括号中是头文件。标准库用`<>`括起来。自定义库用`""`。  
 
 iostream
 * istream：cin。输入值与存入的变量类型不符合时，或读入ctrl+D时，返回的值为假，可用于while的中。  
@@ -29,7 +30,7 @@ iostream
 #include <iosteam>
 int main()
 {
-    std::cout << "Enter two numbers: " << std::endl; 
+    std::cout << "Enter two numbers: " << std::endl; # std::endl is one of manipulators
     int v1, v2; 
     std::cin >> v1 >> v2; 
     std::cout << "Sum :" << v1 + v2 << std::endl; 
@@ -58,7 +59,7 @@ Manipulator操作符：endl，换行并刷新缓冲区（buff）。
  */
 ```
 
-### 控制结构
+##### 控制结构
 迭代while：括号内条件式返回非0时执行。  
 ```
 int sum = 0, val;
@@ -82,7 +83,7 @@ else
 ```
 
 
-### 类（class）
+##### 类（class）
 自定义数据类型。istream也是。  
 三要素：名字、定义域、可执行操作。  
 保存在一个与类名相同且后缀为`.h`文件中。  
@@ -95,12 +96,13 @@ Sales_item是类，item是对象。
 成员函数：`item.same_isbn(item2)`是函数。  
 可以覆写操作符。  
 
-××××××××××××××××××××××××××××××××××P18
+点操作符.：左操作数是类的对象，右操作数是成员。  
+调用操作符()：扩住实参。  
 
+Argument: 实参; Parameter: 形参。Statement: 语句。  
 
-点操作符.：左操作数是类的对象，右操作数是成员。
-调用操作符()：扩住实参。
-
+## Chapter 2
+==============
 算术类型：（C++ Primer 中文版P30）
 	bool， true, false
 char（8位），wchar_t汉语或日语（16位），
