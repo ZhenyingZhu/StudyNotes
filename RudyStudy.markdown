@@ -1,3 +1,23 @@
+(Ruby Socket)[http://ruby-doc.org/stdlib-1.9.3/libdoc/socket/rdoc/Socket.html#method-i-accept]   
+```
+# Pull down Google's web page
+require 'socket'
+include Socket::Constants
+socket = Socket.new(AF_INET, SOCK_STREAM, 0)
+sockaddr = Socket.sockaddr_in(80, 'www.google.com')
+begin # emulate blocking connect
+  socket.connect_nonblock(sockaddr)
+rescue IO::WaitWritable
+  IO.select(nil, [socket]) # wait 3-way handshake completion
+  begin
+    socket.connect_nonblock(sockaddr) # check connection failure
+  rescue Errno::EISCONN
+  end
+end
+socket.write("GET / HTTP/1.0\r\n\r\n")
+results = socket.read
+```
+
 Thread.join: http://ruby-doc.org/core-1.9.3/Thread.html
 http://stackoverflow.com/questions/3672586/what-is-the-difference-between-require-relative-and-require-in-ruby
 http://stackoverflow.com/questions/2416372/static-variables-in-ruby

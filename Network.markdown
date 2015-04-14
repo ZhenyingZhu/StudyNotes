@@ -1,3 +1,7 @@
+(EINTR)[http://250bpm.com/blog:12]  
+
+http://stackoverflow.com/questions/1434451/what-does-connection-reset-by-peer-mean  
+
 python utc time: 
 ```
 from datetime import datetime
