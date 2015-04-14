@@ -289,3 +289,4 @@ Is a way to run the script with self defined function
 `len(obj)`：得到长度。  
 `type(obj)`：返回对象类型。返回值为type 类的实例。  
 `obj.__doc__`：显示帮助文档。  
+

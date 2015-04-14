@@ -1,3 +1,16 @@
+python utc time: 
+```
+from datetime import datetime
+datetime.utcnow()
+```
+http://stackoverflow.com/questions/15940280/utc-time-in-python  
+
+time format output
+```
+time.strftime('%Y-%m-%d %H:%M:%S UTC')
+```
+http://stackoverflow.com/questions/3961581/in-python-how-to-display-current-time-in-readable-format  
+
 `/usr/bin/file`: output the message of a file.  
 
 Wrapper: ensure have the right path and enviroment.  
