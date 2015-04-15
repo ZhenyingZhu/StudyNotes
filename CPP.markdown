@@ -38,9 +38,9 @@ int main()
 ```
 
 `<<`操作符：每次接受两个操作数, 左边为ostream对象, 右边为内容。该表达式执行完后, 返回void*的ostream对象。  
-Manipulator操作符：endl, 换行并刷新缓冲区(buff)。  
+Manipulator操作符：`endl`, 换行并刷新缓冲区(buff)。  
 
-调用前需有std::是使用命名空间(namespace)std内的函数或操作符避免定义变量时冲突。  
+调用前需有`std::`是使用命名空间(namespace)std内的函数或操作符避免定义变量时冲突。  
 作用域(Scope)操作符：取namespace中的对象。  
 
 对于出错的情况：
@@ -103,7 +103,7 @@ Argument: 实参; Parameter: 形参。Statement: 语句。
 
 ## Chapter 2
 Routine: 一系列操作组成。用以定义函数或数据类型。  
-Statically typed: 而smalltalk不是。  
+Statically typed: C是而smalltalk不是。  
 
 算术类型(arithmetic type)：
 * bool,  true, false。可以为任何算术类型。
@@ -114,21 +114,43 @@ Void type.
 
 内存机制: 本为序列存储, 用chunk 来处理, 32 bit为一个word。每个byte 有一个地址。
 
-20可定义20 (decimal), 024 (octal), 0x14 (hexadecimal)。  
+20等同于20 (decimal), 024 (octal), 0x14 (hexadecimal)。  
 20UL得到long和unsigned类型。  
 单精度浮点: 3.14159F = 3.14159E0f 0. = 0e0, 1E-3F = .001f  
 wchar_t类型: L'a'。
-转义字符(Escape characters)：(C++ Primer 中文版P35)\n, \t, \v 纵向制表符, \b退格符？, \r, \12 回车符, \f 进纸符, \a 报警符, \0 空字符, \40 空格符。\xxx (八进制数) = (char)0xxx。  
+转义字符(Escape characters)：\n, \t, \v 纵向制表符, \b退格符？, \r, \12 回车符, \f 进纸符, \a 报警符, \0 空字符, \40 空格符。\xxx (八进制数) = (char)0xxx。  
 字符串：cout<<"a" "b""c"可以用空格、回车、tab连起来。在末尾自动添加空字符：'A' 是一个字符，而"A" 是'A', '\12' 两个字符。
 
 escape '\': 可以断开单词来换行。不允许之后有空格或注释。下一行的第一个字符, 不论是空格和tab都会包含, 所以不能正常缩进。  
 
 nonportable: 利用未定义行为编程, 如将char string 和long string 相连 `"apple" L"banana"`。  
 
+左值(lvalue): 即变量，可出现在赋值语句左或者右。右值(rvalue): 即常量，只能在右。  
+
+对象: 内存中具有类型的区域。  
+
+C语言大小写敏感。且关键词和替代名不能作为变量名(identifier)。变量名必须以`_`或字母开头。  
+
+关键词表：
+|   |   |   |   |   |   |   |   |   |   |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+|asm|do|if|return|try|auto|double|inline|short|typedef| 
+|bool|dynamic_cast|int|signed|typeid|break|else|long|sizeof|typename|
+|case|enum|mutable|static|union|catch|explicit|namespace|staitc_cast|unsigned|
+|char|export|new|struct|using|class|extern|operator|switch|virtual|
+|const|false|private|template|void|const_cast|float|protected|this|volatile|
+|continue|for|public|throw|wchar_t|default|friend|register|true|while|
+|delete|goto|reinterpret_cast|
+
+替代名：替代操作符
+| | | | | | |
+|:-:|:-:|:-:|:-:|:-:|:-:|
+|and|bitand|compl|not_eq|or_eq|xor_eq|
+|and_eq|bitor|not|or|xor|
+
 =====================
 HERE
 
-C语言大小写敏感。且关键词不能作为变量名。关键词表：(C++ Primer 中文版P41)。
 变量名一般为小写。
 初始化不是赋值。直接赋值：int ival (1024); 
 函数体外的初始化自动为0。函数体内不自动初始化。
@@ -160,6 +182,7 @@ C语言大小写敏感。且关键词不能作为变量名。关键词表：(C++
 };
 类可以有多个private或public访问标号。决定代码是否可以访问。public中的成员都可以访问。private中的只能执行规定的操作, 不能修改数据。
 class定义的类默认一开始都是private,  struct定义的默认一开始是public。
+
 
 头文件：连接程序中名字的使用和声明。包含类的定义, extern变量的声明, 函数的声明。
 预防多次包含同一头文件：
