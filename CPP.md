@@ -133,11 +133,6 @@ C语言大小写敏感。且关键词和替代名不能作为变量名(identifie
 
 关键词表：
 
-First Header | Second Header
------------- | -------------
-Content from cell 1 | Content from cell 2
-Content in the first column | Content in the second column
-
 |   |   |   |   |   |   |   |   |   |   |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 |asm|do|if|return|try|auto|double|inline|short|typedef| 
@@ -149,6 +144,7 @@ Content in the first column | Content in the second column
 |delete|goto|reinterpret_cast|
 
 替代名：替代操作符
+
 | | | | | | |
 |:-:|:-:|:-:|:-:|:-:|:-:|
 |and|bitand|compl|not_eq|or_eq|xor_eq|
