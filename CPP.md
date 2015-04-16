@@ -133,15 +133,15 @@ C语言大小写敏感。且关键词和替代名不能作为变量名(identifie
 
 关键词表：
 
-|   |   |   |   |   |   |   |   |   |   |
-|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-|asm|do|if|return|try|auto|double|inline|short|typedef| 
-|bool|dynamic_cast|int|signed|typeid|break|else|long|sizeof|typename|
-|case|enum|mutable|static|union|catch|explicit|namespace|staitc_cast|unsigned|
-|char|export|new|struct|using|class|extern|operator|switch|virtual|
-|const|false|private|template|void|const_cast|float|protected|this|volatile|
-|continue|for|public|throw|wchar_t|default|friend|register|true|while|
-|delete|goto|reinterpret_cast|
+|   |   |   |   |   |   |   |   |   |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+|asm|do|if|return|try|auto|double|inline|short|
+|typedef|bool|dynamic_cast|int|signed|typeid|break|else|long|
+|sizeof|typename|case|enum|mutable|static|union|catch|explicit|
+|namespace|staitc_cast|unsigned|char|export|new|struct|using|class|
+|extern|operator|switch|virtual|const|false|private|template|void|
+|const_cast|float|protected|this|volatile|continue|for|public|throw|
+|wchar_t|default|friend|register|true|while|delete|goto|reinterpret_cast|
 
 替代名：替代操作符
 
