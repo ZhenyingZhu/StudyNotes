@@ -1,3 +1,7 @@
+[rebase](http://git-scm.com/book/en/v2/Git-Branching-Rebasing)
+
+[change master branch](http://stackoverflow.com/questions/2862590/how-to-replace-master-branch-in-git-entirely-from-another-branch)
+
 [Jumbo](http://en.wikipedia.org/wiki/Jumbo_frame)
 
 Add in the last line of a plain text file.  
