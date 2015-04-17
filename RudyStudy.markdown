@@ -1,3 +1,5 @@
+http://stackoverflow.com/questions/15769739/determining-type-of-an-object-in-ruby  
+
 (yield)[http://www.tutorialspoint.com/ruby/ruby_blocks.htm]_
 
 (Ruby Socket)[http://ruby-doc.org/stdlib-1.9.3/libdoc/socket/rdoc/Socket.html#method-i-accept]   
