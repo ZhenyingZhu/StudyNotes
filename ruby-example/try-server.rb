@@ -7,12 +7,16 @@ if __FILE__ == $0
     
         server = TCPServer.open(12000)
         client = server.accept
-        client.puts("from server1")
         
-        #response = client.gets
-        #puts response
+        i = 1
+        while true
+            puts i += 1
+            client.puts("from server1")
+            response = client.gets
+            puts response
+        end
 
-        client2 = server.accept
+        #client2 = server.accept
 
         #puts client2.gets
 

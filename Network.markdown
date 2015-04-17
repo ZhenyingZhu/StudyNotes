@@ -1,3 +1,8 @@
+Add in the last line of a plain text file.  
+```
+# vim: set ts=4 sw=4 sts=4 et:
+```
+
 `dig` DNS lookup  
 `set -e` ?  
 
