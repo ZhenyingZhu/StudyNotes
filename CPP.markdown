@@ -151,16 +151,32 @@ C语言大小写敏感。且关键词和替代名不能作为变量名(identifie
 
 变量名只能由数字、字母、下划线组成。一般为小写。多个单词由下划线分开，或第二个单词以后的每个单词首字母大写。  
 
+初始化不是赋值。赋值是将对象当前值用新值代替。直接赋值(Direct-initialization)：`int ival (1024);` 对class object 来说, 比copy-initialization 效率高且灵活。   
+类对象: 由constructor 初始化。不定义任何构造函数则使用default constructor。有默认构造函数的类可以在初始化时不提供初始值。不然无法初始化。  
+```
+#include <string>
+std::string titleA = "Hello World"; 
+std::string titleB("Hello World"); 
+std::string all_nines(3, '9'); // 999
+```
+
+内置类型，函数体外的初始化自动为0。函数体内不自动初始化。
+```
+#include <iostream>
+#include <string>
+int global_var; 
+
+int main()
+{
+    int local_var; 
+    std::string local_str; 
+    std::cout<< global_var << std::endl; // it is 0. 
+    std::cout << local_var << std::endl; // ？
+    std::cout << loval_str << std::endl; // ""
+}
+```
 =====================
 HERE
-
-初始化不是赋值。直接赋值：int ival (1024); 
-函数体外的初始化自动为0。函数体内不自动初始化。
-类的变量有默认构造函数可以定义。
-
-构造函数：定义如何初始化的成员函数。
-标准库中string定义构造函数：
-	std::string all_nines(10,’9’); 
 
 多个文件中, 一个文件含有变量的定义, 其他的需要声明。只声明不定义变量： extern int i; 
 全局作用域中定义的变量可用于局部作用域和语句作用域。局部定义可屏蔽全局定义的变量。对象定义在首次使用的地方。
