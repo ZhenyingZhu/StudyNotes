@@ -1,3 +1,5 @@
+http://stackoverflow.com/questions/4190797/how-can-i-remove-the-string-n-from-a-ruby-string  
+
 http://stackoverflow.com/questions/15769739/determining-type-of-an-object-in-ruby  
 
 (yield)[http://www.tutorialspoint.com/ruby/ruby_blocks.htm]_
