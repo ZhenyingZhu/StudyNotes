@@ -1,3 +1,5 @@
+[shell wait background](http://unix.stackexchange.com/questions/124106/shell-script-wait-for-background-command)  
+
 [MTU size](http://www.cyberciti.biz/faq/centos-rhel-redhat-fedora-debian-linux-mtu-size/)
 
 [rename remote branch](http://www.benjaminlhaas.com/blog/locally-and-remotely-renaming-branch-git)  
