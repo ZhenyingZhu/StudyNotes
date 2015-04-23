@@ -1,3 +1,5 @@
+[sudo -u](http://apple.stackexchange.com/questions/82438/allow-sudo-to-another-user-without-password)  
+
 [shell wait background](http://unix.stackexchange.com/questions/124106/shell-script-wait-for-background-command)  
 
 [MTU size](http://www.cyberciti.biz/faq/centos-rhel-redhat-fedora-debian-linux-mtu-size/)
