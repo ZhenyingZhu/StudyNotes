@@ -1,3 +1,5 @@
+[find which shell](http://www.cyberciti.biz/tips/how-do-i-find-out-what-shell-im-using.html)  
+
 [sudo -u](http://apple.stackexchange.com/questions/82438/allow-sudo-to-another-user-without-password)  
 
 [shell wait background](http://unix.stackexchange.com/questions/124106/shell-script-wait-for-background-command)  
