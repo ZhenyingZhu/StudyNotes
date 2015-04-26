@@ -212,3 +212,9 @@ p55 latency: 55% of the targets should be faster than the given latency.
 SLA: service-level agreement. where a service is formally defined. Particular aspects of the service - scope, quality, responsibilities - are agreed between the service provider and the service user.  core dumps: record working state.  
 
 
+# 计算机网络：自顶向下方法(第四版)
+## 第一章
+### 1.1
+#### 1.1.1
+Hosts connect each other through communication link and packet switch.  
+ISPs follow IP protocol. 
