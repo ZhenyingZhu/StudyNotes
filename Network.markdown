@@ -1,3 +1,5 @@
+soft reboot: `sudo reboot`  
+
 if `sudo -u user` failed, try `sudo logbash` and in the new bash, run that again.  
 
 [find which shell](http://www.cyberciti.biz/tips/how-do-i-find-out-what-shell-im-using.html)  
