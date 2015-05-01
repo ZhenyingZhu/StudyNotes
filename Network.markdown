@@ -20,6 +20,10 @@ if `sudo -u user` failed, try `sudo logbash` and in the new bash, run that again
 [branches](http://gistflow.com/posts/909-how-to-replace-the-master-branch-on-git)  
 
 [Jumbo](http://en.wikipedia.org/wiki/Jumbo_frame)
+[test](http://www.mylesgray.com/hardware/test-jumbo-frames-working/)
+see MTU: ifconfig  
+Need ICMP port open to access ping.  
+http://serverfault.com/questions/234311/testing-whether-jumbo-frames-are-actually-working  
 
 Add in the last line of a plain text file.  
 ```
