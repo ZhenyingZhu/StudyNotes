@@ -1,5 +1,6 @@
-https://docs.python.org/2/library/subprocess.html
-http://effbot.org/zone/python-with-statement.htm
+https://docs.python.org/2/library/subprocess.html  
+http://effbot.org/zone/python-with-statement.htm  
+
 #Python核心编程
 
 ##Chapter 01
@@ -32,7 +33,7 @@ file: 从给定的文件运行 Python 脚本
 `abs(-4)`  
 执行后可以有输出，可以没有(返回None)。  
   
-`\_`表示前一个表达式的值。  
+`_`表示前一个表达式的值。  
   
 变量赋值:   
 `mystring = 'Hello World!'`  
