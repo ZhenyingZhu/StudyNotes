@@ -1,3 +1,5 @@
+[eclipse](http://stackoverflow.com/questions/11596194/how-does-one-show-trailing-whitespace-in-eclipse)  
+
 transport file  
 ```
 netserver
