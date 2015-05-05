@@ -1,9 +1,19 @@
+https://iperf.fr/#tuningtcp  
+
+[TCP MTU](http://blogs.technet.com/b/onthewire/archive/2014/06/18/checking-your-tcp-packets-are-pulling-their-weight-tcp-max-segment-size-or-mss.aspx)  
+
+[tcpdump](http://www.thegeekstuff.com/2010/08/tcpdump-command-examples/)
+
 [eclipse](http://stackoverflow.com/questions/11596194/how-does-one-show-trailing-whitespace-in-eclipse)  
 
-transport file  
+transport file (http://www.netperf.org/netperf/training/Netperf.html#0.2.2Z141Z1.SUJSTF.6R2DBD.2) 
 ```
 netserver
-netperf 127.0.0.1 -t udp_rr -- -r 1473,1473 -u 
+netperf 127.0.0.1 -t udp_rr -- -r 1473,1473 -u
+
+netperf -H remotehost -t UDP_STREAM -- -m 1024 # test udp
+netperf -H remotehost -t TCP_RR
+
 ```
 
 [python **args](http://www.saltycrane.com/blog/2008/01/how-to-use-args-and-kwargs-in-python/)  
