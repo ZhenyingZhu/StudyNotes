@@ -1,3 +1,9 @@
+[python **args](http://www.saltycrane.com/blog/2008/01/how-to-use-args-and-kwargs-in-python/)  
+
+[tcpdump](https://danielmiessler.com/study/tcpdump/)  
+
+`iperf -s` on server and `iperf -c host` on client  
+
 soft reboot: `sudo reboot`  
 
 if `sudo -u user` failed, try `sudo logbash` and in the new bash, run that again.  
