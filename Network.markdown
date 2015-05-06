@@ -1,3 +1,16 @@
+http://stackoverflow.com/questions/7188191/copy-file-over-tcp-socket-in-ruby-slow  
+
+http://stackoverflow.com/questions/1661367/specify-packet-size-with-ruby-tcpsocket  
+
+http://www.linuxquestions.org/questions/linux-networking-3/gigabit-ethernet-performance-643750/  
+
+[web browser](http://www.tutorialspoint.com/ruby/ruby_socket_programming.htm)  
+
+```
+dd if=/dev/zero of=binary.dat bs=1c count=1 
+dd if=/dev/zero oflag=append conv=notrunc of=binary.dat bs=1c count=1 #To append it to file
+```
+
 https://iperf.fr/#tuningtcp  
 
 [TCP MTU](http://blogs.technet.com/b/onthewire/archive/2014/06/18/checking-your-tcp-packets-are-pulling-their-weight-tcp-max-segment-size-or-mss.aspx)  
