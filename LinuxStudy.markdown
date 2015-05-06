@@ -1,3 +1,4 @@
+[background](http://www.kossboss.com/linux---move-running-to-process-nohup)  
 killall nc
 Ctrl+z and fg
 service lightdm stop to stop X windows. 
