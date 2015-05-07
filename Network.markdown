@@ -1,3 +1,11 @@
+[Understand TCP](http://packetlife.net/blog/2010/jun/7/understanding-tcp-sequence-acknowledgment-numbers/)  
+
+[nuttcp](http://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&ved=0CB8QFjAA&url=http%3A%2F%2Fwww.nuttcp.net%2F&ei=sHhKVbmcAcX8oATbkoCACw&usg=AFQjCNE2ezCkj69-haln6xb3TvnffAbx0w&bvm=bv.92291466,d.cGU)  
+
+http://lukaszwrobel.pl/blog/tmux-tutorial-split-terminal-windows-easily  
+
+[split terminal](http://ubuntuforums.org/showthread.php?t=1813803)  
+
 http://stackoverflow.com/questions/7188191/copy-file-over-tcp-socket-in-ruby-slow  
 
 http://stackoverflow.com/questions/1661367/specify-packet-size-with-ruby-tcpsocket  
@@ -254,6 +262,12 @@ IRQ: interrupt request.
 p55 latency: 55% of the targets should be faster than the given latency.  
 SLA: service-level agreement. where a service is formally defined. Particular aspects of the service - scope, quality, responsibilities - are agreed between the service provider and the service user.  core dumps: record working state.  
 
+# MTU
+In IP protocol, layer 3.  
+Hosts know own MTU, but don't know the smallest MTU on the path.  
+IPv4 allows Fragmentation. 
+
+The term datagram is often considered synonymous to packet but there are some nuances. The term datagram is generally reserved for packets of an unreliable service, which cannot notify the sender if delivery fails, while the term packet applies to any packet, reliable or not. Datagrams are the IP packets that provide a quick and unreliable service like UDP, and all IP packets are datagrams;[4] however, at the TCP layer what is termed a TCP segment is the sometimes necessary IP fragmentation of a datagram,[5] but those are referred to as "packets".[6]
 
 # 计算机网络：自顶向下方法(第四版)
 ## 第一章
