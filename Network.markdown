@@ -1,15 +1,11 @@
-<<<<<<< HEAD
 [hping3](http://0daysecurity.com/articles/hping3_examples.html)  
 
 `sudo yum -y --enablerepo="epel" install hping3`  
 
 `$ dpkg -l | grep python`  
 
-
 [DF flag](http://yurisk.info/2009/09/01/ping-setting-dont-fragment-bit-in-linuxfreebsdsolarisciscojuniper/)  
-=======
 [wireshark](http://anonscm.debian.org/viewvc/collab-maint/ext-maint/wireshark/trunk/debian/README.Debian?view=markup)  
->>>>>>> 8c4d6f663286ae6e704e4091f5ed931d1549f63b
 
 [Understand TCP](http://packetlife.net/blog/2010/jun/7/understanding-tcp-sequence-acknowledgment-numbers/)  
 
