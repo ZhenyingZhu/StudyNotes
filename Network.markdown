@@ -1,6 +1,6 @@
 [Understand TCP](http://packetlife.net/blog/2010/jun/7/understanding-tcp-sequence-acknowledgment-numbers/)  
 
-[nuttcp](http://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&ved=0CB8QFjAA&url=http%3A%2F%2Fwww.nuttcp.net%2F&ei=sHhKVbmcAcX8oATbkoCACw&usg=AFQjCNE2ezCkj69-haln6xb3TvnffAbx0w&bvm=bv.92291466,d.cGU)  
+[nuttcp](http://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&ved=0CB8QFjAA&url=http%3A%2F%2Fwww.nuttcp.net%2F&ei=sHhKVbmcAcX8oATbkoCACw&usg=AFQjCNE2ezCkj69-haln6xb3TvnffAbx0w&bvm=bv.92291466,d.cGU)  and http://manpages.ubuntu.com/manpages/precise/man8/nuttcp.8.html  
 
 http://lukaszwrobel.pl/blog/tmux-tutorial-split-terminal-windows-easily  
 

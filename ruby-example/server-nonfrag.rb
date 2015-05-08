@@ -10,7 +10,7 @@ if __FILE__ == $0
         server = TCPServer.open(12000)
         client = server.accept
         
-        file = File.open('binary.dat', 'rb')
+        file = File.open('file.bat', 'rb')
 
         while chunk = file.read(SIZE)
             client.write(chunk)
