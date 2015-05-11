@@ -1,3 +1,5 @@
+[netstat](http://www.cyberciti.biz/faq/how-do-i-find-out-what-ports-are-listeningopen-on-my-linuxfreebsd-server/)  
+
 [hping3](http://0daysecurity.com/articles/hping3_examples.html)  
 
 `sudo yum -y --enablerepo="epel" install hping3`  
