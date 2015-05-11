@@ -1,3 +1,38 @@
+[background](http://www.kossboss.com/linux---move-running-to-process-nohup)  
+killall nc
+Ctrl+z and fg
+service lightdm stop to stop X windows.
+who -b
+
+sh-bang: 可用指令<code>env</code>，如#! /usr/bin/env python。
+
+http://serverfault.com/questions/416222/concatenate-first-line-to-the-end-of-second-line-in-a-text-file
+
+<code>grep -f Key.txt All.txt</code>
+<code>sleep 60</code> to sleep 60 seconds.
+<code>mail -s "test script" account@mail.com < /dev/null</code> send an email with title "test script".
+<code>head -q -n 2 *.txt</code> Output several files without show the file name.
+<code>sed -e 'N;s/\(.*\)n\(.*\)/\1\2/' </code> let the second lines append to the first lines.
+
+```
+while read line; do
+    SOMETHING
+done < readfile
+```
+
+SSH:
+```
+eval `ssh-agent -s`
+ssh-add ~/.ssh/id_rsa
+ssh -A $HOST
+```
+
+Vim:
+<code> set paste</code> and <code> set nopaste</code>
+
+https://docs.python.org/2/library/subprocess.html  
+http://effbot.org/zone/python-with-statement.htm  
+
 [hping3](http://0daysecurity.com/articles/hping3_examples.html)  
 
 `sudo yum -y --enablerepo="epel" install hping3`  
