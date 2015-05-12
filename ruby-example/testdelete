@@ -1,0 +1,11 @@
+#!/usr/bin/env ruby
+require 'fileutils'
+
+FileUtils::mkpath("little")
+FileUtils.cp("apple", "little")
+
+File::delete('apple')
+File::open('apple', 'w') do |f|
+  f.puts 'apple'
+end
+
