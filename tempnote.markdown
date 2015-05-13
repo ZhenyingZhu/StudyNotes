@@ -1,3 +1,13 @@
+```
+from subprocess import call
+call("ls") # success
+call("ls -l") # failed
+call("ls .") # failed
+call(["ls", "-l"]) # success
+```
+
+[Ruby XML](http://www.tutorialspoint.com/ruby/ruby_xml_xslt.htm)  
+
 [netstat](http://www.cyberciti.biz/faq/how-do-i-find-out-what-ports-are-listeningopen-on-my-linuxfreebsd-server/)  
 [background](http://www.kossboss.com/linux---move-running-to-process-nohup)  
 killall nc
