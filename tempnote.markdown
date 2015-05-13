@@ -1,3 +1,10 @@
+http://stackoverflow.com/questions/18193424/using-gsub-in-ruby-strings-correctly  
+`dirname = File.basename(Dir.getwd)` find the current dir name in ruby  
+
+[net bean extension](http://stackoverflow.com/questions/4134137/syntax-highlighting-php-shell-scripts-without-extension-in-netbeans)  
+~/.netbeans/8.0.2/config/Services/MIMEResolver  
+
+
 ```
 from subprocess import call
 call("ls") # success
