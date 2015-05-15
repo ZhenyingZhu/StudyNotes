@@ -1,3 +1,7 @@
+[Xfinity](http://customer.xfinity.com/help-and-support/internet/wireless-gateway-username-and-password?ts=2&CCT=53BA3D76CB1473BFF49C79FE4AA86DFF1EE2DE626F409A5997049C511025D7B2204A7E8531C277E2BCBE6703AA1E9BA0ED1CCE9EEACAF2E341918A8498DFEA031067DB3AB0550914C343562D66B6C738E6B3B5DD54EE00895D57EEDDAF943A63D722FEA4741C2635BFA54500D1EBC9A31BB35ED9541A9164590253CE54D95ED9   )
+
+http://android.stackexchange.com/questions/2984/how-can-i-see-what-ip-address-my-android-phone-has  
+
 http://stackoverflow.com/questions/4370960/what-is-attr-accessor-in-ruby  
 
 http://stackoverflow.com/questions/151505/difference-between-a-class-and-a-module  
