@@ -1,3 +1,9 @@
+http://stackoverflow.com/questions/4370960/what-is-attr-accessor-in-ruby  
+
+http://stackoverflow.com/questions/151505/difference-between-a-class-and-a-module  
+
+Port 0 is reserved.  
+
 http://stackoverflow.com/questions/18193424/using-gsub-in-ruby-strings-correctly  
 `dirname = File.basename(Dir.getwd)` find the current dir name in ruby  
 
@@ -14,6 +20,8 @@ call(["ls", "-l"]) # success
 ```
 
 [Ruby XML](http://www.tutorialspoint.com/ruby/ruby_xml_xslt.htm)  
+http://stackoverflow.com/questions/11315295/ruby-finding-elements-with-rexml  
+http://www.germane-software.com/software/rexml/docs/tutorial.html  
 
 [netstat](http://www.cyberciti.biz/faq/how-do-i-find-out-what-ports-are-listeningopen-on-my-linuxfreebsd-server/)  
 [background](http://www.kossboss.com/linux---move-running-to-process-nohup)  
