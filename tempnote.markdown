@@ -1,3 +1,5 @@
+http://stackoverflow.com/questions/12309269/write-json-data-to-file-in-python  
+
 `du` diskusage.  
 
 [ssh disable timeout](https://docs.oseems.com/general/application/ssh/disable-timeout)  
