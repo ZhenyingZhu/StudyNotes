@@ -1,3 +1,5 @@
+http://askubuntu.com/questions/526082/2-usb-ports-stopped-working  
+
 http://stackoverflow.com/questions/12309269/write-json-data-to-file-in-python  
 
 `du` diskusage.  
