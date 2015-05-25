@@ -132,6 +132,7 @@ nonportable: 利用未定义行为编程, 如将char string 和long string 相�
 C语言大小写敏感。且关键词和替代名不能作为变量名(identifier)。变量名必须以`_`或字母开头。  
 
 关键词表：
+
 |   |   |   |   |   |   |   |   |   |   |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 |asm|do|if|return|try|auto|double|inline|short|typedef| 
@@ -142,7 +143,9 @@ C语言大小写敏感。且关键词和替代名不能作为变量名(identifie
 |continue|for|public|throw|wchar_t|default|friend|register|true|while|
 |delete|goto|reinterpret_cast|
 
+
 替代名：替代操作符
+
 | | | | | | |
 |:-:|:-:|:-:|:-:|:-:|:-:|
 |and|bitand|compl|not_eq|or_eq|xor_eq|
@@ -177,6 +180,18 @@ int main()
 ```
 =====================
 HERE
+(
+Delete contents:
+变量名一般为小写。
+初始化不是赋值。直接赋值：int ival (1024); 
+函数体外的初始化自动为0。函数体内不自动初始化。
+类的变量有默认构造函数可以定义。
+
+构造函数：定义如何初始化的成员函数。
+标准库中string定义构造函数：
+	std::string all_nines(10,’9’); 
+
+)
 
 多个文件中, 一个文件含有变量的定义, 其他的需要声明。只声明不定义变量： extern int i; 
 全局作用域中定义的变量可用于局部作用域和语句作用域。局部定义可屏蔽全局定义的变量。对象定义在首次使用的地方。
