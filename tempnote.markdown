@@ -1,3 +1,5 @@
+http://searchnetworking.techtarget.com/definition/Port-Address-Translation-PAT  
+
 http://stackoverflow.com/questions/6541109/send-string-to-stdin  
 
 http://sc.tamu.edu/help/general/unix/redirection.html  
