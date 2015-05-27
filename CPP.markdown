@@ -23,7 +23,7 @@ echo $? # see the return value from main
 Preprocessor directive: include尖括号中是头文件。标准库用`<>`括起来。自定义库用`""`。  
 
 iostream
-* istream：cin。输入值与存入的变量类型不符合时, 或读入ctrl+D时, 返回的值为假, 可用于while的中。  
+* istream：cin。输入值与存入的变量类型不符合时, 或读入`ctrl+D`时, 返回的值为假, 可用于while的中。  
 * ostream：cout,  cerror, clog。  
 * iostream库能所有处理内置类型的输出。  
 ```
@@ -117,11 +117,11 @@ Void type.
 20等同于20 (decimal), 024 (octal), 0x14 (hexadecimal)。  
 20UL得到long和unsigned类型。  
 单精度浮点: 3.14159F = 3.14159E0f 0. = 0e0, 1E-3F = .001f  
-wchar_t类型: L'a'。
-转义字符(Escape characters)：\n, \t, \v 纵向制表符, \b退格符？, \r, \12 回车符, \f 进纸符, \a 报警符, \0 空字符, \40 空格符。\xxx (八进制数) = (char)0xxx。  
-字符串：cout<<"a" "b""c"可以用空格、回车、tab连起来。在末尾自动添加空字符：'A' 是一个字符，而"A" 是'A', '\12' 两个字符。
+wchar_t类型: L'a'。  
+转义字符(Escape characters)：`\n`, `\t`, `\v` 纵向制表符, `\b`退格符？, `\r`, `\12` 回车符, `\f` 进纸符, `\a` 报警符, `\0` 空字符, `\40` 空格符。`\xxx` (八进制数) = (char)0xxx。  
+字符串：`cout<<"a" "b""c"`可以用空格、回车、tab连起来。在末尾自动添加空字符：'A' 是一个字符，而"A" 是'A', '\12' 两个字符。
 
-escape '\': 可以断开单词来换行。不允许之后有空格或注释。下一行的第一个字符, 不论是空格和tab都会包含, 所以不能正常缩进。  
+escape `\`: 可以断开单词来换行。不允许之后有空格或注释。下一行的第一个字符, 不论是空格和tab都会包含, 所以不能正常缩进。  
 
 nonportable: 利用未定义行为编程, 如将char string 和long string 相连 `"apple" L"banana"`。  
 
@@ -175,7 +175,7 @@ int main()
     std::string local_str; 
     std::cout<< global_var << std::endl; // it is 0. 
     std::cout << local_var << std::endl; // ？
-    std::cout << loval_str << std::endl; // ""
+    std::cout << local_str << std::endl; // ""
 }
 ```
 =====================
