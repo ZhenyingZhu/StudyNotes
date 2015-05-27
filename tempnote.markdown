@@ -1,3 +1,10 @@
+http://stackoverflow.com/questions/6541109/send-string-to-stdin  
+
+http://sc.tamu.edu/help/general/unix/redirection.html  
+http://linuxcommand.org/lts0060.php  
+
+ruby: `str[//]` to execute regular express.  
+
 http://askubuntu.com/questions/526082/2-usb-ports-stopped-working  
 
 http://stackoverflow.com/questions/12309269/write-json-data-to-file-in-python  
