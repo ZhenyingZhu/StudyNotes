@@ -1,3 +1,9 @@
+`arping`: send arping request.  
+
+`bootp` protocol: DHCP?  
+
+`dig` DNS lookup service.  
+
 http://searchnetworking.techtarget.com/definition/Port-Address-Translation-PAT  
 
 http://stackoverflow.com/questions/6541109/send-string-to-stdin  
