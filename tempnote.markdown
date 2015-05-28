@@ -1,4 +1,4 @@
-[Vbundle](https://github.com/gmarik/Vundle.vim)  
+[Vundle](https://github.com/gmarik/Vundle.vim)  
 
 [vim plugin](http://joelhooks.com/blog/2013/04/23/5-essential-vim-plugins/)  
 
