@@ -1,3 +1,5 @@
+http://dougblack.io/words/a-good-vimrc.html  
+
 http://stackoverflow.com/questions/16222738/how-do-i-install-ruby-2-0-0-correctly-on-ubuntu-12-04  
 
 [Vundle](https://github.com/gmarik/Vundle.vim)  
