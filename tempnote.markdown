@@ -1,3 +1,5 @@
+https://help.ubuntu.com/community/Grub2/Installing  
+
 `arping`: send arping request.  
 
 `bootp` protocol: DHCP?  
