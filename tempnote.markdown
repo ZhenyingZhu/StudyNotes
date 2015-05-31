@@ -1,3 +1,5 @@
+http://askubuntu.com/questions/131168/how-do-i-uninstall-grub
+
 https://help.ubuntu.com/community/Grub2/Installing  
 
 `arping`: send arping request.  
