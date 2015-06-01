@@ -1,3 +1,5 @@
+https://ask.fedoraproject.org/en/question/9623/terminal-key-shortcut/  
+
 http://askubuntu.com/questions/131168/how-do-i-uninstall-grub
 
 https://help.ubuntu.com/community/Grub2/Installing  
