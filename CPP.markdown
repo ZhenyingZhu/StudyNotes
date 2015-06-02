@@ -6,15 +6,15 @@
 int main()
 {
     return 0; # Means success
-} # this is curly brace
+} // this is curly brace
 ```
 函数必须指定4个元素：返回类型, 函数名, 形参表, 函数体。  
 
 Linux下编译：
 ```
 g++ hello.cc –o hello
-./hello # Execute
-echo $? # see the return value from main
+./hello // Execute
+echo $? // see the return value from main
 ```
 
 ### 1.2
@@ -185,30 +185,83 @@ int main()
 ```
 =====================
 #### 2.3.5
+Definition: 分配存储空间，一个变量只能有一个。  
+Declaration: 定义也是一种声明。在多个文件中, 一个文件含有变量的定义, 其他的需要声明。
+只声明不定义变量，或在新的文件中声明已定义过的变量： 
+```
+extern int i; 
+```
+#### 2.3.6
+Scope: global scope(全局作用域)中定义的变量可用于local scope(局部作用域)和statement scope(语句作用域)。
+- 局部定义可hide(屏蔽)全局定义的变量。
+- 对象定义在首次使用的地方。之后在同一个作用域内只能声明不能再定义。
+- class scope
+- namespace scope
+#### 2.3.7
 
-多个文件中, 一个文件含有变量的定义, 其他的需要声明。只声明不定义变量： extern int i; 
-全局作用域中定义的变量可用于局部作用域和语句作用域。局部定义可屏蔽全局定义的变量。对象定义在首次使用的地方。
-定义常数：const int bufsize = 512; 
-引用：变量名前加&, 将两个变量的地址联系起来。 int &refVal = ival; 
-	引用的变量值不能被赋值, 即&refVal始终指向ival的地址。
+### 2.4
+Magic number.  
+定义常数：
+```
+const int bufsize = 512; 
+extern const int globalConst = val; // then can be declared in other file
+```
 
-定义类型的同义词： typedef double wages; wages salary; 
-枚举： enum Points {point2d = 2, point2w, point3d=3, point3w}; 
-	枚举的第一个成员默认为0, 之后为1, 2。赋值过的成员之后的默认递增。
-	enum定义了一种类型, 所以要注意赋值的类型。Points pt2w = 3; 有问题。
+### 2.5
+Reference(引用): 就是对象，主要用作形参。 
+- compound type: 用其他类型定义的。  
+- 变量名前加&, 将两个变量的地址联系起来。 
+- 引用的变量值不能被赋值, 即&refVal始终指向ival的地址。
+```
+int ival = 1024; 
+int &refVal = ival; 
+refVal += 2; 
+```
+Nonconst reference.  
 
-定义类：定义接口和实现。接口为可执行的操作。实现包括包括该类需要的数据。
-	class Sales_item {
-	public: 
-	// operations. 
-	private: 
-	std::string isbn;
-	unsigned units_sold;
-	double revenue;
-};
-类可以有多个private或public访问标号。决定代码是否可以访问。public中的成员都可以访问。private中的只能执行规定的操作, 不能修改数据。
-class定义的类默认一开始都是private,  struct定义的默认一开始是public。
+### 2.6
+定义类型的同义词： 
+```
+typedef double wages; 
+wages salary; # salary is a double value
+```
 
+### 2.7
+Enumeration(枚举): 
+- 枚举的第一个enumerator(成员)默认为0, 之后为1, 2。赋值过的成员之后的默认递增。
+- Constant expression.  
+- enum定义了一种类型, 已定义的不能再定义，只能用另一个同类型赋值。
+```
+enum Points {point2d = 2, point2w, point3d=3, point3w}; 
+```
+
+### 2.8
+定义类：定义interface(接口)和implementation(实现)。  
+- 接口为该类可执行的member(操作)。有function member 和data member。
+- 实现包括包括该类需要的数据和内部函数。
+- 类可以有多个private或public的access label(访问标号)。决定代码是否可以访问。public中的成员都可以访问。private中的只能执行规定的操作, 不能修改数据。
+- class定义的类中成员默认都是private,  struct定义的默认都是public。
+
+定义类： 
+```
+class Sales_item {
+public: 
+    // operations. 
+private: 
+    std::string isbn; // use constructor to init
+    unsigned units_sold;
+    double revenue;
+}; // Don't miss this one
+```
+或
+```
+struct Sales_item {
+}
+```
+
+### 2.9
+
+=====================
 
 头文件：连接程序中名字的使用和声明。包含类的定义, extern变量的声明, 函数的声明。
 预防多次包含同一头文件：
