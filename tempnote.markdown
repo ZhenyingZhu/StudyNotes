@@ -1,4 +1,8 @@
+refer to https://github.com/mojombo/mojombo.github.io/tree/master/_posts  
+
 http://stackoverflow.com/questions/4304438/gem-install-failed-to-build-gem-native-extension-cant-find-header-files  
+sudo yum install libxml2-devel 
+sudo yum install nodejs 
 
 ask.fedoraproject.org/en/question/9769/sofia-is-not-in-the-sudoers-file/  
 
