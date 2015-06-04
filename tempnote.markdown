@@ -1,3 +1,5 @@
+ask.fedoraproject.org/en/question/9769/sofia-is-not-in-the-sudoers-file/
+
 http://apple.stackexchange.com/questions/88598/how-to-have-sshd-re-read-its-config-file-without-killing-ssh-connections  
 
 http://askubuntu.com/questions/369389/how-do-i-check-that-a-configuration-file-has-been-read  
