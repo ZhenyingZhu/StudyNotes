@@ -1,4 +1,6 @@
-ask.fedoraproject.org/en/question/9769/sofia-is-not-in-the-sudoers-file/
+http://stackoverflow.com/questions/4304438/gem-install-failed-to-build-gem-native-extension-cant-find-header-files  
+
+ask.fedoraproject.org/en/question/9769/sofia-is-not-in-the-sudoers-file/  
 
 http://apple.stackexchange.com/questions/88598/how-to-have-sshd-re-read-its-config-file-without-killing-ssh-connections  
 
