@@ -1,3 +1,7 @@
+http://apple.stackexchange.com/questions/88598/how-to-have-sshd-re-read-its-config-file-without-killing-ssh-connections  
+
+http://askubuntu.com/questions/369389/how-do-i-check-that-a-configuration-file-has-been-read  
+
 https://ask.fedoraproject.org/en/question/9623/terminal-key-shortcut/  
 
 http://askubuntu.com/questions/131168/how-do-i-uninstall-grub
