@@ -260,15 +260,48 @@ struct Sales_item {
 ```
 
 ### 2.9
+Separate compilation.  
+#### 2.9.1
+头文件：存放程序中名字的使用和声明。
+- 包含类的定义， extern变量的声明（不要定义）, 函数的声明。  
+- 可以定义类，const 对象和inline 函数。 
 
+编译链接源文件：
+```
+CC -c main.cc Sale_item.cc
+# create executable file
+CC -c main.cc Sale_item.cc -o main
+```
+Or separate compilation
+```
+CC -c main.cc
+CC -c Sale_item.cc
+CC main.o Sale_item.o
+# create executable file
+CC main.o Sale_item.o -o main
+```
+#### 2.9.2
+Preprocessor: 编译时`#include` 处用头文件内容替代。
+- 可以用文本格式或编译器认识的格式（系统的头文件）保存。 
+- 头文件可嵌套。
+- 同一源文件中多次包含的同一头文件要避免重复定义类和对象。 
+
+用header guard 预防重新定义已包含的头文件：
+```
+#ifndef SALESITEM_H
+#define SALESITEM_H 
+//Define class. 
+#endif
+```
+其中用到预处理变量SALESITEM_H 做状态检测。 
+
+`<>`的头文件为标准头文件，编译器在预定义位置查找。  
+`""`为自定义头文件，从源文件所在路径处查找。  
+
+### 小结
+
+## Chapter 3
 =====================
-
-头文件：连接程序中名字的使用和声明。包含类的定义, extern变量的声明, 函数的声明。
-预防多次包含同一头文件：
-	#ifndef SALESITEM.H
-	#define SALESITEM.H
-	//Define class. 
-	#endif
 
 using声明(命名空间：：名字)：using std::cin; 
 C++继承C中name.h为cname。
