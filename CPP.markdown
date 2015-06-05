@@ -301,8 +301,10 @@ Preprocessor: 编译时`#include` 处用头文件内容替代。
 ### 小结
 
 ## Chapter 3
-=====================
+Abstract data type： String 和vector 是Iterator 的companion type。 bitset 用集合处理值。    
+### 3.1
 
+=====================
 using声明(命名空间：：名字)：using std::cin; 
 C++继承C中name.h为cname。
 
