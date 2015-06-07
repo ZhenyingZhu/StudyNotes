@@ -453,9 +453,34 @@ int main()
 ```
 
 ### 3.5
-bitset：位操作。bitset<32> bitvec; 位数只能是整型数或常量。位序从0开始, 为最低阶位。
- 
-bitset 对象初始化：bitset<32> bitvec2(0xffff); 0~15位为1, 16～32位为0。string strval("1100"); bitset<32> bitvec4(strval); 则bitvec4为00110000, 从右向左读入。bitset<32> bitval5(str, 5, 4); 从str的第5位起读入4个字符。bitset<32> bitval6(str, str.size()-4); 省略第三个参数, 则读入从第二个参数起到结尾的字符。 
-	测试操作：bool is_set = bitvec.any(); 返回1为true。
-	位个数类型为size_t, 需#include <cstddef>。
-	将二进制数返回为长整型：unsigned long number = b.to_ulong(); 
+bitset：位操作。头文件`bitset`中。
+#### 3.5.1
+定义与初始化：
+- 也是类模板，但是用长度区别。
+- 长度必须为整型字面值或const对象。
+- 32位bitset 的low-order bit 从0 开始，在最右，high-order bit 为31。
+```
+bitset<32> bitvec; 
+
+bitset<64> bitvec2(0xffff); // a copy of unsigned int, fill from 0 to high-order bit
+bitset<16> bitvec3(0xffff); // abandon bits from 16 to 31
+
+string strval("1100"); 
+bitset<32> bitvec4(strval); // strval[3] -> bitvec4[0]
+
+bitset<32> bitval5(str, pos, n); // str[pos] to str[pos + n - 1]
+bitset<32> bitval6(str, pos); // str[pos] to the end
+``` 
+#### 3.5.2
+bitset 对象的操作：
+- `bool is_set = bitvec.any(); ` 测试是否有1，返回1为true。`bitvec.none()`相反。
+- `b.count()` 置1的个数。返回`size_t`类型,在`cstddef`头文件中。
+- `b.size()`
+- `b[pos]`
+- `b.test(pos)` 是否为1。结果等同于`b[pos]`。
+- `b.set()` 全置为1。`b.set(pos)`，`b.reset()`，`b.reset(pos)`，`b.flip()`，`b.flip(pos)`。
+- `unsigned long number = b.to_ulong();` 将二进制数返回为长整型。需`b`的长度小于等于long，不然throw exception。
+- `os << b` 输出到OS流，如`cin`。
+- 支持各种位操作符。
+
+### 小结
