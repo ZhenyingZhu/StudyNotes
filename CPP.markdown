@@ -5,7 +5,7 @@
 ```
 int main()
 {
-    return 0; # Means success
+    return 0; // Means success
 } // this is curly brace
 ```
 函数必须指定4个元素：返回类型, 函数名, 形参表, 函数体。  
@@ -28,7 +28,7 @@ iostream
 #include <iosteam>
 int main()
 {
-    std::cout << "Enter two numbers: " << std::endl; # std::endl is one of manipulators
+    std::cout << "Enter two numbers: " << std::endl; // std::endl is one of manipulators
     int v1, v2; 
     std::cin >> v1 >> v2; 
     std::cout << "Sum :" << v1 + v2 << std::endl; 
@@ -123,7 +123,7 @@ Void type.
 单精度浮点: 3.14159F = 3.14159E0f 0. = 0e0, 1E-3F = .001f  
 wchar_t类型: L'a'。  
 转义字符(Escape characters)：`\n`, `\t`, `\v` 纵向制表符, `\b`退格符？, `\r`, `\12` 回车符, `\f` 进纸符, `\a` 报警符, `\0` 空字符, `\40` 空格符。`\xxx` (八进制数) = (char)0xxx。  
-字符串：`cout<<"a" "b""c"`可以用空格、回车、tab连起来。在末尾自动添加空字符：'A' 是一个字符，而"A" 是'A', '\12' 两个字符。
+字符串：`cout << "a" "b""c"`可以用空格、回车、tab连起来。在末尾自动添加空字符：'A' 是一个字符，而"A" 是'A', '\12' 两个字符。
 
 escape `\`: 可以断开单词来换行。不允许之后有空格或注释。下一行的第一个字符, 不论是空格和tab都会包含, 所以不能正常缩进。  
 
@@ -183,7 +183,6 @@ int main()
     std::cout << local_str << std::endl; // ""
 }
 ```
-=====================
 #### 2.3.5
 Definition: 分配存储空间，一个变量只能有一个。  
 Declaration: 定义也是一种声明。在多个文件中, 一个文件含有变量的定义, 其他的需要声明。
@@ -223,7 +222,7 @@ Nonconst reference.
 定义类型的同义词： 
 ```
 typedef double wages; 
-wages salary; # salary is a double value
+wages salary; // salary is a double value
 ```
 
 ### 2.7
@@ -303,36 +302,132 @@ Preprocessor: 编译时`#include` 处用头文件内容替代。
 ## Chapter 3
 Abstract data type： String 和vector 是Iterator 的companion type。 bitset 用集合处理值。    
 ### 3.1
+using声明(命名空间：：名字)：`using std::cin; `  
+- 头文件中不用using。  
+
+### 3.2
+标准库类型(非基本类型)：需包含
+```
+#include <string>; 
+using std::string;
+```
+#### 3.2.1
+string构造函数：
+```
+string s1; // empty
+string s2 (s1); 
+string s1 ("value"); 
+string s4(n,’c’); 
+```
+字符串字面值`"abc"`和string是不同的类型。  
+#### 3.2.2
+`cin`输入string：
+- 返回的是布尔值。 文件尾或无效字符处返回非。 
+- 从非空字符开始, 到遇到空字符（space, enter, tab）结束。  
+- input： "  Hello World   "，则s1 为"Hello"。
+```
+cin >> s1 >> s2; 
+```
+string IO 操作读入一整行： 输入流和string对象
+```
+while(getline(cin, line)) 
+    cout << line << endl; 
+```
+与`cin`不同，不忽略enter。如果一行只有enter，则返回空string。  
+#### 3.2.3
+string API：
+```
+s.empty(); 
+s.size(); // \n count as one. return string::size_type 
+s[n]; 
+s1 + s2; // concatenation
+s1 = s2; // high cost
+v1 == v2; 
+v1 != v2; 
+v1 <= v2; 
+v1 > v2; 
+```
+`st.size()`： 
+- st中包含空字符的字符数
+- 返回string::size_type类型，认为是无符号长整型，不能赋给int型，但是可以用int赋值。
+- 使用companion type 来获得machine-independent。 
+
+string关系操作符：  
+- 不考虑长度，先依次比较每个字符大小。
+- 大写比小于小写。
+- 如之前都一样, 短字符串小于长字符串。
+
+字符串字面值无法concatenation，只有string类型才有： 
+```
+string s1 = "Hello" + "World"; // error
+```
+
+下标操作符`[]`读入size_type类型数做index读入单个字符。
+- 下标从0开始。下标可以是任何整型值。
+- 上下界为0到`str.size()  1`。
+```
+	for (string::size_type ix = 0; ix != s1.size(); ++ix) {
+		cout << s1[ix] << endl; 
+	}
+``` 
+#### 3.2.4
+`cctype`头文件中定义处理char值的函数：
+- 测试字符串中单个字符的函数, 返回一个int值, 失败为0, 其他为非0值。
+- `tolower(c)`, `toupper(c)`返回的是字符。
+- `isalpha(c)`, `isalnum(c)`, `isdigit(c)`
+- `isxdigit(c)`是否为16进制数。
+- `iscntrl(c)`是否为控制字符。 
+- `isgraph(c)`不是空格，但可打印。
+- `isprint(c)`, `ispunct(c)`, `isspace(c)`
+- `islower(c)`, `isupper(c)`
+
+C++标准库中包括C标准库。
+- `cctype`定义于`ctype.h`中。
+- 要导入C标准库，`#include <c[name]>;`
+- 虽然也可以`#include "ctype.h";` ，不建议使用。
+
+### 3.3
+vector：容器, 可包含同一类型其他对象的集合。
+- `vector`头文件中。
+- 是class template。可用于不同的数据类型。
+- 声明：
+```
+vector<int> ivec; 
+```
+#### 3.3.1
+构造函数定义和初始化：
+```
+vector<T> v1; 
+vector<T> v2(v1); 
+vector<T> v3(n, i); 
+vector<T> v4(n) // init with n default T object
+```
+- 建议初始化空容器，再动态添加元素到vector。
+- 为高效添加元素vector 不预先分配连续内存。
+- value initialization。
+#### 3.3.2
+vector的操作：
+- `v.empty()`
+- `v.size()` 返回`vector<T>::size_type`类型。
+- `v.push_back(t)` 添加元素t 到v 的末尾。
+- `v[n]` 无法在下标n处添加元素，或尝试获取，不然会buffer overflow
+- `v1 = v2`
+- `v1 == v2`
+- `!=`, `<`， `>=`
+
+C++优先选用`size_type != size`来做循环的判断条件。  
+`size()`是inline函数，执行代价小，编译器在此处扩展代码。  
+
+### 3.4
 
 =====================
-using声明(命名空间：：名字)：using std::cin; 
-C++继承C中name.h为cname。
 
-标准库类型(非基本类型)：需#include <>; using std:: ;
-string
-	初始化：string s1; string s2 (s1); string s1 ("value"); string s4(n,’c’); 
-	输入：从非空字符开始, 到空格结束。
-	读入一整行：while(getline(cin,line)) cout<<line<<endl; 
-	一字符串st, st.size()是一个量(st中包含空格的字符数), 是标准库类型string::size_type类型储存的, 可认为是无符号长整型, 不能赋给int型。
-	字符串比大小：依次比较每个字符大小。如之前都一样, 短字符串小于长字符串。
-	下标操作符[]和一个size_type类型数访问单个字符。下标从0开始。下标可以是任何整型值。上下界为0到str.size()-1。
- 
-测试字符串中单个字符的函数, 返回一个int值, 失败为0, 其他为非0值。
-tolower, toupper返回的是字符。
- 
-vector：容器, 可包含同一类型其他对象的集合。
-初始化：vector<int> ivec; vector<T> v1; vector<T> v2(v1); vector<T> v3(n, i); vector<T> v4(n) //v4需有值。vector最好动态添加元素。初始值根据元素类型决定。
-vector的操作：
-v.size()返回的是vector<T>::size_type类型。
-添加元素：v.push_back()。
- 
-下标操作ivec[n]不能添加元素。
-	迭代器：vector<int>::iterator iter; 标准库容器类型都有iterator成员。
-	begin 和end：vector<int>::iterator iter = ivec.end(); 指向最后元素的下一个位置。::const_iterator 只能写。
-	解引用操作符：*iter=0; 等同于ivec[iter]=0。访问迭代器指向的元素。
-	迭代器操作：++和==和!=。
-	迭代器间距离：iter1-iter2, 由difference_type储存, 是signed。
-	中间元素：vector<int>：：iterator mid = vi.begin()+vi.size()/2; 
+迭代器：vector<int>::iterator iter; 标准库容器类型都有iterator成员。
+begin 和end：vector<int>::iterator iter = ivec.end(); 指向最后元素的下一个位置。::const_iterator 只能写。
+解引用操作符：*iter=0; 等同于ivec[iter]=0。访问迭代器指向的元素。
+迭代器操作：++和==和!=。
+迭代器间距离：iter1-iter2, 由difference_type储存, 是signed。
+中间元素：vector<int>：：iterator mid = vi.begin()+vi.size()/2; 
 
 bitset：位操作。bitset<32> bitvec; 位数只能是整型数或常量。位序从0开始, 为最低阶位。
  
