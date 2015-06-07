@@ -416,19 +416,43 @@ vector的操作：
 - `!=`, `<`， `>=`
 
 C++优先选用`size_type != size`来做循环的判断条件。  
-`size()`是inline函数，执行代价小，编译器在此处扩展代码。  
+`size()`是inline 函数，执行代价小，编译器在此处扩展代码。  
 
 ### 3.4
+iterator(迭代器)：
+- 标准库为每种容器各定义一迭代器类型，但不是每种容器都支持下标操作。
+- 定义：`vector<int>::iterator iter; `
+- 标准库容器类型都定义了一个iterator成员。
+- `begin()`，`end()`函数指向最后元素的下一个位置。`end()`为off-the-end iterator，起sentinel作用。
+```
+vector<int>::iterator iter = ivec.end(); 
+```
+- 访问迭代器指向元素；用解引用操作符`*iter = 0;`。等同于`ivec[iter] = 0;`。
+- `++iter;`移动。
+- `iter1 == iter2;`来比较迭代器位置。
+- `vector<string>::const_iterator iter;` 则`*iter`可得string对象的const引用，不能赋值。
+- 迭代器间距离：`iter1 - iter2`, 由`difference_type`储存, 是signed，必须指向同一个容器。
+- iterator arithmetic：`iter += n;`n需为vector的`size_type`或`difference_type`类型。
+- 中间元素：`vector<int>::iterator mid = vi.begin() + vi.size()/2;`
+- `push_back`后迭代器失效。
+```
+int main()
+{
+	vector<int> ivec(3); 
+	int i = 1; 
+	vector<int>::iterator end = ivec.end(); 
+	for (vector<int>::iterator iter = ivec.begin(); iter != end; ++iter) {
+    
+		*iter = i++; 
+	}
 
-=====================
+	for (vector<int>::const_iterator iter = ivec.begin(); iter != end; ++iter) {
+		cout << *iter << endl; 
+	}
+}
+```
 
-迭代器：vector<int>::iterator iter; 标准库容器类型都有iterator成员。
-begin 和end：vector<int>::iterator iter = ivec.end(); 指向最后元素的下一个位置。::const_iterator 只能写。
-解引用操作符：*iter=0; 等同于ivec[iter]=0。访问迭代器指向的元素。
-迭代器操作：++和==和!=。
-迭代器间距离：iter1-iter2, 由difference_type储存, 是signed。
-中间元素：vector<int>：：iterator mid = vi.begin()+vi.size()/2; 
-
+### 3.5
 bitset：位操作。bitset<32> bitvec; 位数只能是整型数或常量。位序从0开始, 为最低阶位。
  
 bitset 对象初始化：bitset<32> bitvec2(0xffff); 0~15位为1, 16～32位为0。string strval("1100"); bitset<32> bitvec4(strval); 则bitvec4为00110000, 从右向左读入。bitset<32> bitval5(str, 5, 4); 从str的第5位起读入4个字符。bitset<32> bitval6(str, str.size()-4); 省略第三个参数, 则读入从第二个参数起到结尾的字符。 
