@@ -35,7 +35,7 @@ int main()
 }
 ```
 
-`<<`操作符：每次接受两个操作数, 左边为ostream对象, 右边为内容。该表达式执行完后, 返回void*的ostream对象。  
+`<<`操作符：每次接受两个操作数, 左边为ostream对象, 右边为内容。该表达式执行完后, 返回`void*`的`ostream`对象。  
 Manipulator操作符：`endl`, 换行并刷新缓冲区(buff)。  
 
 调用前需有`std::`是使用命名空间(namespace)std内的函数或操作符避免定义变量时冲突。  
@@ -387,7 +387,7 @@ C++标准库中包括C标准库。
 - 虽然也可以`#include "ctype.h";` ，不建议使用。
 
 ### 3.3
-vector：容器, 可包含同一类型其他对象的集合。
+vector：container(容器), 可包含同一类型其他对象的集合。
 - `vector`头文件中。
 - 是class template。可用于不同的数据类型。
 - 声明：
@@ -484,3 +484,54 @@ bitset 对象的操作：
 - 支持各种位操作符。
 
 ### 小结
+
+## Chpater 4
+Array, pointer 是低级复合类型。  
+Array 长度固定。没有size 操作。  
+只有在追求速度是才在类实现内部使用数组和指针。  
+### 4.1
+Array: 
+- 复合数据类型：类型名，标识符，dimension (维数)。 
+- 没有所有元素都是引用的数组<b>?</b>
+#### 4.1.1
+维数只能是常量或编译时已知的const 对象。  
+```
+const unsigned buf_size = 512; 
+char input_buffer[buf_size]; 
+
+const unsigned sz = get_size(); // cannot used as dimension
+```
+
+显式初始化：
+```
+int ia[3] = {1, 2, 3}; 
+int ia[] = {1, 2, 3}; 
+```
+
+不初始化，则
+- 函数体内，元素无初始化。
+- 函数体外，初始化为0或空。 
+- 类类型则调用默认构造函数。 
+- 内置类型的局部数组<b>?</b>的元素没有初始化。
+
+字符初始化：
+```
+char ca[] = {'C', '+', '+', '\0'}; 
+char ca[] = "C++"; // add null terminator 
+```
+
+标准规定数组无法用另一个数组赋值或初始化。  
+#### 4.1.2
+数组下标类型是`size_t`。  
+```
+const size_t array_size = 10; 
+int ia[array_size]; // if in int main(), then not init
+
+for (size_t ix = 0; ix != array_size; ++ix) {
+    ia[ix] = ix; 
+}
+```
+
+小心buffer overflow。  
+
+### 4.2
