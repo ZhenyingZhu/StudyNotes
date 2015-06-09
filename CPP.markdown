@@ -535,3 +535,20 @@ for (size_t ix = 0; ix != array_size; ++ix) {
 小心buffer overflow。  
 
 ### 4.2
+Pointer: 
+- dereference operator`*`
+- increment operator`++`
+- address-of`&`
+#### 4.2.1
+指针概念：
+- 指针是对所指对象的间接访问。  
+- 保存另一个对象的地址。  
+- 可用于vector, string, array 的下标操作和解引用操作得到的左值。  
+```
+string s("hello World"); 
+string *sp = &s; 
+```
+
+容易犯bookkeeping 和语法规则的错误。  
+#### 4.2.2
+
