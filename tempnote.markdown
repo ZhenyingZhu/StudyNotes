@@ -1,3 +1,5 @@
+`dmesg` check system ring  
+
 refer to https://github.com/mojombo/mojombo.github.io/tree/master/_posts  
 
 http://stackoverflow.com/questions/4304438/gem-install-failed-to-build-gem-native-extension-cant-find-header-files  
