@@ -214,7 +214,7 @@ Reference(引用): 就是对象，主要用作形参。
 ```
 int ival = 1024; 
 int &refVal = ival; 
-refVal += 2; 
+refVal += 2; // ival = 1026
 ```
 Nonconst reference.  
 
@@ -551,4 +551,42 @@ string *sp = &s;
 
 容易犯bookkeeping 和语法规则的错误。  
 #### 4.2.2
+定义：  
+```
+double dp, *dp2; // dp2 is a pointer
+string* ps1, ps2; // legal but can be misleading. ps2 is string object
+```
 
+取值：
+- 0值常量或`cstdlib`库中的预处理器变量`NULL`，表示无指向。`int *pi = NULL;`
+- 特定对象地址。`int *pi2 = &ival; `
+- 某对象的下一个对象。
+- 同类型的有效地址。`pi = pi2; ` 或`int *pi = pi2;`
+- 未初始化的指针无效。但编译器无法检测。
+- 一定要初始化指针。最好在创建对象后再定义，不然初始化为0。
+
+预处理变量不在命名空间`std`中。  
+
+`void*`指针可存放任意类型。但是可执行的操作有限：  
+- 与另一个指针比较。
+- 向函数传递或返回指针。
+- 给另一个`void*`指针赋值。
+#### 4.2.3
+可以通过解引用返回对象左值：
+```
+*sp = "Hello World"; 
+```
+
+指针和引用的区别：
+- 引用总是指向某对象。
+- 给引用赋值修改对象，给指针赋值修改地址。
+
+指向指针的指针：
+```
+int val = 3; 
+int *pi1 = &val; 
+int **ppi = &pi1; 
+int *pi2 = *ppi;  // dereference, pointer to pi1
+cout << **ppi << endl; // 3
+```
+#### 4.2.4
