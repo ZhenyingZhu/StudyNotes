@@ -70,15 +70,15 @@ while(std::cin >> val)
 ```
 int sum=0;
 for(int val = 1; val <= 10; ++val)
-	sum += val;
+    sum += val;
 ```
 
 条件执行if：    
 ```
 if(条件)
-	执行;
+    执行;
 else
-	执行;
+    执行;
 ```
 
 ### 1.5
@@ -366,9 +366,9 @@ string s1 = "Hello" + "World"; // error
 - 下标从0开始。下标可以是任何整型值。
 - 上下界为0到`str.size()  1`。
 ```
-	for (string::size_type ix = 0; ix != s1.size(); ++ix) {
-		cout << s1[ix] << endl; 
-	}
+    for (string::size_type ix = 0; ix != s1.size(); ++ix) {
+        cout << s1[ix] << endl; 
+    }
 ``` 
 #### 3.2.4
 `cctype`头文件中定义处理char值的函数：
@@ -438,17 +438,17 @@ vector<int>::iterator iter = ivec.end();
 ```
 int main()
 {
-	vector<int> ivec(3); 
-	int i = 1; 
-	vector<int>::iterator end = ivec.end(); 
-	for (vector<int>::iterator iter = ivec.begin(); iter != end; ++iter) {
+    vector<int> ivec(3); 
+    int i = 1; 
+    vector<int>::iterator end = ivec.end(); 
+    for (vector<int>::iterator iter = ivec.begin(); iter != end; ++iter) {
     
-		*iter = i++; 
-	}
+        *iter = i++; 
+    }
 
-	for (vector<int>::const_iterator iter = ivec.begin(); iter != end; ++iter) {
-		cout << *iter << endl; 
-	}
+    for (vector<int>::const_iterator iter = ivec.begin(); iter != end; ++iter) {
+        cout << *iter << endl; 
+    }
 }
 ```
 
@@ -590,3 +590,87 @@ int *pi2 = *ppi;  // dereference, pointer to pi1
 cout << **ppi << endl; // 3
 ```
 #### 4.2.4
+数组名也是个指针，指向第一个元素：
+```
+int ia[] = {1, 2, 3}; 
+int *ip = ia; 
+int *ip2 = &ia[0]; // same as above
+```
+Pointer arithmetic: 
+```
+int *ip2 = ip + 4; // point to ia[4]
+ptrdiff_t n = ip2 - ip1; // include in lib cstddef
+```
+
+加法操作precedence (优先级)低于解引用。  
+```
+int last = *(ia + 4); // Array name is a pointer
+```
+
+反过来，指针指向数组时也可用下标访问元素。  
+```
+int ia[] = {1, 2, 3, 4}; 
+int *p = &ia[3]; 
+cout << p[-2]; // 2
+```
+
+数组的哨兵指针：
+```
+const size_t arr_size = 5; 
+int arr[arr_size] = {1, 2, 3, 4, 5}; 
+int *p = arr; 
+int *pe = p + arr_size;  // cannot dereference 
+```
+
+遍历：
+```
+const size_t arr_sz = 5; 
+int ia[arr_sz] = {1, 2, 3, 4}; 
+
+for (int *p = ia, *pe = ia + arr_sz; p != pe; ++p) { // init-statement
+    cout << *p << " "; 
+}
+```
+
+内置类型没有成员函数，数组也是内置类型。  
+#### 4.2.5
+指向const 对象：
+- 指针必须有const 特性的。
+- 但该指针不是const 的。不需定义时赋值。
+- 可以给该指针重新赋值令其指向另一个对象。
+- 但是不能通过该指针给解引用返回的左值赋值。
+- 但是对所指对象（未必是const）的改变仍可执行。
+```
+const doule *cptr; 
+double dval = 3.14; 
+cptr = &dval; // but cannot change value
+```
+
+用于将形参定义为指向const 对象的指针以确保不改变对象。  
+不含const 特性的指针不能指向const 对象。  
+
+const 指针：不能改变所指地址。但是能否解引用修改对象取决于对象。  
+```
+int errNumb = 0; 
+int *const curErr = &errNumb; 
+if (*curErr) {
+    errHandler(); 
+    *curErr = 0; 
+}
+```
+
+Const 限定符可放在类型前或后：
+```
+string const s1; 
+const string s2; // same type as s1
+```
+Typedef 写const 类型定义：
+```
+string s; 
+typedef string *pstring; 
+const pstring sctr1 = &s; 
+pstring const sctr2 = &s; // Same as sctr1
+string *const sctr3 = &s; // same type
+```
+
+### 4.3
