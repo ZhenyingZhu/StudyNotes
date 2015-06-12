@@ -674,3 +674,48 @@ string *const sctr3 = &s; // same type
 ```
 
 ### 4.3
+C-style character string（C 风格字符串）：
+- 不建议使用。  
+- 字符串字面值类型是const char 数组。  
+```
+char ca1[] = {'C', '+', '+'}; // not C style
+char ca2[] = {'C', '+', '+', '\0'}; // C style
+char ca3[] = "C++"; // C style
+const char *cp1 = "C++"; // C style
+char *cp2 = ca2; // C style
+```
+
+遍历：利用结尾的null。
+```
+const char *cp = "string"; 
+while (*cp) {
+    cout << *cp; 
+    ++cp; 
+}
+```
+
+C风格字符串标准库函数：
+- `cstring`库中。
+- 传入函数的指针必须指向字符数组第一个元素。
+- `strlen(s)` 不包括null
+- `strcmp(s1, s2)` 相等返回0，s1大于s2返回正。
+- `strcat(s1, s2)` 需确保s1足够大。
+- `strcpy(s1, s2)` 将s2复制给s1并返回s1。
+- `strncat(s1, s2, n)` 将s2前n个字符复制给s1并返回s1。
+使用cat和cpy前需计算s1大小。
+```
+char s1[10]; // cannot shorter than s2, include null
+char *s2 = "tail"; 
+char *res = strcpy(s1, s2); 
+```
+
+避免数组溢出，使用标准库类型string。
+```
+#include <string>
+using std::string; 
+char *cp = "string"; 
+string s = cp; 
+s += " "; 
+cout << s; 
+```
+
