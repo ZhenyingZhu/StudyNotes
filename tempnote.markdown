@@ -1,3 +1,5 @@
+http://stackoverflow.com/questions/252703/python-append-vs-extend  
+
 `dmesg` check system ring  
 
 refer to https://github.com/mojombo/mojombo.github.io/tree/master/_posts  
