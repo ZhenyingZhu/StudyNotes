@@ -1,3 +1,9 @@
+```
+go to http://steamcommunity.com/minigame/towerattack/
+than(in google chrome) press F12 and then click Console.
+There you can write one of the commands like"for(i=4000;i<4723;i++){JoinGame(i);}"
+```
+
 http://stackoverflow.com/questions/252703/python-append-vs-extend  
 
 `dmesg` check system ring  
