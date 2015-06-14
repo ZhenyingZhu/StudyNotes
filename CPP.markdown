@@ -718,4 +718,135 @@ string s = cp;
 s += " "; 
 cout << s; 
 ```
+# 4.3.1
+动态分配的数组：
+- 长度仍固定。
+- 需显式释放。  
+- 存储在heap(堆)中。
+- 动态分配的数组是对象，而编译时就确定的数组是变量。
 
+堆：也称free store(自由存储区)。存放动态分配的对象。  
+- C语言用`malloc`和`free`来分配该空间。
+- C++用`new`和`delete`。
+
+定义：
+```
+int *pia = new int[10]; // array does not have name
+int *pia = new int[10]();  // init with 10 0s. 
+```
+- 内置类型的元素不会初始化。除非用圆括号。
+- 对象用默认构造函数初始化。 
+- 不能用初始化列表来为元素提供不同初值。 
+- const 的动态数组对象必须初始化。然而没有什么用。
+
+动态分配0长度的数组：
+```
+size_t n = get_size(); 
+int *pia = new int[n]; 
+
+for (int *p = pia; p != pia + n; ++p) {
+    *p = 1; 
+}
+```
+- 如果n 为0，仍可成功分配空间。
+- 但是数组的指针并未指向任何元素，故不能解引用。
+- 指针仍可进行比较操作。
+
+释放内存：
+```
+delete [] pia; 
+```
+`[]`表明释放的是指针所指的数组空间，而非单个对象。  
+- 编译器无法检测出指针所指是数组还是对象。
+- 会导致memory leak(内存泄漏)。
+
+用动态分配的数组选择C风格字符串：
+```
+int main()
+{
+    bool errorFound = true; 
+
+    const char *noErr = "Success"; 
+    const char *err189 = "Error: a function must "
+        "specify a function return type!"; 
+
+    const char *errorTxt; 
+    if(errorFound) 
+        errorTxt = noErr; 
+    else 
+        errorTxt = err189; 
+
+    int dimension = strlen(errorTxt) + 1; // null char
+    char *errMsg = new char[dimension]; 
+    strncpy(errMsg, errorTxt, dimension); 
+    
+    while (*errMsg) { // same as cout << errMsg 
+        cout << *errMsg; // and cout << *(errMsg++); 
+        ++errMsg; 
+    }
+    cout << endl; 
+
+    return 0; 
+}
+```
+#### 4.3.2
+C风格字符串与字符串字面值是相同的数据类型。
+- 可以用来赋值：`string st1 = sp; `
+- 可做string类型加法的其中一个操作数。
+- 不能用string 对象初始化字符指针。
+- 使用`c_str()`函数：
+```
+string s1("Hello World"); 
+const char *cp = s1.c_str(); 
+s1 = "Bye World"; 
+cout << cp << endl; // Bye World
+```
+
+使用数组初始化vector对象：
+```
+const size_t arr_size = 6; 
+int int_arr[arr_size] = {1, 2, 3, 4, 5, 6}; 
+vector<int> ivec(int_arr, int_arr + arr_size); // begin and end
+```
+
+### 4.4
+多维数组就是元素为数组的一维数组。  
+- 第一维为row(行)，第二维为column(列)。 
+- 初始化：如不用花括号，先行后列。
+```
+int ia[2][3] = {
+    {0, 1, 2}, {3, 4, 0}
+}
+int ia[2][3] = {
+    0, 1, 2, 3, 4 // same, the last is init to 0
+}
+```
+- 下标引用：
+```
+const size_t rowSize = 3; 
+const size_t colSize = 4; 
+int ia[rowSize][colSize]; 
+for (size_t i = 0; i != rowSize; ++i) {
+    for (size_t j = 0; j != colSize; ++j) {
+        ia[i][j] = i * colSize + j; 
+    }
+}
+```
+- 声明指向多维数组的指针：
+```
+int ia[3][4]; 
+int (*ip)[4] = ia; // ip is a pointer to int[4] type
+ip = &ia[2]; 
+```
+- `&ia`是个指向int[3][4]类型的指针，`ia`是个指向int[4]类型的指针，`ia[0]`是个指向int类型的指针，`ia[0][0]`是个int。
+-用`typedef`简化：
+```
+int ia[2][3] = {0, 1, 2, 3, 4}; 
+typedef int int_array[3]; 
+for (int_array *p = ia; p != ia + 2; ++p) {
+    for (int *q = *p; q != *p + 3; ++q) 
+        cout << *q << " "; 
+    cout << endl; 
+}
+cout << endl; 
+```
