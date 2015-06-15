@@ -938,3 +938,39 @@ Operator(操作符)：
 |18|,|Comma|Left-to-right
 
 
+运算次序：
+`5 + 10 * 20 / 2`
+- Operand: stack: , mem: 5; Operator: stack, mem: +; 
+- Operand: stack: 5, mem: 10; Operator: stack: +, mem: *; So first do *. 
+- Operand: stack: 5, 10, mem: 20; Operator: stack: +, *, mem: /; `/` is not higher than `*`, so pop 10 to compute. 
+- Operand: stack: 5, 200, mem: 2; Operator: stack: +, mem: /; `/` is higher than `+`, pop 200 to do compute. 
+- Operand: stack: 5, 100, mem: ; Operator: stack: +, mem: ; Pop all to finish. 
+
+算术异常：
+- 数学错误。
+- 计算机特性：溢出。 
+```
+short short_value = 32767; 
+short ival = 1; 
+short_value += ival; // -32768 wrapped around
+```
+
+`%`：reminder 或modulus （求余）：
+- 只能用于`bool`, `char`, `short`, `int`, `long` 及对应的`unsigned` 的整型。  
+- 两操作数为负，返回负值。
+- 一操作数为负，未定，机器决定。
+
+`/`：一操作数为负，上或下取整由机器决定。  
+
+### 5.2
+
+
+
+
+
+
+
+
+
+
+
