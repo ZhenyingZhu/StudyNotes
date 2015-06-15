@@ -850,3 +850,91 @@ for (int_array *p = ia; p != ia + 2; ++p) {
 }
 cout << endl; 
 ```
+
+### 小结
+compiler extension: 不同编译器对语言添加的特性。难以移植。  
+dynamically allocated: 在显式释放前一直存在。  
+
+## Chapter 5
+Operator(操作符)：
+- 内置或复合类型的操作符含义已定义。
+- 可重载。
+- 可与数个operand 组成expression，产生result。
+- result 一般是右值。 
+- 操作符执行什么操作由操作数类型决定。
+- unary(一元)和binary(二元) operator 操作符。
+- 有一个ternary operator（三元）。
+- 有些symbol 既可是一元也可是二元操作符。
+- 二元操作符通常需要操作数为相同类型或可转换为相同类型。 
+
+操作符的特性：
+- precedence（优先级）。
+- associativity（结合性）。
+- order of evalution（求值顺序）：如左操作数先于右操作数执行。
+
+### 5.1
+操作符表：
+
+
+| Precedence | Operator | Description | Associativity |
+|:---:|:---:|:---:|:---:|
+|1|::|Scope resolution (C++ only)|None
+|2|++|Suffix increment|Left-to-right
+||--|Suffix decrement
+||()|Function call
+||[]|Array subscripting
+||.|Element selection by reference
+||->|Element selection through pointer
+||typeid()|Run-time type information (C++ only)
+||const_cast|Type cast (C++ only)
+||dynamic_cast|Type cast (C++ only)
+||reinterpret_cast|Type cast (C++ only)
+||static_cast|Type cast (C++ only)
+|3|++|Prefix increment|Right-to-left
+||--|Prefix decrement
+||+|Unary plus
+||-|Unary minus
+||!|Logical NOT
+||~|Bitwise NOT (One's Complement)
+||(type)|Type cast
+||*|Indirection (dereference)
+||&|Address-of
+||sizeof|Size-of
+||new, new[]|Dynamic memory allocation (C++ only)
+||delete, delete[]|Dynamic memory deallocation (C++ only)
+|4|.*|Pointer to member (C++ only)|Left-to-right
+||->*|Pointer to member (C++ only)
+|5|*|Multiplication|Left-to-right
+||/|Division
+||%|Modulo (remainder)
+|6|+|Addition|Left-to-right
+||-|Subtraction
+|7|<<|Bitwise left shift|Left-to-right
+||>>|Bitwise right shift
+|8|<|Less than|Left-to-right
+||<=|Less than or equal to
+||>|Greater than
+||>=|Greater than or equal to
+|9|==|Equal to|Left-to-right
+||!=|Not equal to
+|10|&|Bitwise AND|Left-to-right
+|11|^|Bitwise XOR (exclusive or)|Left-to-right
+|12|||Bitwise OR (inclusive or)|Left-to-right
+|13|&&|Logical AND|Left-to-right
+|14|Logical OR|Left-to-right
+|15|?:|Ternary conditional|Right-to-left
+|16|=|Direct assignment|Right-to-left
+||+=|Assignment by sum
+||-=|Assignment by difference
+||*=|Assignment by product
+||/=|Assignment by quotient
+||%=|Assignment by remainder
+||<<=|Assignment by bitwise left shift
+||>>=|Assignment by bitwise right shift
+||&=|Assignment by bitwise AND
+||^=|Assignment by bitwise XOR
+||=|Assignment by bitwise OR
+|17|throw|Throw operator (exceptions throwing, C++ only)|Right-to-left
+|18|,|Comma|Left-to-right
+
+
