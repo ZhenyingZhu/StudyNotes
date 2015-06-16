@@ -895,7 +895,7 @@ Operator(操作符)：
 ||`+`|Unary plus
 ||`-`|Unary minus
 ||`!`|Logical NOT
-||~|Bitwise NOT (One's Complement)
+||`~`|Bitwise NOT (One's Complement)
 ||(type)|Type cast
 ||*|Indirection (dereference)
 ||&|Address-of
@@ -909,17 +909,17 @@ Operator(操作符)：
 ||`%`|Modulo (remainder)
 |6|`+`|Addition|Left-to-right
 ||`-`|Subtraction
-|7|<<|Bitwise left shift|Left-to-right
-||>>|Bitwise right shift
+|7|`<<`|Bitwise left shift|Left-to-right
+||`>>`|Bitwise right shift
 |8|`<`|Less than|Left-to-right
 ||`<=`|Less than or equal to
 ||`>`|Greater than
 ||`>=`|Greater than or equal to
 |9|`==`|Equal to|Left-to-right
 ||`!=`|Not equal to
-|10|&|Bitwise AND|Left-to-right
-|11|^|Bitwise XOR (exclusive or)|Left-to-right
-|12|\||Bitwise OR (inclusive or)|Left-to-right
+|10|`&`|Bitwise AND|Left-to-right
+|11|`^`|Bitwise XOR (exclusive or)|Left-to-right
+|12|`|`|Bitwise OR (inclusive or)|Left-to-right
 |13|`&&`|Logical AND|Left-to-right
 |14|`||`|Logical OR|Left-to-right
 |15|?:|Ternary conditional|Right-to-left
@@ -938,7 +938,7 @@ Operator(操作符)：
 |18|,|Comma|Left-to-right
 
 
-（摘自[Operators in C and C++]()https://en.wikipedia.org/wiki/Operators_in_C_and_C%2B%2B#Operator%20precedence)）
+（摘自[Operators in C and C++](https://en.wikipedia.org/wiki/Operators_in_C_and_C%2B%2B#Operator%20precedence)）
 
 运算次序：
 `5 + 10 * 20 / 2`
@@ -966,7 +966,38 @@ short_value += ival; // -32768 wrapped around
 
 ### 5.2
 0为假，其他为真。  
-当表达式的布尔值已确定时，不会再执行下去。  
+Short-circuit evalution（短路求值）：当表达式的布尔值已确定时，不会再执行下去。  
+```
+string s("Expressions in C++ are composed..."); 
+string::iterator it = s.begin(); 
+while (it != s.end() && !isspace(*it)) {
+    *it = toupper(*it); 
+    ++it; 
+}
+```
+
+bool值true转换为整型1：`i < j < k` 当k 大于1时总成立。  
+
+### 5.3
+位操作符：
+- 将整型看作二进制序列。
+- 或者处理bitset 类型。
+- 对于负数，如何操作符号位取决于机器。所以建议使用unsigned 型。  
+```
+unsigned int bits = 1; 
+bits = ~bits; // (2^32 - 1) - 1
+```
+- `>>`和`<<`抛弃移出去的位。无符号时补0。
+- 有符号数，`>>`可能移进符号位副本或0，取决于机器。  
+- 右操作数必须为小于左操作数位数的正值。  
+- `&` `|` 位异或`^`： 
+```
+unsigned char b1 = 0145; // oct value
+unsigned char b2 = 0257;
+unsigned char result = b1 & b2; // 0045
+```
+#### 5.3.1
+
 
 
 
