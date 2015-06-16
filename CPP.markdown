@@ -892,9 +892,9 @@ Operator(操作符)：
 ||static_cast|Type cast (C++ only)
 |3|++|Prefix increment|Right-to-left
 ||--|Prefix decrement
-||+|Unary plus
-||-|Unary minus
-||!|Logical NOT
+||`+`|Unary plus
+||`-`|Unary minus
+||`!`|Logical NOT
 ||~|Bitwise NOT (One's Complement)
 ||(type)|Type cast
 ||*|Indirection (dereference)
@@ -904,24 +904,24 @@ Operator(操作符)：
 ||delete, delete[]|Dynamic memory deallocation (C++ only)
 |4|.*|Pointer to member (C++ only)|Left-to-right
 ||->*|Pointer to member (C++ only)
-|5|*|Multiplication|Left-to-right
-||/|Division
-||%|Modulo (remainder)
-|6|+|Addition|Left-to-right
-||-|Subtraction
+|5|`*`|Multiplication|Left-to-right
+||`/`|Division
+||`%`|Modulo (remainder)
+|6|`+`|Addition|Left-to-right
+||`-`|Subtraction
 |7|<<|Bitwise left shift|Left-to-right
 ||>>|Bitwise right shift
-|8|<|Less than|Left-to-right
-||<=|Less than or equal to
-||>|Greater than
-||>=|Greater than or equal to
-|9|==|Equal to|Left-to-right
-||!=|Not equal to
+|8|`<`|Less than|Left-to-right
+||`<=`|Less than or equal to
+||`>`|Greater than
+||`>=`|Greater than or equal to
+|9|`==`|Equal to|Left-to-right
+||`!=`|Not equal to
 |10|&|Bitwise AND|Left-to-right
 |11|^|Bitwise XOR (exclusive or)|Left-to-right
-|12|||Bitwise OR (inclusive or)|Left-to-right
-|13|&&|Logical AND|Left-to-right
-|14|Logical OR|Left-to-right
+|12|\||Bitwise OR (inclusive or)|Left-to-right
+|13|`&&`|Logical AND|Left-to-right
+|14|`||`|Logical OR|Left-to-right
 |15|?:|Ternary conditional|Right-to-left
 |16|=|Direct assignment|Right-to-left
 ||+=|Assignment by sum
@@ -937,6 +937,8 @@ Operator(操作符)：
 |17|throw|Throw operator (exceptions throwing, C++ only)|Right-to-left
 |18|,|Comma|Left-to-right
 
+
+（摘自[Operators in C and C++]()https://en.wikipedia.org/wiki/Operators_in_C_and_C%2B%2B#Operator%20precedence)）
 
 运算次序：
 `5 + 10 * 20 / 2`
@@ -963,6 +965,8 @@ short_value += ival; // -32768 wrapped around
 `/`：一操作数为负，上或下取整由机器决定。  
 
 ### 5.2
+0为假，其他为真。  
+当表达式的布尔值已确定时，不会再执行下去。  
 
 
 
