@@ -924,16 +924,16 @@ Operator(操作符)：
 |14|`||`|Logical OR|Left-to-right
 |15|?:|Ternary conditional|Right-to-left
 |16|=|Direct assignment|Right-to-left
-||+=|Assignment by sum
-||-=|Assignment by difference
-||*=|Assignment by product
-||/=|Assignment by quotient
-||%=|Assignment by remainder
-||<<=|Assignment by bitwise left shift
-||>>=|Assignment by bitwise right shift
-||&=|Assignment by bitwise AND
-||^=|Assignment by bitwise XOR
-||=|Assignment by bitwise OR
+||`+=`|Assignment by sum
+||`-=`|Assignment by difference
+||`*=`|Assignment by product
+||`/=`|Assignment by quotient
+||`%=`|Assignment by remainder
+||`<<=`|Assignment by bitwise left shift
+||`>>=`|Assignment by bitwise right shift
+||`&=`|Assignment by bitwise AND
+||`^=`|Assignment by bitwise XOR
+||`|=`|Assignment by bitwise OR
 |17|throw|Throw operator (exceptions throwing, C++ only)|Right-to-left
 |18|,|Comma|Left-to-right
 
@@ -997,13 +997,63 @@ unsigned char b2 = 0257;
 unsigned char result = b1 & b2; // 0045
 ```
 #### 5.3.1
+用`bitset`做布尔数组：
+```
+bitset<30> quiz; 
+quiz.set(27); 
+quiz.reset(28); 
+bool status; 
+status = quiz[28]; 
+```
 
+如果用整型实现会比较复杂：
+```
+unsigned int quiz; 
+quiz |= 1UL << 27; 
+quiz &= ~(1UL << 28); 
+bool status; 
+status = quiz & (1UL << 28); 
+```
 
+#### 5.3.2
+输入输出标准库重载了`>>`和`<<`。  
+- 左结合：
+```
+cout << "hi" << "there" << endl; 
+((cout << "hi") << "there") << endl; 
+```
+- 优先级低于算术操作符，高于关系操作符：
+```
+cout << 1 + 2; 
+cout << (1 < 2); 
+```
 
+### 5.4
+赋值操作符的左操作数必须是非const 的左值：  
+```
+i + j = ival; // error, i + j return rvalues
+```
 
+当左右操作数类型不符时，会类型转换而改变值。  
+#### 5.4.1
+赋值操作是右结合的：
+```
+int val; 
+int *pval; 
+val = pval = 0; // error, cannot assign pointer to int
+```
+#### 5.4.2
+优先级很低，故可以写入条件表达式：  
+```
+int i; 
+while ((i = getValue()) != 42)
+    // do
+```
+小心`if (i == val)` 不要写成赋值。  
+#### 5.4.3
+复合赋值操作符：`+=` 等10个。计算中左操作数只计算一次。  
 
-
-
+### 5.5
 
 
 
