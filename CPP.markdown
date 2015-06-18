@@ -879,27 +879,27 @@ Operator(操作符)：
 | Precedence | Operator | Description | Associativity |
 |:---:|:---:|:---:|:---:|
 |1|::|Scope resolution (C++ only)|None
-|2|++|Suffix increment|Left-to-right
-||--|Suffix decrement
+|2|`++`|Suffix increment|Left-to-right
+||`--`|Suffix decrement
 ||()|Function call
 ||[]|Array subscripting
-||.|Element selection by reference
-||->|Element selection through pointer
+||`.`|Element selection by reference
+||`->`|Element selection through pointer
 ||typeid()|Run-time type information (C++ only)
 ||const_cast|Type cast (C++ only)
 ||dynamic_cast|Type cast (C++ only)
 ||reinterpret_cast|Type cast (C++ only)
 ||static_cast|Type cast (C++ only)
-|3|++|Prefix increment|Right-to-left
-||--|Prefix decrement
+|3|`++`|Prefix increment|Right-to-left
+||`--`|Prefix decrement
 ||`+`|Unary plus
 ||`-`|Unary minus
 ||`!`|Logical NOT
 ||`~`|Bitwise NOT (One's Complement)
 ||(type)|Type cast
-||*|Indirection (dereference)
+||`*`|Indirection (dereference)
 ||&|Address-of
-||sizeof|Size-of
+||`sizeof`|Size-of
 ||new, new[]|Dynamic memory allocation (C++ only)
 ||delete, delete[]|Dynamic memory deallocation (C++ only)
 |4|.*|Pointer to member (C++ only)|Left-to-right
@@ -922,7 +922,7 @@ Operator(操作符)：
 |12|`|`|Bitwise OR (inclusive or)|Left-to-right
 |13|`&&`|Logical AND|Left-to-right
 |14|`||`|Logical OR|Left-to-right
-|15|?:|Ternary conditional|Right-to-left
+|15|`? :`|Ternary conditional|Right-to-left
 |16|=|Direct assignment|Right-to-left
 ||`+=`|Assignment by sum
 ||`-=`|Assignment by difference
@@ -1054,8 +1054,74 @@ while ((i = getValue()) != 42)
 复合赋值操作符：`+=` 等10个。计算中左操作数只计算一次。  
 
 ### 5.5
+自增：在变量前和变量后分别是两种运算符。
+- `++i`是右结合的，返回的值是左值（对象本身）。
+- `i++`是左结合的，返回右值（对象原始值）。
+- 如无必要不使用后自增。只有int和指针编译器有优化。
+```
+vector<int> ivec; 
+int cnt = 10; 
+while (cnt > 0)
+    ivec.push_back(cnt--);  // 9 - 1
 
+vector::iterator iter = ivec.begin(); 
+while (iter != ivec.end()) 
+    cout << *iter++ << endl; 
+```
 
+### 5.6
+箭头操作符：`->`等同于点`.`加解引用`*`操作符。  
+```
+Sales_item item1; 
+Sales_item *sp = &item1; 
+(*sp).same_isbn(item2); // * is lower priority than .
+```
+为避免忘记给解引用操作符加括号，引入`->`：
+```
+p->foo; // (*p).foo
+sp->same_isbn(item2); 
+```
 
+### 5.7
+Conditional operator(条件操作符)：`cond ? expr1 : expr2`。
+- 三元。
+- 短路求值。
+- 优先级低。
+```
+cout << (i < j ? i : j); 
+```
 
+### 5.8
+`sizeof`操作符：
+- 返回`size_t`类型。
+- 单位是字节。 
+- 作用于表达式时，其实不执行表达式，只检查返回类型。
+- 作用于类型名，一定要括号，返回该类型所需内存：
+```
+cout << sizeof(int) << endl; // 4
+```
+- 作用于表达式，返回结果所需内存：
+```
+int a = 1, b = 2; 
+cout << sizeof (a + b) << endl; // 4
+```
+- 作用于指针，返回地址大小；作用于解引用的指针才返回对象大小：
+```
+    char *p; 
+    cout << sizeof p << endl; // 4
+    cout << sizeof *p << endl; // 1
+```
+- 作用于引用类型，返回存放引用类型对象所需的空间：
+```
+vector<int> ivec; 
+vector<int>::iterator iter; 
+cout << sizeof iter << endl; // 12
+cout << sizeof *iter << endl; // 4
+```
+- 作用于数组，是数组元素长和元素个数的乘积。
+```
+int a[3]; 
+cout << (sizeof a / sizeof *a) << endl; // 3
+```
 
+### 5.9
