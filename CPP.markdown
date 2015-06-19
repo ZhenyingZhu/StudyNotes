@@ -1125,3 +1125,14 @@ cout << (sizeof a / sizeof *a) << endl; // 3
 ```
 
 ### 5.9
+逗号表达式：
+- 用逗号排列的多个表达式。
+- 每个表达式从左向右执行。
+- 逗号表达式的值最右边的表达式值。<b>?</b>
+```
+vector<int> ivec(9); 
+int cnt = ivec.size(); 
+for (vector<int>::size_type ix = 0; ix != ivec.size(); ++ix, --cnt)
+    ivec[ix] = cnt; 
+```
+
