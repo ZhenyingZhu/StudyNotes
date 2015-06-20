@@ -878,32 +878,32 @@ Operator(操作符)：
 
 | Precedence | Operator | Description | Associativity |
 |:---:|:---:|:---:|:---:|
-|1|::|Scope resolution (C++ only)|None
+|1|`::`|Scope resolution (C++ only)|None
 |2|`++`|Suffix increment|Left-to-right
 ||`--`|Suffix decrement
-||()|Function call
-||[]|Array subscripting
+||`()`|Function call
+||`[]`|Array subscripting
 ||`.`|Element selection by reference
 ||`->`|Element selection through pointer
-||typeid()|Run-time type information (C++ only)
-||const_cast|Type cast (C++ only)
-||dynamic_cast|Type cast (C++ only)
-||reinterpret_cast|Type cast (C++ only)
-||static_cast|Type cast (C++ only)
+||`typeid()`|Run-time type information (C++ only)
+||`const_cast`|Type cast (C++ only)
+||`dynamic_cast`|Type cast (C++ only)
+||`reinterpret_cast`|Type cast (C++ only)
+||`static_cast`|Type cast (C++ only)
 |3|`++`|Prefix increment|Right-to-left
 ||`--`|Prefix decrement
 ||`+`|Unary plus
 ||`-`|Unary minus
 ||`!`|Logical NOT
 ||`~`|Bitwise NOT (One's Complement)
-||(type)|Type cast
+||`(type)`|Type cast
 ||`*`|Indirection (dereference)
-||&|Address-of
+||`&`|Address-of
 ||`sizeof`|Size-of
-||new, new[]|Dynamic memory allocation (C++ only)
-||delete, delete[]|Dynamic memory deallocation (C++ only)
-|4|.*|Pointer to member (C++ only)|Left-to-right
-||->*|Pointer to member (C++ only)
+||`new, new[]`|Dynamic memory allocation (C++ only)
+||`delete, delete[]`|Dynamic memory deallocation (C++ only)
+|4|`.*`|Pointer to member (C++ only)|Left-to-right
+||`->*`|Pointer to member (C++ only)
 |5|`*`|Multiplication|Left-to-right
 ||`/`|Division
 ||`%`|Modulo (remainder)
@@ -923,7 +923,7 @@ Operator(操作符)：
 |13|`&&`|Logical AND|Left-to-right
 |14|`||`|Logical OR|Left-to-right
 |15|`? :`|Ternary conditional|Right-to-left
-|16|=|Direct assignment|Right-to-left
+|16|`=`|Direct assignment|Right-to-left
 ||`+=`|Assignment by sum
 ||`-=`|Assignment by difference
 ||`*=`|Assignment by product
@@ -934,11 +934,11 @@ Operator(操作符)：
 ||`&=`|Assignment by bitwise AND
 ||`^=`|Assignment by bitwise XOR
 ||`|=`|Assignment by bitwise OR
-|17|throw|Throw operator (exceptions throwing, C++ only)|Right-to-left
-|18|,|Comma|Left-to-right
+|17|`throw`|Throw operator (exceptions throwing, C++ only)|Right-to-left
+|18|`,`|Comma|Left-to-right
 
 
-（摘自[Operators in C and C++](https://en.wikipedia.org/wiki/Operators_in_C_and_C%2B%2B#Operator%20precedence)）
+（摘自[Operators in C and C++](https://en.wikipedia.org/wiki/Operators_in_C_and_C%2B%2B#Operator%20precedence) 和5.10.2）
 
 运算次序：
 `5 + 10 * 20 / 2`
@@ -1136,3 +1136,40 @@ for (vector<int>::size_type ix = 0; ix != ivec.size(); ++ix, --cnt)
     ivec[ix] = cnt; 
 ```
 
+### 5.10
+Compound expression(符合表达式)：
+- 含有多个操作符。
+- 操作符的优先级决定操作数的结合方式，并没有说明计算次序。
+- 由结合性决定次序。
+#### 5.10.1
+优先级相同的操作符，由结合性决定谁先执行。
+```
+int res = 6 + 3 * 4 / 2 + 2; 
+int tmp1 = 3 * 4; // same as /, left to right
+int tmp2 = tmp1 / 2; 
+int tmp3 = 6 + tmp2; 
+int res = tmp3 + 2; 
+```
+#### 5.10.2
+左结合：
+```
+a + b + c; 
+((a + b) + c); 
+```
+右结合：
+```
+a = b = c; 
+(a = (b = c));
+```
+#### 5.10.3
+`&&`和`||`和`?:`当且仅当右操作数（为一个函数且改变某对象的值）有影响时才计算。  
+其他操作符并未指定操作数的执行次序。  
+```
+if (ia[index++] < ia[index]) // ia[0] < ia[0] or ia[0] < ia[1] undifined
+```
+
+避免错误的建议：
+- 不清楚时使用括号。
+- 修改值的语句内不要出现调用该值的操作。除了`*--iter`。
+
+### 5.11
