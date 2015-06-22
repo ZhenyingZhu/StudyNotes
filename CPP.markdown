@@ -1173,3 +1173,47 @@ if (ia[index++] < ia[index]) // ia[0] < ia[0] or ia[0] < ia[1] undifined
 - 修改值的语句内不要出现调用该值的操作。除了`*--iter`。
 
 ### 5.11
+动态创建对象时返回的是指针而不是该对象名称。  
+```
+int i; // i is name
+int *pi = new int; 
+```
+初始化对象与初始化变量相同：
+```
+int *pi = new int(1024); // Direct-initialization
+int *pi = new int; // uninitialized
+int *pi = new int(); // value-initialize, 0
+```
+对未初始化的对象的引用没有意义。  
+
+内存耗尽后，会抛出`bad_alloc`的异常。  
+
+释放：
+```
+delete pi; 
+```
+- 如果不是用`new`动态创建的对象，`delete`该指针非法。
+```
+int i; 
+int *pi = &i; 
+string str = "dwarves"; 
+int *pz = 0; 
+
+delete pi; // error but can compile
+delete str; // failed to compile
+delete pz; // ok but useless
+```
+- 释放了对象后内存释放，但指针仍指向该处，为dangling pointer（悬垂指针）。为避免错误最好置0。
+
+`const`对象创建时必须初始化。
+```
+const int *pci = new int(1024); 
+delete pci; 
+```
+
+易发错误：
+- memory leak（内存泄漏）：删除动态分配的对象指针失败。很难发现。  
+- 读写已删除的对象：所以释放后立即将指针置0。  
+- 两次删除同一内存空间：当两个指针指向相同对象时。会造成只有存储区破坏。  
+
+### 5.12
