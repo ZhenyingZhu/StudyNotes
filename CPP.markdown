@@ -1223,4 +1223,11 @@ Conversion(互相转换)：
 - 算术类型：内置转换由低精度向高精度转换，如`double`加`int`则转换`int`为`double`。
 - 左值精度低于计算结果时会产生`warning`。
 #### 5.12.1
-
+混合类型的表达式中隐式转换操作数：
+```
+int ival; double dval; 
+ival >= dval; // ival change to double
+if (ival); // ival change to bool
+ival = 3.14; // 3.14 change to int
+```
+#### 5.12.2
