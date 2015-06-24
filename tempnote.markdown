@@ -1,3 +1,5 @@
+Scapy tur: http://www.secdev.org/projects/scapy/doc/usage.html  
+
 `ip link show eth0`  
 `sudo ip link set dev eth0 mtu 1500`  
 `tracepath www.dest.com` PMTUD  
