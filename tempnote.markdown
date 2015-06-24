@@ -1,3 +1,7 @@
+`ip link show eth0`  
+`sudo ip link set dev eth0 mtu 1500`  
+`tracepath www.dest.com` PMTUD  
+
 http://www.webupd8.org/2014/09/dual-boot-fix-time-differences-between.html  
 
 Are the usb ports onboard devices or are the usbs part of a PCI card? Some usb PCI have this problem. type, #sudo lsusb, to get a listing of all usb ports on your system. Also type, sudo lshw -short to get a short listing all devices on you system. If neither program shows you the usbs on the system then you are using a different kernel or the drives did not get install. Type, uname -a, and give us the kernel version. If you do see the usbs, then type, sudo lspci -v, and see if drives have been installed for them. - See more at: http://www.linux.com/learn/answers/view/762-i-just-loaded-ubuntu-and-it-doesnt-recognize-the-usb-ports-what-do-i-do#sthash.bg370RMi.dpuf  
