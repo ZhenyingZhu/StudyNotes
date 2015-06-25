@@ -1,3 +1,5 @@
+http://packetbomb.com/how-can-the-packet-size-be-greater-than-the-mtu/  
+
 Scapy tur: http://www.secdev.org/projects/scapy/doc/usage.html  
 
 `ip link show eth0`  
