@@ -1231,3 +1231,19 @@ if (ival); // ival change to bool
 ival = 3.14; // 3.14 change to int
 ```
 #### 5.12.2
+Arithmetic conversion(算术转换)：
+- 二元操作符的操作数
+- 转换为两数中较大精度的类型
+- Integral promotion(整型提升)：小于`int`的如`char`
+- 无符号的比同类型有符号的大，但不同类型，如`unsigned short`仍比`int`小。
+- 依赖于机器，如32位机器，`long`和`int`都用一个字长。
+- 转换无符号类型时可能会出错，避免使用。
+#### 5.12.3
+指针转换：
+- 将数组转换为第一个元素的地址。  
+- 所有指针转换为`void*`
+- 0转换为任意指针类型。
+
+布尔转换：0值，包括指针为false。  
+
+
