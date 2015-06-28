@@ -1301,3 +1301,44 @@ string str(pc); // meaningless and unexpected
 - `(type) expr`: C-language-style cast notation。
 - 先尝试较安全的`static_cast`和`const_cast`，如不合法，再执行`reinterpret_cast`。
 
+## Chapter 6
+Flow-of-control（控制流）。  
+
+### 6.1
+Expression statement(表达式语句)。  
+null statement(空语句): `;`  
+```
+while (cin >> s && s != sought)
+    ;
+```
+
+### 6.2
+Declaration statement(声明语句)。
+
+### 6.3
+Compound statement(复合语句): 又称block (块)。  
+- `{}`内。
+- 内部变量的作用域仅为内部。
+- 不以`;`结尾。
+
+### 6.4
+控制结构中，即`while`, `for`括号内定义的变量作用域仅在后面的块语句中。  
+如要在块外访问，则需在控制结构外定义：  
+```
+vector<int>::size_type index = 0; 
+for (; index != vec.size(); ++index) 
+    ;
+```
+
+### 6.5
+```
+if (int ival = compute_value()) { // must init and can convert to bool
+} else if {
+} else {
+}
+```
+
+Dangling-else(悬垂else): 两个`if`后接一个`else`。`else`与最后出现的未于`else`匹配的`if`配对。  
+
+### 6.6
+
