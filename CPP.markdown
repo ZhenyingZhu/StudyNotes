@@ -1246,4 +1246,58 @@ Arithmetic conversion(算术转换)：
 
 布尔转换：0值，包括指针为false。  
 
+枚举对象和成员自动转换为整型：最小能容纳成员数目的整型，如`int`不够，则为`unsigned int`或`long`。  
+```
+enum Points {point2d = 2, point2w, point3d = 3, point3w}; 
+const size_t arr_size = 1024; 
+int chunk_size = arr_size * point2w; 
+int array_3d = arr_size * point3w; 
+```
+
+用非const的对象初始化const对象的引用，或用地址赋给const类型指针，自动转换该对象为const：
+```
+int i; 
+const int &ref = i; 
+const int *pt = &i; 
+```
+
+标准库类型转换：
+- `cin >> s`返回的是`isteam`类型的`cin`，但是可转换为bool。 
+#### 5.12.4
+cast(强制类型转换)：
+- 非常危险。
+- 操作符：`static_cast`，`dynamic_cast`，`const_cast`，`reinterpret_cast`。
+#### 5.12.5
+```
+double dval; 
+int dval; 
+ival *= static_cast<int>(dval); 
+```
+#### 5.12.6
+强制类型转换概述：
+`cast-name<type>(expression)`
+- `dynamic_cast`: 运行中识别指针或引用指向的对象。
+- `const_cast`: 转换表达式的const属性：如函数`string_copy`只接受非const参数。
+```
+const char *pt_str; 
+string_copy(const_cast<*char>(pt_str)); 
+```
+- `static_cast`: 与编译器的自动类型转换相同。可用于覆盖编译器精度丢失的警告。
+```
+void* p = &d; 
+double *dp = static_cast<double*>(p); 
+```
+- `reinterpret_cast`: 操作数位模式的低层次解释。强行改变对象类型。强烈不建议使用。 
+```
+int *ip; 
+char *pc = reinterpret_cast<char*>(ip); 
+string str(pc); // meaningless and unexpected
+```
+
+#### 5.12.7
+旧式强制转换：
+- 可视性差（无法搜索定位）。
+- `type (expr)`：function-style cast notation。
+- `(type) expr`: C-language-style cast notation。
+- 先尝试较安全的`static_cast`和`const_cast`，如不合法，再执行`reinterpret_cast`。
 
