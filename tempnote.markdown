@@ -1,3 +1,8 @@
+http://lukaszwrobel.pl/blog/tmux-tutorial-split-terminal-windows-easily  
+
+http://askubuntu.com/questions/167468/where-can-i-find-the-source-code-of-ubuntu  
+`http://bazaar.launchpad.net/~ubuntu-branches/ubuntu/wily/iputils/wily/view/head:/ping.c`
+
 `env` `history`  
 
 http://packetbomb.com/how-can-the-packet-size-be-greater-than-the-mtu/  
