@@ -1341,4 +1341,41 @@ if (int ival = compute_value()) { // must init and can convert to bool
 Dangling-else(悬垂else): 两个`if`后接一个`else`。`else`与最后出现的未于`else`匹配的`if`配对。  
 
 ### 6.6
+#### 6.6.1
+Switch 语句：
+- `switch`括号中的表达式必须返回一个整数。
+- `case`后的值为case label(case 标号)，必须是整型常量，且需互相不同。
+```
+char ch; 
+int aCnt = 0, bCnt = 0, otherCnt = 0; 
+while (cin >> ch) {
+    switch (ch) {
+        case "a":
+            ++aCnt; 
+            break; 
+        case "b":
+            ++bCnt; 
+            break; 
+        default: 
+            ++otherCnt;
+            break; 
+    }
+}
+```
+#### 6.6.2
+```
+switch (ch) {
+    case 'a': case 'b':
+        ++a_or_bCnt; 
+        break; 
+}
+```
+#### 6.6.3
+Default label(default 标号)： 
+#### 6.6.4
+`switch(int ival = get_response())` 是正确的语法。  
+#### 6.6.5
+`switch`内部的变量只能定义在最后一个case中，或在case执行的操作中加入块。  
+
+### 6.7
 
