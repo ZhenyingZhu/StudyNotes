@@ -1,3 +1,5 @@
+to see the usage of memory `top`
+
 http://lukaszwrobel.pl/blog/tmux-tutorial-split-terminal-windows-easily  
 
 http://askubuntu.com/questions/167468/where-can-i-find-the-source-code-of-ubuntu  
