@@ -65,3 +65,5 @@ Return to a previous reversion:
 
 http://www.cade.utah.edu/faqs/how-do-i-set-up-users-for-my-svn-repository/
 http://stackoverflow.com/questions/8159078/being-prompted-for-null-gnome-keyring  
+http://svnbook.red-bean.com/en/1.7/svn.tour.importing.html  
+
