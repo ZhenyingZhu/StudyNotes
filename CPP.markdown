@@ -1378,4 +1378,37 @@ Default label(default 标号)：
 `switch`内部的变量只能定义在最后一个case中，或在case执行的操作中加入块。  
 
 ### 6.7
+`while`循环条件中的变量作用域只在之后的块中。  
+每执行一次循环，循环条件都执行一遍，所以该处的定义的变量会重复定义。  
+```
+int *source = arr1; 
+size_t sz = sizeof(arr1) / sizeof(*arr1); 
+int *dest = new int[sz]; 
+while (source != arr1 + sz) 
+    *dest++ = *source++; 
+```
+
+### 6.8
+```
+for (init-statement condition; expression)
+    ;
+```
+init-statement(初始化语句)：同时包括initializer 和condition。 
+```
+for (vector<int>::size_type ind = 0; ind != svec.size(); ++ind) {
+    cout << svec[ind]; 
+    if (ind + 1 != svec.size()) 
+        cout << " "; 
+}
+```
+#### 6.8.1
+可用一个空语句省略`for`循环中的任意一部分。但是后两部分省略了循环都无法退出。  
+#### 6.8.2
+`for`初始化可以同时定义多个变量，用逗号分隔，所以只能是同类型。  
+表达式部分也可用逗号分隔。  
+
+### 6.9
+`do ... while`不能在循环条件中定义变量。  
+
+### 6.10
 
