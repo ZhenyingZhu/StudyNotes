@@ -1411,4 +1411,33 @@ for (vector<int>::size_type ind = 0; ind != svec.size(); ++ind) {
 `do ... while`不能在循环条件中定义变量。  
 
 ### 6.10
+`break`只能出现在循环和`switch`中，用于跳出当前层的循环。  
 
+### 6.11
+`continue`提前结束此次循环。  
+
+### 6.12
+`goto`语句难以理解和修改，不使用。  
+(!!skip!!)
+
+### 6.13
+异常处理：  
+- `throw` expression: `raise`了异常条件，但当场不处理。  
+- `try` block: 处理异常，以多个`catch` clause(子句) 结束。`catch`子句又称handler(处理代码)。  
+- exception class(异常类): 标准库定义，用以传递错误信息。  
+#### 6.13.1
+```
+if (!item1.same_isbn(item2)) 
+    throw runtime_error("Data must refer to same ISBN"); 
+```
+`runtime_error` 是该表达式的类型。定义在`stdexcept` 头文件中。用字符串创建。  
+#### 6.13.2
+```
+try {
+    program-statements
+} catch (exception-specifier) {
+    handler-statements
+}
+```
+- exception specifier: 异常说明符。  
+- program statements: 任意语句，作用域仅在`try` 和之后的`catch`中。  
