@@ -1423,7 +1423,7 @@ for (vector<int>::size_type ind = 0; ind != svec.size(); ++ind) {
 ### 6.13
 异常处理：  
 - `throw` expression: `raise`了异常条件，但当场不处理。  
-- `try` block: 处理异常，以多个`catch` clause(子句) 结束。`catch`子句又称handler(处理代码)。  
+- `try` block: 处理`try`块中抛出的异常，以多个`catch` clause(子句) 结束。`catch`子句又称handler(处理代码)。  
 - exception class(异常类): 标准库定义，用以传递错误信息。  
 #### 6.13.1
 ```
@@ -1441,3 +1441,19 @@ try {
 ```
 - exception specifier: 异常说明符。  
 - program statements: 任意语句，作用域仅在`try` 和之后的`catch`中。  
+- `err.what()`返回标准库异常类error 的类型名，为C风格字符串。 
+```
+while (cin >> item1 >> item2) {
+    try {
+        func_throw_runtime_err(); 
+    } catch (runtime_error err) {
+        cout << err.what()
+             << "\nTry again? y/n"; 
+        char c; 
+        cin >> c; 
+        if (cin && c == 'n')
+            break; 
+    }
+}
+```
+
