@@ -1460,8 +1460,8 @@ while (cin >> item1 >> item2) {
 如果找不到匹配的`catch`子句，程序跳转到定义在`exception`中的标准库函数`terminate`。  
 #### 6.13.3
 标准库异常：
-1. `exception`头文件：定义`exception`类，用于通知异常发生。 
-1. `stdexcept`头文件：
+1.  `exception`头文件：定义`exception`类，用于通知异常发生。 
+1.  `stdexcept`头文件：
  - `exception`: 最常见的异常，标准库中只定义了默认构造函数。 
  - `runtime_error`: 运行时才能检测到的异常。 
  - `range_error`: 超出值域。 
@@ -1472,9 +1472,37 @@ while (cin >> item1 >> item2) {
  - `invalid_argument`: 不合适的参数。 
  - `length_error`: 产生了超出类型长度的对象。 
  - `out_of_range`: 超出有效范围的值。 
-1. `new`头文件：`bad_alloc`异常类型，只定义了默认构造函数。
-1. `type_info`头文件：`bad_cast`异常类型，只定义了默认构造函数。 
+1.  `new`头文件：`bad_alloc`异常类型，只定义了默认构造函数。
+1.  `type_info`头文件：`bad_cast`异常类型，只定义了默认构造函数。 
 除了`exception`,`bad_alloc`和`bad_cast`外，其他异常只定义了用`string`初始化的构造函数。  
 只有一个`what()`操作。返回`const char*`。  
 
+### 6.14
+用预处理器调试：
+```
+int main() 
+{
+    #ifndef NDEBUG
+    cerr << "Starting main" << endl; 
+    cerr << __FILE__ << endl; 
+    #endif
+}
+```
+- 开发过程中，保持`NDEBUG`未定义，则会执行其中的测试代码。  
+- 交付时，定义预处理变量再编译：
+```
+$ CC -DNDEBUG main.C # same as #define NDEBUG
+```
 
+调试常量：
+- `__FILE__`
+- `__LINE__`
+- `__TIME__`: 文件编译时间。 
+- `__DATE__`
+
+Preprocessor macro(预处理宏): 类似函数调用，用表达式作为条件。  
+`assert`(断言)预处理宏： 
+- 定义于`cassert`中。 
+- `assert(expr);`。如果表达式结果为false或0，输出信息并终止程序。 
+
+## Chapter 7
