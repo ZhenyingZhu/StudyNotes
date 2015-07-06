@@ -1441,7 +1441,7 @@ try {
 ```
 - exception specifier: 异常说明符。  
 - program statements: 任意语句，作用域仅在`try` 和之后的`catch`中。  
-- `err.what()`返回标准库异常类error 的类型名，为C风格字符串。 
+- `err.what()`返回标准库异常类error 的初始化字符串对象副本，为C风格字符串。 
 ```
 while (cin >> item1 >> item2) {
     try {
@@ -1456,4 +1456,25 @@ while (cin >> item1 >> item2) {
     }
 }
 ```
+
+如果找不到匹配的`catch`子句，程序跳转到定义在`exception`中的标准库函数`terminate`。  
+#### 6.13.3
+标准库异常：
+1. `exception`头文件：定义`exception`类，用于通知异常发生。 
+1. `stdexcept`头文件：
+ - `exception`: 最常见的异常，标准库中只定义了默认构造函数。 
+ - `runtime_error`: 运行时才能检测到的异常。 
+ - `range_error`: 超出值域。 
+ - `overflow_error`。
+ - `underflow_error`。
+ - `logic_error`: 可在运行前检测到。 
+ - `domain_error`: 参数的值不存在。 
+ - `invalid_argument`: 不合适的参数。 
+ - `length_error`: 产生了超出类型长度的对象。 
+ - `out_of_range`: 超出有效范围的值。 
+1. `new`头文件：`bad_alloc`异常类型，只定义了默认构造函数。
+1. `type_info`头文件：`bad_cast`异常类型，只定义了默认构造函数。 
+除了`exception`,`bad_alloc`和`bad_cast`外，其他异常只定义了用`string`初始化的构造函数。  
+只有一个`what()`操作。返回`const char*`。  
+
 
