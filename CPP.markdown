@@ -1506,4 +1506,13 @@ Preprocessor macro(预处理宏): 类似函数调用，用表达式作为条件�
 - 定义于`cassert`中。 
 - `assert(expr);`。如果表达式结果为false或0，输出信息并终止程序。 
 
+### 小结
+flow of control(控制流): 程序执行路径。  
+现代C++很少使用预处理宏。 
+
+
 ## Chapter 7
+function(函数)：传递参数，返回值。  
+inline(内联)函数，类成员函数和重载函数。  
+
+### 7.1
