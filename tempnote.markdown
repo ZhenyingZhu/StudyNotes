@@ -1,3 +1,5 @@
+`curl -O URL` can save the file.  
+
 to see the usage of memory `top`
 
 http://lukaszwrobel.pl/blog/tmux-tutorial-split-terminal-windows-easily  
