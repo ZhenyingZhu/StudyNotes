@@ -1,3 +1,5 @@
+`lsmod`: show modules.  
+
 RPM: http://www.tummy.com/blogs/2007/10/31/getting-rpm-to-list-packages-by-install-date/  
 
 `curl -O URL` can save the file.  
