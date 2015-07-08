@@ -1,3 +1,9 @@
+```
+rpm -qa | grep -i package
+rpm -e package-name #uninstall
+```
+
+`ls -LR` list all files
 `lsmod`: show modules.  
 
 RPM: http://www.tummy.com/blogs/2007/10/31/getting-rpm-to-list-packages-by-install-date/  
