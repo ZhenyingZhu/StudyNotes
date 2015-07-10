@@ -392,6 +392,7 @@ vector：container(容器), 可包含同一类型其他对象的集合。
 - 是class template。可用于不同的数据类型。
 - 声明：
 ```
+using std::vector; 
 vector<int> ivec; 
 ```
 #### 3.3.1
@@ -1548,3 +1549,79 @@ C++是静态强类型语言，编译时会检查实参的类型是否与形参�
 
 当1. 需要改变; 2. 时空间占用大; 3. 无法复制对象 时，使用指针形参。  
 #### 7.2.2
+Local copy(局部副本)。  
+
+一个函数返回多个结果：  
+```
+#include <iostream>
+#include <vector>
+
+using std::cout; 
+using std::endl; 
+using std::vector; 
+
+vector<int>::const_iterator find_val(
+    vector<int>::const_iterator beg, 
+    vector<int>::const_iterator end, 
+    int value, vector<int>::size_type &occurs) 
+{
+    vector<int>::const_iterator res_iter = end; 
+    occurs = 0; 
+    
+    for (; beg != end; ++beg) 
+        if (*beg == value) {
+            if (res_iter == end) 
+                res_iter = beg; 
+            ++occurs; 
+        }
+
+    return res_iter; 
+}
+
+int main() 
+{
+    vector<int> ivec(5, 4); 
+    vector<int>::size_type occurs; 
+
+    vector<int>::const_iterator res_iter = find_val(ivec.begin(), ivec.end(), 4, occurs); 
+    int val = *res_iter; 
+    cout << val << endl; 
+    cout << occurs << endl; 
+
+    return 0; 
+}
+```
+
+非const引用形参只能与完全相同类型的非const对象关联。  
+应该将不修改实参的形参定义为const引用，不然函数无法传入字面值，右值或const对象。  
+
+交换指针： 
+```
+#include <iostream>
+
+using std::cout; 
+using std::endl; 
+
+void ptrswap(int *&v1, int *&v2) {
+    int *tmp = v1; 
+    v1 = v2; 
+    v2 = tmp; 
+}
+
+int main() 
+{
+    int a = 1, b = 2; 
+    int *p1 = &a; 
+    int *p2 = &b; 
+
+    ptrswap(p1, p2); 
+    
+    cout << *p1 << endl; 
+    cout << *p2 << endl; 
+
+    return 0; 
+}
+```
+
+#### 7.2.3
+
