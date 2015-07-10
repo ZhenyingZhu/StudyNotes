@@ -1,3 +1,5 @@
+`common` find the new added lines in newer file compare to an older file.  
+
 ```
 rpm -qa | grep -i package
 rpm -e package-name #uninstall
