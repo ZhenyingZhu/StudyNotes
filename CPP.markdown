@@ -1624,4 +1624,48 @@ int main()
 ```
 
 #### 7.2.3
+通过传递迭代器来传递容器到函数。  
+```
+void print(vector<int>::const_iterator beg, vector<int>::const_iterator end) {
+    while (beg != end) {
+        cout << *beg++; 
+        if (beg != end) 
+            cout << " "; 
+    }
 
+    cout << endl; 
+}
+
+int main() 
+{
+    vector<int> ivec(5, 4); 
+    print(ivec.begin(), ivec.end()); 
+
+    return 0; 
+}
+```
+
+#### 7.2.4
+数组无法复制，只能用指针做形参。  
+`int*`, `int[]`, `int[10]`三种形参等价，但是第一种最好。  
+
+如形参是数组的引用，不会将数组转换为指针，而是传递数组的引用。这时数组大小决定传入的形参需什么大小。  
+```
+void printValues(int (&arr)[10]) {
+    const size_t array_size = 10; 
+    for (size_t ix = 0; ix != array_size; ++ix) {
+        cout << arr[ix] << " "; 
+        if (ix != array_size - 1) cout << " "; 
+    }
+
+    cout << endl; 
+}
+
+int main() 
+{
+    int arr[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 0}; 
+    printValues(arr); 
+
+    return 0; 
+}
+```
