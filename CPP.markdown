@@ -196,6 +196,7 @@ Scope: global scope(全局作用域)中定义的变量可用于local scope(局�
 - 对象定义在首次使用的地方。之后在同一个作用域内只能声明不能再定义。
 - class scope
 - namespace scope
+
 #### 2.3.7
 
 ### 2.4
@@ -406,6 +407,7 @@ vector<T> v4(n) // init with n default T object
 - 建议初始化空容器，再动态添加元素到vector。
 - 为高效添加元素vector 不预先分配连续内存。
 - value initialization。
+
 #### 3.3.2
 vector的操作：
 - `v.empty()`
@@ -494,6 +496,7 @@ Array 长度固定。没有size 操作。
 Array: 
 - 复合数据类型：类型名，标识符，dimension (维数)。 
 - 没有所有元素都是引用的数组<b>?</b>
+
 #### 4.1.1
 维数只能是常量或编译时已知的const 对象。  
 ```
@@ -540,6 +543,7 @@ Pointer:
 - dereference operator`*`
 - increment operator`++`
 - address-of`&`
+
 #### 4.2.1
 指针概念：
 - 指针是对所指对象的间接访问。  
@@ -572,6 +576,7 @@ string* ps1, ps2; // legal but can be misleading. ps2 is string object
 - 与另一个指针比较。
 - 向函数传递或返回指针。
 - 给另一个`void*`指针赋值。
+
 #### 4.2.3
 可以通过解引用返回对象左值：
 ```
@@ -1142,6 +1147,7 @@ Compound expression(符合表达式)：
 - 含有多个操作符。
 - 操作符的优先级决定操作数的结合方式，并没有说明计算次序。
 - 由结合性决定次序。
+
 #### 5.10.1
 优先级相同的操作符，由结合性决定谁先执行。
 ```
@@ -1223,6 +1229,7 @@ Conversion(互相转换)：
 - Implicit type conversion(隐式类型转换)：由编译器执行。
 - 算术类型：内置转换由低精度向高精度转换，如`double`加`int`则转换`int`为`double`。
 - 左值精度低于计算结果时会产生`warning`。
+
 #### 5.12.1
 混合类型的表达式中隐式转换操作数：
 ```
@@ -1239,6 +1246,7 @@ Arithmetic conversion(算术转换)：
 - 无符号的比同类型有符号的大，但不同类型，如`unsigned short`仍比`int`小。
 - 依赖于机器，如32位机器，`long`和`int`都用一个字长。
 - 转换无符号类型时可能会出错，避免使用。
+
 #### 5.12.3
 指针转换：
 - 将数组转换为第一个元素的地址。  
@@ -1264,10 +1272,12 @@ const int *pt = &i;
 
 标准库类型转换：
 - `cin >> s`返回的是`isteam`类型的`cin`，但是可转换为bool。 
+
 #### 5.12.4
 cast(强制类型转换)：
 - 非常危险。
 - 操作符：`static_cast`，`dynamic_cast`，`const_cast`，`reinterpret_cast`。
+
 #### 5.12.5
 ```
 double dval; 
@@ -1426,6 +1436,7 @@ for (vector<int>::size_type ind = 0; ind != svec.size(); ++ind) {
 - `throw` expression: `raise`了异常条件，但当场不处理。  
 - `try` block: 处理`try`块中抛出的异常，以多个`catch` clause(子句) 结束。`catch`子句又称handler(处理代码)。  
 - exception class(异常类): 标准库定义，用以传递错误信息。  
+
 #### 6.13.1
 ```
 if (!item1.same_isbn(item2)) 
@@ -1669,3 +1680,86 @@ int main()
     return 0; 
 }
 ```
+注意`int &arr`是一个`int`的引用，而`arr[10]`是一个数组元素，不能引用。`[]`比引用操作符优先级高。   
+
+多维数组的传递：元素也是数组。形参指针需是一个数组指针。  
+```
+void printValues(int (*matrix)[2], int rowSize) {
+    size_t colSize = 2; 
+    for (size_t rowIx = 0; rowIx != rowSize; ++rowIx) {
+        for (size_t colIx = 0; colIx != colSize; ++colIx) {
+            cout << matrix[rowIx][colIx]; 
+            if (colIx != colSize - 1) cout << " "; 
+        }
+        cout << endl; 
+    }
+}
+
+int main() 
+{
+    int matrix[3][2] = {{1, 2}, {3, 4}, {5, 6}}; 
+    printValues(matrix, 3); 
+
+    return 0; 
+}
+```
+
+#### 7.2.5
+传递数组需确保不会越界：
+- 在数组内放置一个标记，如C风格字符串。  
+- 使用标准库规范，提供指向数组的第一个和最后一个元素的数组。  
+- 显示传递数组大小。C中常用。调用`printValues(arr, sizeof(arr) / sizeof(*arr))`。  
+
+标准库规范：
+```
+void printValues(const int *beg, const int *end) {
+    while (beg != end) {
+        cout << *beg++; 
+        if (beg != end) cout << " "; 
+    }
+}
+
+int main()
+{
+    int arr[3] = {1, 2, 3}; 
+    printValues(arr, arr + 3); 
+
+    return 0; 
+}
+```
+
+#### 7.2.6
+给`main`函数传递参数：
+```
+int main(int argc, char *argv[])
+int main(int argc, char **argv)
+```
+- `argc`表示字符串数组的个数。  
+- `argv`是字符串数组，两种方式等价。  
+- 如果`main`在`prog`的可执行文件中，则`$ prog -d -o ofile data0`调用。 
+- 则`argc`为5，数组的元素为
+```
+int main(int argc, char *argv[])
+{
+    cout << argc << endl; 
+    for (char** beg = argv; beg != argv + argc; ++beg) {
+        cout << *beg << endl; 
+    }
+
+    return 0; 
+}
+```
+结果为
+```
+argv[0] = "prog"; 
+argv[1] = "-d"; 
+argv[2] = "-o"; 
+argv[3] = "ofile"; 
+argv[4] = "data0"; 
+```
+
+Visual Studio 2010 调试main： 
+- 菜单 -> 项目 -> [工程名]属性 -> 配置属性 -> 调试 -> 命令参数 添加传递的参数。 
+- 输出的第一个字符串是 [项目路径]\Debug\[工程名].exe。
+
+#### 7.2.7
