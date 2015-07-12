@@ -1763,3 +1763,69 @@ Visual Studio 2010 调试main：
 - 输出的第一个字符串是 [项目路径]\Debug\[工程名].exe。
 
 #### 7.2.7
+省略符形参`...`：  
+- 暂停了类型检查机制。  
+- 可以有0或多个实参。 
+- C++中的省略符形参是为了编译使用了`varargs`的C程序<b>?</b>。  
+- 只能传递简单数据类型，类对象可能不能正确复制。  
+- 显式声明的形参仍会检查类型。  
+```
+void foo(param_list, ...)
+void foo(...)
+```
+
+### 7.3
+```
+return; 
+return expression; 
+```
+
+#### 7.3.1
+`return`用于`void`类型函数中类似`break`功能。  
+
+#### 7.3.2
+非`void`的函数必须`return`正确的或可隐式转换的结果。  
+就算循环内有`return`，非`void`函数的循环外一定要有`return`。  
+`main`函数可以没有`return`就结束，自动返回`0`。  
+
+`main`函数返回值代表执行成功与否： 
+- `cstdlib`头文件中定义了预处理变量：  
+```
+#include <cstdlib>
+int main()
+{
+    if (success) 
+        return EXIT_SUCCESS; 
+    else
+        return EXIT_FAILURE; 
+}
+```
+
+求解表达式时，如要临时存储某结果，编译器创建temporary object(临时对象)。  
+函数的返回值初始化了调用函数时创建的临时对象。方法与用实参初始化形参相同。   
+注意千万不要返回局部对象的引用。  
+```
+const string &shorterString(const string &s1, const string &s2) {
+    return s1.size() < s2.size() ? s1 : s2; // Not copy 
+}
+```
+
+引用返回左值：这返回的还是引用，可修改。  
+```
+char &get_val(string &str, string::size_t ix) {
+    return str[ix]; 
+}
+int main() 
+{
+    string str = "a value"; 
+    get_val(str, 0) = "A"; // now string is "A value"
+}
+```
+如不需要修改返回值，声明为const: 
+```
+const char &get_val(str, 0)
+```
+
+千万不要返回指向局部对象的指针。  
+
+#### 7.3.3
