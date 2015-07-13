@@ -1,3 +1,5 @@
+`yum clean all` to avoid unexpected error  
+
 `common` find the new added lines in newer file compare to an older file.  
 
 ```
@@ -252,7 +254,8 @@ Add in the last line of a plain text file.
 ```
 
 `dig` DNS lookup  
-`set -e` ?  
+`set -e` ? 
+`set -x` show all steps when executes a command
 
 (EINTR)[http://250bpm.com/blog:12]  
 
