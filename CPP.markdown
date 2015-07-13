@@ -1829,3 +1829,25 @@ const char &get_val(str, 0)
 千万不要返回指向局部对象的指针。  
 
 #### 7.3.3
+recursion function(递归函数): 
+- 必须有个终止条件，不然会infinite recursion error。 
+- `main()`不能调用自己。 
+
+求最大公约数： 
+```
+int rgcd(int v1, int v2) {
+    if (v2 != 0) 
+        return rgcd(v2, v1 % v2); 
+    return v1; 
+}
+```
+
+论证： 
+* v1 = ax, v2 = bx
+* 如设i 为除数，则v1 = iv2 + (a - ib)x
+* 如余数(a - ib)x = 0, 则a = ib
+* 则v1 = ibx, v2 = bx, 最大公约数是v2
+
+percolate(向上回渗)：返回值作为上层调用的返回值。  
+
+### 7.4
