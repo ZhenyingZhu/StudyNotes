@@ -1851,3 +1851,51 @@ int rgcd(int v1, int v2) {
 percolate(向上回渗)：返回值作为上层调用的返回值。  
 
 ### 7.4
+函数声明可以和定义分离，可以声明多次但只可定义一次。  
+function prototype(函数原型): 是组成声明的部分。返回类型，函数名，形参列表。形参不必命名。  
+函数声明放在头文件中。  
+
+默认实参：给形参预定义一个值。形参表中之后的形参也都需是默认实参。调用函数时可省去这些参数。  
+```
+string screenInit(string::size_type height = 24, string::size_type width = 80, char background = ' '); 
+screenInit(66); // equal to screenInit(66, 80, ' ')
+```
+
+只能给形参指定默认实参一次。故在头文件的函数声明中指定默认实参。  
+
+### 7.5
+lifetime(生命期)：对象存在的时间。  
+
+#### 7.5.1
+automatic object(自动对象): 当函数被调用时才存在的对象。  
+
+#### 7.5.2
+static local object(静态局部变量): 用`static`定义。生命周期跨越函数多次调用。第一次执行时初始化。  
+```
+size_t count_call() {
+    static size_t ctr = 0; 
+    return ++ctr; 
+}
+int main()
+{
+    for (int i = 0; i != 10; ++i) 
+        cout << count_call() << endl; 
+    return 0; 
+}
+```
+
+### 7.6
+调用函数比表达式执行慢。  
+内联函数：
+- 编译器在调用函数处展开代码。
+- 用`inline`定义。  
+- inline specification(内联说明) 不强制编译器执行。
+- 应该在头文件中定义。 
+- 修改后需全部文件重新编译。
+```
+inline &shortString(const string &s1, const string &s2) {
+    return s1.size() < s2.size() ? s1 : s2; 
+}
+```
+
+### 7.7
