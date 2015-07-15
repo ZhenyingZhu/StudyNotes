@@ -1,3 +1,6 @@
+`atd`: http://www.korske.com/technology/atd000000-file-is-in-wrong-format-aborting.html  
+      https://en.wikipedia.org/wiki/At_%28Unix%29  
+
 `yum clean all` to avoid unexpected error  
 
 `common` find the new added lines in newer file compare to an older file.  
