@@ -1899,3 +1899,8 @@ inline &shortString(const string &s1, const string &s2) {
 ```
 
 ### 7.7
+成员函数： 
+- 函数原型必须在类中定义，但是函数体可在类中或类外定义。  
+```
+
+```
