@@ -1900,7 +1900,26 @@ inline &shortString(const string &s1, const string &s2) {
 
 ### 7.7
 成员函数： 
-- 函数原型必须在类中定义，但是函数体可在类中或类外定义。  
+- 函数原型必须在类中定义，即必须在类中声明函数。
+- 但是函数体可在类中或类外定义。  
+```
+class Sales_item {
+public: 
+    double avg_price() const; 
+    bool same_isbn(const Sales_item &rhs) const {
+        return isbn == rhs.isbn; // isbn is private
+    }
+    
+private: 
+    std::string isbn; 
+    unsigned units_sold; 
+    double revenue; 
+}; 
 ```
 
-```
+#### 7.7.1
+- 类的所有成员必须在类定义中说明。
+- 在类内定义的函数隐式成为内联函数。 
+- 类的成员函数可以访问该类的private 成员。 
+
+
