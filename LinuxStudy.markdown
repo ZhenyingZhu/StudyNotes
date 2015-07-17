@@ -207,3 +207,100 @@ Shell：文字接口程序，是bash。<br />
 
 
 <h3>Chapter 6</h3>
+档案读写权限：Owner, group, others. Read, write, execute. 
+一个账号可以属于多个群组。
+所有账号信息存于/etc/passwd，密码存于/etc/shadow 所有组名存于/etc/group。
+档案属性：在ls –al列表中显示，如-rw-r--r-- 1 root root 42304 Sep 4 18:26 install.log这七个字段：
+	档案类型与权限：共十个字符：
+1：d是目录，-是档案，l是link file，b是可随机存储装置，c是串行端口如鼠标键盘（一次性读取），s是资料接口，p是数据传输文件。
+		2-4：r读w写x执行。如无该权限该处为-。这里是owner的权限。
+		5-7：group内成员的权限。
+		8-9：others 的权限。对于目录，如果权限是r而不是x的话，则无法进入。
+	连结数：有多少档案名连结到该inode（一个号码），即Hard link数。文件系统用inode记录档案的权限与属性。
+	档案拥有者。
+	所属群组。
+	档案容量：单位byte。
+	最后被修改的时间：ls –l –full-time显示完整的包括年的时间格式。
+	档名。
+改变档案所属群组：chgrp [–R] group dirname/filename filename…。加入R可令次目录下文件亦改变群组。
+改变档案拥有者：chown [–R] user dirname/filename filename…。chown user:group filename。
+改变档案的权限：chmod。还可用于改变SUID，SGID，SBIT。chmod a+/-x file。ugoa: user, group, owner, all
+	数字模式：r4w2x1，一组三个相加。chmod [-R] 750 file使file权限变为drwxr-x---。 
+	编写shell以后，将664改为chmod 755 *.sh才可运行。
+	特殊权限设置：四位数，最前加4：SUID；2：SGID；1：SBIT，可相加。如chmod 4755 filename产生-rwsr-xr-x。chmod 6755 test产生-rwsr-sr-。(鸟哥的私房菜P222)
+	空权限：当档案不可执行却又特殊权限时，该权限为空。如chmod 7666 test产生-rwSrwSrwT。
+
+档案：可为文本文件（ASCII），数据库文件data file，binary program（须有x权限）等，与扩展名无关。rwx权限都是对档案内容而言，w不包括删除档案的权限。删除档案的权限在目录里。
+目录：记录文件名列表。r可否ls（可读但不可执行则显示?），w可否新建删除重命名移动，x可否进入（使该目录成为当前的work directory）。
+	建站时开放目录，r-x。w不能给，避免删除该目录下别人的档案。
+所有人都拥有权限的目录：/tmp。
+复制档案：cp soucename destname。
+新建空档案：touch directory/documentname。
+新建floopy：mkdir floopyname。
+切换账号：su vbird。
+进入目录：cd /root: into root。cd ..: return to father。cd – 回到上一个工作目录。
+用纯文本方式读取档案：cat ~/.bashsc可看到/home/用户名/下隐藏的bashsc文件内容。
+读取data file：特定格式，用last (鸟哥的私房菜 P401)来查看过去登陆日志，即 /var/log/wtmp的内容，该档案记录登录的数据。
+装置文件device：在/dev/下。分为Block（存储，如/dev/sda）和Character（串口，一次性读取，不能截断输出）。
+资料接口Sockets:在/var/run/下，客户端通过它进行数据沟通。
+数据传输pipe:FIFO，处理多个程序同时读一个文件时的操作。
+扩展名：sh:脚本或批处理(Script)；Z,tar,tar.gz,zip,tgz：压缩文件；html,php：网页
+网上下载的档案属性会改变。
+文件，档案名长度：255字符，包含路径4096字符。避免特殊字符* ? > < ; & ! [ ] | \ ' " ` ( ) { }。
+FHS：Linux目录配置标准。(鸟哥的私房菜 P198)
+	可分享的(shareable)	不可分享的(unshareable)
+不变的(static)	/usr (软件放置处)	/etc (配置文件)
+	/opt (第三方协力软件)	/boot (开机与核心档)
+可变动的(variable)	/var/mail (使用者邮件信箱)	/var/run (程序相关)
+	/var/spool/news (新闻组)	/var/lock (程序相关)
+	可分享：可给其他系统挂载；不可分享：仅与自己机器有关。
+	不变：函式库，文件说明，主机服务配置等；可变动：经常写入的文件。
+三层目录：/：root, 与开机系统有关，分割槽越小越好，不要在此处安装软件；/usr：软件安装执行有关；/var：系统运作有关。
+/bin: 放置的是可以被root与一般账号所使用指令，主要有：cat,chmod,chown,date,mv,mkdir,cp,bash等。
+/boot：开机会使用到的档案。Linux kernel常用的档名为vmlinuz，则还会存在/boot/grub/。
+/dev：任何装置与接口设备都是以档案的型态存在于这个目录下。有/dev/null,/dev/zero, /dev/tty,/dev/lp*,/dev/hd*,/dev/sd*等。
+/etc：系统主要的配置文件，如人员的账号密码文件、 各种服务的初始档等。文件可以让一般使用者查阅的，但是只有root有权力修改。FHS 建议不要放置binary。
+/etc/inittab,/etc/modprobe.conf,/etc/fstab,/etc/sysconfig/
+/etc/init.d/：所有服务的预设启动script。如要启动或关闭iptables：/etc/init.d/iptables start、/etc/init.d/iptables stop
+/etc/xinetd.d/：super daemon管理的服务的配置文件目录。
+/etc/X11/：X Window 有关的各种配置文件都在这里，如xorg.conf。
+/home：home directory。变量～代表目前用户，～dmtcai代表dmtsai的home directory。
+/lib：开机时会用到的函式库，和在/bin，/sbin底下的指令会呼叫的函式库。/lib/modules/放置核心相关的模块 (驱动程序) 。
+/media：放置可移除的装置。有：/media/floppy, /media/cdrom等。
+/mnt：暂时挂载的额外装置放置到这里。
+/opt: 第三方协力软件放置的目录。自行安装的软件也安装到这里，或放置在/usr/local/下。
+/root：管理员的家目录与根目录放置在同一个分割槽中。
+/sbin：设定系统环境的指令只有root才能使用。/sbin/底下的指令为开机过程中所需要的，包括开机、修复、还原系统所需要的指令。服务软件程序，放置到/usr/sbin/当中。自行安装的软件所产生的system binary，放置到/usr/local/sbin/当中。包括：fdisk, fsck, ifconfig, init, mkfs等。
+/srv：一些网络服务启动后所需取用的数据目录。如WWW, FTP等。如WWW朋务器需要的网页资料就放置在/srv/www/里面。
+/tmp：一般用户或正在执行的程序暂时放置档案的地方。任何人都能够存取的，需要定期的清理一下。FHS建议在开机时，要将/tmp/下的数据都删除。
+FHS未定义但常见的目录：
+/lost+found：标准的ext2/ext3文件系统格式产生的，通常会在分割槽的最顶层，即/disk/lost+found/。
+/proc：virtual filesystem。数据在内存中，如系统核心、行程信息(process)、周边装置的状态及网络状态等。不占任何硬盘空间。如：/proc/cpuinfo,/proc/dma,/proc/interrupts,/proc/ioports,/proc/net/*等。
+/sys：也是一个虚拟的文件系统，记彔与核心相关的信息。包括目前已加载的核心模块与核心侦测到的硬件装置信息等。不占硬盘空间。
+函数库：除了在/lib/下还有许多。指令调用的函数。
+开机过程中仅有根目录会被挂载，其他分割槽在开机完成后挂载。与开机过程有关的目录，不可与根目录分开：
+/etc：配置文件；/bin：重要执行档；/dev：所需要的装置档案；/lib：执行档所需的函式库与核心所需的模块；/sbin：重要的系统执行文件。
+/usr：软件开发时合理地将数据分别放置到该目录的子目录中。
+	/usr/X11R6/：放置X Window System重要数据最后的X版本为第11版，第6次释出。
+/usr/bin/：大部分用户可使用的与开机无关的指令。
+/usr/include/：放置c/c++等程序的header和include，用在以tarball方式 (*.tar.gz 的方式安装软件) 安装某些数据时。
+/usr/lib/：各应用软件的函式库、object file，以及不被一般使用者用的执行档或script。如64位系统有/usr/lib64/，和一些特殊的，经常被系统管理员操作的，进行服务器的设定指令。
+/usr/local/：系统管理员在本机自行安装的软件。如distribution提供的软件较旧，想安装较新的软件但又不移除旧版，该目录下也有bin, etc, include, lib...的子目录。
+/usr/sbin：非系统正常运作所需要的系统指令。如某些网络服务器软件的服务指令（daemon）。
+/usr/share/：放置共享文件。数据几乎是不分硬件架构均可读取的数据，常见子目录：
+	/usr/share/man：联机帮助文件；/usr/share/doc：软件杂项的文件说明；/usr/share/zoneinfo：时区档案。
+/usr/src/：一般原始码放置到这里。核心原始码放置到/usr/src/linux/下。
+/var：系统运行产生的文件，如cache、log file和软件运行时所产生的档案，如lock file, run file，MySQL数据库的档案等。
+	/var/cache/：应用程序本身运作过程中会产生的一些暂存档。
+/var/lib/：放置程序执行过程中需使用的数据文件。各软件有各自的目录。如MySQL的数据库放置到/var/lib/mysql/，rpm的数据库则放到/var/lib/rpm/。
+/var/lock/：装置或档案资源一次只能被一个应用程序所使用，将该装置lock。
+/var/log/：放置登彔文件。如/var/log/messages, /var/log/wtmp(记彔登入者的信息)等。
+/var/mail/：放置个人电子邮件信箱，与/var/spool/mail/通常是链接文件。
+/var/run/：某些程序或服务运行后，会将它们的PID放置在这个目录。
+/var/spool/：放置一些队列数据（排队等待其他程序使用的数据）。这些数据被使用后通常都会被删除。如收到新邮件会放置到/var/spool/mail/中，使用者收下该信件后就会被删除。信件暂时寄不出去会被放到/var/spool/mqueue/中，工作排程数据(crontab)，会被放置到/var/spool/cron/。
+Directory tree：根为/；每个目录可使用本地partition的文件系统和网络上的 file system，如Network File System (NFS) 服务器挂载的目录等；每个档案在此树中的完整路径都是独一无二的。
+ 
+/selinux/的内容在内存中。
+绝对路径：由/开始写起的文件名或目彔名称。
+相对路径：相对于目前路径的文件名写法。如../../home/dmtsai/等。 . ：代表当前的目录，也可以使用 ./ 来表示；.. ：代表上一层目录，也可以 ../ 来代表。
+正规的执行目录：/bin/，/usr/bin/下的指令可直接执行。
