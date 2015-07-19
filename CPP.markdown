@@ -1921,5 +1921,33 @@ private:
 - 类的所有成员必须在类定义中说明。
 - 在类内定义的函数隐式成为内联函数。 
 - 类的成员函数可以访问该类的private 成员。 
+- 调用成员函数时，隐藏的形参是调用该成员函数的对象，即`this`指针指向自己。 
+- `const`改变隐藏的`this`形参类型。 
+- 不能显式地形参表中加入`this`，但是在函数体中使用`this->attr`是合法但不必须的。 
 
+编译器重写为： 
+```
+Sales_item::same_isbn(const Sales_item &rhs) const {
+    return (this->isbn == rhs.isbn); //const Sales_item *const this 
+}
+```
 
+const member function(常量成员函数): 声明函数时在形参表后添加`const`。  
+
+#### 7.7.2
+在类定义外定义成员函数：  
+```
+double Sales_item::avg_price() const {
+    if (units_sold)
+        return revenue / units_sold; 
+    else 
+        return 0; 
+}
+```
+
+#### 7.7.3
+constructor(构造函数)： 
+- 与类名相同，没有返回类型。 
+- 一个类可有多个不同形参表的构造函数。  
+- 应确保每个数据成员都初始化了。 
+- default constructor(默认构造函数): 无形参。 
