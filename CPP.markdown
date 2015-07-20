@@ -2035,3 +2035,62 @@ f(const int*); // a pointer to const object
 ```
 
 ### 7.9
+函数指针：  
+- 指向函数的指针。 
+- 函数类型由其形参表及返回类型确定，与函数名无关。  
+- 用`typedef`将该指针简化成一种类型。 
+- 不存在类型转换。 
+
+```
+bool (*pf)(const string&, const string&); // a pointer to function
+bool *pf(const string&, const string&); // a function that return a bool pointer
+```
+
+初始化和赋值： 
+```
+bool lengthCompare(const string&, const string&); 
+
+typedef bool *(cmpFcn)(const string&, const string&); 
+cmpFcn pf1 = 0; 
+cmpFcn pf2 = lengthCompare; 
+pf1 = lengthCompare; 
+pf1 = pf2; 
+```
+
+函数名等于该函数地址： 
+```
+cmpFcn pf1 = lengthCompare; 
+cmpFcn pf2 = &lengthCompare; 
+```
+
+调用： 
+```
+pf("hi", "bye"); // implicitly dereferenced
+(*pf)("hi", "bye"); // explicitly dereferenced
+```
+
+函数的形参可以是函数或函数指针； 
+```
+void useBigger(const string&, bool(const string&)); 
+void useBigger(const string&, bool (*)(const string&)); // equal
+```
+但返回类型必须是函数指针。  
+
+返回指向函数的指针: 
+```
+int (*ff(int))(int*, int); 
+
+typedef int (*PF)(int *, int); 
+PF ff(int); 
+```
+这是个叫`ff`的函数，形参是一个`int`，返回值是指向`int (*)(int*, int)`函数的指针。  
+
+指向重载函数：  
+```
+extern void ff(vector<double>); 
+extern void ff(unsigned int); 
+
+void (*pf1)(unsigned int) = &ff; // reloaded function
+```
+
+## Chapter 8
