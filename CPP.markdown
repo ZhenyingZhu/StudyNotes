@@ -1921,5 +1921,195 @@ private:
 - 类的所有成员必须在类定义中说明。
 - 在类内定义的函数隐式成为内联函数。 
 - 类的成员函数可以访问该类的private 成员。 
+- 调用成员函数时，隐藏的形参是调用该成员函数的对象，即`this`指针指向自己。 
+- `const`改变隐藏的`this`形参类型。 
+- 不能显式地形参表中加入`this`，但是在函数体中使用`this->attr`是合法但不必须的。 
 
+编译器重写为： 
+```
+Sales_item::same_isbn(const Sales_item &rhs) const {
+    return (this->isbn == rhs.isbn); //const Sales_item *const this 
+}
+```
+
+const member function(常量成员函数): 声明函数时在形参表后添加`const`。  
+
+#### 7.7.2
+在类定义外定义成员函数：  
+```
+double Sales_item::avg_price() const {
+    if (units_sold)
+        return revenue / units_sold; 
+    else 
+        return 0; 
+}
+```
+
+#### 7.7.3
+constructor(构造函数)： 
+- 与类名相同，没有返回类型。 
+- 一个类可有多个不同形参表的构造函数。  
+- 应确保每个数据成员都初始化了。 
+- default constructor(默认构造函数): 无形参。 
+- 构造函数需为`public`。 
+
+构造函数定义：  
+```
+class Sales_item {
+public: 
+    Sales_item: units_sold(0), revenue(0.0) {}
+}
+```
+
+constructor initializer list(构造函数的初始化列表): 为数据成员指定初值。  
+
+synthesized default constructor(合成的默认构造函数): 未定义默认构造函数，则用变量初始化规则初始化。但不会初始化内置类型。  
+
+#### 7.7.4
+`type`类定义置于`type.h`中。成员函数的定义则置于`type.cc`。    
+
+### 7.8
+overloaded function(重载函数): 
+- 相同作用域中的两函数有相同的名字但不同的形参表。  
+- function overloading(函数重载)简化了程序的实现。  
+- `main()` 不能重载。  
+- 两函数的非引用形参如只有是否为`const`这样的区别，则不是重载，而是重定义。 
+- 但引用形参和指针形参，为`const`和不为`const`是不同的，函数会重载。  
+
+#### 7.8.1
+局部声明的函数将屏蔽而非重载全局作用域中同名的函数。所以重载函数都需定义在同一作用域中。  
+不建议局部声明函数。  
+
+#### 7.8.2
+overload resolution(重载确定): 即function matching(函数匹配)。用实参表去找函数。可能发生：  
+- 编译器找到best match(最佳匹配)。  
+- 找不到。  
+- 找到多个存在ambiguous(二义性)的函数。  
+
+#### 7.8.3
+```
+void f(int); 
+void f(double, double = 3.14); 
+
+f(5.6); // use f(double, double)
+```
+candidate funtion(候选函数)，viable funtion(可行函数)。  
+最佳匹配：
+- 每个实参的匹配都不劣于其他可行函数。 
+- 至少一个实参匹配优于别的函数。 
+
+#### 7.8.4
+实参类型转换： 
+- exact match(精确匹配)。 
+- promotion(类型提升)。  
+- standard conversion(标准转换)。 
+- class-type conversion(类类型转换)。 
+
+较小的整型优先提升为`int`而非`short`，如`char`。  
+类型提升优于标准转换。  
+标准类型转换的优先级相同，会造成二义性。  
+
+枚举的匹配： 
+```
+enum Tokens {INLINE = 128, VIRTUAL = 129}; 
+void ff(Tokens); 
+void ff(int); 
+void newf(unsigned char); 
+void newf(int); 
+
+int main()
+{
+    Tokens curTok = INLINE; 
+    ff(128); // ff(int)
+    ff(INLINE); 
+    ff(curTok); 
+    newf(INLINE); // newf(int)
+}
+```
+因为枚举无法用整型初始化。但可以将枚举传递给整型。  
+
+指针是否为`const`不影响重载，指向`const`对象的指针才用于寻找匹配。  
+```
+f(int *const); // a const pointer 
+f(const int*); // a pointer to const object
+```
+
+### 7.9
+函数指针：  
+- 指向函数的指针。 
+- 函数类型由其形参表及返回类型确定，与函数名无关。  
+- 用`typedef`将该指针简化成一种类型。 
+- 不存在类型转换。 
+
+```
+bool (*pf)(const string&, const string&); // a pointer to function
+bool *pf(const string&, const string&); // a function that return a bool pointer
+```
+
+初始化和赋值： 
+```
+bool lengthCompare(const string&, const string&); 
+
+typedef bool *(cmpFcn)(const string&, const string&); 
+cmpFcn pf1 = 0; 
+cmpFcn pf2 = lengthCompare; 
+pf1 = lengthCompare; 
+pf1 = pf2; 
+```
+
+函数名等于该函数地址： 
+```
+cmpFcn pf1 = lengthCompare; 
+cmpFcn pf2 = &lengthCompare; 
+```
+
+调用： 
+```
+pf("hi", "bye"); // implicitly dereferenced
+(*pf)("hi", "bye"); // explicitly dereferenced
+```
+
+函数的形参可以是函数或函数指针； 
+```
+void useBigger(const string&, bool(const string&)); 
+void useBigger(const string&, bool (*)(const string&)); // equal
+```
+但返回类型必须是函数指针。  
+
+返回指向函数的指针: 
+```
+int (*ff(int))(int*, int); 
+
+typedef int (*PF)(int *, int); 
+PF ff(int); 
+```
+这是个叫`ff`的函数，形参是一个`int`，返回值是指向`int (*)(int*, int)`函数的指针。  
+
+指向重载函数：  
+```
+extern void ff(vector<double>); 
+extern void ff(unsigned int); 
+
+void (*pf1)(unsigned int) = &ff; // reloaded function
+```
+
+## Chapter 8
+IO标准库面向对象。  
+
+### 8.1
+wide-character(宽字符)。  
+IO操作可作用于不同设备和不同大小的字符。  
+
+标准库用inheritance(继承)来定义object-oriented(面向对象)的类。  
+通过继承关联的类都共享共同的接口。  
+base class(基类)和derived class(派生类)。  
+
+IO类型定义于三个头文件中:  
+- `iostream`读写控制窗口。 
+- `fstream`读写文件。 
+- `sstream`读写内存中的`string`。  
+
+![IO Classes](./CPP_files/IO_classes.png)  
+
+如函数有基类类型的引用形参时，可给函数传递派生类型的对象。  
 
