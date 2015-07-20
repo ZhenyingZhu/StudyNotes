@@ -1951,3 +1951,87 @@ constructor(构造函数)：
 - 一个类可有多个不同形参表的构造函数。  
 - 应确保每个数据成员都初始化了。 
 - default constructor(默认构造函数): 无形参。 
+- 构造函数需为`public`。 
+
+构造函数定义：  
+```
+class Sales_item {
+public: 
+    Sales_item: units_sold(0), revenue(0.0) {}
+}
+```
+
+constructor initializer list(构造函数的初始化列表): 为数据成员指定初值。  
+
+synthesized default constructor(合成的默认构造函数): 未定义默认构造函数，则用变量初始化规则初始化。但不会初始化内置类型。  
+
+#### 7.7.4
+`type`类定义置于`type.h`中。成员函数的定义则置于`type.cc`。    
+
+### 7.8
+overloaded function(重载函数): 
+- 相同作用域中的两函数有相同的名字但不同的形参表。  
+- function overloading(函数重载)简化了程序的实现。  
+- `main()` 不能重载。  
+- 两函数的非引用形参如只有是否为`const`这样的区别，则不是重载，而是重定义。 
+- 但引用形参和指针形参，为`const`和不为`const`是不同的，函数会重载。  
+
+#### 7.8.1
+局部声明的函数将屏蔽而非重载全局作用域中同名的函数。所以重载函数都需定义在同一作用域中。  
+不建议局部声明函数。  
+
+#### 7.8.2
+overload resolution(重载确定): 即function matching(函数匹配)。用实参表去找函数。可能发生：  
+- 编译器找到best match(最佳匹配)。  
+- 找不到。  
+- 找到多个存在ambiguous(二义性)的函数。  
+
+#### 7.8.3
+```
+void f(int); 
+void f(double, double = 3.14); 
+
+f(5.6); // use f(double, double)
+```
+candidate funtion(候选函数)，viable funtion(可行函数)。  
+最佳匹配：
+- 每个实参的匹配都不劣于其他可行函数。 
+- 至少一个实参匹配优于别的函数。 
+
+#### 7.8.4
+实参类型转换： 
+- exact match(精确匹配)。 
+- promotion(类型提升)。  
+- standard conversion(标准转换)。 
+- class-type conversion(类类型转换)。 
+
+较小的整型优先提升为`int`而非`short`，如`char`。  
+类型提升优于标准转换。  
+标准类型转换的优先级相同，会造成二义性。  
+
+枚举的匹配： 
+```
+enum Tokens {INLINE = 128, VIRTUAL = 129}; 
+void ff(Tokens); 
+void ff(int); 
+void newf(unsigned char); 
+void newf(int); 
+
+int main()
+{
+    Tokens curTok = INLINE; 
+    ff(128); // ff(int)
+    ff(INLINE); 
+    ff(curTok); 
+    newf(INLINE); // newf(int)
+}
+```
+因为枚举无法用整型初始化。但可以将枚举传递给整型。  
+
+指针是否为`const`不影响重载，指向`const`对象的指针才用于寻找匹配。  
+```
+f(int *const); // a const pointer 
+f(const int*); // a pointer to const object
+```
+
+### 7.9
