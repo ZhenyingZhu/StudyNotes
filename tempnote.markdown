@@ -1,3 +1,5 @@
+`grep`: http://www.shellhacks.com/en/Using-BASH-Grep-OR-Grep-AND-Grep-NOT-Operators  
+
 `atd`: http://www.korske.com/technology/atd000000-file-is-in-wrong-format-aborting.html  
       https://en.wikipedia.org/wiki/At_%28Unix%29  
 
