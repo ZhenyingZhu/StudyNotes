@@ -2094,3 +2094,22 @@ void (*pf1)(unsigned int) = &ff; // reloaded function
 ```
 
 ## Chapter 8
+IO标准库面向对象。  
+
+### 8.1
+wide-character(宽字符)。  
+IO操作可作用于不同设备和不同大小的字符。  
+
+标准库用inheritance(继承)来定义object-oriented(面向对象)的类。  
+通过继承关联的类都共享共同的接口。  
+base class(基类)和derived class(派生类)。  
+
+IO类型定义于三个头文件中:  
+- `iostream`读写控制窗口。 
+- `fstream`读写文件。 
+- `sstream`读写内存中的`string`。  
+
+![IO Classes](./CPP_files/IO_classes.png)  
+
+如函数有基类类型的引用形参时，可给函数传递派生类型的对象。  
+
