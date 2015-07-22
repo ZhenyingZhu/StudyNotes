@@ -2105,11 +2105,15 @@ IO操作可作用于不同设备和不同大小的字符。
 base class(基类)和derived class(派生类)。  
 
 IO类型定义于三个头文件中:  
-- `iostream`读写控制窗口。 
-- `fstream`读写文件。 
-- `sstream`读写内存中的`string`。  
+- `iostream`读写控制窗口。定义`istream`, `ostream`, `iostream`类型。  
+- `fstream`读写文件。定义`ifstream`, `ofstream`和`fstream`类型。  
+- `sstream`读写内存中的`string`。定义`istringstream`, `ostringstream`和`stringstream`类型。  
 
 ![IO Classes](./CPP_files/IO_classes.png)  
 
 如函数有基类类型的引用形参时，可给函数传递派生类型的对象。  
+
+支持`wchar_t`类型(国际字符)的类：`wostream`, `wistream`和`wiostream`, `wifstream`, `wofstream`和`wfstream`, `wistringstream`, `wostringstream`和`wiostringstream`。  
+标准输入`wcin`, 输出`wcout`, 错误`wcerr`。  
+也在三个头文件中定义。  
 
