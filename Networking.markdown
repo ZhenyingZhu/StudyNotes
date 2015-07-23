@@ -157,13 +157,14 @@ HTTP request packet: request line, header line(several lines), entity body.
 - DELETE. 
 
 HTTP response packet: status line, 6 header lines, entity body.  
-- Last-modified: cache. 
-- Status code:
-- * 200 ok.
-- * 301 moved to URL.
-- * 400 bad request. Server cannot understand. 
-- * 404 not found.
-- * 505 HTTP version not support.
+Last-modified: cache.   
+
+Status code:  
+* 200 ok.
+* 301 moved to URL.
+* 400 bad request. Server cannot understand. 
+* 404 not found.
+* 505 HTTP version not support.
 
 Telnet:  
 ```
@@ -207,23 +208,24 @@ SMTP(!!skip!!)
 
 ### 2.5
 #### 2.5.1
-Hostname and IP address. 
-DNS: App layer protocol. 
-DNS server: distributed servers running BIND. 
-Host aliasing <=> canonical hostname. 
-Load distribution: rotate send the host list. 
+- Hostname and IP address.   
+- DNS: App layer protocol.   
+- DNS server: distributed servers running BIND.   
+- Host aliasing <=> canonical hostname. 
+- Load distribution: rotate send the host list. 
+
 #### 2.5.2
-`host www.google.com` to see host ips. 
-DNS look-up request send through UDP on port 53. 
-Centralize Design cons: single point of failure, traffic volume, distant centralized database, maintenance. 
-Host -> Local DNS -> Root DNS -> TLD DNS -> Authoritative DNS. 
-DHCP 
-Recursive query and iterative query. 
-DNS cache. 
+- `host www.google.com` to see host ips. 
+- DNS look-up request send through UDP on port 53. 
+- Centralize Design cons: single point of failure, traffic volume, distant centralized database, maintenance. 
+- Host -> Local DNS -> Root DNS -> TLD DNS -> Authoritative DNS. 
+- DHCP 
+- Recursive query and iterative query. 
+- DNS cache. 
 
 #### 2.5.3
-DNS servers keep RR (record host <-> IP). 
-RR: Name, Value, Type, TTL. 
+- DNS servers keep RR (record host <-> IP). 
+- RR: Name, Value, Type, TTL. 
 - TTL decide when RR should be deleted. 
 - Type: what name and value mean. 
     - A: relay1.bar.foo.com 145.37.93.126, A 
@@ -243,13 +245,13 @@ DNS request and response packet:
 |Additional information(variable number of resource records)| | Additional “helpful” info that may be used |
 
 
-Identification used to pair the request and response. 
-Flags: Request/Response, Authoritative, Recursive. 
-`nslookup` to send a request. 
+Identification used to pair the request and response.   
+Flags: Request/Response, Authoritative, Recursive.   
+`nslookup` to send a request.   
 
-Network Solution, ICANN 
+Network Solution, ICANN   
 
-DDoS 
+DDoS   
 
 ### 2.6
 P2P(!!skip!!)
@@ -271,6 +273,7 @@ DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.lengt
 clientSocket.receive(receivePacket); 
 String str = receivePacket.getData(); 
 ```
+
 ### 2.9 
 
 ### Exercise 
@@ -278,84 +281,89 @@ String str = receivePacket.getData();
 
 ## Chapter 3
 ### 3.1
-Segment 
+Segment   
 #### 3.1.1
 #### 3.1.2
-IP: best-effort delivery service, unreliable service. 
-Host have one or more IP address. 
-Transport-layer multiplexing, demultiplexing. 
-TCP: congestion control. 
+- IP: best-effort delivery service, unreliable service. 
+- Host have one or more IP address. 
+- Transport-layer multiplexing, demultiplexing. 
+- TCP: congestion control. 
 
 ### 3.2
-Socket connect to process, has a unique identity (Port). 
-Transport segment head has fields that define which socket to use. 
-Demultiplexing: find the right socket. 
-Multiplexing: generate the head. 
-Port: 16 bit.
+- Socket connect to process, has a unique identity (Port). 
+- Transport segment head has fields that define which socket to use. 
+- Demultiplexing: find the right socket. 
+- Multiplexing: generate the head. 
+- Port: 16 bit.
 - Well-known port: 0~1023. RFC 1700 and www.iana.org.   
 - Source port is also include in the TCP segment to receive response. 
 - UDP send two packets come from different source to one socket if they have same destination. 
 - TCP send two packets to different sockets if they have different source. 
 
-Slammer worm. 
-Port scan: `nmap` 
+- Slammer worm. 
+- Port scan: `nmap` 
 
-Web server only use one process, but use a thread for each socket.  
+- Web server only use one process, but use a thread for each socket.  
 
 ### 3.3
-UDP: RFC 768. Only multiplex and error detect over IP. 
-UDP header 8 bytes. 
-TCP header 20 bytes. 
-NFS, RIP, SNMP, DNS protocol: UDP. 
+- UDP: RFC 768. Only multiplex and error detect over IP. 
+- UDP header 8 bytes. 
+- TCP header 20 bytes. 
+- NFS, RIP, SNMP, DNS protocol: UDP. 
+
 #### 3.3.1
 UDP header: source port, destination port, length, checksum. 
 #### 3.3.2
 checksum(!!skip!!)
 
 ### 3.4
-Reliable data transfer protocol: data transmit in order. 
-Bidirectional transfer: similar to Unidirectional data transfer. 
-RDT <-> UDT. 
+- Reliable data transfer protocol: data transmit in order. 
+- Bidirectional transfer: similar to Unidirectional data transfer. 
+- RDT <-> UDT. 
+
 #### 3.4.1
-finite-state machine: FSM is good when describe protocol. 
-- which state
-- what happen/what to do
+- finite-state machine: FSM is good when describe protocol.   
+  - which state
+  - what happen/what to do
 
-Positive(ACK)/negative(NAK) acknowledgement. 
-Automatic Repeat reQuest (ARQ). 
-Stop and wait: When wait for ACK, cannot rdt_send() at the same time. 
+- Positive(ACK)/negative(NAK) acknowledgement. 
+- Automatic Repeat reQuest (ARQ). 
+- Stop and wait: When wait for ACK, cannot rdt_send() at the same time. 
 
-Bit recover is rely on no packet loss. 
+- Bit recover is rely on no packet loss. 
 
-Duplicate packet: If ACK/NAK lost/corrupted, then retransmit the packet. 
-Use sequence number. 1 bit is enough in stop-and-wait protocol. 
+- Duplicate packet: If ACK/NAK lost/corrupted, then retransmit the packet. 
+- Use sequence number. 1 bit is enough in stop-and-wait protocol. 
 
-Duplicate ACK: use as NAK. 
-Need a Counter Timer. 
+- Duplicate ACK: use as NAK. 
+- Need a Counter Timer. 
+
 #### 3.4.2
-RTT 
-Utilization: U = L/R / (RTT + L/R) 
-Pipeline: need cache.  
+RTT  
+Utilization: U = L/R / (RTT + L/R)  
+Pipeline: need cache.   
+
 #### 3.4.3
-Go-Back-N (GBN):
+Go-Back-N (GBN):  
 - base: fist haven't ack. 
 - nextseqnum: fist haven't sent. 
 - N: window size. 
 - Sliding-window protocol. 
 
-TCP sequence number is count by byte. 
-Cumulative acknowledgment. 
+TCP sequence number is count by byte.   
+Cumulative acknowledgment.   
 
-Event-based programming.  
+Event-based programming.    
+
 #### 3.4.4
-Selective Repeat (SR): ack those duplicate packets as well. 
-Window size should smaller or equal to half of the sequence size. Otherwise cannot detect if a packet is a retransmitted or a new packet. 
-TCP packet life is 3 minute.  
+Selective Repeat (SR): ack those duplicate packets as well.   
+Window size should smaller or equal to half of the sequence size. Otherwise cannot detect if a packet is a retransmitted or a new packet.   
+TCP packet life is 3 minute.    
 
 ### 3.5
-TCP: RFC 793, 1122, 1323, 2018, 2581.  
+TCP: RFC 793, 1122, 1323, 2018, 2581.    
 #### 3.5.1
-TCP:
+TCP:  
 - connection-oriented. 
 - Not Virtual Circuit, because the status stores in hosts. 
 - Full-duplex service. 
@@ -365,8 +373,9 @@ TCP:
 - Send buffer: is set at the begining of three-way handshake. 
 - Maximum Segment Size (MSS), related to MTU. 
 #### 3.5.2
-TCP header: source and destination port (16 bit),sequence number (32 bit), acknowledgement number (32 bit), header length (4 bit), unuse (2 bit), flags (6 bit), receive window (16 bit), checksum (16 bit), ugerent data pointer (16 bit), options filed (MSS and a timestamp).
-flags:
+TCP header: source and destination port (16 bit),sequence number (32 bit), acknowledgement number (32 bit), header length (4 bit), unuse (2 bit), flags (6 bit), receive window (16 bit), checksum (16 bit), ugerent data pointer (16 bit), options filed (MSS and a timestamp).  
+
+flags:  
 - URG: the data before ugerent data pointer is ugerent (not use).
 - ACK: the packet contain an ACK.
 - PSH: receiver should pass the data to app at once (not use).
@@ -374,39 +383,42 @@ flags:
 - SYN
 - FIN
 
-Normally is 20 byte, length is changeable. 
-ACK number is the sequence number of next byte. 
-TCP is cumulative acknowledge. 
-When receive disorder packet, TCP doesn't define what to do. Normally keep it. 
-The initial sequence number is random on both receiver and sender. 
+Normally is 20 byte, length is changeable.   
+ACK number is the sequence number of next byte.   
+TCP is cumulative acknowledge.   
+When receive disorder packet, TCP doesn't define what to do. Normally keep it.   
+The initial sequence number is random on both receiver and sender.   
 
-Telnet: remote access. Not as safe as SSL. 
-- Echo back. 
+Telnet: remote access. Not as safe as SSL.   
+- Echo back.  
 - Piggybacked. 
 - Only 1 byte data.  
+
 #### 3.5.3
-Timeout must larger than RTT. 
-Estimate sampleRTT(!!skip!!)  
-3 ACKs for a duplicated packet means NAK, need fast retransmit rather than waiting timeout.  
+Timeout must larger than RTT.   
+Estimate sampleRTT(!!skip!!)    
+3 ACKs for a duplicated packet means NAK, need fast retransmit rather than waiting timeout.    
+
 #### 3.5.4
-RDT.  
-Use single time counter to save costs.  
+RDT.    
+Use single time counter to save costs.    
 Events: 1. Get data from App layer; 2. Timeout; 3. Receive ACK.  
 - If ACK sequence number > SendBase, update SendBase, and reset timer.   
 - If timeout, only retransmit the packet with the smallest sequence number.   
 - Selective acknowledgement. 
 
-Double timeout: when timeout happens, double the timeout interval after retransmit.  
+Double timeout: when timeout happens, double the timeout interval after retransmit.   
 
-Fast retransmit: receive 3 duplicate ACK (means 4 ACK for a same packet).   
+Fast retransmit: receive 3 duplicate ACK (means 4 ACK for a same packet).     
 - Why not use 2: send p1, p2 in pipeline. A1 and A2 received after timeout. At this time p1 retransmit and receive A2. For p1 another A2b is also received. No need to retransmit.  ?  
-- Delay ACK: wait for 500ms after receive a packet. If no new in-order packet received, send ACK.  
-- If receive a packet that is forhead ? 
+- Delay ACK: wait for 500ms after receive a packet. If no new in-order packet received, send ACK.    
+- If receive a packet that is forhead ?   
 
 #### 3.5.5
 Flow-control service: avoid receiver buffer overflow.  Not congestion control.  
 Receive window: RcvWindow = RcvBuffer - (LastByteRcvd - LastByteRead) >= LastByteSent - LastByteAcked  
-When receive'sr buffer full, sender keep sending 1 byte packets.  
+When receive'sr buffer full, sender keep sending 1 byte packets.
+
 #### 3.5.6
 Three-say Handshake:  
 - client send SYN packet, with client_isn. SYN set 1.   
@@ -425,27 +437,29 @@ If it is a UDP packet, send back ICMP packet.
 `nmap` send TCP packets to scan ports. If those packets are not blocked by firewall.  
 
 ### 3.6
-ATM: Asynchronize transmit mode.  
-ABR: Available bit rate.  
+- ATM: Asynchronize transmit mode.  
+- ABR: Available bit rate.  
+
 #### 3.6.1
 Offered load.   
-(!!skip!!)
+(!!skip!!)  
 #### 3.6.2
-Control congestion:  
+Control congestion:    
 - host to host control: host detect congestion by detect packet loss.  
 - network assist: router send a choke packet (1 byte) to sender. or add info in packets that send to receiver. 
+
 #### 3.6.3 
 ATM ABR.   
 (!!skip!!)  
 
 ### 3.7
-TCP Reno congestion control algorithm.  
+TCP Reno congestion control algorithm.   
 (!!skip!!)
 
 ### 3.8
-DCCP  
-SCTP  
-TFRC  
+- DCCP  
+- SCTP  
+- TFRC  
 
 ### Exercise
 
