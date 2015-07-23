@@ -62,6 +62,7 @@ Instantaneous/average throughput: F/T bps.
 
 ### 1.5
 Protocol stack:  
+
 1.  Application: HTTP, SMTP, FTP. Message. 
 1.  Transport: TCP, UDP. Segment. 
 1.  Network: IP. Datagram. 
@@ -70,102 +71,112 @@ Protocol stack:
 
 Host has all five, switch has last two, router has last three. 
 
-OSI:
-APP, Presentation(Data compression and encryption), Session(divide and sync), Transport ...
+OSI:  
+APP, Presentation(Data compression and encryption), Session(divide and sync), Transport ...  
 
-Encapsulation.
-Payload field. 
+Encapsulation.  
+Payload field.   
 
 ### 1.6
-Malware, botnet, virus,
-DoS, DDoS,
-Packet sniffer(Ethereal),
-IP spoofing,
-man-in-middle attack. 
+- Malware, botnet, virus,  
+- DoS, DDoS,  
+- Packet sniffer(Ethereal),
+- IP spoofing,
+- man-in-middle attack. 
 
 ### 1.7
-ARPAnet, ALOHAnet,
-BITNET, CSNET,
-DNS,
-WWW: HTML, HTTP, Server, browser.
-ICQ, P2P
-Skype, YouTube, PPLive,
-Napster, BitTorrent, Skype, Neflix.
+- ARPAnet, ALOHAnet,
+- BITNET, CSNET,
+- DNS,
+- WWW: HTML, HTTP, Server, browser.
+- ICQ, P2P
+- Skype, YouTube, PPLive,
+- Napster, BitTorrent, Skype, Neflix.
 
 ### 1.8
 
 ### Exercise
-Problem 16: traceroute -q 20 www.eurecom.fr
-Ethereal/ Wireshark: packet sniffer.
+Problem 16: traceroute -q 20 www.eurecom.fr  
+Ethereal/ Wireshark: packet sniffer.  
 
 ## Chapter 2
 ### 2.1
 #### 2.1.1
-Application architecture:
+Application architecture:  
+
 1. Client-server architecture: server farm(infrastructure intensive), .
 2. P2P architecture: self-scalability.
+
 #### 2.1.2
-Process.
-Socket: API.
+- Process.
+- Socket: API.
 #### 2.1.3
+
 1. Reliable data transfer or loss-tolerant application
 2. Throughput: bandwidth-sensitive app or elastic app
 3. delay
 4. security
+
 #### 2.1.4
-TCP: handshake, bi-direct connection, reliable.
-SSL: TCP with security.
-UDP: no connection, not reliable,
-APP protocols.
-IP address and port: to find process. www.iana.org
+- TCP: handshake, bi-direct connection, reliable.
+- SSL: TCP with security.
+- UDP: no connection, not reliable,
+- APP protocols.
+- IP address and port: to find process. www.iana.org
+
 #### 2.1.5
-App-layer protocol: HTTP, SMTP
+App-layer protocol: HTTP, SMTP  
+
 1. request and response packet. 
 1. grammar and fields.
 1. send rules.
+
 #### 2.1.6
 
 ### 2.2
 #### 2.2.1
-Web page. 
-Object. 
-URL: 1. server host name 2. object path name. 
-HTTP use TCP: a request, a response. 
-HTTP is a stateless protocol. 
+- Web page. 
+- Object. 
+- URL: 1. server host name 2. object path name. 
+- HTTP use TCP: a request, a response. 
+- HTTP is a stateless protocol. 
+
 #### 2.2.2
-Non-persistent/persistent connection. 
-HTTP use persistent connection with pipeline by default. Disconnect after a timeout. 
-Client sends out packets from 80, and server receives them from a default port. 
-RTT: first two hand shakes.  
-Request to receive time: 2 RTT + t trans 
+- Non-persistent/persistent connection. 
+- HTTP use persistent connection with pipeline by default. Disconnect after a timeout. 
+- Client sends out packets from 80, and server receives them from a default port. 
+- RTT: first two hand shakes.  
+- Request to receive time: 2 RTT + t trans 
+
 #### 2.2.3
-HTTP request packet: request line, header line(several lines), entity body. 
-GET: entity body is empty. ?var1&va2 to send query. 
-POST. 
-HEAD: server return a packet without objects. 
-PUT: upload objects. 
-DELETE. 
+HTTP request packet: request line, header line(several lines), entity body.  
+- GET: entity body is empty. ?var1&va2 to send query. 
+- POST. 
+- HEAD: server return a packet without objects. 
+- PUT: upload objects. 
+- DELETE. 
 
-HTTP response packet: status line, 6 header lines, entity body. 
-Last-modified: cache. 
-Status code:
-* 200 ok.
-* 301 moved to URL.
-* 400 bad request. Server cannot understand. 
-* 404 not found.
-* 505 HTTP version not support.
+HTTP response packet: status line, 6 header lines, entity body.  
+- Last-modified: cache. 
+- Status code:
+- * 200 ok.
+- * 301 moved to URL.
+- * 400 bad request. Server cannot understand. 
+- * 404 not found.
+- * 505 HTTP version not support.
 
-Telnet:
+Telnet:  
 ```
 telnet www.columbia.edu 80
 GET http://www.columbia.edu/
 ```
+
 #### 2.2.4
-cookie: RFC 2109. Lies in HTTP request, response headers. Also a file in clients, and a record in server database. 
+cookie: RFC 2109. Lies in HTTP request, response headers. Also a file in clients, and a record in server database.   
 #### 2.2.5
-Web cache: a proxy server. Work as both server and client.  
+Web cache: a proxy server. Work as both server and client.    
 #### 2.2.6
-Condition GET:
+Condition GET:  
 ```
 Last-Modified: date
 ```
@@ -174,9 +185,9 @@ If-modify-since: date
 ```
 
 ### 2.3
-FTP: a control and a data connection. Store the state of user. Data connection break after each transmitting. 
-FTP: out-of-band, HTTP: in-band. 
-FTP commands:
+FTP: a control and a data connection. Store the state of user. Data connection break after each transmitting.   
+FTP: out-of-band, HTTP: in-band.   
+FTP commands:  
 ```
 USER username
 PASS password
@@ -185,7 +196,7 @@ RETR filename
 STOR filename
 ```
 
-FTP response:
+FTP response:  
 * 331: username okay, need password
 * 125: start transfer
 * 425: cannot open data connection
