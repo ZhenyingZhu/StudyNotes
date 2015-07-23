@@ -110,6 +110,7 @@ Application architecture:
 #### 2.1.2
 - Process.
 - Socket: API.
+
 #### 2.1.3
 
 1. Reliable data transfer or loss-tolerant application
