@@ -62,11 +62,11 @@ Instantaneous/average throughput: F/T bps.
 
 ### 1.5
 Protocol stack:
-1. Application: HTTP, SMTP, FTP. Message.
-2. Transport: TCP, UDP. Segment.
-3. Network: IP. Datagram.
-4. Link: Ethernet, WiFi, PPP. Frame.
-5. Physical: IEEE 802.3u. Bit.
+# Application: HTTP, SMTP, FTP. Message.
+# Transport: TCP, UDP. Segment.
+# Network: IP. Datagram.
+# Link: Ethernet, WiFi, PPP. Frame.
+# Physical: IEEE 802.3u. Bit.
 Host has all five, switch has last two, router has last three. 
 
 OSI:
