@@ -61,8 +61,7 @@ Traceroute: send a packet to a destination and get the time that reach every rou
 Instantaneous/average throughput: F/T bps. 
 
 ### 1.5
-Protocol stack:   
-
+Protocol stack: 
 1.  Application: HTTP, SMTP, FTP. Message. 
 1.  Transport: TCP, UDP. Segment. 
 1.  Network: IP. Datagram. 
