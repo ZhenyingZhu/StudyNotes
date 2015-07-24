@@ -2124,5 +2124,45 @@ ofstream &print(ofstream&);
 对IO 对象的读写会改变它的状态，所以引用不能是`const`的。  
 
 ### 8.2
+IO标准库管理一系列condition state(条件状态):  
+- `strm::isolate`: 机器相关，定义条件状态。 
+- `strm::badbit`: `strm::isolate`类型的值，指出被破坏的流。无法恢复该流。  
+- `strm::failbit`: `isolate`类型的值，失败的操作。如将字符串读入整型变量。 
+- `strm::eofbit`: `isolate`类型的值，到达文件结束符。 
+- `s.eof()`: 如设置了`eofbit`值，返回true。 
+- `s.fail()`: 如设置了`failbit`值，返回true。 
+- `s.bad()`: 如设置了`badbit`值，返回true。 
+- `s.good()`: 处于有效状态否。 
+- `s.clear()`: 所有s的状态重置。 
+- `s.clear(flag)`: flag是`isolate`类型。 
+- `s.setstate(flag)`。 
+- `s.rdstate()`: 返回流s的当前条件。是`iostate`类型。 
 
-  
+```
+int ival; 
+while (cin >> ival, !cin.eof()) {
+    if (cin.bad()) 
+        throw runtime_error("IO Stream corrupted"); 
+    if (cin.fail()) {
+        cerr << "bad data, try again"; 
+        cin.clear(istream::failbit); 
+        continue; 
+    }
+    
+    cout << ival; 
+}
+```
+
+```
+istream::iostate old_state = cin.rdstate(); 
+cin.clear(); 
+process_input(); 
+cin.clear(old_state); // reset
+```
+
+利用位操作同时操作多个状态： 
+```
+is.setstate(ifstream::badbit, ifstream::failbit); 
+```
+
+### 8.3
