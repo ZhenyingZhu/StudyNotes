@@ -1,3 +1,9 @@
+Ruby thread: http://stackoverflow.com/questions/9095316/handling-exceptions-raised-in-a-ruby-thread  
+
+P99: 99th percentile. https://en.wikipedia.org/wiki/Percentile  
+
+ruby: if string contain \n, it will also put out like this way. So need `\` to esape it.  
+
 `grep`: http://www.shellhacks.com/en/Using-BASH-Grep-OR-Grep-AND-Grep-NOT-Operators  
 
 `atd`: http://www.korske.com/technology/atd000000-file-is-in-wrong-format-aborting.html  
