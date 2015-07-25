@@ -2166,3 +2166,15 @@ is.setstate(ifstream::badbit, ifstream::failbit);
 ```
 
 ### 8.3
+IO对象管理一个缓冲区。刷新时才真正写入输出设备： 
+- `main`函数结束。 
+- 缓冲区满。 
+- 操纵符如`endl`换行, `flush`, `ends`插入`null`字符，可显式刷新。 
+- 用操纵符`unitbuf`设置流的内部状态令其每次执行完写操作后都刷新。`cout << unitbuf << "a" << "b" << nounitbuf;` 用`nounitbuf`复原。 
+- 将输出流与输入流tie(关联)起来。如`cin`和`cout`已关联。  
+
+注意程序崩溃不会刷新缓冲。  
+
+关联输入与输出流：P251 
+
+### 8.4 
