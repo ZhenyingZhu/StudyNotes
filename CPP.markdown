@@ -2175,6 +2175,29 @@ IO对象管理一个缓冲区。刷新时才真正写入输出设备：
 
 注意程序崩溃不会刷新缓冲。  
 
-关联输入与输出流：P251 
+关联输入与输出流：
+```
+cin.tie(&cout); // What IO library does
+ostream *old_tie = cin.tie(); 
+
+cin.tie(0); // break tie
+cin.tie(&cerr); // tie to cerr is a bad idea
+cin.tie(0); 
+cin.tie(old_tie); // reset
+```
 
 ### 8.4 
+`fstream`头文件中定义的类型: 
+- `ifstream`
+- `ofstream`
+- `fstream`: 读写同一文件。
+  - 由`iostream`派生，故条件状态、操作符等都适用。  
+  - 新定义了`open`和`close`操作。  
+
+#### 8.4.1
+
+  
+
+  
+
+
