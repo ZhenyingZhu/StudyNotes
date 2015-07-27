@@ -2195,8 +2195,80 @@ cin.tie(old_tie); // reset
   - 新定义了`open`和`close`操作。  
 
 #### 8.4.1
+`cin`, `cout`, `cerr`是绑定在标准输入输出上的。  
+读写文件时，需定义对象并绑定于文件上。注意文件名为C风格字符串。  
 
-  
+用文件名初始化流对象，则相当于打开了文件。  
+```
+string ifile("in"); // input file name
+string ofile("out"); 
+
+ifstream infile(ifile.c_str()); 
+ofstream outfile(ofile.c_str()); 
+```
+
+或者用`open`函数将对象与文件绑定。  
+```
+infile.close(); // Otherwise next step will fail
+infile.open("in"); 
+```  
+
+检查文件打开是否成功：  
+```
+string it("in.txt"); 
+ifstream infile(it->c_str()); 
+if (!infile) {
+    cerr << "Fail" << endl; 
+    return -1; 
+} else {
+    string s; // include <string>
+    while (infile >> s)
+        cout << s << endl; 
+}
+```
+
+注意`close()`并不改变流对象的内部状态，需要`clear()`。  
+```
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <vector>
+
+using std::cout; 
+using std::cerr; 
+using std::endl; 
+using std::string; 
+using std::ifstream; 
+using std::vector; 
+
+int main()
+{
+	vector<string> files; 
+	files.push_back("ReadMe.txt"); 
+	files.push_back("in.txt"); 
+
+	ifstream input;
+
+	vector<string>::const_iterator it = files.begin(); 
+	while (it != files.end()) {
+		input.open(it->c_str()); 
+		if (!input) 
+			break; 
+		
+		string s; 
+		while (input >> s) 
+			cout << s << endl; 
+
+		input.close(); 
+		input.clear(); 
+		++it; 
+	}
+
+	return 0; 
+}
+```
+
+#### 8.4.2
 
   
 
