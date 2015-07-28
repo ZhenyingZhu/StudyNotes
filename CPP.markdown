@@ -2223,7 +2223,7 @@ if (!infile) {
 } else {
     string s; // include <string>
     while (infile >> s)
-        cout << s << endl; 
+        cout << s << endl; // read file word by word
 }
 ```
 
@@ -2269,7 +2269,70 @@ int main()
 ```
 
 #### 8.4.2
+file mode(文件模式): 
+- 是个整型常量。 
+- 由`fstream`类定义。 
+- 模式是文件的属性而非流的属性。  
+- 构造函数和`open`函数都有默认实参。 
+- 显式的模式： 
+  - `in`: `ifstream`或`fsteam`类。
+  - `out`: `ofstream`或`fsteam`类。不与`app`一起使用则会删除文件已有内容。  
+  - `app`: 写之前找到文件尾。`ofstream`或`fsteam`类。 
+  - `ate`: 打开文件时定位于文件尾。 
+  - `trunc`: 打开文件时清空已有的流。`ofstream`或`fsteam`类。 
+  - `binary`: 以二进制模式进行IO操作。`ofstream`或`fsteam`类。  
 
-  
+默认的`ofsteam`对象打开文件时文件会被清空，不然要显式指定`app`模式。  
+```
+ofstream outfile("file"); 
+ofstream outfile("file", ofstream::out | ofstream::trunc); // same as above
+ofstream appfile("file", ofstream::app); 
+```
 
+默认的`fstream`对象以`in`和`out`模式打开文件。  
 
+常用程序：  
+```
+ifstream& open_file(ifstream &in, string &file) {
+    in.close(); 
+    in.clear(); 
+    in.open(file.c_str()); 
+    return in; 
+}
+```
+
+### 8.5
+`sstream`头文件： 
+- 将流与内存中的`string`对象绑定起来。 
+- 以`string`为形参的构造函数：将`string`对象复制给`stringstream`对象。 
+- 对象的`str`成员为原`string`。 
+- 特殊操作： 
+  - `stringstream strm;`
+  - `stringstream strm(s);`
+  - `strm.str();`
+  - `strm.str(s);`: 将`s`复制给`strm`，返回`void`。 
+
+```
+string line, word; 
+while (getline(cin, line)) {
+    istringstream stream(line); 
+    while (stream >> word) {
+        cout << word << endl; 
+    }
+}
+```
+
+格式转换：  
+```
+int val1 = 512, val2 = 1024; 
+ostringstream format_message; 
+format_message << "val1" << val1 << "\n"
+               << "val2" << val2 << "\n"; 
+
+istringstream input_string(format_message.str()); 
+string dump; // useless part
+input_string >> dump >> val1 >> dump >> val2; 
+```
+其中输入操作符忽略了空白字符如"\n"。  
+
+## Chapter 9
