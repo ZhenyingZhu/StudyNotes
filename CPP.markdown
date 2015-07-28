@@ -2336,3 +2336,18 @@ input_string >> dump >> val1 >> dump >> val2;
 其中输入操作符忽略了空白字符如"\n"。  
 
 ## Chapter 9
+容器共享公共接口。区别在于时间与效率。  
+sequential container(顺序容器)类型: 
+- `vector`: 支持快速随机访问。  
+- `list`: 支持快速插入删除。 
+- `deque`: double-ended queue(双端列表)。  
+
+adaptor(适配器): 根据原始的容器类型提供的操作，定义新的操作接口。  
+适配器类型: 
+- `stack`：LIFO。  
+- `queue`：FIFO。  
+- `priority_queue`。  
+
+其他操作由算法库提供。  
+
+### 9.1
