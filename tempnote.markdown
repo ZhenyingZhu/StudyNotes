@@ -1,3 +1,5 @@
+alais ls='ls --color=auto'
+
 Ruby thread: http://stackoverflow.com/questions/9095316/handling-exceptions-raised-in-a-ruby-thread  
 
 P99: 99th percentile. https://en.wikipedia.org/wiki/Percentile  
