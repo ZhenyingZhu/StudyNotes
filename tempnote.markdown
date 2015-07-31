@@ -1,3 +1,23 @@
+```
+diff -ur --exclude=".svn" folder1 folder2 > diff.patch
+cd folder1
+patch -p1 < ../diff.patch # 1 means sub folder is in
+```
+
+svn suck: http://askubuntu.com/questions/21237/problems-with-subversion-in-gnome-keyring-maybe-user-null  
+
+```
+svn import -m "Adding just a file" file_name http://path/to/svn/repo/file_name
+```
+
+```
+vi /etc/fstab
+remote-location local-location cifs uid=USER,credentials=~/.smbcredentials,iocharset=utf8,sec=ntlm 0 0 
+vi ~/.smbcredentials
+username=
+passwd=
+```
+
 alais ls='ls --color=auto'
 
 Ruby thread: http://stackoverflow.com/questions/9095316/handling-exceptions-raised-in-a-ruby-thread  

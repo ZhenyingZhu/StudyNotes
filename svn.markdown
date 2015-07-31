@@ -1,4 +1,8 @@
+```
 svn -N [--non-recursive]     : obsolete; try --depth=files or --depth=immediates  
+```
+Then use `svn up folder` to co only that repo.  
+
 
 diff -r --exclude=".svn" src1/ src2/  
 
