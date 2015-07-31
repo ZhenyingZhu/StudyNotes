@@ -1,3 +1,7 @@
+svn -N [--non-recursive]     : obsolete; try --depth=files or --depth=immediates  
+
+diff -r --exclude=".svn" src1/ src2/  
+
 http://www.redhat.com/magazine/010aug05/features/subversion/  
 
 Create a repo: 
