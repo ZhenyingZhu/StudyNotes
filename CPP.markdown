@@ -2359,4 +2359,38 @@ vector<string> svec;
 用默认构造函数创建容器性能最佳。  
 
 #### 9.1.1
+容器构造函数： 
+- `C<T> c; `
+- `C c(c2); `: 容器类型和元素类型必须都相同。 
+- `C c(b, e); `: `b` 和`e` 是标示开始和结束的迭代器。只要元素可复制，不要求容器或元素类型都相同。 
+- `C c(n, t); `: 用`n` 个`t` 元素创建。只适用于顺序容器。 
+- `C c(n); `: 用`n` 个初始化值的元素。只适用于顺序容器。 
 
+指针也是迭代器。  
+```
+char *words[] = {"a", "b", "c"}; 
+size_t words_size = sizeof(word) / sizeof(char *); 
+list<string> words2(words, words + words_size); 
+```
+
+容器大小可以是非常量表达式。  
+```
+const list<int>::size_type list_size = 64; 
+list<string> slist(list_size, "eh?"); 
+```
+
+#### 9.1.2
+可做容器元素的类型； 
+- 可赋值。 
+- 对象可复制。 
+
+引用类型不支持赋值运算，不能作容器元素。  
+除`IO`标准库类型(不支持复制和赋值)和`auto_ptr`类型外，其他标准库类型都可做容器元素，包括容器。  
+```
+vector< vector<string> > lines;  // cannot ommit space
+```
+
+容器操作的要求： 
+- 构造函数, 如类型不提供初始化值, 无法只指定容器大小. 
+
+### 9.2
