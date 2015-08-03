@@ -2394,3 +2394,20 @@ vector< vector<string> > lines;  // cannot ommit space
 - 构造函数, 如类型不提供初始化值, 无法只指定容器大小. 
 
 ### 9.2
+每种容器都有若干迭代器类型.   
+所有迭代器具有相同的接口.  
+
+迭代器操作:  
+- `*iter`
+- `iter->mem`: 等效于`(*iter).mem;`  
+- `iter++`
+- `iter1 == iter2; `
+
+`vector` 和`deque` 独有的运算:  
+- `iter + n`
+- `iter1 += iter2`: 
+- `iter1 - iter2`: 只适用于`vector` 和`deque`. 
+- `>`: 比大小. 只适用于`vector` 和`deque`. 
+
+#### 9.2.1
+

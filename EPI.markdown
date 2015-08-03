@@ -4,8 +4,17 @@ On [Google Play](https://play.google.com/books/reader?id=y6FLBQAAQBAJ&printsec=f
 ## Introduction
 Maximum profit in single share of stock:  
 - Find the max and min value: wrong. 
-- Brute force: T(n)=O(n^2) and space O(n). 
-- Divide-and-conquer: T(n)=2T(n/2)+O(n)=O(nlogn). 
-- Tracking the previous min: T(n)=O(n). 
+- Brute force: T(n)=O(n^2) and S(n)=O(n). 
+- Divide-and-conquer: min in first subarray and max in second subarray. T(n)=2T(n/2)+O(n)=O(nlogn). 
+- Tracking the previous min: T(n)=O(n). S(n)=O(1).  
+
+In a 45-60" interview: 
+- develop algorithm
+- implement
+- test
+- analysis complexities
+
+
+
 
 
