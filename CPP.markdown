@@ -2410,4 +2410,11 @@ vector< vector<string> > lines;  // cannot ommit space
 - `>`: 比大小. 只适用于`vector` 和`deque`. 
 
 #### 9.2.1
+iterator range(迭代器范围): 是left-inclusive interval(左闭合区间). 要求`first` 经过自增运算能得到`last`.  
 
+#### 9.2.2
+修改容器内在状态, 移动元素会导致迭代器失效.  
+`erase()` 函数删除元素. 迭代器无意义.    
+该类错误难以发现, 尽量使使用某一迭代器的代码简短.  
+
+### 9.3
