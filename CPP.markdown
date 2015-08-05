@@ -2418,3 +2418,21 @@ iterator range(迭代器范围): 是left-inclusive interval(左闭合区间). �
 该类错误难以发现, 尽量使使用某一迭代器的代码简短.  
 
 ### 9.3
+
+#### 9.3.1
+所有容器定义的类型:  
+- `size_type`: 无符号整型.  
+- `iterator`
+- `const_iterator`: 元素只读
+- `reverse_iterator`
+- `const_reverse_iterator`
+- `difference_type`: 存储两迭代器差值的有符号整型.  
+- `value_type`: 元素类型. 
+- `reference`: 元素的左值类型, 是`value_type&`.  
+- `const_reference`: `const value_type&`.  
+
+声明时需用作用域操作符: `list<string>::iterator iter; `  
+
+#### 9.3.2
+
+
