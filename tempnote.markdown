@@ -1,4 +1,12 @@
 ```
+yum clean all # avoid rpm pkg checksum error
+```
+
+```
+rpm -ev --nodeps akg # remove a package without dependency check
+```
+
+```
 diff -ur --exclude=".svn" folder1 folder2 > diff.patch
 cd folder1
 patch -p1 < ../diff.patch # 1 means sub folder is in
