@@ -2450,5 +2450,22 @@ iterator range(迭代器范围): 是left-inclusive interval(左闭合区间). �
 - `c.insert(p, n, t)`: 插入`n`个, 返回`void`.  
 - `c.insert(p, b, e)`: 插入迭代器`b` 和`e` 之间的元素.  
 
+```
+list<string> lst; 
+list<string>::iterator iter = lst.begin(); 
+string word; 
+while (cin >> word) {
+    iter = lst.insert(iter, word); 
+}
+```
 
+```
+string sarray[4] = {"a", "b", "c", "d"}; 
+slist.insert(slist.end(), sarray, sarray + 4); 
+```
 
+插入元素后指向后一个元素的迭代器一定失效.  
+
+在`vector` 或`deque` 中插入元素后, 假设全部迭代器失效. 因为元素不一定在原内存.   
+
+#### 9.3.4
