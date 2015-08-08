@@ -2476,3 +2476,9 @@ slist.insert(slist.end(), sarray, sarray + 4);
 - 不然比较第一个不相等的元素. 
 
 #### 9.3.5
+容器大小操作: 
+- `c.size()`: 返回类型`c::size_type`. 
+- `c.max_size()`: 容器最多可容纳的元素个数.  
+- `c.empty()`: 返回布尔值.  
+- `c.resize(n)`: 调整容器大小为`n`. 如果容器内已有超过`n`个元素, 删除. 不然补初始值的元素.  
+- `c.resize(n, t)`: 补充值为`t`的元素.  
