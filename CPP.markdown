@@ -436,7 +436,7 @@ vector<int>::iterator iter = ivec.end();
 - `vector<string>::const_iterator iter;` 则`*iter`可得string对象的const引用，不能赋值。
 - 迭代器间距离：`iter1 - iter2`, 由`difference_type`储存, 是signed，必须指向同一个容器。
 - iterator arithmetic：`iter += n;`n需为vector的`size_type`或`difference_type`类型。
-- 中间元素：`vector<int>::iterator mid = vi.begin() + vi.size()/2;`
+- 中间元素：`vector<int>::iterator mid = vi.begin() + vi.size() / 2;`
 - `push_back`后迭代器失效。
 ```
 int main()
@@ -445,7 +445,6 @@ int main()
     int i = 1; 
     vector<int>::iterator end = ivec.end(); 
     for (vector<int>::iterator iter = ivec.begin(); iter != end; ++iter) {
-    
         *iter = i++; 
     }
 
@@ -2482,3 +2481,62 @@ slist.insert(slist.end(), sarray, sarray + 4);
 - `c.empty()`: 返回布尔值.  
 - `c.resize(n)`: 调整容器大小为`n`. 如果容器内已有超过`n`个元素, 删除. 不然补初始值的元素.  
 - `c.resize(n, t)`: 补充值为`t`的元素.  
+
+#### 9.3.6
+返回元素的引用:  
+- `c.back()`: 返回最有一个元素的引用, 等同于`*--c.end()`, 如容器为空则该行为未定义.  
+- `c.front()`
+- `c[n]`: 只适用于`vector` 和`deque`. 越界时行为未定义.   
+- `c.at(n)`: 只适用于`vector` 和`deque`. 下标时抛出`out_of_range` 异常.  
+
+#### 9.3.7
+删除元素:  
+- `c.erase(p)`: 删除迭代器`p` 所指元素, 返回指向后一个元素的迭代器. `p` 如为`c.end()` 则行为未定义.  
+- `c.erase(b, e)`: 删除迭代器`b` 到`e` 之间的元素, 不包括`e`. 返回后一个元素的迭代器, 即`e`.  
+- `c.clear()`: 删除所有元素. 返回`void`.  
+- `c.pop_back()`: 删除最后一个, 返回`void`. 如果容器为空则未定义.  
+- `c.pop_front()`: 返回`void`. 只适用于`list` 和`deque`. 
+
+要用`pop` 获取元素, 需先读取:  
+```
+while (!ilist.empty()) {
+    cout << ilist.front() << endl; 
+    ilist.pop_front(); 
+}
+```
+
+`erase` 不会检查参数有效性, 需确保迭代器不是`end`, 且元素存在.  
+```
+#include <algorithm>; 
+
+string searchValue("a"); 
+list<string>::iterator iter = find(slist.begin(), slist.end(), searchValue); 
+if (iter != slist.end()) 
+    slist.erase(iter); 
+```
+调用了`algorithm`头文件中定义的`find(b, e, value)` 函数.  
+
+#### 9.3.8
+容器赋值:  
+- `c1 = c2;`: 清空容器`c1` 再插入所有`c2` 元素. 不管之前`c1` 长度, 赋值后`c1` 都为`c2` 的长度. 迭代器失效.  
+- `c1.swap(c2)`: `c1` 中为`c2` 的元素, `c2` 中为`c1` 的元素. `c1`, `c2` 类型需相同. 比复制操作快. 迭代器不失效且仍指向原元素. 
+- `c.assign(b, e)`: 清空`c` 再复制元素. 迭代器`b` 和`e` 必须不指向`c` 中的元素. 容器的迭代去都失效. 元素类型只需兼容即可. 
+- `c.assign(n, t)`: `n` 个`t` 元素.  
+
+### 9.4
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
