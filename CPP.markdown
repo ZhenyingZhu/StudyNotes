@@ -2530,7 +2530,7 @@ if (iter != slist.end())
 
 `vector` 容量有关的成员函数:  
 - `capacity()`: 能够存储的元素总数.  
-- `reserve()`: 预留的存储空间个数.  
+- `reserve(n)`: 设置预留存储空间为`n`个.  
 - `size()`: 当前实际包含的元素个数.  
 
 ### 9.5
@@ -2543,14 +2543,62 @@ if (iter != slist.end())
 
 根据所需的操作, 选择合适的容器. 可以先用一种容器进行其擅长的操作然后存储到另一种容器中进行之后的操作.  
 
+### 9.6
+`string` 的成员: 
+- `size_type`: 无符号整型.  
+- `iterator`
+- `const_iterator`
+- `reverse_iterator`
+- `const_reverse_iterator`
+- `difference_type`: 存储两迭代器差值的有符号整型.  
+- `value_type`
+- `reference`
+- `const_reference`: `const value_type&`.  
 
+`string` 的基本操作:  
+- `string s; `: 定义空`string`对象.  
+- `string s(cp); `: 用C风格字符串`cp`初始化.  
+- `string s(s2); `: 用`string`对象`s2`初始化.  
+- `is >> s; `: 输入流`is`.  
+- `s << os; `: 输出流`os`.  
+- `getline(is, s); `
+- `s1 += s2`
+- `==`, `!=`, `<` 等关系符.  
 
+`string` 和`vector` 类似的操作:  
+- `string s(b, e); `: `b` 和`e` 是标示开始和结束的迭代器。
+- `string s(n, c); `: 用`n` 个`c` 字符。
+- `s.insert(p, c)`: 迭代器`p` 之前插入字符`c`. 
+- `s.insert(p, n, c)`: 插入`n`个`c`, 返回`void`.  
+- `s.insert(p, b, e)`: 插入迭代器`b` 和`e` 之间的字符.  
+- `s.size()`: 返回类型`string::size_type`. 
+- `s.max_size()`: 最多可容纳的字符个数.  
+- `s.empty()`: 返回布尔值.  
+- `s.resize(n)`: 调整`string`大小为`n`. 
+- `s.resize(n, t)`: 补充值为`t`的字符.  
+- `s[n]`
+- `s.at(n)`
+- `s.begin()` 
+- `s.end()`
+- `s.clear()`: 返回`void`.  
+- `s.erase(p)`: 删除迭代器`p` 所指字符, 返回指向后一个字符的迭代器. 
+- `s.erase(b, e)`: 删除迭代器`b` 到`e` 之间的字符, 不包括`e`. 返回后一个字符的迭代器, 即`e`.  
+- `s1 = s2;`
+- `s1.swap(s2)`
+- `s.assign(b, e)`
+- `s.assign(n, t)`
+- `s.capacity()`
+- `s.reserve(n)`
 
+可将`string`类型看作字符容器, 与`vector` 类似.  
 
+#### 9.6.1
+(!!skip!!)
 
+#### 9.6.2
+(!!skip!!)
 
-
-
+#### 9.6.3
 
 
 
