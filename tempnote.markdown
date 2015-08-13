@@ -1,3 +1,5 @@
+`iptables -nxvL` shows all tables  
+
 ```
 yum clean all # avoid rpm pkg checksum error
 ```
