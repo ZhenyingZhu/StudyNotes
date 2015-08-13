@@ -1,3 +1,13 @@
+to see the largest file: 
+```
+sudo du -sx /* 2>/dev/null | sort -n| tail
+```
+
+see which device a folder on
+```
+df /
+```
+
 `iptables -nxvL` shows all tables  
 
 ```
