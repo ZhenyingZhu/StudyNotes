@@ -1,3 +1,11 @@
+`DISPLAY=:0.0 zenity --warning --text="Hello"`  show a popup message  
+
+`echo "Hello"|wall` show a message to every users' terminal   
+
+`diff < (cat file1) < (cat file2)`  
+
+`sudo monit summary`  
+
 to see the largest file: 
 ```
 sudo du -sx /* 2>/dev/null | sort -n| tail
