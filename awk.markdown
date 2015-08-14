@@ -28,3 +28,8 @@ regular express in '/ /'
 ```
 awk '/^1/ { print $1 }' file
 ```
+
+Not logic for pattern: 
+```
+awk '! /^1/ {}' file
+```
