@@ -2593,10 +2593,42 @@ if (iter != slist.end())
 可将`string`类型看作字符容器, 与`vector` 类似.  
 
 #### 9.6.1
-(!!skip!!)
+`string` 类的构造函数:  
+- `string s; `
+- `string s(cp); `: 例子: `char *cp = "Hiya"; `. 结果的`null`不会被复制.   
+- `string s(cp, n); `: 
+- `string s(s2); `
+- `string s(s2, pos2); `: 从下标`pos2`的字符开始复制. 如越界, 则行为未定义. `pos2`为`unsigned` 类型.   
+- `string s(s2, pos2, len2); `: 从下标`pos2`的字符开始复制`len2`个字符, 或到结尾. `len2`为`unsigned` 类型.   
+- `string s(b, e); `
+- `string s(n, c); `
+
+注意这不是C风格字符串, 如果用该指针初始化`string` 而不设置计数器, 会导致`runtime error: no_null`.  
+```
+char array[] = {'a', 'p', 'p', 'l', 'e'}; 
+string s(array, 3); // app
+```
 
 #### 9.6.2
-(!!skip!!)
+- `s.insert(p, c)`
+- `s.insert(p, n, c)`
+- `s.insert(p, b, e)`
+- `s.assign(b, e)`
+- `s.assign(n, t)`
+- `s.erase(p)`
+- `s.erase(b, e)`
+- `s.insert(pos, n, c)`: 下标`pos`.  
+- `s.insert(pos, s2)`
+- `s.insert(pos, s2, pos2, len2)`: 从下标`pos`开始, 插入`s2`从`pos2`开始的`len2`个字符.  
+- `s.insert(pos, cp)`: `cp`指向的数组需以`null`结尾.  
+- `s.insert(pos, cp, len)`
+- `s.assign(s2)`: 用`s2`的副本替换`s`.  
+- `s.assign(s2, pos2, len2)`
+- `s.assign(cp)`
+- `s.assign(cp, len)`
+- `s.erase(pos, len)`
+
+上述操作都返回`s`的应用.  
 
 #### 9.6.3
 只适用于`string` 的操作:  
@@ -2619,5 +2651,50 @@ if (iter != slist.end())
 - `b2, e2`: 两迭代器.  
 
 #### 9.6.4
+`string`类型的查找函数: 返回`string::size_type`类型的值或`string::npos`这一特殊值(大于任何有效下标).  
+- `s.find(args)`: `args`第一次出现的位置.  
+- `s.rfind(args)`: 最后一次.  
+- `s.find_first_of(args)`: `args`中的任意字符第一次出现的位置.  
+- `s.find_last_of(args)`
+- `s.find_first_not_of(args)`: 第一个不属于`args`的字符.  
+- `s.find_last_not_of(args)`
 
+每个函数都有4个重载版本, 取决于`args`:  
+- `c, pos`: 从`pos`开始查找字符`c`. `pos`有默认值.  
+- `s2, pos`
+- `cp, pos`: C风格字符串的指针.  
+- `cp, pos, n`: `cp`指向数组的前`n`个字符, 此时`pos`和`n`都没有默认值.  
+
+区分大小写.   
+
+查找到所有匹配的字符的位置:  
+```
+string numerics("0123456789"); 
+string name("r2d2"); 
+
+string::size_type pos = 0; 
+while ((pos = name.find_first_of(numerics, pos)) != string::npos) {
+    cout << pos << endl; 
+    ++pos; 
+}
+```
+注意每次循环`pos`一定要加1.  
+
+#### 9.6.5
+`string`对象的关系符比较采用字典顺序比较.  
+
+`compare`函数, 类似于C语言库函数`strcmp`:  
+- `s.compare(s2)`
+- `s.compare(pos1, n1, s2)`: `s`从`pos1`开始的`n1`个字符去比较.  
+- `s.compare(pos1, n1, s2, pos2, n2)`: 和`s2`从`pos2`开始的`n2`个字符比.  
+- `s.compare(cp)`
+- `s.compare(pos1, n1, cp)`
+- `s.compare(pos1, n1, cp, n2)`: `cp`所指数组的前`n2`个字符.  
+
+比较结果有: 
+- 正数, 表示`s`大.  
+- 负数
+- 0
+
+### 9.7
 
