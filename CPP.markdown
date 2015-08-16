@@ -2697,4 +2697,56 @@ while ((pos = name.find_first_of(numerics, pos)) != string::npos) {
 - 0
 
 ### 9.7
+顺序容器适配器, 使用前需包含对应的头文件:  
+- `queue`: 头文件`queue`
+- `priority_queue`: 头文件`queue`
+- `stack`:头文件`stack`
+
+容器Adaptor(适配器): 让已存在的容器类型用一种抽象类型的工作方式实现.  
+
+容器适配器通用操作和类型:  
+- `size_type`
+- `value_type`
+- `container_type`: 基础容器的类型.  
+- `A a; `: 创建空适配器.  
+- `A a(c); `: 初始化为容器`c`的副本.  
+- 关系操作符.  
+
+默认`stack`和`queue`基于`deque`实现, `priority_queue`基于`vector`实现.  
+可以指定基础容器的类型:  
+```
+stack< string, vector<string> > str_stk(svec); 
+```
+约束条件:  
+- `stack`可以用任何顺序容器实现, 即`vector`, `list`, `deque`.  
+- `queue`要有`push_front()`支持, 所以只能用`list`.  
+- `priority_queue`要有随机访问, 可用`vector`和`deque`.  
+
+适配器的大小比较由元素依次比较实现.  
+
+#### 9.7.1
+栈适配器的操作:  
+- `s.empty()`
+- `s.size()`
+- `s.pop()`: 删除栈顶元素, 但不返回值.  
+- `s.top()`: 返回栈顶值, 不删除.  
+- `s.push(item)`: 压入栈顶.  
+
+就算是基于`deque`实现, `deque`的操作不能使用.  
+
+#### 9.7.2
+priority queue(优先级队列): 将新元素放于优先级低于它的元素前面.  
+默认使用`<`操作符来决定两元素间的优先级关系. 大的元素优先级高.   
+
+`queue`和`priority_queue`的操作:  
+- `q.empty()`
+- `q.size()`
+- `q.pop()`: 删除队首.  
+- `q.front()`: 返回队首元素, 只适用于`queue`.  
+- `q.back()`: 队尾, 只适用于`queue`.  
+- `q.top()`: 最高优先级的元素. 只适用于`priority_queue`.  
+- `q.push(item)`: `queue`插入队尾, `priority_queue`插入优先级低于其的元素之前.  
+
+
+## Chapter 10
 
