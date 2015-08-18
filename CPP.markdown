@@ -2818,3 +2818,23 @@ Author joyce("James", "Joyce");
 - 必须在键类型上定义strict weak ordering(严格弱排序): 自己与自己比返回`false`; 不存在互相小于; 如互相不小于, 则为等于.   
 
 #### 10.3.2
+`map`类定义的类型:  
+- `map<K, V>::key_type`: 键的类型.  
+- `map<K, V>::mapped_type`: 值的类型.  
+- `map<K, V>::value_type`: `pair`类型, `first`是`const map<K, V>::key_type`类型, `second`是`map<K, V>::mapped_type`类型.  
+
+其中值成员可以修改, 但键成员不可.  
+
+对迭代器解引用, 得到指向`value_type`类型的引用.  
+```
+map<string, int>::iterator map_it = word_count.begin(); 
+cout << map_it->first << endl; 
+++map_it->second; 
+```
+
+`map<string, int>::key_type`可获得类型成员.  
+
+#### 10.3.3
+添加元素到`map`: `insert()`或用下标获取元素并赋值. 
+
+#### 10.3.4
