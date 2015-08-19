@@ -2838,3 +2838,53 @@ cout << map_it->first << endl;
 添加元素到`map`: `insert()`或用下标获取元素并赋值. 
 
 #### 10.3.4
+用下标访问`map`中不存在的元素会添加一个元素, 其键为下标值, 值为初始化值.  
+```
+map<string, int> word_count; 
+word_count["Anna"] = 1; // add a new pair (Anna, 0), then assign value as 1
+
+string word; 
+while (cin >> word)
+    ++word_count["word"]; // a new word will always has count as 1
+```
+
+下标操作符返回左值, 即键关联的值. 与迭代器解引用返回的不同.  
+
+#### 10.3.5
+`map`的`insert`成员:  
+- `m.insert(e)`: `e`是`m`上的`value_type`类型. 返回`pair`类型的对象, 包含指向`e.first`的`map`迭代器和表示是否插入元素的`bool`类型.  
+- `m.insert(beg, end)`: 迭代器`beg`和`end`包括的元素需是`m.value_type`类型的. 返回`void`.  
+- `m.insert(iter, e)`: 如`e.first`不存在, 则创建新元素, 并以`iter`为起点搜索新元素的存储位置. 返回指向`e`元素的迭代器.  
+
+```
+word_count.insert(map<string, int>::value_type("Anna", 1)); 
+word_count.insert(make_pair("Anna", 1)); 
+
+typedef map<string, int>::value_type valType; 
+word_count.insert(valType("Anna", 1)); 
+```
+
+如果试图`insert`的元素的键已存在, 则不做任何操作. 这时返回的`bool`值为`false`.  
+```
+map<string, int> word_count; 
+string word; 
+while (cin << word) {
+    pair< map<string, int>::iterator, bool > ret = word_count.insert(make_pair(word, 1)); 
+    if (!ret.second)
+        ++ret.first->second; 
+}
+```
+
+#### 10.3.6
+判断元素是否存在:  
+- `m.count(k)`: 返回`m`中`k`出现的次数.  
+- `m.find(k)`: 如存在, 返回指向该元素的迭代器, 不然返回超出末端迭代器.  
+
+```
+int occurs; 
+map<string, int>::iterator it = word_count.find("footbar"); 
+if (it != word_count.end()) 
+    occurs = it.second; 
+```
+
+#### 10.3.7
