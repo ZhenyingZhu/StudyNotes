@@ -1,3 +1,6 @@
+`git reset origin/master` to make all commit gone but file change left.  
+http://makandracards.com/makandra/527-squash-several-git-commits-into-a-single-commit  
+
 `DISPLAY=:0.0 zenity --warning --text="Hello"`  show a popup message  
 
 `echo "Hello"|wall` show a message to every users' terminal   
