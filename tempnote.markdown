@@ -1,3 +1,5 @@
+`ssh apple uptime` can show the execute a cmd like uptime and return the result   
+
 `git reset origin/master` to make all commit gone but file change left.  
 http://makandracards.com/makandra/527-squash-several-git-commits-into-a-single-commit  
 
