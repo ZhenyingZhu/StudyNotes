@@ -2888,3 +2888,80 @@ if (it != word_count.end())
 ```
 
 #### 10.3.7
+删除元素:  
+- `m.erase(k);`: 删除键为`k`的元素, 返回`size_type`类型的值, 表示删除的元素个数.  
+- `m.erase(p);`: 删除迭代器`p`所指, 返回`void`.  
+- `m.erase(b, e);`: 删除从迭代器`b`到`e`之前一个元素. 返回`void`.  
+
+#### 10.3.8
+遍历, 按键的升序排列:  
+```
+map<string, int>::const_iterator map_it = word_count.begin(); 
+while (map_it != word_count.end()) {
+    cout << map_it->first << " " << map_it->second << endl; 
+    ++map_it; 
+}
+```
+
+#### 10.3.9
+一个荔枝:  
+```
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <map>
+#include <string>
+
+using namespace std; 
+
+ifstream& open_file(ifstream &in, char *file) {
+	in.close(); 
+	in.clear(); 
+	in.open(file); 
+	return in; 
+}
+
+int main(int argc, char **argv)
+{
+	if (argc != 4)
+		throw runtime_error("wrong number of arguments"); // Not handle here
+	
+	map<string, string> trans_map; 
+	string key, value; 
+
+	ifstream map_file; 
+	if (!open_file(map_file, argv[1]))
+		throw runtime_error("no transformation file"); 
+	while (map_file >> key >> value) 
+		trans_map.insert(make_pair(key, value)); 
+
+	ifstream input; 
+	if (!open_file(input, argv[2]))
+		throw runtime_error("no input file"); 
+		
+	string line; 
+	while (getline(input, line)) {
+		istringstream stream(line); 
+		string word; 
+		bool first_word = true; 
+		
+		while (stream >> word) {
+			map<string, string>::const_iterator map_it = trans_map.find(word); 
+			if (map_it != trans_map.end())
+				word = map_it->second; 
+
+			if (first_word)
+				first_word = false;
+			else
+				cout << " "; 
+			cout << word; 
+		}
+
+		cout << endl; 
+	}
+	
+	return 0; 
+}
+```
+
+### 10.4
