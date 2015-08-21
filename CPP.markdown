@@ -2965,3 +2965,7 @@ int main(int argc, char **argv)
 ```
 
 ### 10.4
+`set`不支持下标操作符.  
+`set`的`value_type`是`key_type`类型.  
+
+#### 10.4.1
