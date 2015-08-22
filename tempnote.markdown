@@ -1,3 +1,5 @@
+install eclispe on ubuntu and config: http://difusal.blogspot.com/2015/06/how-to-install-eclipse-mars-45-on-ubuntu.html  
+
 `ssh apple uptime` can show the execute a cmd like uptime and return the result   
 
 `git reset origin/master` to make all commit gone but file change left.  
