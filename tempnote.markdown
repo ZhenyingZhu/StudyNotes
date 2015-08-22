@@ -1,3 +1,5 @@
+make eclipse CDT work: http://askubuntu.com/questions/150139/how-to-make-eclipse-cdts-linux-gcc-toolchain-resolve-c-standard-library-heade  
+
 install eclispe on ubuntu and config: http://difusal.blogspot.com/2015/06/how-to-install-eclipse-mars-45-on-ubuntu.html  
 
 `ssh apple uptime` can show the execute a cmd like uptime and return the result   
