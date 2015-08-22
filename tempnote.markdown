@@ -1,4 +1,4 @@
-make eclipse CDT work: http://askubuntu.com/questions/150139/how-to-make-eclipse-cdts-linux-gcc-toolchain-resolve-c-standard-library-heade  
+C++ on eclispe: http://stackoverflow.com/questions/4971926/launch-failed-binary-not-found-cdt-on-eclipse-helios
 
 install eclispe on ubuntu and config: http://difusal.blogspot.com/2015/06/how-to-install-eclipse-mars-45-on-ubuntu.html  
 
