@@ -2637,6 +2637,7 @@ string s(array, 3); // app
 - `s.substr(pos)`: 到结尾.  
 - `s.substr()`: 返回副本.  
 
+
 2. `append` 和`replace` 函数:  
 - `s.append(args)`: 将`args` 接于`s`后. 返回`s`的引用.  
 - `s.replace(pos, len, args)`: 用`args` 替换`pos`开始`len`长的字符串. 此处`args`不能为两个迭代器.   
