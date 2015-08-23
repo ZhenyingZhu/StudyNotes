@@ -2633,12 +2633,14 @@ string s(array, 3); // app
 #### 9.6.3
 只适用于`string` 的操作:  
 1. 返回子串的操作`substr`: 
+
 - `s.substr(pos, n)`: 从下标`pos`开始的`n`个字符.  
 - `s.substr(pos)`: 到结尾.  
 - `s.substr()`: 返回副本.  
 
 
 2. `append` 和`replace` 函数:  
+
 - `s.append(args)`: 将`args` 接于`s`后. 返回`s`的引用.  
 - `s.replace(pos, len, args)`: 用`args` 替换`pos`开始`len`长的字符串. 此处`args`不能为两个迭代器.   
 - `s.replace(b, e, args)`: 迭代器`b`和`e`之间的字符串用`args`替换. 此处`args`不能为"字符串和下标和长度对".  
