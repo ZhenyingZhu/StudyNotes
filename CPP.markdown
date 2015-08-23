@@ -2969,3 +2969,29 @@ int main(int argc, char **argv)
 `set`的`value_type`是`key_type`类型.  
 
 #### 10.4.1
+`set`定义于`set`头文件中.  
+
+初始化:  
+```
+vector<int> ivec; 
+set<int> iset(ivec.begin(), ivec.end()); 
+```
+
+添加元素:  
+```
+iset.insert(1); // return a pair <iterator, bool>
+iset.insert(ivec.begin(), ivec.end()); // return void
+```
+
+获取元素: 不能通过下标访问  
+```
+iset.find(1); // return iterator
+iset.count(1); // return size_type
+```
+键为`const`的, 不能赋值.  
+
+#### 10.4.2
+`set`中的键都只出现一次.  
+
+### 10.5
+

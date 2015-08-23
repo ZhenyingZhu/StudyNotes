@@ -1,3 +1,10 @@
+win7 set up FTP: (http://blog.sina.com.cn/s/blog_3f7e47f20100haur.html) 
+- Control Panel -> Windows Features: check 1. Internet Information Services/FTP Server, 2. Internet Information Services/Web Management Tools/IIS Management Console.    
+- Control Panel -> System and Security -> Administrative Tools -> Internet Information Services (IIS) Manager: Sites: add FTP Site  
+- name: demo, Physical Path: Download  
+- IP address: 10.0.0.1. SSL: no. 
+- Authorize.  
+
 C++ on eclispe: http://stackoverflow.com/questions/4971926/launch-failed-binary-not-found-cdt-on-eclipse-helios
 
 install eclispe on ubuntu and config: http://difusal.blogspot.com/2015/06/how-to-install-eclipse-mars-45-on-ubuntu.html  
