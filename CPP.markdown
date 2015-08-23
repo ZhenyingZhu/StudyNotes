@@ -1537,9 +1537,9 @@ Call operator(调用操作符): `()`，操作数是函数名和一组argument(�
 
 执行过程：
 
-1.创建形参并用实参初始化。  
-1.Calling function(主调函数) 挂起。  
-1.Called function(被调函数) 执行。  
+1. 创建形参并用实参初始化。  
+1. Calling function(主调函数) 挂起。  
+1. Called function(被调函数) 执行。  
 
 
 形参是Local variable(局部变量)。  
