@@ -2994,4 +2994,60 @@ iset.count(1); // return size_type
 `set`中的键都只出现一次.  
 
 ### 10.5
+`multimap`和`multiset`也定义于`map`和`set`头文件中.  
 
+#### 10.5.1
+插入元素:  
+```
+author.insert(make_pair("John", "Book a")); 
+author.insert(make_pair("John", "Book b")); // same key can still insert
+```
+
+删除元素:  
+```
+string search_item("john"); 
+multimap<string, string>::size_type cnt = author.erase(search_item); // return the number it delete
+```
+
+#### 10.5.2
+相同键的元素相邻存放.  
+
+查找元素时会出现多个元素.  
+1. 使用`find`和`count`: 
+```
+string search_item("John"); 
+typedef multimap<string, string>::size_type sztype; 
+zstype entries = author.count(search_item); 
+multimap<string, string>::iterator iter = author.find(search_item); 
+for (sztype cnt = 0; cnt != entries; ++cnt, ++iter) {
+    cout << iter->second << endl; 
+}
+```
+
+2. 使用关联容器的特定操作:  
+- `m.lower_bound(k)`: 返回指向键不小于`k`的第一个元素的迭代器.  
+- `m.upper_bound(k)`: 返回指向键大于`k`的第一个元素的迭代器.  
+- `m.equal_range(k)`: 返回pair类型, `first`为`m.lower_bound(k)`, `second`为`m.upper_bound(k)`. 如键`k`不存在, 返回都指向`m.upper_bound(k)`的`pair`.  
+
+```
+multimap<string, string>::iterator beg = author.lower_bound(search_item), end = author.upper_bound(search_item); 
+while (beg != end) {
+    cout << beg->second << endl; 
+    ++beg; 
+}
+```
+
+3. 使用`equal_range()`:  
+```
+typedef multimap<string, string>::iterator authors_it; 
+pair<authors_it, authors_it> pos = author.equal_range(search_item); 
+while (pos.first != pos.second) {
+    cout << pos.first->second << endl; 
+    ++pos.first; 
+}
+```
+
+### 10.6
+
+#### 10.6.1
+设计程序:  
