@@ -37,5 +37,5 @@ awk '! /^1/ {}' file
 # Seperate char: 
 https://www.gnu.org/software/gawk/manual/html_node/Field-Separators.html  
 ```
-awk 'BEGIN { FS = "," } ; { print $3 }' 
+awk 'BEGIN { FS = "," } ; { print $3, $5 }' 
 ```
