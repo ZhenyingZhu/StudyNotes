@@ -3075,5 +3075,70 @@ while (pos.first != pos.second) {
 3. 调用该函数.  
 
 ## Chapter 11
+The standard container(标准容器):  
+- 只定义了很少的操作.  
+- 添加, 删除元素.  
+- 访问首尾元素.  
+- 获取容器大小.  
+- 重设容器大小.  
+- 指向首和尾后一个元素的迭代器.  
 
+Generic algorithm(泛型算法):  
+- 标准库并未为各个容器实现某些成员函数.  
+- 标准库定义了支持多种容器的一些算法, 如查找最大最小值, 排序等.  
+- 所有与标准库容器兼容的类型都适用, 如内置数组.  
+- 算法通过迭代器访问元素.  
 
+### 11.1
+`find`函数: 
+- 基于迭代器
+- 适用于各种容器
+
+```
+int ia[6] = {0, 1, 2, 3, 4, 5}; 
+int search_value = 83; 
+int *result = find(ia, ia + 6, search_value); 
+cout << (*result == ia + 6 ? "Not found" : "Got") << endl; 
+```
+
+标准算法独立于容器, 但又限制条件.  
+`find`函数的限定条件:  
+- 元素间可以比较. 
+- 可以顺序遍历. 
+- 有结尾指示. 
+- 有一个类型指出一个元素的位置, 或不存在. 
+
+`find`函数可以有第四个参数, 为实现比较的函数名.  
+
+标准算法不会去执行容器的操作, 如修改容器大小, 删除添加元素等.  
+
+### 11.2
+使用泛型算法需`#include <algorithm>`.  
+Generalized numeric algorithm(泛化算术算法): 与泛型算法类似, 定义于`numeric`头文件中.  
+Input range(输入范围).  
+
+#### 11.2.1
+只读算法: 如`find`和`accumulate`.  
+
+`accumulate`函数: 
+- `int sum = accumulate(vec.begin(), vec.end(), 42); `
+- `string sum = accumulate(v.begin(), v.end(), string("")); // cannot use const char* like ""`
+- 第三个形参是初值, 用以创造关联的类型和起始值.  
+
+`find_first_of`函数: 两对迭代器, 在第一段内找第二段中任意匹配的元素, 并返回指向第一个出现的元素的迭代器.  
+
+找交集:  
+```
+size_t cnt = 0; 
+list<string>::iterator it = roster1.begin(); 
+while ((it = find_first_of(it, roster1.end(), roster2.begin(), roster2.end())) != roster1.end()) {
+    ++cnt; 
+    ++it; 
+}
+```
+
+两对迭代器的约束:  
+- 需分别匹配, 即第一个迭代器自增可达到第二个迭代器.  
+- 容器类型不需要相同, 只需元素间可比较, 如`string`和`char*`.  
+
+#### 11.2.2
