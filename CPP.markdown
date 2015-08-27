@@ -3110,7 +3110,7 @@ cout << (*result == ia + 6 ? "Not found" : "Got") << endl;
 
 `find`函数可以有第四个参数, 为实现比较的函数名.  
 
-标准算法不会去执行容器的操作, 如修改容器大小, 删除添加元素等.  
+标准算法不会去执行容器的操作, 如用容器接口修改容器大小, 删除添加元素等.  
 
 ### 11.2
 使用泛型算法需`#include <algorithm>`.  
@@ -3142,3 +3142,97 @@ while ((it = find_first_of(it, roster1.end(), roster2.begin(), roster2.end())) !
 - 容器类型不需要相同, 只需元素间可比较, 如`string`和`char*`.  
 
 #### 11.2.2
+写容器元素的算法需注意有足够的空间. 
+ 
+写入到输入序列: 写入迭代器指定的范围内: 
+- `fill(vec.begin(), vec.end(), 0);` 用第三个参数副本填充迭代器范围.  
+
+不检查写入操作的算法: 
+- `fill_n(vec.begin(), 10, 0);` 从迭代器开始写入`n`个第三个参数的副本. 需确保容器已有`n`个以上空间.  
+- 可使用insert iterator(插入迭代器)自动添加新元素. 
+
+写入目标迭代器的算法:  
+- 将元素写入从目标迭代器开始的容器空间内. 
+- 如`copy`函数.  
+
+```
+copy(ilst.begin(), ilst.end(), back_inserter(ivec));`
+```
+
+迭代器适配器`back_inserter`函数:  
+- 定义于`iterator`头文件中. 
+- 使用容器作为形参, 返回新对象.  
+
+```
+vector<int> vec; 
+fill_n(back_inserter(vec), 10, 0); 
+```
+
+算法的copying(复制)版本:  
+- 不处理输入序列, 而是创建新序列存储结果.  
+- 正常版本`replace(ilst.begin(), ilst.end(), 0, 42);` 将所有0元素替换为42.  
+- 复制版本`replace_copy`函数
+
+```
+vector<int> ivec; 
+replace_copy(ilst.begin(), ilst.end(), back_inserter(ivec), 0, 42);
+```
+
+#### 11.2.3
+`sort`函数: `sort(words.begin(), words.end());`   
+`unique`函数: `vector<string>::iterator end_unique = unique(words.begin(), words.end());` 删除相邻的重复元素并将元素前移补充空位, 返回超出末端指示器.   
+
+使用`unique`函数后容器大小并未改变, 需要调用`erase`等容器操作.  
+
+Predicate(谓词): 做条件判断的函数.  
+如:  
+```
+bool isShorter(const string &s1, const string &s2) {
+    return s1.size() < s2.size(); 
+}
+```
+或:  
+```
+bool GT6(const string &s1) {
+    return s1.size >= 6; 
+}
+```
+
+`stable_sort`函数: 保留相等元素的元素相对位置.  
+
+重载版本的`sort`和`stable_sort`函数第三个形参为谓词. 该谓词接收两实参.   
+```
+stable_sort(words.begin(), words.end(), isShorter); 
+```
+
+`count_if`函数: `vector<string>::size_type wc = count_if(words.begin(), words.end(), GT6);` 将范围内元素依次作为实参调用谓词, 并返回个数.  
+
+### 11.3
+迭代器: 都定义于`iterator`头文件中.   
+- insert iterator(插入迭代器): 与容器绑定.  
+- iostream iterator(iostream迭代器): 与输入输出流绑定, 迭代遍历流.  
+- reverse iterator(反向迭代器): 由`rbegin`和`rend`成员函数返回.  
+
+#### 11.3.1
+创建插入迭代器: 需要基础容器支持特定操作.   
+- `back_inserter`函数: 返回使用`push_back`实现的迭代器.  
+- `front_inserter`函数: 使用`push_front`.  
+- `inserter`函数: 使用`insert`实现. 第一个实参是容器, 第二个实参是插入起始位置的迭代器. 元素插入到迭代器之前.  
+
+```
+list<int>::iterator it = find(ilst.begin(), ilst.end(), 42); 
+replace_copy(ivec.begin(), ivec.end(), inserter(ilst, it), 100, 0); 
+```
+从`ivec`中复制元素, 将100替换为0, 并插入`ilst`的42元素前.  
+
+`front_inserter(ivec)`和`inserter(ivec, ivec.begin())`的区别在于, `front_inserter`的迭代器始终在最前端插入, 而`inserter`的迭代器顺序插入, 并非一直插入首元素前.  
+
+#### 11.3.2
+
+
+
+
+
+
+
+
