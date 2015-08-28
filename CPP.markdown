@@ -3262,6 +3262,52 @@ while (!in_iter != eof)
 vector<int> vec(in_iter, eof); 
 ```
 
+使用`ostream_iterator`:  
+```
+ostream_iterator<string> out_iter(cout, "\n"); 
+istream_iterator<string> in_iter(cin), eof; 
+while (in_iter != eof) 
+    *out_iter++ = *in_iter++; 
+```
 
+流迭代器的限制:  
+- 不能从`ostream_iterator`读入, 反之亦然.  
+- 给`ostream_iterator`所指元素赋值后无法修改. 且元素只能输出一次.  
+- `ostream_iterator`没有`->`操作符.  
 
+用算法处理流迭代器:  
+```
+ostream_iterator<int> output(cout, " "); 
+unique(vec.begin(), vec.end(), output); 
+```
+
+#### 11.3.3
+反向迭代器也有`const`与nonconst之分.  
+反向迭代器自增`++`为向前遍历.  
+
+降序排列: 
+```
+sort(vec.rbegin(), vec.rend()); 
+```
+
+反向迭代器需一个支持`++`和`--`的迭代器. 流迭代器没有`--`, 所以不能创建反向迭代器.  
+
+找到逗号分隔的字符串中的最后一个单词:  
+```
+string::reverse_iterator rcomma = find(line.rbegin(), line.rend(), ','); 
+cout << string(rcomma.base(), line.end()) << endl; 
+```
+用`base`函数返回反向迭代器所指元素后一个元素的正向迭代器.  
+
+#### 11.3.4
+通常需将不需要修改元素值的迭代器声明为`const`. 但是当要用该迭代器作为某些函数的形参时, 不能声明为`const`.  
+如`find_first_of(it, roster1.end(), roster2.begin(), roster2.end())` 要求两组迭代器类型相同. 因为`roster2`不是`const`容器, 所以`it`也不能为`const`.  
+
+#### 11.3.5
+迭代器种类:  
+
+|  名称  |  操作  |  限制  |  可用算法  |  例子  |
+|:---:|:---:|:---:|:---:|:---:|
+| input iterator(输入迭代器) | 读, 不能写, 能自增 | `==`, `!=`, `++`, `*it`, `it->member` | `find`, `accumulate` | `istream_iterator |
+| output iterator(输出迭代器) | 写, 不能读, 能自增 | `++`, `*it`能且只能用一次 | `copy` | `ostream_iterator` | 
 
