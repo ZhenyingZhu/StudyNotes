@@ -3308,6 +3308,15 @@ cout << string(rcomma.base(), line.end()) << endl;
 
 |  名称  |  操作  |  限制  |  可用算法  |  例子  |
 |:---:|:---:|:---:|:---:|:---:|
-| input iterator(输入迭代器) | 读, 不能写, 能自增 | `==`, `!=`, `++`, `*it`, `it->member` | `find`, `accumulate` | `istream_iterator |
+| input iterator(输入迭代器) | 读, 不能写, 能自增 | `==`, `!=`, `++`, `*it`, `it->member` | `find`, `accumulate` | `istream_iterator` |
 | output iterator(输出迭代器) | 写, 不能读, 能自增 | `++`, `*it`能且只能用一次 | `copy` | `ostream_iterator` | 
+| forward iterator(前向迭代器) | 读和写, 能自增 | `++`, `*it`多次 | `replace` |  |
+| bidirectional iterator(双向迭代器) | 读和写, 能自增自减 | `++`, `--`, `*it`多次 | `reverse` | `map`, `set`, `list`的迭代器 |
+| random-access iterator(随机访问迭代器) | 读和写, 支持所有迭代器算术运算 | `++`, `--`, `<=`等, `+=`等`, `*it`, `it[n]` | `sort` | `string`, `vector`, `deque` 的迭代器 |
 
+
+关联容器的键是`const`的, 故不能用任何写元素的算法.  
+
+向算法传递的迭代器需满足该算法最少所需的功能, 然而编译器无法捕捉到该类错误.  
+
+### 11.4
