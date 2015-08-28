@@ -313,6 +313,11 @@ if `sudo -u user` failed, try `sudo logbash` and in the new bash, run that again
 [rename remote branch](http://www.benjaminlhaas.com/blog/locally-and-remotely-renaming-branch-git)  
 
 [pull from fork](http://stackoverflow.com/questions/14383212/git-pulling-a-branch-from-another-repository)
+```
+git fetch fork
+git checkout -b personal_branch fork/branch
+```
+
 
 [rebase](http://git-scm.com/book/en/v2/Git-Branching-Rebasing)
 
