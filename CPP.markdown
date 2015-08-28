@@ -3228,10 +3228,39 @@ replace_copy(ivec.begin(), ivec.end(), inserter(ilst, it), 100, 0);
 `front_inserter(ivec)`和`inserter(ivec, ivec.begin())`的区别在于, `front_inserter`的迭代器始终在最前端插入, 而`inserter`的迭代器顺序插入, 并非一直插入首元素前.  
 
 #### 11.3.2
+流迭代器将对应的流视为元素序列.  
+- `istream_iterator<T> in(strm);`: 从输入流`strm`读取`T`类型对象的迭代器.  
+- `istream_iterator<T> in;`: 超出末端迭代器.  
+- `ostream_iterator<T> out(strm);`: 将`T`类型元素写于输出流`strm`的迭代器.  
+- `ostream_iterator<T> out(strm, delim);`: 使用以`null`结尾的字符数组`delim`作为分隔符.  
 
+`istream_iterator`的操作:  
+- `it1 == it2`: 相同类型, 使用同一个输入流构造, 或都是`end`的则相等.  
+- `it1 != it2`
+- `*it`: 返回流中的值.  
+- `it->mem`: 返回对象的`mem`成员.  
+- `++it`, `it++`.  
 
+流迭代器是类模板. 定义`>>`输入操作符的类型都可定义`istream_iterator`.  
 
+```
+istream_iterator<int> cin_it(cin); 
+istream_iterator<int> end_of_stream; 
+ofstream outfile; 
+ostream_iterator<Sales_item> output(outfile, " "); 
+``` 
 
+流迭代器在遇到输入结束或错误时返回`end`迭代器.  
+```
+istream_iterator<int> in_iter(cin); 
+istream_iterator<int> eof; 
+while (!in_iter != eof) 
+    vec.push_back(*in_iter++); 
+```
+等同于
+```
+vector<int> vec(in_iter, eof); 
+```
 
 
 
