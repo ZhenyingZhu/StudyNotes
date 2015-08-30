@@ -3320,3 +3320,52 @@ cout << string(rcomma.base(), line.end()) << endl;
 向算法传递的迭代器需满足该算法最少所需的功能, 然而编译器无法捕捉到该类错误.  
 
 ### 11.4
+算法分类: 
+- 根据所需的迭代器类型.  
+- 根据对元素的操作.  
+
+#### 11.4.1
+输入范围: 算法的形参中, 一对迭代器`beg`和 `end` 表示的元素范围.  
+
+#### 11.4.2
+算法的命名规范:  
+
+排序函数们有重载版本:  
+```
+sort(beg, end); 
+sort(beg, end, comp);
+```
+
+检查指定值的算法有带有谓词的类似函数:  
+```
+find(beg, end, val); 
+find_if(beg, end, pred); // pred is a predicate
+```
+
+创建副本的函数: 
+```
+reverse(beg, end); 
+reverse_copy(beg, end, dest); 
+```
+
+### 11.5
+容器特有的算法:  
+- 与泛型算法不同, 结合了容器的特点.  
+- 可以实现一些泛型算法不支持的操作, 如在`list`上`sort`.  
+- 可提高性能, 如`merge`, `remove`, `reverse`, `unique`.  
+
+`list`特有的算法:  
+- `lst.merge(lst2)`: 将排过序的`lst`, `lst2`合并入`lst`, 返回`void`. `lst2`将被清空. 与泛型算法的`merge`不同, 实参会被改变.   
+- `lst.merge(lst2, comp)`
+- `lst.remove(val)`: 调用`lst.erase` 删除所有特定值的元素, 返回`void`. 和泛型算法中的`remove`不同, 不会留有空位.   
+- `lst.remove_if(unaryPred)`: `unaryPred`返回非0值的元素删除.  
+- `lst.reverse()`
+- `lst.sort()`
+- `lst.splice(iter, lst2)`: 将`lst2`中的所有元素移到`lst`的迭代器`iter`指向的元素前面. `lst`和`lst2`需是不同的对象. 与泛型算法的`merge`不同, 实参会被改变.  
+- `lst.splice(iter, lst2, iter2)`: 将`lst2`中`iter2`所指的元素移出. `lst`和`lst2`可以是同一个对象.  
+- `lst.splice(iter, beg, end)`: 需`iter`不在`beg`到`end`之间, 不然行为未定义.  
+- `lst.unique()`: 调用`erase`删除同一个值的连续副本. 和泛型算法中的`unique`不同, 不会留有空位.  
+- `lst.unique(binaryPred)`
+
+
+## Chapter 12
