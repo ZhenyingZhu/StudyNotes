@@ -3369,3 +3369,44 @@ reverse_copy(beg, end, dest);
 
 
 ## Chapter 12
+类定义了数据成员(状态)和函数成员(操作).  
+实现和接口分离. 接口指定支持操作, 实现细节使用者不用关心.  
+类被称为abstract data type(抽象数据类型).  
+
+### 12.1
+类定义和声明:  
+```
+class Sales_item {
+public: 
+    double avg_price() const; 
+    bool same_isbn(const Sales_item &rhs) const {
+        return isbn == rhs.isbn; 
+    }
+    // default constructor
+    Sales_item(): units_sold(0), revenue(0, 0) {}
+private: 
+    std::string isbn; 
+    unsigned units_sold; 
+    double revenue; 
+}; 
+
+double Sales_item::avg_price() const {
+    if (units_sold)
+        return revenue / units_sold; 
+    else 
+        return 0; 
+}
+```
+
+#### 12.1.1
+类成员: 类可以没有成员.  
+成员可以是`public`, `private`, `protected` 的.  
+在类定义外没有办法增加成员.  
+
+构造函数: 冒号后初始化数据成员.  
+
+类内部需声明所有的成员函数, 然而定义可以放类外.  
+
+成员函数形参表之后的`const`必须同时出现在声明和定义中. 表明调用该函数时, `this`指针是`const`的.  
+
+#### 12.1.2
