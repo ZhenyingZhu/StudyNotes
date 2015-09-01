@@ -3441,7 +3441,7 @@ private:
     std::string contents; 
     index cursor; 
     index height, width; 
-}
+}; 
 
 char Screen::get(index r, index c) const {
     index row = r * width; 
@@ -3471,7 +3471,7 @@ class LinkScreen {
     Screen window; 
     LinkScreen *next; 
     LinkScreen *prev; 
-}
+}; 
 ```
 
 #### 12.1.5
@@ -3490,3 +3490,74 @@ class Sales_item {/* */} accum, trans;
 ```
 
 ### 12.2
+`this`指针解引用返回该对象自身:  
+```
+class Screen {
+public: 
+    Screen& move(index r, index c); 
+    Screen& set(char); 
+    Screen& set(index, index, char); 
+}; 
+
+Screen& Screen::set(char c) {
+    contents[cursor] = c; 
+    return *this; 
+}
+Screen& Screen::move(index r, index c) {
+    index row = r * width; 
+    cursor = row + c; 
+    return *this; 
+}
+
+myScreen.move(4, 0).set('#'); 
+```
+
+非`const`成员函数, `this`是`const`指针, 可以改变指向的对象内容但不是能改变指向的地址.  
+`const`成员函数中, `this`需是指向`const`内容的`const`指针. 但这样的话该成员函数不能后接非`const`的成员函数, 因为非`const`的成员函数将非`const`的自身作为隐含形参.  
+解决方法是用重载:  
+```
+class Screen {
+public:
+    Screen& Screen::display(std::ostream &os) {
+        do_display(); 
+        return *this; 
+    }
+    const Screen& Screen::display(std::ostream &os) const {
+        do_display(); 
+        return *this; 
+    }   
+private: 
+    void do_display(std::osteam &os) const {
+        os << contents; 
+    }
+}; 
+```
+
+则调用时:  
+```
+Screen myScreen(5, 3); 
+const Screen blank(5, 3); 
+myScreen.set('#').display(cout); 
+blank.display(cout); 
+```
+
+可变数据成员:  
+- 永远不能为`const`, 甚至是`const`对象的成员时. 
+- `const`成员函数可以改变`mutable`成员.  
+
+```
+class Screen {
+public: 
+private: 
+    mutable size_t access_ctr; 
+}; 
+
+void Screen::display(std::ostream &os) const {
+    ++access_ctr; 
+    os << contents; 
+}
+```
+
+内联函数`do_display`并不影响性能, 但是利于调试, 增加功能.  
+
+### 12.3
