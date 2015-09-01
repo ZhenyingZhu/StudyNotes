@@ -3410,3 +3410,83 @@ double Sales_item::avg_price() const {
 成员函数形参表之后的`const`必须同时出现在声明和定义中. 表明调用该函数时, `this`指针是`const`的.  
 
 #### 12.1.2
+封装: 隐藏实现细节, 如类的成员.  
+
+访问标号: `public`等. 作用域到下一个标号或类定义的结束.   
+第一个访问标号前的类成员, 访问级别由定义类的方式决定:  
+- `struct`定义的类: 共有.  
+- `class`定义的类: 私有.  
+
+标准库中`pair`类是具体类.  
+
+如果类包含内置类型或复合类型, 最好有构造函数来初始化.  
+
+数据抽象和封装的优点:  
+- 减少修改状态的途径以便于维护. 避免在使用时出现无意的对象状态用户级破坏.  
+- 完善类时不必改动用户级代码.  
+- 只需改变头文件中类的定义, 就可改动每个使用该类的实现.  
+
+#### 12.1.3
+成员函数只能重载本类的其他成员函数.  
+
+声明:  
+```
+class Screen {
+public: 
+    typedef std::string::size_type index; 
+    char get() const { return contents[cursor]; }
+    inline char get(index ht, index wd) const; // define part outside is also inline
+    index get_cursor() const; // it is also inline because implementation has inline
+private: 
+    std::string contents; 
+    index cursor; 
+    index height, width; 
+}
+
+char Screen::get(index r, index c) const {
+    index row = r * width; 
+    return contents[row + c]; 
+}
+
+inline index Screen::get_cursor() const {
+    return cursor; 
+}
+```
+这样用户也可以使用`Screen::index`.  
+
+#### 12.1.4
+一个源文件中一个类只能被定义一次. 多个文件中的类定义需一致.  
+可以将类定义在头文件中, 并用头文件保护符.  
+
+Forward declaration(前向声明): 
+```
+class Screen; 
+```
+
+声明后到定义前, 类是incompete type(不完全类型). 此时只能定义指针和引用, 或声明函数的形参和返回类型.   
+
+类中不能出现自己类的对象, 但是可以有指针或引用:  
+```
+class LinkScreen {
+    Screen window; 
+    LinkScreen *next; 
+    LinkScreen *prev; 
+}
+```
+
+#### 12.1.5
+定义类时没有分配存储空间, 直到定义对象后.  
+每个对象有自己的类数据成员副本.  
+
+定义对象: 
+```
+class Sales_item item; 
+```
+关键词`class`不必须, 是`C`中继承的.  
+
+类定义之后可以接对象定义列表, 但不推荐.  
+```
+class Sales_item {/* */} accum, trans; 
+```
+
+### 12.2
