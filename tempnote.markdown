@@ -1,3 +1,9 @@
+```
+git stash save
+git pull -- rebase
+git stash pop
+```
+
 win7 set up FTP: (http://blog.sina.com.cn/s/blog_3f7e47f20100haur.html) 
 - Control Panel -> Windows Features: check 1. Internet Information Services/FTP Server, 2. Internet Information Services/Web Management Tools/IIS Management Console.    
 - Control Panel -> System and Security -> Administrative Tools -> Internet Information Services (IIS) Manager: Sites: add FTP Site  
