@@ -3561,3 +3561,55 @@ void Screen::display(std::ostream &os) const {
 内联函数`do_display`并不影响性能, 但是利于调试, 增加功能.  
 
 ### 12.3
+每个类都定义了自己的作用域. 在作用域外只能用`.`或`->`访问数据或函数成员, `::`访问定义类型成员.  
+作用域内就不用再使用作用域操作符或访问操作符了.  
+
+如果成员函数返回类型是在类内定义的, 需使用完全限定名.  
+```
+Screen::index Screen::get_cursor() const {
+    return cursor; 
+}
+```
+
+名字查找: 寻找与给定的名字使用相匹配的声明.  
+1. 先在使用该名字的块中查找.  
+2. 再在作用域中查找.  
+3. 必须在使用前声明, 不然报错.  
+
+类定义步骤: 
+1. 编译类成员声明.  
+2. 在类所有成员都出现了以后, 才编译类定义.  
+
+类成员声明中的名字查找:  
+1. 名字出现前的类成员声明.  
+2. 类外的作用域(全局作用域)内查找.  
+
+一个用作类型名的名字不能被重复定义.  
+
+类成员定义中的名字查找:  
+1. 成员函数局部作用域中查找.  
+2. 类成员声明中查找.  
+3. 成员函数定义之前的作用域内查找.  
+
+不好的风格屏蔽了变量:  
+```
+int height; 
+class Screen {
+public: 
+    void dummy_fcn(index height) {
+        cursor = width * height; // this->height blocked by height
+    }
+private: 
+    index cursor; 
+    index height, width; 
+}
+```
+屏蔽的`height`仍可通过`this->height`或`Screen::height`访问.  
+如果形参中没有`height`, 则去类成员声明中查找, 找到`private`中声明的`height`. 全局中的`int height`被屏蔽.  
+被屏蔽的全局对象可用`::height`访问.  
+
+注意第三步查找的作用域为函数定义前, 而非成员函数的声明前.   
+
+### 12.4
+
+
