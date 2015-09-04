@@ -3650,4 +3650,157 @@ Sales_item::Sales_item(const string &book) {
 ```
 
 #### 12.4.2
+使用默认形参可以合并(1. 无该形参, 2. 有一个该形参)的构造函数.  
+```
+Sales_item(const string &book = ""): isbn(book), units_sold(0), revenue(0.0){}
+Sales_item(std::isteam &is); 
+```
 
+#### 12.4.3
+一旦定义了构造函数, 编译器就不会自动生成默认构造函数.  
+
+Synthesized default constructor(合成的默认构造函数):  
+- 不用传入任何实参.  
+- 具有类类型的成员通过运行各自的默认构造函数来初始化.  
+- 内置和复合类型的成员, 如指针和数组, 只对定义在全局作用域中的对象初始化. 所以编译器生成的默认构造函数不会初始化.  
+
+没有默认构造函数的类无法作为动态分配数组的元素.  
+作为静态数组元素时需显式初始化.  
+无法使用容器仅有大小为形参的构造函数.  
+
+使用默认构造函数创建对象:  
+```
+Sales_item obj; 
+Sales_item obj = Sales_item(); 
+```
+
+#### 12.4.4
+隐式类类型转换:  
+- 可以用单个形参来调用的构造函数定义了形参类型到该类类型的一个隐式转换.  
+- 将构造函数声明为`explicit`可以防止隐式转换.  
+- `explicit`只能用于类内部构造函数的声明中. 类外部定义时不需也不能使用. 
+
+```
+string null_book = "9-999-99999-9"; 
+item.same_isbn(null_book); 
+```
+`null_book`隐式转换为`Sales_item`类型.  
+
+```
+class Sales_item {
+public: 
+    explicit Sales_item(const string &book = ""): isbn(book) units_sold(0), revenue(0.0) {}; 
+    explicit Sales_item(std::istream &is); 
+}; 
+
+Sales_item::Sales_item(std::istream &is) {
+    is >> *this; 
+}
+```
+
+此时就要显式创建对象: 
+```
+item.same_isbn(Sales_item(null_book)); 
+```
+
+#### 12.4.5
+类成员的显式初始化: 继承自C, 不建议使用.   
+```
+struct Data {
+    int ival; 
+    char *ptr; 
+}; 
+
+Data val1 = {1024, "apple"}; 
+```
+
+### 12.5
+Friend(友元):  
+- 允许特定的非成员函数访问一个类的私有成员, 同时阻止一般的访问.  
+- 例如被重载的操作符`>>`需要访问类的私有成员.  
+- 友元声明由`friend`关键字开始, 只能出现在类定义的内部. 一般成组地放于类定义的开始或结尾.   
+- 友元不是授予友元关系的那个类的成员. 不受声明出现部分的访问控制影响.   
+- 友元声明可以是一个非成员函数, 也可以是前面定义的类的成员函数, 或整个类. 整个类声明为友元时该类的所有成员函数都能访问私有成员.  
+
+```
+class Screen {
+    friend class Window_Mgr; 
+}; 
+```
+
+或
+```
+class Screen {
+    friend Window_Mgr& Window_Mgr::relocate(index, index, Screen&); 
+}
+```
+
+```
+Window_Mgr& Window_Mgr::relocate(Screen::index r, Screen::index c, Screen& s) {
+    s.height += r; 
+    s.width += c; 
+    return *this; 
+}
+```
+
+友元声明将已命名的类或非成员函数引入到外围作用域中.  
+友元函数可以在类的内部定义, 作用域扩展到包围该类定义的作用域.  
+```
+class X {
+    friend class Y; // declare a new class
+    friend void f() {} // define a function
+}; 
+
+class Z {
+    Y *ymem; // Y is introduced by X
+    void g() {return ::f(); }
+}
+```
+
+重载函数中声明为友元的才有特殊访问权.  
+
+### 12.6
+全局对象:  
+- 全局对象可用于统计一共有多少个类类型对象.  
+- 或是指向类的错误处理例程的指针.  
+- 或是指向类类型对象的内存自由存储区的一个指针.  
+- 但会破坏封装. 用户代码可以修改该成员.   
+
+
+`static`类成员(类静态成员): 
+- 一些情况下可以定义来取代全局对象. 
+- 也与类而非类的对象关联.   
+- 名字在类的作用域内.  
+- 可以封装, 即可以为`private`.  
+- 代码可读.  
+
+`static`类成员函数:  
+- 类对象可以共享成员函数  
+- 没有`this`指针.  
+- 可以直接访问所属类的`static`数据成员, 但不能使用非`static`成员.  
+
+```
+class Account {
+public: 
+    void applyint() {amount += amount * interestRate; }
+    static double rate() {return interestRate; }
+    static void rate(double); 
+
+private: 
+    std::string owner; 
+    double amount; 
+    static double interestRate; 
+    static double initRate(); 
+}
+```
+
+```
+Account ac1; 
+Account *ac2 = &ac1; 
+double rate; 
+rate = ac1.rate(); 
+rate = ac2->rate(); 
+rate = Account::rate(); 
+```
+
+#### 12.6.1
