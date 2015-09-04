@@ -3611,5 +3611,43 @@ private:
 注意第三步查找的作用域为函数定义前, 而非成员函数的声明前.   
 
 ### 12.4
+构造函数可以被重载, 使用户可以通过不同的方式来初始化数据成员:  
+```
+class Sales_item {
+public: 
+    Sales_item(const std::string&); 
+    Sales_item(std::istream&); 
+    Sales_item(); 
+}; 
+```
 
+构造函数不能声明为`const`, 如`Sales_item() const;`是非法的.  
+
+#### 12.4.1
+构造函数没有返回类型, 并且可以包含一个构造函数初始化列表.  
+
+构造函数初始化列表: 
+- 省略并在函数体内部对数据成员赋值也是合法的.  
+- 构造函数分两个阶段执行: 1. 初始化阶段; 2. 普通计算阶段.  
+- 初始化阶段所有数据成员都已初始化.  
+- 在计算阶段对数据成员执行的是赋值. 
+- 没有默认构造函数的类类型成员, `const`或引用类型的成员, 都必须在初始化列表中初始化.  
+- 按声明数据成员的顺序, 而非列表中出现的顺序初始化.  
+- 尽量不要用成员来初始化其他成员.  
+- 初始化式可以是任意复杂的表达式.  
+
+```
+Sales_item::Sales_item(const string &book): isbn(book), units_sold(0),  revenue(0.0) {}
+```
+
+和
+```
+Sales_item::Sales_item(const string &book) {
+    isbn = book; 
+    units_sold = 0; 
+    revenue = 0.0; 
+}
+```
+
+#### 12.4.2
 
