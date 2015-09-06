@@ -3804,3 +3804,42 @@ rate = Account::rate();
 ```
 
 #### 12.6.1
+类外部定义`static`成员时无需`static`保留字.  
+```
+void Account::rate(double newRate) {
+    interestRate = newRate; 
+}
+```
+
+`static`成员函数没有`this`指针.  
+`static`成员函数不能声明为`const`.  
+`static`成员函数不能被声明为虚函数.  
+
+#### 12.6.2
+`static`数据成员:  
+- 必须在类定义体的外部定义一次.  
+- 为保证只定义一次, 在包含类的非内联成员函数的定义的文件中定义.  
+- 不通过构造函数初始化, 而是在定义时初始化.  
+
+```
+double Account::interestRate = initRate(); 
+```
+
+一旦成员名出现, 如`interestRate`, 定义就在类作用域内.  
+
+数据成员不能在类的定义体内初始化. 例外是整型`const static`数据成员可以用常量表达式初始化, 但仍需要在类的定义体外定义.   
+整型`const static`数据成员可以用在需要常量表达式的地方.  
+
+和普通数据成员不同, `static`数据成员的类型可以是所属类的类型.  
+
+和普通数据成员不同, `static`数据成员可以用作默认实参:  
+```
+class Screen {
+public: 
+    Screen& clear(char = bkgroud); 
+private: 
+    static const char bkground = '#'; 
+}; 
+```
+
+## Chapter 13
