@@ -4035,3 +4035,114 @@ Message::~Message() {
 ```
 
 ### 13.5
+复制指针时只复制了地址.  
+
+设计具有指针成员的类时, 首先要决定指针应提供什么行为.  
+管理指针成员:  
+- 指针成员和普通指针相同. 一旦修改所指对象后其他指针并不知情.  
+- 智能指针, 对象与其他指针共享, 但预防悬垂.  
+- 值型行为, 所指对象独享, 由每个类对象独立管理.  
+
+```
+class HasPtr {
+public: 
+    HasPtr(int *p, int i): ptr(p), val(i) { }
+    int *get_ptr() const {return ptr; }
+    int get_int() const {return val; }
+    void set_ptr(int *p) {ptr = p; }
+    void set_int(int i) {val = i; }
+    int get_ptr_val() const {return *ptr; }
+    void set_ptr_val(int val) const {*ptr = val; } // ptr doesn't change
+private: 
+    int *ptr; 
+    int val; 
+}; 
+```
+这些函数都是访问函数.  
+
+没有复制构造函数:  
+```
+int obj = 0; 
+HasPtr ptr1(&obj, 42); 
+HasPtr ptr2(ptr1); // use synthesized copy constructor
+```
+
+#### 13.5.1
+定义所谓的smart pointer(智能指针):  
+- 可通过指针访问对象, 但不能删除对象.  
+- 撤销指向对象的最后一个`HasPtr`时删除对象.  
+- 用析构函数来删除指针.  
+- 采用use count(使用计数)或称reference count(引用计数)来跟踪有多少个对象共享同一个指针.  
+- 计数器不能放在`HasPtr`对象中, 不然无法更新并不出现在复制赋值中的对象的计数.  
+
+定义单独的类:  
+```
+class U_Ptr {
+    friend class HasPtr; 
+    int *ip; 
+    size_t use; 
+    U_Ptr(int *p): ip(p), use(1) { }
+    ~U_Ptr() {delete ip; }
+}; 
+```
+这个类所有成员均为`private`, 只有友元`HasPtr`能访问.  
+
+```
+class HasPtr {
+public: 
+    HasPtr(int *p, int i): ptr(new U_Ptr(p)), val(i) { }
+    HasPtr(const HasPtr &orig): ptr(orig.ptr), val(orig.val) {++ptr->use; }
+    HasPtr& operator=(const HasPtr&); 
+    ~HasPtr() {
+        if (--ptr->use == 0) delete ptr; // call ~U_Ptr()
+    }
+    int *get_ptr() const {return ptr->ip; }
+    int get_int() const {return val; }
+    void set_ptr(int *p) {ptr->ip = p; }
+    void set_int(int i) {val = i; }
+    int get_ptr_val() const {return *ptr->ip; }
+    void set_ptr_val(int i) {*ptr->ip = i; }
+private: 
+    U_Ptr *ptr; 
+    int val; 
+}; 
+
+HasPtr& operator=(const HasPtr &rhs) {
+    ++rhs.ptr->use; 
+    if (--ptr->use == 0) 
+        delete ptr; 
+    ptr = rhs.ptr; 
+    val = rhs.val; 
+    return *this; 
+}
+```
+
+#### 13.5.2
+还可给指针成员提供value semantics(值语义), 如`string`.  
+
+```
+class HasPtr {
+public: 
+    HasPtr(const int &p, int i): ptr(new int(p)), val(i) { }
+    HasPtr(const HasPtr &orig): ptr(new int (*orig.ptr)), val(orig.val) { }
+    HasPtr& operator=(const HasPtr&); 
+    ~HasPtr() {delete ptr; }
+    int get_ptr_val() const {return *ptr; }
+    int get_int() const {return val; }
+    void set_ptr(int *p) {ptr = p; }
+    void set_int(int i) {val = i; }
+    int *get_ptr() const {return ptr; }
+    void set_ptr_val(int p) const {*ptr = p; }
+private: 
+    int *ptr; 
+    int val; 
+}; 
+
+HasPtr& operator=(const HasPtr &rhs) {
+    *ptr = *rhs.ptr; // change the pointer value rather than pointer
+    val = rhs.val; 
+    return *this; 
+}
+```
+
+## Chapter 14
