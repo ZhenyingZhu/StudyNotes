@@ -3855,3 +3855,183 @@ Copy control(复制控制): 类通过Copy constructor(复制构造函数), Assig
 当类具有指针成员时, 需要定义自己的复制控制函数.  
 
 ### 13.1
+复制构造函数可用于:  
+- 用同类型的对象显式或隐式初始化一个对象.  
+- 复制一个对象, 作为实参传给函数.  
+- 从函数返回一个对象的副本.  
+- 初始化顺序容器的元素.  
+- 用元素初始化列表初始化数组元素.  
+
+直接初始化调用构造函数, 复制初始化`=`调用复制构造函数.  
+先用指定的构造函数创造个临时的对象, 然后复制.  
+```
+string null_book = "aaaaaa"; // create a string "aaaaaa", then copy to null_book
+```
+
+不支持复制的类型不能使用:  
+```
+ifstream file("filename"); // cannot use ifstream file = "filename"; 
+``` 
+
+构造函数如果是`explicit`的, 防止了隐式转换, 则复制构造函数调用失败:  
+```
+Sales_item item("aaaaaa"); // cannot create a temp object "aaaaaa" so cannot Sales_item = "aaaaaa"; 
+```
+
+数组初始化`{}`用的是复制构造函数.  
+
+#### 13.1.1
+就算定义了构造函数, 编译器也会定义synthesized copy constructor(合成复制构造函数).   
+
+合成复制构造函数: 执行memberwise initialize(逐个成员初始化). 即将现有对象的每个非`static`成员依次复制到正在创建的对象. 如有成员为数组, 这复制数组的每一个元素.   
+
+#### 13.1.2
+定义复制构造函数:  
+```
+class Sales_item {
+public: 
+    Sales_item(); 
+    Sales_item(const Sales_item&); 
+private: 
+    std::string isbn; 
+    int units_sold; 
+    double revenue; 
+}; 
+Sales_item::Sales_item(const Sales_item &orig): 
+    isbn(orig.isbn), 
+    units_sold(orig.units_sold), 
+    revenue(orig.revenue) 
+    {  }
+```
+
+当类有数据成员是指针; 或有成员在构造函数中分配其他资源, 而另一些在创建新对象时需做一些特定工作; 则需定义复制构造函数.  
+
+#### 13.1.3
+禁止复制: 
+- 类必须显式声明其复制构造函数为`private`. 这样编译时会因调用私有成员而报错.   
+- 然而类的友元和成员仍可以复制. 
+- 禁止友元或成员的复制也禁止, 则声明`private`复制构造函数但不定义. 这样会因链接失败而报错.  
+
+### 13.2
+Overloaded operator(重载操作符):  
+- 名字为operator接操作符的一些函数.   
+- 形参表与该操作符操作数数目相同.  
+- 可以定义为成员或非成员函数.  
+- 如操作符是一个成员, 则第一个操作数隐式绑定到`this`指针.  
+- 有些操作符必须是定义自己的类的成员.  
+
+定义`operator=`函数可以重载赋值运算符.  
+重载赋值运算符的函数有两个形参. 但是第一个为隐式的`this`, 所以接受单个形参.  
+该形参是同一类类型的对象.  
+返回对同一类类型的引用, 即返回对右操作数的引用. 可以使用连等.  
+```
+class Sales_item {
+public: 
+    Sales_item& operator=(const Sales_item&); 
+}
+```
+
+Synthesized assignment operator(合成赋值操作符): 执行memberwise assignment(逐个成员赋值).  
+```
+Sales_item& Sales_item::operator=(const Sales_item &rhs) {
+    isbn = rhs.isbn; 
+    units_sold = rhs.units_sold; 
+    revenue = rhs.revenue; 
+    return *this; 
+}
+```
+
+一般需定义自己的复制构造函数的话, 也要定义赋值构造函数.  
+
+### 13.3
+构造函数用以获得资源. 析构函数回收资源.  
+
+```
+Sales_item *p = new Sales_item; 
+{
+    Sales_item item(*p); 
+    delete p; 
+}
+
+{
+    Sales_item *p = new Sales_item[10]; 
+    vector<Sales_item> vec(p, p + 10); 
+    delete [] p; 
+} // vec destructs here
+```
+
+`delete`调用析构函数.  
+变量超出作用域时也会自动撤销. 但引用和指针超出作用域时不会运行析构函数.   
+撤销容器时(包括数组), 会按逆序撤销容器中的元素.  
+
+动态分配的对象只有在指向该对象的指针被删除时才撤销.  
+如果没有删除指向动态对象的指针, 则导致内存泄漏.  
+
+Rule of three(三法则): 如果需要析构函数, 则需要所有的三个复制控制成员.  
+
+析构函数不仅限于释放资源. 可以包括该类对象使用完毕后需执行的所有操作.  
+
+合成析构函数: 编译器总是会合成一个析构函数, 逆序撤销每个非`static`成员. 但不删除指针成员所指向的对象.  
+
+析构函数是个名为`~类名`的成员函数, 没有返回值或形参. 即使编写自己的析构函数, 合成析构函数仍然运行.   
+
+```
+class Sales_item {
+public: 
+    ~Sales_item() { }
+}
+```
+因为`Sales_item`没有分配任何资源, 内置类型的成员都由各自的析构函数释放, 所以合成析构函数不做任何事.  
+
+### 13.4
+消息处理示例:  
+![IO Classes](./CPP_files/Message_class_design.png)  
+
+```
+class Message {
+public: 
+    Message(const string &str = ""): contents(str) { }
+    Message(const Message&); 
+    Message& operator=(const Message&); 
+    ~Message(); 
+    void save(Folder&); 
+    void remove(Folder&); 
+private: 
+    std::string contents; 
+    std::set<Folder*> folders; 
+    void put_Msg_in_Folders(const std::set<Folder*>&); 
+    void remove_Msg_from_Folders(); 
+}; 
+
+Message::Message(const Message &m): 
+    contents(m.contents), folders(m.folders)
+{
+    put_Msg_in_Folders(folders); 
+}
+
+void put_Msg_in_Folders(const std::set<Folder*> &rhs) {
+    for (std::set<Folder*>::const_iterator beg = rhs.begin(); beg != rhs.end(); ++beg) 
+        (*beg)->addMsg(this); 
+}
+
+Message& Message::operator=(const Message &rhs) {
+    if (rhs != this) { // Important! 
+        remove_Msg_from_Folders(); 
+        contents = rhs.contents; 
+        folders = rhs.folders; 
+        put_Msg_in_Folders(rhs.folders); 
+    }
+    return *this; 
+}
+
+void Message::remove_Msg_from_Folders() {
+    for (std::set<Folder*>::const_iterator beg = folders.begin(); beg != folders.end(); ++beg) 
+        (*beg)->remMsg(this); 
+}
+
+Message::~Message() {
+    remove_Msg_from_Folders(); 
+}
+```
+
+### 13.5
