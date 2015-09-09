@@ -4146,3 +4146,115 @@ HasPtr& operator=(const HasPtr &rhs) {
 ```
 
 ## Chapter 14
+
+### 14.1
+可重载的操作符:  
+`+`, `-`, `*`, `/`, `%`, `^`,   
+`&`, `|`, `~`, `!`, `,`, `=`,  
+`<`, `>`, `<=`, `>=`, `++`, `--`,  
+`<<`, `>>`, `==`, `!=`, `&&`, `||`,  
+`+=`, `-=`, `/=`, `%=`, `^`, `&=`,  
+`|=`, `*=`, `<<=`, `>>=`, `[]`, `()`,  
+`->`, `->*`, `new`, `new []`, `delete`, `delete []`  
+
+也可连接符号创建新的操作符, 如定义`operator**`提供幂运算.  
+
+重载操作符必须有一个类类型操作数. 用于内置类型的操作符不能重载.  
+操作符的优先级, 结合性和操作数数目不能改变.  
+
+`x = y + z;` 中`+`绑定到了`operator+`函数, 实参为`x`和`y`, 返回值作为`x`的右值.  
+
+重载操作符时使用默认实参是非法的, 除了`operator()`.  
+
+不再具备短路求值特性, 即`&&`和`||`的重载版本中, 两个操作数都要求值, 且顺序未定.  
+不推荐重载`&&`, `||`, `,`.  
+
+类成员的操作函数形参比操作数数目少一个, 因为第一个形参绑定`this`.  
+一般将赋值操作符定义为成员, 而算术, 关系操作符定义为非成员.  
+```
+Sales_item& Sales_item::operator+=(const Sales_item&); 
+Sales_item operator+(const Sales_item&, const Sales_item&); 
+```
+
+操作符为非成员函数时, 需设置为类的友元.  
+```
+class Sales_item {
+    friend std::istream& operator>>(std::istream&, Sales_item&); 
+    friend std::ostream& operator>>(std::ostream&, const Sales_item&); 
+public: 
+    Sales_item& operator+=(const Sales_item&); 
+}; 
+Sales_item operator+(const Sales_item&, const Sales_item&); // can be implemented by +=, no need to be friend
+```
+
+也可以直接调用操作符函数:  
+```
+cout << operator+(item1, item2) << endl; 
+```
+
+重载操作符的设计:  
+
+1. 不要重载具有内置含义的操作符, 如`&`, `,`在类类型对象上的执行与内置类型一样; `&&`, `||`使用短路求值; `=`有合成赋值函数, 在此之上定制.  
+2. 先定义公共接口, 在考虑哪些定义操作符. 如`==`, `<<`, `>>`, `!`判断非空.  
+3. 有简单明了的意义.  
+4. 可用作关联容器键类型的类应定义`<`和`==`操作符, 同时也应定义`!=`, `>`, `<=`, `>=`.  
+5. `=`, `[]`下标, `()`调用, `->`必须为成员, `=`和改变对象状态的操作符最好为成员, 对称的操作符如算术, 相等, 关系和位操作符最好为非成员函数.  
+
+
+### 14.2
+
+#### 14.2.1
+定义输出操作符:  
+```
+ostream& operator<<(ostream& out, const Sales_item& s) {
+    out << s.isbn << "\t" << s.units_sold << "\t"
+        << s.revenue << "\t" << s.avg_price(); 
+    return out; 
+}
+```
+
+尽量少做格式化, 不输出换行符.  
+
+#### 14.2.2
+定义输入操作符: 必须处理错误和文件结束  
+```
+isteam& operator>>(istream& in, Sales_item& s) {
+    double price; 
+    in >> s.isbn >> s.units_sold >> price; 
+    if (in)
+        s.revenue = s.units_sold * price; 
+    else 
+        s = Sales_item(); // reset object to default
+    return in; 
+}
+```
+
+错误可能有1. 数据类型错误; 2. 文件结束或错误.  
+错误只需检查一次.  
+如果输入失败, 确保对象处于可用和一致的状态, 即没有部分数据成员成功初始化而其他的没有.  
+有事还需要进行附加检查, 失败的话可以设置`failbit`.  
+
+### 14.3
+定义加法操作符:  
+```
+Sales_item operator+(const Sales_item &lhs, const Sales_item &rhs) {
+    Sales_item ret(lhs); 
+    ret += rhs; 
+    return ret; 
+}
+```
+
+#### 14.3.1
+定义相等操作符:  
+```
+inline bool operator==(const Sales_item &lhs, const Sales_item &rhs) {
+    return lhs.units_sold == rhs.units_sold && lhs.revenue == rhs.revenue &&
+           lhs.same_isbn(rhs); 
+}
+
+inline bool operator!=(const Sales_item &lhs, const Sales_item &rhs) {
+    return !(lhs == rhs); 
+}
+```
+
+#### 14.3.2
