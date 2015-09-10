@@ -4258,3 +4258,89 @@ inline bool operator!=(const Sales_item &lhs, const Sales_item &rhs) {
 ```
 
 #### 14.3.2
+不应该为`Sales_item`类定义`<`操作符, 因为两个对象如互不小于对方, 应为相等的对象, 然而这个逻辑对`Sales_item`难以实现.  
+使用单独的命名函数来比较`Sales_item`对象较好.  
+
+### 14.4
+类的操作符必须是类的成员, 以便编译器决定是否需要合成一个.  
+
+可以用不同的形参表重载:  
+```
+class string {
+public: 
+    string& operator=(const string&); 
+    string& operator=(const char*); 
+    string& operator=(const char); 
+}; 
+```
+
+### 14.5
+下标操作符必须是类成员函数.  
+下标操作符可同时返回左值或右值, 所以返回的应该是引用.  
+应用于`const`对象时应返回`const`引用, 不然应返回普通引用, 所以要有重载版本.  
+
+```
+class Foo {
+public: 
+    int &operator[] (const size_t); 
+    const int &operator[] (cosnt size_t) const; 
+private: 
+    vector<int> data; 
+}; 
+
+int& Foo::operator[] (const size_t index) {
+    return data[index]; // need range check
+}
+
+const int& Foo::operator[] (const size_t index) const {
+    return data[index]; // need range check
+}
+```
+
+### 14.6
+箭头操作符必须为类成员函数, 解引用操作符不必须, 但一般作为成员函数.  
+常出现在实现智能指针的类中.  
+
+定义一个指向`Screen`类的`ScreenPtr`类型指针. 该指针总是指向一个`Screen`对象, 所以构造函数必须要有`Screen`对象指针.   
+当指向莫基础对象的最后一个`ScreenPtr`消失后, 删除基础对象.  
+
+箭头操作符并非二元操作符, 因为右操作数是标识符而非表达式. 标识符无法做形参, 由编译器处理获取成员的工作.  
+例如`point->action();`其实为`(point->action)();` 编译器求值步骤:  
+
+1. 如果`point`是一个指针, 指向有`action`成员的对象, 则调用`action`.  
+2. 不然如果`point`是一个定义了`->`操作符的对象, 则执行`point.operator->()->action`.  
+3. 不然出错.  
+
+所以重载箭头操作符需返回指针或定义了箭头操作符的类.  
+- 当返回指针时, 所指对象须有调用的成员, 不然出错.  
+- 如返回类, 则编译器递归调用箭头操作符. 利用类里的箭头操作符, 找到所指的类, 直到返回指向指定成员的指针, 或出错.  
+
+```
+class ScrPtr {
+    friend class ScreenPtr; 
+    Screen *sp; 
+    size_t use; 
+    ScrPtr(Screen *p): sp(p), use(1) { }
+    ~ScrPtr() {delete sp; }
+}; 
+
+class ScreenPtr {
+public: 
+    ScreenPtr(Screen *p): ptr(new StrPtr(p)) { }
+    ScreenPtr(const Screen &orig): ptr(orig.ptr) {++ptr->use; }
+    ScreenPtr& operator=(const ScreenPtr&); 
+    ~ScreenPtr() {if (--ptr->use == 0) delete ptr; }
+    Screen& operator*() {return *ptr->sp; }
+    Screen* operator->() {return ptr->sp; }
+    const Screen& operator*() const {return *ptr->sp; }
+    const Screen& operator->() const {return ptr->sp; }
+private: 
+    ScrPtr *ptr; 
+}; 
+
+ScreenPtr ps(new Screen(4, 4)); 
+ScreenPtr p(&myScreen); 
+p->display(count); 
+```
+
+### 14.7
