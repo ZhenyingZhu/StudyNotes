@@ -4344,3 +4344,95 @@ p->display(count);
 ```
 
 ### 14.7
+迭代器类型需有自增/减操作符, 且提供访问检查.  
+理想情况下带访问检查的指针类可用于任意类型数组.  
+
+```
+class CheckedPtr {
+public: 
+    CheckedPtr(int *b, int *e): beg(b), end(e), curr(b) { }
+    CheckedPtr& operator++(); // prefix
+    CheckedPtr& operator--(); 
+    CheckedPtr& operator++(int); // postfix
+    CheckedPtr& operator--(int); 
+private: 
+    int* beg; 
+    int* end; 
+    int* curr; 
+}; 
+
+CheckedPtr& CheckedPtr::operator++() {
+    if (curr == end)
+        throw out_of_range("increment past the end of CheckedPtr"); 
+    ++curr; 
+    return *this; 
+}
+
+CheckedPtr& CheckedPtr::operator--() {
+    if (curr == begin)
+        throw out_of_range("decrement past beginning of CheckedPtr"); 
+    --curr; 
+    return *this; 
+}
+
+CheckedPtr checkedPtr::operator++(int) {
+    CheckPtr ret(*this); 
+    ++*this; // call operator++() so check the range
+    return ret; 
+}
+
+CheckedPtr checkedPtr::operator--(int) {
+    CheckPtr ret(*this); 
+    --*this; 
+    return ret; 
+}
+
+CheckedPtr parr(ia, ia + size); 
+parr.operator++(); 
+parr.operator++(0); 
+```
+
+自增, 自减操作符不必须是类成员函数, 但是它们改变对象状态, 所以多作为类成员.  
+
+需定义做为前缀和后缀的两种重载. 前缀用`operator++()`, 后缀用`operator++(int)`. 其中的`int`形参无意义.  
+后缀返回的是自增/减前的原值, 并不是引用.  
+
+### 14.8
+当一个类表示某种操作时, 重载调用操作符. 这种类为function object(函数对象).  
+
+```
+struct absInt {
+    int operator() (int val) {
+        return val < 0 ? -val : val; 
+    }
+}; 
+
+int i = -42; 
+absInt absObj; 
+unsigned int ui = absObj(i); // but it is an object
+```
+
+函数调用符函数必须为成员函数.  
+由不同数目的形参可重载不同的函数调用符函数.  
+
+#### 14.8.1
+函数对象常作为通用算法的实参.  
+
+可以直接将函数作为实参, 但是用函数对象将更灵活.  
+
+```
+class GT_cls {
+public: 
+    GT_cls(size_t val = 0): bound(val) { }
+    bool operator() (const string &s) {
+        return s.size() >= bound; 
+    }
+private: 
+    std::string::size_type bound; 
+}; 
+
+cout << count_if(words.begin(), words.end(), GT_cls(6)) << endl; 
+```
+
+#### 14.8.2
+
