@@ -1,3 +1,21 @@
+
+
+increase bash scroll history: EDIT->Profile Perference->Scrolling   
+
+*.cpp doesn't need `#IFNDEF` at all*.  
+
+
+pickle module: http://stackoverflow.com/questions/1939058/simple-example-of-use-of-setstate-and-getstate  
+
+
+Multi threads use same heap of memory, while multi process use different heap of memory.  
+Multi process for vpc combined  
+https://docs.python.org/2/library/multiprocessing.html  
+
+Best Python IDE: pycharm.  
+Add an import path: File -> Settings -> Project:[Project Name] -> Project Structure -> Add Content Root -> Source Folder
+
+
 ```
 git stash save
 git pull -- rebase
@@ -320,6 +338,7 @@ if `sudo -u user` failed, try `sudo logbash` and in the new bash, run that again
 
 [pull from fork](http://stackoverflow.com/questions/14383212/git-pulling-a-branch-from-another-repository)
 ```
+git remote add fork *.git
 git fetch fork
 git checkout -b personal_branch fork/branch
 ```
