@@ -1,3 +1,6 @@
+`git checkout commit#` to go back to a commit, and `git checkout branch_name` to go back to head.  http://stackoverflow.com/questions/10228760/fix-a-git-detached-head  
+
+
 http://stackoverflow.com/questions/4114095/revert-to-a-previous-git-commit  
 
 increase bash scroll history: EDIT->Profile Perference->Scrolling   
