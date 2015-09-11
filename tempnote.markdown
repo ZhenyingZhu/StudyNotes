@@ -1,4 +1,4 @@
-
+http://stackoverflow.com/questions/4114095/revert-to-a-previous-git-commit  
 
 increase bash scroll history: EDIT->Profile Perference->Scrolling   
 
