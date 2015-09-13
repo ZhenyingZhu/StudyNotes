@@ -4435,4 +4435,21 @@ cout << count_if(words.begin(), words.end(), GT_cls(6)) << endl;
 ```
 
 #### 14.8.2
+函数对象: 在`functional`头文件中定义  
+- `plus<Type>`
+- `minus<Type>`
+- `multiplies<Type>`
+- `divides<Type>`
+- `modulus<Type>`
+- `negate<Type>`
+- `equal_to<Type>`
+- `not_equal_to<Type>`
+- `greater<Type>`
+- `greater_equal<Type>`
+- `less<Type>`
+- `less_equal<Type>`
+- `logical_and<Type>`
+- `logical_or<Type>`
+- `logical_not<Type>`
+
 
