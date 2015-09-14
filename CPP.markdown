@@ -4435,13 +4435,13 @@ cout << count_if(words.begin(), words.end(), GT_cls(6)) << endl;
 ```
 
 #### 14.8.2
-函数对象: 在`functional`头文件中定义  
-- `plus<Type>`
+函数对象: 在`functional`头文件中定义. 每一个都是类模板.    
+- `plus<Type>`: 是binary function-object(二元函数对象). 
 - `minus<Type>`
 - `multiplies<Type>`
 - `divides<Type>`
 - `modulus<Type>`
-- `negate<Type>`
+- `negate<Type>`: 是unary function-object(一元函数对象).  
 - `equal_to<Type>`
 - `not_equal_to<Type>`
 - `greater<Type>`
@@ -4450,6 +4450,154 @@ cout << count_if(words.begin(), words.end(), GT_cls(6)) << endl;
 - `less_equal<Type>`
 - `logical_and<Type>`
 - `logical_or<Type>`
-- `logical_not<Type>`
+- `logical_not<Type>`: 一元函数对象.  
+
+函数对象类的模板决定形参类型.  
+```
+plus<int> intAdd; 
+int sum = intAdd(10, 20); 
+```
+
+算法中使用函数对象: 按降序排列  
+```
+sort(svec.start(), svec.end(), greater<string>()); 
+```
+
+#### 14.8.3
+function adapter(函数适配器): 用于特化和扩展函数对象.  
+- binder(绑定器): 一种适配器, 将一个操作数绑定到给定值, 将二元函数对象转换为一元. 标准库中定义了`bind1st`和`bind2nd`, 分别将第一个和第二个形参绑定.  
+- negator(求反器): 也是适配器. 将谓词函数的真值求反. 标准库中有`not1`, `not2`, 分别将一元和二元函数对象的真值求反.   
+
+绑定器:  
+```
+count_if(vec.begin(), vec.end(), bind2nd(less_equal<int>(), 10)); 
+```
+
+求反器:  
+```
+count_if(vec.begin(), vec.end(), not1(bind2nd(less_equal<int>(), 10))); 
+```
+因为用了绑定器, `less_equal`降为一元函数对象.  
+
+### 14.9
+可以定义转换操作符, 给定类类型对象, 产生其他类型对象.  
+
+#### 14.9.1
+定义一个安全的保存8位无符号整型的`SmallInt`类.  
+如果全部自己定义, 需实现48个操作符.  
+定义一个从`SmallInt`到`int`的转换, 无需重定义`int`已有的操作.  
+
+#### 14.9.2
+Conversion operator(转换操作符):  
+- 特殊的类成员函数.  
+- 在类定义体内声明.  
+- `operator type(); `: `type`是内置类型名, 类类型名或类类型名别名.  
+- 对除了`void`以外所有可做函数返回类型的类型, 都可定义转换函数.  
+- 不允许转换为数组或函数类型.  
+- 可转换为指针或引用.  
+- 没有返回类型, 形参表为空.  
+- 但是函数体内必须显示返回一个指定类型的值.  
+- 转换操作符通常是`const`, 避免改变被转换的对象.  
+
+```
+class SmallInt {
+public: 
+    SmallInt(int i = 0): val(i) {
+        if (i < 0 || i > 255) 
+            throw std::out_of_range("Bad SmallInt initializer"); 
+    } // convert from int to SmallInt
+    operator int() const {
+        return val; 
+    } // convert from SmallInt to int
+private: 
+    std::size_t val; 
+}; 
+```
+
+可以同时进行一次类类型转换和标准转换:  
+```
+SmallInt si; 
+double dval; 
+si >= dval; 
+
+void calc(SmallInt); 
+short sobj; 
+calc(sobj); 
+```
+编译器自动向精度高的类型转换, `si`先转换为`int`, 然后转换为`double`.  
+`sobj`先转换为`int`, 再转换为`SmallInt`.  
+
+但是不能两次类类型转换:  
+```
+class Integral {
+public: 
+    Integral(int i = 0): val(i) { }
+    operator SmallInt() const {
+        return val % 256; 
+    }
+private: 
+    std::size_t val; 
+}; 
+
+int calc(int); // a function
+Integral intVal; 
+SmallInt si(intVal); // use copy constructor of SmallInt
+```
+不能在需要`int`的地方使用`Integral`.  
+
+#### 14.9.3
+类类型转换容易在编译时出错, 如出现几个类类型转换可以使用.  
+避免定义一个类与两个内置类型的转换.  
+
+当两个类型可以相互转换时, 可能存在二义性, 此时可调用`operator`成员函数来指定用哪个转换.  
+```
+class Integral; 
+class SmallInt {
+public: 
+    SmallInt(Integral); 
+}; 
+class Integral {
+public: 
+    operator SmallInt() const; 
+}; 
+
+void compute(SmallInt); 
+Integral int_val; 
+compute(int_val.operator SmallInt()); 
+compute(SmallInt(int_val)); 
+```
+
+#### 14.9.4
+两个重载函数可以用同一转换函数匹配, 根据转换后或前的标准转换序列等级决定哪个是最佳匹配.  
+如果用不同的转换函数匹配, 则出现二义性. 可用显示强制转换:   
+```
+compute(static_cast<int>(si)); 
+```
+
+多个构造函数的二义性:  
+```
+class SmallInt {
+public: 
+    SmallInt(int); 
+}; 
+class Integral {
+public: 
+    Integral(int); 
+}; 
+
+void manip(const Integral&); 
+void manip(const Integral&); 
+
+manip(SmallInt(10)); 
+```
+
+#### 14.9.5
+使用重载操作符时, 成员函数和非成员函数都在重载函数候选表中.  
+既定义重载操作符又定义类类型转换, 容易产生二义性.  
+
+经验规则:  
+- 不要定义相互转换的类, 即`Foo`有接受`Bar`的构造函数, 就不要定义`Bar`到`Foo`的转换操作符.  
+- 避免到内置算术类型的类类型转换.  
 
 
+## Chapter 15
