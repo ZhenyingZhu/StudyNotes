@@ -4601,3 +4601,12 @@ manip(SmallInt(10));
 
 
 ## Chapter 15
+面向对象编程:  
+- 数据抽象: 类  
+- 继承: 派生类.   
+- 动态绑定: 编译器决定用基类还是派生类中的函数.    
+
+Object-oriented programming(面向对象编程).  
+
+### 15.1
+
