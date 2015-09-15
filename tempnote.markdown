@@ -1,3 +1,7 @@
+`git submodule update --init`  https://devcenter.heroku.com/articles/git-submodules    
+
+`pip freeze` show list.  http://stackoverflow.com/questions/6600878/find-all-packages-installed-with-easy-install-pip  
+
 `git checkout commit#` to go back to a commit, and `git checkout branch_name` to go back to head.  http://stackoverflow.com/questions/10228760/fix-a-git-detached-head  
 
 
