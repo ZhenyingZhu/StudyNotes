@@ -1,3 +1,7 @@
+shell read line by line: http://stackoverflow.com/questions/1521462/looping-through-the-content-of-a-file-in-bash  
+
+grep exclude: https://coderwall.com/p/7nylkw/exclude-directory-from-grep-e-g-git-svn  
+
 `git submodule update --init`  https://devcenter.heroku.com/articles/git-submodules    
 
 `pip freeze` show list.  http://stackoverflow.com/questions/6600878/find-all-packages-installed-with-easy-install-pip  
