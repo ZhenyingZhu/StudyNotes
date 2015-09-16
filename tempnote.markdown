@@ -1,3 +1,24 @@
+```
+zhenyinz@uc4346b7191ad54db70fc:~$ strace ./hello.sh 
+execve("./hello.sh", ["./hello.sh"], [/* 39 vars */]) = -1 EACCES (Permission denied)
+dup(2)                                  = 3
+fcntl(3, F_GETFL)                       = 0x8002 (flags O_RDWR|O_LARGEFILE)
+fstat(3, {st_mode=S_IFCHR|0620, st_rdev=makedev(136, 4), ...}) = 0
+mmap(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7f9511ae0000
+lseek(3, 0, SEEK_CUR)                   = -1 ESPIPE (Illegal seek)
+write(3, "strace: exec: Permission denied\n", 32strace: exec: Permission denied
+) = 32
+close(3)                                = 0
+munmap(0x7f9511ae0000, 4096)            = 0
+exit_group(1)                           = ?
+
+``` 
+`
+
+`lsmod` show Modules that are loaded.  
+
+`last reboot` see the last several reboot time.  
+
 shell read line by line: http://stackoverflow.com/questions/1521462/looping-through-the-content-of-a-file-in-bash  
 
 grep exclude: https://coderwall.com/p/7nylkw/exclude-directory-from-grep-e-g-git-svn  
