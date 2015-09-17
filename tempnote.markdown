@@ -1,3 +1,6 @@
+`sort -kn` start from the nth character.   
+
+
 ```
 zhenyinz@uc4346b7191ad54db70fc:~$ strace ./hello.sh 
 execve("./hello.sh", ["./hello.sh"], [/* 39 vars */]) = -1 EACCES (Permission denied)
