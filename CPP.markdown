@@ -4609,4 +4609,242 @@ manip(SmallInt(10));
 Object-oriented programming(面向对象编程).  
 
 ### 15.1
+Polymorphism(多态): 通过继承而相关联的类型为多态类型. C++中多态性用于通过继承而相关联的类型的引用或指针.   
 
+继承:  
+- 对类型之间的关系建模.  
+- 共享公共的东西, 特化本质上不同的东西.  
+- derived class(派生类)能继承base class(基类)  
+- inheritance hierarchy(继承层次): 有一个根类, 其他类直接或间接继承根类.  
+- C++中基类可指出派生类要重定义的函数, 即定义为`virtual`的函数.  
+- 基类希望派生类继承的函数不能定义为虚函数.  
+
+Dynamic binding(动态绑定): 可使用继承层次中任意类型的对象而无需知道具体类型.  
+
+```
+void print_total(ostream &os, const Item_base &item, size_t n) {
+    os << "ISBN: " << item.book() << "\tnumber sold: " << n << "\ttotal price: " << item.net_price(n) << endl; 
+}
+``` 
+当传入`Item_base`的派生类`Bulk_item`对象时, 该函数也能执行.  
+`net_price()`是虚函数且形参是引用, 故对`net_price()`的调用在运行时确定. 如果传入的是`Item_base`类对象, 调用该类的`net_price()`, 反之亦然.  
+
+### 15.2
+
+#### 15.2.1
+```
+class Item_base {
+public: 
+    Item_base(const string& book = "", double sales_price = 0.0): isbn(book), price(sales_price) { }
+    std::string book() {return isbn}; 
+    virtual double net_price(std::size_t n) const {
+        return n * price; 
+    }
+    virtual ~Item_base() { }
+private: 
+    std::string isbn; 
+protected: 
+    double price; 
+}; 
+``` 
+
+继承层次的根类一般都要定义虚析构函数.  
+
+保留字`virtual`启用动态绑定.  
+非虚函数的调用在编译时确定.  
+任何非`static`的成员函数都可以是虚函数.  
+保留字只在类定义体中的成员函数声明中出现.  
+
+Protected access label(受保护的访问标号): 类的成员允许派生类访问但是禁止普通用户访问.  
+所以派生类只能用`book()`去访问`isbn`但是可直接访问`price`.  
+
+#### 15.2.2
+派生类只能通过派生类对象访问基类的`protected`成员, 而不能访问基类对象的该成员.  
+
+```
+void Bulk_item::memfcn(const Bulk_item &d, const Item_base &b) {
+    double ret = price; // price is inherit from Item_base
+    ret = d.price; // can access price of Bulk_item, but not b.price 
+}
+```
+
+设计成员的准则:  
+- 接口函数为`public`.  
+- 数据一般不应为`public`.  
+- 提供给派生类的接口是`protected`和`public`成员.  
+
+#### 15.2.3
+class derivation list(类派生列表): 定义派生类时指定基类.  
+`class classname: access-label base-class`  
+
+Access-label: 可以是`public`, `protected`, `private`, 决定对继承成员的访问权限, 如要继承基类的接口, 用`public`派生.  
+可以指定多个基类.  
+
+```
+class Bulk_item: public Item_base {
+public: 
+    double net_price(std::size_t) const; 
+private: 
+    std::size_t min_qty; 
+    double discount; 
+}; 
+```
+
+该`Bulk_item`类有四个数据成员: `isbn`, `price`, `min_qty`, `discount`.  
+
+派生类中的虚函数的声明须与基类的一致, 除了返回类型是基类引用或指针的情况. 此时派生类的返回类型可以是派生类或基类的指针或引用.  
+就算派生类中定义虚函数时没有添加`virtual`, 该函数仍是虚函数.  
+
+```
+double Bulk_item::net_price(size_t cnt) const {
+    if (cnt >= min_qty) {
+        return cnt * (1 - discount) * price; 
+    } else {
+        return cnt * price; 
+    }
+}
+```
+
+已定义的类才能作为基类. 所以也不能继承自己.  
+
+派生类也可以作为基类有别的类来继承.  
+最底层的派生类包含其每个immediate-base(直接基类)和indirect-base(间接基类)的子对象.  
+
+前向声明一个派生类, 即只声明不定义, 不能包含派生列表.  
+```
+class Bulk_item; 
+```
+
+#### 15.2.4
+触发动态绑定, 需要1. 虚函数; 2. 通过基类类型的引用或指针进行调用.  
+
+```
+double print_total(const Item_base&, size_t); 
+Item_base item; 
+print_total(item, 10); 
+Item_base *p = &item; 
+
+Bulk_item bulk; 
+print_total(bulk, 10); // will only use Item_base part
+p = &bulk; // only point to Item_base part
+```
+
+static type(静态类型)在编译时可知; dynamic type(动态类型)在编译时不可知.   
+引用和指针的静态类型可以与动态类型不同. C++用此支持多态.  
+无法确定基类的指针或引用指向的是哪种静态类型. 编译器都将其看作基类.  
+编译器生成代码, 在运行时确定调用哪个与动态类型对应的函数.   
+如`print_total(ostream&, const Item_base &item, size_t)`, 由运行时绑定到`item`的实参类型决定函数体中`item.net_price(size_t)`调用的是哪个版本.  
+
+非虚函数永远使用基类中的版本; 对象的静态类型和动态类型相同. 所以这两种调用不会触发动态绑定.  
+
+覆盖虚函数机制: 使用作用域操作符.  
+```
+Item_base *baseP = &derived; 
+double d = baseP->Item_base::net_price(42); 
+```
+
+只有成员函数中的代码才应使用作用域操作符覆盖虚函数机制.  
+常用于派生类虚函数需要调用基函数的版本. 可添加自己的部分, 再去调用基函数中的部分而不是重新实现.  
+这种情况下如果忘记作用域, 则会产生一个自身调用, 导致无穷递归.  
+
+虚函数可以有默认实参.  
+默认值由调用该函数的类型决定, 与对象的动态类型无关.  
+如果用基类的指针或引用调用, 则用的是基类的版本.  
+如果用派生类的指针或引用调用, 则用派生类的版本.  
+如果基类和派生类的默认实参值不同, 则会出问题.  
+
+#### 15.2.5
+对类所继承的成员访问由基类和派生类中的访问级别共同控制.  
+派生类可以进一步限制但是不能放松.  
+Public inheritance(公用继承): 基类的`public`和`protected`成员也是派生类中的`public`和`protected`成员.  
+Protected inheritance(受保护继承): 基类的`public`和`protected`成员都是派生类中的`protected`成员.  
+Private inheritance(私有继承): 基类的所有成员都是派生类中的`private`成员.  
+
+```
+class Base {
+public: 
+    void basemem(); 
+protected: 
+    int i; 
+}; 
+struct Private_derived: private Base {
+    int use_base() {return i; } // it is private
+}; 
+
+Private_derived d; // d cannot access basemem()
+
+struct Derived_from_Private: public Private_derived {
+    // cannot access i here
+}; 
+
+class Derived: private Base {
+public: 
+    using Base::basemem(); // maintain access level
+}; 
+```
+
+公用继承是使用继承.  
+受保护和私有继承称为实现继承, 可使用基类成员但是不能作为接口.   
+
+派生类与基类的关系是Is A.  
+Has A关系的对象应组合起来成为一个新类.  
+
+关键字`using`可以恢复被受保护和私有继承取消的权限, 恢复为基类中的权限.  
+
+`class`保留字定义的派生类默认是`private`继承. 然而`class classname: public base-class {};` 仍是`public`继承.  
+`struct`默认是`public`继承.  
+
+#### 15.2.6
+友元可以访问类的`private`和`protected`数据.  
+友元不能继承. 基类的友元对派生类的成员没有特殊访问权限. 同时被授予友元的基类的派生类也不能访问.  
+
+派生类须显示地声明自己的友元.  
+
+#### 15.2.7
+基类的`static`成员, 无论有多少个派生类, 该成员都只有一个实例.   
+如果该成员不是`private`的, 则基类和派生类都能访问该成员.  
+既可以用作用域操作符, 也可以用点或箭头操作符访问.  
+
+```
+struct Base {
+    static void statmem(); 
+}; 
+struct Derived : Base {
+    void f(const Derived&); 
+}; 
+void Derived::f(const Derived &derived_obj) {
+    Base::statmem(); 
+    Derived::statmem(); 
+    derived_obj.statmem(); 
+    statmem(); // this
+}
+```
+
+### 15.3
+存在从派生类型引用/指针到基类型引用/指针的自动转换. 但是没有相反的转换.  
+一般可以用派生类对象对基类对象初始化或赋值.  
+没有从派生类对象到基类对象的直接转换.  
+
+#### 15.3.1
+将派生类对象传给接受基类引用的函数时, 传递的是引用, 对象仍是派生类型.  
+将派生类对象传递给接受基类对象的函数时, 派生类的基类部分被复制到形参.  
+
+初始化或赋值实际上是在调用函数.  
+显式定义基类如何用派生类初始化或赋值不常见.  
+由于复制构造函数和赋值操作符常用引用作为形参, 所以可以使用派生类对象.  
+
+派生类到基类的转换是否可以访问取决于派生列表中的访问标号.  
+`private`或`protected`继承的派生类对象不能转换为基类对象.<b>?</b>  
+`private`继承的派生类不能转换为基类.<b>?</b>   
+
+#### 15.3.2
+需要派生类对象的地方不能用基类对象.  
+
+```
+Bulk_item bulk; 
+Item_base *itemP = &bulk; // Bulk_item *bulkP cannot = itemP
+```
+
+如果确定转换是安全的, 可以使用`static_cast`或`dynamic_cast`强制转换.  
+
+### 15.4
