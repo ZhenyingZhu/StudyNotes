@@ -1,3 +1,9 @@
+svn conflict solve: http://stackoverflow.com/questions/2113430/purpose-of-the-mine-full-and-theirs-full-commands  
+
+create UML graph from codes: http://bouml.fr/features.html  
+
+under /var/run/xxx.pid record pid of xxx, which should be same as `pgrep xxx`  
+
 `sort -kn` start from the nth character.   
 
 
