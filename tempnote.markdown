@@ -1,3 +1,5 @@
+`svn checkout url://repository/path@1234` or `svn checkout -r 1234 url://repository/path` svn checkout a specific reversion.  
+
 svn conflict solve: http://stackoverflow.com/questions/2113430/purpose-of-the-mine-full-and-theirs-full-commands  
 
 create UML graph from codes: http://bouml.fr/features.html  
