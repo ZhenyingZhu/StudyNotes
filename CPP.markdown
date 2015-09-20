@@ -4848,3 +4848,11 @@ Item_base *itemP = &bulk; // Bulk_item *bulkP cannot = itemP
 如果确定转换是安全的, 可以使用`static_cast`或`dynamic_cast`强制转换.  
 
 ### 15.4
+构造函数和复制控制成员不能继承. 如果不定义, 就使用合成版本.  
+
+#### 15.4.1
+构造函数可以为`protected`或`private`的.  
+只希望派生类使用的构造函数定义为`protected`.  
+
+#### 15.4.2
+派生类的构造函数受继承关系影响.  
