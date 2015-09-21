@@ -4855,4 +4855,174 @@ Item_base *itemP = &bulk; // Bulk_item *bulkP cannot = itemP
 只希望派生类使用的构造函数定义为`protected`.  
 
 #### 15.4.2
-派生类的构造函数受继承关系影响.  
+派生类的构造函数受继承关系影响.   
+
+派生类的合成默认构造函数还用基类的默认构造函数初始化基类部分.  
+构造函数的函数体为空, 隐式地调用了`Item_base`的默认构造函数.  
+为初始化基类部分, 将基类包含在初始化列表中.  
+```
+class Bulk_item: public Item_base {
+public: 
+    Bulk_item(): min_qty(0), discount(0.0) { }
+    Bulk_item(const std::string &book, double sales_price, 
+              std::size_t qty = 0, double disc_rate = 0.0): 
+        Item_base(book, sales_price), min_qty(qty), discount(disc_rate) { }
+private: 
+    std::size_t min_qty; 
+    double discount; 
+    
+}; 
+```
+
+注意初始化列表不决定初始化的顺序, 总是基类先初始化.  
+
+只能初始化直接继承的类, 间接继承的类的初始化由直接继承的类的构造函数完成.  
+
+refactoring(重构):  
+- 重新定义类层次.  
+- 将操作和数据从一个类移到另一个类.  
+
+重构虽然改变了继承层次, 但是类的代码未必需要重写. 但是一定需要重编译.  
+
+```
+class Disc_item: public Item_base {
+public: 
+    Disc_item(const std::string &book = "", double sales_price = 0.0, 
+              std::size_t qty = 0, double disc_rate = 0.0): 
+        Item_base(book, sales_price), quantity(qty), discount(disc_rate) { }
+protected: 
+    std::size_t qty; 
+    double discount; 
+    
+}; 
+
+class Bulk_item: public Disc_item {
+public: 
+    Bulk_item(const std::string &book = "", double sales_price = 0.0, 
+              std::size_t qty = 0, double disc_rate = 0.0): 
+        Disc_item(book, sales_price, qty, disc_rate) { }
+    double net_price(std::size) const; 
+}; 
+```
+`Bulk_item`不能初始化`Item_base`.  
+
+#### 15.4.3
+类是否需要定义复制控制函数取决于类自身的直接成员, 与派生类或基类无关.  
+
+如果定义自己的复制构造函数, 应显示使用基类的复制构造函数.  
+赋值操作符一样.  
+```
+class Base { }; 
+class Derived: public Base {
+public: 
+    Derived(const Derived &d): Base(d) { }
+    Derived& operator=(const Derived&); 
+}; 
+
+Derived& Derived::operator=(const Derived &rhs) {
+    if (this != rhs)
+        Base::operator=(rhs); 
+    return this; 
+}
+```
+如果不是调用基类复制构造函数, 则运行基类的默认构造函数, 导致基类的部分是初始值而非`d`的值.  
+
+派生类的析构函数不负责撤销基类对象的成员.  
+撤销顺序为先运行派生类的析构函数, 然后是基类的析构函数.  
+编译器自动调用基类的析构函数而不需显式调用.  
+```
+class Derived: public Base {
+public: 
+    ~Derived() { }
+}; 
+```
+
+#### 15.4.4
+删除指向动态分配对象的指针时, 如果删除基类指针, 则需要运行基类的析构函数, 然而该指针可能指向派生类, 其中并未定义基类的析构函数.  
+所以基类中的析构函数必须为虚函数. 运行哪个析构函数由指针所指对象类型决定.  
+继承层次的根类一定要有个虚析构函数, 这样所有的派生类都有虚析构函数.  
+根类如果定义了一个没有任何操作的析构函数, 可以不定义复制构造函数或赋值操作符.  
+```
+class Item_base {
+public: 
+    virtual ~Item_base() {}
+}; 
+```
+
+构造函数不能定义为虚函数, 因为构造函数运行前对象动态类型还不完整, 没有基类的部分.  
+赋值操作符可以定义为虚函数, 但是没有必要. 因为形参是自己的类型. 如果定义为虚函数只能使用基类的类型.  
+
+#### 15.4.5
+运行构造函数或析构函数期间, 对象是不完整的. 此时编译器将派生类对象当作基类对象.  
+如构造函数或析构函数中调用或间接调用虚函数, 则虚函数绑定的是函数自身类型定义的版本.<b>?</b>  
+
+### 15.5
+派生类的作用域嵌套在基类作用域内.  
+派生类作用域中找不到的名字, 会去基类中查找.  
+
+#### 15.5.1
+名字查找在编译时发生, 而非动态绑定的.  
+在基类中不能使用派生类的成员.  
+
+#### 15.5.2
+与基类成员同名的派生类将屏蔽对基类成员的直接访问.  
+所以尽量避免名字冲突.  
+
+#### 15.5.3
+即使函数原型不同, 派生类的函数仍会屏蔽基类的.  
+```
+struct Base {
+    int memfcn();  
+}; 
+struct Derived: Base {
+    int memfcn(int); 
+}; 
+Base b; 
+Derived d; 
+d.Base::memfcn(); 
+```
+
+无论虚或非虚函数都可以重载.  
+派生类如果想使用基类的所有重载函数, 一个都不要定义自己的重载版本就能使用.  
+派生类如果定义了一个重载基类的函数, 则需定义其他所有的函数, 或者使用`using`声明.  
+`using`一个基类的函数名可将该函数的所有重载版本加到作用域内.  
+
+#### 15.5.4
+动态绑定时, 基类的引用或指针调用虚成员, 编译器在基类中查找函数.  
+
+```
+class Base {
+public: 
+    virtual int fcn(); 
+}; 
+class D1: public Base {
+public: 
+    int fcn(int); 
+}; 
+class D2: public D1 {
+public: 
+    int fcn(int); 
+    int fcn(); // virtual function derived from Base
+}; 
+
+Base bobj; D1 d1obj; D2 d2obj; 
+Base *bp1 = &bobj, *bp2 = &d1obj, *bp3 = &d2obj; 
+bp1->fcn(); 
+bp2->fcn(); 
+bp3->fcn(); 
+```
+虽然`D1`定义的`int fcn(int)`屏蔽了虚函数, 但是虚函数还是继承了, 只是无法通过`D1`调用.  
+`D2`从`D1`处继承了`int fcn()`虚函数, 且重定义了`int fcn(int)`函数.  
+当用基类的指针或引用去调用时, 编译器去基类中查找而忽略派生类. 找到后基于指针或引用的实际类型去调用函数. 由于`D1`没有定义该虚函数, 调用基类的版本.   
+
+确定函数调用的步骤:  
+
+1. 确定进行函数调用的对象, 引用或指针的静态类型.  
+2. 在该类中查找函数, 如果找不到, 去直接基类中查找, 依次向上直到找到或到达根类为止.  
+3. 找到后进行常规类型检查.  
+4. 如函数调用合法, 编译器生成代码. 根据情况动态绑定.  
+
+### 15.6
+纯虚函数
+
+
