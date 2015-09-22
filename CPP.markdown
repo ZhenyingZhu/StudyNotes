@@ -5023,6 +5023,34 @@ bp3->fcn();
 4. 如函数调用合法, 编译器生成代码. 根据情况动态绑定.  
 
 ### 15.6
-纯虚函数
+当一个类型作为继承层次的中间层, 而不希望用户定义该类型对象, 则默认情况其中继承自基类的函数仍是基类的操作.  
+当不希望用户创建这样的对象时, 可以使其中的函数定义为pure virtual function(纯虚函数).  
+纯虚函数为派生类提供了可以覆盖的接口, 但该类中的版本绝不会被调用.  
+用户也不能创建该类型对象. 该类型为abstract base class(抽象基类).    
 
+```
+class Disc_item: public Item_base {
+public: 
+    double net_price(std::size_t) const = 0; 
+}; 
 
+Bulk_item bulk; // cannot defice Disc_item
+```
+
+### 15.7
+将派生类对象保存到基类类型容器或内置数组中时, 只有派生类对象的基类部分被保存.  
+
+### 15.8
+C++不能使用对象支持面向对象的编程, 必须使用指针或引用.  
+```
+void get_price(Item_base object, const Item_base *pointer, const Item_base &reference) {
+    // always use Item_base::net_price
+    cout << object.net_price(1) << endl; 
+    // now it is object oriented. which version is determined at run time
+    cout << pointer->net_price(1) << endl; 
+    cout << reference.net_price(1) << endl; 
+}
+```
+
+为减轻使用指针或引用的负担, 定义cover(包装)类或handle(句柄)类.  
+- 句柄类存储和管理基类指针. 
