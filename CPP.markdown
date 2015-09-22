@@ -3985,7 +3985,7 @@ public:
 
 ### 13.4
 消息处理示例:  
-![IO Classes](./CPP_files/Message_class_design.png)  
+![Message Class Design](./CPP_files/Message_class_design.png)  
 
 ```
 class Message {
@@ -5053,4 +5053,131 @@ void get_price(Item_base object, const Item_base *pointer, const Item_base &refe
 ```
 
 为减轻使用指针或引用的负担, 定义cover(包装)类或handle(句柄)类.  
-- 句柄类存储和管理基类指针. 
+- 句柄类存储和管理基类指针.  
+- 包装了继承层次的句柄通常表现得像一个智能指针或一个值.  
+- 句柄类决定句柄接口是否屏蔽继承层次. 如不屏蔽, 用户须了解和使用基本层次中的对象.  
+
+#### 15.8.1
+定义指针型句柄类, 可使该类绑定到基类对象. 用户不必管理句柄指向的对象, 所以能得到多态.   
+```
+Sales_item item(Bulk_item("0-201-82470-1", 35, 3, .20)); 
+item->net_price(); 
+```
+
+用指针指向只用计数, 以共享计数器.  
+![Handle Class Design](./CPP_files/Handle_class_design.png)  
+
+```
+class Sales_item {
+public: 
+    Sales_item(): p(0), use(new std::size_t(1)) { }
+    Sales_item(const Item_base&); 
+    Sales_item(const Sales_item &i): p(i.p), use(i.use) { ++*use; }
+    ~Sales_item() { decr_use(); }
+    Sales_item& operator=(const Sales_item&); 
+    const Item_base *operator->() const {
+        if (p) return p; 
+        else throw std::logic_error("Unbound Sales_item"); 
+    }
+    const Item_base &operator.() const {
+        if (p) return *p; 
+        else throw std::logic_error("Unbound Sales_item"); 
+    }
+private: 
+    Item_base *p; 
+    std::size_t *use; 
+    void decr_use() {
+        if (--*use == 0) {
+            delete p; 
+            delete use; 
+        }
+    }
+}; 
+
+Sales_item& Sales_item::operator=(cons Sales_item &rhs)  {
+    ++*rhs.use; 
+    decr_use(); 
+    p = rhs.p; 
+    use = rhs.use; 
+    return *this; 
+}
+```
+
+只定义操作符的`const`版本, 是因为基类`Item_base`层次中的成员都是`const`成员.  
+用`Item_base`作为形参的构造函数将分配适当类型的新对象并将形参复制到新分配的对象中.   
+
+#### 15.8.2
+句柄类需要在不知道对象确切类型时分配已知对象的新副本.  
+定义虚函数进行clone(复制)可解决.  
+从基类开始, 在继承层次的每个层次中添加`clone`. 基类中该函数必须是虚函数.  
+```
+class Item_base {
+public: 
+    virtual Item_base* clone() const {
+        return new Item_base(*this); 
+    }
+}; 
+
+class Bulk_item: public Item_base {
+public: 
+    Bulk_item* clone() const {
+        return new Bulk_item(*this); 
+    }
+}; 
+
+Sales_item::Sales_item(const Item_base &item): p(item.clone()), use(new std::size_t(1)) { }
+``` 
+
+重定义`clone`虚函数是个例外, 不需要保证返回类型与基类相同.  
+如果虚函数的基类实例返回类类型的指针或引用, 则该虚函数的派生类实例可以返回基类实例返回类型的派生类.  
+
+#### 15.8.3
+为`Sales_item`句柄类定义小于操作符不合理, 因为当用作关键字时, `isbn`相同即相同, 但是平时却是另外的比较方案.  
+
+```
+inline bool compare(const Sales_item &lhs, const Sales_item &rhs) {
+    return lhs->book() < rhs->book(); 
+}
+```
+
+可以在容器的每个操作中添加该算法, 但是这样容易出错. 将该算法作为容器的一部分存储更好.  
+容器需要知道元素类型, 也需要知道比较器类型.  
+```
+typedef bool (*comp)(const Sales_item&, const Sales_item&); // a function type pointer
+std::multiset<Sales_item, Comp> items(compare); // use compare to compare them
+```
+
+跟踪销售并计算购买价格:  
+```
+class Basket {
+    typedef bool (*Comp)(const Sales_item&, const Sales_item&); 
+public: 
+    typedef std::multiset<Sales_item, Comp> set_type; 
+    typedef set_type::size_type size_type; 
+    typedef set_type::const_iterator const_iter; 
+    Basket(): items(compare) { }
+    void add_item(const Sales_item &item) {
+        items.insert(item); 
+    }
+    size_type size(const Sales_item &i) const {
+        return items.count(i); 
+    }
+    double total() const; // total price for the basket
+private: 
+    std::multiset<Sales_item, Comp> items; 
+}; 
+
+double Basket::total() const {
+    double sum = 0.0; 
+    for (const_iter iter = items.begin(); iter != items.end(); iter = items.upper_bound(*iter)) {
+        sum += (*iter)->net_price(items.count(*iter)); 
+        
+    }
+    return sum; 
+}
+```
+
+`multiset`的`upper_bound`函数可返回第一个与实参不同的对象的迭代器.  
+
+### 15.9
+
