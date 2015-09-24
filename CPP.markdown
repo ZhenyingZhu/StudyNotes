@@ -5180,4 +5180,15 @@ double Basket::total() const {
 `multiset`的`upper_bound`函数可返回第一个与实参不同的对象的迭代器.  
 
 ### 15.9
+为`TextQuery`增加表达式查询功能.  
 
+#### 15.9.1
+方案1: 从`TextQuery`类派生出查询类: 缺陷在于非查询不是一种查询, 而是查询的取反.  
+方案2: 为每个查询建模为独立的类, 共享一个基类, 用于建立表达式. 对`TextQuery`对象中的文件进行查询.  
+
+选用方案2. 因为查询类共享共同的接口, 所以定义抽象基类`Query_base`.  
+因为单词查询和取反查询有一个操作数, 而与和或查询有两个操作数, 所以类的继承层次为:  
+
+![Query_base Design](./CPP_files/Query_baseDesign.png)  
+ 
+#### 15.9.2
