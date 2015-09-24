@@ -5192,3 +5192,50 @@ double Basket::total() const {
 ![Query_base Design](./CPP_files/Query_baseDesign.png)  
  
 #### 15.9.2
+用户级代码不能直接使用继承层次.  
+定义一个句柄类`Query`, 用以隐藏继承层次.  
+调用方式: `Query q = Query("a") & Query("b") | Query("c"); `  
+
+#### 15.9.3
+实现`Query_base`类.  
+将接口成员声明为`private`的纯虚函数, 并添加友元`Query`, 使得该类为抽象类.  
+用户和派生类只能通过`Query`句柄来访问接口.  
+虚析构函数和类型别名定义为`protected`的是为了让派生类可以使用.  
+不定义构造函数, 因而派生类能够隐式使用派生类的构造函数.  
+
+#### 15.9.4
+`Query`类只为`Query_base`继承层次提供接口. 用户不能直接访问其派生类的任何成员.  
+只通过`Query`句柄的操作创建`Query_base`的派生类对象.  
+
+```
+inline Query operator~(const Query &oper) {
+	return new NotQuery(oper); 
+}
+```
+
+实现的步骤其实是:  
+```
+Query_base *tmp = new NotQuery(oper); 
+return Query(tmp); 
+```
+
+#### 15.9.5
+操作数可以是任意的`Query_base`对象, 所以操作数须存储为指针, 用句柄类实现.  
+
+```
+std::ostream& display(std::ostream &os) const {
+	return os << "~(" << query << ")"; 
+}
+```
+这调用了虚函数来实现输出.  
+
+`BinaryQuery`类也是个抽象类.  
+因为`Query`是句柄, 所以不用引用作为形参`left`和`right`?<b>?</b>  
+
+#### 15.9.6
+实现虚函数`eval`.  
+
+`AndQuery`的`eval`实现使用了`algorithm`头文件中的`set_intersection`函数.  
+
+为实现`NotQuery`的`eval`, 需在`TextQuery`类里加入`size()`成员函数.  
+
