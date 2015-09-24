@@ -1,4 +1,4 @@
-
+`clinked_insts = { c.id: c for c in config.ec2.get_all_classic_link_instances(instance_ids=instance_ids) }` change map to list.  
 
 git delete a branch:  http://stackoverflow.com/questions/2003505/delete-a-git-branch-both-locally-and-remotely  
 
