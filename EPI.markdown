@@ -46,3 +46,9 @@ Data structure
 (!!skipped!!)
 
 ## Chapter 5
+In C++ integer is 32 or 64 bits, while in Java it is always 32 bits.  
+
+### 5.1
+Compute parity of a 64-bit binary word.  
+- Brute force: walk through the number by `&1` and `>>=`. Stop when `x == 0`,  Then modula 2. T(n)=O(n).  
+- 
