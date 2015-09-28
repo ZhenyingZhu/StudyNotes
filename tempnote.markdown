@@ -1,3 +1,7 @@
+How to read source code:  
+http://www.zhihu.com/question/19637879  
+
+
 http://stackoverflow.com/questions/11968689/python-multithreading-wait-till-all-threads-finished  
 
 http://stackoverflow.com/questions/1783405/checkout-remote-git-branch  
