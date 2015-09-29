@@ -1,3 +1,5 @@
+http://stackoverflow.com/questions/8902206/subprocess-popen-io-redirect  
+
 How to read source code:  
 http://www.zhihu.com/question/19637879  
 
