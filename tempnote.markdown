@@ -1,3 +1,5 @@
+python Lambda: http://stackoverflow.com/questions/10668282/one-liner-to-check-if-at-least-one-item-in-list-exists-in-another-list  
+
 http://stackoverflow.com/questions/8902206/subprocess-popen-io-redirect  
 
 How to read source code:  
