@@ -1,3 +1,5 @@
+Mix bash history:  http://askubuntu.com/questions/80371/bash-history-handling-with-multiple-terminals   
+
 python Lambda: http://stackoverflow.com/questions/10668282/one-liner-to-check-if-at-least-one-item-in-list-exists-in-another-list  
 
 http://stackoverflow.com/questions/8902206/subprocess-popen-io-redirect  
