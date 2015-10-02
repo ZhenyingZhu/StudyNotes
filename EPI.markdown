@@ -53,5 +53,6 @@ Compute parity of a 64-bit binary word.
 - Brute force: walk through the number by `&1` and `>>=`. Stop when `x == 0`,  Then modula 2. T(n)=O(n), where n is the first 1 to the end.  
 - <b>Notice</b>: `^1` equals `%2`, `x&=(x-1)` remove the last 1 bit. T(n)=O(n), where n is the number of 1 bits.   
 - Bit fiddling computation: 1. process multiple bits; 2. cache results in an array-based lookup table.  
+- <b>Notice</b>: Order of XORs doesn't change the result. Parity of a number equals to XORs between its parts. T(n)=O(logn).  
 
-
+### 5.2
