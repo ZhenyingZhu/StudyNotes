@@ -67,3 +67,9 @@ Reverse a 64-bit word from LSB to MSB.
 - use a lookup table, record all 16-bits numbers and its reversed numbers.  
 
 ### 5.4
+Find the closest number that has the same weight(same number of set bits) as the given number.  
+- Brute force: try (x-1), (x+1), (x-2), (x+2) until reach a same weight number.  
+- Swap the first two consecutive different bits from LSB. T(n)=O(n).   
+
+### 5.5
+
