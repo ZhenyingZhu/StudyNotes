@@ -72,4 +72,8 @@ Find the closest number that has the same weight(same number of set bits) as the
 - Swap the first two consecutive different bits from LSB. T(n)=O(n).   
 
 ### 5.5
+Compute x multiple y with assignment, bitwise operators, boolean combination.  
+- Brute force: repeat addition. T(n)=O(n^2)  
+- Decimal multiplication with shift. T(n)=O(n^2).  
+
 
