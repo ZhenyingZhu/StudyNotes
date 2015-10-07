@@ -76,4 +76,10 @@ Compute x multiple y with assignment, bitwise operators, boolean combination.
 - Brute force: repeat addition. T(n)=O(n^2)  
 - Decimal multiplication with shift. T(n)=O(n^2).  
 
+### 5.6
+Compute quotient between x and y use only addition, subtraction and shifting.  
+- Brute force: repeat subtract y from x until less y.  
+- Substract 2^k*y from x each time. T(n)=O(n).  
+
+### 5.7
 
