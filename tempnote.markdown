@@ -1,3 +1,5 @@
+git diff --no-color -U100000 reversion1 reversion2 -- /path > diff.patch  
+
 C++ length: http://stackoverflow.com/questions/589575/what-does-the-c-standard-state-the-size-of-int-long-type-to-be  
 
 Mix bash history:  http://askubuntu.com/questions/80371/bash-history-handling-with-multiple-terminals   
