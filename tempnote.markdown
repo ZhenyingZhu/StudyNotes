@@ -1,3 +1,9 @@
+git submodules: https://devcenter.heroku.com/articles/git-submodules  
+
+git tag: https://git-scm.com/book/en/v2/Git-Basics-Tagging  
+
+python: pyc files won't update after git branch switch or checkout. So need to checkout again a clean repo and rerun.  
+
 git diff --no-color -U100000 reversion1 reversion2 -- /path > diff.patch  
 
 C++ length: http://stackoverflow.com/questions/589575/what-does-the-c-standard-state-the-size-of-int-long-type-to-be  
