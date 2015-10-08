@@ -82,4 +82,8 @@ Compute quotient between x and y use only addition, subtraction and shifting.
 - Substract 2^k*y from x each time. T(n)=O(n).  
 
 ### 5.7
+Given double x and integer y, compute x^y. Assume won't overflow or underflow.  
+- When y is nonnegative, brute force: x multiple itself for y-1 times. T(n)=O(2^n).  
+- Recursive: x ^ (1010)base2 = x ^ (101)base2 * x ^ (101)base2. T(n)=O(n).  
+- When y is negative, multiple (1/x)^(-y).   
 
