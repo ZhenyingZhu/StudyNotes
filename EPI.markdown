@@ -87,3 +87,9 @@ Given double x and integer y, compute x^y. Assume won't overflow or underflow.
 - Recursive: x ^ (1010)base2 = x ^ (101)base2 * x ^ (101)base2. T(n)=O(n).  
 - When y is negative, multiple (1/x)^(-y).   
 
+### 5.8
+Reverse digits of an integer, but leave the sign unchanged.  
+- Brute force: change to string and change back.  
+- Modulo 10. T(n)=O(n).   
+
+### 5.9
