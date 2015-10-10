@@ -1,3 +1,5 @@
+Python difference between dict["key"] and dict.get("key"): http://stackoverflow.com/questions/7631929/python-dictionary-datastructure-which-method-d-or-d-get  
+
 git submodules: https://devcenter.heroku.com/articles/git-submodules  
 
 git tag: https://git-scm.com/book/en/v2/Git-Basics-Tagging  
