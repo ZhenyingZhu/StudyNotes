@@ -1,5 +1,5 @@
+## Create project
 http://developer.android.com/training/basics/firstapp/creating-project.html
-
 Activity: 
 - provide user with access to app. 
 - APP usually have a main activity when user launch it
@@ -32,5 +32,93 @@ res/menu/:
 res/values/:  
 - Other XML files that contain a collection resources.  
 
-http://developer.android.com/training/basics/firstapp/running-app.html
+## Run the app
+### Install ADB driver
+https://www.youtube.com/watch?v=vUSRmtexmUo
+Install ADB driver on Windows: 
+- Android\sdk\SDK Manager.exe: download usb driver.  
+- Device Manager: install driver from Android\sdk\extras\google\usb_driver
+- cmd: `cd Android\sdk\platform-tools\; adb devices` to see if the device shows up.  
 
+### Run
+http://developer.android.com/training/basics/firstapp/running-app.html
+On device: Enable USB debugging, then click run.  
+
+On Emulator: 
+- Install HAXM installer through SDK Manager. sdk\extras\intel\Hardware_Accelerated_Execution_Manager\intelhaxm.exe (Doesn't work)
+- Create AVD: Tools > Android > AVD Manager. 
+
+After gradle build, an apk shows under app\build\outputs\apk  
+
+## Build UI
+http://developer.android.com/training/basics/firstapp/building-ui.html
+Goal: create a layout in XML that includes a text field and a button.  
+
+View Object: UI widgets like button or text field.  
+ViewGroup Object: view container. Define how child view are laid out, grid or vertical list.  
+Layouts: subclass of ViewGroup.  
+
+content_my.xml has a `RelativeLayout`, contain a `TextView`.  
+
+Comment block in xml is `<!-- -->`  
+
+Change `RelativeLayout` to `LinearLayout`. This replace the whole screen.  
+Add the android:orientation attribute and set it to "horizontal" or "vertical".  
+Each child of a LinearLayout appears on the screen in the order in which it appears in the XML.  
+`android:layout_width` and `android:layout_height`, are required for all views in order to specify their size.  
+Set `width` and `height` to "match_parent" fill up the parent view, which is screen here.  
+
+Add `EditText` View with attributes:  
+- `android:id`: id for this view. 
+- `android:layout_width` and `android:layout_height` set to `wrap_content`.  
+- `android:hint`: refer to `edit_message`. It is not the previous `edit_message` because type is not same(id vs. string).  
+
+`@` means refer to resource object from XML, follow with `type/resource_name`.   
+`+` before resource ID means define for the first time. After compile resource id shows in `gen/R.java`.  
+
+```
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal" >
+    <EditText android:id="@+id/edit_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/edit_message" />
+</LinearLayout>
+```
+
+Add `edit_message` string:  
+- Add to res\values\strings.xml.  
+- name tag is the resource name.  
+- All UI string should be put here.  
+
+Add a Button:  
+- "wrap_content" let button only as large as button text.  
+- `android:text`: text label.  
+- If it is not referenced from the activity code, then not need to set ID.  
+- `android:layout_weight`: let text field fill the unused screen. 
+- Weight: specify the amount of remaining space. Weight of this element divide sum of weights means the ratio of this element on the screen.  
+- `android:layout_width`: set to `0dp` can reduce the caculation of CPU to improve performance.  
+
+## Button activity
+http://developer.android.com/training/basics/firstapp/starting-activity.html
+Add activity to Button:  
+- To the <Button> element, add the `android:onClick` attribute "SendMessage".  
+- So "SendMessage" is a method in java/com.mycompany.myfirstapp/MyActivity.java in `MyActivity` class.  
+- This method should be public, have void return, and input a `View`.  
+- New an Intent in the method.  
+- Find the `edit_message` by `findViewById` and return an `EditText` object.  
+- Put message from `edit_message` to intent using a unique key, like projectname.MESSAGE.  
+- Call `startActivity(intent);`  
+
+Intent Object:  
+- provide runtime binding between components like two activities.  
+- mostly used to start another activity.  
+- its constructor has two parameters: `Context` like an `Activity` and the binding `Class`.  
+- `import android.content.Intent;`  
+- An Intent can carry data types as key-value pairs called extras.  
+
+Create a new Activity:  
+- 

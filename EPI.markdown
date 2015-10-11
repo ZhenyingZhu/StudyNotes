@@ -93,3 +93,15 @@ Reverse digits of an integer, but leave the sign unchanged.
 - Modulo 10. T(n)=O(n).   
 
 ### 5.9
+Check if a decimal integer is a palindrome.  
+- Brute force: return false if the integer is negative. Then convert the integer to string. T(n)=O(n), S(n)=O(n).   
+- log10(x)+1 is the number of digits. Use this to create a max significent digits mask. T(n)=O(n), S(n)=O(1).  
+
+### 5.10
+Generate uniform random numbers between a and b.  
+- use smallest i that let 2^i-1 > b-a. Then call random zero-one generator i times. If out-of-bound, retry. T(n)=O(lg(a-b+1)).  
+
+### 5.11
+Find rectangle intersection. Rectangles are parallel to x-axis.  
+- ask if boundary counts. Here it counts.  
+- since there are too many ways to intersect, thinking about not intersect would be easier.  
