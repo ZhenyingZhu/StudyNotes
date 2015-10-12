@@ -121,4 +121,9 @@ Intent Object:
 - An Intent can carry data types as key-value pairs called extras.  
 
 Create a new Activity:  
-- 
+- All subclasses of Activity must implement the `onCreate()` method.  
+- `onCreate()` method must define the activity layout with the setContentView() method.  
+- New > Activity > Blank Activity  
+- Every Activity is invoked by an Intent.  
+
+(Doesn't work with the newest android studio)
