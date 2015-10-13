@@ -2487,7 +2487,7 @@ slist.insert(slist.end(), sarray, sarray + 4);
 
 #### 9.3.6
 返回元素的引用:  
-- `c.back()`: 返回最有一个元素的引用, 等同于`*--c.end()`, 如容器为空则该行为未定义.  
+- `c.back()`: 返回最右一个元素的引用, 等同于`*--c.end()`, 如容器为空则该行为未定义.  
 - `c.front()`
 - `c[n]`: 只适用于`vector` 和`deque`. 越界时行为未定义.   
 - `c.at(n)`: 只适用于`vector` 和`deque`. 下标时抛出`out_of_range` 异常.  

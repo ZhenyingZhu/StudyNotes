@@ -104,4 +104,11 @@ Generate uniform random numbers between a and b.
 ### 5.11
 Find rectangle intersection. Rectangles are parallel to x-axis.  
 - ask if boundary counts. Here it counts.  
-- since there are too many ways to intersect, thinking about not intersect would be easier.  
+- since there are too many ways to intersect, thinking about not intersect would be easier. T(n)=O(1)   
+
+### 6.2
+Increment an arbitrary-precision integer. E.g. Input {1,2,9}, Output {1,3,0}  
+- Brute force: convert the array into number. Then convert back. Will overflow.  
+- Use a carry-out.  
+
+
