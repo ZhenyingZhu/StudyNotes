@@ -1,3 +1,11 @@
+Python singleton:  
+```
+    def __init__(self):
+        if self.__initialized:
+            return
+
+```
+
 Python difference between dict["key"] and dict.get("key"): http://stackoverflow.com/questions/7631929/python-dictionary-datastructure-which-method-d-or-d-get  
 
 git submodules: https://devcenter.heroku.com/articles/git-submodules  
