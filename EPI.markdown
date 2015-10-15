@@ -106,9 +106,16 @@ Find rectangle intersection. Rectangles are parallel to x-axis.
 - ask if boundary counts. Here it counts.  
 - since there are too many ways to intersect, thinking about not intersect would be easier. T(n)=O(1)   
 
+## Chapter 6
+Insertion into an array take O(n) time and O(n) space because of copy.  
+
+### 6.1
+Dutch National Flag program. Quick sort with equal band in the middle.  
+Notice when use size_t as index, cannot do `for (size_t i = A.size(); i >= 0; --i)`. If so, when i is 0, then `--i` out of bound.  
+
 ### 6.2
 Increment an arbitrary-precision integer. E.g. Input {1,2,9}, Output {1,3,0}  
 - Brute force: convert the array into number. Then convert back. Will overflow.  
-- Use a carry-out.  
+- Use a carry-out. T(n)=O(n).   
 
 
