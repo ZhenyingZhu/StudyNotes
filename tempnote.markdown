@@ -1,3 +1,5 @@
+awk: `ls -l | awk 'NR>=122 && NR<=129 { print }'`  http://unix.stackexchange.com/questions/89640/how-to-run-awk-for-some-number-of-lines  
+
 Python singleton:  
 ```
     def __init__(self):
