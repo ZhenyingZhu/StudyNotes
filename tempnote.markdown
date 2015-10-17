@@ -1,3 +1,8 @@
+Use aws cli filter:http://serverfault.com/questions/560337/search-ec2-instance-by-its-name-from-aws-command-line-tool    
+```
+aws ec2 describe-subnets --filters 'Name=vpc-id, Values=vpc-xxxxxxxx'
+```
+
 awk: `ls -l | awk 'NR>=122 && NR<=129 { print }'`  http://unix.stackexchange.com/questions/89640/how-to-run-awk-for-some-number-of-lines  
 
 Python singleton:  
