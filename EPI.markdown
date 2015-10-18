@@ -112,6 +112,9 @@ Insertion into an array take O(n) time and O(n) space because of copy.
 ### 6.1
 Dutch National Flag program. Quick sort with equal band in the middle.  
 Notice when use size_t as index, cannot do `for (size_t i = A.size(); i >= 0; --i)`. If so, when i is 0, then `--i` still larger than 0 and out of bound.  
+- Brute force: swap all numbers larger than pivot after i to before i. and traverse i through 0 to end. Then from the end reversely do again. T(n)=O(n^2), S(n)=O(1).  
+- Quick sort, first recursive from the begining, and then from the end. T(n)=O(n), S(n)=O(1).  
+- Quick sort one pass. Maintain smaller, equal, unsorted and larger four bands. Note when swap between larger and current, current should not move forward. T(n)=O(n), S(n)=O(n).  
 
 ### 6.2
 Increment an arbitrary-precision integer. E.g. Input {1,2,9}, Output {1,3,0}  
