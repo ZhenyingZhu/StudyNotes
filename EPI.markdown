@@ -121,4 +121,5 @@ Increment an arbitrary-precision integer. E.g. Input {1,2,9}, Output {1,3,0}
 - Brute force: convert the array into number. Then convert back. Will overflow.  
 - Use a carry-out. T(n)=O(n).   
 
+### 6.3
 
