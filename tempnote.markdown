@@ -1,3 +1,14 @@
+http://vimdoc.sourceforge.net/htmldoc/filetype.html  
+
+LLDP: https://en.wikipedia.org/wiki/Link_Layer_Discovery_Protocol  
+STP: https://en.wikipedia.org/wiki/Spanning_Tree_Protocol  
+
+https://danielmiessler.com/study/tcpdump/  
+
+`tcpdump -i eth0 (not udp or not port 22) -w file.pcap`  
+
+http://unix.stackexchange.com/questions/4004/how-can-i-close-a-terminal-without-killing-the-command-running-in-it  
+
 Use aws cli filter:http://serverfault.com/questions/560337/search-ec2-instance-by-its-name-from-aws-command-line-tool    
 ```
 aws ec2 describe-subnets --filters 'Name=vpc-id, Values=vpc-xxxxxxxx'
