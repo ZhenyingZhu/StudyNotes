@@ -126,3 +126,8 @@ Multiple two arbitary-precision array presented integers. Negative number has `-
 - Use reversed vector to record input numbers. Add carry-out to the previous cell. T(n)=O(n^2).  
 
 ### 6.4
+Advancing through an array. Integer in array indicate how far it can go from this cell. Check if it is able to reach the end.  
+- Iterate through the array, record the furthest position it can reach from current cell. T(n)=O(n), S(n)=O(1).  
+
+### 6.5
+
