@@ -1,3 +1,5 @@
+Install java: http://www.webupd8.org/2012/09/install-oracle-java-8-in-ubuntu-via-ppa.html  
+
 http://linux.die.net/man/8/vmstat  
 
 http://linux.die.net/man/1/iostat  
