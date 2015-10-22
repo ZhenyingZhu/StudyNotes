@@ -1,3 +1,11 @@
+http://linux.die.net/man/8/vmstat  
+
+http://linux.die.net/man/1/iostat  
+
+http://www.tecmint.com/12-top-command-examples-in-linux/  
+
+http://www.rationallyparanoid.com/articles/tcpdump.html  
+
 https://en.wikipedia.org/wiki/XML-RPC  
 
 http://vimdoc.sourceforge.net/htmldoc/filetype.html  
