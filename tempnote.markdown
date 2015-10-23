@@ -1,3 +1,5 @@
+Gnome Keyring: setting in an app called "Passwords and Keys" 
+
 http://linux.die.net/man/8/vmstat  
 
 http://linux.die.net/man/1/iostat  
