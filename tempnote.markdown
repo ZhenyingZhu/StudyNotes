@@ -1,4 +1,6 @@
-Gnome Keyring: setting in an app called "Passwords and Keys" 
+Gnome Keyring: setting in an app called "Passwords and Keys"  
+
+Install java: http://www.webupd8.org/2012/09/install-oracle-java-8-in-ubuntu-via-ppa.html  
 
 http://linux.die.net/man/8/vmstat  
 
