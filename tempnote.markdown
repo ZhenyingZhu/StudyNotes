@@ -1,3 +1,30 @@
+Debug with memory: http://valgrind.org/    
+
+yum:  
+```
+yum repolist # list all installed repos
+yum repolist disabled # list all disabled repos
+yum repolist all # recorded in /etc/yum.repos.d/  
+yum list|grep $PACKAGE # show 
+
+yum --enablerepo=repoidglob 
+yum --disablerepo=repoidglob
+yum clean
+
+yum deplist $PACKAGE|grep dependency
+yum info $PACKAGE
+yum list installed
+yum list available --showduplicates
+
+yum downgrade $PACKAGE
+yum erase $PACKAGE
+yum install $PACKAGE
+yum reinstall $PACKAGE
+yum upgrade $PACKAGE
+
+yum-config-manager --disable 
+```
+
 Gnome Keyring: setting in an app called "Passwords and Keys"  
 
 Install java: http://www.webupd8.org/2012/09/install-oracle-java-8-in-ubuntu-via-ppa.html  
