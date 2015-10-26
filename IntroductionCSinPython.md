@@ -32,3 +32,58 @@ Semantic errors can not be captured by computer.
 Defensive programming can avoid semantic errors.  
 
 ## Lecture 2
+Low level language: src code -> checker -> interpreter -> output  
+High level language: src code -> checker -> compiler -> object code -> interpreter -> output  
+
+Objects are: 1. scalar(cannot be subdivied) 2. non-scalar.  
+Scalar objects:  
+- int  
+- float
+- bool
+
+`type(object)`  
+`3**2`  
+
+Type conversion: `float(3)`  
+
+The order of boolean operations is as follows:
+# Parentheses. 
+# not statements.
+# and statements.
+# or statements.
+
+When compare int with float, auto convert the type.  
+
+Assignment: `=`, create a binding between variable and value.   
+
+Non-scalar objects: compound objects.  
+
+Operator overloading.  
+
+`len('abc')`  
+
+Indexing: `'abc'[0]`. `'abc'[-1]` 
+Slicing: `s[start:end]`   
+
+`'a' in 'abc'`  
+
+`s[i:j:k]` from i to j-1 with step k. If k is negative, go backward.  
+
+`num = float(raw_input('input a number'))`  
+
+branching program: with flow control.  
+
+```
+if express: 
+    ...
+elif express:
+    ...
+else: 
+    ....
+```
+
+Any string is always larger than integer.  
+
+## Lecture 3
+
+
