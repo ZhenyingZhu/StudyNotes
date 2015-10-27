@@ -1,3 +1,5 @@
+`$@` in bash means all args.  
+
 Debug with memory: http://valgrind.org/    
 
 yum:  
