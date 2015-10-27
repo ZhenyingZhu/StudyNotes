@@ -85,5 +85,33 @@ else:
 Any string is always larger than integer.  
 
 ## Lecture 3
+Iteration: change the test value inside the loop.  
+Bisection search.  
 
+Don't overwrite build-in functions like sum.  
+https://docs.python.org/2/library/functions.html  
+https://docs.python.org/release/2.3.5/ref/keywords.html  
+
+```
+x = 1
+print(str(x) + "is a number")
+```
+
+Exaustive enumeration.  
+
+`range(m, n, t)` not include n. t is the step.  
+
+```
+num = 10
+for num in range(5): # num is a redefine here
+    print num
+````
+
+Float:  
+- binary present: x=a*2^(-1)+b*2^(-2), then x==0.ab
+- x*2^p=n, then x = n/(2^p). Make n an integer(whole number), then present n in binary, and shift left the dot p times.  
+- Cannot find a p to make 0.1 be a whole number. Python stop at a point by round it. 0.1 is not store as exactly 0.1 in the computer.  
+- don't use x==y, instead use abs(x-y)<0.0001
+
+`0.5%1=0.5`.   
 
