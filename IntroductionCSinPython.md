@@ -115,3 +115,28 @@ Float:
 
 `0.5%1=0.5`.   
 
+Bisection search: work on problems with "ordering" property(value of function monotonically with input value).  
+```
+low = 0.0
+high = x
+while abs(ans**2 - x) >= epsilon: 
+    if ans**2 < x: 
+        low = ans
+    else: 
+        high = ans
+    ans = (high + low) / 2
+```
+
+Print two words in a line.  
+```
+print "Hi",
+print "there"
+```
+
+Newton-Raphson algorithm: p(x) = an*x^n + an-1*x^(n-1) + ... + a1*x + a0, find r that p(r) = 0.  
+- first guess g and check
+- g = g - p(g)/p'(g)  
+
+Lecture 4
+
+
