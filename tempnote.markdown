@@ -1,3 +1,5 @@
+It's fxxking awsome! http://synergy-project.org/  
+
 set: http://linuxcommand.org/lc3_man_pages/seth.html  
 
 rsync: https://www.digitalocean.com/community/tutorials/how-to-use-rsync-to-sync-local-and-remote-directories-on-a-vps  
