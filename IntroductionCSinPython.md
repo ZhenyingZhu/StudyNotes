@@ -137,6 +137,11 @@ Newton-Raphson algorithm: p(x) = an*x^n + an-1*x^(n-1) + ... + a1*x + a0, find r
 - first guess g and check
 - g = g - p(g)/p'(g)  
 
+```
+if char in "aeiou": 
+    print "char is a vowel. "
+```
+
 Lecture 4
 
 
