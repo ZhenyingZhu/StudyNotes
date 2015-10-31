@@ -1,3 +1,11 @@
+```
+adb devices
+adb shell
+pm list packages -f
+Sdk/platform-tools/adb backup -apk com.and.games505.TerrariaPaid -f com.and.games505.TerrariaPaid.ab
+adb restore .com.and.games505.TerrariaPaid.ab
+```
+
 See what service is binding to a port:  
 ```
 netstat -a|grep $port
