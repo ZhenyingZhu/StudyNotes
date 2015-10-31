@@ -1,4 +1,6 @@
-It's fxxking awsome! http://synergy-project.org/  
+
+
+If it is free it would be good: http://synergy-project.org/  
 
 set: http://linuxcommand.org/lc3_man_pages/seth.html  
 

@@ -144,4 +144,16 @@ if char in "aeiou":
 
 Lecture 4
 
+Turing complete language.  
+
+Abstruction: black box.  
+
+docstring: inside three pair of quotes.  
+
+In Python 2 functions can also be compared. Based on their id(object adress in memory).  
+
+Python shell is default(global) environment.  
+
+Function is a procedure object. Function name is an environment pointer.  
+Function name is expr0, other args are expr1, 2 ...  
 
