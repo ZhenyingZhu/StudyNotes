@@ -143,7 +143,6 @@ if char in "aeiou":
 ```
 
 Lecture 4
-
 Turing complete language.  
 
 Abstruction: black box.  

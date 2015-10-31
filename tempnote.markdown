@@ -1,4 +1,13 @@
+See what service is binding to a port:  
+```
+netstat -a|grep $port
+sudo lsof -i :$port -S
+ps aux|grep $pid
+```
 
+http://synergy-project.org/download/free/  
+
+http://www.thegeekstuff.com/2010/06/install-remove-deb-package/  
 
 If it is free it would be good: http://synergy-project.org/  
 
