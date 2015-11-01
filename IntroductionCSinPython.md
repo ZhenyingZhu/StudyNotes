@@ -156,3 +156,61 @@ Python shell is default(global) environment.
 Function is a procedure object. Function name is an environment pointer.  
 Function name is expr0, other args are expr1, 2 ...  
 
+Function procedure has both the outer environment and itself environment that binding parameters as local variable.  
+
+The scoping of function often called static or lexical.  
+
+Max min value: if x<lo, return lo; if lo<x<hi, return x; if x>hi, return hi.  
+Equal to return max(min(x, hi), lo)  
+
+```
+a = 10
+def f(x):
+      return x + a
+a = 3
+f(1) # 4
+```
+Since a is not binding as an variable, a is the global variable.  
+
+Find root might failed if input<0 or abs(input)<1, fix is:  
+```
+def findRoot3(x, power, epsilon):
+    if x < 0 and power%2 == 0:
+        return None
+    # can't find even powered root of negative number
+    low = min(-1.0, x)
+    high = max(1.0, x)
+    ans = (high+low)/2.0
+    while abs(ans**power - x) > epsilon:
+        if ans**power < x:
+            low = ans
+        else:
+            high = ans
+        ans = (high+low)/2.0
+    return ans
+```
+
+Import a function:  
+```
+# circle.py
+pi = 3.14159
+
+def area(radius):
+    return pi*(radius**2)
+
+def circumference(radius):
+    return 2*pi*radius
+```
+
+Use `from` can bring the environment of the file in. A variable that has the same name won't change the value in the file.  
+```
+import circle
+print circle.pi
+from circle import *
+pi = 3
+print area(3)
+```
+
+Everything in python is an object.  
+String is immutable, always return a new string when do actions on it.  
+
