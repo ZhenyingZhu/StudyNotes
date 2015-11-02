@@ -214,3 +214,76 @@ print area(3)
 Everything in python is an object.  
 String is immutable, always return a new string when do actions on it.  
 
+Lecture 5
+Iteration: use a set of state variables.  
+
+Recursion: 1. base case; 2. recursive step;   
+Same as mathematical induction.  
+LHS, RHS: left/right-hand side of expressions.   
+
+A number has L at then end means it is presented in large format mode.  
+
+Recursive to solve power, need take base case exp as 0.  
+
+Find greatest common divisor:  
+Recursive:  
+```
+def gcdRecur(a, b):
+    '''
+    a, b: positive integers
+    
+    returns: a positive integer, the greatest common divisor of a & b.
+    '''
+    if b == 0:
+        return a
+    return gcdRecur(b, a % b)
+```
+
+Iterative:  
+```
+def gcdIter(a, b):
+    '''
+    a, b: positive integers
+    returns: a positive integer, the greatest common divisor of a & b.
+    '''
+    testValue = min(a, b)
+    while a % testValue != 0 or b % testValue != 0:
+        testValue -= 1
+    return testValue
+```
+
+Hanoi Tower:  
+```
+def printMove(fr, to): 
+    print "Move from " + str(fr) + " to " + str(to)
+    
+def Towers(n, from, to, spare): 
+    if n == 1: 
+        printMove(from, to)
+    else: 
+        Tower(n - 1, from, spare, to)
+        Tower(1, from, to, spare)
+        Tower(n - 1, spare, to, from)
+```
+
+Fibonacci numbers: several base cases.  
+```
+def fib(x): 
+    assert type(x) == int and x >= 0 # if false, stop
+    if x == 0 or x == 1: 
+        return 1
+    return fib(x - 1) + fib(x - 2)
+```
+
+Internal procedures.  
+Divide and conquer.  
+
+Using global variables is always a bit risky. Unless doing metering.   
+
+Wrapper function.   
+
+Use keyword `arguments` <b>?</b>.  
+
+Use keyword `global` to make a variable in a function be useable in the top-level environment.  
+
+Lecture 6
