@@ -287,3 +287,14 @@ Use keyword `arguments` <b>?</b>.
 Use keyword `global` to make a variable in a function be useable in the top-level environment.  
 
 Lecture 6
+Tuple: a sequence of elements.
+- `t=(1, 'two')`
+- `t1+t2` create a new tuple with all elements. 
+- `t[3:5]`.  
+- Create a single-element tuple: `(ele,)`. Empty tuple: `t = ()`   
+- Doesn't support element assignment.  
+
+`aTup[::2]`: pick odd elements.  
+
+List:  
+Dictionary:  
