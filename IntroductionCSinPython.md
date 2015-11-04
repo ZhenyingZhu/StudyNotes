@@ -99,7 +99,7 @@ print(str(x) + "is a number")
 
 Exaustive enumeration.  
 
-`range(m, n, t)` not include n. t is the step.  
+`range(m, n, t)` not include n. t is the step. m, n should be same type(cannot be one int one float). If m < n, return an empty list.   
 
 ```
 num = 10
@@ -296,5 +296,12 @@ Tuple: a sequence of elements.
 
 `aTup[::2]`: pick odd elements.  
 
-List:  
+List: are mutable which is different from tuple.  
+- `l = [1, 'two', 3]`  
+- `l = [4]`  
+- `l.append(ele)`  
+- list store reference rather than a copy. This is called alias.   
+
+
+
 Dictionary:  
