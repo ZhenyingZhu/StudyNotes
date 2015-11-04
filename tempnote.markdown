@@ -1,3 +1,10 @@
+Python not break iterator in loop:  
+```
+for i in list[:]: 
+    if not check(i): 
+        list.remove(i)
+```
+
 ```
 adb devices
 adb shell
