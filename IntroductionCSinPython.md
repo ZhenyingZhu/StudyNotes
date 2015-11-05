@@ -300,8 +300,18 @@ List: are mutable which is different from tuple.
 - `l = [1, 'two', 3]`  
 - `l = [4]`  
 - `l.append(ele)`  
-- list store reference rather than a copy. This is called alias.   
+- list store reference rather than a copy. This is called alias. `L1 = L2` means `L1 is L2`.   
+- `l = l1 + l2` concatenate two lists, is called flattening. Elements are copies.  
+- When need remove elements while iterating lists, make a copy of the list: 
+- If all elements in L1 is same as them in L2, `L1 == L2`. But only L2 is a reference to L1, `Li is L2`.  
+- `list.pop()` return and remove the last element. `list.pop(idx)` return the element.  
+- `list.extend([ele])` same to concatenate.  
+- `list.index(ele)` return the index of the first ele.  
 
-
+```
+Lcpy = L[:]
+for e in Lcpy: 
+    L.remove(e)
+```
 
 Dictionary:  
