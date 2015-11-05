@@ -1,4 +1,8 @@
 ```
+svn copy -m "Copy from one repo to another" remote_repo1 remote_repo2
+```
+
+```
 svn -N [--non-recursive]     : obsolete; try --depth=files or --depth=immediates  
 ```
 Then use `svn up folder` to co only that repo.  

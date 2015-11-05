@@ -1,3 +1,15 @@
+C++ code style: https://google.github.io/styleguide/cppguide.html  
+
+Looks into Ubuntu launcher: 
+```
+gsettings get com.canonical.Unity.Launcher favorites  
+```
+
+Install Eclipse CDT:  
+Find one URL here http://www.eclipse.org/cdt/downloads.php and add to eclipse install new software.  
+If running on windows, get rid of workplace/.metadata/.plugins/org.eclipse.core.resources/.snap, and turn off Indexing and automatic builds in CDT  
+Setup boost: https://theseekersquill.wordpress.com/2010/08/24/howto-boost-mingw/  
+
 Python not break iterator in loop:  
 ```
 for i in list[:]: 
