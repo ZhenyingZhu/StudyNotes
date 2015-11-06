@@ -314,4 +314,25 @@ for e in Lcpy:
     L.remove(e)
 ```
 
-Dictionary:  
+Functions are first class objects.  
+```
+f = abs
+for i in range(len(L)): 
+    L[i] = f(L[i])
+```
+
+Higher order functions:  
+- map: a function and a collection of arguments. `map(abs, [1, -2, 3, -4])` return a list of`[abs(1), 2, 3, 4]`. `map(min, L1, L2)`.  
+
+Dictionary: list-like but key can be anything rather than int.   
+- Key is and must be immutable. So key can be a tuple, but cannot be a list.  
+- `dic = {'a':1; 'b':2}`  
+- dict are unordered, and can only be access by a key.  
+- `dic['newKey']=newEle`  
+- `for e in dic:` actually return all the keys. Same as `dic.keys()`  
+- `dic.values()`  
+- `del dic['a']` `del` can release a variable.  
+
+Interger divided is floor of the result: `-3/2 == -2`.  
+
+Lecture 7
