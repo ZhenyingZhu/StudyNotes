@@ -1,6 +1,7 @@
 ```
 svn copy -m "Copy from one repo to another" remote_repo1 remote_repo2
 ```
+Notice is remote_repo2/, then it will copy to under remote_repo2, while if remote_repo2, it will replace remote_repo2.  
 
 ```
 svn -N [--non-recursive]     : obsolete; try --depth=files or --depth=immediates  

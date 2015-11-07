@@ -1,3 +1,5 @@
+http://stackoverflow.com/questions/9834689/comparing-two-branches-in-git  
+
 C++ code style: https://google.github.io/styleguide/cppguide.html  
 
 Looks into Ubuntu launcher: 
