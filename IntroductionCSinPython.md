@@ -335,4 +335,8 @@ Dictionary: list-like but key can be anything rather than int.
 
 Interger divided is floor of the result: `-3/2 == -2`.  
 
+`aString.lower()`.  
+`aString.isalpha()`.  
+`random.choice(aList)`.  
+
 Lecture 7
