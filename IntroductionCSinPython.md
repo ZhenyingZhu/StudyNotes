@@ -340,3 +340,52 @@ Interger divided is floor of the result: `-3/2 == -2`.
 `random.choice(aList)`.  
 
 Lecture 7
+Black box testing and glass box testing.  
+
+Make the code easy to debug:  
+- well design by break up codes into components.  
+- Document constraints on models. What inputs and outputs are expected?  
+- Try several inputs and see if the outputs are as expected.  
+
+How to test: 
+- find a collection of inputs that are likely to reveal bugs. So call test suite.  
+- break al inputs into parts that are indicative. Do tests with typical cases.   
+- or do random tests. So call black box testing.  
+- black box testing is useful specially when implementation changed.  
+- test with boundary cases.  
+- glass box test is path-complete, means every potential path is tested.  
+- glass box also need to test with boundary cases.  
+- test all exceptions.  
+- if statement: test both paths.  
+- loop: not enter loop; loop execute once; loop execute more than once; all the ways to exit the loop.  
+- recursive calls: no recursive; one recursive; several recursive calls.  
+ 
+Unit testing: can catch algorithm bugs.  
+Integration testing: can catch interaction bugs.  
+Regression testing: tests with all old testcases.  
+ 
+Build test drivers:  
+- set up testing environmnets by code.  
+- invoke codes using predefined inputs.  
+- save results and report.  
+
+Test stub:  
+- simulate inputs from some parts that are not even writed.  
+
+Kind of bugs:  
+- runtime bugs: 1) overt: code crashs or running forever; covert: return a value that might be incorrect. 2) persistent; intermittent.  
+- Defensive programming: test if input and throw errors before actually run the code.  
+- If overt and intermittent bugs can be reproduced, then could debug them.  
+
+How to debug:  
+- do both correct testcase and incorrect testcase. Find a hypothesis.    
+- keep records.  
+- print statement.  
+- use bisearch.  
+- use simple examples to do the test.  
+- after fix one bug, do not stop. there could be more bugs.  
+- look for the usual supects: boundary case? wrong arguments? forgot call a function? alias bug? 
+- focus on what the code is doing rather than where is the bug.  
+- don't believe documentation.  
+
+Lecture 8
