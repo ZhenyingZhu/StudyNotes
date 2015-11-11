@@ -1,3 +1,7 @@
+create a makefile project: https://msdn.microsoft.com/en-us/library/txcwa2xx.aspx  
+
+C++ underscore: http://stackoverflow.com/questions/1630412/is-using-underscore-suffix-for-members-beneficial  
+
 http://stackoverflow.com/questions/9834689/comparing-two-branches-in-git  
 
 C++ code style: https://google.github.io/styleguide/cppguide.html  
