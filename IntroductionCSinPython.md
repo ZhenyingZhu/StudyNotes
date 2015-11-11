@@ -389,3 +389,47 @@ How to debug:
 - don't believe documentation.  
 
 Lecture 8
+Exceptions:  
+- SyntaxError
+- AttributeError
+- ValueError: `lst.index(ele)` when ele is not in the lst.  
+- IndexError: list out of boundary.  
+- TypeError
+- NameError
+- ZeroDivisionError
+
+Don't let code fail silently.  
+Return an error code: need deal with this error code in all functions that directly/indirectly call it.  
+Stop execution and signal error condition: `raise Exception("descriptive string")`.  
+
+Handlers for exceptions:  
+```
+try: 
+    # code
+except IOError, e: # e is the error object, IOError is a handler
+    print "cannot open " + str(e)
+    sys.exit(0)
+except ArithmeticError, e: 
+    raise ValueError("bugs " + str(e))
+else: # if no errors happened at all
+    # do something
+finally: 
+    # no matter what happened, always run this part
+```
+
+Try in try: First execute all the code include finally of the inner try, then raise error, then execute outer except handler.  
+```
+def FancyDivide(list_of_numbers, index):
+    try:
+        try:
+            raise Exception("0")
+        finally:
+            denom = list_of_numbers[index]
+            for i in range(len(list_of_numbers)):
+                list_of_numbers[i] /= denom
+    except Exception, e: 
+        print e
+
+FancyDivide([0, 2, 4], 0) # print ZeroDivisionError because e is overwrited. 
+``` 
+
