@@ -47,10 +47,10 @@ Scalar objects:
 Type conversion: `float(3)`  
 
 The order of boolean operations is as follows:
-# Parentheses. 
-# not statements.
-# and statements.
-# or statements.
+1. Parentheses. 
+2. not statements.
+3. and statements.
+4. or statements.
 
 When compare int with float, auto convert the type.  
 
@@ -142,7 +142,7 @@ if char in "aeiou":
     print "char is a vowel. "
 ```
 
-Lecture 4
+## Lecture 4
 Turing complete language.  
 
 Abstruction: black box.  
@@ -214,7 +214,7 @@ print area(3)
 Everything in python is an object.  
 String is immutable, always return a new string when do actions on it.  
 
-Lecture 5
+## Lecture 5
 Iteration: use a set of state variables.  
 
 Recursion: 1. base case; 2. recursive step;   
@@ -286,7 +286,7 @@ Use keyword `arguments` <b>?</b>.
 
 Use keyword `global` to make a variable in a function be useable in the top-level environment.  
 
-Lecture 6
+## Lecture 6
 Tuple: a sequence of elements.
 - `t=(1, 'two')`
 - `t1+t2` create a new tuple with all elements. 
@@ -339,7 +339,7 @@ Interger divided is floor of the result: `-3/2 == -2`.
 `aString.isalpha()`.  
 `random.choice(aList)`.  
 
-Lecture 7
+## Lecture 7
 Black box testing and glass box testing.  
 
 Make the code easy to debug:  
@@ -388,7 +388,7 @@ How to debug:
 - focus on what the code is doing rather than where is the bug.  
 - don't believe documentation.  
 
-Lecture 8
+## Lecture 8
 Exceptions:  
 - SyntaxError
 - AttributeError
@@ -433,3 +433,23 @@ def FancyDivide(list_of_numbers, index):
 FancyDivide([0, 2, 4], 0) # print ZeroDivisionError because e is overwrited. 
 ``` 
 
+```
+[[ele[0], ele[1], avg(ele[1], weights)] for ele in list] # a list that each element is a list. 
+```
+
+`float('NaN')` means not a number.  
+
+With error handler, we can run the test to see if any error happened rather than read all the code to deal with all error cases.  
+
+Assert statement:  
+- not control the response, but raise an AssertError.  
+- good for defensive programming.  
+- if the condition is true, carry on, otherwise print the message.  
+
+```
+assert not len(lst) == 0, 'list empty'
+# do something
+assert 0.0 <= result <= 100.0
+```
+
+## Lecture 9
