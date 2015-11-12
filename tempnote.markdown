@@ -1,3 +1,6 @@
+gdb: C++ debugger.  
+
+
 create a makefile project: https://msdn.microsoft.com/en-us/library/txcwa2xx.aspx  
 
 C++ underscore: http://stackoverflow.com/questions/1630412/is-using-underscore-suffix-for-members-beneficial  
