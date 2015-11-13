@@ -1,5 +1,6 @@
 gdb: C++ debugger.  
 
+less: `:n` goes to next file, `:p` goes to previous file. http://superuser.com/questions/347760/less-command-with-multiple-files-how-to-navigate-to-next-previous  
 
 create a makefile project: https://msdn.microsoft.com/en-us/library/txcwa2xx.aspx  
 
