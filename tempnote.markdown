@@ -503,7 +503,12 @@ https://iperf.fr/#tuningtcp
 
 [tcpdump](http://www.thegeekstuff.com/2010/08/tcpdump-command-examples/)
 
-[eclipse](http://stackoverflow.com/questions/11596194/how-does-one-show-trailing-whitespace-in-eclipse)  
+[eclipse](http://stackoverflow.com/questions/11596194/how-does-one-show-trailing-whitespace-in-eclipse) 
+eclipse show line number:  
+Window > Preferences > General > Editors > Text Editors 
+eclipse change tab to space:  
+Beside the previous step, do
+Window > Preferences > [Specific launguage] > Code Style > Formatter: create a profile with tab policy change to space only.  
 
 transport file (http://www.netperf.org/netperf/training/Netperf.html#0.2.2Z141Z1.SUJSTF.6R2DBD.2) 
 ```
