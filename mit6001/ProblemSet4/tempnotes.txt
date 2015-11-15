@@ -1,0 +1,6 @@
+sum(points) * len(word) + 50
+A:1
+B:3
+C:3
+D:2
+E:1

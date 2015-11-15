@@ -452,4 +452,14 @@ assert not len(lst) == 0, 'list empty'
 assert 0.0 <= result <= 100.0
 ```
 
+Write unit tests:  
+- name seperate scripts as test_<script name>.py
+- implement test_<method name>()
+
+To avoid get a KeyError when call `dict[key]`, use `dict.get(key, defaultVal)`.  
+
+`random.randrange(0,len(lst))` return a random index of the list.  
+
+Copy a dictionary: `dict.copy()`.  
+
 ## Lecture 9
