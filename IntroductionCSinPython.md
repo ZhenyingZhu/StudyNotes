@@ -462,5 +462,9 @@ To avoid get a KeyError when call `dict[key]`, use `dict.get(key, defaultVal)`.
 
 Copy a dictionary: `dict.copy()`.  
 
+`dict.keys()` is a copy of keys, so it remain unchange even dict changed.  
+
+`lst.count(ele)` return the number of occurances of ele in lst.  
+
 ## Lecture 9
 
