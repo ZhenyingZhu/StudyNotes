@@ -45,5 +45,29 @@ The basic syntax of an entry looks like:
 
 The dependencies for a o file is:  
 - the cpp file compile from.  
-- the h file in this cpp file.  
+- all the h files that are in double quote in this cpp file.  
+
+h files are dependent on other h files:  
+```
+Vector.h: Foo.h
+```
+
+Can use program `makedepend` to automately write a make.  
+
+Commands:  
+- all lines follow the dependencies line and with a tab at the beginning treat as the commands for this target.  
+- cannot use spaces to replace tab.  
+- The commands should generate the target.  
+
+An executable:  
+- this executable target should be the first target in the makefile.  
+- then run `make` to build it. `make` only run the first target.  
+- the command should set output.  
+- if don't set an output, then `a.out` is created.  
+
+```
+p1: a.o b.o c.o
+    g++ -Wall a.o b.o c.o -o p1
+```
+
 
