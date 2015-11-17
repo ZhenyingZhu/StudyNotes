@@ -1,3 +1,5 @@
+Python popen(): Since Popen does not involke the shell, you would use a list of the command and options--["ntpq", "-p"]. (http://stackoverflow.com/questions/2502833/store-output-of-subprocess-popen-call-in-a-string)   
+
 gdb: C++ debugger.  
 
 less: `:n` goes to next file, `:p` goes to previous file. http://superuser.com/questions/347760/less-command-with-multiple-files-how-to-navigate-to-next-previous  
