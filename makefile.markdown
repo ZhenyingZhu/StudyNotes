@@ -70,4 +70,26 @@ p1: a.o b.o c.o
     g++ -Wall a.o b.o c.o -o p1
 ```
 
+To make:  
+- if there is a `makefile`, `make` build the first target in this file.  
+- if there is a `Makefile` but no `makefile`, `make` run `Makefile`.  
+- `make -f <file>` run the file.  
+- `make <target>` only make that target.  
+
+Use macro:  
+- `<macro_name> = <macro_string>`  
+- use upper case letters and underscores only in the macro name.  
+- `$()` and `${}` will be substituted.  
+- backslash can escape.  
+
+```
+OBJS = MovieList.o Movie.o NameList.o Name.o Iterator.o
+CC = g++
+DEBUG = -g
+CFLAGS = -Wall -c $(DEBUG)
+LFLAGS = -Wall $(DEBUG)
+
+p1 : $(OBJS)
+    $(CC) $(LFLAGS) $(OBJS) -o p1
+```
 
