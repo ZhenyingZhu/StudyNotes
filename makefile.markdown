@@ -57,6 +57,7 @@ Can use program `makedepend` to automately write a make.
 Commands:  
 - all lines follow the dependencies line and with a tab at the beginning treat as the commands for this target.  
 - cannot use spaces to replace tab.  
+- cannot put a tab at the start of a blank line with previous line finish a command. Otherwise make will complain about an empty command.  
 - The commands should generate the target.  
 
 An executable:  
@@ -81,6 +82,10 @@ Use macro:
 - use upper case letters and underscores only in the macro name.  
 - `$()` and `${}` will be substituted.  
 - backslash can escape.  
+- `CC`: name of the compiler.  
+- `DEBUG`: with `-g`, can use `gdb` to debug the code.  
+- `LFLAGS`: used in linking.  
+- `CFLAGS`: used in compiler.  
 
 ```
 OBJS = MovieList.o Movie.o NameList.o Name.o Iterator.o
@@ -93,3 +98,35 @@ p1 : $(OBJS)
     $(CC) $(LFLAGS) $(OBJS) -o p1
 ```
 
+Dummy targets:  
+- to do something other than create a target.  
+- `make clean`: to solve a buggy build.  
+- `make tar`: tar the source files.  
+- `make all`: build more than one executable. No command but dependencies.  
+
+Clean builded temp, emacs temp files and executable.  
+```
+clean: 
+    \rm *.o *~ p1i # backslash prevent rm from complaining
+```
+
+Tar:  
+```
+tar:
+     tar cfv p1.tar Movie.h Movie.cpp Name.h Name.cpp NameList.h \
+             NameList.cpp  Iterator.cpp Iterator.h
+```
+
+All:  
+```
+all: p1 p2 p3
+
+p1: Foo.o main1.o
+   g++ -Wall Foo.o main1.o -o p1
+
+p2: Bar.o main2.o
+   g++ -Wall Bar.o main2.o -o p2
+
+p3: Baz.o main3.o
+   g++ -Wall Baz.o main3.o -o p3
+```
