@@ -1,3 +1,9 @@
+http://stackoverflow.com/questions/10153998/sublime-text-2-view-whitespace-characters  
+
+How to install a package in Sublime: http://stackoverflow.com/questions/13124532/installing-packages-in-sublime-text-2  
+
+How to install a package on Ubuntu: http://monkeyhacks.com/post/how-to-install-sublime-text-2-on-ubuntu-14-04  
+
 Python popen(): Since Popen does not involke the shell, you would use a list of the command and options--["ntpq", "-p"]. (http://stackoverflow.com/questions/2502833/store-output-of-subprocess-popen-call-in-a-string)   
 
 gdb: C++ debugger.  

@@ -105,7 +105,7 @@ Exaustive enumeration.
 num = 10
 for num in range(5): # num is a redefine here
     print num
-````
+```
 
 Float:  
 - binary present: x=a*2^(-1)+b*2^(-2), then x==0.ab
@@ -431,7 +431,7 @@ def FancyDivide(list_of_numbers, index):
         print e
 
 FancyDivide([0, 2, 4], 0) # print ZeroDivisionError because e is overwrited. 
-``` 
+```
 
 ```
 [[ele[0], ele[1], avg(ele[1], weights)] for ele in list] # a list that each element is a list. 
@@ -467,4 +467,11 @@ Copy a dictionary: `dict.copy()`.
 `lst.count(ele)` return the number of occurances of ele in lst.  
 
 ## Lecture 9
+Computational complexity.  
+
+Random access machine:  
+- A model to compute time complexity.  
+- Steps running sequentially not parallelly.  
+- Operations takes constant time.  
+
 
