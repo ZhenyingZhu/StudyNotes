@@ -474,4 +474,23 @@ Random access machine:
 - Steps running sequentially not parallelly.  
 - Operations takes constant time.  
 
+Complexity classes:  
+- constant running time.  
+- logarithmic running time.  
+- linear running time.  
+- log-linear running time.  
+- polynominal running time.  
+- exponential running time.  
 
+Generate all subsets, T(n)=O(c^n)
+```
+def genSubnets(L): 
+    if len(L) == 0: 
+        return [[]]
+    res = []
+    smaller = genSubnets(L[:-1])
+    extra = L[-1:]
+    for small in smaller: 
+        res.append(small + extra)
+    return smaller + res
+```
