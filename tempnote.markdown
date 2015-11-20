@@ -1,3 +1,5 @@
+http://svnbook.red-bean.com/en/1.7/svn.branchmerge.using.html  
+
 http://stackoverflow.com/questions/10153998/sublime-text-2-view-whitespace-characters  
 
 How to install a package in Sublime: http://stackoverflow.com/questions/13124532/installing-packages-in-sublime-text-2  
