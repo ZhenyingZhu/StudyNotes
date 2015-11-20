@@ -1,3 +1,8 @@
+Check USB: http://www.wilf.cn/post/lsusb.html  
+http://ubuntuforums.org/showthread.php?t=1993135  
+disable USB auto suspend: `su; echo -1 >/sys/module/usbcore/parameters/autosuspend`  
+http://ubuntuforums.org/showthread.php?t=797789  
+
 http://svnbook.red-bean.com/en/1.7/svn.branchmerge.using.html  
 
 http://stackoverflow.com/questions/10153998/sublime-text-2-view-whitespace-characters  
