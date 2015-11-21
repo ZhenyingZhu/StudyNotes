@@ -130,3 +130,19 @@ p2: Bar.o main2.o
 p3: Baz.o main3.o
    g++ -Wall Baz.o main3.o -o p3
 ```
+
+http://www.gnu.org/software/make/manual/html_node/Flavors.html#Flavors  
+variable assignment: 
+- `=` means always expanded. So that this variable can be used at other place, but cannot `a = $(a) -O` . wildcard and shell functions can return unpredictable result.  
+- `:=` is simply expanded. 
+- `?=` is conditional define. If not defined, define.  
+
+http://thiemonagel.de/2010/01/no-strict-aliasing/  
+`-fno-strict-aliasing` is for compile optimize.  
+
+[g++ Include](http://stackoverflow.com/questions/6141147/how-do-i-include-a-path-to-libraries-in-g)  
+To include libraries:  
+- `-L`: binary libs, normally under `lib/`. e.g. `-L/data[...]/lib`  
+- `-l`: a library name. e.g. `-lfoo  # (links libfoo.a or libfoo.so)`  
+- `-I`: include files.  
+
