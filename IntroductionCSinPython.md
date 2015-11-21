@@ -494,3 +494,7 @@ def genSubnets(L):
         res.append(small + extra)
     return smaller + res
 ```
+
+`n/2+n/4+...+1=(1-2^(log2n))/(1-2)=2^(log2n)-1=n-1`  
+
+## Lecture 10
