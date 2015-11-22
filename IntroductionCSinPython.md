@@ -498,3 +498,32 @@ def genSubnets(L):
 `n/2+n/4+...+1=(1-2^(log2n))/(1-2)=2^(log2n)-1=n-1`  
 
 ## Lecture 10
+Indirection: store each element in a list by storing the pointer of this element.  
+
+Check if a recursive function will finally terminate: 
+- Use decrementing function.  
+- if each recursive call make the problem set smaller, then it will terminate.  
+
+Sort plus binary search is not efficient as lineary search for one time search, but better if we need more than one time search.  
+
+Amortized cost: spread out a big cost over a period of time.  
+
+Merge sort:  
+- a merge algorithm  
+- a divide and conquer algorithm  
+
+```
+import operator
+
+def mergeSort(L, compare = operator.lt): # lt is <
+    if len(L) == 0 or len(L) == 1: 
+        return L[:]
+    mid = int(len(L)/2)
+    left = mergeSort(L[:mid], compare)
+    right = mergeSort(L[mid:], compare)
+    return merge(left, right, compare)
+```
+
+Dictionary use hashing.  
+
+## Problem set 5
