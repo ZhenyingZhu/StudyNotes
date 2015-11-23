@@ -1,3 +1,5 @@
+Run shell cmd in vim: https://www.linux.com/learn/tutorials/442419-vim-tips-working-with-external-commands  
+
 Check USB: http://www.wilf.cn/post/lsusb.html  
 http://ubuntuforums.org/showthread.php?t=1993135  
 disable USB auto suspend: `su; echo -1 >/sys/module/usbcore/parameters/autosuspend`  
@@ -13,7 +15,7 @@ How to install a package on Ubuntu: http://monkeyhacks.com/post/how-to-install-s
 
 Python popen(): Since Popen does not involke the shell, you would use a list of the command and options--["ntpq", "-p"]. (http://stackoverflow.com/questions/2502833/store-output-of-subprocess-popen-call-in-a-string)   
 
-gdb: C++ debugger.  
+gdb: C++ debugger. http://web.eecs.umich.edu/~sugih/pointers/gdbQS.html   
 
 less: `:n` goes to next file, `:p` goes to previous file. http://superuser.com/questions/347760/less-command-with-multiple-files-how-to-navigate-to-next-previous  
 
