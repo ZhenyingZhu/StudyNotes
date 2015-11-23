@@ -527,3 +527,7 @@ def mergeSort(L, compare = operator.lt): # lt is <
 Dictionary use hashing.  
 
 ## Problem set 5
+`a, b = b, a`: Swap a, b in python.  
+
+## Lecture 11
+
