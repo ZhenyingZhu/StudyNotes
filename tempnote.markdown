@@ -1,4 +1,11 @@
 
+Solve Gigabyte motherboard USB3 problem: http://ubuntuforums.org/archive/index.php/t-2111223.html  
+- setting your BIOS settings back to default  
+- change the setting of IOMMU to "ENABLED"  
+- doing a new build, change the BIOS , and simply add the grub command line to include "iommu=soft" your install will find the DHCP server, and this setting is automagically added to grub.  
+
+Find hardware info: http://askubuntu.com/questions/179958/how-do-i-find-out-my-motherboard-model  
+
 weak pointer: http://en.cppreference.com/w/cpp/memory/weak_ptr  
 
 UNIX signals: http://programmergamer.blogspot.com/2013/05/clarification-on-sigint-sigterm-sigkill.html  
