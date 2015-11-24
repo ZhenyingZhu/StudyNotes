@@ -1,8 +1,26 @@
+
+weak pointer: http://en.cppreference.com/w/cpp/memory/weak_ptr  
+
+UNIX signals: http://programmergamer.blogspot.com/2013/05/clarification-on-sigint-sigterm-sigkill.html  
+
+http://stackoverflow.com/questions/717239/io-service-why-and-how-is-it-used  
+
+https://en.wikipedia.org/wiki/Daemon_%28computing%29  
+
+`/usr/bin/time echo Hello`: check how long to run a program.  
+
+Signal 6: http://stackoverflow.com/questions/3413166/when-does-a-process-get-sigabrt-signal-6  
+
 Run shell cmd in vim: https://www.linux.com/learn/tutorials/442419-vim-tips-working-with-external-commands  
 
 Check USB: http://www.wilf.cn/post/lsusb.html  
 http://ubuntuforums.org/showthread.php?t=1993135  
-disable USB auto suspend: `su; echo -1 >/sys/module/usbcore/parameters/autosuspend`  
+disable USB auto suspend:  
+```
+su
+echo -1 >/sys/module/usbcore/parameters/autosuspend
+```
+
 http://ubuntuforums.org/showthread.php?t=797789  
 
 http://svnbook.red-bean.com/en/1.7/svn.branchmerge.using.html  
