@@ -1,4 +1,11 @@
 
+Shell array:  
+- `arr=(1 2 3)`
+- `arr[0]=1; arr[1]=2`
+- length: `${#arr[@]}`
+- access: `${arr[$i]}`
+- traverse: `for ((i = 0; i < ${#arr[@]}; i++)); do echo ${arr[$i]}; done`
+
 Solve Gigabyte motherboard USB3 problem: http://ubuntuforums.org/archive/index.php/t-2111223.html  
 - setting your BIOS settings back to default  
 - change the setting of IOMMU to "ENABLED"  
