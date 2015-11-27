@@ -542,5 +542,16 @@ Object-oriented programming:
 
 Can use `del` to delete an instance, or Python can automaticlly recycle it(garbage collection).  
 
+Define a class:  
+```
+class MyClass(super): 
+    def __init__(self, paras): 
+        # defination
+```
 
+All the functions inside a class defination have self as the first argument. It points to a frame.  
+
+`Object` is the basic class.  
+
+If cannot find a function or a variable in the subclass, go to find in its superclass.  
 
