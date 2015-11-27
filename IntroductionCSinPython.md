@@ -530,4 +530,17 @@ Dictionary use hashing.
 `a, b = b, a`: Swap a, b in python.  
 
 ## Lecture 11
+An operation should be defined by its type.  
+
+Linked list.  
+
+Internal representation should be private.  
+
+Object-oriented programming:  
+- everything is an object and has a type.  
+- Objects are a data substraction that encapsulate internal representation and provide interface.  
+
+Can use `del` to delete an instance, or Python can automaticlly recycle it(garbage collection).  
+
+
 
