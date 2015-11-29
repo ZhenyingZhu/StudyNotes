@@ -1,3 +1,5 @@
+Win7 hibernate: http://answers.microsoft.com/en-us/windows/forum/all/windows-7-what-no-hibernate/2761b1ad-3623-4808-b6a9-a23999ddddb8?auth=1  
+
 
 Shell array:  
 - `arr=(1 2 3)`
