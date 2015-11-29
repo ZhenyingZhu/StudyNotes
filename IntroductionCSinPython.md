@@ -160,8 +160,7 @@ Function procedure has both the outer environment and itself environment that bi
 
 The scoping of function often called static or lexical.  
 
-Max min value: if x<lo, return lo; if lo<x<hi, return x; if x>hi, return hi.  
-Equal to return max(min(x, hi), lo)  
+Max min value: `if x<lo, return lo; if lo<x<hi, return x; if x>hi, return hi.`Equal to return max(min(x, hi), lo)  
 
 ```
 a = 10
@@ -307,6 +306,7 @@ List: are mutable which is different from tuple.
 - `list.pop()` return and remove the last element. `list.pop(idx)` return the element.  
 - `list.extend([ele])` same to concatenate.  
 - `list.index(ele)` return the index of the first ele.  
+- `list.remove(ele)` equal to `del ele`  
 
 ```
 Lcpy = L[:]
@@ -453,8 +453,8 @@ assert 0.0 <= result <= 100.0
 ```
 
 Write unit tests:  
-- name seperate scripts as test_<script name>.py
-- implement test_<method name>()
+- name seperate scripts as `test_<script name>.py`
+- implement `test_<method name>()`
 
 To avoid get a KeyError when call `dict[key]`, use `dict.get(key, defaultVal)`.  
 
@@ -554,4 +554,23 @@ All the functions inside a class defination have self as the first argument. It 
 `Object` is the basic class.  
 
 If cannot find a function or a variable in the subclass, go to find in its superclass.  
+
+Create an instance of a class: `c = MyClass(paras)`  
+
+If call `c.__init__(paras)`, then depends on Python version, `c` could be a new instance or paras in `c` changed.  
+
+Method `__str__(self)` for a class would be call when need a string to print this class.  
+
+`isinstance(c, MyClass)` return true if c is an instance of MyClass.  
+
+`__eq__(self)` is called when `==`.  
+
+`__len__(self)` is called when `len(c)`.  
+
+[self reproduce](http://stackoverflow.com/questions/452300/python-object-repr-self-should-be-an-expression)  
+- produce a string that can be used to create a new object that is identical with the old object.  
+- `eval(str)` can execute str.  
+- when call `repr(instance)`, if call `instance.__repr__(self)`.  
+
+
 
