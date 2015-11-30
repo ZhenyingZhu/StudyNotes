@@ -573,4 +573,9 @@ Method `__str__(self)` for a class would be call when need a string to print thi
 - when call `repr(instance)`, if call `instance.__repr__(self)`.  
 
 
+# Lecture 12
+Python use timsort. By calling `obj1.__lt__(obj2)`.  
+
+
+
 
