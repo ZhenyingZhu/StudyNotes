@@ -233,7 +233,7 @@ close(3)                                = 0
 munmap(0x7f9511ae0000, 4096)            = 0
 exit_group(1)                           = ?
 
-``` 
+```
 
 
 `lsmod` show Modules that are loaded.  
