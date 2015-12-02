@@ -574,7 +574,28 @@ Method `__str__(self)` for a class would be call when need a string to print thi
 
 
 # Lecture 12
-Python use timsort. By calling `obj1.__lt__(obj2)`.  
+Python use timsort. By calling `obj1.__lt__(obj2)`, to sort sequences such as string.  
+
+Init of a subclass:  
+```
+class MITPerson(Person): 
+    nextIdNum = 0 # static
+    
+    def __init__(self, name): 
+        Person.__init__(self, name)
+        self.idNum = MITPerson.nextIdNum
+        MITPerson.nextIdNum += 1
+
+    def getIdNum(self): 
+        return self.idNum
+
+    def __lt__(self, other): 
+        return self.idNum < other.idNum
+```
+
+Subclass functions will shadow the functions in the parent class.  
+
+`obj1 < obj2` call `obj1.__lt__(obj2)`. So if obj2 is a subclass, it always work; but `obj2 < obj1` might fail if subclass override the `__lt__` function and parent class could not be passed to this function.  
 
 
 
