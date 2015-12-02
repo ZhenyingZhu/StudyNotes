@@ -1,5 +1,6 @@
-Win7 hibernate: http://answers.microsoft.com/en-us/windows/forum/all/windows-7-what-no-hibernate/2761b1ad-3623-4808-b6a9-a23999ddddb8?auth=1  
 
+
+Win7 hibernate: http://answers.microsoft.com/en-us/windows/forum/all/windows-7-what-no-hibernate/2761b1ad-3623-4808-b6a9-a23999ddddb8?auth=1  
 
 Shell array:  
 - `arr=(1 2 3)`
@@ -387,7 +388,7 @@ Scapy tur: http://www.secdev.org/projects/scapy/doc/usage.html
 
 http://www.webupd8.org/2014/09/dual-boot-fix-time-differences-between.html  
 
-Are the usb ports onboard devices or are the usbs part of a PCI card? Some usb PCI have this problem. type, #sudo lsusb, to get a listing of all usb ports on your system. Also type, sudo lshw -short to get a short listing all devices on you system. If neither program shows you the usbs on the system then you are using a different kernel or the drives did not get install. Type, uname -a, and give us the kernel version. If you do see the usbs, then type, sudo lspci -v, and see if drives have been installed for them. - See more at: http://www.linux.com/learn/answers/view/762-i-just-loaded-ubuntu-and-it-doesnt-recognize-the-usb-ports-what-do-i-do#sthash.bg370RMi.dpuf  
+Are the usb ports onboard devices or are the usbs part of a PCI card? Some usb PCI have this problem. type, `sudo lsusb`, to get a listing of all usb ports on your system. Also type, `sudo lshw -short` to get a short listing all devices on you system. If neither program shows you the usbs on the system then you are using a different kernel or the drives did not get install. Type, uname -a, and give us the kernel version. If you do see the usbs, then type, sudo lspci -v, and see if drives have been installed for them. - See more at: http://www.linux.com/learn/answers/view/762-i-just-loaded-ubuntu-and-it-doesnt-recognize-the-usb-ports-what-do-i-do#sthash.bg370RMi.dpuf  
 
 ```
 go to http://steamcommunity.com/minigame/towerattack/
