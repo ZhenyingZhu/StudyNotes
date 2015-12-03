@@ -597,6 +597,32 @@ Subclass functions will shadow the functions in the parent class.
 
 `obj1 < obj2` call `obj1.__lt__(obj2)`. So if obj2 is a subclass, it always work; but `obj2 < obj1` might fail if subclass override the `__lt__` function and parent class could not be passed to this function.  
 
+`pass` means use all of attributes from super class.  
+```
+class Grad(MITPerson): 
+    pass
+```
 
+Substitution principle: behaviors of superclass should be supported by all of subclasses.  
+
+When a class inherit from several classes, the search order of superclasses for resolving is from left to right, and depth-first search.  
+E.g.:  
+```
+class A(object): 
+    pass
+
+class B(A): 
+    pass
+
+class C(object): 
+    pass
+
+class D(C, B): 
+    pass
+```
+
+The order is D > C > object > B > A.  
+
+`'\n'.join(string_list)` will return a line by line string.  
 
 
