@@ -625,4 +625,40 @@ The order is D > C > object > B > A.
 
 `'\n'.join(string_list)` will return a line by line string.  
 
+Generator object: a procedure with yield statements.  
+- Has a `next()` that can starts/resumes execution.  
+- First `next()` call start executing until reach a `yield`.  
+- `yield` suspend execution and return a value.  
+- Call `next()` again, resume the execution.  
+- When reach the end of the code, raise a `StopIteration` exception.  
 
+```
+def genFib(): 
+    fibn_1 = 1
+    fibn_2 = 0
+    while True: 
+        next = fibn_1 + fibn_2
+        yield next
+        fibn_2 = fibn_1
+        fibn_1 = next
+```
+
+http://stackoverflow.com/questions/7883962/where-to-use-yield-in-python-best  
+Print a sequence with `yield` can save memory.  
+
+`for` and `else` clause: http://docs.python.org/release/1.5/tut/node23.html  
+```
+def genPrimes():
+    primes = []   # primes generated so far
+    last = 1      # last number tried
+    while True:
+        last += 1
+        for p in primes:
+            if last % p == 0:
+                break
+        else:
+            primes.append(last)
+            yield last
+```
+
+## Problem set 6
