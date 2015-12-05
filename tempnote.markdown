@@ -1,3 +1,11 @@
+http://stackoverflow.com/questions/16317961/how-to-process-each-line-received-as-a-result-of-grep-command  
+http://stackoverflow.com/questions/11902177/read-line-by-line-from-a-variable-in-shell-scripting  
+
+http://stackoverflow.com/questions/5735666/execute-bash-script-from-url  
+Show shell if commends: `man test`  
+
+[Solve Sublime package control](http://askubuntu.com/questions/514016/error-installing-package-control-for-sublime-text-3-on-ubuntu-14-04)  
+
 Logitech g27 support on Ubuntu: https://steamcommunity.com/sharedfiles/filedetails/?id=142372419  
 
 Solve black screen terminal problem caused by Nvidia driver: http://ubuntuforums.org/showthread.php?t=1981250  
@@ -165,11 +173,6 @@ https://danielmiessler.com/study/tcpdump/
 `tcpdump -i eth0 (not udp or not port 22) -w file.pcap`  
 
 http://unix.stackexchange.com/questions/4004/how-can-i-close-a-terminal-without-killing-the-command-running-in-it  
-
-Use aws cli filter:http://serverfault.com/questions/560337/search-ec2-instance-by-its-name-from-aws-command-line-tool    
-```
-aws ec2 describe-subnets --filters 'Name=vpc-id, Values=vpc-xxxxxxxx'
-```
 
 awk: `ls -l | awk 'NR>=122 && NR<=129 { print }'`  http://unix.stackexchange.com/questions/89640/how-to-run-awk-for-some-number-of-lines  
 
