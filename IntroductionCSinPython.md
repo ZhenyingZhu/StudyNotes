@@ -662,3 +662,6 @@ def genPrimes():
 ```
 
 ## Problem set 6
+Wrapper functions: user take simple inputs.  
+
+## Lecture 13
