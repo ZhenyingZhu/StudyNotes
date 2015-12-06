@@ -665,3 +665,39 @@ def genPrimes():
 Wrapper functions: user take simple inputs.  
 
 ## Lecture 13
+Nodes of tree connected by branches.  
+
+Depth first search: use a stack, LIFO.  
+```
+def DFSBinary(root, fcn): 
+    stack = [root]
+    while len(stack) > 0: 
+        if fcn(stack[0]): 
+            return True
+        temp = stack.pop()
+        if temp.getRightBranch(): 
+            stack.insert(0, temp.getRightBranch())
+        if temp.getLeftBranch(): 
+            stack.insert(0, temp.getLeftBranch())
+    
+    return False
+```
+
+Breadth first search: use a queue, FIFO.  
+```
+def BFSBinary(root, fcn): 
+    queue = [root]
+    while len(queue) > 0: 
+        if fcn(queue[0]): 
+            return True
+        temp = queue.pop()
+        if temp.getLeftBranch(): 
+            queue.append(temp.getLeftBranch())
+        if temp.getRightBranch(): 
+            queue.append(temp.getRightBranch())
+    
+    return False
+```
+
+Ordered Tree.  
+
