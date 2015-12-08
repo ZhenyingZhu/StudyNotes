@@ -1,3 +1,9 @@
+
+
+[boost share from this](http://www.boost.org/doc/libs/1_40_0/libs/smart_ptr/enable_shared_from_this.html): return a `shared_ptr` of self.  
+
+[boost bind](http://theboostcpplibraries.com/boost.bind): a template for a function to compatiable with another function call that need different number of arguments.  
+
 http://stackoverflow.com/questions/16317961/how-to-process-each-line-received-as-a-result-of-grep-command  
 http://stackoverflow.com/questions/11902177/read-line-by-line-from-a-variable-in-shell-scripting  
 
