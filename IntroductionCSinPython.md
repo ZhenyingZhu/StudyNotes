@@ -679,7 +679,6 @@ def DFSBinary(root, fcn):
             stack.insert(0, temp.getRightBranch())
         if temp.getLeftBranch(): 
             stack.insert(0, temp.getLeftBranch())
-    
     return False
 ```
 
@@ -695,10 +694,30 @@ def BFSBinary(root, fcn):
             queue.append(temp.getLeftBranch())
         if temp.getRightBranch(): 
             queue.append(temp.getRightBranch())
-    
     return False
 ```
 
 Ordered Tree.  
 
-Decision tree.  
+Decision tree:  
+- knapsack problem: put several elements that have weights and values into a limited-size knapsack.  
+- Leaves are a powerset.  
+- To decrease the search effort, can define a best-enough standard to stop the search.  
+- DFS do less search then BFS because solutions are always leaves of the decision trees. 
+- Only build the tree nodes when needed (implicit search) can improve the running time (vs. explicit search).  
+
+Create a decision tree to solve knapsack problem:  
+```
+def buildDTree(sofar, todo):
+    here = binaryTree(sofa)
+    if len(todo) == 0:
+        return here
+    withele = buildDTree(sofar + todo[0], todo[1:])
+    withoutele = buildDTree(sofar, todo[1:])
+    here.setLeftBrach(withele)
+    here.setRightBrach(withoutele)
+    return here
+```
+
+Graph: to search, tracking the seen nodes.  
+
