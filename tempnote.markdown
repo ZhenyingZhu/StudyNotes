@@ -1,3 +1,5 @@
+Installed software: terminator, meld, 
+
 [Search typed commends](http://superuser.com/questions/259693/ctrl-r-in-linux-ubuntu-terminal-command-line): ^R twice or `fc -ln|grep cmd`  
 
 [Add desktop shortcut](http://askubuntu.com/questions/142159/desktop-shortcut-to-create-a-new-desktop-shortcut-doesnt-do-anything): `gnome-desktop-item-edit ~/Desktop/ --create-new`. The official ways to do that is `xdg-desktop-menu`  
