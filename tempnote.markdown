@@ -1,6 +1,6 @@
 [Search typed commends](http://superuser.com/questions/259693/ctrl-r-in-linux-ubuntu-terminal-command-line): ^R twice or `fc -ln|grep cmd`  
 
-[Add desktop shortcut](http://askubuntu.com/questions/142159/desktop-shortcut-to-create-a-new-desktop-shortcut-doesnt-do-anything): `gnome-desktop-item-edit ~/Desktop/ --create-new`  
+[Add desktop shortcut](http://askubuntu.com/questions/142159/desktop-shortcut-to-create-a-new-desktop-shortcut-doesnt-do-anything): `gnome-desktop-item-edit ~/Desktop/ --create-new`. The official ways to do that is `xdg-desktop-menu`  
 
 [boost share from this](http://www.boost.org/doc/libs/1_40_0/libs/smart_ptr/enable_shared_from_this.html): return a `shared_ptr` of self.  
 
