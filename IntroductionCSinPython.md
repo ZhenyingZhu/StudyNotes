@@ -721,3 +721,10 @@ def buildDTree(sofar, todo):
 
 Graph: to search, tracking the seen nodes.  
 
+## Wrap up
+Abstruction, algorithms, automated execution.  
+
+Writing psudo codes first.  
+
+## Problem set 7
+
