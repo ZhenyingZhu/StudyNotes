@@ -1,3 +1,6 @@
+[docker1](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-getting-started)  
+[docker2](https://blog.docker.com/2013/10/docker-0-6-5-links-container-naming-advanced-port-redirects-host-integration/)  
+
 [Search typed commends](http://superuser.com/questions/259693/ctrl-r-in-linux-ubuntu-terminal-command-line): ^R twice or `fc -ln|grep cmd`  
 
 [Add desktop shortcut](http://askubuntu.com/questions/142159/desktop-shortcut-to-create-a-new-desktop-shortcut-doesnt-do-anything): `gnome-desktop-item-edit ~/Desktop/ --create-new`  
