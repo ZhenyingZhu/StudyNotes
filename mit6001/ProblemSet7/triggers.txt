@@ -15,6 +15,18 @@ t3 PHRASE New York City
 # composite trigger named t4
 t4 AND t2 t3
 
-# the trigger set contains t1 and t4
-ADD t1 t4
+# composite trigger named t5
+t5 TITLE Obama
+
+# composite trigger named t6
+t6 SUBJECT Romney
+
+# composite trigger named t7
+t7 PHRASE Election
+
+# composite trigger named t8
+t8 OR t6 t7
+
+# the trigger set contains t1 and t4 t5 t8
+ADD t1 t4 t5 t8
 
