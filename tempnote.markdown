@@ -1,3 +1,5 @@
+[Python running time info](http://stackoverflow.com/questions/265960/best-way-to-strip-punctuation-from-a-string-in-python)  
+
 [docker1](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-getting-started)  
 [docker2](https://blog.docker.com/2013/10/docker-0-6-5-links-container-naming-advanced-port-redirects-host-integration/)  
 
