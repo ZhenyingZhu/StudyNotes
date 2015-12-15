@@ -727,4 +727,9 @@ Abstruction, algorithms, automated execution.
 Writing psudo codes first.  
 
 ## Problem set 7
+N/A
+
+## Final Exam
+N/A
+
 
