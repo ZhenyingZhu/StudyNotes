@@ -1,3 +1,12 @@
+Python dictionary to args:  
+```
+def foo(a, b): 
+    print a + " " + b
+
+dict = {'a':1, 'b':2}
+foo(**dict)
+```
+
 [flash Android image on Nexus 9](https://developers.google.com/android/nexus/images?hl=en)  
 
 [Python running time info](http://stackoverflow.com/questions/265960/best-way-to-strip-punctuation-from-a-string-in-python)  
