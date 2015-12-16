@@ -288,3 +288,42 @@ Is a way to run the script with self defined function
 `type(obj)`：返回对象类型。返回值为type 类的实例。  
 `obj.__doc__`：显示帮助文档。  
 
+
+# [Web Spider](http://blog.csdn.net/column/details/why-bug.html)
+## urllib2
+Get html stream: `response = urllib2.urlopen('http://www.baidu.com/') `  
+
+Interact with HTML: 
+```
+values = {'name' : 'WHY',
+          'language' : 'Python' }
+data = urllib2.urlencode(values)
+
+# POST
+req = urllib2.Request(url, data)
+response = urllib2.urlopen(req)
+
+# GET
+data = urllib2.open(url + '?' + data)
+```
+
+ERRORs:  
+- URLError
+- HTTPError: a subset of URLError.  
+- HTTP Code 401 means unauthorized. content in header is `Www-authenticate: SCHEME realm="REALM"`. Can instance a `HTTPBasicAuthHandler` to deal with it. 
+
+Get the true URL: 
+```
+req = Request(shorten_url) 
+response = urlopen(req)
+real_url = response.geturl()
+```
+
+Get the page header: 
+```
+response.info()
+```
+
+[How to Authorize](http://blog.csdn.net/pleasecallmewhy/article/details/8924889)  
+
+[Stop here](http://blog.csdn.net/pleasecallmewhy/article/details/8925978)  

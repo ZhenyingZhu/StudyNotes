@@ -1,3 +1,5 @@
+Python string in `"""..."""` can contain enter.  
+
 Python dictionary to args:  
 ```
 def foo(a, b): 
