@@ -290,10 +290,25 @@ Is a way to run the script with self defined function
 
 
 # [Web Spider](http://blog.csdn.net/column/details/why-bug.html)
+## Introduction
+Universal Resource Identifier URL是URI的一个子集。它是Uniform Resource Locator的缩写 
+URL format: protocol :// hostname[:port] / path / [;parameters][?query]#fragment  
+
 ## urllib2
-Get html stream: `response = urllib2.urlopen('http://www.baidu.com/') `  
+Get html stream:  
+```
+import urllib2
+response = urllib2.urlopen('http://www.baidu.com/')
+html = response.read()
+print html
+```
+用你要请求的地址创建一个Request对象, 通过调用urlopen并传入Request对象，将返回一个相关请求response对象.  
 
 Interact with HTML: 
+发送一些数据到URL(通常URL与CGI[通用网关接口]脚本，或其他WEB应用程序挂接)。在HTTP中,这个经常使用熟知的POST请求发送。  
+
+一般的HTML表单，data需要编码成标准形式。然后做为data参数传到Request对象。
+
 ```
 values = {'name' : 'WHY',
           'language' : 'Python' }
@@ -307,10 +322,47 @@ response = urllib2.urlopen(req)
 data = urllib2.open(url + '?' + data)
 ```
 
-ERRORs:  
+GET和POST请求的不同之处是POST请求通常有"副作用"，它们会由于某种途径改变系统状态(例如提交成堆垃圾到你的门口)。  
+Data同样可以通过在Get请求的URL本身上面编码来传送。  
+
+有一些站点不喜欢被程序（非人为访问）访问，或者发送不同版本的内容到不同的浏览器。默认的urllib2把自己作为“Python-urllib/x.y”(x和y是Python主版本和次版本号,例如Python-urllib/2.7), 这个身份可能会让站点迷惑，或者干脆不工作。浏览器确认自己身份是通过User-Agent头，当你创建了一个请求对象，你可以给他一个包含头数据的字典。
+
+### ERRORs:  
 - URLError
 - HTTPError: a subset of URLError.  
 - HTTP Code 401 means unauthorized. content in header is `Www-authenticate: SCHEME realm="REALM"`. Can instance a `HTTPBasicAuthHandler` to deal with it. 
+
+服务器上每一个HTTP 应答对象response包含一个数字"状态码"。  
+有时状态码指出服务器无法完成请求。默认的处理器会为你处理一部分这种应答。例如:假如response是一个"重定向"，需要客户端从别的地址获取文档，urllib2将为你处理。其他不能处理的，urlopen会产生一个HTTPError。典型的错误包含"404"(页面无法找到)，"403"(请求禁止)，和"401"(带验证请求)。
+- 200：请求成功. 处理方式：获得响应的内容，进行处理 
+- 201：请求完成，结果是创建了新资源。新创建资源的URI可在响应的实体中得到. 处理方式：爬虫中不会遇到 
+- 202：请求被接受，但处理尚未完成. 处理方式：阻塞等待 
+- 204：服务器端已经实现了请求，但是没有返回新的信息。如果客户是用户代理，则无须为此更新自身的文档视图。处理方式：丢弃
+- 300：该状态码不被HTTP/1.0的应用程序直接使用，只是作为3XX类型回应的默认解释。存在多个可用的被请求资源。处理方式：若程序中能够处理，则进行进一步处理，如果程序中不能处理，则丢弃
+- 301：请求到的资源都会分配一个永久的URL，这样就可以在将来通过该URL来访问此资源. 处理方式：重定向到分配的URL
+- 302：请求到的资源在一个不同的URL处临时保存. 处理方式：重定向到临时的URL 
+- 304 请求的资源未更新. 处理方式：丢弃 
+- 400 非法请求. 处理方式：丢弃 
+- 401 未授权. 处理方式：丢弃 
+- 403 禁止. 处理方式：丢弃 
+- 404 没有找到. 处理方式：丢弃 
+- 5XX 回应代码以“5”开头的状态码表示服务器端发现自己出现错误，不能继续执行请求. 处理方式：丢弃
+
+`BaseHTTPServer.BaseHTTPRequestHandler.response`是一个很有用的应答号码字典，显示了HTTP协议使用的所有的应答号。当一个错误号产生后，服务器返回一个HTTP错误号，和一个错误页面。可以使用`HTTPError`实例作为页面返回的应答对象response。这表示和错误属性一样，它同样包含了read,geturl,和info方法。  
+
+```
+from urllib2 import Request, urlopen, URLError, HTTPError 
+req = Request('http://bbs.csdn.net/callmewhy') 
+try: 
+    response = urlopen(req) 
+except HTTPError, e: 
+    print 'The server couldn\'t fulfill the request.' 
+    print 'Error code: ', e.code 
+except URLError, e: 
+    print 'We failed to reach a server.' print 'Reason: ', e.reason 
+else: 
+    print 'No exception was raised.' # everything is fine 
+```
 
 Get the true URL: 
 ```
