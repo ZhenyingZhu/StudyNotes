@@ -306,177 +306,177 @@ Directory tree：根为/；每个目录可使用本地partition的文件系统�
 正规的执行目录：/bin/，/usr/bin/下的指令可直接执行。<br />
 
 Chapter 7
-写Shell Scripts时需用绝对路径。
-特殊目录：.，..，-前一个目录，～，～account。
-根目录的.和..属性权限完全相同，是同一个目录。
-显示当前目录：pwd [-P]。P显示正确的完整路径（对连接目录有效，如/var/mail/）。
-建立新目录：mkdir [-mp]。mkdir -m 711直接设置权限而不遵守预设umask。mkdir –p test1/test2递归建立目录，即多层结构的目录。
-删除空目录：rmdir [-p]。P连同上层的空目录一起删除。
-删除目录下所有东西：rm –r test。
-环境变量$PATH：自动去这些目录里搜索指令。同名的指令，执行先搜到的。/usr/local/bin:/bin:/usr/bin:/home/vbird/bin，中间用:隔开。
-	不在$PATH下的指令，能用绝对路径访问，如/sbin/ifconfig eth0查看IP。
-	安全起见，不在搜索路径中加入.，以免有人在/tmp/中覆写常用指令。
-显示变量值：echo $PATH。变量名区分大小写。
-移动文件：mv /bin/ls /root。如果mv filename1 filename2则是重命名。
-显示文件信息：ls [-aAdfFhilnrRSt] 目录名称；ls [--color={never,auto,always}] 目录名称；ls [--full-time] 目录名称；ls –l 档案名1 档案名2。
-	-a：全部的档案，连同隐藏档一起列出来。
--A：同上，但不包括.和..。
--d：查看目录的属性。
--f：直接列出结果，而不进行排序 (预设会以档名排序) 。
--F：显示附加数据结构，如*代表可执行文件；/代表目录；=代表socket档案；|代表FIFO档案。 
--h：将档案容量以GB, KB等单位显示。 
--i：列出 inode 号码。
--l：列出个档案属性。
--n：列出UID与GID而不是使用者和群组名称。
--r：将排序结果反向输出。
--R：连同子目录内容一起列出。
--S：以档案容量大小排序。 
--t：依时间排序。
---color：never：不要依据档案特性给予颜色显示；always：显示颜色；auto：系统自行判断是否给予颜色。蓝色为档案，白色为目录。
---full-time：以完整时间模式 (年、月、日、时、分) 输出。
---time={atime,ctime}：输出 access 时间或改变权限属性时间(ctime)而非内容变更时间(modification time)。
-档案的各种属性都存放于i-node中。
-Bash Shell的alias：设定特定的字符串某代表包含参数的指令。
-复制档案：只能复制有read权限的。cp [-adfilprsu] source destination。cp [options] source1 source2 source3 .... directory。如果source有两个以上，则destination一定要是目录。
-	-a：相当于-pdr。
--d：若source为link file，则复制链接文件属性而非档案本身。
--f：force，若目标档案已经存在且无法开启，则移除后再尝试一次。
--i：若destination已经存在时，在覆盖时会先询问。
--l：进行hard link的连结档建立，而非复制档案本身。
--p：连同档案的属性一起复制，而非使用默认属性（备份用）。默认属性是644 复制者 复制者。
--r：递归持续复制，用亍目录的复制，不然无法复制。cp –r /etc/ /tmp，但属性会改变。cp –a /etc /tmp可保证属性不变。
--s：复制为symbolic link。
--u：若destination比source旧才更新。
-移除档案：rm [-fir] 档案或目录。档案名中*代表0到无穷多个字符。
--f：忽略不存在的档案。
--i：在删除前会询问使用者。默认情况rm指令alias为rm –i。
--r：递归删除，用于目录的删除，危险。
-指令前加\可忽略alias的指定选项。
-移动档案：mv [-fiu] source destination。mv [options] source1 source2 source3 .... directory。
--f：如果目标档案已经存在，不会询问而直接覆盖。
--i：会询问是否覆盖。
--u：只有source比destination新时才会update。
-重命名：rename。
-获得档名：basename /etc/sysconfig/network。
-获得目录名：dirname /etc/sysconfig/network。
-由第一行开始显示档案内容：cat [-AbEnTv] 档案名。
--A：等于-vET。
--b：列出非空白行行号。
--E：显示断行字符$。Windows的文档断行符为^M$。
--n：打印所有行行号。
--T：将tab键以^I显示。
--v：列出特殊字符。
-从最后一行开始显示：tac。用法同上。
-显示时输出行号：nl [-bnw] 档案。
--b：指定行号出现方式，-b a：空行也显示；-b t：不显示，默讣值。
--n：行号显示方式，-n ln：最左方；-n rn：最右方，不补0；-n rz：最右方补0。
--w：行号字段占用的位数。
-分页显示：more 档案名。底下显示百分比。可执行操作：
-space：向下翻页。
-Enter：向下翻一行。
-/字符串：向下搜寻关键词。
-:f：显示文件名及目前的行数。
-q：离开。
-b或[ctrl]-b：往回翻页，只对档案有用，对管线无效。
-可往前翻页显示：less。同上，操作：
-空格键或[pagedown]：向下翻页。
-[pageup]：向上页。
-/字符串：向下搜寻。
-?字符串：向上搜寻。
-n：回到前一个搜寻。
-N：反向的前一个搜寻。
-q：离开。
-只看头几行：head [-n number] 档案1 档案2。
-	-n：后面接数字显示几行。不加数字默认显示10行。接负数显示总行数减后的行数。如-100显示41行（总长141行）。
-只看末几行：tail [-n number] 档案。
--n：从第几行开始显示，前面的number-1行不显示。
--f：表示持续侦测该档案，一有变动就显示，直到按下[ctrl]-c为止。
-读取二进制档案：od [-t TYPE] [oC TYPE] 档案。
--t：接输出TYPE：a ：默认；c：用ASCII；d[size]：利用十进制(decimal)，每个整数占用size bytes；f[size]：利用floating；o[size]：用八进制(octal)；x[size]：用十六进制(hexadecimal)。
-	oC：显示两种TYPE并比较。如od -t oCc /etc/issue。
-档案的时间参数：
-modification time (mtime)：内容数据变更的时间。ls默认显示的时间。
-status time (ctime)：权限或属性被更改的时间。
-access time (atime)：内容被取用的时间。
-修改档案时间（可建立空档案）：touch [-acdmt] 档案。
--a：修改access time为当前时间。
--c：修改档案的时间，不存在则不建立新档案。
--d：后面接欲修订日期，等于--date="日期或时间"。如touch -d "2 days ago" bashrc。
--m：仅修改mtime。
--t：后面接欲修订的时间，格式为[YYMMDDhhmm]。如touch -t 0709150202 bashrc。
-输入指令时;可连续执行。
-Ext2/Ext3文件的隐藏属性：如可以设定档案不可修改，连拥有者都不能修改。用以确保security。其他系统没有改属性。
-档案预设权限：umask [-S]查看。umask 三位数设定。
-	S：用符号显示。
-共四位数，第一位为特殊权限。
-新建档案，权限默认为666，目录缺省为777。
-数值显示的是剪掉的权限。如，umask显示0022则表明现在默认的权限为建立档案时644，建立目录时755。
-设定时为缺省值需要剪掉的数。如umask 002令档案默认为664,目录为775，
-root的umask为022，一般users为002，预设在/etc/bashrc，不建议修改。
+写Shell Scripts时需用绝对路径。<br />
+特殊目录：.，..，-前一个目录，～，～account。<br />
+根目录的.和..属性权限完全相同，是同一个目录。<br />
+显示当前目录：pwd [-P]。P显示正确的完整路径（对连接目录有效，如/var/mail/）。<br />
+建立新目录：mkdir [-mp]。mkdir -m 711直接设置权限而不遵守预设umask。mkdir –p test1/test2递归建立目录，即多层结构的目录。<br />
+删除空目录：rmdir [-p]。P连同上层的空目录一起删除。<br />
+删除目录下所有东西：rm –r test。<br />
+环境变量$PATH：自动去这些目录里搜索指令。同名的指令，执行先搜到的。/usr/local/bin:/bin:/usr/bin:/home/vbird/bin，中间用:隔开。<br />
+	不在$PATH下的指令，能用绝对路径访问，如/sbin/ifconfig eth0查看IP。<br />
+	安全起见，不在搜索路径中加入.，以免有人在/tmp/中覆写常用指令。<br />
+显示变量值：echo $PATH。变量名区分大小写。<br />
+移动文件：mv /bin/ls /root。如果mv filename1 filename2则是重命名。<br />
+显示文件信息：ls [-aAdfFhilnrRSt] 目录名称；ls [--color={never,auto,always}] 目录名称；ls [--full-time] 目录名称；ls –l 档案名1 档案名2。<br />
+	-a：全部的档案，连同隐藏档一起列出来。<br />
+-A：同上，但不包括.和..。<br />
+-d：查看目录的属性。<br />
+-f：直接列出结果，而不进行排序 (预设会以档名排序) 。<br />
+-F：显示附加数据结构，如*代表可执行文件；/代表目录；=代表socket档案；|代表FIFO档案。 <br />
+-h：将档案容量以GB, KB等单位显示。 <br />
+-i：列出 inode 号码。<br />
+-l：列出个档案属性。<br />
+-n：列出UID与GID而不是使用者和群组名称。<br />
+-r：将排序结果反向输出。<br />
+-R：连同子目录内容一起列出。<br />
+-S：以档案容量大小排序。 <br />
+-t：依时间排序。<br />
+--color：never：不要依据档案特性给予颜色显示；always：显示颜色；auto：系统自行判断是否给予颜色。蓝色为档案，白色为目录。<br />
+--full-time：以完整时间模式 (年、月、日、时、分) 输出。<br />
+--time={atime,ctime}：输出 access 时间或改变权限属性时间(ctime)而非内容变更时间(modification time)。<br />
+档案的各种属性都存放于i-node中。<br />
+Bash Shell的alias：设定特定的字符串某代表包含参数的指令。<br />
+复制档案：只能复制有read权限的。cp [-adfilprsu] source destination。cp [options] source1 source2 source3 .... directory。如果source有两个以上，则destination一定要是目录。<br />
+	-a：相当于-pdr。<br />
+-d：若source为link file，则复制链接文件属性而非档案本身。<br />
+-f：force，若目标档案已经存在且无法开启，则移除后再尝试一次。<br />
+-i：若destination已经存在时，在覆盖时会先询问。<br />
+-l：进行hard link的连结档建立，而非复制档案本身。<br />
+-p：连同档案的属性一起复制，而非使用默认属性（备份用）。默认属性是644 复制者 复制者。<br />
+-r：递归持续复制，用亍目录的复制，不然无法复制。cp –r /etc/ /tmp，但属性会改变。cp –a /etc /tmp可保证属性不变。<br />
+-s：复制为symbolic link。<br />
+-u：若destination比source旧才更新。<br />
+移除档案：rm [-fir] 档案或目录。档案名中*代表0到无穷多个字符。<br />
+-f：忽略不存在的档案。<br />
+-i：在删除前会询问使用者。默认情况rm指令alias为rm –i。<br />
+-r：递归删除，用于目录的删除，危险。<br />
+指令前加\可忽略alias的指定选项。<br />
+移动档案：mv [-fiu] source destination。mv [options] source1 source2 source3 .... directory。<br />
+-f：如果目标档案已经存在，不会询问而直接覆盖。<br />
+-i：会询问是否覆盖。<br />
+-u：只有source比destination新时才会update。<br />
+重命名：rename。<br />
+获得档名：basename /etc/sysconfig/network。<br />
+获得目录名：dirname /etc/sysconfig/network。<br />
+由第一行开始显示档案内容：cat [-AbEnTv] 档案名。<br />
+-A：等于-vET。<br />
+-b：列出非空白行行号。<br />
+-E：显示断行字符$。Windows的文档断行符为^M$。<br />
+-n：打印所有行行号。<br />
+-T：将tab键以^I显示。<br />
+-v：列出特殊字符。<br />
+从最后一行开始显示：tac。用法同上。<br />
+显示时输出行号：nl [-bnw] 档案。<br />
+-b：指定行号出现方式，-b a：空行也显示；-b t：不显示，默认值。<br />
+-n：行号显示方式，-n ln：最左方；-n rn：最右方，不补0；-n rz：最右方补0。<br />
+-w：行号字段占用的位数。<br />
+分页显示：more 档案名。底下显示百分比。可执行操作：<br />
+space：向下翻页。<br />
+Enter：向下翻一行。<br />
+/字符串：向下搜寻关键词。<br />
+:f：显示文件名及目前的行数。<br />
+q：离开。<br />
+b或[ctrl]-b：往回翻页，只对档案有用，对管线无效。<br />
+可往前翻页显示：less。同上，操作：<br />
+空格键或[pagedown]：向下翻页。<br />
+[pageup]：向上页。<br />
+/字符串：向下搜寻。<br />
+?字符串：向上搜寻。<br />
+n：回到前一个搜寻。<br />
+N：反向的前一个搜寻。<br />
+q：离开。<br />
+只看头几行：head [-n number] 档案1 档案2。<br />
+	-n：后面接数字显示几行。不加数字默认显示10行。接负数显示总行数减后的行数。如-100显示41行（总长141行）。<br />
+只看末几行：tail [-n number] 档案。<br />
+-n：从第几行开始显示，前面的number-1行不显示。<br />
+-f：表示持续侦测该档案，一有变动就显示，直到按下[ctrl]-c为止。<br />
+读取二进制档案：od [-t TYPE] [oC TYPE] 档案。<br />
+-t：接输出TYPE：a ：默认；c：用ASCII；d[size]：利用十进制(decimal)，每个整数占用size bytes；f[size]：利用floating；o[size]：用八进制(octal)；x[size]：用十六进制(hexadecimal)。<br />
+	oC：显示两种TYPE并比较。如od -t oCc /etc/issue。<br />
+档案的时间参数：<br />
+modification time (mtime)：内容数据变更的时间。ls默认显示的时间。<br />
+status time (ctime)：权限或属性被更改的时间。<br />
+access time (atime)：内容被取用的时间。<br />
+修改档案时间（可建立空档案）：touch [-acdmt] 档案。<br />
+-a：修改access time为当前时间。<br />
+-c：修改档案的时间，不存在则不建立新档案。<br />
+-d：后面接欲修订日期，等于--date="日期或时间"。如touch -d "2 days ago" bashrc。<br />
+-m：仅修改mtime。<br />
+-t：后面接欲修订的时间，格式为[YYMMDDhhmm]。如touch -t 0709150202 bashrc。<br />
+输入指令时;可连续执行。<br />
+Ext2/Ext3文件的隐藏属性：如可以设定档案不可修改，连拥有者都不能修改。用以确保security。其他系统没有改属性。<br />
+档案预设权限：umask [-S]查看。umask 三位数设定。<br />
+	S：用符号显示。<br />
+共四位数，第一位为特殊权限。<br />
+新建档案，权限默认为666，目录缺省为777。<br />
+数值显示的是剪掉的权限。如，umask显示0022则表明现在默认的权限为建立档案时644，建立目录时755。<br />
+设定时为缺省值需要剪掉的数。如umask 002令档案默认为664,目录为775，<br />
+root的umask为022，一般users为002，预设在/etc/bashrc，不建议修改。<br />
 
-配置隐藏属性：chattr [+-=][ASacdistu] 档案或目录。
-+：增加参数。
--：移除参数。
-=：重新设定全部参数。
-A：atime不会被修改。
-S：将该档案异步存取模式改为同步写入磁盘。
-a：档案只能增加数据，只有root才能设定。
-c：自动压缩，读取时自动解压缩。
-d：用dump程序备份时，该档案或目录不会被备份。
-i：档案不能被删除、改名、设定连结、写入或新增内容。只有root能设定。
-s：档案被删除时完全地移除。
-u：档案被删除时内容还存在磁盘中。
-查看隐藏属性：lsattr [-adR] 档案或目录。
--a：显示隐藏文件。
--d：显示目录。
--R：递归显示子目录。
+配置隐藏属性：chattr [+-=][ASacdistu] 档案或目录。<br />
++：增加参数。<br />
+-：移除参数。<br />
+=：重新设定全部参数。<br />
+A：atime不会被修改。<br />
+S：将该档案异步存取模式改为同步写入磁盘。<br />
+a：档案只能增加数据，只有root才能设定。<br />
+c：自动压缩，读取时自动解压缩。<br />
+d：用dump程序备份时，该档案或目录不会被备份。<br />
+i：档案不能被删除、改名、设定连结、写入或新增内容。只有root能设定。<br />
+s：档案被删除时完全地移除。<br />
+u：档案被删除时内容还存在磁盘中。<br />
+查看隐藏属性：lsattr [-adR] 档案或目录。<br />
+-a：显示隐藏文件。<br />
+-d：显示目录。<br />
+-R：递归显示子目录。<br />
 
-特殊权限：出现在档案拥有者的x上， 在属性上显示Set UID/GID的s在User /group的位置，和Sticky Bit的t。
-Set UID仅对binary program有效；执行者对该程序需有x权限；本权限仅在run-time中有效；执行者具有owner的权限。即在执行过程中具有owner的权限，可修改一些本来无法修改的文件。
-	如修改密码指令/usr/bin/passwd。Owner为root，权限为-rwsr-xr-x 1 root root，用以修改/etc/shadow。所以Others可以用该指令改密码。
-Set GID：与SUID类似，可用于目录，获得群组权限。
-如权限为-rwx--s--x 1 root slocate 23856 Mar 15 2007 /usr/bin/locate可搜寻/var/lib/mlocate/mlocate.db。
-	目录有SGID属性：用户在此目录下的effective group将会变成该目录的群组；若用户在此目录下具有w的权限，则使用者所建立的新档案的群组与此目录的群组相同。
-Sticky Bit：用户对目录有w,x权限；用户在该目录下建立的档案或目录仅有自己与root可删除。
-	如/tmp的权限是drwxrwxrwt。
-观察文件类型：file。属于ASCII或data，有否用到share library。
-寻找指令位置：which [-a] command。
-	-a ：列出所有PATH目录中可找到的指令而非第一个。
-寻找档案：whereis [-bmsu] 档案或目录。在系统维护的数据库中找，速度快。
--b:只找binary格式的档案。
--m:只找在说明文件manual路径下的档案。
--s:只找source来源档案。
--u:搜寻不在上述三个项目中的其他特殊档案。
-关键字查找档案名，即档案名查找包含该词的档案：locate [-ir] keyword。数据库/var/lib/mlocate/一天只更新一次，新建的找不到。
--i：不区分大小写。
--r：启用正则表达式。
-硬盘中查找档案：find [PATH] [option] [action]。支持通配符如find /etc -name '*httpd*'。速度慢。* 对应任意个字符，?对应任意一个字符。
-与时间有关的选项：
--atime,-ctime，-mtime。-mtime 数字n：在n天前的当天被更改过内容的档案；+n：列出n天前不含第n天的档案；-n：列出n天内含n天的档案档名。
--newer file：列出比file新的档案。find /etc -newer /etc/passwd。
-使用者或组名有关：
--uid n：n是用户的账号UID，记录在/etc/passwd里面。
-更新数据库/var/lib/mlocate/：updatedb。
--gid n：组名的GID。记录在/etc/group。
--user name：使用者的账号名称。
--group name：组名。
--nouser：寻找不存在于/etc/passwd的档案拥有者。
--nogroup：寻找不存在于/etc/group的拥有群组的档案。发生于安装软件时。
-与档案权限及名称有关：
--name filename：搜寻文件名为 filename的档案。
--size [+-]SIZE：搜寻比SIZE大(+)或小(-)的档案。如-size +50k。单位c代表byte，k代表1024bytes。
--type TYPE：搜寻档案的类型为：一般档案f,装置档案b、c,目录d,连结档l,socket s,及FIFO p。
--perm mode：搜寻档案权限等于mode的档案，如-rwsr-xr-x=4755。
--perm -mode：权限囊括mode的档案。？
--perm +mode：搜寻档案权限包含任一mode权限的档案，如-perm +755可找到-rw-------。？
-额外动作：
--print：将结果打印到屏幕上。
--exec command：用额外的指令（不支持alias）处理搜寻到的结果。如find / -perm +7000 -exec ls -l '{}' \;。{}代表find找到的内容。-exec到\;之间是额外动作。因为;在bash下有特殊意义，因此用反斜杠跳脱。等同于ls -l 第一个找到的;ls -l 第二个找到的;
-逻辑表达式：
--a：and。如find /etc -size +50k -a -size -60k -exec ls -l '{}' \；
-!：反向选择。如find /etc -size +50k -a ! -user root -exec ls -ld '{}' \;找到大于50k且不是root的档案。
--o:or。
+特殊权限：出现在档案拥有者的x上， 在属性上显示Set UID/GID的s在User /group的位置，和Sticky Bit的t。<br />
+Set UID仅对binary program有效；执行者对该程序需有x权限；本权限仅在run-time中有效；执行者具有owner的权限。即在执行过程中具有owner的权限，可修改一些本来无法修改的文件。<br />
+	如修改密码指令/usr/bin/passwd。Owner为root，权限为-rwsr-xr-x 1 root root，用以修改/etc/shadow。所以Others可以用该指令改密码。<br />
+Set GID：与SUID类似，可用于目录，获得群组权限。<br />
+如权限为-rwx--s--x 1 root slocate 23856 Mar 15 2007 /usr/bin/locate可搜寻/var/lib/mlocate/mlocate.db。<br />
+	目录有SGID属性：用户在此目录下的effective group将会变成该目录的群组；若用户在此目录下具有w的权限，则使用者所建立的新档案的群组与此目录的群组相同。<br />
+Sticky Bit：用户对目录有w,x权限；用户在该目录下建立的档案或目录仅有自己与root可删除。<br />
+	如/tmp的权限是drwxrwxrwt。<br />
+观察文件类型：file。属于ASCII或data，有否用到share library。<br />
+寻找指令位置：which [-a] command。<br />
+	-a ：列出所有PATH目录中可找到的指令而非第一个。<br />
+寻找档案：whereis [-bmsu] 档案或目录。在系统维护的数据库中找，速度快。<br />
+-b:只找binary格式的档案。<br />
+-m:只找在说明文件manual路径下的档案。<br />
+-s:只找source来源档案。<br />
+-u:搜寻不在上述三个项目中的其他特殊档案。<br />
+关键字查找档案名，即档案名查找包含该词的档案：locate [-ir] keyword。数据库/var/lib/mlocate/一天只更新一次，新建的找不到。<br />
+-i：不区分大小写。<br />
+-r：启用正则表达式。<br />
+硬盘中查找档案：find [PATH] [option] [action]。支持通配符如find /etc -name '*httpd*'。速度慢。* 对应任意个字符，?对应任意一个字符。<br />
+与时间有关的选项：<br />
+-atime,-ctime，-mtime。-mtime 数字n：在n天前的当天被更改过内容的档案；+n：列出n天前不含第n天的档案；-n：列出n天内含n天的档案档名。<br />
+-newer file：列出比file新的档案。find /etc -newer /etc/passwd。<br />
+使用者或组名有关：<br />
+-uid n：n是用户的账号UID，记录在/etc/passwd里面。<br />
+更新数据库/var/lib/mlocate/：updatedb。<br />
+-gid n：组名的GID。记录在/etc/group。<br />
+-user name：使用者的账号名称。<br />
+-group name：组名。<br />
+-nouser：寻找不存在于/etc/passwd的档案拥有者。<br />
+-nogroup：寻找不存在于/etc/group的拥有群组的档案。发生于安装软件时。<br />
+与档案权限及名称有关：<br />
+-name filename：搜寻文件名为 filename的档案。<br />
+-size [+-]SIZE：搜寻比SIZE大(+)或小(-)的档案。如-size +50k。单位c代表byte，k代表1024bytes。<br />
+-type TYPE：搜寻档案的类型为：一般档案f,装置档案b、c,目录d,连结档l,socket s,及FIFO p。<br />
+-perm mode：搜寻档案权限等于mode的档案，如-rwsr-xr-x=4755。<br />
+-perm -mode：权限囊括mode的档案。？<br />
+-perm +mode：搜寻档案权限包含任一mode权限的档案，如-perm +755可找到-rw-------。？<br />
+额外动作：<br />
+-print：将结果打印到屏幕上。<br />
+-exec command：用额外的指令（不支持alias）处理搜寻到的结果。如find / -perm +7000 -exec ls -l '{}' \;。{}代表find找到的内容。-exec到\;之间是额外动作。因为;在bash下有特殊意义，因此用反斜杠跳脱。等同于ls -l 第一个找到的;ls -l 第二个找到的;<br />
+逻辑表达式：<br />
+-a：and。如find /etc -size +50k -a -size -60k -exec ls -l '{}' \；<br />
+!：反向选择。如find /etc -size +50k -a ! -user root -exec ls -ld '{}' \;找到大于50k且不是root的档案。<br />
+-o:or。<br />
 
-groupadd group添加组，useradd user添加用户。id user查询用户权限情况。
-添加一个组公用文件夹，需要设置SGID，不然某用户默认建立的档案别人无发访问。（鸟哥的私房菜P239）
+groupadd group添加组，useradd user添加用户。id user查询用户权限情况。<br />
+添加一个组公用文件夹，需要设置SGID，不然某用户默认建立的档案别人无发访问。（鸟哥的私房菜P239）<br />
 
