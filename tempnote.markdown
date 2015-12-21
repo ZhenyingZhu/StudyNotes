@@ -1,3 +1,5 @@
+[Add app to launcher](http://askubuntu.com/questions/224004/how-to-add-programs-to-the-launcher)  
+
 [Setup FTP Server](http://www.krizna.com/ubuntu/setup-ftp-server-on-ubuntu-14-04-vsftpd/)  
 
 Python string in `"""..."""` can contain enter.  
