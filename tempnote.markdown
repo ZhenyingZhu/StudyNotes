@@ -1,3 +1,5 @@
+[Logging good practice](http://victorlin.me/posts/2012/08/26/good-logging-practice-in-python)  
+
 [Where to put su](https://f-droid.org/forums/topic/tutorial-how-to-root-an-android-device/)  
 
 [Add app to launcher](http://askubuntu.com/questions/224004/how-to-add-programs-to-the-launcher)  
