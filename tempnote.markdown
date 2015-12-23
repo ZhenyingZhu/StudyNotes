@@ -1,3 +1,5 @@
+[Setting up two ip address](http://www.tecmint.com/create-multiple-ip-addresses-to-one-single-network-interface/)  
+
 [Logging good practice](http://victorlin.me/posts/2012/08/26/good-logging-practice-in-python)  
 
 [Where to put su](https://f-droid.org/forums/topic/tutorial-how-to-root-an-android-device/)  
