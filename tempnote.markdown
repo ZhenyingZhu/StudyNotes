@@ -1,3 +1,5 @@
+[VBox VGA support](http://askubuntu.com/questions/202926/how-to-use-nvidia-geforce-m310-on-ubuntu-12-10-running-as-guest-in-virtualbox)  
+
 [Setting up two ip address](http://www.tecmint.com/create-multiple-ip-addresses-to-one-single-network-interface/)  
 
 [Logging good practice](http://victorlin.me/posts/2012/08/26/good-logging-practice-in-python)  
