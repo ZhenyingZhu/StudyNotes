@@ -1,3 +1,20 @@
+Windows shutdown command:  
+```
+shutdown /p
+
+shutdown /s /t 600
+pause
+
+shutdown /s /t 5400
+shutdown /h
+
+C:
+cd \Users\Public\Music\Sample Music
+"xxx.mp3"
+echo msg
+pause
+```
+
 [VBox VGA support](http://askubuntu.com/questions/202926/how-to-use-nvidia-geforce-m310-on-ubuntu-12-10-running-as-guest-in-virtualbox)  
 
 [Setting up two ip address](http://www.tecmint.com/create-multiple-ip-addresses-to-one-single-network-interface/)  
