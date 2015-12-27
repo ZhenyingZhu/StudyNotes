@@ -88,6 +88,12 @@ Parser executes a series of actions. `tag.next_element` do the same thing. `tag.
 `tag.next_elements` and `tag.previous_elements`.  
 
 # Search
-http://www.crummy.com/software/BeautifulSoup/bs4/doc.zh/#id24  
+Filter:  
+- string: `soup.find_all('b')` Default string is UTF-8.  
+- regex: `soup.find_all(re.compile("^b"))`  
+- list: `soup.find_all(['a', 'b'])`  
+- True: `soup.find_all(True)`. Find all elements except NavigableString.  
+- function: `soup.find_all(isTrue)`. Find elements when function `isTrue(tag)` return True.  
+- 
 
 
