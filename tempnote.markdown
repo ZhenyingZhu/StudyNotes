@@ -1,3 +1,5 @@
+[Python simulate web browser](http://stackoverflow.com/questions/14516590/how-to-save-complete-webpage-not-just-basic-html-using-python)  
+
 Windows shutdown command:  
 ```
 shutdown /p

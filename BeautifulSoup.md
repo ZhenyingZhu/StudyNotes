@@ -1,16 +1,17 @@
+
+# BeautifulSoup
 [BeautifulSoup Doc](http://www.crummy.com/software/BeautifulSoup/bs4/doc.zh/)  
 
+## Objects
 
-# Objects
-
-## BeautifulSoup Object
+### BeautifulSoup Object
 ```
 from bs4 import BeautifulSoup
 
 soup = BeautifulSoup("<html>data</html>")
 ```
 
-## Tag Object
+### Tag Object
 `Tag` is same as HTML tag, access tag by using its name: 
 - `tag = soup.b`, tag is the first of `<b>content</b>` in the page.  
 - `tag.name`: one of the attribute of tag objects.  
@@ -18,14 +19,16 @@ soup = BeautifulSoup("<html>data</html>")
 - `tag['attr_name']` can also reach the attribute.  
 - If this attribute can contain serveral values, a list presents.  
 
-## NavigableString Object
+### NavigableString Object
 `tag.string` is an NavigableString object.  
 Use `unicode(tag.string)` to convert it to unicode string.  
 
-## Comment Object
+### Comment Object
 If a NavigableString has tag `<!-- -->`, it is a comment object.  
 
-# Sub Node
+## HTML Tree
+
+### Sub Node
 Except NavigableString, other objects can have sub nodes. E.g. `soup.body.b`.  
 
 Access tag:  
@@ -82,12 +85,13 @@ sibling_soup.c.previous_sibling # b
 `tag.next_siblings` and `tag.previous_siblings`.  
 
 
-# HTML parser behave
+### HTML parser behave
 Parser executes a series of actions. `tag.next_element` do the same thing. `tag.previous_element` do the reverse way.  
 
 `tag.next_elements` and `tag.previous_elements`.  
 
-# Search
+## Search
+### Functions
 Filter:  
 - string: `soup.find_all('b')` Default string is UTF-8.  
 - regex: `soup.find_all(re.compile("^b"))`  
@@ -96,4 +100,26 @@ Filter:
 - function: `soup.find_all(isTrue)`. Find elements when function `isTrue(tag)` return True.  
 - 
 
+`find_all(name , attrs , recursive , text , **kwargs)`:  
+- `soup.find_all("p", "title")`: result `[<p class="title"><b>The Dormouse's story</b></p>]`  
+- name can be tag: `soup.find_all(id=True)`, `soup.find_all(href=re.compile("elsie"))`, `soup.find_all(href=re.compile("elsie"), id='link1')`  
+- `data_soup.find_all(attrs={"data-foo": "value"})` result: `[<div data-foo="value">foo!</div>]`  
+- Find CSS class: `soup.find_all("a", class_="sister")`  
+- `soup.find_all("a", text="Elsie")`  
+- Stop when find n results: `soup.find_all("a", limit=n)`  
+- Default find_all search recursivly. `soup.html.find_all("title", recursive=False)`  
+
+Other find methods: `find_parents()`, `find_parent()`, `find_next_siblings()`, `find_next_sibling()`, `find_previous_siblings()`, `find_previous_sibling()`, `find_all_next()`, `find_next()`, `find_all_previous()`, `find_previous()`, 
+
+### CSS select
+http://www.crummy.com/software/BeautifulSoup/bs4/doc.zh/#id37
+
+## Nodify
+http://www.crummy.com/software/BeautifulSoup/bs4/doc.zh/#id40
+
+## Output
+http://www.crummy.com/software/BeautifulSoup/bs4/doc.zh/#id44
+
+## Encoding
+http://www.crummy.com/software/BeautifulSoup/bs4/doc.zh/#id51
 
