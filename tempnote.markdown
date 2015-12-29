@@ -1,3 +1,14 @@
+Python import path:  
+```
+import os
+from os.path import *
+import sys 
+
+# currently in base/test/ need import base/src
+src_path = os.path.join(dirname(dirname(realpath(__file__))), 'src')
+sys.path.append(src_path)
+```
+
 [Python simulate web browser](http://stackoverflow.com/questions/14516590/how-to-save-complete-webpage-not-just-basic-html-using-python)  
 
 Windows shutdown command:  
