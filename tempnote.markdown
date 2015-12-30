@@ -1,3 +1,5 @@
+[python disable logger](http://stackoverflow.com/questions/27685568/logging-how-to-ignore-imported-module-logs)  
+
 Python import path:  
 ```
 import os
