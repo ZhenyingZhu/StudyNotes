@@ -1,7 +1,7 @@
 
-
+Merge remote repo to current folder
 ```
-svn merge another_folder
+svn merge remote_another_folder
 ```
 
 ```
