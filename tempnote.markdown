@@ -1,3 +1,5 @@
+
+
 [Ubuntu google pinyin](http://snowdream.github.io/blog/ubuntu/2013/09/25/ubuntu-how-to-install-google-pinyin-with-ibus/)  
 
 [apt remove](http://askubuntu.com/questions/190004/how-to-uninstall-virtualbox-in-12-04)  
@@ -191,7 +193,7 @@ If it is free it would be good: http://synergy-project.org/
 
 set: http://linuxcommand.org/lc3_man_pages/seth.html  
 
-rsync: https://www.digitalocean.com/community/tutorials/how-to-use-rsync-to-sync-local-and-remote-directories-on-a-vps 
+[rsync](https://www.digitalocean.com/community/tutorials/how-to-use-rsync-to-sync-local-and-remote-directories-on-a-vps)  
 `-a`: equal to `-rlptgoD`, recursion and preserve anything except hardlink.  
 `-z`: compress.  
 `-e`: use rsh rather than ssh to transfer file.  
