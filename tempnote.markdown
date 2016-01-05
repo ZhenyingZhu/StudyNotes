@@ -1,5 +1,3 @@
-[boost asio dispatch vs post](http://stackoverflow.com/questions/2326588/boost-asio-io-service-dispatch-vs-post): post, always postphone; dispatch, if call comes from ios itself, execute, otherwise queue.  
-
 [CPP Weak vs Strong](https://en.wikipedia.org/wiki/Weak_symbol): while linking, a strong symbol can override a weak symbol.  
 
 [Ubuntu google pinyin](http://snowdream.github.io/blog/ubuntu/2013/09/25/ubuntu-how-to-install-google-pinyin-with-ibus/)  

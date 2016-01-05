@@ -5239,3 +5239,10 @@ std::ostream& display(std::ostream &os) const {
 
 为实现`NotQuery`的`eval`, 需在`TextQuery`类里加入`size()`成员函数.  
 
+
+# Boost
+[boost asio dispatch vs post](http://stackoverflow.com/questions/2326588/boost-asio-io-service-dispatch-vs-post)
+- post, always postphone; 
+- dispatch, if call comes from ios itself, execute, otherwise queue.  
+
+
