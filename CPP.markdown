@@ -5245,4 +5245,8 @@ std::ostream& display(std::ostream &os) const {
 - post, always postphone; 
 - dispatch, if call comes from ios itself, execute, otherwise queue.  
 
+# link
+[CPP Weak vs Strong](https://en.wikipedia.org/wiki/Weak_symbol)
+- while linking, a strong symbol can override a weak symbol.  
+
 

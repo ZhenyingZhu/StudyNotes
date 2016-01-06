@@ -1,5 +1,3 @@
-[CPP Weak vs Strong](https://en.wikipedia.org/wiki/Weak_symbol): while linking, a strong symbol can override a weak symbol.  
-
 [Ubuntu google pinyin](http://snowdream.github.io/blog/ubuntu/2013/09/25/ubuntu-how-to-install-google-pinyin-with-ibus/)  
 
 [apt remove](http://askubuntu.com/questions/190004/how-to-uninstall-virtualbox-in-12-04)  
