@@ -1,3 +1,7 @@
+Search in less: 
+- ASCII regular express
+- E.g. [0-9]{2,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}
+
 [Ubuntu google pinyin](http://snowdream.github.io/blog/ubuntu/2013/09/25/ubuntu-how-to-install-google-pinyin-with-ibus/)  
 
 [apt remove](http://askubuntu.com/questions/190004/how-to-uninstall-virtualbox-in-12-04)  
