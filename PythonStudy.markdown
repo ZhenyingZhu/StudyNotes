@@ -379,3 +379,18 @@ response.info()
 [How to Authorize](http://blog.csdn.net/pleasecallmewhy/article/details/8924889)  
 
 [Stop here](http://blog.csdn.net/pleasecallmewhy/article/details/8925978)  
+
+# Other tips
+Python import path:  
+```
+import os
+from os.path import *
+import sys 
+
+# currently in base/test/ need import base/src
+src_path = os.path.join(dirname(dirname(realpath(__file__))), 'src')
+sys.path.append(src_path)
+```
+
+[Python simulate web browser](http://stackoverflow.com/questions/14516590/how-to-save-complete-webpage-not-just-basic-html-using-python)  
+
