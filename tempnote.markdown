@@ -1,6 +1,6 @@
 vim `%` fast jump to the close of the partheses
 
-http://stackoverflow.com/questions/1109723/subversion-resolve-all-conflicts-quickly  
+[svn update](http://stackoverflow.com/questions/1109723/subversion-resolve-all-conflicts-quickly)  
 To let stupid svn take all the changes from others:  
 ```
 svn update . --accept theirs-full
