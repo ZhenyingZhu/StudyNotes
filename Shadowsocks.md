@@ -39,3 +39,34 @@ service supervisord start
 
 Then reboot.  
 
+On client:  
+Add to /etc/shadowsocks.json: 
+
+```
+{
+    "server":"xx.xx.xx.xx",
+    "server_port":xxxx,
+    "local_address": "127.0.0.1",
+    "local_port":1080,
+    "password":"xxxxxxxx",
+    "timeout":300,
+    "method":"aes-256-cfb",
+    "fast_open": true,
+    "workers": 1
+}
+```
+
+Then 
+```
+sslocal -c /etc/shadowsocks.json
+```
+
+Set proxy for browser to: 
+```
+Socks Host: 127.0.0.1
+local Port: 1080
+Socks v5
+```
+
+While using chrome, if proxyswitch does not work, it might caused by other extensions.  
+
