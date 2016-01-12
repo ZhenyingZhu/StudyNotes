@@ -1,3 +1,5 @@
+[Getting-Partner-Flash](https://wiki.ubuntu.com/Chromium/Getting-Partner-Flash): If cannot install adobe-flashplugin, need add Canonical Partners in Software center.  
+
 vim `%` fast jump to the close of the partheses
 
 [svn update](http://stackoverflow.com/questions/1109723/subversion-resolve-all-conflicts-quickly)  
