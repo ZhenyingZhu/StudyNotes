@@ -1,3 +1,11 @@
+[systemctl](http://linux-audit.com/auditing-systemd-solving-failed-units-with-systemctl/)  
+
+[rpm corrupt](http://www.cloudibee.com/corrupt-rpmdb-and-recovery/)  
+
+[merge git commits into one](http://gitready.com/advanced/2009/02/10/squashing-commits-with-rebase.html)  
+
+[fire descriptor](http://stackoverflow.com/questions/6245477/bad-file-descriptor): can be found by `man 2 open` 
+
 [Getting-Partner-Flash](https://wiki.ubuntu.com/Chromium/Getting-Partner-Flash): If cannot install adobe-flashplugin, need add Canonical Partners in Software center.  
 
 vim `%` fast jump to the close of the partheses
