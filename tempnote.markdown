@@ -1,3 +1,5 @@
+[rpc](http://searchsoa.techtarget.com/definition/Remote-Procedure-Call)  
+
 [systemctl](http://linux-audit.com/auditing-systemd-solving-failed-units-with-systemctl/)  
 
 [rpm corrupt](http://www.cloudibee.com/corrupt-rpmdb-and-recovery/)  
