@@ -68,5 +68,5 @@ local Port: 1080
 Socks v5
 ```
 
-While using chrome, if proxyswitch does not work, it might caused by other extensions.  
+While using chrome, if proxyswitch does not work, it might caused by other extensions like unblock Youku.  
 
