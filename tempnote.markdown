@@ -12,23 +12,6 @@
 
 vim `%` fast jump to the close of the partheses
 
-[svn update](http://stackoverflow.com/questions/1109723/subversion-resolve-all-conflicts-quickly)  
-To let stupid svn take all the changes from others:  
-```
-svn update . --accept theirs-full
-```
-
-http://stackoverflow.com/questions/1071857/how-do-i-svn-add-all-unversioned-files-to-svn  
-`svn add --force * --auto-props --parents --depth infinity -q`
-
-
-
-svn cannot commit after merge:  
-with this error: local add/delete, incoming add/delete upon merge  
-`svn resolved file`
-
-
-svn `mine-conflicts`: use all my changes about the conflicts but normal merge about other changes; `mine-full`: discard all their changes.  
 
 Search in less: 
 - ASCII regular express

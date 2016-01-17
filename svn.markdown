@@ -86,4 +86,20 @@ http://www.cade.utah.edu/faqs/how-do-i-set-up-users-for-my-svn-repository/
 http://stackoverflow.com/questions/8159078/being-prompted-for-null-gnome-keyring  
 http://svnbook.red-bean.com/en/1.7/svn.tour.importing.html  
 
+[svn update](http://stackoverflow.com/questions/1109723/subversion-resolve-all-conflicts-quickly)  
+To let stupid svn take all the changes from others:  
+```
+svn update . --accept theirs-full
+```
 
+http://stackoverflow.com/questions/1071857/how-do-i-svn-add-all-unversioned-files-to-svn  
+`svn add --force * --auto-props --parents --depth infinity -q`
+
+
+
+svn cannot commit after merge:  
+with this error: local add/delete, incoming add/delete upon merge  
+`svn resolved file`
+
+
+svn `mine-conflicts`: use all my changes about the conflicts but normal merge about other changes; `mine-full`: discard all their changes.  
