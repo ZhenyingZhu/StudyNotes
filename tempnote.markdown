@@ -1,3 +1,5 @@
+[Install eclipse](http://difusal.blogspot.com/2015/06/how-to-install-eclipse-mars-45-on-ubuntu.html)  
+
 [rpc](http://searchsoa.techtarget.com/definition/Remote-Procedure-Call)  
 
 [systemctl](http://linux-audit.com/auditing-systemd-solving-failed-units-with-systemctl/)  
