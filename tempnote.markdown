@@ -1,3 +1,7 @@
+[Monit not start](http://www.idimmu.net/2013/03/28/monit-error-connecting-to-the-monit-daemon/)  
+
+[Git remove a local commit](http://stackoverflow.com/questions/5097456/throw-away-local-commits-in-git)  
+
 [Install eclipse](http://difusal.blogspot.com/2015/06/how-to-install-eclipse-mars-45-on-ubuntu.html)  
 
 [rpc](http://searchsoa.techtarget.com/definition/Remote-Procedure-Call)  
