@@ -1,3 +1,11 @@
+[list all files in a rpm](rpm -ql $package-name)  
+
+[ssh key fingerprint](http://serverfault.com/questions/549075/fingerprint-of-pem-ssh-key)  
+
+[openssl](https://www.madboa.com/geek/openssl/)  
+
+[RPM find the package where a file comes from](https://docs.fedoraproject.org/ro/Fedora_Draft_Documentation/0.1/html/RPM_Guide/ch-dependencies.html) `rpm -q --whatprovides $file`  
+
 [Git go back](http://githowto.com/getting_old_versions)  
 
 [Monit not start](http://www.idimmu.net/2013/03/28/monit-error-connecting-to-the-monit-daemon/)  
