@@ -1,32 +1,60 @@
 
-<h3>Chapter 0</h3>
-计算机五个部分：输入单元、 输出单元、CPU内部的控制单元、算数逻辑单元与主存储器<br />
-容量1GB=1024^3，速度1GHz=1000^3<br />
-Intel主板上的芯片组：北桥：负责链接速度较快的CPU、主存储器和显示适配器等组件，为系统总线，速度FSB，总线带宽FSB×总线宽度：每秒可传输最大数据量；南桥：负责连接速度较慢的周边接口如硬盘，为I/O总线；<br />
-AMD主板：无南北桥，将内存控制组件整合到CPU中。<br />
-不同主板支持CPU不同。<br />
-CPU种类：精简指令集 (RISC) ，复杂指令集 (CISC) 系统。<br />
-CPU频率：外频：与外部各组件传输数据的速度；外频×倍频=主频。Word size：32/64位，CPU每次能处理的数据量。<br />
-内存：DRAM，断电丢失。外频与CPU的外频相同时最佳。<br />
-DDR：一次工作周期内2次数据传输。<br />
-二级缓存：L2 cache，CPU内部，为SRAM。<br />
-Firmware: 如BIOS，ROM/EEPROM内。<br />
-PCI：适配卡。<br />
-显卡：VGA，内有3D加速芯片GPU。PCI-Express是新的显卡规格，带宽速度大。全彩的每个像素占用3Bytes容量。显存32MB以上。<br />
-IDE/SATA：磁盘，台式机3.5 inch，手提2.5寸。上有缓冲存储器。Sector 512B, 组成圆环track, 不同磁盘上同一位置的track组成Cylinder，分割磁盘最小单位。<br />
-网卡：Ethernet规格。网络头：RJ-45。8M/1M ADSL传输速度=1Mbyte/s的上传和125Kbytes/s的下载。如Realtek 的RTL8139。<br />
-I/O地址：硬件门牌。<br />
-IRQ：中断。<br />
-电源：最大500W。20/24pin接口。<br />
-ASCII: 英文编码表，1byte，256种。中文Big5，2bytes。Unicode：因特网用通用编码。<br />
-OS Kernel：驱动硬件。在内存中受保护，并且常驻。核心功能如下：<br />
-System call：OS提供，用以开发软件的接口。<br />
-Process control，Memory management, Filesystem management, Device drivers。<br />
-查阅组件型号：查看/cat/proc/cpuinfo,或<code>lspci</code> <br />
+## Chapter 0
+计算机五个部分：输入单元、 输出单元、CPU内部的控制单元、算数逻辑单元与主存储器  
+
+容量1GB=1024^3，速度1GHz=1000^3  
+
+Intel主板上的芯片组：
+- 北桥：负责链接速度较快的CPU、主存储器和显示适配器等组件，为系统总线，速度FSB，总线带宽FSB×总线宽度：每秒可传输最大数据量
+- 南桥：负责连接速度较慢的周边接口如硬盘，为I/O总线；  
+AMD主板：无南北桥，将内存控制组件整合到CPU中。  
+不同主板支持CPU不同。  
+
+CPU种类：精简指令集 (RISC) ，复杂指令集 (CISC) 系统。  
+CPU频率：外频：与外部各组件传输数据的速度；外频×倍频=主频。Word size：32/64位，CPU每次能处理的数据量。  
+
+内存：DRAM，断电丢失。外频与CPU的外频相同时最佳。  
+DDR：一次工作周期内2次数据传输。  
+二级缓存：L2 cache，CPU内部，为SRAM。  
+
+Firmware: 如BIOS，ROM/EEPROM内。  
+
+PCI：适配卡。  
+
+显卡：VGA，内有3D加速芯片GPU。PCI-Express是新的显卡规格，带宽速度大。全彩的每个像素占用3Bytes容量。显存32MB以上。  
+
+IDE/SATA：磁盘，台式机3.5 inch，手提2.5寸。上有缓冲存储器。  
+Sector 512B, 组成圆环track, 不同磁盘上同一位置的track组成Cylinder，分割磁盘最小单位。  
+
+网卡：Ethernet规格。  
+网络头：RJ-45。8M/1M ADSL传输速度=1Mbyte/s的上传和125Kbytes/s的下载。如Realtek 的RTL8139。  
+
+I/O地址：硬件门牌。  
+
+IRQ：中断。  
+
+电源：最大500W。20/24pin接口。  
+
+- ASCII: 英文编码表，1byte，256种。  
+- 中文Big5，2bytes。  
+- Unicode：因特网用通用编码。  
+
+OS Kernel：驱动硬件。在内存中受保护，并且常驻。核心功能如下：  
+- System call：OS提供，用以开发软件的接口。  
+- Process control，Memory management, Filesystem management, Device drivers。  
+
+查阅组件型号  
+- `cat /proc/cpuinfo`
+- `lspci`  
 
 
-<h3>Chapter 1</h3>
-GNU重要软件：Emacs, GCC, glibc, Bash shell。<br />
+## Chapter 1
+GNU重要软件：
+- Emacs
+- GCC
+- glibc
+- Bash shell  
+
 GUI：XFree86的X Window System。<br />
 Assembly Language：汇编语言。<br />
 POSIX：规范核心与应用程序之间的接口。<br />
