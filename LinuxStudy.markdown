@@ -55,20 +55,31 @@ GNU重要软件：
 - glibc
 - Bash shell  
 
-GUI：XFree86的X Window System。<br />
-Assembly Language：汇编语言。<br />
-POSIX：规范核心与应用程序之间的接口。<br />
-版本号：偶数为稳定版。<br />
-Linux distribution：Kernel + Softwares + Tool<br />
-Apache：网页服务器。<br />
-Postfix/sendmail：电子邮件服务器。<br />
-Samba：文件服务器。<br />
-LSB：Linux开发标准。<br />
-FHS：目录架构标准。<br />
-安装方式：不同Distribution的主要区别，分RPM和dpkg，Tarball原始码。<br />
-Linux可以多人同时在线。<br />
-GUI：X Window，KDE，GNOME。<br />
-查看核心版本：<code>uname -r</code>可查看Distribution版本，<code>lsb_release –a</code>可查看Linux Standard Base版本。<br />
+GUI：XFree86的X Window System。  
+
+Assembly Language：汇编语言。  
+
+POSIX：规范核心与应用程序之间的接口。  
+
+Linux 版本号：偶数为稳定版。  
+Linux distribution：Kernel + Softwares + Tool  
+
+Apache：网页服务器。  
+Postfix/sendmail：电子邮件服务器。  
+Samba：文件服务器。  
+
+LSB：Linux开发标准。  
+FHS：目录架构标准。  
+
+安装方式：不同Distribution的主要区别，分RPM和dpkg，Tarball原始码。  
+
+Linux可以多人同时在线。  
+
+GUI：X Window，KDE，GNOME。  
+
+查看核心版本：
+- `uname -r`: 可查看Distribution版本
+- `lsb_release –a` 可查看Linux Standard Base版本。  
 
 
 <h3>Chapter 2</h3>
