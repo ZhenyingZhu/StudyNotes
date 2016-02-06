@@ -82,66 +82,107 @@ GUI：X Window，KDE，GNOME。
 - `lsb_release –a` 可查看Linux Standard Base版本。  
 
 
-<h3>Chapter 2</h3>
-网络服务器：WWW, Mail Server, File Server。<br />
-Cluster：云计算机平行运算能力。<br />
-Pidgin：实时通讯软件。<br />
-各个Distribution。（鸟哥私房菜P68）<br />
-软件列表（鸟哥私房菜P68）<br />
-Free Maid：组织结构绘制软件。<br />
-Dia：类似Visio。<br />
-GanttProject：时程表绘制。<br />
-基础概念：使用者/群组，权限，程序。<br />
-文书编辑器vi：会被很多软件调用。<br />
-Shell：文字接口软件。有正则表示法，管线命令，数据流重导向。Shell scripts也重要。<br />
-FAQ和How-To：安装软件的帮助文档放在/usr/share/doc/下，或http://www.linux.org.tw/CLDP/或http://www.tldp.org/ <br />
-提示的网络服务错误信息，可到/var/log/里查看。<br />
-How To: http://www.tldp.org<br />
+## Chapter 2
+网络服务器：WWW, Mail Server, File Server。 
+
+Cluster：云计算机平行运算能力。  
+
+Pidgin：实时通讯软件。 
+
+各个Distribution: 
+- Ubuntu
+- OpenSuSE
+- Fedora
+- Mandriva
+
+软件列表: 
+- Open Office
+- Free Maid：组织结构绘制软件。 
+- AbiWord  
+- Tex/LaTeX
+- Dia：类似Visio。 
+- Scribus
+- GanttProject：时程表绘制。
+- GIMP
+
+基础概念：使用者/群组，权限，程序。
+
+文书编辑器vi：会被很多软件调用。
+
+Shell：文字接口软件。有正则表示法，管线命令，数据流重导向。Shell scripts也重要。  
+
+FAQ和How-To：安装软件的帮助文档放在`/usr/share/doc/`下，或http://www.linux.org.tw/CLDP/或http://www.tldp.org/  
+
+提示的网络服务错误信息，可到`/var/log/`里查看。  
+How To: http://www.tldp.org  
 
 
-<h3>Chapter 3</h3>
-图形接口运算：X Window内的Open GL。<br />
-RAID：多个磁盘接成阵列。<br />
-查看硬件支持：（鸟哥私房菜P80）。<br />
-硬件配置在linux下都是档案。<br />
-<img src='./LinuxStudy_files/chapter3-01.png' /><br />
-网卡：/dev/eth[0-n]。<br />
-磁盘分区：Partition在windows下为C, D, E，Linux下SATA按侦查到的顺序分配sda，sdb。<br />
-磁盘第一个扇区，记录：<br />
-1.	Master Boot Record (MBR) ，安装开机管理程序。<br />
-2.	Partition table。总共记录4个Primary+ Extended，记作P1: /dev/hda1。Extended内的logic partition记录在额外的扇区，从/dev/hda5开始。<br />
-开机流程：BIOS->MBR->boot loader->核心档案。<br />
-CMOS记录硬件参数的存储器。<br />
-BIOS开机时执行的第一个程序，找到MBR。然后执行boot loader。<br />
-Boot loader提供多重引导开机选单Grub，载入核心档案，转交其他loader。<br />
-Grub软件：开机启动选单软件。<br />
-文本登录后的程序就是Shell。<br />
-Mirror site：当地的下载较快的分流。<br />
-FTP：客户端如Filezilla，可断点续传。传输再怎么地下化也容易被捉到。<br />
-NAT：IP分享器，内网多用户连接外网时对外的IP分享给内部。<br />
-SAMBA：加入Windows网络邻居。<br />
-邮件服务：Sendmail和Postfix等Mail Server软件。<br />
-WWW服务器：Web功能，许多软件用WWW作为显示接口。Apache软件提供WWW网站功能。<br />
-DHCP：客户端自动获取IP功能。<br />
-Proxy：有效解决带宽不足问题。<br />
-硬盘问题有些可用fsck软件解决。<br />
-Directory tree：从root directory /开始分支。<br />
+## Chapter 3
+图形接口运算：X Window内的Open GL。  
+
+RAID：多个磁盘接成阵列。  
+
+硬件配置在linux下都是档案。 
+- IDE: `/dev/hd[a-d]`
+- SCSI, SATA, USB: `/dev/sd[a-p]`
+- 软盘驱动器: `/dev/fd[0-1]`
+- 打印机: `/dev/lp[0-15]`
+- 鼠标: `/dev/usb/mouse[0-15]` 或`/dev/psaux`
+- DVD: `/dev/cdrom/`
+- 网卡：/dev/eth[0-n]。
+
+磁盘分区：Partition在windows下为C, D, E，Linux下SATA按侦查到的顺序分配sda，sdb。  
+磁盘第一个扇区，记录：  
+1.	Master Boot Record (MBR) ，安装开机管理程序。  
+2.	Partition table。总共记录4个Primary+ Extended，记作P1: `/dev/hda1`。Extended内的logic partition记录在额外的扇区，从`/dev/hda5`开始。  
+
+开机流程：
+1. BIOS
+2. MBR
+3. boot loader
+4. 核心档案。  
+
+CMOS记录硬件参数的存储器。  
+
+BIOS开机时执行的第一个程序，找到MBR。然后执行boot loader。  
+Boot loader提供多重引导开机选单Grub，载入核心档案，转交其他loader。  
+Grub软件：开机启动选单软件。  
+
+文本登录后的程序就是Shell。  
+
+Mirror site：当地的下载较快的分流。  
+
+FTP：客户端如Filezilla，可断点续传。传输再怎么地下化也容易被捉到。  
+NAT：IP分享器，内网多用户连接外网时对外的IP分享给内部。  
+SAMBA：加入Windows网络邻居。  
+邮件服务：Sendmail和Postfix等Mail Server软件。  
+WWW服务器：Web功能，许多软件用WWW作为显示接口。Apache软件提供WWW网站功能。  
+DHCP：客户端自动获取IP功能。  
+Proxy：有效解决带宽不足问题。  
+硬盘问题有些可用`fsck`软件解决。  
+
+Directory tree：从root directory `/`开始分支。  
 <img src='./LinuxStudy_files/chapter3-02.png' /><br />
 
+- 需`mount`和硬盘档案联系。`/mnt/`内的文件在硬盘上可能在别的地方。  
+- 挂载：利用目录作为进入点，将磁盘分区的数据放入该目录。  
+- 如`/`挂载到P1，`/home`挂载到P2，则`/home`下的文件都在P2下，而`/etc`就在P1下。  
 
-需mount和硬盘档案联系。mnt/内的文件在硬盘上可能在别的地方。<br />
-挂载：利用目录作为进入点，将磁盘分区的数据放入该目录。<br />
-如/挂载到P1，/home挂载到P2，则/home下的文件都在P2下，而/etc就在P1下。<br />
-光盘内容：/media/cdrom。<br />
-分区：一个分区内格式化等操作不影响别的分区。考虑所需容量，读写频繁度。<br />
-/：根目录。<br />
-/Swap：内存置换空间，即虚拟内存，无需挂载。理论上为1.5～2倍内存。<br />
-/usr: 软件信息Unix software resource。<br />
-/home：不同使用者的数据存放。<br />
-/var：网络相关。<br />
-/boot：开机读取磁盘大小用，将启动扇区规范在1024个磁柱内，避免磁盘太大读取错误造成的无法开机。100MB就够，须在最前，强制成主要分割区。<br />
-Quota：磁盘配额，分割磁盘后再改动。<br />
-当机原因：除软件问题，可能机箱温度，CPU温度，不同厂商内存，电源供应。<br />
+光盘内容：`/media/cdrom`。 
+
+分区：一个分区内格式化等操作不影响别的分区。考虑所需容量，读写频繁度。  
+
+目录结构: `man hier`
+- `/`：根目录。  
+- `/Swap`: 内存置换空间，即虚拟内存，无需挂载。理论上为1.5～2倍内存。  
+- `/usr`: 软件信息Unix software resource。  
+- `/home`: 不同使用者的数据存放。  
+- `/var`: 网络相关。  
+- `/boot`: 开机读取磁盘大小用，将启动扇区规范在1024个磁柱内，避免磁盘太大读取错误造成的无法开机。100MB就够，须在最前，强制成主要分割区。  
+
+Quota：磁盘配额，分割磁盘后再改动。  
+
+当机原因：除软件问题，可能机箱温度，CPU温度，不同厂商内存，电源供应。  
 
 
 <h3>Chapter 4</h3>
