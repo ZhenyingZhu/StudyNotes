@@ -216,14 +216,26 @@ Kdump：核心出错是将内存写入档案。较消耗硬盘空间。
 Windows双系统时，Linux所在分区在windows下不要挂载，以免被格式化。  
 
 ## Chapter 5
-Linux使用异步的磁盘/数据传输模式，不能非正常关机。<br />
-GNOME和KDE：Window Manager，图形接口。<br />
-在线升级：yum机制。<br />
-文件名开头为小数点的，即为隐藏文件。<br />
-SCIM：中文输入法软件，Ctrl+Space唤出。<br />
-<code>Alt+Ctrl+Backspace</code>：重启X Window。<br />
-<code>Ctrl+Alt+F1~6</code>：tty1~6的文字接口，run level 3；Ctrl+Alt+F7~8切回图形接口，run level 5。<br />
-	执行等级：run level 0：关机，run level 6：重启。用<code>init 0</code>切换模式。<br />
+Linux使用异步的磁盘/数据传输模式，不能非正常关机。  
+
+GNOME和KDE：Window Manager，图形接口。  
+
+在线升级：yum机制。  
+
+文件名开头为小数点的，即为隐藏文件。  
+
+SCIM：中文输入法软件，`Ctrl+Space`唤出。  
+
+`Alt+Ctrl+Backspace`：重启X Window。  
+
+- `Ctrl+Alt+F1~6`：tty1~6的文字接口，run level 3；
+- Ctrl+Alt+F7~8切回图形接口，run level 5。  
+
+执行等级: 
+- run level 0：关机，
+- run level 6：重启。
+- 用`init 0`切换模式。
+
 	修改默认登录方式：修订/etc/inittab文件内容。？<br />
 <code>Tab</code>：自动补全。<br />
 <code>Ctrl+C</code>：当前程序中断。<br />
