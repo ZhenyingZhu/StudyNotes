@@ -215,7 +215,7 @@ Kdump：核心出错是将内存写入档案。较消耗硬盘空间。
 
 Windows双系统时，Linux所在分区在windows下不要挂载，以免被格式化。  
 
-<h3>Chapter 5</h3>
+## Chapter 5
 Linux使用异步的磁盘/数据传输模式，不能非正常关机。<br />
 GNOME和KDE：Window Manager，图形接口。<br />
 在线升级：yum机制。<br />
