@@ -229,7 +229,7 @@ SCIM:中文输入法软件，`Ctrl+Space`唤出。
 `Alt+Ctrl+Backspace`:重启X Window。或者`startx`.  
 
 - `Ctrl+Alt+F1~6`:tty1~6的文字接口，run level 3；
-- Ctrl+Alt+F7~8切回图形接口，run level 5。  
+- `Ctrl+Alt+F7~8`: 切回图形接口，run level 5。  
 
 执行等级: 
 - run level 0:关机，
@@ -239,8 +239,8 @@ SCIM:中文输入法软件，`Ctrl+Space`唤出。
 修改`tty1`的显示提示:修订`/etc/inittab`文件内容。   
 
 - `Tab`: 自动补全。  
-Ctrl+C: 当前程序中断。  
-Ctrl+D: 键盘输入结束。  
+- `Ctrl+C`: 当前程序中断。  
+- `Ctrl+D`: 键盘输入结束。  
 
 终端界面下:`startx`启动图形界面。需tty7空，X server能启动，已启动如X Font Server和xfs等服务，并有Window Manager。  
 
