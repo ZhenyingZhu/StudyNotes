@@ -298,38 +298,65 @@ Shell:文字接口程序，默认的是bash。
 - 有多个数值的指令可通过`man 7 man`查看。  
 - `whatis`相当于man -f，但是需用root身份`makewhatis`建立数据库。  
 
-# HERE
 指令手册名称边括号里的数值:  
- 1可执行指令，5配置，8系统管理指令。  
- <img src="./LinuxStudy_files/chapter5-01.png" />     
- man手册查看快捷键:  
-空格键翻页，q退出。/string搜索。  
-<img src="./LinuxStudy_files/chapter5-02.png" />     
-在线查看指令帮助:`info` 指令，输出的为含链接的段落。/usr/share/info/。  
-	N, P, U去下、上、上一层node。  
-<img src="./LinuxStudy_files/chapter5-03.png" />  
-<img src="./LinuxStudy_files/chapter5-04.png" />     
-/usr/share/doc/介绍packages，如/usr/share/doc/bash-3.2/介绍bash。  
-简单文本编辑器`nano` text.txt:^代表ctrl，M代表alt。^O存档，^X退出。  
-[ctrl]:取得联机help。  
-[ctrl]-X:离开naon软件，若有修改过档案会提示是否需要储存喔！   
-[ctrl]-O:储存档案，若你有权限的话就能够储存档案了；   
-[ctrl]-R:从其他档案读入资料，可以将某个档案的内容贴在本档案中；   
-[ctrl]-W:搜寻字符串。  
-[ctrl]-C:说明目前光标所在处的行数与列数等信息；   
-[ctrl]-_:可以直接输入行号，让光标忚速移动到该行；   
-[alt]-Y:校正语法功能开启关闭 (单击开、再单击关) 。  
-[alt]-M:可以支持鼠标来移动光标的功能。  
-文件系统错误:如根目录未损毁，登入root，`fsck /dev/sda7` 修复错误的partition。  
-	根目录损毁，不mount该硬盘，执行`fsck /dev/sdb1`。  
+- 1: shell 下可执行指令
+- 2: 系统核心呼叫的函数，工具
+- 3: 常用的function 和library, 多为libc
+- 4: `/dev` 下装置档案的说明
+- 5: 配置或档案格式
+- 6: games
+- 7: 惯例或协议，如文件系统，网络协议，ASCII code等
+- 8: 系统管理员可用指令。  
+- 9: kernel相关文件
+
+man手册查看快捷键:  
+- 空格键, `PageDown`, `PageUp`翻页
+- `Home` 第一页
+- `End` 最后一页
+- q退出。
+- `/string`, `?string`搜索。`n`, `N`查找下一个。  
+  
+在线查看指令帮助:`info` 指令
+- 输出的为含链接的段落，一篇为一个node。
+- `/usr/share/info/`。  
+- `tab`可在node间切换，`Enter`进入。  
+- `b`到当前info的第一个node处，`e`最后一个。  
+- `n`, `p`去上, 下一个node。  
+- `u`去上一层node.  
+- `h`帮助。  
+- `?`指令列表。 
+
+`/usr/share/doc/`介绍packages，如`/usr/share/doc/bash-3.2/`介绍bash。  
+
+简单文本编辑器`nano text.txt`:
+- `^`代表ctrl，`M`代表alt。
+- `^O`存档，`^X`退出。  
+- `ctrl-G`: 取得联机help。  
+- `ctrl-X`: 离开naon软件，若有修改过档案会提示是否需要储存喔！   
+- `ctrl-O`: 储存档案，若你有权限的话就能够储存档案了；   
+- `ctrl-R`: 从其他档案读入资料，可以将某个档案的内容贴在本档案中；   
+- `ctrl-W`: 搜寻字符串。  
+- `ctrl-C`: 说明目前光标所在处的行数与列数等信息；   
+- `ctrl-_`: 可以直接输入行号，让光标忚速移动到该行；   
+- `alt-Y`: 校正语法功能开启关闭 (单击开、再单击关) 。  
+- `alt-M`: 可以支持鼠标来移动光标的功能。  
+
+文件系统错误:
+- 如根目录未损毁，登入root，`fsck /dev/sda7` 修复错误的partition。  
+- 根目录损毁，不mount该硬盘，执行`fsck /dev/sdb1`。  
+
 主机通电后尽量不动，降低温度。  
-忘记root密码:重启是按e进入grub编辑模式，在kernel行按e，输入single，回车后按b启动。  
-	修改密码:`passwd`。（鸟哥私房菜P171）  
-欢迎画面:/etc/issue。  
+
+忘记root密码:重启时按`e`进入grub编辑模式，在kernel行按`e`，输入`single`，回车后按`b`启动。  
+
+修改密码:`passwd`。  
+
+欢迎画面:`/etc/issue`。  
+
 "\"用escape表示。  
 
 
-<h3>Chapter 6</h3>
+## Chapter 6
 档案读写权限:Owner, group, others. Read, write, execute.   
 一个账号可以属于多个群组。  
 所有账号信息存于/etc/passwd，密码存于/etc/shadow 所有组名存于/etc/group。  
@@ -428,7 +455,7 @@ Directory tree:根为/；每个目录可使用本地partition的文件系统和�
 相对路径:相对于目前路径的文件名写法。如../../home/dmtsai/等。 . :代表当前的目录，也可以使用 ./ 来表示；.. :代表上一层目录，也可以 ../ 来代表。  
 正规的执行目录:/bin/，/usr/bin/下的指令可直接执行。  
 
-Chapter 7
+## Chapter 7
 写Shell Scripts时需用绝对路径。  
 特殊目录:.，..，-前一个目录，～，～account。  
 根目录的.和..属性权限完全相同，是同一个目录。  
