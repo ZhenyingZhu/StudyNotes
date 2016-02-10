@@ -1,3 +1,5 @@
+icewm: a lightweight xwindow.  
+
 [list all files in a rpm](rpm -ql $package-name)  
 
 [ssh key fingerprint](http://serverfault.com/questions/549075/fingerprint-of-pem-ssh-key)  
