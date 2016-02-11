@@ -378,31 +378,46 @@ man手册查看快捷键:
 6. 最后被修改的时间:`ls -l -full-time`显示完整的包括年的时间格式。
 7. 档名。
 
-改变档案所属群组:chgrp [-R] group dirname/filename filename…。加入R可令次目录下文件亦改变群组。  
-改变档案拥有者:chown [-R] user dirname/filename filename…。chown user:group filename。  
-改变档案的权限:chmod。还可用于改变SUID，SGID，SBIT。chmod a+/-x file。ugoa: user, group, owner, all  
-	数字模式:r4w2x1，一组三个相加。chmod [-R] 750 file使file权限变为drwxr-x---。   
-	编写shell以后，将664改为chmod 755 *.sh才可运行。  
-	特殊权限设置:四位数，最前加4:SUID；2:SGID；1:SBIT，可相加。如chmod 4755 filename产生-rwsr-xr-x。chmod 6755 test产生-rwsr-sr-。(鸟哥的私房菜P222)  
-	空权限:当档案不可执行却又特殊权限时，该权限为空。如chmod 7666 test产生-rwSrwSrwT。  
+权限操作
+- 改变档案所属群组: `chgrp [-R] group dirname/filename filename ...`。加入`R`可令次目录下文件亦改变群组
+- 改变档案拥有者: `chown [-R] user dirname/filename filename ...`。`chown user:group filename`。
+- 改变档案的权限: `chmod`。还可用于改变SUID，SGID，SBIT。
+  1. `chmod a+/-x file`。`+, -`前可为`ugoa`: user, group, owner, all.
+  2. 数字模式:`r4w2x1`，一组三个相加。`chmod [-R] 750 file`使file权限变为`drwxr-x---`。编写shell以后，将`664`改为`chmod 755 *.sh`才可运行。
+  3. 特殊权限设置: 四位数，最前加4: SUID；2: SGID；1: SBIT，可相加。如`chmod 4755 filename`产生`-rwsr-xr-x`。`chmod 6755 test`产生`-rwsr-sr-`。 
+  4. 空权限: 当档案不可执行却又特殊权限时，该权限为空。如`chmod 7666 test`产生`-rwSrwSrwT`。  
 
-档案:可为文本文件（ASCII），数据库文件data file，binary program（须有x权限）等，与扩展名无关。rwx权限都是对档案内容而言，w不包括删除档案的权限。删除档案的权限在目录里。  
-目录:记录文件名列表。r可否ls（可读但不可执行则显示?），w可否新建删除重命名移动，x可否进入（使该目录成为当前的work directory）。  
-	建站时开放目录，r-x。w不能给，避免删除该目录下别人的档案。  
-所有人都拥有权限的目录:/tmp。  
-复制档案:cp soucename destname。  
-新建空档案:touch directory/documentname。  
-新建floopy:mkdir floopyname。  
-切换账号:su vbird。  
-进入目录:cd /root: into root。cd ..: return to father。cd - 回到上一个工作目录。  
-用纯文本方式读取档案:cat ~/.bashsc可看到/home/用户名/下隐藏的bashsc文件内容。  
-读取data file:特定格式，用last (鸟哥的私房菜 P401)来查看过去登陆日志，即 /var/log/wtmp的内容，该档案记录登录的数据。  
-装置文件device:在/dev/下。分为Block（存储，如/dev/sda）和Character（串口，一次性读取，不能截断输出）。  
-资料接口Sockets:在/var/run/下，客户端通过它进行数据沟通。  
-数据传输pipe:FIFO，处理多个程序同时读一个文件时的操作。  
-扩展名:sh:脚本或批处理(Script)；Z,tar,tar.gz,zip,tgz:压缩文件；html,php:网页  
-网上下载的档案属性会改变。  
-文件，档案名长度:255字符，包含路径4096字符。避免特殊字符* ? > < ; & ! [ ] | \ ' " ` ( ) { }。  
+
+档案:
+- 可为文本文件（ASCII），数据库文件data file，binary program（须有x权限）等，与扩展名无关。
+- rwx权限都是对档案内容而言，w不包括删除档案的权限。删除档案的权限在目录里。
+
+目录:
+- 记录文件名列表。`r`可否`ls`（可读但不可执行, 则可`ls`不可`cd`）. `w`可否新建删除重命名移动，`x`可否进入（使该目录成为当前的work directory）。
+- 建站时开放目录，`r-x`。`w`不能给，避免删除该目录下别人的档案。
+
+所有人都拥有权限的目录:`/tmp`。
+
+常用操作
+- 复制档案: `cp soucename destname`。
+- 新建空档案: `touch directory/documentname`。
+- 新建floopy: `mkdir floopyname`。
+- 切换账号: `su vbird 。
+- 进入目录: `cd /root`: into root。`cd ..`: 回到上一层。`cd -`: 回到上一个工作目录。
+- 用纯文本方式读取档案: `cat ~/.bashsc`可看到`/home/用户名/`下隐藏的bashsc文件内容。
+- 读取data file: 特定格式需用不同指令来查看
+- `last` 来查看过去登陆日志，即`/var/log/wtmp`的内容，该档案记录登录的数据。  
+
+特殊档案类型
+- 装置文件device: 在`/dev/`下。分为Block（存储，如`/dev/sda`）和Character（串口，一次性读取，不能截断输出）。
+- 资料接口Sockets: 在`/var/run/`下，客户端通过它进行数据沟通。
+- 数据传输pipe: FIFO，处理多个程序同时读一个文件时的操作。
+- 扩展名: sh: 脚本或批处理(Script)； Z,tar,tar.gz,zip,tgz: 压缩文件；html,php: 网页  
+
+网上下载的档案属性会改变。
+
+文件，档案名长度: 255字符，包含路径4096字符。避免特殊字符<* ? > < ; & ! [ ] | \ ' " ` ( ) { }>。  
+
 FHS:Linux目录配置标准。(鸟哥的私房菜 P198)  
 	可分享的(shareable)	不可分享的(unshareable)  
 不变的(static)	/usr (软件放置处)	/etc (配置文件)  
