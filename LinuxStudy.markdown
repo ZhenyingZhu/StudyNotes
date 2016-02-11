@@ -439,63 +439,93 @@ man手册查看快捷键:
 - `{`
 - `}`
 
-FHS:Linux目录配置标准。(鸟哥的私房菜 P198)  
-	可分享的(shareable)	不可分享的(unshareable)  
-不变的(static)	/usr (软件放置处)	/etc (配置文件)  
-	/opt (第三方协力软件)	/boot (开机与核心档)  
-可变动的(variable)	/var/mail (使用者邮件信箱)	/var/run (程序相关)  
-	/var/spool/news (新闻组)	/var/lock (程序相关)  
-	可分享:可给其他系统挂载；不可分享:仅与自己机器有关。  
-	不变:函式库，文件说明，主机服务配置等；可变动:经常写入的文件。  
-三层目录:/:root, 与开机系统有关，分割槽越小越好，不要在此处安装软件；/usr:软件安装执行有关；/var:系统运作有关。  
-/bin: 放置的是可以被root与一般账号所使用指令，主要有:cat,chmod,chown,date,mv,mkdir,cp,bash等。  
-/boot:开机会使用到的档案。Linux kernel常用的档名为vmlinuz，则还会存在/boot/grub/。  
-/dev:任何装置与接口设备都是以档案的型态存在于这个目录下。有/dev/null,/dev/zero, /dev/tty,/dev/lp*,/dev/hd*,/dev/sd*等。  
-/etc:系统主要的配置文件，如人员的账号密码文件、 各种服务的初始档等。文件可以让一般使用者查阅的，但是只有root有权力修改。FHS 建议不要放置binary。  
-/etc/inittab,/etc/modprobe.conf,/etc/fstab,/etc/sysconfig/  
-/etc/init.d/:所有服务的预设启动script。如要启动或关闭iptables:/etc/init.d/iptables start、/etc/init.d/iptables stop  
-/etc/xinetd.d/:super daemon管理的服务的配置文件目录。  
-/etc/X11/:X Window 有关的各种配置文件都在这里，如xorg.conf。  
-/home:home directory。变量～代表目前用户，～dmtcai代表dmtsai的home directory。  
-/lib:开机时会用到的函式库，和在/bin，/sbin底下的指令会呼叫的函式库。/lib/modules/放置核心相关的模块 (驱动程序) 。  
-/media:放置可移除的装置。有:/media/floppy, /media/cdrom等。  
-/mnt:暂时挂载的额外装置放置到这里。  
-/opt: 第三方协力软件放置的目录。自行安装的软件也安装到这里，或放置在/usr/local/下。  
-/root:管理员的家目录与根目录放置在同一个分割槽中。  
-/sbin:设定系统环境的指令只有root才能使用。/sbin/底下的指令为开机过程中所需要的，包括开机、修复、还原系统所需要的指令。服务软件程序，放置到/usr/sbin/当中。自行安装的软件所产生的system binary，放置到/usr/local/sbin/当中。包括:fdisk, fsck, ifconfig, init, mkfs等。  
-/srv:一些网络服务启动后所需取用的数据目录。如WWW, FTP等。如WWW朋务器需要的网页资料就放置在/srv/www/里面。  
-/tmp:一般用户或正在执行的程序暂时放置档案的地方。任何人都能够存取的，需要定期的清理一下。FHS建议在开机时，要将/tmp/下的数据都删除。  
-FHS未定义但常见的目录:  
-/lost+found:标准的ext2/ext3文件系统格式产生的，通常会在分割槽的最顶层，即/disk/lost+found/。  
-/proc:virtual filesystem。数据在内存中，如系统核心、行程信息(process)、周边装置的状态及网络状态等。不占任何硬盘空间。如:/proc/cpuinfo,/proc/dma,/proc/interrupts,/proc/ioports,/proc/net/*等。  
-/sys:也是一个虚拟的文件系统，记彔与核心相关的信息。包括目前已加载的核心模块与核心侦测到的硬件装置信息等。不占硬盘空间。  
-函数库:除了在/lib/下还有许多。指令调用的函数。  
-开机过程中仅有根目录会被挂载，其他分割槽在开机完成后挂载。与开机过程有关的目录，不可与根目录分开:  
-/etc:配置文件；/bin:重要执行档；/dev:所需要的装置档案；/lib:执行档所需的函式库与核心所需的模块；/sbin:重要的系统执行文件。  
-/usr:软件开发时合理地将数据分别放置到该目录的子目录中。  
-	/usr/X11R6/:放置X Window System重要数据最后的X版本为第11版，第6次释出。  
-/usr/bin/:大部分用户可使用的与开机无关的指令。  
-/usr/include/:放置c/c++等程序的header和include，用在以tarball方式 (*.tar.gz 的方式安装软件) 安装某些数据时。  
-/usr/lib/:各应用软件的函式库、object file，以及不被一般使用者用的执行档或script。如64位系统有/usr/lib64/，和一些特殊的，经常被系统管理员操作的，进行服务器的设定指令。  
-/usr/local/:系统管理员在本机自行安装的软件。如distribution提供的软件较旧，想安装较新的软件但又不移除旧版，该目录下也有bin, etc, include, lib...的子目录。  
-/usr/sbin:非系统正常运作所需要的系统指令。如某些网络服务器软件的服务指令（daemon）。  
-/usr/share/:放置共享文件。数据几乎是不分硬件架构均可读取的数据，常见子目录:  
-	/usr/share/man:联机帮助文件；/usr/share/doc:软件杂项的文件说明；/usr/share/zoneinfo:时区档案。  
-/usr/src/:一般原始码放置到这里。核心原始码放置到/usr/src/linux/下。  
-/var:系统运行产生的文件，如cache、log file和软件运行时所产生的档案，如lock file, run file，MySQL数据库的档案等。  
-	/var/cache/:应用程序本身运作过程中会产生的一些暂存档。  
-/var/lib/:放置程序执行过程中需使用的数据文件。各软件有各自的目录。如MySQL的数据库放置到/var/lib/mysql/，rpm的数据库则放到/var/lib/rpm/。  
-/var/lock/:装置或档案资源一次只能被一个应用程序所使用，将该装置lock。  
-/var/log/:放置登彔文件。如/var/log/messages, /var/log/wtmp(记彔登入者的信息)等。  
-/var/mail/:放置个人电子邮件信箱，与/var/spool/mail/通常是链接文件。  
-/var/run/:某些程序或服务运行后，会将它们的PID放置在这个目录。  
-/var/spool/:放置一些队列数据（排队等待其他程序使用的数据）。这些数据被使用后通常都会被删除。如收到新邮件会放置到/var/spool/mail/中，使用者收下该信件后就会被删除。信件暂时寄不出去会被放到/var/spool/mqueue/中，工作排程数据(crontab)，会被放置到/var/spool/cron/。  
-Directory tree:根为/；每个目录可使用本地partition的文件系统和网络上的 file system，如Network File System (NFS) 服务器挂载的目录等；每个档案在此树中的完整路径都是独一无二的。  
+
+FHS:Linux目录配置标准。[FHS 3.0](http://refspecs.linuxfoundation.org/FHS_3.0/fhs-3.0.html)   
+
+可分享的(shareable): 可给其他系统挂载
+- 不变的(static): `/usr`(软件放置处), `/opt`(第三方协力软件)
+- 可变动的(variable): `/var/mail`(使用者邮件信箱), `/var/spool/news`(新闻组)
+
+不可分享的(unshareable): 仅与自己机器有关
+- 不变的(static): `/etc`(配置文件), `/boot`(开机与核心档)
+- 可变动的(variable): `/var/run`(程序相关), `/var/lock`(程序相关)  
+
+其中不变: 函式库，文件说明，主机服务配置等；可变动: 经常写入的文件。
+
+三层目录:
+- `/`:root, 与开机系统有关，分割槽越小越好，不要在此处安装软件；
+- `/usr`:软件安装执行有关；
+- `/var`:系统运作有关。  
+
+建议:
+- `/bin`: 放置的是可以被root与一般账号所使用指令，主要有:`cat,chmod,chown,date,mv,mkdir,cp,bash`等。
+- `/boot`: 开机会使用到的档案。Linux kernel常用的档名为vmlinuz，则还会存在`/boot/grub/`。
+- `/dev`: 任何装置与接口设备都是以档案的型态存在于这个目录下。有`/dev/null`, `/dev/zero`, `/dev/tty`, `/dev/lp0`, `/dev/hd0`, `/dev/sd0` 等。
+- `/etc`: 系统主要的配置文件，如人员的账号密码文件、 各种服务的初始档等。文件可以让一般使用者查阅的，但是只有root有权力修改。FHS 建议不要放置binary。`/etc/inittab`, `/etc/modprobe.conf`, `/etc/fstab`, `/etc/sysconfig/`
+  - `/etc/init.d/`: 所有服务的预设启动script。如要启动或关闭iptables: `/etc/init.d/iptables start`、`/etc/init.d/iptables stop`
+  - `/etc/xinetd.d/`: super daemon管理的服务的配置文件目录。
+  - `/etc/X11/`: X Window 有关的各种配置文件都在这里，如`xorg.conf`。
+- `/home`: home directory。变量`~`代表目前用户，`~dmtcai`代表dmtsai的home directory。
+- `/lib`: 开机时会用到的函式库，和在`/bin`，`/sbin`底下的指令会呼叫的函式库。`/lib/modules/`放置核心相关的模块 (驱动程序) 。
+- `/media`: 放置可移除的装置。有`/media/floppy`, `/media/cdrom`等。
+- `/mnt`: 暂时挂载的额外装置放置到这里。
+- `/opt`: 第三方协力软件放置的目录。自行安装的软件也安装到这里，或放置在`/usr/local/`下。
+- `/root`: 管理员的家目录与根目录放置在同一个分割槽中。
+- `/sbin`: 设定系统环境的指令只有root才能使用。`/sbin/`底下的指令为开机过程中所需要的，包括开机、修复、还原系统所需要的指令。服务软件程序，放置到`/usr/sbin/`当中。自行安装的软件所产生的system binary，放置到`/usr/local/sbin/`当中。包括:`fdisk, fsck, ifconfig, init, mkfs`等。
+- `/srv`: 一些网络服务启动后所需取用的数据目录。如WWW, FTP等。如WWW服务器需要的网页资料就放置在`/srv/www/`里面。
+- `/tmp`: 一般用户或正在执行的程序暂时放置档案的地方。任何人都能够存取的，需要定期的清理一下。FHS建议在开机时，要将`/tmp/`下的数据都删除。
+
+FHS未定义但常见的目录: 
+- `/lost+found`: 标准的ext2/ext3文件系统格式产生的，通常会在分割槽的最顶层，即`/disk/lost+found/`。
+- `/proc`: virtual filesystem。数据在内存中，如系统核心、行程信息(process)、周边装置的状态及网络状态等。不占任何硬盘空间。如:`/proc/cpuinfo`, `/proc/dma`, `/proc/interrupts`, `/proc/ioports`, `/proc/net/`等。
+- `/sys`: 也是一个虚拟的文件系统，记彔与核心相关的信息。包括目前已加载的核心模块与核心侦测到的硬件装置信息等。不占硬盘空间。
+
+函数库: 除了在`/lib/`下还有许多。指令调用的函数。
+
+开机过程中仅有根目录会被挂载，其他分割槽在开机完成后挂载。与开机过程有关的目录，不可与根目录分开:
+- `/etc`: 配置文件；
+- `/bin`: 重要执行档；
+- `/dev`: 所需要的装置档案；
+- `/lib`: 执行档所需的函式库与核心所需的模块；
+- `/sbin`: 重要的系统执行文件。  
+
+`/usr`: 软件开发时合理地将数据分别放置到该目录的子目录中。  
+- `/usr/X11R6/`: 放置X Window System重要数据最后的X版本为第11版，第6次释出。
+- `/usr/bin/`: 大部分用户可使用的与开机无关的指令。
+- `/usr/include/`: 放置c/c++等程序的header和include，用在以tarball方式 (*.tar.gz 的方式安装软件) 安装某些数据时。
+- `/usr/lib/`: 各应用软件的函式库、object file，以及不被一般使用者用的执行档或script。如64位系统有`/usr/lib64/`，和一些特殊的，经常被系统管理员操作的，进行服务器的设定指令。
+- `/usr/local/`: 系统管理员在本机自行安装的软件。如distribution提供的软件较旧，想安装较新的软件但又不移除旧版，该目录下也有bin, etc, include, lib...的子目录。
+- `/usr/sbin`: 非系统正常运作所需要的系统指令。如某些网络服务器软件的服务指令（daemon）。
+- `/usr/share/`: 放置共享文件。数据几乎是不分硬件架构均可读取的数据，常见子目录: 
+  - `/usr/share/man`: 联机帮助文件；
+  - `/usr/share/doc`: 软件杂项的文件说明；
+  - `/usr/share/zoneinfo`: 时区档案。
+- `/usr/src/`: 一般原始码放置到这里。核心原始码放置到`/usr/src/linux/`下。
+
+`/var`:系统运行产生的文件，如cache、log file和软件运行时所产生的档案，如lock file, run file，MySQL数据库的档案等。
+- `/var/cache/`: 应用程序本身运作过程中会产生的一些暂存档。
+- `/var/lib/`: 放置程序执行过程中需使用的数据文件。各软件有各自的目录。如MySQL的数据库放置到`/var/lib/mysql/`，rpm的数据库则放到`/var/lib/rpm/`。
+- `/var/lock/`: 装置或档案资源一次只能被一个应用程序所使用，将该装置lock。
+- `/var/log/`: 放置登彔文件。如`/var/log/messages`, `/var/log/wtmp`(记彔登入者的信息)等。
+- `/var/mail/`: 放置个人电子邮件信箱，与`/var/spool/mail/`通常是链接文件。
+- `/var/run/`: 某些程序或服务运行后，会将它们的PID放置在这个目录。
+- `/var/spool/`: 放置一些队列数据（排队等待其他程序使用的数据）。这些数据被使用后通常都会被删除。如收到新邮件会放置到`/var/spool/mail/`中，使用者收下该信件后就会被删除。信件暂时寄不出去会被放到`/var/spool/mqueue/`中，工作排程数据(crontab)，会被放置到`/var/spool/cron/`。
+
+Directory tree:
+- 根为`/`；
+- 每个目录可使用本地partition的文件系统和网络上的 file system，如Network File System (NFS) 服务器挂载的目录等；
+- 每个档案在此树中的完整路径都是独一无二的。  
  
-/selinux/的内容在内存中。  
-绝对路径:由/开始写起的文件名或目彔名称。  
-相对路径:相对于目前路径的文件名写法。如../../home/dmtsai/等。 . :代表当前的目录，也可以使用 ./ 来表示；.. :代表上一层目录，也可以 ../ 来代表。  
-正规的执行目录:/bin/，/usr/bin/下的指令可直接执行。  
+`/selinux/`的内容在内存中。  
+
+路径
+- 绝对路径: 由`/`开始写起的文件名或目彔名称。  
+- 相对路径: 相对于目前路径的文件名写法。如`../../home/dmtsai/`等。 
+  - `.`: 代表当前的目录，也可以使用 `./` 来表示；
+  - `..`: 代表上一层目录，也可以 `../` 来代表。
+
+正规的执行目录:`/bin/`，`/usr/bin/`下的指令可直接执行。  
+
 
 ## Chapter 7
 写Shell Scripts时需用绝对路径。  
