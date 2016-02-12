@@ -721,3 +721,1082 @@ Ext2/Ext3文件的隐藏属性: 如可以设定档案不可修改，连拥有者
 
 ## Chapter 8
 
+# HERE
+
+档案的硬盘位置：inode存属性与权限，在硬盘中的位置，一个档案一个。
+实际数据放data block中。一个不够时会占多个。大小为1K，2K或4K。格式化时固定。每个block内只能存一个档案的数据。
+superblock记录file system的格式、信息、inode和block总量、使用量、剩余量。
+Ext2用indexed allocation存取数据：inode中记录所有block地址。
+	格式化时区分多个block group,每个group有独立的inode,superblock,block。group信息记录在boot sector中。
+FAT用链表形式记录。需碎片整理。
+inode：记录：1.存取模式(read/write/excute)；2.拥有者与群组(owner/group)；3.档案容量；4.ctime，atime，mtime；5.档案的flag如SetUID；6.block的位置pointer。
+	大小均固定为128 bytes。
+Superblock：记录:1.block与inode的总量；2.未使用和已使用的inode/block数量；3.block与inode的大小；4.filesystem的挂载时间、写入数据时间、fsck（检查硬盘）时间等；5. 一个valid bit：系统已被挂载为0否则为1。
+	大小为1024 bytes。
+	可以用dumpe2fs查看。
+	第一个block group内有superblock，后续的不一定有，有也是备份。
+Filesystem description：每个block group的开始与结束的block号码，每个区段的superblock,bitmap,inodemap,data block分别在哪个block。用dumpe2fs查看。
+Block bitmap：知道哪些block是空的，可快速找到可使用的空间。
+Inode bitmap：记录使用与未使用的inode号码。最顶层目录的inode一般为2。
+查看文件系统信息：dumpe2fs [-bh] 装置文件名。
+-b：列出保留为坏轨的部分。
+-h：仅列出 superblock的数据。可显示文件系统的label。
+查看目前的挂载装置：df。
+ext2文件系统建立目录：分配一个inode与至少一块block。inode记录相关权限与属性和block号码；block记录在这个目录下的文件名与该文件名占用的inode号码。
+	用ls –i查看，最左边是inode号码。
+中介数据：Super block，block bitmap，inode bitmap不存放实际数据的区段为metadata。
+Inconsistent：写入数据时更新metadata的步骤未做完。由e2fsck检查valid bit是否有挂载和filesystem state是否clean。慢。
+Journaling filesystem：在filesystem中用一个区块专门记录修订档案的步骤。Ext3实现。
+Asynchronously处理存取：档案加载到内存后，在未改动前为clean，改动后dirty，系统不定时写回磁盘。为了效率尽量利用内存。用sync将所有内存写回。
+常见的文件系统：
+传统文件系统：ext2/minix/MS-DOS/FAT(用vfat模块)/iso9660(光盘)等。
+日志式文件系统：ext3/ReiserFS/Windows' NTFS/IBM's JFS/SGI's XFS。
+网绚文件系统：NFS/SMBFS。
+查看支持的文件系统ls -l /lib/modules/$(uname -r)/kernel/fs。
+系统目前已加载到内存中支持的文件系统：cat /proc/filesystems。
+Virtual Filesystem Switch：Linux由VFS去读取filesystem。
+列出文件系统的整体磁盘使用量：df [-ahikHTm] [目彔或文件名]。不去文件系统搜索。
+-a：出所有的文件系统，包括/proc等不在硬盘中的挂载点。
+-k：以KB为单位。
+-m：以MB为单位。
+-h：自动选择GB,MB,KB等单位。
+-H：M=1000K而非M=1024K。
+-T：同时列出partition的filesystem名称如ext3。
+-i：用inode的数量来显示。
+/dev/shm/是利用内存虚拟出来的磁盘空间。
+推测目录所占容量：du [-ahskm] 档案或目录名称。默认单位为1K。可用通配符*。去硬盘搜索，慢。
+-a：列出所有的档案与目录容量。默认仅统计目录底下的档案量。
+-h：以G/MB单位显示。
+-s：列出总量，而非每个目录的占用容量。
+-S：不包括子目录的总计。
+-k：以KB为单位。
+-m：以MB为单位。
+
+读取档案顺序：由super block 里的档名找到inode，再由inode 找到区块。
+Hard link：多个档名对应一个inode。档名存于目录中。档名的block中存的是实际数据的inode，指向实际数据的block。两个档名的信息完全相同。
+	不能跨Filesystem。不能link目录。
+	在当前目录建立:ln /etc/crontab .。.代表相同档名。
+	新增一个目录时，由于自动生成了.和..，所以子目录link数为2，父目录link数加一。
+	删除任何一个档名都不会删除数据，而任何一个档名都能改动数据。
+	新建一个hard link只是在目录中增加一个档名，不占用新的inode和block。
+Symbolic link：建立一个独立的档案指向link档的档名。原始档删除后无法打开。
+	可链接目录。
+	修改Symbolic link的档案，其实改动的是原档案。
+	在当前目录建立：ln -s /etc/crontab crontab2。
+	不管是连接的档案还是目录，由rm /root/bin移除。
+建立链接：ln [-sf] 来源文件 目标文件。
+-s：如果不加任何参数是hard link，-s是symbolic link。
+-f：如果目标文件存在，覆盖。
+磁盘分区：fdisk [-l] 装置名称。
+-l：输出装置中所有的partition。不接装置名时显示所有装置。
+装置名：如fdisk /dev/hdc，不要加数字。
+之后进入指令模式：
+d delete a partition
+n add a new partition
+p print the partition table
+q quit without saving changes
+w write table to disk and exit
+扩展分区删除时，它的逻辑分区自动删除。
+新增分区（鸟哥私房菜P268）：Last cylinder or +size or +sizeM or +sizeK (1-5005, default 5005): +512M：+512M让系统自动找最接近的磁柱。
+系统重新读取partition table：partprobe。避免新增分区后需要reboot。
+格式化：mkfs [-t 文件系统格式] 装置文件名。综合指令。
+-t：文件系统格式，如ext3,ext2,vfat等如mkfs -t ext3 /dev/hdc6。
+制定文件系统的细节：mke2fs [-b block大小] [-i block大小] [-L 标头] [-cj] 装置。（鸟哥私房菜P273）
+系统救援：fsck [-t 文件系统] [-ACay] 装置名称。（鸟哥私房菜P274）
+	被检查的partition不可挂载。
+	有问题的数据存于lost+found目录。
+硬盘挂载：一个文件系统不应该被重复挂载；一个目录不应该重复挂载多个文件系统；作为挂载点的目录应该为空，不然内容会暂时消失。
+指令：mount -a
+-a：依照配置文件/etc/fstab 的数据将所有未挂载的磁盘都挂载。
+mount [-l]
+-l：输入mount会显示目前挂载的信息。加上-l可同时显示Label。如/dev/hdc2 on / type ext3 (rw) [/1]中/1为label。
+mount [-t 文件系统] [-L Label名] [-o 额外选项] \ [-n] 装置文件名 挂载点。（鸟哥私房菜P276）
+	-o：重新挂载，在单人维护模式下/为只读，需重新挂载。
+如mkdir /mnt/hdc6;mount /dev/hdc6 /mnt/hdc6。
+文件系统的驱动在/lib/modules/$(uname -r)/kernel/fs/下。
+取消挂载：umount [-fn] 装置文件名或挂载点。
+-f：强制卸除。
+-n：不更新/etc/mtab的情况下卸除。
+装置档案的Major和minor：决定这个档案是哪个装置。如22, 10代表/dev/hdc10。
+手动设置装置档案：mknod 装置文件名 [bcp] [Major] [Minor]。（鸟哥私房菜P281）
+修改Label：e2label 装置名称 新的Label名称。
+更改文件系统格式：tune2fs [-jIL] 装置代号。（鸟哥私房菜P282）
+调整IDE参数：hdparm [-icdmXTt] 装置名称。（鸟哥私房菜P282）
+开机挂载：记录于/etc/fstab和/etc/mtab。六个字段为Device，Mount point，filesystem，parameters，dump，fsck。如LABEL=/home /home ext3 defaults 1 2。
+	fstab: /dev/hdc6 /mnt/hdc6 ext3 defaults 1 2
+	parameters选项见（鸟哥私房菜P285）。
+自动mount规则：/必项挂载且先于其它mount point；其它mount point必为已建立的目录遵守架构原则;mount point只能挂载一次；partition只能挂载一次；进行卸除时工作目录需在mount point及子目录外。
+用loop装置挂载iso：mkdir /mnt/centos_dvd;mount -o loop /root/centos5.2_x86_64.iso /mnt/centos_dvd;umount /mnt/centos_dvd/。
+挂载档案已虚拟一个分割槽：
+1.建立空档案：dd if=/dev/zero of=/home/loopdev bs=1M count=512。
+if：input file，/dev/zero：一直输出0的装置。
+of：output file。
+bs：block大小。
+count：共几个bs。
+2.格式化：mkfs -t ext3 /home/loopdev。
+3.用loop挂载：mount -o loop /home/loopdev /media/cdrom/。用xen软件可以进行根目录挂载，相当于虚拟机。
+建置swap：
+1．	分割：fdisk /dev/hdc;n;[enter];[+256M];p;t;7//新建的分割槽;82//swap的Id;w;partprobe;
+2．	格式化：mkswap /dev/hdc7。
+3．	启用：swapon /dev/hdc7。
+4．	用free观察内存使用量。
+5．	列出所有swap：swapon –s。
+6．	关闭：swapoff /dev/hdc7。
+用loop建置swap（鸟哥私房菜P291）。
+休眠时，内存数据记录于swap。
+目录总block数：ll结果的total。
+分割出超过2TB的分割槽：parted [装置] [指令 [参数]]。（鸟哥私房菜P295）
+数值模式输出档案的处理：PAVE软件。
+
+## Chapter 9
+压缩文件：*.tar（只是打包）, *.tar.gz（用gzip）, *.tgz, *.gz, *.Z, *.bz2。
+gzip和bzip2将目录内所有档案分别压缩。
+gzip：可解compress,zip,gzip等档案。*.gz为档名。gzip –v man.config。源文件删除。可被Winrar解压。
+-c：将压缩的数据输出到屏幕上，可重导向。保留源文件。gzip -9 -c man.config > man.config.gz。
+-d：解压缩参数。gzip -d man.config.gz。
+-t：检验一个压缩文件的一致性，有无错误。
+-v：显示压缩比等信息。
+-#：压缩等级，-1最快，-9压缩比最好，预设-6。
+读取纯文本压缩文件的内容：zcat man.config.gz。压缩文件删除。
+bzip2优于gzip：bzip2 [-cdkzv#] 档名。
+-c：数据输出。
+-d：解压缩的参数。
+-k：保留源文件。
+-z：压缩的参数。
+-v：显示压缩比等信息。
+-#：压缩比的参数，-9最佳，-1最快。
+读取内容：bzcat 档名.bz2。
+打包与压缩：tar [-j|-z] [cv] [-f 建立的档名] filename。tar -jcv -f filename.tar.bz2 target。打包文件称为tarfile。经过压缩的打包称为tarball。
+察看档案：tar [-j|-z] [tv] [-f 建立的档名]。tar -jtv -f filename.tar.bz2。
+解压缩：tar [-j|-z] [xv] [-f 建立的档名] [-C 目录]。tar -jxv -f filename.tar.bz2 -C 目的地目录。
+	-c：建立打包档案，搭配-v察看被打包的档名。
+	-t：察看打包档案的内容有哪些档名。
+	-x：解压缩。-C在特定目录解开。
+-c, -t, -x不可同时出现。
+	-j：用bzip2压缩/解压缩，档名为*.tar.bz2。
+	-z：用gzip压缩/解压缩，档名*.tar.gz。
+	-v：在压缩/解压缩的过程中显示文件名.
+	-f filename：被处理的档名。
+	-C 目录：用在解压缩到特定目录。无该选项则解压到当前目录。tar -jxv -f /root/etc.tar.bz2 -C /tmp。
+	-p：保留备份数据的原本权限与属性，用于备份配置文件。备份etc目录：tar -zpcv -f /root/etc.tar.gz /etc。
+会自动删除/根目录：因为这样如在/tmp下解开，则成为/tmp/…。
+	-P：保留绝对路径。所以会保留/，直接解到/…下且覆盖同名文件。
+	--exclude=FILE：不将FILE打包。tar -jcv -f /root/system.tar.bz2 --exclude=/root/etc* --exclude=/root/system.tar.bz2 /etc /root。
+	--newer-mtime：仅备份新的档案，不接mtime的话则同时包括ctime和mtime。tar -jcv -f /root/etc.newer.then.passwd.tar.bz2 --newer-mtime="2008/09/29" /etc/*。
+解开单一档案：tar -jtv -f /root/etc.tar.bz2 | grep 'shadow'找到路径，再tar -jxv -f /root/etc.tar.bz2 etc/shadow解压。
+磁带机：因为一次性读取，无法用cp复制。将/home,/root,/etc备份到磁带：tar -cv -f /dev/st0 /home /root /etc。
+用Standard input/standard output重导向边压缩边解压：tar -cvf - /etc | tar -xvf -。将/etc下所有文件打包成内存中的一片地址（即-）然后在当前目录下解压。
+系统备份范例：（鸟哥私房菜P312）
+	tar -jcv -f /backups/backup-system-20091130.tar.bz2 --exclude=/root/*.bz2 --exclude=/root/*.gz --exclude=/home/loop* /etc /home /var/spool/mail /var/spool/cron /root。
+备份文件系统工具：dump可以备份整个文件系统和制定等级。dump [-Suvj] [-level] [-f 备份档] 待备份资料。dump –W。（鸟哥私房菜P313）
+	第一次备份为level 0，以后递增。dump -0u -j -f /backups/myproject.dump /srv/myproject。
+	目录的限制：（鸟哥私房菜P313）
+-S：列出待备份数据需要多少磁盘空间。
+-u：将这次的时间记录到/etc/dumpdates中。
+-v：显示过程。
+-j： 用bzip2压缩，默认为2-level.
+-f：后面接产生的档案或如dev/st0的装置文件名。
+-W：列出在/etc/fstab里面的具有dump设定的partition是否备份过。
+备份文件复原：查看：restore -t [-f dumpfile] [-h]。比较dump与实际档案：restore -C [-f dumpfile] [-D 挂载点]。互动模式：restore -i [-f dumpfile]。还原整个文件系统：restore -r [-f dumpfile]。
+	模式无法混用。
+-t：此模式察看备份文件中有什么数据。
+-C：此模式将dump的数据与实际文件系统比较列出不一致的档案。
+-i：互动模式，可以仅还原部分档案。（鸟哥私房菜P319）
+-r：将整个filesystem还原的一种模式。
+-h：察看完整备份数据中inode与文件系统label等信息。
+-f：后面就接要处理的dump档案。
+-D：与-C搭配可查接的挂载点与dump内有不同的档案。
+制作映像档iso：mkisofs [-o 映像档] [-rv] [-m file] 待备份文件.. [-V vol] -graft-point isodir=systemdir ...。
+	-o：后面接你想要产生癿那个映像档档名。
+-r：透过Rock Ridge产生支持Unix/Linux的档案数据，可记录较多信息，包括UID/GID与权限等。
+-v：显示建置 ISO 档案的过程。
+-m file：排除档案。
+ -V vol：建立Volume，即CD的title。
+-graft-point：默认都放置于映象的根目录，加此选项后使目录为绝对地址。（鸟哥私房菜P313）
+刻录至光盘：查询刻录机位置：cdrecord -scanbus dev=ATA。抹除重复读写片：cdrecord -v dev=ATA:x,y,z blank=[fast|all]。格式化DVD+RW: cdrecord -v dev=ATA:x,y,z –format。cdrecord -v dev=ATA:x,y,z [选项] file.iso。
+	-scanbus：扫瞄磁盘总线找出刻录机，装置为ATA接口。
+-v：显示过程而已。
+dev=ATA:x,y,z： x, y, z为刻录机所在位置。（鸟哥私房菜P323）
+blank=[fast|all]：抹除可重复写入的CD/DVD-RW.
+-format：仅针对 DVD+RW 这种格式。选顷： 
+-data：以数据格式写入，不是CD音轨(-audio)。
+speed=X：刻录速度，CD可用 speed=40。DVD则可用speed=4。
+-eject：完毕后自动退出光盘。
+fs=Ym：映像档先暂存至缓冲存储器。预设为 4m。
+driveropts=burnfree：用于DVD，打开Buffer Underrun Free模式的写入功能。
+-sao：支持 DVD-RW 的格式。
+备份装置：dd可以读取磁盘装置的内容(直接读取sector)，然后将整个装置备份成一个档案。dd if=input_file of=output_file bs=block_size count=number。
+	dd if=/dev/hdc of=/tmp/mbr.back bs=512 count=1。还原则反向操作。不需格式化。
+if： input file。可以是装置。
+of： output file。可以是装置。
+bs ：一个block的大小，预设是512bytes(一个sector的大小)。
+count：多少 bs。
+可以用于复制boot sector区块，而cp和tar不行。（鸟哥私房菜P326）
+任何东西备份：cpio。备份：cpio -ovcB > [file|device]。还原：cpio -ivcdu < [file|device]。察看：cpio -ivct < [file|device]。（鸟哥私房菜P327）
+	/boot/initrd-xxx档案由cpio建立。
+
+## Chapter 10
+文本编辑器：emacs, pico, nano, joe。（鸟哥的私房菜P353）
+crontab, visudo, edquota 等指令会主动调用vi。
+vi模式：
+一般模式：可移动光标，删除，复制粘贴字符或整行。
+hjkl：左下上右。30k向上30行。
+ctrl+F/B：下/上翻页。ctrl+d/u：下/上半页。
+-/+：上/下一行。
+20space：后移20个字符。
+0：等同于home，$：等同于end。
+H：当前屏幕第一行头，M：中间行头，L：最下行头。
+G：文档最后一行，20G：第20行，gg：第一行。:set nu：显示行号。
+20enter：下移20行。
+x/X：向后/前删除一个字符。10x：删除10个。
+dd：删除一整列。20dd：删除20列。
+d1G：删除光标到文档第一行的数据。dG：删除光标所在到文档最后的数据。
+d$/0：删除光标到该行最后/前。
+yy：复制一行。20yy复制20行。
+y1G:复制光标所在列到第一列的数据。yG：到最后列。
+y$/0：复制光标到最后/前。
+p：粘贴到光标下一行。P：贴到前一行和当前行中间。
+J：将当前列与下一列变成一列。
+c：重复删除多个数据。例如向下删除10行：10cj?
+u：撤销，ctrl+r：重做上一个动作。.：重复前一个动作。
+
+编辑模式：按i（目前光标处插入）, I（该行第一个非空格处插入）, o（该行后插入一行）, O（该行上插入一行）, a（目前光标的下一个字符插入）, A（行末插入）, r（取代光标处字符一次）, R（取代至按Esc）中的一个进入。按ESC退回一般模式。
+
+指令模式：:/?中的一个进入，可搜索，读取，存盘，替换，离开，显示行号等。
+/word：向下查找word这个字。?word：向上。然后n向下找下一个，N向上找。
+:w保存，:w!强制保存（当权限为特殊权限），:q退出，:q!不保存退出，:e!恢复成档案初始值。
+:1,5s/word1/word2/gc：从第一行到第5行（可省略），查找word1并替换成word2。c为显示确认信息（可省略）。
+ZZ：如修改，保存离开，不然不保存离开。
+:w filename：另存为。
+:n1, n2 w filename：将第n1 到n2 行的文本另存为。
+:r filename：将filename加到当前光标处之后。
+:! command：vi中查看执行某命令的结果，如:! ls /home。
+:set nu：显示行号。
+:set nonu：取消行号。
+:set all：显示所有设定值。（鸟哥的私房菜P347）
+
+ctrl+Z：将程序在背景执行。kill -9 %1 停止进程。
+vim的暂存档：filename.swp。
+Recovery是恢复之前未保存的。然后需要删除暂存档。
+Delete是删除暂存档。
+
+.config文件：批注以#开头。
+通过鼠标复制粘贴会将tab转换为空格。
+
+vim功能：
+Visual Block 功能：
+	v：字符选择，会将光标经过的地方反白选择。
+V：行选择，会将光标经过癿行反白选择。
+Ctrl+v：区块选择，可以用长方形的方式选择资料。
+y：将反白的地方复制起来。
+d：将反白的地方删除掉。
+多档案编辑：同时开启多个档案进行编辑。可以进行档案间复制。
+	:n：编辑下一个档案。
+:N：编辑上一个档案。
+:files：列出目前这个 vim 开启的所有档案。
+:sp filename：上下双窗口显示。如果不输入filename 为本文档。ctrl+w+↑或ctrl+w+k到上窗口，ctrl+w+↓或ctrl+w+j到下窗口。:q或ctrl+w+q离开。
+
+环境设置：~/.vimrc，~/.viminfo。
+搜索字符串、重新打开编辑过的档案，都有记录存在于.viminfo中。
+.vimrc：整体的设置在/etc/vimrc中，.vimrc覆写。
+
+中文环境：LANG=zh_TW.big5。但是推荐用utf8。
+iconv：编码转换。iconv –f big5 –t utf8 filename –o newfile
+--list：显示支持的语系。
+
+断行符：用cat –A查看文档可发现，DOS使用^M$即CR(^M)和LF($)两个符号。而Linux只使用LF。
+	dos2unix [-kn] file [newfile]：转换。k保留原mtime。n保留原文档。
+	unix2dos：相反。
+
+## Chapter 11
+透过Shell将我们输入的指令与Kernel沟通。由指令（如man）去调用程序（man.sh）。
+有讲多的版本，如Bourne SHell(sh)，在Sun里的C SHell，商业用的K SHell，TCSH等。Linux 使用的为Bourne Again SHell(简称 bash)。
+/etc/shells中记录可用的shells：/bin/sh (已经被/bin/bash所取代)；/bin/bash(预设shell)；/bin/ksh (Kornshell，来自AT&T Bell lab)；/bin/tcsh (C Shell升级版)；/bin/csh (已经被/bin/tcsh所取代)；/bin/zsh(ksh的升级版)。
+给使用者一些自定的shell（如/sbin/nologin）让使用者无法以其他服务登入主机。
+
+bash的历史记录：~/.bash_history。在注销系统后才会写入新的历史。
+
+设置别名：alias lm=’ls –al|more’。用more指令来令ls的结果可一页一页查看。alias rm='rm -i'避免错删。
+alias：查看别名。
+取消设置的别名：unalias lm。
+
+通配符：wildcard。ls –l /usr/bin/X* 以X开头。*代表0到无穷多个任意字符。
+
+bash的内建命令：不需要调用外部程序。如cd，umask。用type可以查看。
+type [-tpa] name
+不加任何选项参数，显示name是外部还是内建.
+-t：显示意义：file：外部；alias别名；builtin：内建；
+-p：是外部指令，才显示完整文件名；
+-a ：会由环境变量PATH定义的路径中所有含name的指令都列出。
+
+收邮件：mail指令。调用MAIL变量决定显示哪个邮箱的文件。MAIL=/var/spool/mail/username。
+
+环境变量：PATH, HOME, MAIL, SHELL等。用大写来表示环境变量，小写为自定义变量。
+
+取用变量：echo $var 或echo ${var}。如果该变量未定义，则显示空字符串。
+变量赋值：var=content。不能有空格。
+变量名不能以数字开头。
+
+字符串：
+””中的特殊字符有自己特殊的作用，如var=”lang is $LANG”，则var为lang is en_US。
+	‘’中的特殊字符还是字符。
+跳脱字符：\可以将后一个特殊字符变为普通字符，如$\空格等，对回车符，则没有内容。所以
+cp /var/spool/mail/root /etc/crontab \
+> /etc/fstab /root
+是一个指令，因为\后面的那个enter在执行时被跳脱了。
+	反单引号`指令`或$(指令)可以显示该指令的结果。如version=$(uname -r)或cd /lib/modules/`uname -r`/kernel。ls -l `locate crontab`。
+	赋值时字符串变量间直接相连则会拼接，如PATH=”$PATH”:/home/bin。
+
+变量要在子程序执行，则需export令其变为环境变量，如export PATH。
+
+删除变量：unset myvar。
+
+空格是特殊字符，不能赋值给字符串变量，需\。
+单双引号必须成对。如果不成对，enter后等待输入。
+要输入有单引号的字符串做变量值，可使用双引号括起来，或\。
+
+再开一个子bash：bash。
+
+查看环境变量：env可查看所有环境变量，export不接变量名也可。
+HOSTNAME：主机名
+TERM=xterm：终端机环境是什么类型
+SHELL=/bin/bash
+HISTSIZE=1000：指令历史数
+USER=root
+MAIL=/var/spool/mail/root：当前用户mailbox位置
+INPUTRC=/etc/inputrc：键盘按键功能有关。可以定特殊按键
+PWD=/root：目前用户所在的工作目录
+LANG=en_US
+HOME=/root：家目录
+_=/bin/env：上一次使用的指令最后的一个参数或指令本身。
+RANDOM：由/dev/random档案生成的介于0～32767的随机数。生成0~9之间的数值：declare -i number=$RANDOM*10/32768
+
+查看所有变量，即环境和自定义变量：set。可列出最近设定的变量。
+MAILCHECK=60：每60秒去扫描信箱有无新信
+OLDPWD=/home：上个工作目录。可用 cd – 来调用这个变量
+PPID=20025：父程序的PID
+$：目前这个shell所使用的PID。echo $$可显示当前使用的shell。
+?：刚刚执行的指令回传值。成功执行为0，不然为错误代码。
+PS1：提示字符，即常见的root@www～。可设定。（鸟哥的私房菜P368）PS1不是环境变量，但是是bash的操作环境设置之一。
+设定指令输入输出环境：set [-uvCHhmBx]。默认不启用。（鸟哥的私房菜P391）可以由echo $- 查看，如显示himBH，则表示himBH这5个选项被开启。
+
+建立一个子程序，如bash，之前的父程序会sleep。子程序继承环境变量global variable不继承自定义变量local variable。
+	因为每启动一个shell，OS分配一片内存。子程序只导入父程序的环境变量内存区域。
+
+查看支持的语系： locale –a查看所有。locale可查看有关语言的各设置，都是用变量存储的。（鸟哥的私房菜P371）
+	整体系统默认的语系定义在/etc/sysconfig/i18n文档里。
+
+读取键盘输入：read [-pt] variable。read -p "Please keyin your name: " -t 30 named。选项：
+-p：后面可以接提示字符。
+-t：后面可以接等待的秒数。到时停止。
+
+定义变量类型：declare返回所有变量名与值。变量类型默认为字符串。declare [-aixr] variable。选项：
+-a：将后面名为variable的变量定义成为数组(array)。
+-i：将后面名为variable的变量定义成为整数数字(integer)。
+-x：变为环境变量。+x则变回局部变量。
+-r：将变量设为readonly类型，不可被更改内容或unset。需注销后重新登录才能恢复。
+-p：单独列出一个变量即类型。declare -p sum。
+？（鸟哥的私房菜P374）export | grep sum declare -ix sum="450" <==果然出现了！
+
+一般选项中 –参数 代表设置该选项，+参数 代表取消设置。
+
+数组：赋值：var[index]=content。从1开始。读取：echo "${var[1]}, ${var[2]}, ${var[3]}"或${数组}。
+
+定义变量类型：typeset。与declare类似。
+
+限制用户使用系统资源的额度：ulimit。ulimit [-SHacdfltu] [配额]。选项：
+-H：hard limit，必定不能超过这个数值。
+-S：soft limit，可以超过，但是有警告讯息。通常soft比hard小
+-a：后面不接任何选项参数，可列出所有的限制额度。0代表无限制。
+-c：限制每个核心档案的最大容量。当某程序出错时，系统可能会将该程序在内存中的信息写成档案以便除错。这种档案就被称为核心档案(core file)。
+-f：此 shell 可以建立的最大档案容量(一般可能为 2GB)单位为 Kbytes。非root用户只能设定更小的值。
+-d：程序可使用的最大断裂内存(segment)容量。
+-l：可用与锁定(lock)的内存量。
+-t：可使用的最大 CPU 时间 (单位为秒)。
+-u：单一用户可以使用的最大程序(process)数量。
+
+变量值修改：
+从左开始删除最短的匹配：用#。${var#delete_string}。delete_string 可以用通配符，如echo ${path#/*kerberos/bin:}可删除从头开始的/……bin:这串字符。
+从左开始删除最长的匹配：用##。${path##/*:}。
+从右往左删除：%和%%。${path%:*bin}删除最后的一个:到bin之间的字符。${path%%:*bin}删除第一个:到bin之间的字符串。
+
+取代一次：${var/ori/new}。将var中的第一个ori的字符串变为new的字符串。
+取代所有：${var//ori/new}。
+
+未设定则赋新值：new_var=${old_var-content}。如果old_var已设定，就是old_var，不然为content。注意空字符“”不算未设定。
+未设或为空字符：new_var=${old_var:-content}。
+已设定或为空则赋值：new_var=${old_var+content}。
+已设则赋值：new_var=${old_var:+content}。
+var=${str=expr}：str未设：str=expr，var=expr；str为空：str不变，var= 。str已设：str不变，var=$str。
+var=${str:=expr}：str未设：str=expr，var=expr；str为空：str=expr，var=expr；str已设：str不变，var=$str。
+var=${str?expr}：str未设：expr输出至stderr；str为空：var= ；str已设：var=$str；
+var=${str:?expr}：str未设：expr 输出至 stderr；str为空：expr输出至stderr；str已设：var=$str；
+stderr可用？变量来查看。
+
+清除画面：clear。
+
+查询曾经下达过的指令：history。
+history [n]：列出最近的n笔命令。第一栏为shell中的编号。
+history [-c]：将目前shell中的所有 history 内容全部消除。
+history [-raw] histfiles。选项：
+-a：将目前新增的history指令写入histfiles中。预设写入~/.bash_history。其中最多记录的历史数由$HISTFILESIZE决定。
+-r：将 histfiles 的内容读入目前这个shell的history 记忆中。
+-w：将目前的history记忆内容全写入histfiles中。
+执行历史命令：要注意安全问题，不能让.bash_history受到黑客攻击。
+!number：执行编号为number的指令。
+!command：搜索最近的开头为command的指令串并执行。
+!!：执行上一个指令(相当于↑+Enter)。
+当同时开了数个bash时，后关闭的bash会覆写之前的history。而单一bash登入，用job control来切换工作可避免该问题。
+
+同名指令的执行顺序：等同于type –a command 找到的顺序。
+1. 以相对/绝对路径执行的指令。如/bin/ls或./ls。
+2. 由alias找到的指令。
+3. bash内建的(builtin)指令。
+4. $PATH按序搜寻到的第一个指令。
+
+login shell：如tty1取得的bash，需要登录密码。
+non-login shell：不需重复登录，如X window登录后取得的bash。
+
+bash的欢迎信息：（鸟哥的私房菜P385）。在/etc/issue, /etc/motd档案内。
+bash环境配置：注销bash后在bash内的别名，变量均失效，除非写入配置文件。
+login shell只读取这两个配置文件：
+1. /etc/profile：这是系统整体的设定，不要修改这个档案。
+2. ~/.bash_profile或~/.bash_login或~/.profile：使用者个人设定。
+
+/etc/profile：login shell才会读。
+使用使用者的标识符UID决定变量值，如PATH，MAIL，USER，HOSTNAME，HISTSIZE。
+读入文档数据：/etc/inputrc的键盘设置， /etc/profile.d/*.sh决定bash的设置，/etc/sysconfig/i18n的语言设置。
+
+个人配置：依次查找：~/.bash_profile，~/.bash_login和~/.profile，如存在则读取，并忽略之后的文档。
+
+让配置文件立即生效：source 配置文件 或 . 配置文件。注销后登录也可。
+
+~/.bashrc：non-login shell会读。是/etc/skel/.bashrc复制。
+
+/etc/bashrc：由OS读取。根据UID决定umask；提示字符PS1变量，并呼叫/etc/profile.d/*.sh的设定。
+
+其他配置：（鸟哥的私房菜P390）。
+
+终端机设定：stty –a显示设定，stty 功能 键盘输入。（鸟哥的私房菜P390）
+^：就是ctrl。
+^?：backspace。
+功能列表：
+eof：End of file，代表结束输入。
+erase：向后删除字符，
+intr：送出一个 interrupt的讯号给目前正在run的程序；
+kill：删除在目前指令列上的所有文字；
+quit：送出quit的讯号给目前正在run的程序；
+start：在某个程序停止后，重新启动它的output。
+stop：停止目前屏幕的输出；
+susp：送出一个terminal stop讯号给正在run的程序。
+
+bash组合键：
+Ctrl + C：终止目前的命令
+Ctrl + D：输入结束 (EOF)，例如邮件结束的时候；
+Ctrl + M： 就是 Enter；
+Ctrl + S： 暂停屏幕的输出
+Ctrl + Q： 恢复屏幕的输出
+Ctrl + U： 在提示字符下，将整列命令删除 
+Ctrl + Z： 暂停目前的命令
+
+bash的wildcard：
+*：0到无穷多个任意字符。
+?：一定有一个任意字符。如ll -d /etc/????? 找出/etc/下文件名刚好是五个字母的文件。
+[ ]：一定有一个在括号内的字符。如[abcd]代表一定有一个可能是a, b, c, d中的一个的字符。
+[ - ]：在编码顺序内的所有字符。如[0-9]代表0到9间的所有数字，因为数字的语系编码是连续的。ll -d /etc/*[0-9]*。
+[^ ]：反向选择，如[^abc]代表一定有一个不是a, b, c的字符。cp -a /etc/[^a-z]* /tmp。
+
+bash中的特殊字符：
+#：注释符号
+\：跳脱符号，将特殊字符或通配符还原成一般字符 
+|：管线(pipe)，分隔两个管线命令的界定； 
+;：连续指令下达分隔符：
+~：用户的家目录 
+$：取用变量前导符：
+&：工作控制(job control)，将指令放于背景下工作
+!：非逻辑运算符
+/：目录符号，即路径分隔的符号
+>：数据流重导向，输出导向，取代。ll / > ~/rootfile.txt。如存在同名文档，会覆盖。
+>>：数据流重导向，输出导向，累加。如存在同名文档，会追加到结尾。
+<：数据流重导向，输入导向，
+<<：数据流重导向：输入导向
+' '：单引号，不具有变量置换的功能 
+" "：具有变量置换的功能
+` `：中间为可以先执行的指令，等同于$( ) 
+( )：在中间为子shell的起始与结束
+{ }：在中间为命令区块的组合
+
+数据流输出重导向：将本应输出到屏幕上的数据传输到别处，即standard output(stdout)和standard error output(stderr)传输到当然或装置。
+stdin：代码为0，使用<或<<。
+stdout：代码为1，使用>或>>。
+stderr：代码为2，使用2>或2>>。find /home –name .bashrc > ~/list_right 2> list_err
+将正确和错误的数据写入同一个档案：find /home –name .bashrc > list 2> &1。或 find /home –name .bashrc &> list。
+
+由键盘输入创建档案：
+$ cat > catfile
+testing
+cat file test
+^D
+
+/dev/null：垃圾桶黑洞装置，所有导向这个装置的信息都会丢弃。
+
+数据流输入重导向：将本键盘输入的数据由档案内容取代。
+全部导入：cat > catfile < ~/.bashrc。
+导入至结束字符串：cat > catfile << “eof”。则当输入“eof”时自动结束（不会输入“eof”）而不需ctrl+D。
+
+条件执行：利用$?的回传值决定指令是否执行。
+cmd1 && cmd2：cmd1执行成功才执行cmd2。ls /tmp/abc && touch /tmp/abc/hehe。
+cmd1 || cmd2：cmd1执行失败才执行cmd2。ls /tmp/abc || mkdir /tmp/abc
+可混合执行：ls /tmp/abc || mkdir /tmp/abc && touch /tmp/abc/hehe。$?的值会在第一个条件处判断完后后传。
+
+pipe：处理经前一个指令传来的stdout，不能处理stderr。管线后可接less，more，head，tail等可接受stdin的指令，而ls，cp，mv等不行。
+ls –al /etc | less。即less ll /etc的结果。
+
+截取指令：将一段数据分析后取出需要的一行，配合管线使用。
+cut –d ’分隔字符’ -f fields：依据-d的分隔字符将一段讯息分割成为数段，用-f取出第几段。echo $PATH | cut –d ’:’ –f 3,5即取出PATH变量中的第3和第5个变量。注意每一个空格算一个’ ’。
+cut -c 字符区间：以字符(characters)为单位取出固定字符区间。export | cut –c 12- 即输出所有变量的从第12个字符开始的设置。12-20则定义了个区间。
+
+grep [-acinv] [--color=auto] '搜寻字符串' filename：搜索存在搜索信息的一行并取出。last | grep ‘root’ | cut –d ‘ ‘ –f 1
+-a：将binary档案以text档案的方式搜寻数据。
+-c：计算找到搜寻字符串的次数。
+-i：忽略大小写的不同。
+-n：输出行号。
+-v：显示出没有搜寻字符串内容的那一行。last | grep –v ‘root’ 显示过去登录的非root信息。grep –vn ‘the’file。
+--color=auto：可以将找到的关键词部分加上颜色的显示。grep –-color=auto ‘MANPATH’ /etc/man.config
+只显示档案名：find / -type f | grep –l ‘字符串’。
+
+
+排序：sort，先用LANG=C 来保证编码。sort [-fbMnrtuk] [file or stdin]。
+-f：忽略大小写的差异。
+-b：忽略最前面的空格符部分；
+-M：以月份的名字来排序。
+-n：使用纯数字进行排序，默认以文字型态排序。
+-r：反向排序。 
+-u：就是uniq，相同的数据中，仅出现一行。
+-t：分隔符，预设是用tab分隔； 
+-k：以那个区间(field)来排序。cat /etc/passwd | sort –t ‘:’ –k 3 –n 则按由:分隔的第3栏排序。注意如果按文字排序，则是0,10,11,1的顺序。
+
+相同行只显示一行：uniq [-ic]，用在排序之后。
+-i：忽略大小写字符的不同；
+-c：进行计数。last | cut –d ‘ ’f 1 | sort | uniq –c 
+
+文档信息统计：wc [-lwm]。cat /etc/man.config | wc。输出的三个数依次代表行数，词数，字符数。
+-l：仅列出行；
+-w：仅列出多少字(英文单字)；
+-m ：多少字符；
+
+输出同时导向文档与屏幕：tee [-a] file。last | tee last.lst | cut –d “ ” –f 1
+-a：累加(append)数据到file中。
+
+字符转换：
+删除或替换：tr [-ds] SET1 ...。last | tr ‘[a-z]’ ‘[A-Z]’。没有单引号也可执行。
+-d：删除讯息当中SET1字符串；cat /etc/passwd | tr –d ‘:’
+-s：取代重复的字符。
+一个栗子：
+# cp /etc/passwd /root/passwd && unix2dos /root/passwd
+# file /etc/passwd /root/passwd
+# cat /root/passwd | tr –d ‘\r’ > /root/passwd.linux
+转换大小写：tr 'a-z' 'A-Z'
+
+
+将特殊格式的文档转换为纯文本：col [-xb]。
+-x：将tab 键（^I）转换成对等的空格键。cat /etc/man.config | col –x | cat –A | more
+-b：在文字内有反斜杠/时，仅保留反斜杠最后接的那个字符。man col | col –b > /root/col.man。
+
+合并相同数据：join [-ti12] file1 file2。需要文档已经排过序。
+-t：join默认以空格符分隔数据，并比对第一个字段的数据。如果两个档案相同，则将两笔数据联成一行。join -t ':' /etc/passwd /etc/shadow。
+-i：忽略大小写的差异；
+-1：第一个档案要用该字段来分析。
+-2：第二个档案要用该字段来分析。join –t ‘:’ -1 4 /etc/passwd -2 3 /etc/group。
+
+拼接行：paste [-d] file1 file2。将两个文档中的每行拼成一行，用分隔字符隔开。
+-d：分隔字符。预设是tab。cat /etc/group | paste /etc/passwd /etc/shadow - | head –n 3
+
+将tab转换为space：expand [-t] file。并不是每个tab都会转为固定数目的space（鸟哥的私房菜P409）。
+-t：接数字表示一个tab代表几个space。预设是8个。?grep ‘^MANPATH’ /etc/man.config | head –n 3 | expand –t 6 - | cat -A
+
+space转换为tab：unexpand（鸟哥的私房菜P409）。
+
+分割文档：split [-bl] file PREFIX
+-b：分隔档案大小，可加单位 b, k, m 等；split –b 300k /etc/tempcap termcap; ll –k termcap*。文档会按prefix+a,b,c…的顺序产生。
+-l：以行数进行分割。ls –al | split –l 10 – lsroot。
+PREFIX：决定分割档案的前导文字。
+
+参数代换：xargs [-0epn] command。cut –d ‘:’ –f 1 /etc/passwd | head –n 3 | xargs finger。对不支持管线的命令非常实用，如ls。注意档案名中最好不能有空格，不然会误判。
+-0：如果输入的stdin有特殊字符，如`, \, 空格键等，可以将他还原成一般字符。
+-e：EOF的字符串，分析到这个字符串就停止。cut –d ‘:’ –f 1 /etc/passwd | xargs –p –e’lp’finger。中间没有空格。
+-p：在执行每个指令时都会询问。
+-n： command指令执行时，要几个参数。cut –d ‘:’ –f 1 | xargs –p –n 5 finger。
+当 xargs 后面没有接任何的指令时，默认是以echo来进行输出喔！
+一个栗子：find /sbin -perm +7000 | xargs ls –l。
+
+取得账号的信息：finger。
+
+行首的代表标注为^。
+-：某些指令要用文件名做参数，如tar。则如果file 部分写成- ，则为stdin或者stdout。
+	tar -cvf - /home | tar -xvf -：前一个-为stdout，后一个为stdin，即文件移动。
+
+在~/.bash_history中记录时间：？
+# vim ~/.bash_logout 
+date >> ~/.myhistory 
+history 50 > > ~/.myhistory
+
+在这样癿练习中『A=B』且『B=C』，若我下达『unset $A』，则叏消癿发数是 A 还是 B？被叏消癿是 B 喔，因为 unset $A 相当亍 unset B 所以叏消癿是 B ，A 会继续存在！
+
+## Chapter 12
+正则表达式Regular Expression：以行为单位处理字符串。
+	不是程序而是字符串处理标准。需要支持RE的工具程序，如vi，sed，awk。而cp, ls等指令不支持，只能使用bash自身的通配符。
+
+BASH: linux基本指令。
+
+邮件服务器软件：sendmail与postfix。
+
+扩展正则表达式：通过(和|等进行多字符串查找，如netman or lman。
+
+编码：LANG=C（兼容POSIX标准）：ABC...Zabc...z；LANG=zh_TW：aAbBcC...zZ。所以用[A-Z]抓取大写字母，台湾语系会抓出小写。
+
+特殊字符串：
+[:alnum:]：代表英文大小写字符及数字,即0-9, A-Z, a-z。
+[:alpha:]：代表任何英文大小写字符,即A-Z, a-z。
+[:blank:]：代表空格键和tab按键。
+[:cntrl:]：代表键盘上面的控制按键,包括CR,LF,Tab,Del...。
+[:digit:]：代表数字0-9。
+[:graph:]：除了空格符和Tab键外的其他所有按键。
+[:lower:]：代表小写字符a-z。
+[:print:]：代表任何可以被打印出的字符。
+[:punct:]：代表标点符号(punctuation symbol),即" ' ? ! ; : # $...。
+[:upper:]：代表大写字符A-Z。
+[:space:]：会产生空白的字符如空格键,Tab],CR等。
+[:xdigit:]：代表16进制数字类型,包括:0-9,A-F,a-f。
+
+grep [-A] [-B] [--color=auto] '搜寻字符串' filename。不一定需要字符串一定是词。
+-A n：after,列出该行及后续的n行；dmesg | grep –n –A3 –B2 –color=auto ‘eth’ 显示网卡信息。
+-B n：before，列出该行及前面的n行；
+--color=auto：将正确的数据列出颜色。
+
+列出核心配置信息：dmesg。
+
+练习正则表达式：wget http://linux.vbird.org/linux_basic/0330regularex/regular_express.txt，（鸟哥的私房菜P420）
+虽然类似bash的wildcard，但是不完全相同，比如*和?无用，而有.和*。而且不以单词（及需要左右都为空格）为单位，搜索的是字符串。
+grep –n ‘t[ae]st’ file 得到的是包含test 或taste 的行。
+grep –n ‘[^a-z]oo’ file 或 grep –n ‘[^[:lower:]]oo’ file。
+grep –n ‘^the’ file 利用制表符^代表行首。注意放在中括号中才是取反。
+grep –n ‘\.$’file 利用制表符$代表行尾。而小数点是特殊字符，需要反斜杠。这时windows平台的句尾无法搜索。
+grep –v ‘^$’file | grep –v ‘^#’ 去除空行和注释。
+一个任意字符：.。grep –n ‘g..d’ file。
+重复前面的那个字符0到无穷次：*。
+grep –n ‘gooo*g’file 查找至少2个连续的o。如果’o*’的话会输出全部内容。
+grep –n ‘g.*g’ file 查找由g开头和结尾的字符串。
+grep –n ‘[0-9][0-9]*’ file 等同于grep –n ‘[0-9]’ file。
+重复一定范围的次数：用{a,b}，因为{是特殊字符，要跳脱。grep –n ‘go\{3,5\}’ file。{3,}代表3个及以上。
+
+查看某目录下链接文件的属性：ls –l /etc/ | grep ‘^l’ | wc -l
+
+正则表达式汇总：（鸟哥的私房菜P427）。注意!和>在这里不是特殊字符。
+
+分析stdin：sed [-nefr] [动作]
+-n：silent模式。即不将STDIN的数据列到屏幕上，只有经sed处理的那一行。
+-e：直接在指令列模式上进行sed的动作编辑；
+-f：直接将sed的动作写在一个档案内。
+-f filename：执行filename里的sed动作；
+-r：支持扩展正则表达式。默认是基础正则表达式。
+-i：直接修改读取的档案内容，而不由屏幕输出。sed –i ‘s/\.$/!/g’ file。
+动作：[n1][,n2] function：n1，n2为行数范围。动作用单引号括住。function：
+a：新增，字符串出现在新的一行。nl /etc/passwd | sed ‘2a drink tea\
+>drink coffee?’可以增加多行。
+sed –i ‘$a # This is a test. ’ file。
+c：取代，字符串取代n1,n2之间的行。nl /etc/passwd | sed ‘2,5c No 2-5 number’。则第2到5行变为一行。
+d：删除。nl /etc/passwd | sed ‘2,5d’，nl /etc/passwd | sed –e ‘2,$d’。有无e在管线方式下都一样。
+i：插入，字符串在当前的上一行出现。
+p：打印，将某个选择的数据印出。与sed -n一起运作。nl /etc/passwd | sed –n ‘5,7p’。只显示5到7行。
+s：取代，直接进行取代的工作，搭配正则表示法。1,20s/old/new/g。/sbin/ifconfig eth0 | grep ‘inet addr’| sed  ‘s/^.*addr://g’删除行首至addr:。Bcast.*$代表从Bcast删除到行尾。.*即查找任意字符串。
+删除注释行：cat /etc/man.config | grep ‘MAN’ | sed  ‘s/#.*$//g’ | sed  ‘/^$/d’。
+可以并列多个动作：cat /etc/passwd | sed –e ‘4d’ –e ‘6c no six line’ > passwd.new。
+
+扩展正则表达式：需要grep –E 或者指令egrep支持。
+一个或一个以上重复前一个字符：+。egrep –n ‘go+d’ file。找到god, good, goood。
+零个或一个前一个字符：?。egrep –n ‘go?d’ file。找到gd 和god。
+用|代表or：egrep –n ‘gd|good|dog’ file。同时找三个词。egrep –v ‘^$|^#’ file。排除空白行和注释行。egrep –n ‘g(la|oo)d’ file。找glad 和good。
+字符串的重复：echo ‘AxyzxyzxyzC’ | egrep ‘A(xyz)+C’。找的是A开始C结束，切当中有xyz重复1次以上的字符串。
+
+格式化打印：printf '打印格式' 实际内容。不是管线命令。格式的几个特殊样式：
+\a：警告声音输出。
+\b：backspace。
+\f：清除屏幕(form feed)。
+\n：输出新的一行。
+\r：Enter。
+\t：水平tab按键。printf ‘%s\t %s\t %s\t\n’ $(cat printf.txt)。将printf.txt的内容用每行三段的格式输出。
+\v：垂直tab按键。
+\xNN：两位数NN转换为ASCII中该16进制数值代表的字符。printf ‘\x45\n’。
+C语言的变量格式： 
+%ns：n个字符；printf ‘%10s\t %5i\t %5i\t %8.2f\n’ $(cat printf.txt | grep –v Name)。
+%ni：n个整数；
+%N.nf:N个位数和小数点后n位的浮点数。
+
+处理字段：awk '条件类型1{动作1} 条件类型2{动作2} ...' filename。可读取文件或stdin。字段需以空格或tab分隔。
+内建变量：NF：每一行的字段总数；NR：目前处理的是行数；FS：当前的分隔字符，默认是空格。last –n 5| awk ‘{print $1 “\t lines:” NR “\t columes:” NF}’。
+last –n 5 | awk ‘{print $1 “\t” $3}’。打印出第1和第3个字段，并由tab分隔。$0代表一整行。
+逻辑判断：cat /etc/passwd | awk ‘{FS=”:”} $3<10 {print $1 “\t” $3}’。结果第一行并没有正确处理，需要在之前加入BIGIN：cat /etc/passwd | awk ‘BEGIN {FS=”:”} $3<10 {print $1 “\t” $3}’。
+cat pay.txt | awk ‘NR==1 {printf “%10s\t %10s\t %10s\n”} NR>=2 {total=$2+$3+$4； printf “%10s %10d %10.2f\n”, $1, $2, total}’。{}内的两条指令之间要用;或enter分隔。
+if语句：cat pay.txt | awk ‘{if(NR==1) printf “%10s %10s %10s\n”,$1,$2,$3,”Total”} NR>=2 {total=$2+$3+$4; printf “%10s %10d %10d %10d”, $1,$2,$3,total}’。
+还可循环。（鸟哥的私房菜P438）。
+
+文本档案差异对比：diff [-bBi] from-file to-file。显示信息说明：（鸟哥的私房菜P439）。以行作为单位。
+from-file：原始比对档案；可以-取代。
+to-file：目的比对档案；可以-取代。
+-b：忽略一行当中仅有多个空格的差异。
+-B：忽略空白行的差异。 
+-i：忽略大小写的差异。
+文件夹差异对比：diff /etc/rc3.d/ /etc/rc5.d/。
+根据新档案的不同处制作升级补丁：diff –Naur passwd.old passwd.new > passwd.patch。
+
+使用补丁：patch –pN < patch_file。N为目录删减数。patch –p0 < passwd.patch。
+将升级过的文档恢复为旧文档：patch –R –pn < passwd.patch。patch –R –p0 < passwd.patch。
+
+字节档案对比：cmp [-s] file1 file2。以字节为单位。结果为byte 和line 的位置。
+-s：将所有不同的字节处列出来。预设仅会输出第一个出现的不同点。
+
+档案打印：pr /etc/man.config。
+
+通配符与正则表达式搭配：grep ‘\*’ /etc/*。
+搜索子文件夹：grep ‘\*’ $(find /etc –type f)。因为/etc下有太多文件，会因为指令长度太长而报错。
+分批次搜索：find /etc –type f | xargs –n 10 grep ‘\*’。
+设置个指令查看ip地址：alias myip=”ifconfig eth0 | grep ‘inet addr’ | sed ‘s/^.*inet addr://g’ | cut –d ‘’ –f1”; MYIP=$(myip);将这两行写入.bashrc。
+
+## Chapter 13
+系统服务启动的接口：/etc/init.d/目录下，全是scripts。如启动系统注册表,/etc/init.d/syslogd restart。/etc/init.d/syslog stop。
+防火墙连续规则：iptables。
+
+Shell Script规则：
+1.从上而下、从左向右执行；
+2.指令、选项与参数间的多个空格视为1个；
+3.空白行忽略，tab视为空格；
+4.读取到Enter (CR)时开始执行命令；
+5.如果一行的内容太多，可以使用\Enter；
+6.#是批注符。
+
+执行script：当shell.sh有rx权限，可直接通过档案名执行。或通过bash程序来执行：bash shell.sh或sh shell.sh。sh [-nx] shell.sh可以检查语法。
+这时是在一个子bash程序中执行的，在script中的变量是不会传回原bash的。
+利用source shell.sh来执行，可保持在原bash中执行，所以各项指令结果都有效。
+
+显示Hello World的script：
+#!/bin/bash	宣告使用的bash名称，就可以加载bash的相关环境，一般是non-login shell。
+# Program:	批注说明内容与功能，版本信息，作者联系方式，建档日期，历史记录。
+#     This program shows "Hello World!" in your screen. 
+# History: 
+# 2005/08/23 VBird First release 
+PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin 	将主要环境变量设置好，避免使用绝对路径。
+export PATH 
+echo -e "Hello World! \a \n" 	-e选项：发出提示音。
+exit 0	可用$?查看。
+
+将该脚本转为可执行脚本：chmod a+x sh01.sh;
+
+读入键盘输入：
+read -p “Please input your first name:” firstname
+read -p “please input your last name:” lastname
+echo -e “\nYour full name is $firstname $lastname”
+
+设定文件名为日期：
+read –p “please input your filename” fileuser
+filename=${fileuser:-“filename”}
+date1=$(date --date=’2 days ago’ +%Y%m%d) # --date用文字设定日期，如now。
+date2=$(date --date=’1 days ago’ +%Y%m%d)
+date3=$(date +%Y%m%d)
+file1=${filename}${date1}
+file2=${filename}${date2}
+file3=${filename}${date3}
+touch "$file1"
+touch "$file2"
+touch "$file3"
+
+两数字相乘：
+read -p "first number: " firstnu
+read -p "second number" secondnu
+total=$(($firstnu*$secondnu)) # 将两输入的字符串变为整数并运算，等同于declare -i total=$firstnu*$secondnu
+echo -e "\nResult ==> $total"
+
+$((运算式))支持运算：+-*/%。运算式中可以有空格。
+
+测试档案是否存在：test [-efdrwx] filename。
+-e：是否存在。test -e /dmtsai && echo "exist" || echo "Not exist"。
+-f：是否存在且为档案(file)。
+-d：是否存在且为目录(directory)。
+-r：是否存在且具有可读权限。
+-w：是否存在且具有可写权限。
+-x：是否存在且具有可执行权限。
+测试两个档案：test file1 [-nt-ot-ef] file2。
+-nt：(newer than) file1是否比file2新。
+-ot：(older than) file1是否比file2旧。
+-ef：file1与file2是否为同一档案，即是否hard link。
+测试两个整数：test n1 [-eq-ne-gt-lt-ge-le] n2。
+判断字符串：
+test -z string：判断字符串是否为空，为空输出true。
+test -n string：是否为空，为空输出false。
+test str1 = str2：相等返回true。
+test str1 != str2。
+多重判断：-a：and。-o：or。！：not。
+test -r filename -a -x filename。同时具有可读和可执行权限时，返回true。
+其他判断：（鸟哥的私房菜P454）
+
+判断档案是否存在，什么类型和输出权限：
+read -p "Input a filename: \n\n" filename
+test -z $filename && echo "Empty String" && exit 0
+test ! -e $filename && echo "Not exist" && exit 0
+test -f filename && filetype="regular file"
+test -d filename && filetype="directory"
+test -r filename && perm="Readable"
+test -w filename && perm="$perm Writeable"
+test -x filename && perm="$perm Executable"
+echo "filename is $filetype"
+echo "Permissions are $perm"
+
+该脚本用root执行会与ls -l看到的不同，因为权限限制多数对root无效。
+
+判断符号：bash中使用[]作为判断，类似于test。为避免被误认为正则表达式，需要在括号中每个组件前后加入两个空格。变量都以双引号括起来，常数用引号括起来，使得这些量被bash替换为值时视为一个量。（鸟哥的私房菜P456）
+[ -z "$HOME"]; echo $; 判断是否为空。
+[ "$HOME" == "$MAIL" ] 判断是否相同。
+
+read -p "Please input (Y/N)" yn
+[ "$yn" == "Y" -o "$yn" == "y" ] && echo "yes" && exit 0
+[ "$yn" == "N" -o "$yn" == "n" ] && echo "no" && exit 0
+echo "Invalid input" && exit 0
+
+/path/to/scriptname opt1 opt2 opt3 opt4对应$0,$1,$2,$3,$4。即脚本档名为$0。
+$#代表参数个数，$@代表"$1" "$2" "$3" "$4"，$*代表$1分隔$2分隔$3分隔$4分隔。分隔字符默认为空格。
+
+echo "Script name is $0"
+echo "Parameter number is $#"
+[ $# -lt 2 ] && echo "too less parameters" && exit 0
+echo "Your whole parameters are '$@'" ？为嘛用单引号
+
+参数编码偏移：shift n0，抛弃前n个参数。
+
+echo "Parameter number is $#"
+shift
+echo "Parameters are '$@'"
+shift 2
+echo "Parameters are '$@'"
+
+条件判断：
+if [ 条件判断 ] && [ 条件判断 ]; then
+    执行指令;
+elif [ 条件判断 ]; then
+    执行指令; 
+else
+    执行指令;
+fi
+
+read -p "Please input Y/N" yn
+if [ '$yn' == 'Y' ] || [ '$yn' == 'y' ]; then
+    echo "yes"
+elif [ '$yn' == 'N' ] || [ '$yn' == 'n']; then 
+    echo "no"
+else
+    echo "Invalid input"
+fi
+
+if [ "$1" == "Hello" ]; then
+    echo "Hello"
+elif [ "$1" == "" ]; then
+    echo "You must input parameters, ex> {$0 someword}" #输出结果为 You must input parameters, ex> {script.sh someword}。为很多启动系统服务的scripts的写法。
+else
+    echo "Can only input 'Hello', ex>{$0 hello}"
+fi
+
+查询主机开启的网络服务端口：netstat -tuln。（鸟哥的私房菜P462）
+127.0.0.1对本机地址，0.0.0.0或:::对整个internet。
+常见的网络服务port：80: WWW，22: ssh，21: ftp，25: mail，111: RPC(进程过程调用)，631: CUPS(打印服务功能)。
+
+testing=$(netstat -tuln | grep ":80 ")
+if [ "$testing" != "" ]; then
+    echo "Your WWW server is on. "
+if
+testing=$(netstat -tuln | grep ":22 ")
+if [ "$testing" != "" ]; then
+    echo "Your ssh server is on. "
+if
+
+计算日期相差时间
+read -p "Please input date (YYYYMMDD ex> 20070401): " date2
+
+date_d=$(echo $date2 | grep '[0-9]\{8\}')
+if [ "$date_d" == "" ]; then
+    echo "Invalid input"
+    exit 1
+fi
+
+declare -i date_dem=`date --date="date2" +%s`
+declare -i date_now=`date +%s`
+declare -i date_total_s=$(($date_dem-$date_now))
+declare -i date_d=$(($date_total_s/60/60/24)) #转换为天数
+if [ "$date_total_s" -lt "0" ]; then
+    echo "Before" $((-1*$date_d)) "ago" ?为嘛前后分段
+else
+    declare -i date_h=$(($(($date_total_s-$date_d*60*60*24))/60/60))
+    echo "After $date_d days and $date_h hours. "
+fi
+
+Switch 判断：
+case $变量名称 in
+ "变量值")
+    执行指令
+    ;;
+ "变量值")
+    执行指令
+    ;;
+ *) #代表其它值
+    执行指令
+    exit 1
+    ;;
+esac
+
+case $1 in
+ "Hello")
+    echo "Hello, how are you?"
+    ;;
+ "")
+    echo "You must input parameters, ex> {$0 someword}"
+    ;;
+ *)
+    echo "Usage $0 {Hello}"
+    ;;
+esac
+
+自定义函数：一定要在script调用该函数的部分的前面。$0代表fname，$1代表调用函数时后面接的第一个参数…
+function fname() {
+    程序块
+}
+
+PATH=…
+export PATH
+function printit(){
+     echo -n "Your choice is $1"
+}
+case $1 in
+ "One")
+    printit 1; echo $1 | tr 'a-z' 'A-Z' 
+    ;;
+ "Two")
+    printit 2; echo $1 | tr 'a-z' 'A-Z'
+    ;;
+ *)
+    echo "Usage $0 {one|two}"
+    ;;
+esac
+
+输出则是Your choice is 1 ONE，或Your choice is 2 TWO。
+
+循环：
+while [ condition ]
+do
+    程序段落
+done
+或
+until [ condition ] #条件达成是种植循环。
+do
+    程序块
+done
+或
+for var in con1 con2 con3
+do
+    程序块
+done
+或
+for ((初始值;限制值;步长))
+do
+    程序块
+done
+
+例子1：
+while [ "$yn" != "yes" -a "$yn" != "YES" ]
+do 
+    read -p "please input yes"
+done
+echo "OK! "
+
+until [ "$yn" == "yes" -o "$yn" == "YES" ]
+do 
+    read -p "please input yes"
+done
+echo "OK! "
+
+例子2：
+s=0
+i=0
+while [ "$i" != "100" ]
+do
+    i=$((i+1))
+    s=$(($s+$i))
+done
+echo "result is $s"
+
+例子3：
+for animal in dog cat elephant
+do
+    echo "There are ${animal}s"
+done
+
+例子4：
+users=$(cut -d ':' -f1 /etc/passwd)
+for  username in $users
+do
+    id $username
+    finger $username
+done
+
+例子5：
+network="192.168.1"
+for sitenu in $(seq 1 100)
+do
+    ping -c 1 -w 1 $(network).$(sitenu) &> /dev/null && result=0 || result=1
+    if [ "$result" == 0 ]; then
+        echo "Server is running"
+    else
+        echo "Server is down"
+    fi
+done
+
+例子6：
+read -p "input a directory: " $dir
+if [ "$dir" == "" -o ! -d "$dir" ]; then
+    echo "not vaid"
+    exit
+fi
+
+filelist=$(ls $dir)
+for filename in filelist
+do
+    perm=""
+    test -r "$dir/$filename" && perm="$perm readable"
+    test -w "$dir/$filename" && perm="$perm writeable"
+    test -x "$dir/$filename" && perm="$perm executable"
+    echo "The file is $perm"
+done
+
+例子7：
+read -p "input end number" nu
+s=0
+for ((i=1;i<$nu;i=i+1))
+do
+    s=$(($s+$i))
+done
+echo "result $s"
+
+
+Debug功能：sh [-nvx] scripts.sh。
+-n：检查语法； 
+-v：执行script前将脚本内容输出；即执行时输出原脚本，如有结果输出，一起输出。
+-x：将使用到的script内容显示出来。
+
+
+## Notes
+ctrl+shift+up shell scroll up
+PATH=$PATH:~/opt/bin, 或 PATH=~/opt/bin:$PATH
+添加到默认搜索路径：Add export PATH=$PATH:/home/me/play to your ~/.bashrc.
+bg:
+suspend
+software
+wget
+
+
