@@ -720,21 +720,35 @@ Ext2/Ext3文件的隐藏属性: 如可以设定档案不可修改，连拥有者
 
 
 ## Chapter 8
+inode, superblock 
+- 档案的硬盘位置：inode存属性与权限，在硬盘中的位置，一个档案一个。
+- 实际数据放data block中。一个不够时会占多个。大小为1K，2K或4K。格式化时固定。每个block内只能存一个档案的数据。
+- superblock记录file system的格式、信息、inode和block总量、使用量、剩余量。
+- Ext2用indexed allocation存取数据：
+  - inode中记录所有block地址。
+  - 格式化时区分多个block group, 每个group有独立的inode,superblock,block。
+  - group信息记录在boot sector中。
+- FAT用链表形式记录。需碎片整理。
+- inode：记录：
+  - 1.存取模式(read/write/excute)；
+  - 2.拥有者与群组(owner/group)；
+  - 3.档案容量；
+  - 4.ctime，atime，mtime；
+  - 5.档案的flag如SetUID；
+  - 6.block的位置pointer。
+  - 大小均固定为128 bytes。
+- Superblock：记录:
+  - 1.block与inode的总量；
+  - 2.未使用和已使用的inode/block数量；
+  - 3.block与inode的大小；
+  - 4.filesystem的挂载时间、写入数据时间、fsck（检查硬盘）时间等；
+  - 5. 一个valid bit：系统已被挂载为0否则为1。
+  - 大小为1024 bytes。
+  - 可以用`dumpe2fs`查看。
+  - 第一个block group内有superblock，后续的不一定有，有也是备份。
 
 # HERE
 
-档案的硬盘位置：inode存属性与权限，在硬盘中的位置，一个档案一个。
-实际数据放data block中。一个不够时会占多个。大小为1K，2K或4K。格式化时固定。每个block内只能存一个档案的数据。
-superblock记录file system的格式、信息、inode和block总量、使用量、剩余量。
-Ext2用indexed allocation存取数据：inode中记录所有block地址。
-	格式化时区分多个block group,每个group有独立的inode,superblock,block。group信息记录在boot sector中。
-FAT用链表形式记录。需碎片整理。
-inode：记录：1.存取模式(read/write/excute)；2.拥有者与群组(owner/group)；3.档案容量；4.ctime，atime，mtime；5.档案的flag如SetUID；6.block的位置pointer。
-	大小均固定为128 bytes。
-Superblock：记录:1.block与inode的总量；2.未使用和已使用的inode/block数量；3.block与inode的大小；4.filesystem的挂载时间、写入数据时间、fsck（检查硬盘）时间等；5. 一个valid bit：系统已被挂载为0否则为1。
-	大小为1024 bytes。
-	可以用dumpe2fs查看。
-	第一个block group内有superblock，后续的不一定有，有也是备份。
 Filesystem description：每个block group的开始与结束的block号码，每个区段的superblock,bitmap,inodemap,data block分别在哪个block。用dumpe2fs查看。
 Block bitmap：知道哪些block是空的，可快速找到可使用的空间。
 Inode bitmap：记录使用与未使用的inode号码。最顶层目录的inode一般为2。
