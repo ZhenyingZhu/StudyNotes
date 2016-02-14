@@ -747,45 +747,61 @@ inode, superblock
   - 可以用`dumpe2fs`查看。
   - 第一个block group内有superblock，后续的不一定有，有也是备份。
 
-# HERE
+EXT2区块: 
+- Filesystem description：每个block group的开始与结束的block号码，每个区段的superblock,bitmap,inodemap,data block分别在哪个block。用`dumpe2fs`查看。
+- Block bitmap：知道哪些block是空的，可快速找到可使用的空间。
+- Inode bitmap：记录使用与未使用的inode号码。最顶层目录的inode一般为2。
 
-Filesystem description：每个block group的开始与结束的block号码，每个区段的superblock,bitmap,inodemap,data block分别在哪个block。用dumpe2fs查看。
-Block bitmap：知道哪些block是空的，可快速找到可使用的空间。
-Inode bitmap：记录使用与未使用的inode号码。最顶层目录的inode一般为2。
-查看文件系统信息：dumpe2fs [-bh] 装置文件名。
--b：列出保留为坏轨的部分。
--h：仅列出 superblock的数据。可显示文件系统的label。
-查看目前的挂载装置：df。
-ext2文件系统建立目录：分配一个inode与至少一块block。inode记录相关权限与属性和block号码；block记录在这个目录下的文件名与该文件名占用的inode号码。
-	用ls –i查看，最左边是inode号码。
+查看文件系统信息：`dumpe2fs [-bh] 装置文件名`。
+- `-b`：列出保留为坏轨的部分。
+- `-h`：仅列出 superblock的数据。可显示文件系统的label。
+
+查看目前的挂载装置：`df`。
+
+ext2文件系统建立目录：
+- 分配一个inode与至少一块block。
+- inode记录相关权限与属性和block号码；
+- block记录在这个目录下的文件名与该文件名占用的inode号码。
+
+用`ls –i`查看，最左边是inode号码。
+
 中介数据：Super block，block bitmap，inode bitmap不存放实际数据的区段为metadata。
-Inconsistent：写入数据时更新metadata的步骤未做完。由e2fsck检查valid bit是否有挂载和filesystem state是否clean。慢。
-Journaling filesystem：在filesystem中用一个区块专门记录修订档案的步骤。Ext3实现。
-Asynchronously处理存取：档案加载到内存后，在未改动前为clean，改动后dirty，系统不定时写回磁盘。为了效率尽量利用内存。用sync将所有内存写回。
-常见的文件系统：
-传统文件系统：ext2/minix/MS-DOS/FAT(用vfat模块)/iso9660(光盘)等。
-日志式文件系统：ext3/ReiserFS/Windows' NTFS/IBM's JFS/SGI's XFS。
-网绚文件系统：NFS/SMBFS。
-查看支持的文件系统ls -l /lib/modules/$(uname -r)/kernel/fs。
-系统目前已加载到内存中支持的文件系统：cat /proc/filesystems。
-Virtual Filesystem Switch：Linux由VFS去读取filesystem。
-列出文件系统的整体磁盘使用量：df [-ahikHTm] [目彔或文件名]。不去文件系统搜索。
--a：出所有的文件系统，包括/proc等不在硬盘中的挂载点。
--k：以KB为单位。
--m：以MB为单位。
--h：自动选择GB,MB,KB等单位。
--H：M=1000K而非M=1024K。
--T：同时列出partition的filesystem名称如ext3。
--i：用inode的数量来显示。
-/dev/shm/是利用内存虚拟出来的磁盘空间。
-推测目录所占容量：du [-ahskm] 档案或目录名称。默认单位为1K。可用通配符*。去硬盘搜索，慢。
--a：列出所有的档案与目录容量。默认仅统计目录底下的档案量。
--h：以G/MB单位显示。
--s：列出总量，而非每个目录的占用容量。
--S：不包括子目录的总计。
--k：以KB为单位。
--m：以MB为单位。
 
+Inconsistent：写入数据时更新metadata的步骤未做完。由`e2fsck`检查valid bit是否有挂载和filesystem state是否clean。慢。
+
+Journaling filesystem：在filesystem中用一个区块专门记录修订档案的步骤。Ext3实现。
+
+Asynchronously处理存取：档案加载到内存后，在未改动前为clean，改动后dirty，系统不定时写回磁盘。为了效率尽量利用内存。用sync将所有内存写回。
+
+常见的文件系统：
+- 传统文件系统：ext2/minix/MS-DOS/FAT(用vfat模块)/iso9660(光盘)等。
+- 日志式文件系统：ext3/ReiserFS/Windows' NTFS/IBM's JFS/SGI's XFS。
+- 网绚文件系统：NFS/SMBFS。
+- 查看支持的文件系统`ls -l /lib/modules/$(uname -r)/kernel/fs`。
+- 系统目前已加载到内存中支持的文件系统：`cat /proc/filesystems`。
+
+Virtual Filesystem Switch：Linux由VFS去读取filesystem。
+
+列出文件系统的整体磁盘使用量：`df [-ahikHTm] [目彔或文件名]`。不去文件系统搜索。
+- `-a`：出所有的文件系统，包括`/proc`等不在硬盘中的挂载点。
+- `-k`：以KB为单位。
+- `-m`：以MB为单位。
+- `-h`：自动选择GB,MB,KB等单位。
+- `-H`：M=1000K而非M=1024K。
+- `-T`：同时列出partition的filesystem名称如ext3。
+- `-i`：用inode的数量来显示。
+
+`/dev/shm/`是利用内存虚拟出来的磁盘空间。
+
+推测目录所占容量：`du [-ahskm] 档案或目录名称`。默认单位为1K。可用通配符*。去硬盘搜索，慢。
+- `-a`：列出所有的档案与目录容量。默认仅统计目录底下的档案量。
+- `-h`：以G/MB单位显示。
+- `-s`：列出总量，而非每个目录的占用容量。
+- `-S`：不包括子目录的总计。
+- `-k`：以KB为单位。
+- `-m`：以MB为单位。
+
+# HERE
 读取档案顺序：由super block 里的档名找到inode，再由inode 找到区块。
 Hard link：多个档名对应一个inode。档名存于目录中。档名的block中存的是实际数据的inode，指向实际数据的block。两个档名的信息完全相同。
 	不能跨Filesystem。不能link目录。
