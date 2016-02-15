@@ -801,86 +801,126 @@ Virtual Filesystem Switch：Linux由VFS去读取filesystem。
 - `-k`：以KB为单位。
 - `-m`：以MB为单位。
 
-# HERE
 读取档案顺序：由super block 里的档名找到inode，再由inode 找到区块。
+
 Hard link：多个档名对应一个inode。档名存于目录中。档名的block中存的是实际数据的inode，指向实际数据的block。两个档名的信息完全相同。
-	不能跨Filesystem。不能link目录。
-	在当前目录建立:ln /etc/crontab .。.代表相同档名。
-	新增一个目录时，由于自动生成了.和..，所以子目录link数为2，父目录link数加一。
-	删除任何一个档名都不会删除数据，而任何一个档名都能改动数据。
-	新建一个hard link只是在目录中增加一个档名，不占用新的inode和block。
+- 不能跨Filesystem。不能link目录
+- 在当前目录建立:`ln /etc/crontab .`。`.`代表相同档名。
+- 新增一个目录时，由于自动生成了`.`和`..`，所以子目录link数为2，父目录link数加一。
+- 删除任何一个档名都不会删除数据，而任何一个档名都能改动数据。
+- 新建一个hard link只是在目录中增加一个档名，不占用新的inode和block。
+
 Symbolic link：建立一个独立的档案指向link档的档名。原始档删除后无法打开。
-	可链接目录。
-	修改Symbolic link的档案，其实改动的是原档案。
-	在当前目录建立：ln -s /etc/crontab crontab2。
-	不管是连接的档案还是目录，由rm /root/bin移除。
-建立链接：ln [-sf] 来源文件 目标文件。
--s：如果不加任何参数是hard link，-s是symbolic link。
--f：如果目标文件存在，覆盖。
-磁盘分区：fdisk [-l] 装置名称。
--l：输出装置中所有的partition。不接装置名时显示所有装置。
-装置名：如fdisk /dev/hdc，不要加数字。
-之后进入指令模式：
-d delete a partition
-n add a new partition
-p print the partition table
-q quit without saving changes
-w write table to disk and exit
-扩展分区删除时，它的逻辑分区自动删除。
-新增分区（鸟哥私房菜P268）：Last cylinder or +size or +sizeM or +sizeK (1-5005, default 5005): +512M：+512M让系统自动找最接近的磁柱。
-系统重新读取partition table：partprobe。避免新增分区后需要reboot。
-格式化：mkfs [-t 文件系统格式] 装置文件名。综合指令。
--t：文件系统格式，如ext3,ext2,vfat等如mkfs -t ext3 /dev/hdc6。
-制定文件系统的细节：mke2fs [-b block大小] [-i block大小] [-L 标头] [-cj] 装置。（鸟哥私房菜P273）
-系统救援：fsck [-t 文件系统] [-ACay] 装置名称。（鸟哥私房菜P274）
-	被检查的partition不可挂载。
-	有问题的数据存于lost+found目录。
-硬盘挂载：一个文件系统不应该被重复挂载；一个目录不应该重复挂载多个文件系统；作为挂载点的目录应该为空，不然内容会暂时消失。
-指令：mount -a
--a：依照配置文件/etc/fstab 的数据将所有未挂载的磁盘都挂载。
-mount [-l]
--l：输入mount会显示目前挂载的信息。加上-l可同时显示Label。如/dev/hdc2 on / type ext3 (rw) [/1]中/1为label。
-mount [-t 文件系统] [-L Label名] [-o 额外选项] \ [-n] 装置文件名 挂载点。（鸟哥私房菜P276）
-	-o：重新挂载，在单人维护模式下/为只读，需重新挂载。
-如mkdir /mnt/hdc6;mount /dev/hdc6 /mnt/hdc6。
-文件系统的驱动在/lib/modules/$(uname -r)/kernel/fs/下。
-取消挂载：umount [-fn] 装置文件名或挂载点。
--f：强制卸除。
--n：不更新/etc/mtab的情况下卸除。
-装置档案的Major和minor：决定这个档案是哪个装置。如22, 10代表/dev/hdc10。
-手动设置装置档案：mknod 装置文件名 [bcp] [Major] [Minor]。（鸟哥私房菜P281）
-修改Label：e2label 装置名称 新的Label名称。
-更改文件系统格式：tune2fs [-jIL] 装置代号。（鸟哥私房菜P282）
-调整IDE参数：hdparm [-icdmXTt] 装置名称。（鸟哥私房菜P282）
-开机挂载：记录于/etc/fstab和/etc/mtab。六个字段为Device，Mount point，filesystem，parameters，dump，fsck。如LABEL=/home /home ext3 defaults 1 2。
-	fstab: /dev/hdc6 /mnt/hdc6 ext3 defaults 1 2
-	parameters选项见（鸟哥私房菜P285）。
-自动mount规则：/必项挂载且先于其它mount point；其它mount point必为已建立的目录遵守架构原则;mount point只能挂载一次；partition只能挂载一次；进行卸除时工作目录需在mount point及子目录外。
-用loop装置挂载iso：mkdir /mnt/centos_dvd;mount -o loop /root/centos5.2_x86_64.iso /mnt/centos_dvd;umount /mnt/centos_dvd/。
+- 可链接目录。
+- 修改Symbolic link的档案，其实改动的是原档案。
+- 在当前目录建立：`ln -s /etc/crontab crontab2`。
+- 不管是连接的档案还是目录，由`rm /root/bin`移除。
+
+建立链接：`ln [-sf] 来源文件 目标文件`。
+- `-s`：如果不加任何参数是hard link，`-s`是symbolic link。
+- `-f`：如果目标文件存在，覆盖。
+
+磁盘分区：`fdisk [-l] 装置名称`。
+- `-l`：输出装置中所有的partition。不接装置名时显示所有装置。
+- 装置名：如`fdisk /dev/hdc`，不要加数字。之后进入指令模式：
+  - `d` delete a partition
+  - `n` add a new partition
+  - `p` print the partition table
+  - `q` quit without saving changes
+  - `w` write table to disk and exit
+- 扩展分区删除时，它的逻辑分区自动删除。
+- 新增分区：Last cylinder or +size or +sizeM or +sizeK (1-5005, default 5005): +512M：+512M让系统自动找最接近的磁柱。
+
+系统重新读取partition table：`partprobe`。新增分区后需要reboot。
+
+格式化：`mkfs [-t 文件系统格式] 装置文件名`。综合指令。
+- `-t`：文件系统格式，如ext3,ext2,vfat等如`mkfs -t ext3 /dev/hdc6`。
+
+制定文件系统的细节：`mke2fs [-b block大小] [-i block大小] [-L 标头] [-cj] 装置`。
+
+系统救援：`fsck [-t 文件系统] [-ACay] 装置名称`。
+- 被检查的partition不可挂载。
+- 有问题的数据存于lost+found目录。
+
+硬盘挂载：
+- 一个文件系统不应该被重复挂载；
+- 一个目录不应该重复挂载多个文件系统；
+- 作为挂载点的目录应该为空，不然内容会暂时消失。
+
+指令：`mount -a`
+- `-a`：依照配置文件`/etc/fstab` 的数据将所有未挂载的磁盘都挂载。
+- `-l`：输入mount会显示目前挂载的信息。加上`-l`可同时显示Label。如`/dev/hdc2 on / type ext3 (rw) [/1]`中`/1`为label。
+- `mount [-t 文件系统] [-L Label名] [-o 额外选项] \ [-n] 装置文件名 挂载点`。
+- `-o`：重新挂载，在单人维护模式下`/`为只读，需重新挂载。如`mkdir /mnt/hdc6; mount /dev/hdc6 /mnt/hdc6`。
+
+文件系统的驱动在`/lib/modules/$(uname -r)/kernel/fs/`下。
+
+取消挂载：`umount [-fn] 装置文件名或挂载点`。
+- `-f`：强制卸除。
+- `-n`：不更新`/etc/mtab`的情况下卸除。
+
+装置档案的Major和minor：决定这个档案是哪个装置。如22, 10代表`/dev/hdc10`。
+
+手动设置装置档案：`mknod 装置文件名 [bcp] [Major] [Minor]`。
+
+修改Label：`e2label 装置名称 新的Label名称`。
+
+更改文件系统格式：`tune2fs [-jIL] 装置代号`。
+
+调整IDE参数：`hdparm [-icdmXTt] 装置名称`。
+
+开机挂载：记录于`/etc/fstab`和`/etc/mtab`。
+- 六个字段为Device，Mount point，filesystem，parameters，dump，fsck。
+- `cat /etc/fstab`: 
+- `LABEL=/home /home ext3 defaults 1 2`。
+- `/dev/hdc6 /mnt/hdc6 ext3 defaults 1 2`
+
+自动mount规则：
+- `/`必项挂载且先于其它mount point；
+- 其它mount point必为已建立的目录遵守架构原则;
+- mount point只能挂载一次；
+- partition只能挂载一次；
+- 进行卸除时工作目录需在mount point及子目录外。
+
+用loop装置挂载iso：
+```
+mkdir /mnt/centos_dvd;
+mount -o loop /root/centos5.2_x86_64.iso /mnt/centos_dvd;
+umount /mnt/centos_dvd/
+```
+
 挂载档案已虚拟一个分割槽：
-1.建立空档案：dd if=/dev/zero of=/home/loopdev bs=1M count=512。
-if：input file，/dev/zero：一直输出0的装置。
-of：output file。
-bs：block大小。
-count：共几个bs。
-2.格式化：mkfs -t ext3 /home/loopdev。
-3.用loop挂载：mount -o loop /home/loopdev /media/cdrom/。用xen软件可以进行根目录挂载，相当于虚拟机。
+1. 建立空档案：`dd if=/dev/zero of=/home/loopdev bs=1M count=512`。
+  - `if`：input file，`/dev/zero`：一直输出0的装置。
+  - `of`：output file。
+  - `bs`：block大小。
+  - `count`：共几个bs。
+2. 格式化：`mkfs -t ext3 /home/loopdev`。
+3. 用loop挂载：`mount -o loop /home/loopdev /media/cdrom/`。用`xen`软件可以进行根目录挂载，相当于虚拟机。
+
 建置swap：
-1．	分割：fdisk /dev/hdc;n;[enter];[+256M];p;t;7//新建的分割槽;82//swap的Id;w;partprobe;
-2．	格式化：mkswap /dev/hdc7。
-3．	启用：swapon /dev/hdc7。
-4．	用free观察内存使用量。
-5．	列出所有swap：swapon –s。
-6．	关闭：swapoff /dev/hdc7。
-用loop建置swap（鸟哥私房菜P291）。
+1．分割：`fdisk /dev/hdc;n;[enter];[+256M];p;t;7//新建的分割槽;82//swap的Id;w;partprobe;`
+2．格式化：`mkswap /dev/hdc7`。
+3．启用：`swapon /dev/hdc7`。
+4．用`free`观察内存使用量。
+5．列出所有`swap：swapon –s`。
+6．关闭：`swapoff /dev/hdc7`。
+
+可用loop建置swap。
+
 休眠时，内存数据记录于swap。
-目录总block数：ll结果的total。
-分割出超过2TB的分割槽：parted [装置] [指令 [参数]]。（鸟哥私房菜P295）
-数值模式输出档案的处理：PAVE软件。
+
+目录总block数：`ll`结果的total。
+
+分割出超过2TB的分割槽：`parted [装置] [指令 [参数]]`。
+
+数值模式输出档案的处理：`PAVE`软件。
 
 ## Chapter 9
-压缩文件：*.tar（只是打包）, *.tar.gz（用gzip）, *.tgz, *.gz, *.Z, *.bz2。
+压缩文件：tar（只是打包）, tar.gz（用gzip）, tgz, gz, Z, bz2。
+
 gzip和bzip2将目录内所有档案分别压缩。
+
 gzip：可解compress,zip,gzip等档案。*.gz为档名。gzip –v man.config。源文件删除。可被Winrar解压。
 -c：将压缩的数据输出到屏幕上，可重导向。保留源文件。gzip -9 -c man.config > man.config.gz。
 -d：解压缩参数。gzip -d man.config.gz。
