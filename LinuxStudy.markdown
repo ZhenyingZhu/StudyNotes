@@ -921,89 +921,110 @@ umount /mnt/centos_dvd/
 
 gzip和bzip2将目录内所有档案分别压缩。
 
-gzip：可解compress,zip,gzip等档案。*.gz为档名。gzip –v man.config。源文件删除。可被Winrar解压。
--c：将压缩的数据输出到屏幕上，可重导向。保留源文件。gzip -9 -c man.config > man.config.gz。
--d：解压缩参数。gzip -d man.config.gz。
--t：检验一个压缩文件的一致性，有无错误。
--v：显示压缩比等信息。
--#：压缩等级，-1最快，-9压缩比最好，预设-6。
-读取纯文本压缩文件的内容：zcat man.config.gz。压缩文件删除。
-bzip2优于gzip：bzip2 [-cdkzv#] 档名。
--c：数据输出。
--d：解压缩的参数。
--k：保留源文件。
--z：压缩的参数。
--v：显示压缩比等信息。
--#：压缩比的参数，-9最佳，-1最快。
-读取内容：bzcat 档名.bz2。
-打包与压缩：tar [-j|-z] [cv] [-f 建立的档名] filename。tar -jcv -f filename.tar.bz2 target。打包文件称为tarfile。经过压缩的打包称为tarball。
-察看档案：tar [-j|-z] [tv] [-f 建立的档名]。tar -jtv -f filename.tar.bz2。
-解压缩：tar [-j|-z] [xv] [-f 建立的档名] [-C 目录]。tar -jxv -f filename.tar.bz2 -C 目的地目录。
-	-c：建立打包档案，搭配-v察看被打包的档名。
-	-t：察看打包档案的内容有哪些档名。
-	-x：解压缩。-C在特定目录解开。
--c, -t, -x不可同时出现。
-	-j：用bzip2压缩/解压缩，档名为*.tar.bz2。
-	-z：用gzip压缩/解压缩，档名*.tar.gz。
-	-v：在压缩/解压缩的过程中显示文件名.
-	-f filename：被处理的档名。
-	-C 目录：用在解压缩到特定目录。无该选项则解压到当前目录。tar -jxv -f /root/etc.tar.bz2 -C /tmp。
-	-p：保留备份数据的原本权限与属性，用于备份配置文件。备份etc目录：tar -zpcv -f /root/etc.tar.gz /etc。
-会自动删除/根目录：因为这样如在/tmp下解开，则成为/tmp/…。
-	-P：保留绝对路径。所以会保留/，直接解到/…下且覆盖同名文件。
-	--exclude=FILE：不将FILE打包。tar -jcv -f /root/system.tar.bz2 --exclude=/root/etc* --exclude=/root/system.tar.bz2 /etc /root。
-	--newer-mtime：仅备份新的档案，不接mtime的话则同时包括ctime和mtime。tar -jcv -f /root/etc.newer.then.passwd.tar.bz2 --newer-mtime="2008/09/29" /etc/*。
-解开单一档案：tar -jtv -f /root/etc.tar.bz2 | grep 'shadow'找到路径，再tar -jxv -f /root/etc.tar.bz2 etc/shadow解压。
-磁带机：因为一次性读取，无法用cp复制。将/home,/root,/etc备份到磁带：tar -cv -f /dev/st0 /home /root /etc。
-用Standard input/standard output重导向边压缩边解压：tar -cvf - /etc | tar -xvf -。将/etc下所有文件打包成内存中的一片地址（即-）然后在当前目录下解压。
-系统备份范例：（鸟哥私房菜P312）
-	tar -jcv -f /backups/backup-system-20091130.tar.bz2 --exclude=/root/*.bz2 --exclude=/root/*.gz --exclude=/home/loop* /etc /home /var/spool/mail /var/spool/cron /root。
-备份文件系统工具：dump可以备份整个文件系统和制定等级。dump [-Suvj] [-level] [-f 备份档] 待备份资料。dump –W。（鸟哥私房菜P313）
-	第一次备份为level 0，以后递增。dump -0u -j -f /backups/myproject.dump /srv/myproject。
-	目录的限制：（鸟哥私房菜P313）
--S：列出待备份数据需要多少磁盘空间。
--u：将这次的时间记录到/etc/dumpdates中。
--v：显示过程。
--j： 用bzip2压缩，默认为2-level.
--f：后面接产生的档案或如dev/st0的装置文件名。
--W：列出在/etc/fstab里面的具有dump设定的partition是否备份过。
-备份文件复原：查看：restore -t [-f dumpfile] [-h]。比较dump与实际档案：restore -C [-f dumpfile] [-D 挂载点]。互动模式：restore -i [-f dumpfile]。还原整个文件系统：restore -r [-f dumpfile]。
-	模式无法混用。
--t：此模式察看备份文件中有什么数据。
--C：此模式将dump的数据与实际文件系统比较列出不一致的档案。
--i：互动模式，可以仅还原部分档案。（鸟哥私房菜P319）
--r：将整个filesystem还原的一种模式。
--h：察看完整备份数据中inode与文件系统label等信息。
--f：后面就接要处理的dump档案。
--D：与-C搭配可查接的挂载点与dump内有不同的档案。
-制作映像档iso：mkisofs [-o 映像档] [-rv] [-m file] 待备份文件.. [-V vol] -graft-point isodir=systemdir ...。
-	-o：后面接你想要产生癿那个映像档档名。
--r：透过Rock Ridge产生支持Unix/Linux的档案数据，可记录较多信息，包括UID/GID与权限等。
--v：显示建置 ISO 档案的过程。
--m file：排除档案。
- -V vol：建立Volume，即CD的title。
--graft-point：默认都放置于映象的根目录，加此选项后使目录为绝对地址。（鸟哥私房菜P313）
-刻录至光盘：查询刻录机位置：cdrecord -scanbus dev=ATA。抹除重复读写片：cdrecord -v dev=ATA:x,y,z blank=[fast|all]。格式化DVD+RW: cdrecord -v dev=ATA:x,y,z –format。cdrecord -v dev=ATA:x,y,z [选项] file.iso。
-	-scanbus：扫瞄磁盘总线找出刻录机，装置为ATA接口。
--v：显示过程而已。
-dev=ATA:x,y,z： x, y, z为刻录机所在位置。（鸟哥私房菜P323）
-blank=[fast|all]：抹除可重复写入的CD/DVD-RW.
--format：仅针对 DVD+RW 这种格式。选顷： 
--data：以数据格式写入，不是CD音轨(-audio)。
-speed=X：刻录速度，CD可用 speed=40。DVD则可用speed=4。
--eject：完毕后自动退出光盘。
-fs=Ym：映像档先暂存至缓冲存储器。预设为 4m。
-driveropts=burnfree：用于DVD，打开Buffer Underrun Free模式的写入功能。
--sao：支持 DVD-RW 的格式。
-备份装置：dd可以读取磁盘装置的内容(直接读取sector)，然后将整个装置备份成一个档案。dd if=input_file of=output_file bs=block_size count=number。
-	dd if=/dev/hdc of=/tmp/mbr.back bs=512 count=1。还原则反向操作。不需格式化。
-if： input file。可以是装置。
-of： output file。可以是装置。
-bs ：一个block的大小，预设是512bytes(一个sector的大小)。
-count：多少 bs。
-可以用于复制boot sector区块，而cp和tar不行。（鸟哥私房菜P326）
-任何东西备份：cpio。备份：cpio -ovcB > [file|device]。还原：cpio -ivcdu < [file|device]。察看：cpio -ivct < [file|device]。（鸟哥私房菜P327）
-	/boot/initrd-xxx档案由cpio建立。
+gzip：可解compress,zip,gzip等档案。gz为档名。`gzip -v man.config`。源文件删除。可被Winrar解压。
+- `-c`：将压缩的数据输出到屏幕上，可重导向。保留源文件。`gzip -9 -c man.config > man.config.gz`。
+- `-d`：解压缩参数。`gzip -d man.config.gz`。
+- `-t`：检验一个压缩文件的一致性，有无错误。
+- `-v`：显示压缩比等信息。
+- `-#`：压缩等级，`-1`最快，`-9`压缩比最好，预设`-6`。
+- 读取纯文本压缩文件的内容：`zcat man.config.gz`。压缩文件删除。
+
+bzip2优于gzip：`bzip2 [-cdkzv#] 档名`。
+- `-c`：数据输出。
+- `-d`：解压缩的参数。
+- `-k`：保留源文件。
+- `-z`：压缩的参数。
+- `-v`：显示压缩比等信息。
+- `-#`：压缩比的参数，`-9`最佳，`-1`最快。
+- 读取内容：`bzcat 档名.bz2`。
+
+打包与压缩：`tar [-j|-z] [cv] [-f 建立的档名] filename`。`tar -jcv -f filename.tar.bz2 target`。打包文件称为tarfile。经过压缩的打包称为tarball。
+- 察看档案：`tar [-j|-z] [tv] [-f 建立的档名]`。`tar -jtv -f filename.tar.bz2`。
+- 解压缩：`tar [-j|-z] [xv] [-f 建立的档名] [-C 目录]`。`tar -jxv -f filename.tar.bz2 -C 目的地目录`。
+- `-c`：建立打包档案，搭配`-v`察看被打包的档名。
+- `-t`：察看打包档案的内容有哪些档名。
+- `-x`：解压缩。`-C`在特定目录解开。
+- `-c`, `-t`, `-x`不可同时出现。
+- `-j`：用bzip2压缩/解压缩，档名为`*.tar.bz2`。
+- `-z`：用gzip压缩/解压缩，档名`*.tar.gz`。
+- `-v`：在压缩/解压缩的过程中显示文件名.
+- `-f filename`：被处理的档名。
+- `-C 目录`：用在解压缩到特定目录。无该选项则解压到当前目录。`tar -jxv -f /root/etc.tar.bz2 -C /tmp`。
+- `-p`：保留备份数据的原本权限与属性，用于备份配置文件。备份etc目录：`tar -zpcv -f /root/etc.tar.gz /etc`。会自动删除`/`根目录：因为这样如在`/tmp`下解开，则成为`/tmp/...`。
+- `-P`：保留绝对路径。所以会保留`/`，直接解到`/...`下且覆盖同名文件。
+- `--exclude=FILE`：不将FILE打包。`tar -jcv -f /root/system.tar.bz2 --exclude=/root/etc* --exclude=/root/system.tar.bz2 /etc /root`。
+- `--newer-mtime`：仅备份新的档案，不接mtime的话则同时包括ctime和mtime。`tar -jcv -f /root/etc.newer.then.passwd.tar.bz2 --newer-mtime="2008/09/29" /etc/*`。
+- 解开单一档案：`tar -jtv -f /root/etc.tar.bz2 | grep 'shadow'`找到路径，再`tar -jxv -f /root/etc.tar.bz2 etc/shadow`解压。
+- 磁带机：因为一次性读取，无法用`cp`复制。将/home,/root,/etc备份到磁带：`tar -cv -f /dev/st0 /home /root /etc`。
+- 用Standard input/standard output重导向边压缩边解压：`tar -cvf - /etc | tar -xvf -`。将`/etc`下所有文件打包成内存中的一片地址（即-）然后在当前目录下解压。
+
+系统备份范例：
+```
+tar -jcv -f /backups/backup-system-20091130.tar.bz2 --exclude=/root/*.bz2 --exclude=/root/*.gz --exclude=/home/loop* /etc /home /var/spool/mail /var/spool/cron /root
+```
+
+备份文件系统工具：`dump`可以备份整个文件系统和制定等级。`dump [-Suvj] [-level] [-f 备份档] 待备份资料`。`dump –W`。
+- 第一次备份为level 0，以后递增。`dump -0u -j -f /backups/myproject.dump /srv/myproject`。
+- 目录有限制
+- `-S`：列出待备份数据需要多少磁盘空间。
+- `-u`：将这次的时间记录到`/etc/dumpdates`中。
+- `-v`：显示过程。
+- `-j`： 用bzip2压缩，默认为2-level.
+- `-f`：后面接产生的档案或如`dev/st0`的装置文件名。
+- `-W`：列出在`/etc/fstab`里面的具有dump设定的partition是否备份过。
+
+备份文件复原：
+- 查看：`restore -t [-f dumpfile] [-h]`。
+- 比较dump与实际档案：`restore -C [-f dumpfile] [-D 挂载点]`。
+- 互动模式：`restore -i [-f dumpfile]`。
+- 还原整个文件系统：`restore -r [-f dumpfile]`。
+- 模式无法混用。
+- `-t`：此模式察看备份文件中有什么数据。
+- `-C`：此模式将dump的数据与实际文件系统比较列出不一致的档案。
+- `-i`：互动模式，可以仅还原部分档案。
+- `-r`：将整个filesystem还原的一种模式。
+- `-h`：察看完整备份数据中inode与文件系统label等信息。
+- `-f`：后面就接要处理的dump档案。
+- `-D`：与`-C`搭配可查接的挂载点与dump内有不同的档案。
+
+制作映像档iso：`mkisofs [-o 映像档] [-rv] [-m file] 待备份文件.. [-V vol] -graft-point isodir=systemdir ...`。
+- `-o`：后面接你想要产生的那个映像档档名。
+- `-r`：透过Rock Ridge产生支持Unix/Linux的档案数据，可记录较多信息，包括UID/GID与权限等。
+- `-v`：显示建置 ISO 档案的过程。
+- `-m file`：排除档案。
+- `-V vol`：建立Volume，即CD的title。
+- `-graft-point`：默认都放置于映象的根目录，加此选项后使目录为绝对地址.
+
+刻录至光盘：
+- 查询刻录机位置：`cdrecord -scanbus dev=ATA`。
+- 抹除重复读写片：`cdrecord -v dev=ATA:x,y,z blank=[fast|all]`。
+- 格式化DVD+RW: `cdrecord -v dev=ATA:x,y,z -format`。`cdrecord -v dev=ATA:x,y,z [选项] file.iso`。
+- `-scanbus`：扫瞄磁盘总线找出刻录机，装置为ATA接口。
+- `-v`：显示过程而已。
+- `dev=ATA:x,y,z`： x, y, z为刻录机所在位置。
+- `blank=[fast|all]`：抹除可重复写入的CD/DVD-RW.
+- `-format`：仅针对 DVD+RW 这种格式。选项：
+- `-data`：以数据格式写入，不是CD音轨(`-audio`)。
+- `speed=X`：刻录速度，CD可用 `speed=40`。DVD则可用`speed=4`。
+- `-eject`：完毕后自动退出光盘。
+- `fs=Ym`：映像档先暂存至缓冲存储器。预设为 4m。
+- `driveropts=burnfree`：用于DVD，打开Buffer Underrun Free模式的写入功能。
+- `-sao`：支持 DVD-RW 的格式。
+
+备份装置：
+- `dd`可以读取磁盘装置的内容(直接读取sector)，然后将整个装置备份成一个档案。`dd if=input_file of=output_file bs=block_size count=number`。
+- `dd if=/dev/hdc of=/tmp/mbr.back bs=512 count=1`。还原则反向操作。不需格式化。
+- `if`： input file。可以是装置。
+- `of`： output file。可以是装置。
+- `bs` ：一个block的大小，预设是512bytes(一个sector的大小)。
+- `count`：多少 bs。
+- 可以用于复制boot sector区块，而cp和tar不行。
+
+任何东西备份：`cpio`。
+- 备份：`cpio -ovcB > [file|device]`。
+- 还原：`cpio -ivcdu < [file|device]`。
+- 察看：`cpio -ivct < [file|device]`。
+- `/boot/initrd-xxx`档案由cpio建立。
 
 ## Chapter 10
 文本编辑器：emacs, pico, nano, joe。（鸟哥的私房菜P353）
