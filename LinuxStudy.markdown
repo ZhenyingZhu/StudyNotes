@@ -763,7 +763,7 @@ ext2文件系统建立目录：
 - inode记录相关权限与属性和block号码；
 - block记录在这个目录下的文件名与该文件名占用的inode号码。
 
-用`ls –i`查看，最左边是inode号码。
+用`ls -i`查看，最左边是inode号码。
 
 中介数据：Super block，block bitmap，inode bitmap不存放实际数据的区段为metadata。
 
@@ -903,7 +903,7 @@ umount /mnt/centos_dvd/
 2．格式化：`mkswap /dev/hdc7`。
 3．启用：`swapon /dev/hdc7`。
 4．用`free`观察内存使用量。
-5．列出所有`swap：swapon –s`。
+5．列出所有`swap：swapon -s`。
 6．关闭：`swapoff /dev/hdc7`。
 
 可用loop建置swap。
@@ -963,7 +963,7 @@ bzip2优于gzip：`bzip2 [-cdkzv#] 档名`。
 tar -jcv -f /backups/backup-system-20091130.tar.bz2 --exclude=/root/*.bz2 --exclude=/root/*.gz --exclude=/home/loop* /etc /home /var/spool/mail /var/spool/cron /root
 ```
 
-备份文件系统工具：`dump`可以备份整个文件系统和制定等级。`dump [-Suvj] [-level] [-f 备份档] 待备份资料`。`dump –W`。
+备份文件系统工具：`dump`可以备份整个文件系统和制定等级。`dump [-Suvj] [-level] [-f 备份档] 待备份资料`。`dump -W`。
 - 第一次备份为level 0，以后递增。`dump -0u -j -f /backups/myproject.dump /srv/myproject`。
 - 目录有限制
 - `-S`：列出待备份数据需要多少磁盘空间。
@@ -1115,35 +1115,46 @@ vim功能：
 - `iconv -f big5 -t utf8 filename -o newfile`
 - `--list`：显示支持的语系。
 
-断行符：用`cat –A`查看文档可发现，DOS使用`^M$`即`CR(^M)`和`LF($)`两个符号。而Linux只使用`LF`。
+断行符：用`cat -A`查看文档可发现，DOS使用`^M$`即`CR(^M)`和`LF($)`两个符号。而Linux只使用`LF`。
 - `dos2unix [-kn] file [newfile]`：转换。`k`保留原mtime。`n`保留原文档。
 - `unix2dos`：相反。
 
 ## Chapter 11
-透过Shell将我们输入的指令与Kernel沟通。由指令（如man）去调用程序（man.sh）。
-有讲多的版本，如Bourne SHell(sh)，在Sun里的C SHell，商业用的K SHell，TCSH等。Linux 使用的为Bourne Again SHell(简称 bash)。
-/etc/shells中记录可用的shells：/bin/sh (已经被/bin/bash所取代)；/bin/bash(预设shell)；/bin/ksh (Kornshell，来自AT&T Bell lab)；/bin/tcsh (C Shell升级版)；/bin/csh (已经被/bin/tcsh所取代)；/bin/zsh(ksh的升级版)。
-给使用者一些自定的shell（如/sbin/nologin）让使用者无法以其他服务登入主机。
+透过Shell将我们输入的指令与Kernel沟通。由指令（如`man`）去调用程序（`man.sh`）。
 
-bash的历史记录：~/.bash_history。在注销系统后才会写入新的历史。
+有讲多的版本，如Bourne SHell(`sh`)，在Sun里的C SHell，商业用的K SHell，TCSH等。Linux 使用的为Bourne Again SHell(简称 `bash`)。
 
-设置别名：alias lm=’ls –al|more’。用more指令来令ls的结果可一页一页查看。alias rm='rm -i'避免错删。
-alias：查看别名。
-取消设置的别名：unalias lm。
+`/etc/shells`中记录可用的shells：
+- `/bin/sh` (已经被`/bin/bash`所取代)；
+- `/bin/bash`(预设shell)；
+- `/bin/ksh` (Kornshell，来自AT&T Bell lab)；
+- `/bin/tcsh` (C Shell升级版)；
+- `/bin/csh` (已经被`/bin/tcsh`所取代)；
+- `/bin/zsh`(ksh的升级版)。
+- 给使用者一些自定的shell（如`/sbin/nologin`）让使用者无法以其他服务登入主机。
 
-通配符：wildcard。ls –l /usr/bin/X* 以X开头。*代表0到无穷多个任意字符。
+bash的历史记录：`~/.bash_history`。在注销系统后才会写入新的历史。
 
-bash的内建命令：不需要调用外部程序。如cd，umask。用type可以查看。
-type [-tpa] name
-不加任何选项参数，显示name是外部还是内建.
--t：显示意义：file：外部；alias别名；builtin：内建；
--p：是外部指令，才显示完整文件名；
--a ：会由环境变量PATH定义的路径中所有含name的指令都列出。
+设置别名：
+- `alias lm='ls -al|more'`。用`more`指令来令`ls`的结果可一页一页查看。
+- `alias rm='rm -i'`避免错删。
+- `alias`：查看别名。
+- 取消设置的别名：`unalias lm`。
 
-收邮件：mail指令。调用MAIL变量决定显示哪个邮箱的文件。MAIL=/var/spool/mail/username。
+通配符：wildcard。`ls -l /usr/bin/X*` 以X开头。`*`代表0到无穷多个任意字符。
 
-环境变量：PATH, HOME, MAIL, SHELL等。用大写来表示环境变量，小写为自定义变量。
+bash的内建命令：不需要调用外部程序。如`cd`，`umask`。用`type`可以查看。
+- `type [-tpa] name`
+- 不加任何选项参数，显示name是外部还是内建.
+- `-t`：显示意义：`file`：外部；`alias`别名；`builtin`：内建；
+- `-p`：是外部指令，才显示完整文件名；
+- `-a`：会由环境变量`PATH`定义的路径中所有含name的指令都列出。
 
+收邮件：`mail`指令。调用`MAIL`变量决定显示哪个邮箱的文件。`MAIL=/var/spool/mail/username`。
+
+环境变量：`PATH`, `HOME`, `MAIL`, `SHELL`等。用大写来表示环境变量，小写为自定义变量。
+
+# HERE
 取用变量：echo $var 或echo ${var}。如果该变量未定义，则显示空字符串。
 变量赋值：var=content。不能有空格。
 变量名不能以数字开头。
@@ -1184,7 +1195,7 @@ RANDOM：由/dev/random档案生成的介于0～32767的随机数。生成0~9之
 
 查看所有变量，即环境和自定义变量：set。可列出最近设定的变量。
 MAILCHECK=60：每60秒去扫描信箱有无新信
-OLDPWD=/home：上个工作目录。可用 cd – 来调用这个变量
+OLDPWD=/home：上个工作目录。可用 cd - 来调用这个变量
 PPID=20025：父程序的PID
 $：目前这个shell所使用的PID。echo $$可显示当前使用的shell。
 ?：刚刚执行的指令回传值。成功执行为0，不然为错误代码。
@@ -1194,7 +1205,7 @@ PS1：提示字符，即常见的root@www～。可设定。（鸟哥的私房菜
 建立一个子程序，如bash，之前的父程序会sleep。子程序继承环境变量global variable不继承自定义变量local variable。
 	因为每启动一个shell，OS分配一片内存。子程序只导入父程序的环境变量内存区域。
 
-查看支持的语系： locale –a查看所有。locale可查看有关语言的各设置，都是用变量存储的。（鸟哥的私房菜P371）
+查看支持的语系： locale -a查看所有。locale可查看有关语言的各设置，都是用变量存储的。（鸟哥的私房菜P371）
 	整体系统默认的语系定义在/etc/sysconfig/i18n文档里。
 
 读取键盘输入：read [-pt] variable。read -p "Please keyin your name: " -t 30 named。选项：
@@ -1209,7 +1220,7 @@ PS1：提示字符，即常见的root@www～。可设定。（鸟哥的私房菜
 -p：单独列出一个变量即类型。declare -p sum。
 ？（鸟哥的私房菜P374）export | grep sum declare -ix sum="450" <==果然出现了！
 
-一般选项中 –参数 代表设置该选项，+参数 代表取消设置。
+一般选项中 -参数 代表设置该选项，+参数 代表取消设置。
 
 数组：赋值：var[index]=content。从1开始。读取：echo "${var[1]}, ${var[2]}, ${var[3]}"或${数组}。
 
@@ -1259,7 +1270,7 @@ history [-raw] histfiles。选项：
 !!：执行上一个指令(相当于↑+Enter)。
 当同时开了数个bash时，后关闭的bash会覆写之前的history。而单一bash登入，用job control来切换工作可避免该问题。
 
-同名指令的执行顺序：等同于type –a command 找到的顺序。
+同名指令的执行顺序：等同于type -a command 找到的顺序。
 1. 以相对/绝对路径执行的指令。如/bin/ls或./ls。
 2. 由alias找到的指令。
 3. bash内建的(builtin)指令。
@@ -1288,7 +1299,7 @@ login shell只读取这两个配置文件：
 
 其他配置：（鸟哥的私房菜P390）。
 
-终端机设定：stty –a显示设定，stty 功能 键盘输入。（鸟哥的私房菜P390）
+终端机设定：stty -a显示设定，stty 功能 键盘输入。（鸟哥的私房菜P390）
 ^：就是ctrl。
 ^?：backspace。
 功能列表：
@@ -1340,8 +1351,8 @@ $：取用变量前导符：
 数据流输出重导向：将本应输出到屏幕上的数据传输到别处，即standard output(stdout)和standard error output(stderr)传输到当然或装置。
 stdin：代码为0，使用<或<<。
 stdout：代码为1，使用>或>>。
-stderr：代码为2，使用2>或2>>。find /home –name .bashrc > ~/list_right 2> list_err
-将正确和错误的数据写入同一个档案：find /home –name .bashrc > list 2> &1。或 find /home –name .bashrc &> list。
+stderr：代码为2，使用2>或2>>。find /home -name .bashrc > ~/list_right 2> list_err
+将正确和错误的数据写入同一个档案：find /home -name .bashrc > list 2> &1。或 find /home -name .bashrc &> list。
 
 由键盘输入创建档案：
 $ cat > catfile
@@ -1361,20 +1372,20 @@ cmd1 || cmd2：cmd1执行失败才执行cmd2。ls /tmp/abc || mkdir /tmp/abc
 可混合执行：ls /tmp/abc || mkdir /tmp/abc && touch /tmp/abc/hehe。$?的值会在第一个条件处判断完后后传。
 
 pipe：处理经前一个指令传来的stdout，不能处理stderr。管线后可接less，more，head，tail等可接受stdin的指令，而ls，cp，mv等不行。
-ls –al /etc | less。即less ll /etc的结果。
+ls -al /etc | less。即less ll /etc的结果。
 
 截取指令：将一段数据分析后取出需要的一行，配合管线使用。
-cut –d ’分隔字符’ -f fields：依据-d的分隔字符将一段讯息分割成为数段，用-f取出第几段。echo $PATH | cut –d ’:’ –f 3,5即取出PATH变量中的第3和第5个变量。注意每一个空格算一个’ ’。
-cut -c 字符区间：以字符(characters)为单位取出固定字符区间。export | cut –c 12- 即输出所有变量的从第12个字符开始的设置。12-20则定义了个区间。
+cut -d ’分隔字符’ -f fields：依据-d的分隔字符将一段讯息分割成为数段，用-f取出第几段。echo $PATH | cut -d ’:’ -f 3,5即取出PATH变量中的第3和第5个变量。注意每一个空格算一个’ ’。
+cut -c 字符区间：以字符(characters)为单位取出固定字符区间。export | cut -c 12- 即输出所有变量的从第12个字符开始的设置。12-20则定义了个区间。
 
-grep [-acinv] [--color=auto] '搜寻字符串' filename：搜索存在搜索信息的一行并取出。last | grep ‘root’ | cut –d ‘ ‘ –f 1
+grep [-acinv] [--color=auto] '搜寻字符串' filename：搜索存在搜索信息的一行并取出。last | grep ‘root’ | cut -d ‘ ‘ -f 1
 -a：将binary档案以text档案的方式搜寻数据。
 -c：计算找到搜寻字符串的次数。
 -i：忽略大小写的不同。
 -n：输出行号。
--v：显示出没有搜寻字符串内容的那一行。last | grep –v ‘root’ 显示过去登录的非root信息。grep –vn ‘the’file。
---color=auto：可以将找到的关键词部分加上颜色的显示。grep –-color=auto ‘MANPATH’ /etc/man.config
-只显示档案名：find / -type f | grep –l ‘字符串’。
+-v：显示出没有搜寻字符串内容的那一行。last | grep -v ‘root’ 显示过去登录的非root信息。grep -vn ‘the’file。
+--color=auto：可以将找到的关键词部分加上颜色的显示。grep --color=auto ‘MANPATH’ /etc/man.config
+只显示档案名：find / -type f | grep -l ‘字符串’。
 
 
 排序：sort，先用LANG=C 来保证编码。sort [-fbMnrtuk] [file or stdin]。
@@ -1385,61 +1396,61 @@ grep [-acinv] [--color=auto] '搜寻字符串' filename：搜索存在搜索信�
 -r：反向排序。 
 -u：就是uniq，相同的数据中，仅出现一行。
 -t：分隔符，预设是用tab分隔； 
--k：以那个区间(field)来排序。cat /etc/passwd | sort –t ‘:’ –k 3 –n 则按由:分隔的第3栏排序。注意如果按文字排序，则是0,10,11,1的顺序。
+-k：以那个区间(field)来排序。cat /etc/passwd | sort -t ‘:’ -k 3 -n 则按由:分隔的第3栏排序。注意如果按文字排序，则是0,10,11,1的顺序。
 
 相同行只显示一行：uniq [-ic]，用在排序之后。
 -i：忽略大小写字符的不同；
--c：进行计数。last | cut –d ‘ ’f 1 | sort | uniq –c 
+-c：进行计数。last | cut -d ‘ ’f 1 | sort | uniq -c 
 
 文档信息统计：wc [-lwm]。cat /etc/man.config | wc。输出的三个数依次代表行数，词数，字符数。
 -l：仅列出行；
 -w：仅列出多少字(英文单字)；
 -m ：多少字符；
 
-输出同时导向文档与屏幕：tee [-a] file。last | tee last.lst | cut –d “ ” –f 1
+输出同时导向文档与屏幕：tee [-a] file。last | tee last.lst | cut -d “ ” -f 1
 -a：累加(append)数据到file中。
 
 字符转换：
 删除或替换：tr [-ds] SET1 ...。last | tr ‘[a-z]’ ‘[A-Z]’。没有单引号也可执行。
--d：删除讯息当中SET1字符串；cat /etc/passwd | tr –d ‘:’
+-d：删除讯息当中SET1字符串；cat /etc/passwd | tr -d ‘:’
 -s：取代重复的字符。
 一个栗子：
 # cp /etc/passwd /root/passwd && unix2dos /root/passwd
 # file /etc/passwd /root/passwd
-# cat /root/passwd | tr –d ‘\r’ > /root/passwd.linux
+# cat /root/passwd | tr -d ‘\r’ > /root/passwd.linux
 转换大小写：tr 'a-z' 'A-Z'
 
 
 将特殊格式的文档转换为纯文本：col [-xb]。
--x：将tab 键（^I）转换成对等的空格键。cat /etc/man.config | col –x | cat –A | more
--b：在文字内有反斜杠/时，仅保留反斜杠最后接的那个字符。man col | col –b > /root/col.man。
+-x：将tab 键（^I）转换成对等的空格键。cat /etc/man.config | col -x | cat -A | more
+-b：在文字内有反斜杠/时，仅保留反斜杠最后接的那个字符。man col | col -b > /root/col.man。
 
 合并相同数据：join [-ti12] file1 file2。需要文档已经排过序。
 -t：join默认以空格符分隔数据，并比对第一个字段的数据。如果两个档案相同，则将两笔数据联成一行。join -t ':' /etc/passwd /etc/shadow。
 -i：忽略大小写的差异；
 -1：第一个档案要用该字段来分析。
--2：第二个档案要用该字段来分析。join –t ‘:’ -1 4 /etc/passwd -2 3 /etc/group。
+-2：第二个档案要用该字段来分析。join -t ‘:’ -1 4 /etc/passwd -2 3 /etc/group。
 
 拼接行：paste [-d] file1 file2。将两个文档中的每行拼成一行，用分隔字符隔开。
--d：分隔字符。预设是tab。cat /etc/group | paste /etc/passwd /etc/shadow - | head –n 3
+-d：分隔字符。预设是tab。cat /etc/group | paste /etc/passwd /etc/shadow - | head -n 3
 
 将tab转换为space：expand [-t] file。并不是每个tab都会转为固定数目的space（鸟哥的私房菜P409）。
--t：接数字表示一个tab代表几个space。预设是8个。?grep ‘^MANPATH’ /etc/man.config | head –n 3 | expand –t 6 - | cat -A
+-t：接数字表示一个tab代表几个space。预设是8个。?grep ‘^MANPATH’ /etc/man.config | head -n 3 | expand -t 6 - | cat -A
 
 space转换为tab：unexpand（鸟哥的私房菜P409）。
 
 分割文档：split [-bl] file PREFIX
--b：分隔档案大小，可加单位 b, k, m 等；split –b 300k /etc/tempcap termcap; ll –k termcap*。文档会按prefix+a,b,c…的顺序产生。
--l：以行数进行分割。ls –al | split –l 10 – lsroot。
+-b：分隔档案大小，可加单位 b, k, m 等；split -b 300k /etc/tempcap termcap; ll -k termcap*。文档会按prefix+a,b,c…的顺序产生。
+-l：以行数进行分割。ls -al | split -l 10 - lsroot。
 PREFIX：决定分割档案的前导文字。
 
-参数代换：xargs [-0epn] command。cut –d ‘:’ –f 1 /etc/passwd | head –n 3 | xargs finger。对不支持管线的命令非常实用，如ls。注意档案名中最好不能有空格，不然会误判。
+参数代换：xargs [-0epn] command。cut -d ‘:’ -f 1 /etc/passwd | head -n 3 | xargs finger。对不支持管线的命令非常实用，如ls。注意档案名中最好不能有空格，不然会误判。
 -0：如果输入的stdin有特殊字符，如`, \, 空格键等，可以将他还原成一般字符。
--e：EOF的字符串，分析到这个字符串就停止。cut –d ‘:’ –f 1 /etc/passwd | xargs –p –e’lp’finger。中间没有空格。
+-e：EOF的字符串，分析到这个字符串就停止。cut -d ‘:’ -f 1 /etc/passwd | xargs -p -e’lp’finger。中间没有空格。
 -p：在执行每个指令时都会询问。
--n： command指令执行时，要几个参数。cut –d ‘:’ –f 1 | xargs –p –n 5 finger。
+-n： command指令执行时，要几个参数。cut -d ‘:’ -f 1 | xargs -p -n 5 finger。
 当 xargs 后面没有接任何的指令时，默认是以echo来进行输出喔！
-一个栗子：find /sbin -perm +7000 | xargs ls –l。
+一个栗子：find /sbin -perm +7000 | xargs ls -l。
 
 取得账号的信息：finger。
 
@@ -1481,7 +1492,7 @@ BASH: linux基本指令。
 [:xdigit:]：代表16进制数字类型,包括:0-9,A-F,a-f。
 
 grep [-A] [-B] [--color=auto] '搜寻字符串' filename。不一定需要字符串一定是词。
--A n：after,列出该行及后续的n行；dmesg | grep –n –A3 –B2 –color=auto ‘eth’ 显示网卡信息。
+-A n：after,列出该行及后续的n行；dmesg | grep -n -A3 -B2 -color=auto ‘eth’ 显示网卡信息。
 -B n：before，列出该行及前面的n行；
 --color=auto：将正确的数据列出颜色。
 
@@ -1489,19 +1500,19 @@ grep [-A] [-B] [--color=auto] '搜寻字符串' filename。不一定需要字符
 
 练习正则表达式：wget http://linux.vbird.org/linux_basic/0330regularex/regular_express.txt，（鸟哥的私房菜P420）
 虽然类似bash的wildcard，但是不完全相同，比如*和?无用，而有.和*。而且不以单词（及需要左右都为空格）为单位，搜索的是字符串。
-grep –n ‘t[ae]st’ file 得到的是包含test 或taste 的行。
-grep –n ‘[^a-z]oo’ file 或 grep –n ‘[^[:lower:]]oo’ file。
-grep –n ‘^the’ file 利用制表符^代表行首。注意放在中括号中才是取反。
-grep –n ‘\.$’file 利用制表符$代表行尾。而小数点是特殊字符，需要反斜杠。这时windows平台的句尾无法搜索。
-grep –v ‘^$’file | grep –v ‘^#’ 去除空行和注释。
-一个任意字符：.。grep –n ‘g..d’ file。
+grep -n ‘t[ae]st’ file 得到的是包含test 或taste 的行。
+grep -n ‘[^a-z]oo’ file 或 grep -n ‘[^[:lower:]]oo’ file。
+grep -n ‘^the’ file 利用制表符^代表行首。注意放在中括号中才是取反。
+grep -n ‘\.$’file 利用制表符$代表行尾。而小数点是特殊字符，需要反斜杠。这时windows平台的句尾无法搜索。
+grep -v ‘^$’file | grep -v ‘^#’ 去除空行和注释。
+一个任意字符：.。grep -n ‘g..d’ file。
 重复前面的那个字符0到无穷次：*。
-grep –n ‘gooo*g’file 查找至少2个连续的o。如果’o*’的话会输出全部内容。
-grep –n ‘g.*g’ file 查找由g开头和结尾的字符串。
-grep –n ‘[0-9][0-9]*’ file 等同于grep –n ‘[0-9]’ file。
-重复一定范围的次数：用{a,b}，因为{是特殊字符，要跳脱。grep –n ‘go\{3,5\}’ file。{3,}代表3个及以上。
+grep -n ‘gooo*g’file 查找至少2个连续的o。如果’o*’的话会输出全部内容。
+grep -n ‘g.*g’ file 查找由g开头和结尾的字符串。
+grep -n ‘[0-9][0-9]*’ file 等同于grep -n ‘[0-9]’ file。
+重复一定范围的次数：用{a,b}，因为{是特殊字符，要跳脱。grep -n ‘go\{3,5\}’ file。{3,}代表3个及以上。
 
-查看某目录下链接文件的属性：ls –l /etc/ | grep ‘^l’ | wc -l
+查看某目录下链接文件的属性：ls -l /etc/ | grep ‘^l’ | wc -l
 
 正则表达式汇总：（鸟哥的私房菜P427）。注意!和>在这里不是特殊字符。
 
@@ -1511,23 +1522,23 @@ grep –n ‘[0-9][0-9]*’ file 等同于grep –n ‘[0-9]’ file。
 -f：直接将sed的动作写在一个档案内。
 -f filename：执行filename里的sed动作；
 -r：支持扩展正则表达式。默认是基础正则表达式。
--i：直接修改读取的档案内容，而不由屏幕输出。sed –i ‘s/\.$/!/g’ file。
+-i：直接修改读取的档案内容，而不由屏幕输出。sed -i ‘s/\.$/!/g’ file。
 动作：[n1][,n2] function：n1，n2为行数范围。动作用单引号括住。function：
 a：新增，字符串出现在新的一行。nl /etc/passwd | sed ‘2a drink tea\
 >drink coffee?’可以增加多行。
-sed –i ‘$a # This is a test. ’ file。
+sed -i ‘$a # This is a test. ’ file。
 c：取代，字符串取代n1,n2之间的行。nl /etc/passwd | sed ‘2,5c No 2-5 number’。则第2到5行变为一行。
-d：删除。nl /etc/passwd | sed ‘2,5d’，nl /etc/passwd | sed –e ‘2,$d’。有无e在管线方式下都一样。
+d：删除。nl /etc/passwd | sed ‘2,5d’，nl /etc/passwd | sed -e ‘2,$d’。有无e在管线方式下都一样。
 i：插入，字符串在当前的上一行出现。
-p：打印，将某个选择的数据印出。与sed -n一起运作。nl /etc/passwd | sed –n ‘5,7p’。只显示5到7行。
+p：打印，将某个选择的数据印出。与sed -n一起运作。nl /etc/passwd | sed -n ‘5,7p’。只显示5到7行。
 s：取代，直接进行取代的工作，搭配正则表示法。1,20s/old/new/g。/sbin/ifconfig eth0 | grep ‘inet addr’| sed  ‘s/^.*addr://g’删除行首至addr:。Bcast.*$代表从Bcast删除到行尾。.*即查找任意字符串。
 删除注释行：cat /etc/man.config | grep ‘MAN’ | sed  ‘s/#.*$//g’ | sed  ‘/^$/d’。
-可以并列多个动作：cat /etc/passwd | sed –e ‘4d’ –e ‘6c no six line’ > passwd.new。
+可以并列多个动作：cat /etc/passwd | sed -e ‘4d’ -e ‘6c no six line’ > passwd.new。
 
-扩展正则表达式：需要grep –E 或者指令egrep支持。
-一个或一个以上重复前一个字符：+。egrep –n ‘go+d’ file。找到god, good, goood。
-零个或一个前一个字符：?。egrep –n ‘go?d’ file。找到gd 和god。
-用|代表or：egrep –n ‘gd|good|dog’ file。同时找三个词。egrep –v ‘^$|^#’ file。排除空白行和注释行。egrep –n ‘g(la|oo)d’ file。找glad 和good。
+扩展正则表达式：需要grep -E 或者指令egrep支持。
+一个或一个以上重复前一个字符：+。egrep -n ‘go+d’ file。找到god, good, goood。
+零个或一个前一个字符：?。egrep -n ‘go?d’ file。找到gd 和god。
+用|代表or：egrep -n ‘gd|good|dog’ file。同时找三个词。egrep -v ‘^$|^#’ file。排除空白行和注释行。egrep -n ‘g(la|oo)d’ file。找glad 和good。
 字符串的重复：echo ‘AxyzxyzxyzC’ | egrep ‘A(xyz)+C’。找的是A开始C结束，切当中有xyz重复1次以上的字符串。
 
 格式化打印：printf '打印格式' 实际内容。不是管线命令。格式的几个特殊样式：
@@ -1540,13 +1551,13 @@ s：取代，直接进行取代的工作，搭配正则表示法。1,20s/old/new
 \v：垂直tab按键。
 \xNN：两位数NN转换为ASCII中该16进制数值代表的字符。printf ‘\x45\n’。
 C语言的变量格式： 
-%ns：n个字符；printf ‘%10s\t %5i\t %5i\t %8.2f\n’ $(cat printf.txt | grep –v Name)。
+%ns：n个字符；printf ‘%10s\t %5i\t %5i\t %8.2f\n’ $(cat printf.txt | grep -v Name)。
 %ni：n个整数；
 %N.nf:N个位数和小数点后n位的浮点数。
 
 处理字段：awk '条件类型1{动作1} 条件类型2{动作2} ...' filename。可读取文件或stdin。字段需以空格或tab分隔。
-内建变量：NF：每一行的字段总数；NR：目前处理的是行数；FS：当前的分隔字符，默认是空格。last –n 5| awk ‘{print $1 “\t lines:” NR “\t columes:” NF}’。
-last –n 5 | awk ‘{print $1 “\t” $3}’。打印出第1和第3个字段，并由tab分隔。$0代表一整行。
+内建变量：NF：每一行的字段总数；NR：目前处理的是行数；FS：当前的分隔字符，默认是空格。last -n 5| awk ‘{print $1 “\t lines:” NR “\t columes:” NF}’。
+last -n 5 | awk ‘{print $1 “\t” $3}’。打印出第1和第3个字段，并由tab分隔。$0代表一整行。
 逻辑判断：cat /etc/passwd | awk ‘{FS=”:”} $3<10 {print $1 “\t” $3}’。结果第一行并没有正确处理，需要在之前加入BIGIN：cat /etc/passwd | awk ‘BEGIN {FS=”:”} $3<10 {print $1 “\t” $3}’。
 cat pay.txt | awk ‘NR==1 {printf “%10s\t %10s\t %10s\n”} NR>=2 {total=$2+$3+$4； printf “%10s %10d %10.2f\n”, $1, $2, total}’。{}内的两条指令之间要用;或enter分隔。
 if语句：cat pay.txt | awk ‘{if(NR==1) printf “%10s %10s %10s\n”,$1,$2,$3,”Total”} NR>=2 {total=$2+$3+$4; printf “%10s %10d %10d %10d”, $1,$2,$3,total}’。
@@ -1559,10 +1570,10 @@ to-file：目的比对档案；可以-取代。
 -B：忽略空白行的差异。 
 -i：忽略大小写的差异。
 文件夹差异对比：diff /etc/rc3.d/ /etc/rc5.d/。
-根据新档案的不同处制作升级补丁：diff –Naur passwd.old passwd.new > passwd.patch。
+根据新档案的不同处制作升级补丁：diff -Naur passwd.old passwd.new > passwd.patch。
 
-使用补丁：patch –pN < patch_file。N为目录删减数。patch –p0 < passwd.patch。
-将升级过的文档恢复为旧文档：patch –R –pn < passwd.patch。patch –R –p0 < passwd.patch。
+使用补丁：patch -pN < patch_file。N为目录删减数。patch -p0 < passwd.patch。
+将升级过的文档恢复为旧文档：patch -R -pn < passwd.patch。patch -R -p0 < passwd.patch。
 
 字节档案对比：cmp [-s] file1 file2。以字节为单位。结果为byte 和line 的位置。
 -s：将所有不同的字节处列出来。预设仅会输出第一个出现的不同点。
@@ -1570,9 +1581,9 @@ to-file：目的比对档案；可以-取代。
 档案打印：pr /etc/man.config。
 
 通配符与正则表达式搭配：grep ‘\*’ /etc/*。
-搜索子文件夹：grep ‘\*’ $(find /etc –type f)。因为/etc下有太多文件，会因为指令长度太长而报错。
-分批次搜索：find /etc –type f | xargs –n 10 grep ‘\*’。
-设置个指令查看ip地址：alias myip=”ifconfig eth0 | grep ‘inet addr’ | sed ‘s/^.*inet addr://g’ | cut –d ‘’ –f1”; MYIP=$(myip);将这两行写入.bashrc。
+搜索子文件夹：grep ‘\*’ $(find /etc -type f)。因为/etc下有太多文件，会因为指令长度太长而报错。
+分批次搜索：find /etc -type f | xargs -n 10 grep ‘\*’。
+设置个指令查看ip地址：alias myip=”ifconfig eth0 | grep ‘inet addr’ | sed ‘s/^.*inet addr://g’ | cut -d ‘’ -f1”; MYIP=$(myip);将这两行写入.bashrc。
 
 ## Chapter 13
 系统服务启动的接口：/etc/init.d/目录下，全是scripts。如启动系统注册表,/etc/init.d/syslogd restart。/etc/init.d/syslog stop。
@@ -1609,7 +1620,7 @@ read -p “please input your last name:” lastname
 echo -e “\nYour full name is $firstname $lastname”
 
 设定文件名为日期：
-read –p “please input your filename” fileuser
+read -p “please input your filename” fileuser
 filename=${fileuser:-“filename”}
 date1=$(date --date=’2 days ago’ +%Y%m%d) # --date用文字设定日期，如now。
 date2=$(date --date=’1 days ago’ +%Y%m%d)
