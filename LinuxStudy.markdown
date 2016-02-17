@@ -1162,13 +1162,18 @@ bash的内建命令：不需要调用外部程序。如`cd`，`umask`。用`type
 - `""`中的特殊字符有自己特殊的作用，如`var="lang is $LANG"`，则`var`为`lang is en_US`。
 - `''`中的特殊字符还是字符。
 - 跳脱字符：`\`可以将后一个特殊字符变为普通字符，如`$\空格`等，对回车符，则没有内容。所以
-  ```
-  cp /var/spool/mail/root /etc/crontab \
-  > /etc/fstab /root
-  ```
+```
+cp /var/spool/mail/root /etc/crontab \
+> /etc/fstab /root
+```
 是一个指令，因为`\`后面的那个enter在执行时被跳脱了。
-- 反单引号<code>`指令`</code>或`$(指令)`可以显示该指令的结果。如`version=$(uname -r)`或<code>cd /lib/modules/`uname -r`/kernel</code>。<code>ls -l `locate crontab`</code>。
-	赋值时字符串变量间直接相连则会拼接，如PATH=”$PATH”:/home/bin。
+- 反单引号`指令`或`$(指令)`可以显示该指令的结果。如
+```
+version=$(uname -r)
+cd /lib/modules/`uname -r`/kernel
+ls -l `locate crontab`
+```
+- 赋值时字符串变量间直接相连则会拼接，如`PATH="$PATH":/home/bin`。
 
 变量要在子程序执行，则需export令其变为环境变量，如export PATH。
 
