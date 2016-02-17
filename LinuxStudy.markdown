@@ -1166,8 +1166,8 @@ bash的内建命令：不需要调用外部程序。如`cd`，`umask`。用`type
 cp /var/spool/mail/root /etc/crontab \
 > /etc/fstab /root
 ```
-是一个指令，因为`\`后面的那个enter在执行时被跳脱了。
-- 反单引号`指令`或`$(指令)`可以显示该指令的结果。如
+  是一个指令，因为`\`后面的那个enter在执行时被跳脱了。
+- 反单引号&#96;指令&#96;或`$(指令)`可以显示该指令的结果。如
 ```
 version=$(uname -r)
 cd /lib/modules/`uname -r`/kernel
