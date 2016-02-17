@@ -102,4 +102,8 @@ with this error: local add/delete, incoming add/delete upon merge
 `svn resolved file`
 
 
-svn `mine-conflicts`: use all my changes about the conflicts but normal merge about other changes; `mine-full`: discard all their changes.  
+svn `mine-conflicts`: use all my changes about the conflicts but normal merge about other changes; `mine-full`: discard all their changes. 
+
+svn cherrypick: http://svnbook.red-bean.com/en/1.6/svn.branchmerge.advanced.html
+
+ 
