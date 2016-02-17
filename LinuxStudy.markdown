@@ -1167,82 +1167,87 @@ cp /var/spool/mail/root /etc/crontab \
 > /etc/fstab /root
 ```
   是一个指令，因为`\`后面的那个enter在执行时被跳脱了。
-- 反单引号&#96;指令&#96;或`$(指令)`可以显示该指令的结果。如
+
+反单引号&#96;指令&#96;或`$(指令)`可以显示该指令的结果。如
 ```
 version=$(uname -r)
 cd /lib/modules/`uname -r`/kernel
 ls -l `locate crontab`
 ```
-- 赋值时字符串变量间直接相连则会拼接，如`PATH="$PATH":/home/bin`。
 
-变量要在子程序执行，则需export令其变为环境变量，如export PATH。
+赋值时字符串变量间直接相连则会拼接，如`PATH="$PATH":/home/bin`。
 
-删除变量：unset myvar。
+变量要在子程序执行，则需`export`令其变为环境变量，如`export PATH`。
 
-空格是特殊字符，不能赋值给字符串变量，需\。
+删除变量：`unset myvar`。
+
+空格是特殊字符，不能赋值给字符串变量，需`\`。
+
 单双引号必须成对。如果不成对，enter后等待输入。
-要输入有单引号的字符串做变量值，可使用双引号括起来，或\。
 
-再开一个子bash：bash。
+要输入有单引号的字符串做变量值，可使用双引号括起来，或`\`。
 
-查看环境变量：env可查看所有环境变量，export不接变量名也可。
-HOSTNAME：主机名
-TERM=xterm：终端机环境是什么类型
-SHELL=/bin/bash
-HISTSIZE=1000：指令历史数
-USER=root
-MAIL=/var/spool/mail/root：当前用户mailbox位置
-INPUTRC=/etc/inputrc：键盘按键功能有关。可以定特殊按键
-PWD=/root：目前用户所在的工作目录
-LANG=en_US
-HOME=/root：家目录
-_=/bin/env：上一次使用的指令最后的一个参数或指令本身。
-RANDOM：由/dev/random档案生成的介于0～32767的随机数。生成0~9之间的数值：declare -i number=$RANDOM*10/32768
+再开一个子bash：`bash`。
 
-查看所有变量，即环境和自定义变量：set。可列出最近设定的变量。
-MAILCHECK=60：每60秒去扫描信箱有无新信
-OLDPWD=/home：上个工作目录。可用 cd - 来调用这个变量
-PPID=20025：父程序的PID
-$：目前这个shell所使用的PID。echo $$可显示当前使用的shell。
-?：刚刚执行的指令回传值。成功执行为0，不然为错误代码。
-PS1：提示字符，即常见的root@www～。可设定。（鸟哥的私房菜P368）PS1不是环境变量，但是是bash的操作环境设置之一。
-设定指令输入输出环境：set [-uvCHhmBx]。默认不启用。（鸟哥的私房菜P391）可以由echo $- 查看，如显示himBH，则表示himBH这5个选项被开启。
+查看环境变量：`env`可查看所有环境变量，`export`不接变量名也可。
+- `HOSTNAME`：主机名
+- `TERM=xterm`：终端机环境是什么类型
+- `SHELL=/bin/bash`
+- `HISTSIZE=1000`：指令历史数
+- `USER=root`
+- `MAIL=/var/spool/mail/root`：当前用户mailbox位置
+- `INPUTRC=/etc/inputrc`：键盘按键功能有关。可以定特殊按键
+- `PWD=/root`：目前用户所在的工作目录
+- `LANG=en_US`
+- `HOME=/root`：家目录
+- `_=/bin/env`：上一次使用的指令最后的一个参数或指令本身。
+- `RANDOM`：由`/dev/random`档案生成的介于0～32767的随机数。生成0~9之间的数值：`declare -i number=$RANDOM*10/32768`, `declare -i`用以声明整数。
 
-建立一个子程序，如bash，之前的父程序会sleep。子程序继承环境变量global variable不继承自定义变量local variable。
-	因为每启动一个shell，OS分配一片内存。子程序只导入父程序的环境变量内存区域。
 
-查看支持的语系： locale -a查看所有。locale可查看有关语言的各设置，都是用变量存储的。（鸟哥的私房菜P371）
-	整体系统默认的语系定义在/etc/sysconfig/i18n文档里。
+查看所有变量，即环境和自定义变量：`set`。可列出最近设定的变量。
+- `MAILCHECK=60`：每60秒去扫描信箱有无新信
+- `OLDPWD=/home`：上个工作目录。可用 `cd -` 来调用这个变量
+- `PPID=20025`：父程序的PID
+- `$`：目前这个shell所使用的PID。echo $$可显示当前使用的shell。
+- `?`：刚刚执行的指令回传值。成功执行为0，不然为错误代码。
+- `PS1`：提示字符，即常见的`root@www~`。可设定。`PS1`不是环境变量，但是是bash的操作环境设置之一。
 
-读取键盘输入：read [-pt] variable。read -p "Please keyin your name: " -t 30 named。选项：
--p：后面可以接提示字符。
--t：后面可以接等待的秒数。到时停止。
+设定指令输入输出环境：`set [-uvCHhmBx]`。默认不启用。可以由`echo $-` 查看，如显示`himBH`，则表示`himBH`这5个选项被开启。
 
-定义变量类型：declare返回所有变量名与值。变量类型默认为字符串。declare [-aixr] variable。选项：
--a：将后面名为variable的变量定义成为数组(array)。
--i：将后面名为variable的变量定义成为整数数字(integer)。
--x：变为环境变量。+x则变回局部变量。
--r：将变量设为readonly类型，不可被更改内容或unset。需注销后重新登录才能恢复。
--p：单独列出一个变量即类型。declare -p sum。
-？（鸟哥的私房菜P374）export | grep sum declare -ix sum="450" <==果然出现了！
+建立一个子程序，如bash，之前的父程序会sleep。子程序继承环境变量global variable不继承自定义变量local variable。因为每启动一个shell，OS分配一片内存。子程序只导入父程序的环境变量内存区域。
 
-一般选项中 -参数 代表设置该选项，+参数 代表取消设置。
+查看支持的语系： `locale -a`查看所有。`locale`可查看有关语言的各设置，都是用变量存储的。
+- 整体系统默认的语系定义在`/etc/sysconfig/i18n`文档里。
 
-数组：赋值：var[index]=content。从1开始。读取：echo "${var[1]}, ${var[2]}, ${var[3]}"或${数组}。
+读取键盘输入：`read [-pt] variable`。`read -p "Please keyin your name: " -t 30 named`。选项：
+- `-p`：后面可以接提示字符。
+- `-t`：后面可以接等待的秒数。到时停止。
 
-定义变量类型：typeset。与declare类似。
+定义变量类型：`declare`返回所有变量名与值。变量类型默认为字符串。`declare [-aixr] variable`。选项：
+- `-a`：将后面名为variable的变量定义成为数组(array)。
+- `-i`：将后面名为variable的变量定义成为整数数字(integer)。
+- `-x`：变为环境变量。+x则变回局部变量。
+- `-r`：将变量设为readonly类型，不可被更改内容或unset。需注销后重新登录才能恢复。
+- `-p`：列出一个变量的类型。`declare -p sum`。
 
-限制用户使用系统资源的额度：ulimit。ulimit [-SHacdfltu] [配额]。选项：
--H：hard limit，必定不能超过这个数值。
--S：soft limit，可以超过，但是有警告讯息。通常soft比hard小
--a：后面不接任何选项参数，可列出所有的限制额度。0代表无限制。
--c：限制每个核心档案的最大容量。当某程序出错时，系统可能会将该程序在内存中的信息写成档案以便除错。这种档案就被称为核心档案(core file)。
--f：此 shell 可以建立的最大档案容量(一般可能为 2GB)单位为 Kbytes。非root用户只能设定更小的值。
--d：程序可使用的最大断裂内存(segment)容量。
--l：可用与锁定(lock)的内存量。
--t：可使用的最大 CPU 时间 (单位为秒)。
--u：单一用户可以使用的最大程序(process)数量。
+一般选项中 `-参数` 代表设置该选项，`+参数` 代表取消设置。
 
+数组：赋值：`var[index]=content`。从0开始。读取：`echo "${var[1]}, ${var[2]}, ${var[3]}"`或`${数组}`显示第一个元素。
+
+定义变量类型：`typeset`。与`declare`类似。
+
+限制用户使用系统资源的额度：`ulimit [-SHacdfltu] [配额]`。选项：
+- `-H`：hard limit，必定不能超过这个数值。
+- `-S`：soft limit，可以超过，但是有警告讯息。通常soft比hard小
+- `-a`：后面不接任何选项参数，可列出所有的限制额度。0代表无限制。
+- `-c`：限制每个核心档案的最大容量。当某程序出错时，系统可能会将该程序在内存中的信息写成档案以便除错。这种档案就被称为核心档案(core file)。
+- `-f`：此 shell 可以建立的最大档案容量(一般可能为 2GB)单位为 Kbytes。非root用户只能设定更小的值。
+- `-d`：程序可使用的最大断裂内存(segment)容量。
+- `-l`：可用与锁定(lock)的内存量。
+- `-t`：可使用的最大 CPU 时间 (单位为秒)。
+- `-u`：单一用户可以使用的最大程序(process)数量。
+
+# HERE
 变量值修改：
 从左开始删除最短的匹配：用#。${var#delete_string}。delete_string 可以用通配符，如echo ${path#/*kerberos/bin:}可删除从头开始的/……bin:这串字符。
 从左开始删除最长的匹配：用##。${path##/*:}。
