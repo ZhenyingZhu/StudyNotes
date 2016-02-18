@@ -1355,86 +1355,91 @@ bash中的特殊字符：
 - `>`：数据流重导向，输出导向，取代。`ll / > ~/rootfile.txt`。如存在同名文档，会覆盖。
 - `>>`：数据流重导向，输出导向，累加。如存在同名文档，会追加到结尾。
 - `<`：数据流重导向，输入导向
-- `<<`：数据流重导向：输入导向
+- `<<`：数据流重导向：输入导向的结束字符
 - `' '`：单引号，不具有变量置换的功能
 - `" "`：具有变量置换的功能
-- `&#96; &#96;`：中间为可以先执行的指令，等同于`$( )`
+- &#96; &#96;：中间为可以先执行的指令，等同于`$( )`
 - `( )`：在中间为子shell的起始与结束
 - `{ }`：在中间为命令区块的组合
 
 数据流输出重导向：将本应输出到屏幕上的数据传输到别处，即standard output(stdout)和standard error output(stderr)传输到当然或装置。
-stdin：代码为0，使用<或<<。
-stdout：代码为1，使用>或>>。
-stderr：代码为2，使用2>或2>>。find /home -name .bashrc > ~/list_right 2> list_err
-将正确和错误的数据写入同一个档案：find /home -name .bashrc > list 2> &1。或 find /home -name .bashrc &> list。
+- stdin：代码为0，使用`<`或`<<`。
+- stdout：代码为1，使用`>`或`>>`。
+- stderr：代码为2，使用`2>`或`2>>`。`find /home -name .bashrc > ~/list_right 2> list_err`
+将正确和错误的数据写入同一个档案：`find /home -name .bashrc > list 2> &1`。或 `find /home -name .bashrc &> list`。
 
 由键盘输入创建档案：
-$ cat > catfile
+```
+cat > catfile # cat without file can cat from stdin
 testing
 cat file test
 ^D
+```
 
-/dev/null：垃圾桶黑洞装置，所有导向这个装置的信息都会丢弃。
+`/dev/null`：垃圾桶黑洞装置，所有导向这个装置的信息都会丢弃。
 
 数据流输入重导向：将本键盘输入的数据由档案内容取代。
-全部导入：cat > catfile < ~/.bashrc。
-导入至结束字符串：cat > catfile << “eof”。则当输入“eof”时自动结束（不会输入“eof”）而不需ctrl+D。
+全部导入：`cat > catfile < ~/.bashrc`。
+导入至结束字符串：`cat > catfile << "eof"`。则当输入`"eof"`时自动结束（不会输入`"eof"`到文档）而不需`ctrl+D`。
 
-条件执行：利用$?的回传值决定指令是否执行。
-cmd1 && cmd2：cmd1执行成功才执行cmd2。ls /tmp/abc && touch /tmp/abc/hehe。
-cmd1 || cmd2：cmd1执行失败才执行cmd2。ls /tmp/abc || mkdir /tmp/abc
-可混合执行：ls /tmp/abc || mkdir /tmp/abc && touch /tmp/abc/hehe。$?的值会在第一个条件处判断完后后传。
+条件执行：利用`$?`的回传值决定指令是否执行。
+- `cmd1 && cmd2`：cmd1执行成功才执行cmd2。`ls /tmp/abc && touch /tmp/abc/hehe`。
+- `cmd1 || cmd2`：cmd1执行失败才执行cmd2。`ls /tmp/abc || mkdir /tmp/abc`
+- 可混合执行：`ls /tmp/abc || mkdir /tmp/abc && touch /tmp/abc/hehe`。前一个操作`$?`的值传到后一个操作。
 
-pipe：处理经前一个指令传来的stdout，不能处理stderr。管线后可接less，more，head，tail等可接受stdin的指令，而ls，cp，mv等不行。
-ls -al /etc | less。即less ll /etc的结果。
+pipe：处理经前一个指令传来的stdout，不能处理stderr。管线后可接`less`，`more`，`head`，`tail`等可接受stdin的指令，而`ls`，`cp`，`mv`等不行。`ls -al /etc | less`。即`less ll /etc`的结果。
 
 截取指令：将一段数据分析后取出需要的一行，配合管线使用。
-cut -d ’分隔字符’ -f fields：依据-d的分隔字符将一段讯息分割成为数段，用-f取出第几段。echo $PATH | cut -d ’:’ -f 3,5即取出PATH变量中的第3和第5个变量。注意每一个空格算一个’ ’。
-cut -c 字符区间：以字符(characters)为单位取出固定字符区间。export | cut -c 12- 即输出所有变量的从第12个字符开始的设置。12-20则定义了个区间。
+- `cut -d '分隔字符' -f fields`：依据`-d`的分隔字符将一段讯息分割成为数段，用`-f`取出第几段。`echo $PATH | cut -d ':' -f 3,5`即取出PATH变量中的第3和第5个变量。注意每一个空格算一个`' '`。
+- `cut -c 字符区间`：以字符(characters)为单位取出固定字符区间。`export | cut -c 12-` 即输出所有变量的从第12个字符开始的设置。`12-20`则定义了个区间。
 
-grep [-acinv] [--color=auto] '搜寻字符串' filename：搜索存在搜索信息的一行并取出。last | grep ‘root’ | cut -d ‘ ‘ -f 1
--a：将binary档案以text档案的方式搜寻数据。
--c：计算找到搜寻字符串的次数。
--i：忽略大小写的不同。
--n：输出行号。
--v：显示出没有搜寻字符串内容的那一行。last | grep -v ‘root’ 显示过去登录的非root信息。grep -vn ‘the’file。
---color=auto：可以将找到的关键词部分加上颜色的显示。grep --color=auto ‘MANPATH’ /etc/man.config
-只显示档案名：find / -type f | grep -l ‘字符串’。
+`grep [-acinv] [--color=auto] '搜寻字符串' filename`：搜索存在搜索信息的一行并取出。`last | grep ‘root’ | cut -d ' ' -f 1`
+- `-a`：将binary档案以text档案的方式搜寻数据。
+- `-c`：计算找到搜寻字符串的次数。
+- `-i`：忽略大小写的不同。
+- `-n`：输出行号。
+- `-v`：显示出没有搜寻字符串内容的那一行。`last | grep -v 'root'` 显示过去登录的非root信息。`grep -vn 'the' file`。
+- `--color=auto`：可以将找到的关键词部分加上颜色的显示。`grep --color=auto 'MANPATH' /etc/man.config`
+- `-l`: 只显示档案名. `find / -type f | grep -l '字符串'`。
 
 
-排序：sort，先用LANG=C 来保证编码。sort [-fbMnrtuk] [file or stdin]。
--f：忽略大小写的差异。
--b：忽略最前面的空格符部分；
--M：以月份的名字来排序。
--n：使用纯数字进行排序，默认以文字型态排序。
--r：反向排序。 
--u：就是uniq，相同的数据中，仅出现一行。
--t：分隔符，预设是用tab分隔； 
--k：以那个区间(field)来排序。cat /etc/passwd | sort -t ‘:’ -k 3 -n 则按由:分隔的第3栏排序。注意如果按文字排序，则是0,10,11,1的顺序。
+排序：`sort`，先用`LANG=C` 来保证编码。`sort [-fbMnrtuk] [file or stdin]`。
+- `-f`：忽略大小写的差异。
+- `-b`：忽略最前面的空格符部分；
+- `-M`：以月份的名字来排序。
+- `-n`：使用纯数字进行排序，默认以文字型态排序。
+- `-r`：反向排序。 
+- `-u`：就是`uniq`，相同的数据中，仅出现一行。
+- `-t`：分隔符，预设是用tab分隔； 
+- `-k`：以那个区间(field)来排序。`cat /etc/passwd | sort -t ':' -k 3 -n` 则按由`:`分隔的第3栏排序。注意如果按文字排序，则是0,10,11,1的顺序。
 
-相同行只显示一行：uniq [-ic]，用在排序之后。
--i：忽略大小写字符的不同；
--c：进行计数。last | cut -d ‘ ’f 1 | sort | uniq -c 
+相同行只显示一行：`uniq [-ic]`，用在排序之后。
+- `-i`：忽略大小写字符的不同；
+- `-c`：进行计数。`last | cut -d ' ' f 1 | sort | uniq -c`
 
-文档信息统计：wc [-lwm]。cat /etc/man.config | wc。输出的三个数依次代表行数，词数，字符数。
--l：仅列出行；
--w：仅列出多少字(英文单字)；
--m ：多少字符；
+文档信息统计：`wc [-lwm]`。`cat /etc/man.config | wc`。输出的三个数依次代表行数，词数，字符数。
+- `-l`：仅列出行；
+- `-w`：仅列出多少字(英文单字)；
+- `-m` ：多少字符；
 
-输出同时导向文档与屏幕：tee [-a] file。last | tee last.lst | cut -d “ ” -f 1
--a：累加(append)数据到file中。
+输出同时导向文档与屏幕：`tee [-a] file`。`last | tee last.lst | cut -d " " -f 1`
+- `-a`：累加(append)数据到file中。
 
 字符转换：
-删除或替换：tr [-ds] SET1 ...。last | tr ‘[a-z]’ ‘[A-Z]’。没有单引号也可执行。
--d：删除讯息当中SET1字符串；cat /etc/passwd | tr -d ‘:’
--s：取代重复的字符。
+- 删除或替换：`tr [-ds] SET1 ...`。`last | tr '[a-z]' '[A-Z]'`。没有单引号也可执行。
+- `-d`：删除讯息当中SET1字符串；`cat /etc/passwd | tr -d :`
+- `-s`：取代重复的字符。
+- 转换大小写：`tr 'a-z' 'A-Z'`
+
 一个栗子：
-# cp /etc/passwd /root/passwd && unix2dos /root/passwd
-# file /etc/passwd /root/passwd
-# cat /root/passwd | tr -d ‘\r’ > /root/passwd.linux
-转换大小写：tr 'a-z' 'A-Z'
+```
+cp /etc/passwd /root/passwd && unix2dos /root/passwd
+file /etc/passwd /root/passwd
+cat /root/passwd | tr -d '\r' > /root/passwd.linux # \r is the ^M$
+```
 
 
+# HERE
 将特殊格式的文档转换为纯文本：col [-xb]。
 -x：将tab 键（^I）转换成对等的空格键。cat /etc/man.config | col -x | cat -A | more
 -b：在文字内有反斜杠/时，仅保留反斜杠最后接的那个字符。man col | col -b > /root/col.man。
