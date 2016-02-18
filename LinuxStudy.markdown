@@ -1247,117 +1247,120 @@ ls -l `locate crontab`
 - `-t`：可使用的最大 CPU 时间 (单位为秒)。
 - `-u`：单一用户可以使用的最大程序(process)数量。
 
-# HERE
 变量值修改：
-从左开始删除最短的匹配：用#。${var#delete_string}。delete_string 可以用通配符，如echo ${path#/*kerberos/bin:}可删除从头开始的/……bin:这串字符。
-从左开始删除最长的匹配：用##。${path##/*:}。
-从右往左删除：%和%%。${path%:*bin}删除最后的一个:到bin之间的字符。${path%%:*bin}删除第一个:到bin之间的字符串。
+- 从左开始删除最短的匹配：用`#`。`${var#delete_string}`。`delete_string` 可以用通配符，如`echo ${path#/*kerberos/bin:}`可删除从头开始的`/...bin:`这串字符。
+- 从左开始删除最长的匹配：用`##`。`${path##/*:}`。
+- 从右往左删除：`%`和`%%`。`${path%:*bin}`删除最后的一个`:`到`bin`之间的字符。`${path%%:*bin}`删除第一个`:`到`bin`之间的字符串。
+- 取代一次：`${var/ori/new}`。将`var`中的第一个`ori`的字符串变为`new`的字符串。
+- 取代所有：`${var//ori/new}`。
+- 未设定则赋新值：`new_var=${old_var-content}`。如果`old_var`已设定，就是`old_var`，不然为`content`。注意空字符`""`不算未设定。
+- 未设或为空字符：`new_var=${old_var:-content}`。
+- 已设定或为空则赋值：`new_var=${old_var+content}`。
+- 已设则赋值：`new_var=${old_var:+content}`。
+- `var=${str=expr}`：`str`未设：`str=expr; var=expr`；`str`为空：`str`不变，`var=` 。`str`已设：`str`不变，`var=$str`。
+- `var=${str:=expr}`：`str`未设：`str=expr; var=expr`；`str`为空：`str=expr; var=expr`；`str`已设：`str`不变，`var=$str`。
+- `var=${str?expr}`：`str`未设：`expr`输出至`stderr`；`str`为空：`var=` ；`str`已设：`var=$str`；
+- `var=${str:?expr}`：`str`未设：`expr`输出至`stderr`；`str`为空：`expr`输出至`stderr`；`str`已设：`var=$str`；
 
-取代一次：${var/ori/new}。将var中的第一个ori的字符串变为new的字符串。
-取代所有：${var//ori/new}。
+`stderr`的error code可用`?`变量来查看。
 
-未设定则赋新值：new_var=${old_var-content}。如果old_var已设定，就是old_var，不然为content。注意空字符“”不算未设定。
-未设或为空字符：new_var=${old_var:-content}。
-已设定或为空则赋值：new_var=${old_var+content}。
-已设则赋值：new_var=${old_var:+content}。
-var=${str=expr}：str未设：str=expr，var=expr；str为空：str不变，var= 。str已设：str不变，var=$str。
-var=${str:=expr}：str未设：str=expr，var=expr；str为空：str=expr，var=expr；str已设：str不变，var=$str。
-var=${str?expr}：str未设：expr输出至stderr；str为空：var= ；str已设：var=$str；
-var=${str:?expr}：str未设：expr 输出至 stderr；str为空：expr输出至stderr；str已设：var=$str；
-stderr可用？变量来查看。
+清除画面：`clear`。
 
-清除画面：clear。
+查询曾经下达过的指令：`history`。
+- `history [n]`：列出最近的n笔命令。第一栏为shell中的编号。
+- `history [-c]`：将目前shell中的所有 history 内容全部消除。
+- `history [-raw] histfiles`。选项：
+- `-a`：将目前新增的history指令写入histfiles中。预设写入`~/.bash_history`。其中最多记录的历史数由`$HISTFILESIZE`决定。
+- `-r`：将histfiles的内容读入目前这个shell的history 记忆中。
+- `-w`：将目前的history记忆内容全写入histfiles中。
 
-查询曾经下达过的指令：history。
-history [n]：列出最近的n笔命令。第一栏为shell中的编号。
-history [-c]：将目前shell中的所有 history 内容全部消除。
-history [-raw] histfiles。选项：
--a：将目前新增的history指令写入histfiles中。预设写入~/.bash_history。其中最多记录的历史数由$HISTFILESIZE决定。
--r：将 histfiles 的内容读入目前这个shell的history 记忆中。
--w：将目前的history记忆内容全写入histfiles中。
-执行历史命令：要注意安全问题，不能让.bash_history受到黑客攻击。
-!number：执行编号为number的指令。
-!command：搜索最近的开头为command的指令串并执行。
-!!：执行上一个指令(相当于↑+Enter)。
-当同时开了数个bash时，后关闭的bash会覆写之前的history。而单一bash登入，用job control来切换工作可避免该问题。
+执行历史命令：要注意安全问题，不能让`.bash_history`受到黑客攻击。
+- `!number`：执行编号为number的指令。
+- `!command`：搜索最近的开头为command的指令串并执行。
+- `!!`：执行上一个指令(相当于↑+Enter)。
+- 当同时开了数个bash时，后关闭的bash会覆写之前的history。而单一bash登入，用`job control`来切换工作可避免该问题。
+- 可修改`~/.bash_logout` 记录bash退出的时间。
 
-同名指令的执行顺序：等同于type -a command 找到的顺序。
-1. 以相对/绝对路径执行的指令。如/bin/ls或./ls。
-2. 由alias找到的指令。
+同名指令的执行顺序：等同于`type -a command` 找到的顺序。
+1. 以相对/绝对路径执行的指令。如`/bin/ls`或`./ls`。
+2. 由`alias`找到的指令。
 3. bash内建的(builtin)指令。
-4. $PATH按序搜寻到的第一个指令。
+4. `$PATH`按序搜寻到的第一个指令。
 
-login shell：如tty1取得的bash，需要登录密码。
-non-login shell：不需重复登录，如X window登录后取得的bash。
+Shell:
+- login shell：如tty1取得的bash，需要登录密码。
+- non-login shell：不需重复登录，如X window登录后取得的bash。
+- bash的欢迎信息：在`/etc/issue`, `/etc/motd`档案内。
+- bash环境配置：注销bash后在bash内的别名，变量均失效，除非写入配置文件。
+- login shell只读取这两个配置文件：
+  1. `/etc/profile`：这是系统整体的设定，不要修改这个档案。
+  2. `~/.bash_profile`或`~/.bash_login`或`~/.profile`：使用者个人设定。
 
-bash的欢迎信息：（鸟哥的私房菜P385）。在/etc/issue, /etc/motd档案内。
-bash环境配置：注销bash后在bash内的别名，变量均失效，除非写入配置文件。
-login shell只读取这两个配置文件：
-1. /etc/profile：这是系统整体的设定，不要修改这个档案。
-2. ~/.bash_profile或~/.bash_login或~/.profile：使用者个人设定。
-
-/etc/profile：login shell才会读。
+`/etc/profile`：login shell才会读。
 使用使用者的标识符UID决定变量值，如PATH，MAIL，USER，HOSTNAME，HISTSIZE。
-读入文档数据：/etc/inputrc的键盘设置， /etc/profile.d/*.sh决定bash的设置，/etc/sysconfig/i18n的语言设置。
+读入文档数据：`/etc/inputrc`的键盘设置， `/etc/profile.d/*.sh`决定bash的设置，`/etc/sysconfig/i18n`的语言设置。
 
-个人配置：依次查找：~/.bash_profile，~/.bash_login和~/.profile，如存在则读取，并忽略之后的文档。
+个人配置：依次查找：`~/.bash_profile`，`~/.bash_login`和`~/.profile`，如存在则读取，并忽略之后的文档。
 
-让配置文件立即生效：source 配置文件 或 . 配置文件。注销后登录也可。
+让配置文件立即生效：`source 配置文件` 或 `. 配置文件`。注销后登录也可。
 
-~/.bashrc：non-login shell会读。是/etc/skel/.bashrc复制。
+`~/.bashrc`：non-login shell会读。是`/etc/skel/.bashrc`复制。
 
-/etc/bashrc：由OS读取。根据UID决定umask；提示字符PS1变量，并呼叫/etc/profile.d/*.sh的设定。
+`/etc/bashrc`：由OS读取。根据UID决定umask；提示字符PS1变量，并呼叫`/etc/profile.d/*.sh`的设定。
 
-其他配置：（鸟哥的私房菜P390）。
+其他配置：
+- `/etc/man.config`
+- `~/.bash_history`
+- `~/.bash_logout`
 
-终端机设定：stty -a显示设定，stty 功能 键盘输入。（鸟哥的私房菜P390）
-^：就是ctrl。
-^?：backspace。
-功能列表：
-eof：End of file，代表结束输入。
-erase：向后删除字符，
-intr：送出一个 interrupt的讯号给目前正在run的程序；
-kill：删除在目前指令列上的所有文字；
-quit：送出quit的讯号给目前正在run的程序；
-start：在某个程序停止后，重新启动它的output。
-stop：停止目前屏幕的输出；
-susp：送出一个terminal stop讯号给正在run的程序。
+终端机设定：`stty -a`显示设定，`stty 功能 键盘输入`。
+- `^`：就是ctrl。
+- `^?`：backspace。
+- 功能列表：
+  - `eof`：End of file，代表结束输入。
+  - `erase`：向后删除字符，
+  - `intr`：送出一个 interrupt的讯号给目前正在run的程序；
+  - `kill`：删除在目前指令列上的所有文字；
+  - `quit`：送出quit的讯号给目前正在run的程序；
+  - `start`：在某个程序停止后，重新启动它的output。
+  - `stop`：停止目前屏幕的输出；
+  - `susp`：送出一个terminal stop讯号给正在run的程序。
 
 bash组合键：
-Ctrl + C：终止目前的命令
-Ctrl + D：输入结束 (EOF)，例如邮件结束的时候；
-Ctrl + M： 就是 Enter；
-Ctrl + S： 暂停屏幕的输出
-Ctrl + Q： 恢复屏幕的输出
-Ctrl + U： 在提示字符下，将整列命令删除 
-Ctrl + Z： 暂停目前的命令
+- `Ctrl + C`：终止目前的命令
+- `Ctrl + D`：输入结束 (EOF)，例如邮件结束的时候；
+- `Ctrl + M`： 就是 Enter；
+- `Ctrl + S`： 暂停屏幕的输出
+- `Ctrl + Q`： 恢复屏幕的输出
+- `Ctrl + U`： 在提示字符下，将整列命令删除 
+- `Ctrl + Z`： 暂停目前的命令
 
 bash的wildcard：
-*：0到无穷多个任意字符。
-?：一定有一个任意字符。如ll -d /etc/????? 找出/etc/下文件名刚好是五个字母的文件。
-[ ]：一定有一个在括号内的字符。如[abcd]代表一定有一个可能是a, b, c, d中的一个的字符。
-[ - ]：在编码顺序内的所有字符。如[0-9]代表0到9间的所有数字，因为数字的语系编码是连续的。ll -d /etc/*[0-9]*。
-[^ ]：反向选择，如[^abc]代表一定有一个不是a, b, c的字符。cp -a /etc/[^a-z]* /tmp。
+- `*`：0到无穷多个任意字符。
+- `?`：一定有一个任意字符。如`ll -d /etc/?????` 找出`/etc/`下文件名刚好是五个字母的文件。
+- `[ ]`：一定有一个在括号内的字符。如`[abcd]`代表一定有一个可能是a, b, c, d中的一个的字符。
+- `[ - ]`：在编码顺序内的所有字符。如`[0-9]`代表0到9间的所有数字，因为数字的语系编码是连续的。`ll -d /etc/*[0-9]*`。
+- `[^ ]`：反向选择，如`[^abc]`代表一定有一个不是a, b, c的字符。`cp -a /etc/[^a-z]* /tmp`。
 
 bash中的特殊字符：
-#：注释符号
-\：跳脱符号，将特殊字符或通配符还原成一般字符 
-|：管线(pipe)，分隔两个管线命令的界定； 
-;：连续指令下达分隔符：
-~：用户的家目录 
-$：取用变量前导符：
-&：工作控制(job control)，将指令放于背景下工作
-!：非逻辑运算符
-/：目录符号，即路径分隔的符号
->：数据流重导向，输出导向，取代。ll / > ~/rootfile.txt。如存在同名文档，会覆盖。
->>：数据流重导向，输出导向，累加。如存在同名文档，会追加到结尾。
-<：数据流重导向，输入导向，
-<<：数据流重导向：输入导向
-' '：单引号，不具有变量置换的功能 
-" "：具有变量置换的功能
-` `：中间为可以先执行的指令，等同于$( ) 
-( )：在中间为子shell的起始与结束
-{ }：在中间为命令区块的组合
+- `#`：注释符号
+- `\`：跳脱符号，将特殊字符或通配符还原成一般字符
+- `|`：管线(pipe)，分隔两个管线命令的界定； 
+- `;`：连续指令下达分隔符：
+- `~`：用户的家目录 
+- `$`：取用变量前导符：
+- `&`：工作控制(job control)，将指令放于背景下工作
+- `!`：非逻辑运算符
+- `/`：目录符号，即路径分隔的符号
+- `>`：数据流重导向，输出导向，取代。`ll / > ~/rootfile.txt`。如存在同名文档，会覆盖。
+- `>>`：数据流重导向，输出导向，累加。如存在同名文档，会追加到结尾。
+- `<`：数据流重导向，输入导向
+- `<<`：数据流重导向：输入导向
+- `' '`：单引号，不具有变量置换的功能
+- `" "`：具有变量置换的功能
+- &#96; &#96;：中间为可以先执行的指令，等同于`$( )`
+- `( )`：在中间为子shell的起始与结束
+- `{ }`：在中间为命令区块的组合
 
 数据流输出重导向：将本应输出到屏幕上的数据传输到别处，即standard output(stdout)和standard error output(stderr)传输到当然或装置。
 stdin：代码为0，使用<或<<。
