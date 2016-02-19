@@ -1438,51 +1438,61 @@ file /etc/passwd /root/passwd
 cat /root/passwd | tr -d '\r' > /root/passwd.linux # \r is the ^M$
 ```
 
+将特殊格式的文档转换为纯文本：`col [-xb]`。
+- `-x`：将tab 键（`^I`）转换成对等的空格键。`cat /etc/man.config | col -x | cat -A | more`
+- `-b`：在文字内有反斜杠`/`时，仅保留反斜杠最后接的那个字符。`man col | col -b > /root/col.man`。对在bash中有颜色显示的字有效。
 
-# HERE
-将特殊格式的文档转换为纯文本：col [-xb]。
--x：将tab 键（^I）转换成对等的空格键。cat /etc/man.config | col -x | cat -A | more
--b：在文字内有反斜杠/时，仅保留反斜杠最后接的那个字符。man col | col -b > /root/col.man。
+合并相同数据：`join [-ti12] file1 file2`。需要文档已经排过序。
+- `-t`：join默认以空格符分隔数据，并比对第一个字段的数据。如果两个档案相同，则将两笔数据联成一行。`join -t ':' /etc/passwd /etc/shadow`。
+- `-i`：忽略大小写的差异；
+- `-1`：第一个档案要用该字段来分析。
+- `-2`：第二个档案要用该字段来分析。`join -t ':' -1 4 /etc/passwd -2 3 /etc/group`。
 
-合并相同数据：join [-ti12] file1 file2。需要文档已经排过序。
--t：join默认以空格符分隔数据，并比对第一个字段的数据。如果两个档案相同，则将两笔数据联成一行。join -t ':' /etc/passwd /etc/shadow。
--i：忽略大小写的差异；
--1：第一个档案要用该字段来分析。
--2：第二个档案要用该字段来分析。join -t ‘:’ -1 4 /etc/passwd -2 3 /etc/group。
+拼接行：`paste [-d] file1 file2`。将两个文档中的每行拼成一行，用分隔字符隔开。
+- `-d`：分隔字符。预设是tab。`cat /etc/group | paste /etc/passwd /etc/shadow - | head -n 3`
 
-拼接行：paste [-d] file1 file2。将两个文档中的每行拼成一行，用分隔字符隔开。
--d：分隔字符。预设是tab。cat /etc/group | paste /etc/passwd /etc/shadow - | head -n 3
+将tab转换为space：`expand [-t] file`。并不是每个tab都会转为固定数目的space
+- `-t`：接数字表示一个tab代表几个space。预设是8个。`grep '^MANPATH' /etc/man.config | head -n 3 | expand -t 6 - | cat -A`
 
-将tab转换为space：expand [-t] file。并不是每个tab都会转为固定数目的space（鸟哥的私房菜P409）。
--t：接数字表示一个tab代表几个space。预设是8个。?grep ‘^MANPATH’ /etc/man.config | head -n 3 | expand -t 6 - | cat -A
+space转换为tab：`unexpand`。
 
-space转换为tab：unexpand（鸟哥的私房菜P409）。
+分割文档：`split [-bl] file PREFIX`
+- `-b`：分隔档案大小，可加单位 b, k, m 等；`split -b 300k /etc/tempcap termcap; ll -k termcap*`。文档会按prefix+a,b,c…的顺序产生。
+- `-l`：以行数进行分割。`ls -al | split -l 10 - lsroot`。
+- `PREFIX`：决定分割档案的前导文字。
 
-分割文档：split [-bl] file PREFIX
--b：分隔档案大小，可加单位 b, k, m 等；split -b 300k /etc/tempcap termcap; ll -k termcap*。文档会按prefix+a,b,c…的顺序产生。
--l：以行数进行分割。ls -al | split -l 10 - lsroot。
-PREFIX：决定分割档案的前导文字。
+参数代换：`xargs [-0epn] command`。`cut -d ':' -f 1 /etc/passwd | head -n 3 | xargs finger`。
+- 对不支持管线的命令非常实用，如`ls`。注意档案名中最好不能有空格，不然会误判。
+- `-0`：如果输入的stdin有特殊字符，如&#96;, `\`, 空格键等，可以将他还原成一般字符。
+- `-e`：EOF的字符串，分析到这个字符串就停止。`cut -d ':' -f 1 /etc/passwd | xargs -p -e'lp' finger`。中间没有空格。
+- `-p`：在执行每个指令时都会询问。
+- `-n`： command指令执行时，要几个参数。`cut -d ':' -f 1 | xargs -p -n 5 finger`。
+- 当 xargs 后面没有接任何的指令时，默认是以`echo`来进行输出
+- `find /sbin -perm +7000 | xargs ls -l`。
 
-参数代换：xargs [-0epn] command。cut -d ‘:’ -f 1 /etc/passwd | head -n 3 | xargs finger。对不支持管线的命令非常实用，如ls。注意档案名中最好不能有空格，不然会误判。
--0：如果输入的stdin有特殊字符，如`, \, 空格键等，可以将他还原成一般字符。
--e：EOF的字符串，分析到这个字符串就停止。cut -d ‘:’ -f 1 /etc/passwd | xargs -p -e’lp’finger。中间没有空格。
--p：在执行每个指令时都会询问。
--n： command指令执行时，要几个参数。cut -d ‘:’ -f 1 | xargs -p -n 5 finger。
-当 xargs 后面没有接任何的指令时，默认是以echo来进行输出喔！
-一个栗子：find /sbin -perm +7000 | xargs ls -l。
+取得账号的信息：`finger`。
 
-取得账号的信息：finger。
+行首的代表标注为`^`。
 
-行首的代表标注为^。
--：某些指令要用文件名做参数，如tar。则如果file 部分写成- ，则为stdin或者stdout。
-	tar -cvf - /home | tar -xvf -：前一个-为stdout，后一个为stdin，即文件移动。
+`-`：某些指令要用文件名做参数，如`tar`。则如果file 部分写成`-`，则为stdin或者stdout。
+```
+tar -cvf - /home | tar -xvf -
+```
+前一个`-`为stdout，后一个为stdin，即文件移动。
 
-在~/.bash_history中记录时间：？
+在`~/.bash_history`中记录时间：
+```
 # vim ~/.bash_logout 
 date >> ~/.myhistory 
-history 50 > > ~/.myhistory
+history 50 >> ~/.myhistory
+```
 
-在这样癿练习中『A=B』且『B=C』，若我下达『unset $A』，则叏消癿发数是 A 还是 B？被叏消癿是 B 喔，因为 unset $A 相当亍 unset B 所以叏消癿是 B ，A 会继续存在！
+```
+A=B # $A is B
+B=C
+unset $A # Equal to unset B, now $B unset
+```
+
 
 ## Chapter 12
 正则表达式Regular Expression：以行为单位处理字符串。
