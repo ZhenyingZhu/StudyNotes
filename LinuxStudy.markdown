@@ -1496,55 +1496,57 @@ unset $A # Equal to unset B, now $B unset
 
 ## Chapter 12
 正则表达式Regular Expression：以行为单位处理字符串。
-	不是程序而是字符串处理标准。需要支持RE的工具程序，如vi，sed，awk。而cp, ls等指令不支持，只能使用bash自身的通配符。
+
+不是程序而是字符串处理标准。需要支持RE的工具程序，如`vi`，`sed`，`awk`。而`cp`, `ls`等指令不支持，只能使用bash自身的通配符。
 
 BASH: linux基本指令。
 
-邮件服务器软件：sendmail与postfix。
+邮件服务器软件：`sendmail`与`postfix`。
 
-扩展正则表达式：通过(和|等进行多字符串查找，如netman or lman。
+扩展正则表达式：通过`(`和`|`等进行或逻辑的多字符串查找。
 
-编码：LANG=C（兼容POSIX标准）：ABC...Zabc...z；LANG=zh_TW：aAbBcC...zZ。所以用[A-Z]抓取大写字母，台湾语系会抓出小写。
+编码：`LANG=C`（兼容POSIX标准）：`ABC...Zabc...z`；`LANG=zh_TW`：`aAbBcC...zZ`。所以用`[A-Z]`抓取大写字母，台湾语系会抓出小写。
 
 特殊字符串：
-[:alnum:]：代表英文大小写字符及数字,即0-9, A-Z, a-z。
-[:alpha:]：代表任何英文大小写字符,即A-Z, a-z。
-[:blank:]：代表空格键和tab按键。
-[:cntrl:]：代表键盘上面的控制按键,包括CR,LF,Tab,Del...。
-[:digit:]：代表数字0-9。
-[:graph:]：除了空格符和Tab键外的其他所有按键。
-[:lower:]：代表小写字符a-z。
-[:print:]：代表任何可以被打印出的字符。
-[:punct:]：代表标点符号(punctuation symbol),即" ' ? ! ; : # $...。
-[:upper:]：代表大写字符A-Z。
-[:space:]：会产生空白的字符如空格键,Tab],CR等。
-[:xdigit:]：代表16进制数字类型,包括:0-9,A-F,a-f。
+- `[:alnum:]`：代表英文大小写字符及数字,即0-9, A-Z, a-z。
+- `[:alpha:]`：代表任何英文大小写字符,即A-Z, a-z。
+- `[:blank:]`：代表空格键和tab按键。
+- `[:cntrl:]`：代表键盘上面的控制按键,包括CR,LF,Tab,Del...。
+- `[:digit:]`：代表数字0-9。
+- `[:graph:]`：除了空格符和Tab键外的其他所有按键。
+- `[:lower:]`：代表小写字符a-z。
+- `[:print:]`：代表任何可以被打印出的字符。
+- `[:punct:]`：代表标点符号(punctuation symbol),即`" ' ? ! ; : # $...`。
+- `[:upper:]`：代表大写字符A-Z。
+- `[:space:]`：会产生空白的字符如空格键,Tab,CR等。
+- `[:xdigit:]`：代表16进制数字类型,包括:0-9,A-F,a-f。
 
-grep [-A] [-B] [--color=auto] '搜寻字符串' filename。不一定需要字符串一定是词。
--A n：after,列出该行及后续的n行；dmesg | grep -n -A3 -B2 -color=auto ‘eth’ 显示网卡信息。
--B n：before，列出该行及前面的n行；
---color=auto：将正确的数据列出颜色。
+`grep [-A] [-B] [--color=auto] '搜寻字符串' filename`。不一定需要字符串一定是词。
+- `-A n`：after,列出该行及后续的n行；`dmesg | grep -n -A3 -B2 -color=auto 'eth'` 显示网卡信息。
+- `-B n`：before，列出该行及前面的n行；
+- `--color=auto`：将正确的数据列出颜色。
 
-列出核心配置信息：dmesg。
+列出核心配置信息：`dmesg`。
 
-练习正则表达式：wget http://linux.vbird.org/linux_basic/0330regularex/regular_express.txt，（鸟哥的私房菜P420）
-虽然类似bash的wildcard，但是不完全相同，比如*和?无用，而有.和*。而且不以单词（及需要左右都为空格）为单位，搜索的是字符串。
-grep -n ‘t[ae]st’ file 得到的是包含test 或taste 的行。
-grep -n ‘[^a-z]oo’ file 或 grep -n ‘[^[:lower:]]oo’ file。
-grep -n ‘^the’ file 利用制表符^代表行首。注意放在中括号中才是取反。
-grep -n ‘\.$’file 利用制表符$代表行尾。而小数点是特殊字符，需要反斜杠。这时windows平台的句尾无法搜索。
-grep -v ‘^$’file | grep -v ‘^#’ 去除空行和注释。
-一个任意字符：.。grep -n ‘g..d’ file。
-重复前面的那个字符0到无穷次：*。
-grep -n ‘gooo*g’file 查找至少2个连续的o。如果’o*’的话会输出全部内容。
-grep -n ‘g.*g’ file 查找由g开头和结尾的字符串。
-grep -n ‘[0-9][0-9]*’ file 等同于grep -n ‘[0-9]’ file。
-重复一定范围的次数：用{a,b}，因为{是特殊字符，要跳脱。grep -n ‘go\{3,5\}’ file。{3,}代表3个及以上。
+练习正则表达式：`wget http://linux.vbird.org/linux_basic/0330regularex/regular_express.txt`
+- 虽然类似bash的wildcard，但是不完全相同，比如`*`和`?`无用，而有`.`和`*`。而且不以单词（及需要左右都为空格）为单位，搜索的是字符串。
+- `grep -n 't[ae]st' file` 得到的是包含test 或taste 的行。
+- `grep -n '[^a-z]oo' file` 或 grep -n '[^[:lower:]]oo' file`。
+- `grep -n '[a-zA-Z0-9]' file` 搜索所有字母数字字符。
+- `grep -n '^the' file` 利用制表符`^`代表行首。注意放在中括号中才是取反。
+- `grep -n '\.$' file` 利用制表符`$`代表行尾。而小数点是特殊字符，需要反斜杠。这种方法windows平台的句尾无法搜索到。
+- `grep -v '^$' file | grep -v '^#'` 去除空行和注释。
+- 一个任意字符：`.`。`grep -n 'g..d' file`。
+- 重复前面的那个字符0到无穷次：`*`。
+- `grep -n 'goo*g' file` 查找至少2个连续的o。如果`'o*'`的话会输出全部内容。
+- `grep -n 'g.*g' file` 查找由g开头和结尾的字符串。
+- `grep -n '[0-9][0-9]*' file` 等同于`grep -n '[0-9]' file`。*
+- 重复一定范围的次数：用`{a,b}`，因为`{`是特殊字符，要跳脱。`grep -n 'go\{3,5\}' file`。`{3,}`代表3个及以上。
+- 注意`!`和`>`在这里不是特殊字符。
 
-查看某目录下链接文件的属性：ls -l /etc/ | grep ‘^l’ | wc -l
+查看某目录下链接文件的属性：`ls -l /etc/ | grep '^l' | wc -l`
 
-正则表达式汇总：（鸟哥的私房菜P427）。注意!和>在这里不是特殊字符。
-
+# HERE
 分析stdin：sed [-nefr] [动作]
 -n：silent模式。即不将STDIN的数据列到屏幕上，只有经sed处理的那一行。
 -e：直接在指令列模式上进行sed的动作编辑；
@@ -1941,7 +1943,7 @@ Debug功能：sh [-nvx] scripts.sh。
 -x：将使用到的script内容显示出来。
 
 
-## Notes
+# Notes
 ctrl+shift+up shell scroll up
 PATH=$PATH:~/opt/bin, 或 PATH=~/opt/bin:$PATH
 添加到默认搜索路径：Add export PATH=$PATH:/home/me/play to your ~/.bashrc.
