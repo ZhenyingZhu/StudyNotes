@@ -1976,4 +1976,4 @@ suspend
 software
 wget
 
-
+for f in Screen*; do echo $f; mv "$f" "$(echo $f|tr -d '\:\-[[:space:]]')"; done
