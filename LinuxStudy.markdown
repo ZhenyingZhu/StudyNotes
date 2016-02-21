@@ -1578,49 +1578,67 @@ cat /etc/passwd | sed -e '4d' -e '6c no six line' > passwd.new
 - 用`|`代表or：`egrep -n 'gd|good|dog' file`。同时找三个词。`egrep -v '^$|^#' file`。排除空白行和注释行。`egrep -n 'g(la|oo)d' file`。找glad 和good。
 - 字符串的重复：`echo 'AxyzxyzxyzC' | egrep 'A(xyz)+C'`。找的是A开始C结束，且当中有xyz重复1次以上的字符串。
 
-格式化打印：printf '打印格式' 实际内容。不是管线命令。格式的几个特殊样式：
-\a：警告声音输出。
-\b：backspace。
-\f：清除屏幕(form feed)。
-\n：输出新的一行。
-\r：Enter。
-\t：水平tab按键。printf '%s\t %s\t %s\t\n' $(cat printf.txt)。将printf.txt的内容用每行三段的格式输出。
-\v：垂直tab按键。
-\xNN：两位数NN转换为ASCII中该16进制数值代表的字符。printf '\x45\n'。
-C语言的变量格式： 
-%ns：n个字符；printf '%10s\t %5i\t %5i\t %8.2f\n' $(cat printf.txt | grep -v Name)。
-%ni：n个整数；
-%N.nf:N个位数和小数点后n位的浮点数。
+格式化打印：`printf '打印格式' 实际内容`。不是管线命令。格式的几个特殊样式：
+- `\a`：警告声音输出。
+- `\b`：backspace。
+- `\f`：清除屏幕(form feed)。
+- `\n`：输出新的一行。
+- `\r`：Enter。
+- `\t`：水平tab按键。`printf '%s\t %s\t %s\t\n' $(cat printf.txt)`。将printf.txt的内容用每行三段的格式输出。
+- `\v`：垂直tab按键。
+- `\xNN`：两位数NN转换为ASCII中该16进制数值代表的字符。`printf '\x45\n'`。
+- C语言的变量格式： 
+  - `%ns`：该区间长度为n个字符；`printf '%10s\t %5i\t %5i\t %8.2f\n' $(cat printf.txt | grep -v Name)`。
+  - `%ni`：长度为n个字符的整数；
+  - `%N.nf`: 长度为N个字符的整数和小数点后n位的浮点数。
 
-处理字段：awk '条件类型1{动作1} 条件类型2{动作2} ...' filename。可读取文件或stdin。字段需以空格或tab分隔。
-内建变量：NF：每一行的字段总数；NR：目前处理的是行数；FS：当前的分隔字符，默认是空格。last -n 5| awk '{print $1 “\t lines:” NR “\t columes:” NF}'。
-last -n 5 | awk '{print $1 “\t” $3}'。打印出第1和第3个字段，并由tab分隔。$0代表一整行。
-逻辑判断：cat /etc/passwd | awk '{FS=”:”} $3<10 {print $1 “\t” $3}'。结果第一行并没有正确处理，需要在之前加入BIGIN：cat /etc/passwd | awk 'BEGIN {FS=”:”} $3<10 {print $1 “\t” $3}'。
-cat pay.txt | awk 'NR==1 {printf “%10s\t %10s\t %10s\n”} NR>=2 {total=$2+$3+$4； printf “%10s %10d %10.2f\n”, $1, $2, total}'。{}内的两条指令之间要用;或enter分隔。
-if语句：cat pay.txt | awk '{if(NR==1) printf “%10s %10s %10s\n”,$1,$2,$3,”Total”} NR>=2 {total=$2+$3+$4; printf “%10s %10d %10d %10d”, $1,$2,$3,total}'。
-还可循环。（鸟哥的私房菜P438）。
+处理字段：`awk '条件类型1{动作1} 条件类型2{动作2} ...' filename`。可读取文件或stdin。字段需以空格或tab分隔。
+- `{}`内的两条指令之间要用`;`或enter分隔。
+- 内建变量：
+  - `NF`：每一行的字段总数；
+  - `NR`：目前处理行的行数；
+  - `FS`：当前的分隔字符，默认是空格。
+- `last -n 5| awk '{print $1 "\t lines:" NR "\t columes:" NF}'`。
+- `last -n 5| awk '{print $1 "\t" $3}'`。打印出第1和第3个字段，并由tab分隔。`$0`代表一整行。
+- 逻辑判断：
+  - 需要在之前加入BIGIN，不然第一行会不能正确处理：`cat /etc/passwd | awk 'BEGIN {FS=":"} $3<10 {print $1 "\t" $3}'`。
+  - `cat pay.txt | awk 'NR==1 {printf "%10s\t %10s\t %10s\n"} NR>=2 {total=$2+$3+$4; printf "%10s %10d %10.2f\n",$1,$2,total}'`。
+  - if语句：`cat pay.txt | awk '{if(NR==1) printf "%10s %10s %10s\n",$1,$2,$3,"Total"} NR>=2 {total=$2+$3+$4; printf "%10s %10d %10d %10d", $1,$2,$3,total}'`。
+- 还可循环。
 
-文本档案差异对比：diff [-bBi] from-file to-file。显示信息说明：（鸟哥的私房菜P439）。以行作为单位。
-from-file：原始比对档案；可以-取代。
-to-file：目的比对档案；可以-取代。
--b：忽略一行当中仅有多个空格的差异。
--B：忽略空白行的差异。 
--i：忽略大小写的差异。
-文件夹差异对比：diff /etc/rc3.d/ /etc/rc5.d/。
-根据新档案的不同处制作升级补丁：diff -Naur passwd.old passwd.new > passwd.patch。
+文本档案差异对比：`diff [-bBi] from-file to-file`。
+- 显示信息说明：`4d3`表明以右文档的第3行为基准，左文档的第4行被删。`6c5`表明左第6行被替代为右第5行。
+- 以行作为单位。
+- `from-file`：原始比对档案；可以`-`取代。
+- `to-file`：目的比对档案；可以`-`取代。
+- `-b`：忽略一行当中仅有多个空格的差异。
+- `-B`：忽略空白行的差异。 
+- `-i`：忽略大小写的差异。
+- 文件夹差异对比：`diff /etc/rc3.d/ /etc/rc5.d/`。
+- 根据新档案的不同处制作升级补丁：`diff -Naur passwd.old passwd.new > passwd.patch`。
 
-使用补丁：patch -pN < patch_file。N为目录删减数。patch -p0 < passwd.patch。
-将升级过的文档恢复为旧文档：patch -R -pn < passwd.patch。patch -R -p0 < passwd.patch。
+在文件上打`diff`生成的补丁:
+- 使用补丁：`patch -pN < patch_file`。`N`为目录删减数。0表示需打补丁的文件就在当前目录。`patch -p0 < passwd.patch`。
+- 将升级过的文档恢复为旧文档：`patch -R -pn < passwd.patch`。`patch -R -p0 < passwd.patch`。
+- 目录删减数：当patch是用`diff`比较的目录时，根据生成patch时所在的目录计算。
 
-字节档案对比：cmp [-s] file1 file2。以字节为单位。结果为byte 和line 的位置。
--s：将所有不同的字节处列出来。预设仅会输出第一个出现的不同点。
+字节档案对比：`cmp [-s] file1 file2`。以字节为单位。结果为byte 和line 的位置。
+- `-s`：将所有不同的字节处列出来。预设仅会输出第一个出现的不同点。
 
-档案打印：pr /etc/man.config。
+档案打印预览：`pr /etc/man.config`。
 
-通配符与正则表达式搭配：grep '\*' /etc/*。
-搜索子文件夹：grep '\*' $(find /etc -type f)。因为/etc下有太多文件，会因为指令长度太长而报错。
-分批次搜索：find /etc -type f | xargs -n 10 grep '\*'。
-设置个指令查看ip地址：alias myip=”ifconfig eth0 | grep 'inet addr' | sed 's/^.*inet addr://g' | cut -d '' -f1”; MYIP=$(myip);将这两行写入.bashrc。
+通配符与正则表达式搭配：```grep '\*' /etc/*```。
+
+搜索子文件夹：```grep '\*' $(find /etc -type f)```。因为`/etc`下有太多文件，会因为指令长度太长而报错。
+
+分批次搜索：```find /etc -type f | xargs -n 10 grep '\*'```。
+
+设置个指令查看ip地址：
+```
+alias myip="ifconfig eth0 | grep 'inet addr' | sed 's/^.*inet addr://g' | cut -d '' -f1"
+MYIP=$(myip)
+```
+将这两行写入`.bashrc`。
 
 ## Chapter 13
 系统服务启动的接口：/etc/init.d/目录下，全是scripts。如启动系统注册表,/etc/init.d/syslogd restart。/etc/init.d/syslog stop。
@@ -1652,13 +1670,13 @@ exit 0	可用$?查看。
 将该脚本转为可执行脚本：chmod a+x sh01.sh;
 
 读入键盘输入：
-read -p “Please input your first name:” firstname
-read -p “please input your last name:” lastname
-echo -e “\nYour full name is $firstname $lastname”
+read -p "Please input your first name:" firstname
+read -p "please input your last name:" lastname
+echo -e "\nYour full name is $firstname $lastname"
 
 设定文件名为日期：
-read -p “please input your filename” fileuser
-filename=${fileuser:-“filename”}
+read -p "please input your filename" fileuser
+filename=${fileuser:-"filename"}
 date1=$(date --date='2 days ago' +%Y%m%d) # --date用文字设定日期，如now。
 date2=$(date --date='1 days ago' +%Y%m%d)
 date3=$(date +%Y%m%d)
