@@ -1,3 +1,5 @@
+[Docker](http://blog.yohanliyanage.com/2015/05/docker-clean-up-after-yourself/)  
+
 icewm: a lightweight xwindow.  
 
 [list all files in a rpm](rpm -ql $package-name)  
