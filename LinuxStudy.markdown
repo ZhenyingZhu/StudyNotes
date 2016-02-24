@@ -1641,40 +1641,49 @@ MYIP=$(myip)
 将这两行写入`.bashrc`。
 
 ## Chapter 13
-系统服务启动的接口：/etc/init.d/目录下，全是scripts。如启动系统注册表,/etc/init.d/syslogd restart。/etc/init.d/syslog stop。
-防火墙连续规则：iptables。
+系统服务启动的接口：`/etc/init.d/`目录下，全是scripts。如启动系统注册表,`/etc/init.d/syslogd restart`。`/etc/init.d/syslog stop`。
+
+防火墙连续规则：`iptables`。
 
 Shell Script规则：
-1.从上而下、从左向右执行；
-2.指令、选项与参数间的多个空格视为1个；
-3.空白行忽略，tab视为空格；
-4.读取到Enter (CR)时开始执行命令；
-5.如果一行的内容太多，可以使用\Enter；
-6.#是批注符。
+1. 从上而下、从左向右执行；
+2. 指令、选项与参数间的多个空格视为1个；
+3. 空白行忽略，tab视为空格；
+4. 读取到Enter (CR)时开始执行命令；
+5. 如果一行的内容太多，可以使用`\Enter`；
+6. `#`是批注符。
 
-执行script：当shell.sh有rx权限，可直接通过档案名执行。或通过bash程序来执行：bash shell.sh或sh shell.sh。sh [-nx] shell.sh可以检查语法。
-这时是在一个子bash程序中执行的，在script中的变量是不会传回原bash的。
-利用source shell.sh来执行，可保持在原bash中执行，所以各项指令结果都有效。
+执行script：
+- 当shell.sh有`rx`权限，可直接通过档案名执行。
+- 或通过bash程序来执行：`bash shell.sh`或`sh shell.sh`。
+- `sh [-nx] shell.sh`可以检查语法。
+- 这时是在一个子bash程序中执行的，在script中的变量是不会传回原bash的。
+- 利用`source shell.sh`来执行，可保持在原bash中执行，所以各项指令结果都有效。
 
 显示Hello World的script：
-#!/bin/bash	宣告使用的bash名称，就可以加载bash的相关环境，一般是non-login shell。
-# Program:	批注说明内容与功能，版本信息，作者联系方式，建档日期，历史记录。
+```
+#!/bin/bash # 宣告使用的bash名称，就可以加载bash的相关环境，一般是non-login shell。
+# Program: # 批注说明内容与功能，版本信息，作者联系方式，建档日期，历史记录。
 #     This program shows "Hello World!" in your screen. 
 # History: 
 # 2005/08/23 VBird First release 
-PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin 	将主要环境变量设置好，避免使用绝对路径。
-export PATH 
-echo -e "Hello World! \a \n" 	-e选项：发出提示音。
-exit 0	可用$?查看。
+PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin # 将主要环境变量设置好，避免使用绝对路径。
+export PATH
+echo -e "Hello World! \a \n" # -e选项：发出提示音。
+exit 0 # 可用$?查看。
+```
 
-将该脚本转为可执行脚本：chmod a+x sh01.sh;
+将该脚本转为可执行脚本：`chmod a+x sh01.sh`;
 
 读入键盘输入：
+```
 read -p "Please input your first name:" firstname
 read -p "please input your last name:" lastname
 echo -e "\nYour full name is $firstname $lastname"
+```
 
 设定文件名为日期：
+```
 read -p "please input your filename" fileuser
 filename=${fileuser:-"filename"}
 date1=$(date --date='2 days ago' +%Y%m%d) # --date用文字设定日期，如now。
@@ -1686,36 +1695,43 @@ file3=${filename}${date3}
 touch "$file1"
 touch "$file2"
 touch "$file3"
+```
 
 两数字相乘：
+```
 read -p "first number: " firstnu
 read -p "second number" secondnu
 total=$(($firstnu*$secondnu)) # 将两输入的字符串变为整数并运算，等同于declare -i total=$firstnu*$secondnu
 echo -e "\nResult ==> $total"
+```
 
-$((运算式))支持运算：+-*/%。运算式中可以有空格。
+`$((运算式))`支持运算：```+-*/%```。运算式中可以有空格。
 
-测试档案是否存在：test [-efdrwx] filename。
--e：是否存在。test -e /dmtsai && echo "exist" || echo "Not exist"。
--f：是否存在且为档案(file)。
--d：是否存在且为目录(directory)。
--r：是否存在且具有可读权限。
--w：是否存在且具有可写权限。
--x：是否存在且具有可执行权限。
-测试两个档案：test file1 [-nt-ot-ef] file2。
--nt：(newer than) file1是否比file2新。
--ot：(older than) file1是否比file2旧。
--ef：file1与file2是否为同一档案，即是否hard link。
-测试两个整数：test n1 [-eq-ne-gt-lt-ge-le] n2。
+测试档案是否存在：`test [-efdrwx] filename`。
+- `-e`：是否存在。`test -e /dmtsai && echo "exist" || echo "Not exist"`。
+- `-f`：是否存在且为档案(file)。
+- `-d`：是否存在且为目录(directory)。
+- `-r`：是否存在且具有可读权限。
+- `-w`：是否存在且具有可写权限。
+- `-x`：是否存在且具有可执行权限。
+
+测试两个档案：`test file1 [-nt-ot-ef] file2`。
+- `-nt`：(newer than) file1是否比file2新。
+- `-ot`：(older than) file1是否比file2旧。
+- `-ef`：file1与file2是否为同一档案，即是否hard link。
+
+测试两个整数：`test n1 [-eq-ne-gt-lt-ge-le] n2`。
+
 判断字符串：
-test -z string：判断字符串是否为空，为空输出true。
-test -n string：是否为空，为空输出false。
-test str1 = str2：相等返回true。
-test str1 != str2。
-多重判断：-a：and。-o：or。！：not。
-test -r filename -a -x filename。同时具有可读和可执行权限时，返回true。
-其他判断：（鸟哥的私房菜P454）
+- `test -z string`：判断字符串是否为空，为空输出true。
+- `test -n string`：是否为空，为空输出false。
+- `test str1 = str2`：相等返回true。
+- `test str1 != str2`。
 
+多重判断：`-a`：and。`-o`：or。`!`：not。
+- `test -r filename -a -x filename`。同时具有可读和可执行权限时，返回true。
+
+# HERE
 判断档案是否存在，什么类型和输出权限：
 read -p "Input a filename: \n\n" filename
 test -z $filename && echo "Empty String" && exit 0
