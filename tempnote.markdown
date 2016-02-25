@@ -1,3 +1,5 @@
+NOOP: no operation.  
+
 [Docker](http://blog.yohanliyanage.com/2015/05/docker-clean-up-after-yourself/)  
 
 icewm: a lightweight xwindow.  
