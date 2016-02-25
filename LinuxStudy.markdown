@@ -1731,8 +1731,8 @@ echo -e "\nResult ==> $total"
 多重判断：`-a`：and。`-o`：or。`!`：not。
 - `test -r filename -a -x filename`。同时具有可读和可执行权限时，返回true。
 
-# HERE
 判断档案是否存在，什么类型和输出权限：
+```
 read -p "Input a filename: \n\n" filename
 test -z $filename && echo "Empty String" && exit 0
 test ! -e $filename && echo "Not exist" && exit 0
@@ -1741,37 +1741,53 @@ test -d filename && filetype="directory"
 test -r filename && perm="Readable"
 test -w filename && perm="$perm Writeable"
 test -x filename && perm="$perm Executable"
-echo "filename is $filetype"
+echo "$filename is $filetype"
 echo "Permissions are $perm"
+```
 
-该脚本用root执行会与ls -l看到的不同，因为权限限制多数对root无效。
+该脚本用root执行会与`ls -l`看到的不同，因为权限限制多数对root无效。
 
-判断符号：bash中使用[]作为判断，类似于test。为避免被误认为正则表达式，需要在括号中每个组件前后加入两个空格。变量都以双引号括起来，常数用引号括起来，使得这些量被bash替换为值时视为一个量。（鸟哥的私房菜P456）
-[ -z "$HOME"]; echo $; 判断是否为空。
-[ "$HOME" == "$MAIL" ] 判断是否相同。
+判断符号：
+- bash中使用`[]`作为判断，类似于test。
+- 为避免被误认为正则表达式，需要在括号中每个组件前后加入两个空格。
+- 变量都以双引号括起来，常数用引号括起来，使得这些量被bash替换为值时视为一个量。（鸟哥的私房菜P456）
 
+```
+[ -z "$HOME" ]; echo $; # 判断是否为空。
+[ "$HOME" == "$MAIL" ] # 判断是否相同。
+```
+
+判断输入的Y或N：
+```
 read -p "Please input (Y/N)" yn
 [ "$yn" == "Y" -o "$yn" == "y" ] && echo "yes" && exit 0
 [ "$yn" == "N" -o "$yn" == "n" ] && echo "no" && exit 0
 echo "Invalid input" && exit 0
+```
 
-/path/to/scriptname opt1 opt2 opt3 opt4对应$0,$1,$2,$3,$4。即脚本档名为$0。
-$#代表参数个数，$@代表"$1" "$2" "$3" "$4"，$*代表$1分隔$2分隔$3分隔$4分隔。分隔字符默认为空格。
+`/path/to/scriptname opt1 opt2 opt3 opt4`对应`$0,$1,$2,$3,$4`。即脚本档名为`$0`。
 
+`$#`代表参数个数，`$@`代表`"$1" "$2" "$3" "$4"`，`$*`代表`$1分隔$2分隔$3分隔$4分隔`。分隔字符默认为空格。
+
+```
 echo "Script name is $0"
 echo "Parameter number is $#"
 [ $# -lt 2 ] && echo "too less parameters" && exit 0
-echo "Your whole parameters are '$@'" ？为嘛用单引号
+echo "Your whole parameters are '$@'" 
+```
 
-参数编码偏移：shift n0，抛弃前n个参数。
+参数编码偏移：`shift n0`，抛弃前n个参数。
 
+```
 echo "Parameter number is $#"
 shift
 echo "Parameters are '$@'"
 shift 2
 echo "Parameters are '$@'"
+```
 
 条件判断：
+```
 if [ 条件判断 ] && [ 条件判断 ]; then
     执行指令;
 elif [ 条件判断 ]; then
@@ -1779,7 +1795,9 @@ elif [ 条件判断 ]; then
 else
     执行指令;
 fi
+```
 
+```
 read -p "Please input Y/N" yn
 if [ '$yn' == 'Y' ] || [ '$yn' == 'y' ]; then
     echo "yes"
@@ -1788,7 +1806,9 @@ elif [ '$yn' == 'N' ] || [ '$yn' == 'n']; then
 else
     echo "Invalid input"
 fi
+```
 
+```
 if [ "$1" == "Hello" ]; then
     echo "Hello"
 elif [ "$1" == "" ]; then
@@ -1796,6 +1816,9 @@ elif [ "$1" == "" ]; then
 else
     echo "Can only input 'Hello', ex>{$0 hello}"
 fi
+```
+
+# HERE
 
 查询主机开启的网络服务端口：netstat -tuln。（鸟哥的私房菜P462）
 127.0.0.1对本机地址，0.0.0.0或:::对整个internet。
