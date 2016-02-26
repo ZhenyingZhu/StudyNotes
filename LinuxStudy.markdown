@@ -1767,7 +1767,7 @@ echo "Invalid input" && exit 0
 
 `/path/to/scriptname opt1 opt2 opt3 opt4`对应`$0,$1,$2,$3,$4`。即脚本档名为`$0`。
 
-`$#`代表参数个数，`$@`代表`"$1" "$2" "$3" "$4"`，`$*`代表`$1分隔$2分隔$3分隔$4分隔`。分隔字符默认为空格。
+`$#`代表参数个数，`$@`代表`"$1" "$2" "$3" "$4"`，```$*```代表`$1分隔$2分隔$3分隔$4分隔`。分隔字符默认为空格。
 
 ```
 echo "Script name is $0"
@@ -1818,12 +1818,13 @@ else
 fi
 ```
 
-# HERE
+查询主机开启的网络服务端口：`netstat -tuln`, 查看使用了tcp或udp的正在监听的端口, 显示端口号。
 
-查询主机开启的网络服务端口：netstat -tuln。（鸟哥的私房菜P462）
-127.0.0.1对本机地址，0.0.0.0或:::对整个internet。
-常见的网络服务port：80: WWW，22: ssh，21: ftp，25: mail，111: RPC(进程过程调用)，631: CUPS(打印服务功能)。
+`127.0.0.1`对本机地址，`0.0.0.0`或`:::`对整个internet。
 
+常见的网络服务port：`80`: WWW，`22`: ssh，`21`: ftp，`25`: mail，`111`: RPC(进程过程调用)，`631`: CUPS(打印服务功能), `53`: DNS。
+
+```
 testing=$(netstat -tuln | grep ":80 ")
 if [ "$testing" != "" ]; then
     echo "Your WWW server is on. "
@@ -1832,8 +1833,10 @@ testing=$(netstat -tuln | grep ":22 ")
 if [ "$testing" != "" ]; then
     echo "Your ssh server is on. "
 if
+```
 
 计算日期相差时间
+```
 read -p "Please input date (YYYYMMDD ex> 20070401): " date2
 
 date_d=$(echo $date2 | grep '[0-9]\{8\}')
@@ -1842,18 +1845,20 @@ if [ "$date_d" == "" ]; then
     exit 1
 fi
 
-declare -i date_dem=`date --date="date2" +%s`
+declare -i date_dem=`date --date="$date2" +%s`
 declare -i date_now=`date +%s`
 declare -i date_total_s=$(($date_dem-$date_now))
 declare -i date_d=$(($date_total_s/60/60/24)) #转换为天数
 if [ "$date_total_s" -lt "0" ]; then
-    echo "Before" $((-1*$date_d)) "ago" ?为嘛前后分段
+    echo "Before" $((-1*$date_d)) "days ago" 
 else
     declare -i date_h=$(($(($date_total_s-$date_d*60*60*24))/60/60))
     echo "After $date_d days and $date_h hours. "
 fi
+```
 
 Switch 判断：
+```
 case $变量名称 in
  "变量值")
     执行指令
@@ -1866,7 +1871,9 @@ case $变量名称 in
     exit 1
     ;;
 esac
+```
 
+```
 case $1 in
  "Hello")
     echo "Hello, how are you?"
@@ -1878,13 +1885,17 @@ case $1 in
     echo "Usage $0 {Hello}"
     ;;
 esac
+```
 
-自定义函数：一定要在script调用该函数的部分的前面。$0代表fname，$1代表调用函数时后面接的第一个参数…
+自定义函数：一定要在script调用该函数的部分的前面。`$0`代表fname，`$1`代表调用函数时后面接的第一个参数, `$2`依此类推...
+```
 function fname() {
     程序块
 }
+```
 
-PATH=…
+```
+PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
 export PATH
 function printit(){
      echo -n "Your choice is $1"
@@ -1900,9 +1911,10 @@ case $1 in
     echo "Usage $0 {one|two}"
     ;;
 esac
-
+```
 输出则是Your choice is 1 ONE，或Your choice is 2 TWO。
 
+# HERE
 循环：
 while [ condition ]
 do
