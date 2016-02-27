@@ -1914,29 +1914,40 @@ esac
 ```
 输出则是Your choice is 1 ONE，或Your choice is 2 TWO。
 
-# HERE
 循环：
+```
 while [ condition ]
 do
     程序段落
 done
+```
+
 或
-until [ condition ] #条件达成是种植循环。
+```
+until [ condition ] #条件达成是种值循环。
 do
     程序块
 done
+```
+
 或
+```
 for var in con1 con2 con3
 do
     程序块
 done
+```
+
 或
+```
 for ((初始值;限制值;步长))
 do
     程序块
 done
+```
 
 例子1：
+```
 while [ "$yn" != "yes" -a "$yn" != "YES" ]
 do 
     read -p "please input yes"
@@ -1948,32 +1959,40 @@ do
     read -p "please input yes"
 done
 echo "OK! "
+```
 
 例子2：
+```
 s=0
 i=0
 while [ "$i" != "100" ]
 do
-    i=$((i+1))
+    i=$((i+1)) # doesn't matter if it is $i or i
     s=$(($s+$i))
 done
 echo "result is $s"
+```
 
 例子3：
+```
 for animal in dog cat elephant
 do
     echo "There are ${animal}s"
 done
+```
 
 例子4：
+```
 users=$(cut -d ':' -f1 /etc/passwd)
 for  username in $users
 do
     id $username
     finger $username
 done
+```
 
 例子5：
+```
 network="192.168.1"
 for sitenu in $(seq 1 100)
 do
@@ -1984,16 +2003,19 @@ do
         echo "Server is down"
     fi
 done
+```
 
 例子6：
+```
 read -p "input a directory: " $dir
 if [ "$dir" == "" -o ! -d "$dir" ]; then
-    echo "not vaid"
+    echo "not valid"
     exit
 fi
 
 filelist=$(ls $dir)
-for filename in filelist
+for filename in filelist # if files have space in name, this does not work
+# for filename in $dir/* can do the trick
 do
     perm=""
     test -r "$dir/$filename" && perm="$perm readable"
@@ -2001,8 +2023,10 @@ do
     test -x "$dir/$filename" && perm="$perm executable"
     echo "The file is $perm"
 done
+```
 
 例子7：
+```
 read -p "input end number" nu
 s=0
 for ((i=1;i<$nu;i=i+1))
@@ -2010,8 +2034,9 @@ do
     s=$(($s+$i))
 done
 echo "result $s"
+```
 
-
+# HERE
 Debug功能：sh [-nvx] scripts.sh。
 -n：检查语法； 
 -v：执行script前将脚本内容输出；即执行时输出原脚本，如有结果输出，一起输出。
