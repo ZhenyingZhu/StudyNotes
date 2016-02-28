@@ -1,3 +1,5 @@
+Change docker ip: `/etc/default/docker` [Change docker OPTs](https://groups.google.com/forum/#!topic/docker-user/P93kOO7-QvA)
+
 NOOP: no operation.  
 
 [Docker](http://blog.yohanliyanage.com/2015/05/docker-clean-up-after-yourself/)  
