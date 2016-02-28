@@ -2036,11 +2036,10 @@ done
 echo "result $s"
 ```
 
-# HERE
-Debug功能：sh [-nvx] scripts.sh。
--n：检查语法； 
--v：执行script前将脚本内容输出；即执行时输出原脚本，如有结果输出，一起输出。
--x：将使用到的script内容显示出来。
+Debug功能：`sh [-nvx] scripts.sh`。
+- `-n`：检查语法； 
+- `-v`：执行script前将脚本内容输出；即执行时输出原脚本，如有结果输出，一起输出。
+- `-x`：将使用到的script内容显示出来。
 
 
 # Notes
