@@ -136,11 +136,13 @@ RAID:多个磁盘接成阵列。
 1.	Master Boot Record (MBR) ，安装开机管理程序。  
 2.	Partition table。总共记录4个Primary+ Extended，记作P1: `/dev/hda1`。Extended内的logic partition记录在额外的扇区，从`/dev/hda5`开始。  
 
+
 开机流程:
 1. BIOS
 2. MBR
 3. boot loader
-4. 核心档案。  
+4. 核心档案。
+
 
 CMOS记录硬件参数的存储器。  
 
@@ -1645,13 +1647,15 @@ MYIP=$(myip)
 
 防火墙连续规则：`iptables`。
 
+
 Shell Script规则：
-1.从上而下、从左向右执行；
-2.指令、选项与参数间的多个空格视为1个；
-3.空白行忽略，tab视为空格；
-4.读取到Enter (CR)时开始执行命令；
-5.如果一行的内容太多，可以使用`\Enter`；
-6.`#`是批注符。
+1. 从上而下、从左向右执行；
+2. 指令、选项与参数间的多个空格视为1个；
+3. 空白行忽略，tab视为空格；
+4. 读取到Enter (CR)时开始执行命令；
+5. 如果一行的内容太多，可以使用`\Enter`；
+6. `#`是批注符。
+
 
 执行script：
 - 当shell.sh有`rx`权限，可直接通过档案名执行。
