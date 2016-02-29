@@ -138,6 +138,7 @@ RAID:多个磁盘接成阵列。
 
 
 开机流程:
+
 1. BIOS
 2. MBR
 3. boot loader
