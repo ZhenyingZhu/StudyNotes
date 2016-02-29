@@ -894,6 +894,7 @@ umount /mnt/centos_dvd/
 ```
 
 挂载档案已虚拟一个分割槽：
+
 1. 建立空档案：`dd if=/dev/zero of=/home/loopdev bs=1M count=512`。
   - `if`：input file，`/dev/zero`：一直输出0的装置。
   - `of`：output file。
@@ -903,6 +904,7 @@ umount /mnt/centos_dvd/
 3. 用loop挂载：`mount -o loop /home/loopdev /media/cdrom/`。用`xen`软件可以进行根目录挂载，相当于虚拟机。
 
 建置swap：
+
 1．分割：`fdisk /dev/hdc;n;[enter];[+256M];p;t;7//新建的分割槽;82//swap的Id;w;partprobe;`
 2．格式化：`mkswap /dev/hdc7`。
 3．启用：`swapon /dev/hdc7`。
