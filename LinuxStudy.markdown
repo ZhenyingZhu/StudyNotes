@@ -132,9 +132,10 @@ RAID:多个磁盘接成阵列。
 - 网卡:/dev/eth[0-n]。
 
 磁盘分区:Partition在windows下为C, D, E，Linux下SATA按侦查到的顺序分配sda，sdb。  
-磁盘第一个扇区，记录:  
-1.	Master Boot Record (MBR) ，安装开机管理程序。  
-2.	Partition table。总共记录4个Primary+ Extended，记作P1: `/dev/hda1`。Extended内的logic partition记录在额外的扇区，从`/dev/hda5`开始。  
+磁盘第一个扇区，记录:
+
+1. Master Boot Record (MBR) ，安装开机管理程序。
+2. Partition table。总共记录4个Primary+ Extended，记作P1: `/dev/hda1`。Extended内的logic partition记录在额外的扇区，从`/dev/hda5`开始。
 
 
 开机流程:
@@ -733,19 +734,19 @@ inode, superblock
   - group信息记录在boot sector中。
 - FAT用链表形式记录。需碎片整理。
 - inode：记录：
-  - 1.存取模式(read/write/excute)；
-  - 2.拥有者与群组(owner/group)；
-  - 3.档案容量；
-  - 4.ctime，atime，mtime；
-  - 5.档案的flag如SetUID；
-  - 6.block的位置pointer。
+  1. 存取模式(read/write/excute)；
+  2. 拥有者与群组(owner/group)；
+  3. 档案容量；
+  4. ctime，atime，mtime；
+  5. 档案的flag如SetUID；
+  6. block的位置pointer。
   - 大小均固定为128 bytes。
 - Superblock：记录:
-  - 1.block与inode的总量；
-  - 2.未使用和已使用的inode/block数量；
-  - 3.block与inode的大小；
-  - 4.filesystem的挂载时间、写入数据时间、fsck（检查硬盘）时间等；
-  - 5. 一个valid bit：系统已被挂载为0否则为1。
+  1. block与inode的总量；
+  2. 未使用和已使用的inode/block数量；
+  3. block与inode的大小；
+  4. filesystem的挂载时间、写入数据时间、fsck（检查硬盘）时间等；
+  5. 一个valid bit：系统已被挂载为0否则为1。
   - 大小为1024 bytes。
   - 可以用`dumpe2fs`查看。
   - 第一个block group内有superblock，后续的不一定有，有也是备份。
