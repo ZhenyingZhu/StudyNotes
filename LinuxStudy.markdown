@@ -2051,6 +2051,39 @@ Debug功能：`sh [-nvx] scripts.sh`。
 - `-v`：执行script前将脚本内容输出；即执行时输出原脚本，如有结果输出，一起输出。
 - `-x`：将使用到的script内容显示出来。
 
+>
+
+## Chapter 14
+Linux 账号管理与ACL 权限设定
+
+!!Skip!!
+
+## Chapter 15
+磁盘配额(Quota)与进阶文件系统管理
+
+!!Skip!!
+
+## Chapter 16
+例行性工作排程 (crontab)
+
+!!Skip!!
+
+## Chapter 17
+进程(process): 
+- 正在运作的, 在内存内的数据
+- 触发一个事件后产生一个进程, 系统给其分配PID
+- 可由PID 得到该进程的权限, 由执行者的UID和GID决定
+- 由PID可知该进程所需的资料
+
+父进程(Parent):
+- 子进程的PPID就是父进程
+- 子进程获得父进程的环境变量
+- fork-and-exec: 父复制一个子进程再执行
+
+# P603
+
+`ps -l` 查看当前用户的进程, 包含更多信息。WCHAN表明该进程当前状态。
+
 
 # Notes
 ctrl+shift+up shell scroll up
