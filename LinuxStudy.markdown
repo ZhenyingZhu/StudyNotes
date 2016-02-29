@@ -1288,6 +1288,7 @@ ls -l `locate crontab`
 - 可修改`~/.bash_logout` 记录bash退出的时间。
 
 同名指令的执行顺序：等同于`type -a command` 找到的顺序。
+
 1. 以相对/绝对路径执行的指令。如`/bin/ls`或`./ls`。
 2. 由`alias`找到的指令。
 3. bash内建的(builtin)指令。
@@ -1653,6 +1654,7 @@ MYIP=$(myip)
 
 
 Shell Script规则：
+
 1. 从上而下、从左向右执行；
 2. 指令、选项与参数间的多个空格视为1个；
 3. 空白行忽略，tab视为空格；
