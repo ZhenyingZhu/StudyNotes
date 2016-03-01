@@ -1,3 +1,10 @@
+[Git stack](http://stackoverflow.com/questions/14824431/git-merge-without-including-commits-from-one-branch-to-another)
+```
+git checkout master
+git merge --squash dev
+git commit -m "Add new feature."
+```
+
 Change docker ip: `/etc/default/docker` [Change docker OPTs](https://groups.google.com/forum/#!topic/docker-user/P93kOO7-QvA)
 
 NOOP: no operation.  
