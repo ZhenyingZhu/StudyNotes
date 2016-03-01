@@ -2080,8 +2080,64 @@ Linux 账号管理与ACL 权限设定
 - 子进程获得父进程的环境变量
 - fork-and-exec: 父复制一个子进程再执行
 
-# P603
+守护进程(deamon): 常驻内存的进程
+- crond: 每分钟扫描`/etc/crontab`
+- syslog
+- 网络进程: 会启动监听端口(port)
+- Apache
+- named
+- postfix
+- vsftpd
 
+CPU调度: 轮换时间片
+
+`/etc/inittab`管理七个终端。各终端可用`alt+F1~7`切换。
+
+`/etc/security/limits.conf`设置使用者最多可同时登录数。
+
+bash 工作管理(job control):
+- 出现提示字符的是前台(foreground)
+- `cp file1 file2 &`: 放于后台(background)执行。
+- 有一个job number, 在`[]`中, 之后为PID。PID部分会变Done。
+- stdin不能连接背景中的进程, 但stdout和stderr仍显示到terminal。
+- 在前台执行的程序, `ctrl+z`进入后台, 并被暂停(stopped)。
+- 使用`bg`继续运行后台工作, `fg`恢复
+- 登出(脱机)时后台工作也终止, 因为工作管理在终端下。除非用`at`让工作在系统背景中运行, 或`nohup`。
+
+观察后台工作: `jobs [-lrs]`
+- `-l`: 列出PID
+- `-r`: 列出正在run的
+- `-s`: stop的
+- 工作前的`+`表示最后一个放入后台的, `-`表示倒数第二个
+
+恢复后台工作到前台: `fg %jobnumber`, 如`fg %1`, 或`fg -`
+
+令后台工作恢复运行: `bg %num`
+
+管理工作: `kill -signal %num`
+- `kill -l` 列出所有signal
+- `1`: 重新读取配置文件
+- `2`: `ctrl+c`
+- `9`: 强制结束
+- `15`: 正常结束。默认值
+
+`killall`类似。
+
+`nohup`不支持bash内建指令:
+
+sleep500.sh
+```
+#!/bin/bash
+/bin/sleep 500s
+/bin/echo "Hello World"
+```
+
+`nohup ./sleep500.sh &` 会输出nohup.out, 不会因为脱机而终止。
+
+静态观察进程: `ps`
+- `ps aux`
+- `ps -lA`
+- ps axjf`
 `ps -l` 查看当前用户的进程, 包含更多信息。WCHAN表明该进程当前状态。
 
 
