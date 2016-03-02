@@ -2135,11 +2135,31 @@ sleep500.sh
 `nohup ./sleep500.sh &` 会输出nohup.out, 不会因为脱机而终止。
 
 静态观察进程: `ps`
-- `ps aux`
-- `ps -lA`
-- ps axjf`
-`ps -l` 查看当前用户的进程, 包含更多信息。WCHAN表明该进程当前状态。
+- `ps aux`: 显示固定内存RSS(KB)和虚拟VSZ(KB), 和状态STAT(R,S,T,Z)
+- `ps -lA`: 显示
+  - F: process flags, 4 为root, 1为fork但未exec
+  - S: STAT, 有R(running), S(sleep, 正在idle, 可被signal唤醒), D(不可唤醒, 等待I/O), T(stop, 可能被暂停或traced), Z(zombie, 无法移除)
+  - UID, PID, PPID
+  - C: CPU usage
+  - PRI, NI: Priority/Nice, 优先级
+  - ADDR: kernel function, 在内存的哪里。running的process显示`-`
+  - SZ: 占用内存size
+  - WCHAN: 是否运作, `-`表示running
+  - TTY: pts/n为动态终端接口, 为远程登录
+  - TIME： CPU 运行时间
+  - CMD
+- `ps axjf`: 显示树结构, 等于`pstree`
+- `ps -l`: 查看当前用户的进程, 包含更多信息。WCHAN表明该进程当前状态。
+- `-A`: 所有process, 等于`-e`
+- `-a`: 不与terminal 有关的。
+- `-u`: effective user
+- `x`: 与`a`一起使用显示完整消息
+- `l`: 长显示, 包括PID
+- `j`: jobs format
+- `-f`: 更完整
 
+僵尸进程:
+- 执行完毕, 父程序无法完全释放其内存。defunct。
 
 # Notes
 ctrl+shift+up shell scroll up
