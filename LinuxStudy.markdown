@@ -2052,7 +2052,6 @@ Debug功能：`sh [-nvx] scripts.sh`。
 - `-x`：将使用到的script内容显示出来。
 
 >
-
 ## Chapter 14
 Linux 账号管理与ACL 权限设定
 
@@ -2116,10 +2115,11 @@ bash 工作管理(job control):
 
 管理工作: `kill -signal %num`
 - `kill -l` 列出所有signal
-- `1`: 重新读取配置文件
-- `2`: `ctrl+c`
-- `9`: 强制结束
-- `15`: 正常结束。默认值
+- `1`: 重新读取配置文件 SIGHUP
+- `2`: `ctrl+c` SIGINT
+- `9`: 强制结束 SIGKILL
+- `15`: 正常结束。默认值 SIGTERM
+- `17`: `ctrl+z` SIGSTOP
 
 `killall`类似。
 
@@ -2160,6 +2160,101 @@ sleep500.sh
 
 僵尸进程:
 - 执行完毕, 父程序无法完全释放其内存。defunct。
+
+动态观察进程: `top`
+- `-d`: 更新频率
+- `-b`: 批次执行, 多配合数据流重导向
+- `-n`: 批次执行几次。`top -b -n2 -p $$ >/tmp/toplog`
+- `-p`: 接PID
+- 操作:
+  - `?`: help
+  - `P`: 以CPU排序
+  - `M`: 内存排序
+  - `N`: PID排序
+  - `T`: TIME排序
+  - `k`: 给某PID一个signal
+  - `r`: 给PID一个nice
+  - `q`
+- 第一行中的load average: 1, 5 15分钟系统平均要负责运作几个进程
+- `%CPU`中`%wa`是I/O wait, 数值过大会使系统变慢。`1`可显示每个CPU核的负载
+- `%swap`过大说明物理内存过小
+
+`$$`是当前bash的PID。
+
+`kill -signal PID`, 注意`kill -signal %num`的是num是job的ID, 不是PID.
+- `kill -SIGHUP $(ps aux|grep 'syslog'|grep -v 'grep'|awk '{print $2}')` 重启syslog。可`tail -5 /var/log/messages`查看有否restart.
+
+`killall [-iIe] [command name]`
+- `-i`: 显示提示字符
+- `-e`: exact, 与后面的command name要一致
+- `-I`: 忽略大小写
+- `killall -1 syslogd`
+
+CPU 排程: priority 与nice
+- PRI: 内核动态调整, 用户无法设置PRI值。越小越高
+- NI: 用户可设。可为-20~19。正值使程序优先级便低, 一般用于备份
+- `PRI(new)=PRI(old)+nice`, 但是因为PRI动态, PRI(old)并不固定
+- `nice [-n 数字] command`
+- `renice [number] PID`
+- nice 值会传递给子进程
+
+观察内存: `free [-b|-k|-m|-g] [-t]`
+- `-bkmg`: 切换为单位
+- `-t`: 显示物理和swap内存
+- buffers和cached用完内存是正常的, swap用超过20%表示物理内存不足
+
+查阅内核信息: `uname [-asrmpi]`
+- `-a`: all
+- `-s`: 名称
+- `-r`: 版本
+- `-m`: 硬件架构, `i686`或`x85_64`
+- `-p`: CPU类型
+- `-i`: 硬件平台
+
+启动时间与负载: `uptime`
+
+# Page 623
+
+## Chpater 18
+
+(26)
+
+## Chapter 19
+认识与分析登录档
+
+!!Skip!!
+
+## Chapter 20
+开机流程、模块管理与Loader
+
+!!Skip!!
+
+## Chapter 21
+系统设定工具(网绚与打印机)与硬件侦测
+
+!!Skip!!
+
+## Chapter 22
+
+(28)
+
+## Chapter 23
+
+(33)
+
+## Chapter 24
+X Window 设定介绍
+
+!!Skip!!
+
+## Chapter 25
+Linux 备份策略
+
+!!Skip!!
+
+## Chapter 26
+
+(27)
 
 # Notes
 ctrl+shift+up shell scroll up
