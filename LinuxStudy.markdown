@@ -2213,7 +2213,45 @@ CPU 排程: priority 与nice
 
 启动时间与负载: `uptime`
 
-# Page 623
+监控网络: `netstat -[atunlp]`
+- `-a`: 全部
+- `-t`: tcp
+- `-u`: udp
+- `-n`: 显示port number
+- `-l`: 列出listen的服务
+- `-p`: 显示PID
+- 输出1: Active Internet connections (w/o servers), 联网的服务
+  - Proto
+  - Recv-Q, Send-Q: 总byte数
+  - Local Address, Foreign Address
+  - State: Established, listen等
+- 输出2: Active UNIX domain sockets (w/o servers), 本机的程序。程序间的通信也使用socket.
+  - Proto
+  - RefCnt: 连接到此socket的进程数
+  - Flags
+  - Type: STREAM: 需要联机确认, DGRAM: 不需要
+  - State: CONNECTED
+  - I-Node
+  - Path: 相关进程或数据输出的路径
+
+内核信息: `dmesg`
+
+系统资源: `vmstat [-a] [延迟 [总计侦测次数]]`
+- `-a`: 内存显示inactive/active, 而不是预设的buffer/cache。
+- `-f`: 系统fork 的程序数
+- `-s`: 内存变化情况
+- `-S`: 单位
+- `-d`: 磁盘读写总量
+- `-p`: 分割槽
+- `vmstat 1 3`指延迟1s, 总共3次。
+- procs: 程序数量。r: running, b: 不可被唤醒的
+- memory: 
+  - swpd: si: 磁盘中取出的量, so: 内存不足时写入磁盘的量
+  - io: bi: 读取磁盘的区块量, bo: 写入磁盘的区块量
+  - system: in: 每秒被中断的程序数, cs: 切换数
+  - CPU: us: 非内核层的使用状态, sy: 内核, id: 闲置, wa: 等待I/O，st: virtual machine使用
+
+特殊档案与程序 !!Skip!!
 
 ## Chpater 18
 
