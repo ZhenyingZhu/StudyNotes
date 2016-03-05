@@ -1,3 +1,12 @@
+[iptables](https://www.digitalocean.com/community/tutorials/how-to-list-and-delete-iptables-firewall-rules):
+- `-S`: Rule Specification Listing, `iptables -S CHAIN`
+- `-L`: in the table view, `iptables -L CHAIN`
+  - target: jump to where
+  - proto
+  - (not done)
+
+CPP unit test: add #ifdef TEST friend class TESTCLASS #endif into the private method
+
 [Git stack](http://stackoverflow.com/questions/14824431/git-merge-without-including-commits-from-one-branch-to-another)
 ```
 git checkout master
