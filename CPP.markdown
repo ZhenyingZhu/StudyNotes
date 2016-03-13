@@ -4669,6 +4669,8 @@ void Bulk_item::memfcn(const Bulk_item &d, const Item_base &b) {
 }
 ```
 
+然而派生类的实体可以访问其他派生类实体的private和protected成员。
+
 设计成员的准则:
 - 接口函数为`public`.
 - 数据一般不应为`public`.
@@ -4717,7 +4719,7 @@ class Bulk_item;
 ```
 
 #### 15.2.4
-触发动态绑定, 需要1. 虚函数; 2. 通过基类类型的引用或指针进行调用.  
+触发动态绑定, 需要1. 虚函数; 2. 通过基类类型的引用或指针进行调用.
 
 ```
 double print_total(const Item_base&, size_t); 
@@ -4730,10 +4732,10 @@ print_total(bulk, 10); // will only use Item_base part
 p = &bulk; // only point to Item_base part
 ```
 
-static type(静态类型)在编译时可知; dynamic type(动态类型)在编译时不可知.   
+static type(静态类型)在编译时可知; dynamic type(动态类型)在编译时不可知.  
 引用和指针的静态类型可以与动态类型不同. C++用此支持多态.  
 无法确定基类的指针或引用指向的是哪种静态类型. 编译器都将其看作基类.  
-编译器生成代码, 在运行时确定调用哪个与动态类型对应的函数.   
+编译器生成代码, 在运行时确定调用哪个与动态类型对应的函数.  
 如`print_total(ostream&, const Item_base &item, size_t)`, 由运行时绑定到`item`的实参类型决定函数体中`item.net_price(size_t)`调用的是哪个版本.  
 
 非虚函数永远使用基类中的版本; 对象的静态类型和动态类型相同. 所以这两种调用不会触发动态绑定.  
@@ -5250,4 +5252,10 @@ std::ostream& display(std::ostream &os) const {
 [CPP Weak vs Strong](https://en.wikipedia.org/wiki/Weak_symbol)
 - while linking, a strong symbol can override a weak symbol.  
 
-
+# access a reference
+```
+ItemBase i("item", 0.1);
+BulkItem b1(1.1, 0.1, 2);
+BulkItem b2(1.2, 0.2, 4);
+b1.memfcn(b2, i);
+```
