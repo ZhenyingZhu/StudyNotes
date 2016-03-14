@@ -5037,7 +5037,7 @@ public:
     double net_price(std::size_t) const = 0; 
 }; 
 
-Bulk_item bulk; // cannot defice Disc_item
+Bulk_item bulk; // cannot define Disc_item
 ```
 
 ### 15.7
@@ -5056,9 +5056,9 @@ void get_price(Item_base object, const Item_base *pointer, const Item_base &refe
 ```
 
 为减轻使用指针或引用的负担, 定义cover(包装)类或handle(句柄)类.  
-- 句柄类存储和管理基类指针.  
-- 包装了继承层次的句柄通常表现得像一个智能指针或一个值.  
-- 句柄类决定句柄接口是否屏蔽继承层次. 如不屏蔽, 用户须了解和使用基本层次中的对象.  
+- 句柄类存储和管理基类指针.
+- 包装了继承层次的句柄通常表现得像一个智能指针或一个值.
+- 句柄类决定句柄接口是否屏蔽继承层次. 如不屏蔽, 用户须了解和使用基本层次中的对象.
 
 #### 15.8.1
 定义指针型句柄类, 可使该类绑定到基类对象. 用户不必管理句柄指向的对象, 所以能得到多态.   
@@ -5107,7 +5107,7 @@ Sales_item& Sales_item::operator=(cons Sales_item &rhs)  {
 ```
 
 只定义操作符的`const`版本, 是因为基类`Item_base`层次中的成员都是`const`成员.  
-用`Item_base`作为形参的构造函数将分配适当类型的新对象并将形参复制到新分配的对象中.   
+用`Item_base`作为形参的构造函数将分配适当类型的新对象并将形参复制到新分配的对象中.  
 
 #### 15.8.2
 句柄类需要在不知道对象确切类型时分配已知对象的新副本.  
@@ -5135,7 +5135,7 @@ Sales_item::Sales_item(const Item_base &item): p(item.clone()), use(new std::siz
 如果虚函数的基类实例返回类类型的指针或引用, 则该虚函数的派生类实例可以返回基类实例返回类型的派生类.  
 
 #### 15.8.3
-为`Sales_item`句柄类定义小于操作符不合理, 因为当用作关键字时, `isbn`相同即相同, 但是平时却是另外的比较方案.  
+为`Sales_item`句柄类定义小于操作符不合理, 因为当用作关键字时, `isbn`相同即相同, 但是平时却是另外的比较方案.
 
 ```
 inline bool compare(const Sales_item &lhs, const Sales_item &rhs) {
@@ -5146,7 +5146,7 @@ inline bool compare(const Sales_item &lhs, const Sales_item &rhs) {
 可以在容器的每个操作中添加该算法, 但是这样容易出错. 将该算法作为容器的一部分存储更好.  
 容器需要知道元素类型, 也需要知道比较器类型.  
 ```
-typedef bool (*comp)(const Sales_item&, const Sales_item&); // a function type pointer
+typedef bool (*Comp)(const Sales_item&, const Sales_item&); // a function type pointer
 std::multiset<Sales_item, Comp> items(compare); // use compare to compare them
 ```
 
