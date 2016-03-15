@@ -948,8 +948,8 @@ Operator(操作符)：
 运算次序：
 `5 + 10 * 20 / 2`
 - Operand: stack: , mem: 5; Operator: stack, mem: +; 
-- Operand: stack: 5, mem: 10; Operator: stack: +, mem: *; So first do *. 
-- Operand: stack: 5, 10, mem: 20; Operator: stack: +, *, mem: /; `/` is not higher than `*`, so pop 10 to compute. 
+- Operand: stack: 5, mem: 10; Operator: stack: +, mem: `*`; So first do `*`. 
+- Operand: stack: 5, 10, mem: 20; Operator: stack: +, `*`, mem: /; `/` is not higher than `*`, so pop 10 to compute. 
 - Operand: stack: 5, 200, mem: 2; Operator: stack: +, mem: /; `/` is higher than `+`, pop 200 to do compute. 
 - Operand: stack: 5, 100, mem: ; Operator: stack: +, mem: ; Pop all to finish. 
 
