@@ -5248,6 +5248,9 @@ std::ostream& display(std::ostream &os) const {
 - post, always postphone; 
 - dispatch, if call comes from ios itself, execute, otherwise queue.  
 
+[Tier](http://www.boost.org/doc/libs/1_55_0/libs/tuple/doc/tuple_users_guide.html)
+- tie: create a tuple with all elements that can use 
+
 # link
 [CPP Weak vs Strong](https://en.wikipedia.org/wiki/Weak_symbol)
 - while linking, a strong symbol can override a weak symbol.  
