@@ -5262,3 +5262,15 @@ BulkItem b1(1.1, 0.1, 2);
 BulkItem b2(1.2, 0.2, 4);
 b1.memfcn(b2, i);
 ```
+
+# const functions of a class cannot call size() of a member
+class MyClass {
+public:
+  void checkMemberSize() const {
+    vec_.size(); // Not allowed
+  }
+private:
+  vector<int> vec_;
+};
+
+
