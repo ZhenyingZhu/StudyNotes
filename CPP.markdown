@@ -5212,7 +5212,7 @@ double Basket::total() const {
 
 ```
 inline Query operator~(const Query &oper) {
-	return new NotQuery(oper); 
+    return new NotQuery(oper); 
 }
 ```
 
@@ -5223,17 +5223,17 @@ return Query(tmp);
 ```
 
 #### 15.9.5
-操作数可以是任意的`Query_base`对象, 所以操作数须存储为指针, 用句柄类实现.  
+操作数可以是任意的`Query_base`对象, 所以操作数须存储为指针, 用句柄类实现.
 
 ```
 std::ostream& display(std::ostream &os) const {
-	return os << "~(" << query << ")"; 
+    return os << "~(" << query << ")"; 
 }
 ```
 这调用了虚函数来实现输出.  
 
 `BinaryQuery`类也是个抽象类.  
-因为`Query`是句柄, 所以不用引用作为形参`left`和`right`?<b>?</b>  
+因为`Query`是句柄, 所以不用引用作为形参.  
 
 #### 15.9.6
 实现虚函数`eval`.  
@@ -5242,6 +5242,38 @@ std::ostream& display(std::ostream &os) const {
 
 为实现`NotQuery`的`eval`, 需在`TextQuery`类里加入`size()`成员函数.  
 
+
+## Chapter 16
+使用相同的代码处理基类的引用或指针, 就能多态地处理派生类.
+
+### 16.1
+如操作数可能的类型已知, 可以用重载.
+
+#### 16.1.1
+函数模板(function template)
+- 关键字template开始
+- 模板形参表(template parameter list), 不能为空, 用逗号分隔
+- 形参可以是类型形参(type parameter), 或非类型形参(nontype parameter)
+- 类型形参在关键字typename 或class 后
+
+```
+template <typename T>
+int compare(const T &v1, const T &v2) {
+    if (v1 < v2) return 1;
+    if (v2 < v1) return -1;
+    return 0;
+}
+```
+
+编译器推断哪个模板实参(template argument)绑定到形参. 确定后实例化(instantiate)一个函数模板的实例.
+
+申明inline的函数模板
+```
+inline template <typename T> T min(const T&, const T&);
+```
+
+#### 16.1.2
+HERE
 
 # Boost
 [boost asio dispatch vs post](http://stackoverflow.com/questions/2326588/boost-asio-io-service-dispatch-vs-post)
@@ -5264,6 +5296,7 @@ b1.memfcn(b2, i);
 ```
 
 # const functions of a class cannot call size() of a member
+```
 class MyClass {
 public:
   void checkMemberSize() const {
@@ -5272,5 +5305,5 @@ public:
 private:
   vector<int> vec_;
 };
-
+```
 
