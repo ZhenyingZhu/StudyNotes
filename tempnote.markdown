@@ -1,3 +1,6 @@
+[Ubuntu login loop](http://askubuntu.com/questions/223501/ubuntu-gets-stuck-in-a-login-loop)
+  Remove ~/.Xauthority
+
 [iptables](https://www.digitalocean.com/community/tutorials/how-to-list-and-delete-iptables-firewall-rules):
 - `-S`: Rule Specification Listing, `iptables -S CHAIN`
 - `-L`: in the table view, `iptables -L CHAIN`
