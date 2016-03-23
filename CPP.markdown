@@ -5310,3 +5310,6 @@ private:
 # C++11
 `g++ -Wall -g -std=c++11 main.cpp -o out.o`
 
+# `BOOST_CHECK` and `BOOST_REQUIRE`
+when check failed, test still continue; when require failed, test stop
+
