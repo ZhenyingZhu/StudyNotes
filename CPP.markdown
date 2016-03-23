@@ -5307,3 +5307,6 @@ private:
 };
 ```
 
+# C++11
+`g++ -Wall -g -std=c++11 main.cpp -o out.o`
+

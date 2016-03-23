@@ -146,3 +146,9 @@ To include libraries:
 - `-l`: a library name. e.g. `-lfoo  # (links libfoo.a or libfoo.so)`  
 - `-I`: include files.  
 
+[linking not done](http://stackoverflow.com/questions/2395158/linker-error-linker-input-file-unused-because-linking-not-done-undefined-ref)
+- no need `-c` when build executable
+
+[$@ and $<](http://www.linux-pages.com/2013/02/gnu-makefile-special-variables-dollar-at/)
+
+
