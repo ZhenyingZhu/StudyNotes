@@ -2295,12 +2295,21 @@ Linux 备份策略
 (27)
 
 # Notes
-ctrl+shift+up shell scroll up
-PATH=$PATH:~/opt/bin, 或 PATH=~/opt/bin:$PATH
-添加到默认搜索路径：Add export PATH=$PATH:/home/me/play to your ~/.bashrc.
-bg:
-suspend
-software
-wget
+`ctrl+shift+up`: shell scroll up
 
+`PATH=$PATH:~/opt/bin`, 或 `PATH=~/opt/bin:$PATH`
+
+添加到默认搜索路径：Add `export PATH=$PATH:/home/me/play` to your `~/.bashrc`.
+
+`bg`
+
+`suspend`
+
+`software`
+
+`wget`
+
+Change screen shot name to be recognized by windows: 
+```
 for f in Screen*; do echo $f; mv "$f" "$(echo $f|tr -d '\:\-[[:space:]]')"; done
+```
