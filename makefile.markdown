@@ -150,5 +150,5 @@ To include libraries:
 - no need `-c` when build executable
 
 [$@ and $<](http://www.linux-pages.com/2013/02/gnu-makefile-special-variables-dollar-at/)
-
+`$@` is the target, while `$<` is the first dependency
 
