@@ -49,7 +49,25 @@ Data structure
 
 ## Problems
 ### Chapter 5
-In C++ integer is 32 or 64 bits, while in Java it is always 32 bits.  
+In C++ integer is 32 or 64 bits, while in Java it is always 32 bits. So not hard code bit number.
+- can call `sizeof(an_int) * CHAR_BIT` in `<climits>` to find out how many bits it has
+- or `while(an_int) {++bit_num; an_int >> 1;}` to find out the place of the last bit that is one
+
+For Primitive types, need to know:
+- size: char is 4 bit/1 byte
+- ranges: char is -128 to 127
+- signedness: unsigned short is 0 to 65535 while short is -32768 to 32767. How it influence shifting.
+- operators: char + char return a short. Espacially bitwise operators.
+- functions in `<cmath>`: `abs`, `fabs`, `ceil`, `floor`, `min`, `max`, `pow`, `log`, `sqrt`.
+- `<random>`: `uniform_int_distribution<> dis(1, 6)`, `uniform_real_distribution<double> dis(1.0, 6.0)`, `generate_canonical<double, 10>`
+- `~0`: if short, it is -32768
+- create masks
+- clear the lowermost set bit, get its index
+- using cache to accelerate
+- use commutativity and associativity to operate in parallel or reorder operations.
+- max or min values of primitive types: `numeric_limits<float>::max()`, `numeric_limits<double>::infinity()`
+- compare floats
+- interconvert int, char and string: `x - '0'` convert a char into int
 
 #### 5.1
 Compute parity of a 64-bit binary word.  
