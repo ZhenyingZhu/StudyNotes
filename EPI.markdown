@@ -51,7 +51,7 @@ Data structure
 ### Chapter 5
 In C++ integer is 32 or 64 bits, while in Java it is always 32 bits. So not hard code bit number.
 - can call `sizeof(an_int) * CHAR_BIT` in `<climits>` to find out how many bits it has
-- or `while(an_int) {++bit_num; an_int >> 1;}` to find out the place of the last bit that is one
+- or `while(an_int) {++bit_num; an_int >>= 1;}` to find out the place of the last bit that is one
 
 For Primitive types, need to know:
 - size: char is 4 bit/1 byte
@@ -72,7 +72,7 @@ For Primitive types, need to know:
 #### 5.1
 Compute parity of a 64-bit binary word.  
 - Brute force: walk through the number by `&1` and `>>=`. Stop when `x == 0`,  Then modula 2. T(n)=O(n), where n is the first 1 to the end.  
-- <b>Notice</b>: `^1` equals `%2`, `x&=(x-1)` remove the last 1 bit. T(n)=O(n), where n is the number of 1 bits.   
+- <b>Notice</b>: `x&=(x-1)` remove the last 1 bit. T(n)=O(n), where n is the number of 1 bits.   
 - Bit fiddling computation: 1. process multiple bits; 2. cache results in an array-based lookup table.  
 - <b>Notice</b>: Order of XORs doesn't change the result. Parity of a number equals to XORs between its parts. T(n)=O(logn).  
 
@@ -184,4 +184,11 @@ C++ for Java developers
 - `unique_ptr`: destroy when out of scope
 - `shared_ptr`: has a reference count
 
+
+# Notes
+## Questions: 
+### how does signed number shift
+
+## Technique:
+`x&=(x-1)` remove last bit of `x` that is `>0`
 
