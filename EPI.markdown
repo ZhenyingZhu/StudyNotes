@@ -70,11 +70,11 @@ For Primitive types, need to know:
 - interconvert int, char and string: `x - '0'` convert a char into int
 
 #### 5.1
-Compute parity of a 64-bit binary word.  
-- Brute force: walk through the number by `&1` and `>>=`. Stop when `x == 0`,  Then modula 2. T(n)=O(n), where n is the first 1 to the end.  
-- <b>Notice</b>: `x&=(x-1)` remove the last 1 bit. T(n)=O(n), where n is the number of 1 bits.   
-- Bit fiddling computation: 1. process multiple bits; 2. cache results in an array-based lookup table.  
-- <b>Notice</b>: Order of XORs doesn't change the result. Parity of a number equals to XORs between its parts. T(n)=O(logn).  
+Compute parity of a 64-bit binary word.
+- Brute force: walk through the number by `&1` and `>>=`. Stop when `x == 0`,  Then modula 2. T(n)=O(n), where n is the first 1 to the end.
+- <b>Notice</b>: `x&=(x-1)` remove the last 1 bit. T(n)=O(n), where n is the number of 1 bits.
+- Bit fiddling computation: 1. process multiple bits; 2. cache results in an array-based lookup table. Need to find a reasonable length of cache. 16-bit is reasonable because 0xFFFF is easy to fit in memory. T(n)=O(n/L), n is the length of word and L is the length of key.
+- <b>Notice</b>: Order of XORs doesn't change the result. Parity of a number equals to XORs between its parts. T(n)=O(logn).
 
 #### 5.2
 <b>Notice</b>: `x & ~(x - 1)` extracts the lowest set bit of x.  
@@ -191,4 +191,6 @@ C++ for Java developers
 
 ## Technique:
 `x&=(x-1)` remove last bit of `x` that is `>0`
+
+Thinking about if input is sparse or random.
 
