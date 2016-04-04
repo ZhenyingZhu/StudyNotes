@@ -77,15 +77,13 @@ Compute parity of a 64-bit binary word.
 - <b>Notice</b>: Order of XORs doesn't change the result. Parity of a number equals to XORs between its parts. T(n)=O(logn).
 
 #### 5.2
-<b>Notice</b>: `x & ~(x - 1)` extracts the lowest set bit of x.  
-View a 64-bit integer as an array, LSB as index 0, MSB as index 63. Swap the bit at i and j.  
-- Brute force: first check if two bits differ. If differ, flip them(XOR 1).  
+View a 64-bit integer as an array, LSB as index 0, MSB as index 63. Swap the bit at i and j.
+- Brute force: first check if two bits differ. If differ, flip them(XOR 1). T(n)=O(1)
 
 #### 5.3
-<b>Notice</b>: while design an algorithm, run once and run many times affects.  
-Reverse a 64-bit word from LSB to MSB.  
-- swap 0-31 bits with 32-63 bits. Good if only need run once.   
-- use a lookup table, record all 16-bits numbers and its reversed numbers.  
+Reverse a 64-bit word from LSB to MSB.
+- swap 0-31 bits with 32-63 bits. Good if only need run once.
+- use a lookup table, record all 16-bits numbers and its reversed numbers.
 
 #### 5.4
 Find the closest number that has the same weight(same number of set bits) as the given number.  
@@ -194,3 +192,6 @@ C++ for Java developers
 
 Thinking about if input is sparse or random.
 
+<b>Notice</b>: `x & ~(x - 1)` extracts the lowest set bit of x.  
+
+<b>Notice</b>: while design an algorithm, run once and run many times affects.
