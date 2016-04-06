@@ -82,18 +82,19 @@ View a 64-bit integer as an array, LSB as index 0, MSB as index 63. Swap the bit
 
 #### 5.3
 Reverse a 64-bit word from LSB to MSB.
-- swap 0-31 bits with 32-63 bits. Good if only need run once.
-- use a lookup table, record all 16-bits numbers and its reversed numbers.
+- swap 0-31 bits with 32-63 bits. Good if only need run once. T(n)=O(n)
+- use a lookup table, record all 16-bits numbers and its reversed numbers. T(n)=O(n/L), n is the length of bits, L is the key length.
 
 #### 5.4
-Find the closest number that has the same weight(same number of set bits) as the given number.  
-- Brute force: try (x-1), (x+1), (x-2), (x+2) until reach a same weight number.  
-- Swap the first two consecutive different bits from LSB. T(n)=O(n).   
+Find the closest number that has the same weight(same number of set bits) as the given number.
+- Brute force: try (x-1), (x+1), (x-2), (x+2) until reach a same weight number. T(n)=O(2^n)
+- Swap the first two consecutive different bits from LSB. T(n)=O(n).
+- T(n)=O(1) solution: use `x^(x>>1)` to find out the last different bit.<b>Notice</b>: cannot do `x^(x<<1)` because shift in a 0 from right.
 
 #### 5.5
-Compute x multiple y with assignment, bitwise operators, boolean combination.  
-- Brute force: repeat addition. T(n)=O(n^2)  
-- Decimal multiplication with shift. T(n)=O(n^2).  
+Compute x multiple y with assignment, bitwise operators, boolean combination.
+- Brute force: repeat addition. T(n)=O(n^2) 
+- Decimal multiplication with shift. T(n)=O(n^2).
 
 #### 5.6
 Compute quotient between x and y use only addition, subtraction and shifting.  

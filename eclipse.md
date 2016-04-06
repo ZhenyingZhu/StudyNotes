@@ -21,3 +21,9 @@ Most common shortcuts:
 - `ctrl+tab`: CDT, switch between head and source files when both of them are opened.  
 - `alt+shift+r,n`: Rename a function or variable throughout a project.  
 
+[Setting CDT to recognize C++11](http://wiki.eclipse.org/CDT/User/FAQ#CDT_does_not_recognize_C.2B.2B11_features)
+1. Project -> Properties -> C/C++ General, click Configure Workspace Settings...
+2. C/C++ -> Build -> Setting, Discovery tab, setting CDT GCC Built-in Compiler Settings to be `${COMMAND} ${FLAGS} -E -P -v -dD "${INPUTS}" -std=c++0x`
+3. Reindex
+
+
