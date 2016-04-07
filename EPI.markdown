@@ -97,9 +97,9 @@ Compute x multiple y with assignment, bitwise operators, boolean combination.
 - Decimal multiplication with shift. T(n)=O(n^2).
 
 #### 5.6
-Compute quotient between x and y use only addition, subtraction and shifting.  
-- Brute force: repeat subtract y from x until less y.  
-- Substract `2^k*y` from x each time. T(n)=O(n).  
+Compute quotient between x and y use only addition, subtraction and shifting.
+- Brute force: repeat subtract y from x until less y.
+- Substract `2^k*y` from x each time. T(n)=O(n), n is the bit number of x.
 
 #### 5.7
 Given double x and integer y, compute x^y. Assume won't overflow or underflow.  
