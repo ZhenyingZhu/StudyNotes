@@ -102,15 +102,14 @@ Compute quotient between x and y use only addition, subtraction and shifting.
 - Substract `2^k*y` from x each time. T(n)=O(n), n is the bit number of x.
 
 #### 5.7
-Given double x and integer y, compute x^y. Assume won't overflow or underflow.  
-- When y is nonnegative, brute force: x multiple itself for y-1 times. T(n)=O(2^n).  
-- Recursive: x ^ (1010)base2 = x ^ (101)base2 * x ^ (101)base2. T(n)=O(n).  
-- When y is negative, multiple (1/x)^(-y).   
+Given double x and integer y, compute x^y. Assume won't overflow or underflow.
+- When y is nonnegative, brute force: x multiple itself for y-1 times. T(n)=O(2^n), where n is the bit number of y.
+- Recursive: x ^ (1010)base2 = x ^ (101)base2 * x ^ (101)base2. T(n)=O(n). When y is negative, multiple (1/x)^(-y).
 
 #### 5.8
-Reverse digits of an integer, but leave the sign unchanged.  
-- Brute force: change to string and change back.  
-- Modulo 10. T(n)=O(n).   
+Reverse digits of an integer, but leave the sign unchanged.
+- Brute force: change to string and change back. T(n)=O(logn).
+- Modulo 10. T(n)=O(n), where n is the number of digits.
 
 #### 5.9
 Check if a decimal integer is a palindrome.  
