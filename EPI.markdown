@@ -112,9 +112,9 @@ Reverse digits of an integer, but leave the sign unchanged.
 - Modulo 10. T(n)=O(n), where n is the number of digits.
 
 #### 5.9
-Check if a decimal integer is a palindrome.  
-- Brute force: return false if the integer is negative. Then convert the integer to string. T(n)=O(n), S(n)=O(n).   
-- log10(x)+1 is the number of digits. Use this to create a max significent digits mask. T(n)=O(n), S(n)=O(1).  
+Check if a decimal integer is a palindrome.
+- Brute force: return false if the integer is negative. Then convert the integer to string. T(n)=O(n), S(n)=O(n).
+- log10(x)+1 is the number of digits. Use this to create a max significent digits mask. T(n)=O(n), S(n)=O(1).
 
 #### 5.10
 Generate uniform random numbers between a and b.  
