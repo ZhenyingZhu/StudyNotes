@@ -117,8 +117,8 @@ Check if a decimal integer is a palindrome.
 - log10(x)+1 is the number of digits. Use this to create a max significent digits mask. T(n)=O(n), S(n)=O(1).
 
 #### 5.10
-Generate uniform random numbers between a and b.  
-- use smallest i that let 2^i-1 > b-a. Then call random zero-one generator i times. If out-of-bound, retry. T(n)=O(lg(a-b+1)).  
+Generate uniform random numbers between a and b.
+- use smallest i that let 2^i-1 > b-a. Then call random zero-one generator i times. If out-of-bound, retry. T(n)=O(lg(a-b+1)). 
 
 #### 5.11
 Find rectangle intersection. Rectangles are parallel to x-axis.  
