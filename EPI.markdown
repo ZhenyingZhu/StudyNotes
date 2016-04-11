@@ -121,9 +121,8 @@ Generate uniform random numbers between a and b.
 - use smallest i that let 2^i-1 > b-a. Then call random zero-one generator i times. If out-of-bound, retry. T(n)=O(lg(a-b+1)). 
 
 #### 5.11
-Find rectangle intersection. Rectangles are parallel to x-axis.  
-- ask if boundary counts. Here it counts.  
-- since there are too many ways to intersect, thinking about not intersect would be easier. T(n)=O(1)   
+Find rectangle intersection. Rectangles are parallel to x-axis. Need ask if boundary counts. Here it counts.
+- since there are too many ways to intersect, thinking about not intersect would be easier. T(n)=O(1)
 
 ### Chapter 6
 Insertion into an array take O(n) time and O(n) space because of copy.  
