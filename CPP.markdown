@@ -5313,3 +5313,5 @@ private:
 # `BOOST_CHECK` and `BOOST_REQUIRE`
 when check failed, test still continue; when require failed, test stop
 
+# Const `shared_ptr`
+http://stackoverflow.com/questions/17793333/difference-between-const-shared-ptrt-and-shared-ptrconst-t
