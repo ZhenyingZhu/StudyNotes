@@ -122,16 +122,35 @@ Generate uniform random numbers between a and b.
 
 #### 5.11
 Find rectangle intersection. Rectangles are parallel to x-axis. Need ask if boundary counts. Here it counts.
-- since there are too many ways to intersect, thinking about not intersect would be easier. T(n)=O(1)
+- Draw 5 squares to see how rectangles intersects. Use up-left vertical and height, width to present a rectangle. T(n)=O(1)
 
 ### Chapter 6
-Insertion into an array take O(n) time and O(n) space because of copy.  
+Array:
+- contiguous block of memory
+- Insertion into an array take O(n) time and O(n) space because of the operation that copy array into a new array(array resizing).
+
+C++
+- `array<int, 3> A = {1, 2, 3};`
+- `vector<int> sub_array(A.begin() + i, A.begin() + j);`
+- `vec.push_back(42)`, `vec.emplace_back(42)`
+- Understand what "deep" means when checking equality of arrays, and hashing them. <b>?</b>
+
+C++ algorithm:
+- `binary_search(A.begin(), A.end(), 42)`
+- `lower_bound(A.begin(), A.end(), 42)`: the first element that is not less than 42
+- `upper_bound(A.begin(), A.end(), 42)`
+- `fill(A.begin(), A.end(), 42)`
+- `swap(x, y)`
+- `min_element(A.begin(), A.end())`
+- `max_element(A.begin(), A.end())`
+- `reverse(A.begin(), A.end())`
+- `rotate(A.begin(), A.begin() + shift, A.end())`: shift become the first element
+- `sort(A.begin(), A.end())`
 
 #### 6.1
-Dutch National Flag program. Quick sort with equal band in the middle.  
-Notice when use `size_t` as index, cannot do `for (size_t i = A.size(); i >= 0; --i)`. If so, when i is 0, then `--i` still larger than 0 and out of bound.  
-- Brute force: swap all numbers larger than pivot after i to before i. and traverse i through 0 to end. Then from the end reversely do again. T(n)=O(n^2), S(n)=O(1).  
-- Quick sort, first recursive from the begining, and then from the end. T(n)=O(n), S(n)=O(1).  
+Dutch National Flag program. Quick sort with equal band in the middle. Notice when use `size_t` as index, cannot do `for (size_t i = A.size(); i >= 0; --i)`. If so, when i is 0, then `--i` still larger than 0 and out of bound.
+- Brute force: swap all numbers larger than pivot after i to before i. and traverse i through 0 to end. Then from the end reversely do again. T(n)=O(n^2), S(n)=O(1).
+- Quick sort, first recursive from the begining, and then from the end. T(n)=O(n), S(n)=O(1).
 - Quick sort one pass. Maintain smaller, equal, unsorted and larger four bands. Note when swap between larger and current, current should not move forward. T(n)=O(n), S(n)=O(n).  
 
 #### 6.2
@@ -186,6 +205,8 @@ C++ for Java developers
 ## Questions: 
 ### how does signed number shift
 
+### what "deep" means when checking equality of arrays
+
 ## Technique:
 `x&=(x-1)` remove last bit of `x` that is `>0`
 
@@ -194,3 +215,5 @@ Thinking about if input is sparse or random.
 <b>Notice</b>: `x & ~(x - 1)` extracts the lowest set bit of x.  
 
 <b>Notice</b>: while design an algorithm, run once and run many times affects.
+
+template defination can not been put into source file.
