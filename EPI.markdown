@@ -153,6 +153,14 @@ Dutch National Flag program. Quick sort with equal band in the middle. Notice wh
 - Quick sort, first recursive from the begining, and then from the end. T(n)=O(n), S(n)=O(1).
 - Quick sort one pass. Maintain smaller, equal, unsorted and larger four bands. Note when swap between larger and current, current should not move forward. T(n)=O(n), S(n)=O(1).
 
+Variant:
+- Four keys: not traverse from begin and end, but set all pointers from begin.
+- Two keys remain one keys in order: do traverse from the end. notice the swap-to keys are always remain in order, while swap-from could be messed up.
+```
+1. TF<a>FF<b>T
+2. TTF<b>FF<a>
+```
+
 #### 6.2
 Increment an arbitrary-precision integer. E.g. Input {1,2,9}, Output {1,3,0}  
 - Brute force: convert the array into number. Then convert back. Will overflow.  
