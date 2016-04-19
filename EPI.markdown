@@ -174,11 +174,21 @@ Multiple two arbitary-precision array presented integers. Negative number has `-
 - Use reversed vector to record input numbers. Add carry-out to the previous cell. T(n)=O(n^2).
 
 #### 6.4
-Advancing through an array. Integer in array indicate how far it can go from this cell. Check if it is able to reach the end.  
-- Iterate through the array, record the furthest position it can reach from current cell. T(n)=O(n), S(n)=O(1).  
+Advancing through an array. Integer in array indicate how far it can go from this cell. Check if it is able to reach the end.
+- Iterate through the array, record the furthest position it can reach from current cell. T(n)=O(n), S(n)=O(1).
+
+Variant:
+- Output the min steps to reach the end: DP. Use the step number that reach current cell to update all cells in the range as step+1. T(n)=O(n^2), S(n)=O(n).
 
 #### 6.5
+Delete duplicates from a sorted array
+- Use a pointer to indicate the insert position, and another one to traverse. T(n)=O(n). S(n)=O(1).
 
+Variant:
+- remove all occurance of a key from an array: two pointers. Note array may not be sorted. T(n)=O(n), S(n)=O(1).
+- make all elements in a sorted array show no more than m times: Use a counter. Need reset it correctly. T(n)=O(n), S(n)=O(1).
+
+#### 6.6
 # HERE
 
 ## Notation, Language and Index
