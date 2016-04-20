@@ -1,3 +1,5 @@
+[different shebang](http://superuser.com/questions/502984/writing-shell-scripts-that-will-run-on-any-shell-using-multiple-shebang-lines)  
+
 [sshfs](https://www.digitalocean.com/community/tutorials/how-to-use-sshfs-to-mount-remote-file-systems-over-ssh)  
 
 [Eclipse C++11](http://stackoverflow.com/questions/17131744/eclipse-cdt-indexer-does-not-know-c11-containers)
