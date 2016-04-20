@@ -189,7 +189,21 @@ Variant:
 - make all elements in a sorted array show no more than m times: Use a counter. Need reset it correctly. T(n)=O(n), S(n)=O(1).
 
 #### 6.6
-# HERE
+The max profit can make when buy and sell stock once
+- Tracking the current seen min value, update max profit using current-min. T(n)=O(n), S(n)=O(1).
+
+Variant:
+- Find longest subarray that all entries are equal: a pointer point to the start point of qulified subarray. T(n)=O(n), S(n)=O(1)
+
+#### 6.7
+The max profit can make when buy and sell stock twice
+- Brute force, traverse through all singer day, compute previous max profit and next max profit. T(n)=O(n^2), S(n)=O(1).
+- Dynamic program, record max profit frontward and backward. Then add them together and find the max profit. T(n)=O(n). S(n)=O(n).
+
+Variant: Solve in O(n) time and O(1) space <b>?</b>
+
+#### 6.8
+HERE
 
 ## Notation, Language and Index
 ### Notation
@@ -241,4 +255,5 @@ template defination can not been put into source file.
 
 `std::find_if_not (foo.begin(), foo.end(), [](int i){return i%2;} );` return the iterator of the first element that make return clause false.
 
+subarray means elements that are consecutive; subsequence are not required to occupy consecutive positions within the original sequences.
 
