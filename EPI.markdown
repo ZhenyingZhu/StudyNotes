@@ -203,6 +203,18 @@ The max profit can make when buy and sell stock twice
 Variant: Solve in O(n) time and O(1) space <b>?</b>
 
 #### 6.8
+Enumerate all primes to n
+- Brute force, trial division: divide each i from 2 to sqrt(i) to see if i is prime or not. T(n)=O(n^(3/2)), S(n)=O(1).
+- sifting approach: Keep an array where the index means the number. Set false to all multiples of each prime number. T(n)=O(n/2+n/3+...)=O(nloglog(n)). S(n)=O(n).
+- Notice each time when sift, all non-prime numbers between i to i^2 are already sifted. So no need to check again. Time complicity <b>?</b>
+
+#### 6.9
+Permute the elements of an array
+- Rearrange the array by the permute. Brute force: copy and paste back. T(n)=O(n), S(n)=O(n).
+- Permutation are cylics, which means several elements are go in cycle, and an element will always finally put into the start cell of a cycle. So if find an number in permutation is not the start of a cycle, it means this cycle is already done. T(n)=O(n), S(n)=O(1).
+- Set permutation to be negative number after cycled. T(n)=O(n), S(n)=O(1). 
+
+#### 6.10
 HERE
 
 ## Notation, Language and Index
