@@ -328,6 +328,7 @@ Variant:
 - A correspond to 0: result - 1.
 
 #### 7.4
+Timestamp1
 
 ## Notation, Language and Index
 ### Notation
