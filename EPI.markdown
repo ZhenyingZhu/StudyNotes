@@ -330,6 +330,7 @@ Variant:
 #### 7.4
 Timestamp1
 Timestamp2
+Timestamp3
 
 ## Notation, Language and Index
 ### Notation
