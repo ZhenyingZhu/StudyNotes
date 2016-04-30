@@ -200,7 +200,8 @@ The max profit can make when buy and sell stock twice
 - Brute force, traverse through all singer day, compute previous max profit and next max profit. T(n)=O(n^2), S(n)=O(1).
 - Dynamic program, record max profit frontward and backward. Then add them together and find the max profit. T(n)=O(n). S(n)=O(n).
 
-Variant: Solve in O(n) time and O(1) space <b>?</b>
+Variant: 
+- Solve in O(n) time and O(1) space <b>?</b>
 
 #### 6.8
 Enumerate all primes to n
@@ -214,8 +215,14 @@ Permute the elements of an array
 - Permutation are cylics, which means several elements are go in cycle, and an element will always finally put into the start cell of a cycle. So if find an number in permutation is not the start of a cycle, it means this cycle is already done. T(n)=O(n), S(n)=O(1).
 - Set permutation to be negative number after cycled. T(n)=O(n), S(n)=O(1). 
 
+Variant: 
+- Given an array A of integers representing a permutation, update A to represent the inverse permutation using only constant additional storage. <b>?</b>
+
 #### 6.10
-HERE
+Compute the next permutation
+- From the end, seach backward, find the first element that is smaller than the last element. Then insert the last element before the position. T(n)=O(n), S(n)=O(1).
+
+
 
 ## Notation, Language and Index
 ### Notation
