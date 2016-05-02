@@ -220,8 +220,31 @@ Variant:
 
 #### 6.10
 Compute the next permutation
-- From the end, seach backward, find the first element that is smaller than the last element. Then insert the last element before the position. T(n)=O(n), S(n)=O(1).
+- Brute force: present the permutation as a number, increase it until it is a permutation again. T(n)=O(n^10), S(n)=O(n).
+- From the end, seach backward, find the first element that is smaller than the next one. Then find the first element backwards that is larger than it. Swap them, and then reverse all elements after the swap point. T(n)=O(n), S(n)=O(1).
 
+Variant:
+- Compute the kth permutation: k-1=2^a+2^b+2^c. Means the ath element should be at the first place. Remove a, then the bth element should be at the second place.
+- Previous permutation: reverse steps.
+
+#### 6.11
+Sample offline data
+- Get elements one by one. T(n)=O(k), S(n)=O(1).
+
+Variant:
+- Does `rand() % n` return uniformed distributed number between o and n-1? yes.
+
+#### 6.12
+Sample online data
+- Record all read-in data, in size of n. Then random pick k data from it. T(n)=O(nk), S(n)=O(n).
+- First get k data from read-in data, then when a new data comes, random remove one from the previous set. T(n)=O(n), S(n)=O(k).
+
+#### 6.13
+Compute a random permutation
+- Brute force: random pick an element. If already picked, discarded, otherwise add to the permutation. T(n)=O(nlogn) known as Coupon Collector’s Problem, S(n)=O(n).
+- Swap the picked value to the front, and pick random one in the left over part. T(n)=O(n), S(n)=O(1).
+
+#### 6.14
 
 
 ## Notation, Language and Index
