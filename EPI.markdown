@@ -245,7 +245,16 @@ Compute a random permutation
 - Swap the picked value to the front, and pick random one in the left over part. T(n)=O(n), S(n)=O(1).
 
 #### 6.14
+Compute a random subset with k elements from 1~n
+- Brute force: random pick one element and move to the front. T(n)=O(k), S(n)=O(n).
+- To avoid store all 1 to n, use a hash table to record each swap. T(n)=O(k), S(n)=O(k).
 
+#### 6.15
+Generate number in a set that are not uniform distributed
+- Split 0~1 into spans that are follow the distribution. T(n)=O(logn) by using binary search. S(n)=O(n).
+
+Variant:
+- Generate number follow exponenical distribution <b>?</b>
 
 ## Notation, Language and Index
 ### Notation
