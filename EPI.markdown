@@ -256,6 +256,42 @@ Generate number in a set that are not uniform distributed
 Variant:
 - Generate number follow exponenical distribution <b>?</b>
 
+#### 6.16
+Sudoku checker program, 0 means empty
+- Check line by line, row by row, and block by block. T(n)=O(n^2), S(n)=O(n).
+
+#### 6.17
+Compute the spiral ordering of a 2D array
+- Iterate solution. Be aware of corner case. Consider matrix size 3*3, 4*4, 3*4, 3*5, 4*5, 5*3. T(n)=O(n^2), S(n)=O(n^2).
+- Use a direction vector. T(n)=O(n^2), S(n)=O(n^2).
+
+Variant:
+- Generate a matrix in spiral order: fill in the blanks using spiral orders.
+- Use a sequence to generate spiral order matrix: same as above.
+- Write a program to enumerate the first n pairs of integers (a,b) in spiral order, starting from (0,0) followed by (1,0). <b>?</b>
+- m*n matrix: done. 
+- Compute the last element in spiral order of a m*n matrix: same as below.
+- Compute the kth element in spiral order in O(1) time: find a relation between offset and the first element of each offset.
+
+#### 6.18
+Rotate a 2D Array 90 degree clockwise
+- Brute force: assign a new 2D array and copy to it. T(n)=O(n^2), S(n)=O(n^2)
+- In place rotate 4 elements each time. T(n)=O(n^2), S(n)=O(1).
+- Can also reassign pointers. Create a class for this special kind of matrix, if read/write (i, j), return pointer to (j, size - i - 1). T(n)=O(1), S(n)=O(n^2).
+
+Variant:
+- Reflect a 2D array horizontaly: line by line. 
+
+#### 6.19
+Compute rows in Pascal's triangle
+- Use previous row. T(n)=O(n^2), S(n)=O(n^2).
+- Use C(m,n), T(n)=O(n^3) based on C(m,n) time complexity, S(n)=O(n^2).
+
+Variant:
+- Compute nth row use O(n) space: only record previous rows.
+
+#### 7.1
+
 ## Notation, Language and Index
 ### Notation
 Cardinality: the number of elements
