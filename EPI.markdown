@@ -290,7 +290,30 @@ Compute rows in Pascal's triangle
 Variant:
 - Compute nth row use O(n) space: only record previous rows.
 
+### Chapter 7
+Palindromic string: read same when it is reversed.
+```
+bool isPalindrome(const string &s) {
+    for (int i = 0, j = s.size() - 1; i < j; ++i, --j) {
+	    if (s[i] != s[j])
+		    return false;
+	}
+	return true;
+}
+
+String type is immutable. Alternatives that are mutable include char array, StringBuilder in Java.
+
+C++ string library:
+- `append("Gauss")`
+- `push_back('c')`
+- `pop_back()`
+- `insert(s.begin() + shift, "Gauss")`
+- `substr(pos, len)`
+- `str1.compare(str2)`: return int. 0 means two strings are same. Negative means char in str2 is smaller or str2 is shorter. Positive vice versa.
+- `str1 < str2`: `==` test logic equality not pointer.
+
 #### 7.1
+
 
 ## Notation, Language and Index
 ### Notation
