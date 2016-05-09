@@ -313,7 +313,21 @@ C++ string library:
 - `str1 < str2`: `==` test logic equality not pointer.
 
 #### 7.1
+Interconvert strings and integers (stoi)
+- Digit by digit. Be ware of 1. 0, 2. INT_MAX, 3. INT_MIN, 4. overflow. T(n)=O(log10(n)), S(n)=O(log10(n)).
 
+#### 7.2
+Base conversion from b1 to b2
+- First convert from base b1 to base 10, and then convert from base 10 to base b2. T(n)=O(n+nlogb2(b1)), S(n)=O(nlogb2(b1)).
+
+#### 7.3
+Compute the spreadsheet column encoding
+- 26 base to decimal. Notice A mapping to 1 not 0. T(n)=O(n), S(n)=O(n).
+
+Variant:
+- A correspond to 0: result - 1.
+
+#### 7.4
 
 ## Notation, Language and Index
 ### Notation
@@ -366,4 +380,6 @@ template defination can not been put into source file.
 `std::find_if_not (foo.begin(), foo.end(), [](int i){return i%2;} );` return the iterator of the first element that make return clause false.
 
 subarray means elements that are consecutive; subsequence are not required to occupy consecutive positions within the original sequences.
+
+Adding elements to the beginning of arrays are expensive. To improve the time complexity, adding elements to the end and then reverse the array.
 
