@@ -300,6 +300,7 @@ bool isPalindrome(const string &s) {
 	}
 	return true;
 }
+```
 
 String type is immutable. Alternatives that are mutable include char array, StringBuilder in Java.
 
