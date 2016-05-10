@@ -329,13 +329,18 @@ Variant:
 - A correspond to 0: result - 1.
 
 #### 7.4
-Timestamp1
-Timestamp2
-Timestamp3
-Timestamp4
-Timestamp5
-Timestamp6
-Timestamp7
+Replace and remove. Replace 'a' with 2 'd', and remove 'b'
+- First pass remove 'b' and count final length, second pass replace 'a'. T(n)=O(n), S(n)=O(1).
+
+Variant:
+- Replace special characters with their names: first pass compute the length, then modify string. 
+- Merge two sorted arrays: compare two pointers.
+
+#### 7.5
+Test palindromicify ignoring case and special characters
+- Two pointers from beginning and ending. T(n)=O(n), S(n)=O(1).
+
+#### 7.6
 
 ## Notation, Language and Index
 ### Notation
