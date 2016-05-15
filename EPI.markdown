@@ -374,6 +374,15 @@ Variant:
 Write a string sinusoidally
 - In a snake shape. Start from middle line, go first to upper line then lower line. T(n)=O(n), S(n)=O(n).
 
+#### 7.12
+Implement run-length encoding
+- encode converts a string with no digits from 'aabbb' to '2a3b', and decode do it reversely. T(n)=O(n), S(n)=O(n).
+
+#### 7.13
+Find the first occurrence of a substring
+- Brute force: two for loops. T(n)=O(mn), S(n)=O(1).
+- Rabin-Karp: Use a rolling hash on each substring. Update this rolling hash need O(1) time. T(n)=O(n+m), S(n)=O(m).
+
 ## Notation, Language and Index
 ### Notation
 Cardinality: the number of elements
