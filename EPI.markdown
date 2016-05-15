@@ -329,13 +329,50 @@ Variant:
 - A correspond to 0: result - 1.
 
 #### 7.4
-Timestamp1
-Timestamp2
-Timestamp3
-Timestamp4
-Timestamp5
-Timestamp6
-Timestamp7
+Replace and remove. Replace 'a' with 2 'd', and remove 'b'
+- First pass remove 'b' and count final length, second pass replace 'a'. T(n)=O(n), S(n)=O(1).
+
+Variant:
+- Replace special characters with their names: first pass compute the length, then modify string. 
+- Merge two sorted arrays: compare two pointers.
+
+#### 7.5
+Test palindromicify ignoring case and special characters
+- Two pointers from beginning and ending. T(n)=O(n), S(n)=O(1).
+
+#### 7.6
+Reverse all the words in a sentence
+- Do it in two pass. First pass reverse all words inplace. Then reverse the whole sentence. T(n)=O(n), S(n)=O(1).
+
+#### 7.7
+Compute all mnemonics for a phone number
+- Each digit mapping to 3 or 4 characters. Use recursive. T(n)=O(n*4^n), S(n)=O(4^n).
+
+Variant:
+- without recursive: use for loops <b>?</b>
+
+#### 7.8
+The look-and-say problem <1, 11, 21, 1211, 111221, ...>
+- do it n times. T(n)=O(n*2^n), S(n)=O(n).
+
+#### 7.9
+Convert from roman to decimal: roman number is IVXLCDM in non-increase order, with exceptions that each number can be before the next two numbers, which means destract. 
+- Add current number. If find a number smaller than the next one, destract it twice from the result. T(n)=O(n), S(n)=O(1).
+
+Variant:
+- Check if the roman number is valid: not increase in two characters.
+- return the shortest valid roman number: divide by larger roman number first. If the result is 9, then in increase order, otherwise decrease order.
+
+#### 7.10
+Compute all valid IP addresses
+- each part should be between 0 to 255, and cannot be 01. Use recursive call. Note need use all chars. T(n)=O(n^4), S(n)=O(n^4).
+
+Variant:
+- period number is k and string is unbounded: use recursive.
+
+#### 7.11
+Write a string sinusoidally
+- In a snake shape. Start from middle line, go first to upper line then lower line. T(n)=O(n), S(n)=O(n).
 
 ## Notation, Language and Index
 ### Notation
@@ -391,3 +428,4 @@ subarray means elements that are consecutive; subsequence are not required to oc
 
 Adding elements to the beginning of arrays are expensive. To improve the time complexity, adding elements to the end and then reverse the array.
 
+`str.find(' ')` return `string::npos` when cannot find space. `algorithm::find(str.begin(), str.end(), ' ')` return `str.end()` when cannot find.
