@@ -1,3 +1,5 @@
+[oracle jdk](http://www.wikihow.com/Install-Oracle-Java-on-Ubuntu-Linux)
+
 [different shebang](http://superuser.com/questions/502984/writing-shell-scripts-that-will-run-on-any-shell-using-multiple-shebang-lines)  
 
 [sshfs](https://www.digitalocean.com/community/tutorials/how-to-use-sshfs-to-mount-remote-file-systems-over-ssh)  
