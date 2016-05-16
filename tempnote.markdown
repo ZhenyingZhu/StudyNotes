@@ -1,3 +1,5 @@
+rpm -Uvh --force http://repo/{helloworld1.rpm,helloworld2.rpm}
+
 [win7 linux time problem](http://askubuntu.com/questions/169376/clock-time-is-off-on-dual-boot)
 
 [fix eclipse in launcher](http://askubuntu.com/questions/80013/how-to-pin-eclipse-to-the-unity-launcher)
