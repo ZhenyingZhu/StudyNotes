@@ -383,6 +383,51 @@ Find the first occurrence of a substring
 - Brute force: two for loops. T(n)=O(mn), S(n)=O(1).
 - Rabin-Karp: Use a rolling hash on each substring. Update this rolling hash need O(1) time. T(n)=O(n+m), S(n)=O(m).
 
+### Chapter 8
+Singly/Doubly linked list.
+
+Sentinel node.
+
+```
+template <typename T>
+struct ListNode {
+    T data;
+	shared_ptr<ListNode<T>> next;
+};
+```
+
+Operations:
+- search: T(n)=O(n)
+- add: T(n)=O(1)
+- delete: T(n)=O(1)
+
+Use a dummy head to get rid of checking empty list.
+
+C++ librarys
+- `list`: doubly linked list
+- `forward_list`: singly linked list
+- `push_front()`, `emplace_front()`
+- `pop_front()`
+- `push_back()`, `emplace_back()`
+- `pop_back()`
+- `list1.splice(iter, list2)`: add list2 to the next of iterator in list1
+- `list1.plice_after(iter, list2)`: for `forward_list` to use
+- `reverse()`
+- `sort()`
+- `insert_after(iter, ele)`, `emplace_after(iter, ele)`
+- `erase_after(iter)`: delete one element
+- `erase_after(iter1, iter2)`: delete between iter1+1 and iter2.
+
+#### 8.1
+Merge two sorted lists
+- Pick the smaller node in two lists to add to the new list. T(n)=O(n), S(n)=O(1)
+
+Variant:
+- Merge two doubly linked lists: not forget about prev pointer.
+
+#### 8.2
+
+
 ## Notation, Language and Index
 ### Notation
 Cardinality: the number of elements
@@ -438,3 +483,6 @@ subarray means elements that are consecutive; subsequence are not required to oc
 Adding elements to the beginning of arrays are expensive. To improve the time complexity, adding elements to the end and then reverse the array.
 
 `str.find(' ')` return `string::npos` when cannot find space. `algorithm::find(str.begin(), str.end(), ' ')` return `str.end()` when cannot find.
+
+[Difference between push and emplace](http://stackoverflow.com/questions/26198350/c-stacks-push-vs-emplace)
+
