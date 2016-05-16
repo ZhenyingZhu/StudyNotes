@@ -1,3 +1,5 @@
+[fix eclipse in launcher](http://askubuntu.com/questions/80013/how-to-pin-eclipse-to-the-unity-launcher)
+
 [oracle jdk](http://www.wikihow.com/Install-Oracle-Java-on-Ubuntu-Linux)
 
 [different shebang](http://superuser.com/questions/502984/writing-shell-scripts-that-will-run-on-any-shell-using-multiple-shebang-lines)  
@@ -326,7 +328,8 @@ git diff --no-color -U100000 reversion1 reversion2 -- /path > diff.patch
 
 C++ length: http://stackoverflow.com/questions/589575/what-does-the-c-standard-state-the-size-of-int-long-type-to-be  
 
-Mix bash history:  http://askubuntu.com/questions/80371/bash-history-handling-with-multiple-terminals   
+Mix bash history:  http://askubuntu.com/questions/80371/bash-history-handling-with-multiple-terminals  
+[Bash history](http://unix.stackexchange.com/questions/1288/preserve-bash-history-in-multiple-terminal-windows#3055135) 
 
 python Lambda: http://stackoverflow.com/questions/10668282/one-liner-to-check-if-at-least-one-item-in-list-exists-in-another-list  
 
