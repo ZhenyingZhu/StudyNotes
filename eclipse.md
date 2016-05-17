@@ -26,4 +26,7 @@ Most common shortcuts:
 2. C/C++ -> Build -> Setting, Discovery tab, setting CDT GCC Built-in Compiler Settings to be `${COMMAND} ${FLAGS} -E -P -v -dD "${INPUTS}" -std=c++0x`
 3. Reindex
 
+This one is the final version [eclipse C++11](http://stackoverflow.com/questions/8312854/eclipse-indexer-cant-resolve-shared-ptr)
+
+[eclipse in ubuntu 16](http://askubuntu.com/questions/761604/eclipse-not-working-in-16-04)
 

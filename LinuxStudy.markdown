@@ -2313,3 +2313,17 @@ Change screen shot name to be recognized by windows:
 ```
 for f in Screen*; do echo $f; mv "$f" "$(echo $f|tr -d '\:\-[[:space:]]')"; done
 ```
+
+[Fix win7 ubuntu time problem](http://www.webupd8.org/2014/09/dual-boot-fix-time-differences-between.html)
+
+[Ubuntu install nvidia driver](http://askubuntu.com/questions/451221/ubuntu-14-04-install-nvidia-driver)
+add the graphics-drivers ppa
+```
+sudo add-apt-repository ppa:graphics-drivers/ppa
+sudo apt-get update
+```
+install the reccomended driver
+```
+sudo ubuntu-drivers autoinstall
+```
+
