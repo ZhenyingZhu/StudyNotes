@@ -426,7 +426,32 @@ Variant:
 - Merge two doubly linked lists: not forget about prev pointer.
 
 #### 8.2
+Reverse a single sublist
+- Move each node start from start node to the next of finish node. T(n)=O(n), S(n)=O(1)
+- Move each node before start until reach finish. T(n)=O(n), S(n)=O(1). <b>Not implemented</b>
 
+Variant:
+- Revese a singly linked list: start = 0 and finish = end
+- reverse each k nodes: multiple start and finish
+
+#### 8.3
+Test for cyclicity
+- Brute force: use hash table to record all nodes. T(n)=O(n), S(n)=O(n)
+- Brute force2: while one node traverse through the list, another node start from the head and try to reach the previous node. If they meet with different step numbers, cyclicity find.
+- fast and slow pointers: when they met, fast go one by one to catch slow again, and cout cycle length. Now another pointer start from beginning and move one by one, fast move one by one and when they meet, it is the start of the cycle. Prove:
+```
+a: length before entering cycle
+b: length when fast and slow meet start from the start of cycle
+c: length of cycle
+
+2n = a + xc + b // fast move distance, x unknown
+n = a + yc + b // slow move distance, y unknown
+n = a + yc + b = (x-y)c
+(x-2y)c = a + b
+```
+So start from b point, move a steps must reach the start point of cycle.
+
+#### 8.4
 
 ## Notation, Language and Index
 ### Notation
