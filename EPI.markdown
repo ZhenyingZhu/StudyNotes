@@ -438,7 +438,7 @@ Variant:
 Test for cyclicity
 - Brute force: use hash table to record all nodes. T(n)=O(n), S(n)=O(n)
 - Brute force2: while one node traverse through the list, another node start from the head and try to reach the previous node. If they meet with different step numbers, cyclicity find.
-- fast and slow pointers: when they met, fast go one by one to catch slow again, and cout cycle length. Now another pointer start from beginning and move one by one, fast move one by one and when they meet, it is the start of the cycle. Prove:
+- fast and slow pointers: when they met, another pointer start from beginning and move one by one, fast move one by one and when they meet, it is the start of the cycle. Prove:
 ```
 a: length before entering cycle
 b: length when fast and slow meet start from the start of cycle
