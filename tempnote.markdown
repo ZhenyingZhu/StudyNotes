@@ -1,4 +1,6 @@
-rpm -Uvh --force http://repo/{helloworld1.rpm,helloworld2.rpm}
+`/etc/service` shows port and services
+
+`rpm -Uvh --force http://repo/{helloworld1.rpm,helloworld2.rpm}`
 
 [win7 linux time problem](http://askubuntu.com/questions/169376/clock-time-is-off-on-dual-boot)
 
