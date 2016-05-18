@@ -452,6 +452,16 @@ n = a + yc + b = (x-y)c
 So start from b point, move a steps must reach the start point of cycle.
 
 #### 8.4
+Test for overlapping lists—lists are cycle-free
+- Use hash table to has all nodes of a list, and traverse another list. T(n)=O(n), S(n)=O(n).
+- Brute force: two loops. T(n)=O(n^2), S(n)=O(1).
+- First count the list lengths. Then traverse the longer one first. T(n)=O(n), S(n)=O(1).
+
+#### 8.5
+Dump question. The need is too complicate that author cannot describe it clearly. Ignored.
+
+#### 8.6
+
 
 ## Notation, Language and Index
 ### Notation
