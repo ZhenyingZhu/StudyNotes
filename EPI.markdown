@@ -461,7 +461,15 @@ Test for overlapping lists—lists are cycle-free
 Dump question. The need is too complicate that author cannot describe it clearly. Ignored.
 
 #### 8.6
+Delete a node from a singly linked list
+- To update the predecessor, need T(n)=O(n) to find it, S(n)=O(1)
+- Can copy data from next node and delete next node. T(n)=O(1), S(n)=O(1).
 
+#### 8.7
+Remove the kth last element from a list
+- Don't count the lenth of list, but use two pointers. One move k steps first. T(n)=O(k), S(n)=O(1).
+
+#### 8.8
 
 ## Notation, Language and Index
 ### Notation
