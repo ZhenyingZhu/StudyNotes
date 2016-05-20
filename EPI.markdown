@@ -470,6 +470,17 @@ Remove the kth last element from a list
 - Don't count the lenth of list, but use two pointers. One move k steps first. T(n)=O(k), S(n)=O(1).
 
 #### 8.8
+Remove duplicates from a sorted list
+- traverse until find another node that is different. T(n)=O(n), S(n)=O(1).
+
+Variant:
+- remove elements that appear more than m times: set a counter
+
+#### 8.9
+Implement cyclic right shift for singly linked lists
+- Right shift the list (length n) by k mod n nodes. T(n)=O(k), S(n)=O(1).
+
+#### 8.10
 
 ## Notation, Language and Index
 ### Notation
