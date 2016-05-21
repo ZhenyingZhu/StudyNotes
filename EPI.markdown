@@ -481,6 +481,8 @@ Implement cyclic right shift for singly linked lists
 - Right shift the list (length n) by k mod n nodes. T(n)=O(k), S(n)=O(1).
 
 #### 8.10
+Implement even-odd merge
+
 
 ## Notation, Language and Index
 ### Notation
