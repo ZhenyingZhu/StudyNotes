@@ -482,7 +482,14 @@ Implement cyclic right shift for singly linked lists
 
 #### 8.10
 Implement even-odd merge
+- maintain two headers. T(n)=O(n), S(n)=O(1).
 
+#### 8.11
+Test whether a singly linked list is palindromic
+- Use iterative call. T(n)=O(n), S(n)=O(1).
+
+Variant:
+- check doubly linked list: find the mid point. 
 
 ## Notation, Language and Index
 ### Notation
