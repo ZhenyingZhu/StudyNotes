@@ -491,6 +491,20 @@ Test whether a singly linked list is palindromic
 Variant:
 - check doubly linked list: find the mid point. 
 
+#### 8.12
+Implement list pivoting
+- Maintain three lists. T(n)=O(n), S(n)=O(1).
+
+#### 8.13
+Add list-based integers
+- LSD is the head of the list. Use a variable to record carry over. T(n)=O(n), S(n)=O(n).
+
+Variant:
+- LSD is at the tail. Reverse lists.
+
+### Chapter 9
+ 
+
 ## Notation, Language and Index
 ### Notation
 Cardinality: the number of elements
