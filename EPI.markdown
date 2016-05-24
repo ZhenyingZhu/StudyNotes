@@ -503,7 +503,19 @@ Variant:
 - LSD is at the tail. Reverse lists.
 
 ### Chapter 9
- 
+Stack
+- Can reverse the order of a sequence.
+- parsing typically benefits from a stack.
+
+C++ librarys:
+- `stack`
+- `top()`: throw exception when null
+- `push(42)`, `emplace(42)`
+- `pop()`: throw exception when null
+- `empty()`
+
+#### 9.1
+
 
 ## Notation, Language and Index
 ### Notation
