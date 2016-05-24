@@ -515,7 +515,8 @@ C++ librarys:
 - `empty()`
 
 #### 9.1
-
+Implement a stack with max API
+- Push same or larger value to another private stack. 
 
 ## Notation, Language and Index
 ### Notation
