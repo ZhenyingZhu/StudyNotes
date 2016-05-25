@@ -516,7 +516,20 @@ C++ librarys:
 
 #### 9.1
 Implement a stack with max API
-- Push same or larger value to another private stack. 
+- search for the max value in stack each time. T(n)=O(logn), S(n)=O(n).
+- Push same or larger value to another private stack. T(n)=O(1), S(n)=O(n).
+
+#### 9.2
+Evaluate RPN(Reverse Polish notation) expressions
+- Use a stack to record operants. When an operator shows, pop two operants. T(n)=O(n), S(n)=O(1).
+
+Variant:
+- solve the problem with expression in op, num1, num2 order: stack the ops.
+
+#### 9.3
+Test a string over {,},(,),[,] for well-formedness
+- Check the top is match with the income char. Check at the end the stack is empty. T(n)=O(n), S(n)=O(1).
+
 
 ## Notation, Language and Index
 ### Notation
