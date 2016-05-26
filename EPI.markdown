@@ -530,6 +530,13 @@ Variant:
 Test a string over {,},(,),[,] for well-formedness
 - Check the top is match with the income char. Check at the end the stack is empty. T(n)=O(n), S(n)=O(1).
 
+#### 9.4
+Normalize pathnames
+- corner case is '/' with '..'. Use a vector to perform stack operations. Note result should not start with "//". T(n)=O(n), S(n)=O(1).
+
+#### 9.5
+Search a postings list
+- Traverse the list. Check jump node first. If jump to explored node, fall back to check next node. T(n)=O(n), S(n)=O(1).
 
 ## Notation, Language and Index
 ### Notation
