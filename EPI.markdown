@@ -538,6 +538,11 @@ Normalize pathnames
 Search a postings list
 - Traverse the list. Check jump node first. If jump to explored node, fall back to check next node. T(n)=O(n), S(n)=O(1).
 
+#### 9.6
+Compute buildings with a sunset view
+- west tall buildings will block east buildings views. Somehow the dumb question says that input is from east to west. T(n)=O(n), S(n)=O(n).
+ 
+
 ## Notation, Language and Index
 ### Notation
 Cardinality: the number of elements
