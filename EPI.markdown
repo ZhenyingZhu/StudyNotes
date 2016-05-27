@@ -514,6 +514,26 @@ C++ librarys:
 - `pop()`: throw exception when null
 - `empty()`
 
+Queue
+- enqueue to the tail, dequeue from the head.
+
+Deque(double end queue)
+- use doubly linked list
+- push: to the head
+- inject: to the tail
+- pop: from the head
+- eject
+
+C++ librarys:
+- `front()`
+- `back()`
+- `push(42)`, `emplace(42)`
+- `pop()`
+- `push_back(42)`, `emplace_back(42)`, only deque
+- `push_front(42)`, `emplace_front(123)`
+- `pop_back()`
+- `pop_front()`
+
 #### 9.1
 Implement a stack with max API
 - search for the max value in stack each time. T(n)=O(logn), S(n)=O(n).
@@ -541,7 +561,7 @@ Search a postings list
 #### 9.6
 Compute buildings with a sunset view
 - west tall buildings will block east buildings views. Somehow the dumb question says that input is from east to west. T(n)=O(n), S(n)=O(n).
- 
+
 
 ## Notation, Language and Index
 ### Notation
