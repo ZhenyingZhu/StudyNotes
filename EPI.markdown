@@ -562,6 +562,10 @@ Search a postings list
 Compute buildings with a sunset view
 - west tall buildings will block east buildings views. Somehow the dumb question says that input is from east to west. T(n)=O(n), S(n)=O(n).
 
+#### 9.7
+Compute binary tree nodes in order of increasing depth
+- Return a vector that contains vectors that have node value of same levels. Use two queues to record level i and level i + 1. T(n)=O(n), S(n)=O(n).
+
 
 ## Notation, Language and Index
 ### Notation
