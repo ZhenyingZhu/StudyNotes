@@ -5315,3 +5315,6 @@ when check failed, test still continue; when require failed, test stop
 
 # Const `shared_ptr`
 http://stackoverflow.com/questions/17793333/difference-between-const-shared-ptrt-and-shared-ptrconst-t
+
+# std::move
+Move the content of the object to another place. So the source variable will be init one, but the target will be the source content.
