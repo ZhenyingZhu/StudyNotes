@@ -566,6 +566,14 @@ Compute buildings with a sunset view
 Compute binary tree nodes in order of increasing depth
 - Return a vector that contains vectors that have node value of same levels. Use two queues to record level i and level i + 1. T(n)=O(n), S(n)=O(n).
 
+#### 9.8
+Implement a circular queue
+- Use an vector to store elements. Two pointers indicate start and end. When vector is full and need enque, resize. T(n)=O(1) if not need to resize, T(n)=O(n) otherwise. S(n)=O(n).
+
+#### 9.9
+Implement a queue using stacks
+- Use two stacks. T(n)=O(1) if not first dequeue, T(n)=O(n) if first dequeue when second stack is empty. S(n)=O(n).
+
 
 ## Notation, Language and Index
 ### Notation
