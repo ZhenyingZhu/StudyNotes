@@ -572,12 +572,14 @@ Implement a circular queue
 
 #### 9.9
 Implement a queue using stacks
-- Use two stacks. T(n)=O(1) if not first dequeue, T(n)=O(n) if first dequeue when second stack is empty. S(n)=O(n).
+- Use two stacks. T(n)=O(1) if not first dequeue, T(n)=O(n) if first dequeue when second stack is empty, O(1) for others, amortized T(n)=O(1). S(n)=O(n).
 
 #### 9.10
 Implement a queue with max API
 - Maintain a queue with max value. If the next element is bigger than the tail, remove elements until the previous element is bigger or equal. enqueue: T(n)=O(n) in max, O(1) amortized. dequeue: T(n)=O(1). Max: T(n)=O(1). S(n)=O(n).
-- 
+- Use two MaxStack(9.1) to implement queue(9.9). Max is the max of the dequeue stack and enqueue stack. Amortized T(n)=O(1), S(n)=O(n).
+
+
 
 ## Notation, Language and Index
 ### Notation
