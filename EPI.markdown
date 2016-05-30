@@ -579,6 +579,31 @@ Implement a queue with max API
 - Maintain a queue with max value. If the next element is bigger than the tail, remove elements until the previous element is bigger or equal. enqueue: T(n)=O(n) in max, O(1) amortized. dequeue: T(n)=O(1). Max: T(n)=O(1). S(n)=O(n).
 - Use two MaxStack(9.1) to implement queue(9.9). Max is the max of the dequeue stack and enqueue stack. Amortized T(n)=O(1), S(n)=O(n).
 
+### Chapter 10
+Search path: from root to a node.
+
+Ancestor-descendant: a node is both ancestor and descendant of itself.
+
+Depth start from 0.
+
+- Full binary tree: all nodes have two leaves.
+- Complete binary tree: all levels are filled except the last level, where all nodes are as far left as possible.
+- Perfect binary tree: all leaves are at same level.
+
+Full binary trees have N(non-leaf) + 1 = N(leaf). Perfect binary trees with height h have N(node) = 2^(h+1) - 1, and N(leaf)=2^h.
+
+Complete binary trees with n nodes have height = floor(log2(n)).
+
+Left-skewed tree: no nodes have right child.
+
+- inorder traversal: left-root-right
+- preorder: root-left-right
+- postorder
+- all of them have T(n)=O(n), S(n)=O(h), if nodes don't have parent fields.
+
+Min height of a tree is log2(n), prefect tree. Max height of a tree is n, skewed tree.
+
+#### 10.1
 
 
 ## Notation, Language and Index
