@@ -604,7 +604,18 @@ Left-skewed tree: no nodes have right child.
 Min height of a tree is log2(n), prefect tree. Max height of a tree is n, skewed tree.
 
 #### 10.1
+Test if a binary tree is height-balanced
+- The height difference of left and right subtree is at most one. Recursive compute height, and return -1 if the subtree is not balance. T(n)=O(n), S(n)=O(h).
 
+Variant:
+- return tree height: same.
+- return a node if its left and right subtree have height difference more than k: same.
+
+#### 10.2
+Test if a binary tree is symmetric
+- Recursive check if the left subtree has the same right node as the right subtree left node, and vice visa. T(n)=O(n), S(n)=O(h).
+
+#### 10.3
 
 ## Notation, Language and Index
 ### Notation
