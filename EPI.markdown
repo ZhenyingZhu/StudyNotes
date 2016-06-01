@@ -616,6 +616,15 @@ Test if a binary tree is symmetric
 - Recursive check if the left subtree has the same right node as the right subtree left node, and vice visa. T(n)=O(n), S(n)=O(h).
 
 #### 10.3
+Compute the lowest common ancestor(LCA) in a binary tree
+- traverse to the first node and record the path. traverse to the second node and see the first common node. T(n)=O(n), S(n)=O(h).
+- check if the two nodes are in different subtrees of a node. If so, the node is LCA. T(n)=O(h), S(n)=O(h).
+
+#### 10.4
+Compute the LCA when nodes have parent pointers
+- Compute the height of the first node and the second node, then use runner pointer. T(n)=O(h), S(n)=O(1).
+
+#### 10.5
 
 ## Notation, Language and Index
 ### Notation
