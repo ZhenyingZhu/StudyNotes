@@ -106,4 +106,5 @@ svn `mine-conflicts`: use all my changes about the conflicts but normal merge ab
 
 svn cherrypick: http://svnbook.red-bean.com/en/1.6/svn.branchmerge.advanced.html
 
+svn mergeinfo --show-revs eligible remoteURL
  
