@@ -625,6 +625,17 @@ Compute the LCA when nodes have parent pointers
 - Compute the height of the first node and the second node, then use runner pointer. T(n)=O(h), S(n)=O(1).
 
 #### 10.5
+Sum the root-to-leaf paths present in binary in a binary tree
+- Pass a variable to the child node. Sum left path and right path. T(n)=O(n), S(n)=O(h).
+
+#### 10.6
+Find a root to leaf path with specified sum
+- Return true if find a path. Use recursive calls. T(n)=O(n). S(n)=O(h).
+
+Variant:
+- return all paths: use a vector to save path.
+
+#### 10.7
 
 ## Notation, Language and Index
 ### Notation
