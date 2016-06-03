@@ -636,6 +636,13 @@ Variant:
 - return all paths: use a vector to save path.
 
 #### 10.7
+Implement an inorder traversal without recursion
+- Use a stack. If the left child of a node is already traversed, output this node, otherwise push it back. T(n)=O(n), S(n)=O(h).
+- To not push to stack twice, and not use visited field, use nullptr wisely. Push cur into stack, and then cur=cur.left. If cur is null, it means the top of stack doesn't have left node; Now get the top of stack and push top.right. If get a nullptr from stack, it means it is pushed from a node that doesn't have right node. Skip to the next stack.top() is okay. T(n)=O(n), S(n)=O(h).
+
+#### 10.8
+Implement a preorder traversal without recursion
+- Use a stack. Notice when push to stack, first push right, then push left. T(n)=O(n), S(n)=O(h).
 
 ## Notation, Language and Index
 ### Notation
