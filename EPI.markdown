@@ -644,6 +644,16 @@ Implement an inorder traversal without recursion
 Implement a preorder traversal without recursion
 - Use a stack. Notice when push to stack, first push right, then push left. T(n)=O(n), S(n)=O(h).
 
+#### 10.9
+Compute the kth node in an inorder traversal
+- Compute the number of nodes in the subtree of a node for each node. Then use D&Q to solve the problem. T(n)=O(h) not consider update nodes with size. S(n)=O(1).
+
+#### 10.10
+Compute the inorder successor
+- Nodes have parent pointer. If this node doesn't have right child, successor is its parent; otherwise is its left most node of its right subtree. T(n)=O(h), S(n)=O(1).
+
+#### 10.11
+
 ## Notation, Language and Index
 ### Notation
 Cardinality: the number of elements
