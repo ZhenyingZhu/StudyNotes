@@ -653,6 +653,16 @@ Compute the inorder successor
 - Nodes have parent pointer. If this node doesn't have right child, successor is its parent; otherwise is its left most node of its right subtree. T(n)=O(h), S(n)=O(1).
 
 #### 10.11
+Implement an inorder traversal with O(1) space
+- Node has its parent pointer. Use a prev ptr indicate where does traverse come from(3 cases). Use a next ptr to predict where should go based on if nodes have left/right child(2 cases). T(n)=O(n), S(n)=O(1).
+
+#### 10.12
+Reconstruct a binary tree from traversal data
+- Given inorder and preorder traveral, The first node of preorder is the root, and in inorder sequence, before this node is the subtree part. T(n)=O(nlogn) because of search. Use hash table can reduced, S(n)=O(n).
+
+Variant:
+- Inorder and postorder: same.
+- O(n) algorithm to build a max-tree: find the max node: find max node need O(n). <b>?</b>
 
 ## Notation, Language and Index
 ### Notation
@@ -712,3 +722,4 @@ Adding elements to the beginning of arrays are expensive. To improve the time co
 
 [Difference between push and emplace](http://stackoverflow.com/questions/26198350/c-stacks-push-vs-emplace)
 
+`make_unique<T>(T())` return a `unique_ptr<T>`.
