@@ -664,6 +664,20 @@ Variant:
 - Inorder and postorder: same.
 - O(n) algorithm to build a max-tree: find the max node: find max node need O(n). <b>?</b>
 
+#### 10.13
+Reconstruct a binary tree from a preorder traversal with markers
+- Use a static pointer to point to the current index of the array. Use recursive call to add nodes. T(n)=O(n), S(n)=O(1).
+
+Variant:
+- Postorder: create node, then move pointer forward.
+- Can inorder be solved: No, because the first node could be a left child, but also can be a node without left child.
+
+#### 10.14
+Form a linked list from the leaves of a binary tree
+- Use recursive call to traverse. If the node doesn't have left and right child, append to the list. T(n)=O(n), S(n)=O(n).
+
+#### 10.15
+
 ## Notation, Language and Index
 ### Notation
 Cardinality: the number of elements
