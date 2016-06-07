@@ -177,3 +177,8 @@ s3cmd --configure
 ```
 http://kb.site5.com/shell-access-ssh/how-to-setup-and-configure-the-s3cmd-tool-for-amazon-s3/
 
+##
+Get metadata from instance
+```
+curl -f http://169.254.169.254/latest/meta-data/public-keys/0/openssh-key  > /root/.ssh/authorized_keys
+```
