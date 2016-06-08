@@ -521,7 +521,7 @@ Deque(double end queue)
 - use doubly linked list
 - push: to the head
 - inject: to the tail
-- pop: from the head
+- pop: from the head<b>?</b>
 - eject
 
 C++ librarys:
@@ -677,6 +677,22 @@ Form a linked list from the leaves of a binary tree
 - Use recursive call to traverse. If the node doesn't have left and right child, append to the list. T(n)=O(n), S(n)=O(n).
 
 #### 10.15
+Compute the exterior of a binary tree
+- Simple and easy way to solve it is first find first leaf and add the path from root to it, and then add all leaves except the first one, and then add the path from last leaf to root reversely. T(n)=O(n), S(n)=O(n).
+- Use a flag to indicate if it is boundary. T(n)=O(n), S(n)=O(n).
+
+BTW: Never saw a question can be such nonsense. There is also a definition problem: "(By leftmost (rightmost) leaf, we mean the leaf that appears first (last) in an inorder traversal.)", but the program provided is actually printing boundary nodes. Even if the question is finding the boundary, when the root doesn't have left/right subtree, the solution only return half of the exterior. More details is discussed in http://articles.leetcode.com/print-edge-nodes-boundary-of-binary/
+
+#### 10.16
+Compute the right sibling tree
+- level order traverse the tree using a queue. At the current level, link all next level nodes. T(n)=O(n), S(n)=O(1).
+
+Variant:
+- without updating next field, update right field: from bottom up. but what kind of brain-dead would do that?
+- for a general tree: actually did in my source code.
+
+#### 10.17
+
 
 ## Notation, Language and Index
 ### Notation
