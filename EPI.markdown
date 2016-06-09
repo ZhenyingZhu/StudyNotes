@@ -692,7 +692,11 @@ Variant:
 - for a general tree: actually did in my source code.
 
 #### 10.17
+Implement locking in a binary tree
+- If any of the node's ancestor or descendant is locked, this node cannot be locked. So to test if it can be locked or not, check all nodes in subtree and the path to root. T(n)=O(m+h)=O(n). S(n)=O(1).
+- Use a counter to indicate how many nodes are locked in subtree. So only if this value is 0, and no nodes locked on the path to root, this node can be locked. T(n)=O(h), S(n)=O(n).
 
+### Chapter 11
 
 ## Notation, Language and Index
 ### Notation
