@@ -697,6 +697,20 @@ Implement locking in a binary tree
 - Use a counter to indicate how many nodes are locked in subtree. So only if this value is 0, and no nodes locked on the path to root, this node can be locked. T(n)=O(h), S(n)=O(n).
 
 ### Chapter 11
+Heap: priority queue. 
+- A complete binary tree that the key at each node is larger or equal to its children.
+- Since it is complete binary tree, can use array to store it. The children of node i is node 2i + 1 and node 2i + 2.
+- O(logn) to insert and delete, O(1) to return max, O(n) to random access.
+- Min/Max-heap is good for computing k largest/smallest elements.
+
+C++ librarys
+- `priority_queue`
+- `push()`, `emplace()`
+- `top()`: throw exception
+- `pop()`: throw exception
+
+#### 11.1
+
 
 ## Notation, Language and Index
 ### Notation
@@ -757,3 +771,11 @@ Adding elements to the beginning of arrays are expensive. To improve the time co
 [Difference between push and emplace](http://stackoverflow.com/questions/26198350/c-stacks-push-vs-emplace)
 
 `make_unique<T>(T())` return a `unique_ptr<T>`.
+
+`std::function<Return(Args...)>` defined in `<functional>` can create a function class.
+
+[std::function](http://en.cppreference.com/w/cpp/utility/functional/function)
+
+[Lambda function](http://en.cppreference.com/w/cpp/language/lambda)
+
+
