@@ -700,7 +700,7 @@ Implement locking in a binary tree
 Heap: priority queue. 
 - A complete binary tree that the key at each node is larger or equal to its children.
 - Since it is complete binary tree, can use array to store it. The children of node i is node 2i + 1 and node 2i + 2.
-- O(logn) to insert and delete, O(1) to return max, O(n) to random access.
+- O(logn) to insert and delete, O(1) to return max, O(n) to find a node.
 - Min/Max-heap is good for computing k largest/smallest elements.
 
 C++ librarys
@@ -710,6 +710,8 @@ C++ librarys
 - `pop()`: throw exception
 
 #### 11.1
+Merge sorted files
+- Use min heap to store the first element of each file. Pop an element and refill with the file that contains it. T(n)=O(n), S(n)=O(n).
 
 
 ## Notation, Language and Index
