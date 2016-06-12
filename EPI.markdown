@@ -704,15 +704,36 @@ Heap: priority queue.
 - Min/Max-heap is good for computing k largest/smallest elements.
 
 C++ librarys
-- `priority_queue`
+- `priority_queue`: default is max heap. To create a min heap, need to provide a `greater<>` in constructor.
 - `push()`, `emplace()`
 - `top()`: throw exception
 - `pop()`: throw exception
 
 #### 11.1
 Merge sorted files
-- Use min heap to store the first element of each file. Pop an element and refill with the file that contains it. T(n)=O(n), S(n)=O(n).
+- Use min heap to store the first element of each file. Pop an element and refill with the file that contains it. T(n)=O(nlogk), where k is the number of files, and n is the number of records, S(n)=O(k), because records write to disk, not in memory.
+- Can merge two files each time. T(n)=O(nlogk), S(n)=O(n).
 
+#### 11.2
+Sort an increasing-decreasing array
+- The array is first increasing, then decreasing, then increasing again for k times. Sort it by first breaking it into k pieces, then use merge sort to sort k subarray. T(n)=(nlogk). S(n)=O(k).
+
+#### 11.3
+Sort an almost-sorted array
+- The right position of a number is at most k away from its current position(k-sorted). Use a min-heap to record k numbers, and each time extract the min number out. T(n)=O(nlogk), S(n)=O(k).
+
+#### 11.4
+Compute the k closest stars
+- Since there are 10^12 stars, RAM cannot fit. Use a k size max heap. T(n)=O(nlogk), S(n)=O(k).
+
+Variant:
+- Print the k largest number from an online stream: use max heap. Worse case is the input is always increasing.
+
+#### 11.5
+Compute the median of online data
+- Use a max and a min heap. Keep both heaps have the same size. T(n)=O(logn) for each entry. S(n)=O(n).
+
+#### 11.6
 
 ## Notation, Language and Index
 ### Notation
@@ -779,5 +800,7 @@ Adding elements to the beginning of arrays are expensive. To improve the time co
 [std::function](http://en.cppreference.com/w/cpp/utility/functional/function)
 
 [Lambda function](http://en.cppreference.com/w/cpp/language/lambda)
+
+`const_reverse_iterator` start from `end()`, which is sential iterator, and end at `begin()`, which contains the first element.
 
 
