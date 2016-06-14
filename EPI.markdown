@@ -735,6 +735,8 @@ Compute the median of online data
 
 #### 11.6
 
+#### 11.7
+
 ## Notation, Language and Index
 ### Notation
 Cardinality: the number of elements
