@@ -734,8 +734,15 @@ Compute the median of online data
 - Use a max and a min heap. Keep both heaps have the same size. T(n)=O(logn) for each entry. S(n)=O(n).
 
 #### 11.6
+Compute the k largest elements in a max-heap
+- the k elements must shows in the first k level of BT of the heap. The input is an array. Use index to determine the level. T(n)=O(klogk), S(n)=O(k).
 
 #### 11.7
+Implement a stack API using a heap
+- The element is the value with a timestamp. So when pop, pop the lastest one. T(n)=O(1) for pop(), O(logn) for push(). S(n)=O(n).
+
+Variant:
+- Implement queue: use min heap. 
 
 ## Notation, Language and Index
 ### Notation
