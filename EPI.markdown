@@ -769,7 +769,14 @@ C++ library:
 - `upper_bound(A.begin(), A.end(), target`: the first element that is greater than target.
 
 #### 12.1
+Search a sorted array for first occurrence of k
+- When find k, not stop but check if left element is also k or not. If so, move upper to left to continue search. T(n)=O(logn), S(n)=O(1).
 
+Variant:
+- implement `upper_bound`: if mid <= target, goes to right, until ed <= st
+- A[0] ≥ A[1] and A[n − 2] ≤ A[n − 1]. <b>?</b>
+- find the first and last index of a series of value: between `lower_bound` and `upper_bound`
+- find if 'p' is a prefix of a sorted string: search for string start with 'p'
 
 ## Notation, Language and Index
 ### Notation
