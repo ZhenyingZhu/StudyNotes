@@ -744,6 +744,33 @@ Implement a stack API using a heap
 Variant:
 - Implement queue: use min heap. 
 
+### Chapter 12
+Binary search
+```
+int bsearch(const vector<int> &A, int val) {
+    int L = 0, U = A.size() - 1;
+    while (L <= U) {
+        int M = L + (U - L) / 2; // to avoid (L + U) overflow but (L + U) / 2 not
+        if (A[M] == val)
+            return M;
+        else if (A[M] < val)
+            L = M + 1;
+        else
+            U = M - 1;
+    }
+    return -1;
+}
+```
+
+C++ library:
+- `find(A.begin(), A.end(), target)`: defined in `<algorithm>`
+- `binary_search(A.begin(), A.end(), target)`: return bool.
+- `lower_bound(A.begin(), A.end(), target`: the first element not less than target.
+- `upper_bound(A.begin(), A.end(), target`: the first element that is greater than target.
+
+#### 12.1
+
+
 ## Notation, Language and Index
 ### Notation
 Cardinality: the number of elements
