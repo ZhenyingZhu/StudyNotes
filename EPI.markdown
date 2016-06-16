@@ -778,6 +778,25 @@ Variant:
 - find the first and last index of a series of value: between `lower_bound` and `upper_bound`
 - find if 'p' is a prefix of a sorted string: search for string start with 'p'
 
+#### 12.2
+Search a sorted no dup array for entry equal to its index
+- If a cell has element that is already larger than its index, all elements after it cannot be the answer. T(n)=O(logn), S(n)=O(1).
+
+Variant:
+- array contains duplicates: Cannot solve in O(logn). So traverse.
+
+#### 12.3
+Search smallest element in a cyclically sorted array
+- if st < ed, return st; if st >= ed, if md > st, in the right; if md < st, in the left; if md == st, if md > ed, in the right; if md == ed, traverse. T(n)=O(n) if the array is same. S(n)=O(1).
+- Use recursive call to deal with it is better. So when A[st] == A[md] == A[ed], check st to md, and md + 1 to ed and return the smaller value. T(n)=O(n), S(n)=O(logn).
+
+Variant:
+- An array contains two sub arrays, one strictly ascending and the other strictly descending. Find peek: check if A[md-1] < A[md] < A[md+1].
+- find an element in cyclically sorted array: if A[st] < A[ed], fall back to normal BS.
+
+#### 12.4
+
+
 ## Notation, Language and Index
 ### Notation
 Cardinality: the number of elements
