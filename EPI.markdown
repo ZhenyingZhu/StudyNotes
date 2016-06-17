@@ -762,6 +762,9 @@ int bsearch(const vector<int> &A, int val) {
 }
 ```
 
+Generalized search
+- Forcus on tradeoffs between RAM and comparasion time.
+
 C++ library:
 - `find(A.begin(), A.end(), target)`: defined in `<algorithm>`
 - `binary_search(A.begin(), A.end(), target)`: return bool.
@@ -807,6 +810,13 @@ Variant:
 - compute float x/y: if x > y, from 1.0 to x, else from 0 to 1.0, search mid * y == x.
 
 #### 12.6
+Search in a 2D sorted array
+- Each row and column is nondecreasing. Divide the matrix into four matrixs. Compare the value with the up-left and down-right elements to find out which blocks(at most three) it could be in. T(n)=O(mlogn), S(n)=O(1).<b>?</b>
+- Walk from top-right. If larger, move left; If smaller, move down. T(n)=O(m+n), S(n)=O(1).
+
+#### 12.7
+Find the min and max simultaneously
+- 
 
 ## Notation, Language and Index
 ### Notation
