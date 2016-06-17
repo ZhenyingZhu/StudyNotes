@@ -795,7 +795,18 @@ Variant:
 - find an element in cyclically sorted array: if A[st] < A[ed], fall back to normal BS.
 
 #### 12.4
+Compute the integer square root
+- Binary search between 1 and x/2. Be careful of the case when md == st and md^2 is smaller than x. T(n)=O(logn), S(n)=O(1).
+- Use st = md + 1 to change range. Use md^2 <= k as the check. So return md - 1. T(n)=O(logn), S(n)=O(1).
 
+#### 12.5
+Compute the real square root
+- Since st == md won't happen, binary search with a double comparation. T(n)=O(log(x/s)), where s is torlerance. S(n)=O(1).
+
+Variant:
+- compute float x/y: if x > y, from 1.0 to x, else from 0 to 1.0, search mid * y == x.
+
+#### 12.6
 
 ## Notation, Language and Index
 ### Notation
