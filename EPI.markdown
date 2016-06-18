@@ -816,7 +816,13 @@ Search in a 2D sorted array
 
 #### 12.7
 Find the min and max simultaneously
-- 
+- Store every two elements in order as min then max, so that compare min with min and max with max to save half comparasions. T(n)=O(n), S(n)=O(1).
+
+Variant:
+- least number of comparasion required: O(3n/2)
+
+####12.8
+
 
 ## Notation, Language and Index
 ### Notation
