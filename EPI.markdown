@@ -836,7 +836,7 @@ Find the missing IP address
 
 #### 12.10
 Find the duplicate and missing elements
-- 
+- One element is replaced by another element. To seperate the vector from a vector that only contains the missing A, and a vector that only contains the duplicate B, do xor for all elements lead to A ^ B. So we know which bits are different in A and B. Now search for all the elements that have that bit set, can tell us either A or B. Traverse the array to find out another one. T(n)=O(n), S(n)=O(1).
 
 ## Notation, Language and Index
 ### Notation
@@ -905,5 +905,7 @@ Adding elements to the beginning of arrays are expensive. To improve the time co
 [Lambda function](http://en.cppreference.com/w/cpp/language/lambda)
 
 `const_reverse_iterator` start from `end()`, which is sential iterator, and end at `begin()`, which contains the first element.
+
+a ^ b = c, then a ^ c = b
 
 
