@@ -821,8 +821,18 @@ Find the min and max simultaneously
 Variant:
 - least number of comparasion required: O(3n/2)
 
-####12.8
+#### 12.8
+Find the kth largest element
+- Randomly pick a number, seperate the array into larger or smaller than it sub arrays. See if it is the kth element. If it is larger than kth element, search the smaller sub array. T(n)=O(n) to O(n^2). S(n)=O(1).
 
+Variant:
+- find median: k = n / 2
+- vector has duplicates and keep order: so dumb to trying to keep order. <b>?</b>
+- mailbox <b>?</b>
+
+#### 12.9
+Find the missing IP address
+- The input is in a file and is very large. To same RAM, scan it twice. First scan prefixes of all IP address and count the number of each prefix. If the count is not same as it should be, rescan the file and use a hash table(bit set) to record which has shown. Then scan the bitset to return the result. T(n)=O(n), S(n)=O(2^k), where k is the prefix length.
 
 ## Notation, Language and Index
 ### Notation
