@@ -834,6 +834,10 @@ Variant:
 Find the missing IP address
 - The input is in a file and is very large. To same RAM, scan it twice. First scan prefixes of all IP address and count the number of each prefix. If the count is not same as it should be, rescan the file and use a hash table(bit set) to record which has shown. Then scan the bitset to return the result. T(n)=O(n), S(n)=O(2^k), where k is the prefix length.
 
+#### 12.10
+Find the duplicate and missing elements
+- 
+
 ## Notation, Language and Index
 ### Notation
 Cardinality: the number of elements
