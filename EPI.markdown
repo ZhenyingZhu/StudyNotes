@@ -866,6 +866,8 @@ C++ library:
 `hash()` in `<functional>` header contains hash for primary types.
 
 #### 13.1
+Test for palindromic permutations
+- Check if all chars are show in pairs except one. T(n)=O(n), S(n)=O(n).
 
 
 ## Notation, Language and Index
