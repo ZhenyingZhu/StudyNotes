@@ -838,6 +838,36 @@ Find the missing IP address
 Find the duplicate and missing elements
 - One element is replaced by another element. To seperate the vector from a vector that only contains the missing A, and a vector that only contains the duplicate B, do xor for all elements lead to A ^ B. So we know which bits are different in A and B. Now search for all the elements that have that bit set, can tell us either A or B. Traverse the array to find out another one. T(n)=O(n), S(n)=O(1).
 
+### Chapter 13
+Hash table
+- Collision: use a linked list.
+- Lookup, insertion and deletion: T(n)=O(1+n/m), where n is the number of elements, and m is the size of the hash table storage.
+- rehash: when load n/m grows large. T(n)=O(m + n), which is expensive.
+- rolling hash: for strings, when remove and add a character, hash code can be computed by the previous string not start from scratch.
+
+Anagrams: two strings contain same letters.
+
+Multimap: multiple values for a single key.
+
+C++ library:
+
+`unordered_set`:
+- `insert(42)`, `emplace(42)`: return `<iterator, boolean>`
+- `erase(42)`
+- `find(42)`: return `end()` if not found.
+- `size()`
+
+`unordered_map`:
+- `insert({42, "value"})`, `emplace({42, "value"})`: return `pair<iterator, boolean>`
+- `erase(42)`
+- `find(42)`: return `end()` if not found.
+- `size()`
+
+`hash()` in `<functional>` header contains hash for primary types.
+
+#### 13.1
+
+
 ## Notation, Language and Index
 ### Notation
 Cardinality: the number of elements
