@@ -869,6 +869,16 @@ C++ library:
 Test for palindromic permutations
 - Check if all chars are show in pairs except one. T(n)=O(n), S(n)=O(n).
 
+#### 13.2
+Is an anonymous letter constructible?
+- Hash the letter character counts. Iterate the magazine, if all characters are available, return true. T(n)=O(n), S(n)=O(m), where m is the letter and n is the magazine.
+
+#### 13.3
+Implement an ISBN cache
+- Key is ISBN, value is price. Insert until cache is full, then use LRU to remove entry by implement a linked list queue with hash table record key and list node.
+- lazy garbage collection: when cache size is doubled, abandon half at once. This will increase lookup failure rate. 
+
+#### 13.4
 
 ## Notation, Language and Index
 ### Notation
