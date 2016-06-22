@@ -879,6 +879,13 @@ Implement an ISBN cache
 - lazy garbage collection: when cache size is doubled, abandon half at once. This will increase lookup failure rate. 
 
 #### 13.4
+Compute the LCA, optimizing for close ancestors
+- traverse to root from both nodes at the same time. If find one node already in the hash map, return. T(n)=O(h), S(n)=O(h). 
+
+#### 13.5
+Compute the k most frequent queries
+- Use a hash table, key is string and value is freq. Then use min heap to retrive the k largest strings. T(n)=O(n+mlogk), where n is the number of string, m is the number of uniq strings. S(n)=O(m).
+- Use random pick pivot to find the most biggest k. T(n)=O(n+m), S(n)=O(m).
 
 ## Notation, Language and Index
 ### Notation
