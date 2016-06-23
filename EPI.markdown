@@ -858,7 +858,7 @@ C++ library:
 - `size()`
 
 `unordered_map`:
-- `insert({42, "value"})`, `emplace({42, "value"})`: return `pair<iterator, boolean>`
+- `insert({42, "value"})`, `emplace(42, "value")`: return `pair<iterator, boolean>`
 - `erase(42)`
 - `find(42)`: return `end()` if not found.
 - `size()`
@@ -886,6 +886,19 @@ Compute the LCA, optimizing for close ancestors
 Compute the k most frequent queries
 - Use a hash table, key is string and value is freq. Then use min heap to retrive the k largest strings. T(n)=O(n+mlogk), where n is the number of string, m is the number of uniq strings. S(n)=O(m).
 - Use random pick pivot to find the most biggest k. T(n)=O(n+m), S(n)=O(m).
+
+#### 13.6
+Find the nearest repeated entries in an array
+- Use hash table to record string and the index of its previous presence. T(n)=O(n), S(n)=O(m), where m is the number of disctinct string.
+
+#### 13.7
+Find the smallest subarray covering all values
+- For each index i, find the first subarray that cover all strings. T(n)=O(n^2), S(n)=O(n).
+- Moving window: the first subarray that covers all strings is between st and ed. Then move st and ed forward to find next subarray. T(n)=O(n), S(n)=O(n).
+- When there is no duplicates of the target string, use a linked list to record all appearance of strings. So input could be a stream. Hash table records string to node mapping. T(n)=O(n), S(n)=O(m), where m is the number of target strings.
+
+Variant:
+- 
 
 ## Notation, Language and Index
 ### Notation
