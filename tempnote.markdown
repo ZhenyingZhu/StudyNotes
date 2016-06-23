@@ -1,3 +1,8 @@
+git diff between two files
+```
+git diff HEAD:file1 file2
+```
+
 `/etc/service` shows port and services
 
 `rpm -Uvh --force http://repo/{helloworld1.rpm,helloworld2.rpm}`
