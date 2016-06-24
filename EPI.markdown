@@ -898,7 +898,21 @@ Find the smallest subarray covering all values
 - When there is no duplicates of the target string, use a linked list to record all appearance of strings. So input could be a stream. Hash table records string to node mapping. T(n)=O(n), S(n)=O(m), where m is the number of target strings.
 
 Variant:
-- 
+- input is stream: second solution.
+- find the shortest subarray that contains all the distinct elements in the array: two pass.
+- rearrange the array so that the shortest subarray has the maximum length: put two least repeated elements at the head and the end.
+- rearrange the array so that no two equal elements are k or less apart: <b>?</b>
+- find the longest subarray that all the elements are distinct: moving window. When read an element that is already shows up, move the start until all this elements are excluded.
+
+#### 13.8
+Find smallest subarray sequentially covering all values
+- Record 1. the shortest subarray length for each keyword; 2. the latest idx of each keyword. Then when find a new keyword, use the previous keyword length and index to compute the new length. T(n)=O(n), S(n)=O(m), where m is the number of keywords.
+
+#### 13.9
+Find the longest subarray with distinct entries
+- Moving window. Record the last idx of each element, and a subarray start idx. When find a duplicate element has idx after start idx, move start idx after previous occurance of this element. T(n)=O(n), S(n)=O(m), where m is the number of longest distinct entries.
+
+#### 13.10
 
 ## Notation, Language and Index
 ### Notation
