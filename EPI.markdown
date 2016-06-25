@@ -913,6 +913,10 @@ Find the longest subarray with distinct entries
 - Moving window. Record the last idx of each element, and a subarray start idx. When find a duplicate element has idx after start idx, move start idx after previous occurance of this element. T(n)=O(n), S(n)=O(m), where m is the number of longest distinct entries.
 
 #### 13.10
+Find the length of a longest contained interval
+- Use a set to record all integers. Then start from any interger, check if its left and right intergers are exist. If exist, update the subset and remove them. T(n)=O(n), S(n)=O(n).
+
+#### 13.11
 
 ## Notation, Language and Index
 ### Notation
