@@ -917,6 +917,12 @@ Find the length of a longest contained interval
 - Use a set to record all integers. Then start from any interger, check if its left and right intergers are exist. If exist, update the subset and remove them. T(n)=O(n), S(n)=O(n).
 
 #### 13.11
+Compute the average of the top three scores
+- Store scores in a min heap for each student. T(n)=O(mlogk), where m is the student number and k is 3. S(n)=O(km).
+
+#### 13.12
+Compute all string decompositions
+
 
 ## Notation, Language and Index
 ### Notation
