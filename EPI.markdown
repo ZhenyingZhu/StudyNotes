@@ -922,7 +922,13 @@ Compute the average of the top three scores
 
 #### 13.12
 Compute all string decompositions
+- Given a list of N same length m strings, find substrings from a n length sentence that contain all these strings exactly once. Check all substrings that have the expected length. T(n)=O(Nmn), S(n)=O(mn).
 
+#### 13.13
+Test the Collatz conjecture
+- Test all numbers from 1 to n. Use a hash set to record tested value. Only test odd value because even value / 2 must has tested. Stop when the tmp value is smaller than the current test value. T(n)=O(n), S(n)=O(n).
+
+#### 13.14
 
 ## Notation, Language and Index
 ### Notation
