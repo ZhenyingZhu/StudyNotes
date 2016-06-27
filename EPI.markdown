@@ -929,6 +929,37 @@ Test the Collatz conjecture
 - Test all numbers from 1 to n. Use a hash set to record tested value. Only test odd value because even value / 2 must has tested. Stop when the tmp value is smaller than the current test value. T(n)=O(n), S(n)=O(n).
 
 #### 13.14
+Implement a hash function for chess
+- There are 64 positions. Each position has 13 states, which are empty, one of 6 class chesses * 2 sides. So can use a 13 base 64 digits number to record each state. Hash code is sum(ci * p ^ i), where i indicate the idx of digits. When update, substract two old states and compute two new states for those two position.
+- Can use 64 base 13 digits. Same time complexity. But notice compute p ^ i is expensive.
+- Can assign each state on each pisition a number, so there are in total 13 * 64 numbers. The hash code is the sum of all current state. So update the hash code only need 4 operations. There would be collide so I don't understand how this could be a solution. <b>?</b>
+
+Variant:
+- include castling right an en passant information: <b>?</b>
+
+### Chapter 14
+O(nlogn) sortings: 
+- heapsort: not stable(equal entries show in the result as the same order)
+- merge sort: not inplace
+- quicksort: O(n^2) under worst case. Also the call stack is O(logn)
+
+Alternatives:
+- when array length less than 10, insertion sort is faster than quick sort.
+- elements are at most k away from right position, use a k size heap.
+- when the number of kinds of elements is small, use counting sort. radix sort is a special counting sort, which is based on radix(number of digits)
+
+C++ library
+- when define personal structure, implement `bool operator<(const T &other) const` to use sort.
+- `sort()` in `<algorithm>` head file.
+- `list::sort()`
+
+#### 14.1
+Compute the intersection of two sorted arrays
+- brute force: for each entry in A, traverse through B to find same entries. T(n)=O(mn), S(n)=O(n).
+- For each entry in A, use binary search on B to find same entries. T(n)=O(nlogm), S(n)=O(n). Best when one array is much smaller than another.
+- Use two pointers point to current entries in two arrays. Increase the pointer which is smaller than the others until find same entries. T(n)=O(m+n), S(n)=O(n).
+
+#### 14.2
 
 ## Notation, Language and Index
 ### Notation
