@@ -960,6 +960,14 @@ Compute the intersection of two sorted arrays
 - Use two pointers point to current entries in two arrays. Increase the pointer which is smaller than the others until find same entries. T(n)=O(m+n), S(n)=O(n).
 
 #### 14.2
+Merge two sorted arrays
+- Compare two pointers from the end of arrays. Use a pointer to indicate where to insert. T(n)=O(n), S(n)=O(1).
+
+#### 14.3
+Remove first-name duplicates
+- Use hash set. T(n)=O(n), S(n)=O(n).
+- First sort the array, then remove duplicates in place from beginning. T(n)=O(nlogn), S(n)=O(1).
+
 
 ## Notation, Language and Index
 ### Notation
@@ -1031,4 +1039,5 @@ Adding elements to the beginning of arrays are expensive. To improve the time co
 
 a ^ b = c, then a ^ c = b
 
+`unique(arr.begin(), arr.end())` remove all adjacent duplcates and return the iterator of next element of the end.
 
