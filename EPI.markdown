@@ -968,6 +968,20 @@ Remove first-name duplicates
 - Use hash set. T(n)=O(n), S(n)=O(n).
 - First sort the array, then remove duplicates in place from beginning. T(n)=O(nlogn), S(n)=O(1).
 
+#### 14.4
+Render a calendar
+- For each endpoint, check how many events include it. T(n)=O(n^2), S(n)=O(1).
+- Sort endpoints of events. Iterate through endpoints, if there is a start endpoint, increase the counter; if it is an end endpoint, decrease the counter. Start endpoint should come before end endpoint. T(n)=O(nlogn), S(n)=O(n).
+
+Variant:
+- user i use bi bandwidth from time si to fi. Max bandwidth: sum bi instead of 1.
+
+#### 14.5
+Merging intervals
+- start of the interval: if the start is between an interval, the new interveral start is the old start, otherwise the start is its start; if the end is between an interval, the new end is the end of the old interval, otherwise its end. T(n)=O(n), S(n)=O(1).
+- 1. find first overlaping interval; 2. compute until last overlapping interval; 3. replace those intervals with the new interval. T(n)=O(n), S(n)=O(1).
+
+#### 14.6
 
 ## Notation, Language and Index
 ### Notation
