@@ -982,6 +982,17 @@ Merging intervals
 - 1. find first overlaping interval; 2. compute until last overlapping interval; 3. replace those intervals with the new interval. T(n)=O(n), S(n)=O(1).
 
 #### 14.6
+Compute the union of intervals
+- for every interval, check if it intersect with other intervals. If it does, remove it and those intersected ones and add to the result. T(n)=O(n^2), S(n)=O(n).
+- sort intervals based on their left end. iterate through them and find all intersected intervals in a roll, add the union result into  the result. T(n)=O(nlogn), S(n)=O(n).
+
+#### 14.7
+Partitioning and sorting an array with many repeated entries
+- Sort the array. T(n)=O(nlogn), S(n)=O(1).
+- In place bucket sort. Use a hashtable to record the end of each bucket. Each time pick the next cell of last element in the first bucket, and place it into the right bucket. When a bucket is full, remove the bucket from hashtable. At the end the array will be sorted. T(n)=O(n), S(n)=O(m), where m is the number of buckets.
+
+#### 14.8
+
 
 ## Notation, Language and Index
 ### Notation
