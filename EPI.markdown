@@ -992,6 +992,10 @@ Partitioning and sorting an array with many repeated entries
 - In place bucket sort. Use a hashtable to record the end of each bucket. Each time pick the next cell of last element in the first bucket, and place it into the right bucket. When a bucket is full, remove the bucket from hashtable. At the end the array will be sorted. T(n)=O(n), S(n)=O(m), where m is the number of buckets.
 
 #### 14.8
+Team photo day 1
+- Place two teams in two rows explicitly. Person in the second row should be taller than the first row. Sort two teams. Compare each pair to see if the taller one is in the same team. T(n)=O(nlogn), S(n)=O(n).
+
+#### 14.9
 
 
 ## Notation, Language and Index
