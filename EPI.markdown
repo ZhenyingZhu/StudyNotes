@@ -996,7 +996,18 @@ Team photo day 1
 - Place two teams in two rows explicitly. Person in the second row should be taller than the first row. Sort two teams. Compare each pair to see if the taller one is in the same team. T(n)=O(nlogn), S(n)=O(n).
 
 #### 14.9
+Implement a fast sorting stable algorithm for lists
+- Insert sort: traverse each node, find its place in the previous sorted list. T(n)=O(n^2), S(n)=O(1).
+- Merge sort: seperate the list into two halves, and then merge. T(n)=O(nlogn), S(n)=O(logn).
 
+#### 14.10
+Compute a salary threshold
+- Given a salary array and a target sum payroll. Set a cap so that salary above cap become cap, and the sum equle to payroll. First set cap to be each salary and compute the sum payroll. Find out cap should between which two salaries. Then use a formular to compute the exact cap. T(n)=O(n^2). S(n)=O(n).
+
+Variant:
+- Solve the problem use O(1) space: The answer is O(1).
+
+### Chapter 15
 
 ## Notation, Language and Index
 ### Notation
