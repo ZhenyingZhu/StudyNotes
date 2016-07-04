@@ -1027,7 +1027,12 @@ Test if a binary tree satisfies the BST property
 
 #### 15.2
 Find the first key greater than a given value in a BST
-- Binary search. 
+- Binary search. Store the latest seen larger value. If find another larger value but smaller than the previous one, return that one. T(n)=O(logn), S(n)=O(1). 
+
+Variant:
+- with same values, return the first node that equal to a value: if the left child is same, return left child, else return root.
+
+#### 15.3
 
 ## Notation, Language and Index
 ### Notation
