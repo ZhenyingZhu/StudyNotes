@@ -1008,6 +1008,26 @@ Variant:
 - Solve the problem use O(1) space: The answer is O(1).
 
 ### Chapter 15
+Binary search tree: a node is >= its left subtree but <= its right subtree.
+- Good to find min/max and the next min/max elements.
+
+Red-black tree: height balanced tree, so that insertion and deletions are O(logn).
+
+C++ library:
+- `set` and `map` are BST-based.
+- `begin()` traverse in ascending order, and `rbegin()` traverse in descending order.
+- `lower_bound(a)` return the first element that is >= a; `upper_bound(a)` return > a.
+- `equal_range(a)` return a pair of iterators.
+
+#### 15.1
+Test if a binary tree satisfies the BST property
+- Use a struct to return the largest and smallest value of a subtree, and a bool to indicate if the tree is not BST. T(n)=O(n), S(n)=O(logn).
+- Use a range (-limit, node) to check if left subtree nodes are in this range, and (node, +limit) to check right subtree. T(n)=O(n), S(n)=O(logn).
+- BFS traverse the tree. T(n)=O(n), S(n)=O(logn).
+
+#### 15.2
+Find the first key greater than a given value in a BST
+- Binary search. 
 
 ## Notation, Language and Index
 ### Notation
