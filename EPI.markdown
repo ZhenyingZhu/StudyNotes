@@ -1033,6 +1033,19 @@ Variant:
 - with same values, return the first node that equal to a value: if the left child is same, return left child, else return root.
 
 #### 15.3
+Find the k largest elements in a BST
+- Reversed inorder traverse. T(n)=O(h+k), S(n)=O(logn).
+
+#### 15.4
+Compute the LCA in a BST with distinct value
+- The first node that has value between two input nodes, comming from root, is the LCA. T(n)=O(h), S(n)=O(1).
+
+#### 15.5
+Reconstruct a BST from unique traversal preorder data
+- Since inorder traverse of a BST is a sorted array. So preorder and inorder can reconstruct the BST. T(n)=O(nlogn), S(n)=O(n).
+- Use a static pointer points to preorder vector elements. If the current element is added to the tree, pointer move on, otherwise stay and return a nullptr. T(n)=O(n), S(n)=O(n).
+
+#### 15.6
 
 ## Notation, Language and Index
 ### Notation
