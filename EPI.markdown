@@ -1046,6 +1046,11 @@ Reconstruct a BST from unique traversal preorder data
 - Use a static pointer points to preorder vector elements. If the current element is added to the tree, pointer move on, otherwise stay and return a nullptr. T(n)=O(n), S(n)=O(n).
 
 #### 15.6
+Find the closest entries in three sorted arrays
+- Merge three arrays into one, and use a moving window. T(n)=O(n), S(n)=O(n).
+- Get first entries from trhee arrays. Count the distance. Then remove the smallest entry and add its successor from its array. T(n)=O(nlogk), S(n)=O(k).
+
+#### 15.7
 
 ## Notation, Language and Index
 ### Notation
