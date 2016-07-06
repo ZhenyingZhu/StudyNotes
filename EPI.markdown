@@ -1051,6 +1051,12 @@ Find the closest entries in three sorted arrays
 - Get first entries from trhee arrays. Count the distance. Then remove the smallest entry and add its successor from its array. T(n)=O(nlogk), S(n)=O(k).
 
 #### 15.7
+Enumerate first k numbers of the form a + b sqrt(2)
+- Note if `a+b*sqrt(2)=a'+b'*sqrt(2)`, then a=a', b=b'. So compute all numbers of a=0, b=0 to a=k-1, b=k-1, and then sort them. T(n)=O(k^2log(k^2)), S(n)=O(k^2).
+- Note `a + b * sqrt(2) < a + 1 + b * sqrt(2) < a + (b + 1) * sqrt(2)`. Use a BST to hold a set(key is unique, and BST as well) of candidates, and retrive the smallest one to push to the result, and add two new candidates into the set. T(n)=O(klogk), S(n)=O(k).
+- Since new added value must be one previous value plus 1 or sqrt(2), record two pointers which point to previous add 1 and previous add sqrt(2) entries. If first pointer + 1 > second pointer + sqrt(2), move second pointer forward. T(n)=O(n), S(n)=O(k).
+
+#### 15.8
 
 ## Notation, Language and Index
 ### Notation
