@@ -1057,6 +1057,19 @@ Enumerate first k numbers of the form a + b sqrt(2)
 - Since new added value must be one previous value plus 1 or sqrt(2), record two pointers which point to previous add 1 and previous add sqrt(2) entries. If first pointer + 1 > second pointer + sqrt(2), move second pointer forward. T(n)=O(n), S(n)=O(k).
 
 #### 15.8
+The most visited pages problem
+- Use hash table. T(n)=O(n), S(n)=O(n).
+- Use height-balanced BST, with node as (page, visit count) pair, ordered by visit count. Also use a hash table to map page to BST node. Find operation use T(n)=O(k+logm), where k is the number of pages we want, and m is the total number of pages. 
+
+Variant:
+- a solution that T(n)=O(1) for read in pages, and T(n)=O(k) for find k pages: hash table <b>?</b>
+
+#### 15.9
+Build a minimum height BST from a sorted array
+- Use the middle as the root. T(n)=O(n), S(n)=O(n).
+
+#### 15.10
+
 
 ## Notation, Language and Index
 ### Notation
