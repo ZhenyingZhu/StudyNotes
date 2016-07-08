@@ -1069,7 +1069,8 @@ Build a minimum height BST from a sorted array
 - Use the middle as the root. T(n)=O(n), S(n)=O(n).
 
 #### 15.10
-
+Insertion and deletion in a BST
+- Keys are unique. Insert: try to find the key, if find, return; else, must at a leave, which can add node to; Delete: Find its successor in its right subtree. If no right subtree, move left subtree to it; Otherwise its successor must doesn't have left subtree. Replace successor's value to the deletion node, and then replace the successor with its right subtree. T(n)=O(h), S(n)=O(1).
 
 ## Notation, Language and Index
 ### Notation
