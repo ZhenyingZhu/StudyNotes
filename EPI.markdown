@@ -1072,6 +1072,18 @@ Build a minimum height BST from a sorted array
 Insertion and deletion in a BST
 - Keys are unique. Insert: try to find the key, if find, return; else, must at a leave, which can add node to; Delete: Find its successor in its right subtree. If no right subtree, move left subtree to it; Otherwise its successor must doesn't have left subtree. Replace successor's value to the deletion node, and then replace the successor with its right subtree. T(n)=O(h), S(n)=O(1).
 
+#### 15.11
+Test if three BST nodes are totally ordered
+- Search from one node to mid, if find, then search from mid to the other node. Otherwise search from the other node to mid. T(n)=o(h), S(n)=O(1).
+
+#### 15.12
+The range lookup problem
+- 3D question: Build two BST trees on X and Y coordinates. Set a D for distance range, so that search for X in [x-D, x+D] and Y in [y-D, y+D], and do intersect on results. Brute-force check all results to find the nearest one. If there is no result found, double the D.
+- 3D question: Quadtrees and k-d trees.
+- 2D: Recursive call to check if root is in the range. 
+
+#### 15.13 
+
 ## Notation, Language and Index
 ### Notation
 Cardinality: the number of elements
