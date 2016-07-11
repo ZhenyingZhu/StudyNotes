@@ -1096,7 +1096,19 @@ Recursion:
 - ensuring process
 - end point
 
+The Euclidean algorithm for calculating the greatest common divisor (GCD)
+- if y > x, the GCD of x and y is GCD of x and y - x. T(n)=O(n), n is the number of bits to represent the input. S(n)=O(1).
+```
+long long GCD(long long x, long long y) {
+    return y == 0 ? x : GCD(y, x % y);
+}
+```
 
+#### 16.1
+The Towers of Hanoi problem
+- Use recursion. Use 1. number of rings need to move, 2. stacks, 3. from peg, 4. to peg, 5. use peg as arguments. 
+
+#### 16.2
 
 ## Notation, Language and Index
 ### Notation
