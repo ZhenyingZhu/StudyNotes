@@ -1013,8 +1013,12 @@ Binary search tree: a node is >= its left subtree but <= its right subtree.
 
 Red-black tree: height balanced tree, so that insertion and deletions are O(logn).
 
+Augmented BSTs
+- add a size field for BST Nodes so that compute number of entries become much easier.
+- count for nodes in a range [L, U] can be done by count number of nodes < U and minus number of nodes < L.
+
 C++ library:
-- `set` and `map` are BST-based.
+- `set` and `map` are BST-based. Library BST use caching so T(n)=O(1).
 - `begin()` traverse in ascending order, and `rbegin()` traverse in descending order.
 - `lower_bound(a)` return the first element that is >= a; `upper_bound(a)` return > a.
 - `equal_range(a)` return a pair of iterators.
@@ -1083,6 +1087,16 @@ The range lookup problem
 - 2D: Recursive call to check if root is in the range. 
 
 #### 15.13 
+Add credits
+- A data structure that support search by id, find the max credit, increase all credits and add/remove. Use hash table to store id-credit map, BST to store credit-ids map. Increase all credits can be implemented by using a global offset.
+
+### Chapter 16
+Recursion:
+- base case
+- ensuring process
+- end point
+
+
 
 ## Notation, Language and Index
 ### Notation
