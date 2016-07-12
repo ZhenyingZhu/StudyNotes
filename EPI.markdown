@@ -1106,9 +1106,30 @@ long long GCD(long long x, long long y) {
 
 #### 16.1
 The Towers of Hanoi problem
-- Use recursion. Use 1. number of rings need to move, 2. stacks, 3. from peg, 4. to peg, 5. use peg as arguments. 
+- Use recursion. Use 1. number of rings need to move, 2. stacks, 3. from peg, 4. to peg, 5. use peg as arguments. T(n)=O(2^n). 
+
+Variant:
+- without recursion: <b>?</b>
+- other dumb quesitons: <b>?</b>
 
 #### 16.2
+Generate all nonattacking placements of n-Queens
+- Use an array to record the positions. Place a queen on first column and recursive to check for other columns. T(n)=O(n!/(c^n)), S(n)=O(n^2)
+
+Variant:
+- number of solutions: return the result size
+- other dumb quesitons: <b>?</b>
+
+#### 16.3
+Generate permutations
+- Sort the input array, then use a bool vector to indicate which elements are already added, and call recursive. T(n)=O 
+- for unique array, i indicate the processed entry, for j=i to size, swap i and j. If i=size, add vector to result. T(n)=O(n * n!)
+- Call next permutation iteratively. T(n)=O(n * n!).
+
+Variant:
+- duplicate: the result.
+
+#### 16.4
 
 ## Notation, Language and Index
 ### Notation
