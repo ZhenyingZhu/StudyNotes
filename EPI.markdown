@@ -1130,6 +1130,19 @@ Variant:
 - duplicate: the result.
 
 #### 16.4
+Generate power set
+- All possible subsets with entries from input. Use recursion. T(n)=O(2^n), S(n)=O(2^n).
+- Consider subnets as put 0 or 1 on each entry. So call recursive to either add current element or not add current element to the subnet.
+- Use binary numbers to indicate the subnets. It save some space but T(n)=O(n * 2^n).
+
+Variant:
+- duplicates: the answer
+
+#### 16.5
+Generate all subsets of size k
+- Call recursive. T(n)=O(2^n). 
+
+#### 16.6
 
 ## Notation, Language and Index
 ### Notation
