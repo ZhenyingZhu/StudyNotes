@@ -62,17 +62,22 @@ Instantaneous/average throughput: F/T bps.
 
 ### 1.5
 Protocol stack:  
-
-1.  Application: HTTP, SMTP, FTP. Message. 
-1.  Transport: TCP, UDP. Segment. 
-1.  Network: IP. Datagram. 
-1.  Link: Ethernet, WiFi, PPP. Frame. 
 1.  Physical: IEEE 802.3u. Bit. 
+1.  Link: Ethernet, WiFi, PPP. Frame. 
+1.  Network: IP. Datagram. 
+1.  Transport: TCP, UDP. Segment. 
+1.  Application: HTTP, SMTP, FTP. Message. 
 
 Host has all five, switch has last two, router has last three. 
 
 OSI:  
-APP, Presentation(Data compression and encryption), Session(divide and sync), Transport ...  
+- Layer 1: Physical Layer
+- Layer 2: Data Link Layer
+- Layer 3: Network Layer
+- Layer 4: Transport Layer
+- Layer 5: Session Layer (divide and sync)
+- Layer 6: Presentation Layer (Data compression and encryption)
+- Layer 7: Application Layer
 
 Encapsulation.  
 Payload field.   
@@ -465,3 +470,30 @@ TCP Reno congestion control algorithm.
 ### Exercise
 
 ## Chapter 4
+(!!HERE!!)
+
+# IPV4
+## multicast addressing
+classes IP addresses for IPv4
+- based on first several bits in IP addresses
+- Class A-C are unicast addresses.
+- class A: first bit is 0, i.e. 0.0.0.0 - 127.255.255.255
+- class B: start with 10, 128.0.0.0 - 191.255.255.255
+- class C: start with 110, 192.0.0.0 - 223.255.255.255
+- multicast address: 1110, 224.0.0.0 - 239.255.255.255
+- Reversed:  11110, 240.0.0.0 - 247.255.255.255
+
+Private IPv4 address spaces
+- 24-bit block: 10.0.0.0 - 10.255.255.255, 10.0.0.0/8, single class A network
+- 20-bit block: 172.16.0.0 - 172.31.255.255, 172.16.0.0/12, 16 contiguous class B networks
+- 16-bit block: 192.168.0.0 - 192.168.255.255, 192.168.0.0/16, 256 contiguous class C networks
+
+# IPV6
+128-bit addresses. E.g. 2001:0db8:0000:0042:0000:8a2e:0370:7334
+
+hierarchical address allocation method: route aggregation.
+
+The use of multicast addressing is expanded and simplified
+
+
+
