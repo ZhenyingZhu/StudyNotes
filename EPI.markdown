@@ -1143,6 +1143,15 @@ Generate all subsets of size k
 - Call recursive. T(n)=O(2^n). 
 
 #### 16.6
+Generate strings of matched parens
+- Between the ith left paren and i+1 th left paren, there could be at most i right parens. And the total number of right parens should be n. T(n)=O(2^n), S(n)=O(2^n)
+- For right each paren, can add at this time, or add at next time, unless it has a left paren already. So to create a recursive, add left paren when available, then call recursive; add right paren when available, then call recursive make the program walk through all possibility. T(k)=O((2k)!/((k!(k+1)!))
+
+#### 16.7
+Generate palindromic decompositions
+- Cannot understand what is the question and there are typos in the example, so I believe the author was drunk when wrote this question.
+
+#### 16.8
 
 ## Notation, Language and Index
 ### Notation
