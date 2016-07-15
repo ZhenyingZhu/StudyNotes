@@ -1152,6 +1152,14 @@ Generate palindromic decompositions
 - Cannot understand what is the question and there are typos in the example, so I believe the author was drunk when wrote this question.
 
 #### 16.8
+Generate binary trees
+- If there are two nodes, for a root, there can be 1 left child and 0 right child, or 0 left child and 1 right child. Recursive left subtree nodes number from 0 to n, and build trees. T(n)=C(n)=(2n)!/(n! * (n+1)!)
+
+#### 16.9
+Implement a Sudoku solver
+- Recursive call to try all values and stop when invalid value shows. T(n)=O(2^9)
+
+#### 16.10
 
 ## Notation, Language and Index
 ### Notation
