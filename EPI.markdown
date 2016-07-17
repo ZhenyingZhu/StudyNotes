@@ -1160,6 +1160,19 @@ Implement a Sudoku solver
 - Recursive call to try all values and stop when invalid value shows. T(n)=O(2^9)
 
 #### 16.10
+Compute a Gray code
+- By defination, use a hashtable to record added results. Then try modify one bit from the preivous result to see if it should add to results or not. 
+- When bit number is 1, there is only 0 and 1. Bit number is 2, use 0 add bit number 1 vector, and then use 1 add the vector in reverse order. T(n)=O(2^n), S(n)=O(2^n).
+
+#### 16.11
+Compute the diameter of a tree with weight on edges
+- Diameter is the max distance between two leaves. Traverse all the children. One child could has the largest diameter. Otherwise the sum of distances to two farthest leaves is the diameter. T(n)=O(n), S(n)=O(1).
+
+Variant:
+- minimize the time for rooted tree sends message to all nodes: use the reverse order of the distance to leaves.
+
+### Chapter 17
+
 
 ## Notation, Language and Index
 ### Notation
