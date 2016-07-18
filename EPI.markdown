@@ -1172,6 +1172,17 @@ Variant:
 - minimize the time for rooted tree sends message to all nodes: use the reverse order of the distance to leaves.
 
 ### Chapter 17
+Like D&Q solution, but subproblem for same values are reoccuring, so caching the result.
+
+#### 17.1
+Count the number of score combinations
+- (Wrong!)From 0, 1, ..., x, to record how many ways to reach x, then N(x) = N(x1) + N(x2) + N(x3) + ..., where xi means xi + certain score = x. T(n)=O(x). S(n)=O(x). It is wrong due to it counts one way into two, e.g. to reach 5 with score 2 and 3, it return 2. 
+- A 2D matrix, which row m means previous m scores are involved. For column n, it means how many ways to reach n. C(m,n)=C(m-1,n) + C(m,n-A(n)). The first express means without this score A(n), how many ways. The second express means with this score and previous scores, how many ways. T(n)=O(mn), S(n)=S(mn).
+
+Variant:
+- Wait for the next time to see <b>?</b>
+
+#### 17.2
 
 
 ## Notation, Language and Index
