@@ -1183,7 +1183,23 @@ Variant:
 - Wait for the next time to see <b>?</b>
 
 #### 17.2
+Compute the Levenshtein distance
+- To make first i chars from s1 and first j chars from s2 to be same, if s1(i) == s2(j), T(i,j)=min(T(i-1,j), T(i,j-1), T(i-1,j-1)), otherwise T(i-1,j-1). T(n)=O(mn), S(n)=O(mn).
 
+Variant:
+- Compute the Levenshtein distance using O(min(a,b)) space and O(ab) time: Rotate use space.
+- compute a longest sequence of characters that is a subsequence of A and of B: LCA
+- Too many... <b>?</b>
+
+#### 17.3
+Count the number of ways to traverse a 2D array
+- N(i,j)=min(N(i-1,j), N(i,j-1)) + 1. T(n)=O(mn), S(n)=O(mn).
+- C(m, n). T(n)=O(m), S(n)=O(1).
+
+Variant:
+- next time... <b>?</b>
+
+#### 17.4
 
 ## Notation, Language and Index
 ### Notation
