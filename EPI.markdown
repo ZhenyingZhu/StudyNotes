@@ -1200,6 +1200,17 @@ Variant:
 - next time... <b>?</b>
 
 #### 17.4
+Compute the binomial coefficients
+- C(n, k)=C(n-1, k)+C(n-1, k-1). Use recursive with records of previous results. T(n)=O(nk), S(n)=O(k). 
+
+#### 17.5
+Search for a sequence in a 2D array
+- Start from a cell, check if it could be a start of a subarray. Use hash table to record previous results. T(n)=O(mn), S(n)=O(mn)<b>?</b>
+
+Variant:
+- later <b>?</b>
+
+#### 17.6
 
 ## Notation, Language and Index
 ### Notation
@@ -1272,4 +1283,7 @@ Adding elements to the beginning of arrays are expensive. To improve the time co
 a ^ b = c, then a ^ c = b
 
 `unique(arr.begin(), arr.end())` remove all adjacent duplcates and return the iterator of next element of the end.
+
+http://stackoverflow.com/questions/32685540/c-unordered-map-with-pair-as-key-not-compiling
+
 
