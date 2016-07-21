@@ -1211,6 +1211,21 @@ Variant:
 - later <b>?</b>
 
 #### 17.6
+The knapsack problem
+- Each item has two state: in pack or not in. Call recursive. When 2^n < n * weight, this algorithm is faster. T(n)=O(2^n), S(n)=O(n).
+- Compute weight from 0 to weight. w means the capacity, i means include previous i items. Value(i, w) = max( Value(i-1, w), Value(i-1, w-wi) + vi ). T(n)=O(nw), S(n)=O(nw).
+
+Variant:
+- later <b>?</b>
+
+#### 17.7
+The BEDBATHANDBEYOND.COM problem
+- Use an array to record the length of each substring. For every char, check backward to see if a substring end at this char is in the dictionary and the previous chars have length in array. T(n)=O(n^2), S(n)=O(n).
+
+Variant:
+- later <b>?</b>
+
+#### 17.8
 
 ## Notation, Language and Index
 ### Notation
