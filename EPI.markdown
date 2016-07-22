@@ -1226,6 +1226,34 @@ Variant:
 - later <b>?</b>
 
 #### 17.8
+Find the minimum weight path in a triangle
+- For each row, compute from left to right and record the min weight path to this cell in an array. T(n)=O(n^2), S(n)=O(n).
+
+#### 17.9
+Pick up coins for maximum gain
+- Two players can only pick the first or last coin each time. Let R(st, ed) means the max revenue one player can get, S(st, ed) means the sum of coins. C[i] is the coin value, then
+```
+R(st, ed) = max( (C[st] + S(st + 1, ed) - R(st + 1, ed)), (C[ed] + S(st, ed - 1) - R(st, ed - 1)) )
+```
+If st coin is picked, there are two options for player 2 to get R(st + 1, ed). It makes the first part become
+```
+C[st] + S(st + 1, ed) - R(st + 1, ed) = one of
+  / C[st] + R(st + 1, ed - 1)
+  \ C[st] + R[st + 2, ed)
+
+```
+Player 2 also try his best, so take the base case, when st = 0 and ed = 3. Player 2 can pick from 1 to 3. 
+```
+R(1, 3) = 
+  / C[1] + S(2, 3) - R(2, 3) = S(1, 3) - R(2, 3)
+  \ C[3] + S(1, 2) - R(1, 2) = S(1, 3) - R(1, 2)
+```
+Player 2 will pick the coin to min( R(2, 3), R(1, 2) ). T(n)=O(n^2), S(n)=O(n^2).
+
+#### 17.10
+
+
+
 
 ## Notation, Language and Index
 ### Notation
