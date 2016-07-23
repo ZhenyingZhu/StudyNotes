@@ -1251,9 +1251,17 @@ R(1, 3) =
 Player 2 will pick the coin to min( R(2, 3), R(1, 2) ). T(n)=O(n^2), S(n)=O(n^2).
 
 #### 17.10
+Count the number of moves to climb stairs
+- Advance at most k steps, to climb to n stairs. Use an array with n length. T(n)=O(kn), S(n)=O(n).
 
+#### 17.11
+The pretty printing problem
+- Use the sum square of the blanks at the end of each line as messiness, find the min messiness of ways to distribute words in fixed-size lines. Consider the last line, there could be one to all words in it. The messiness is messiness of previous lines + messiness of the last line. T(n)=O(nL), S(n)=O(n).
 
+Variant:
+- later <b>?</b>
 
+#### 17.12
 
 ## Notation, Language and Index
 ### Notation
