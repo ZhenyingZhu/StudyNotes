@@ -1262,6 +1262,15 @@ Variant:
 - later <b>?</b>
 
 #### 17.12
+Find the longest nondecreasing subsequence
+- Use an array to record the longest subsequence to element i. Then for i+1, find the longest one for all elements that are not greater than it. T(n)=O(n^2), S(n)=O(1).
+- Use an array to record for each length, the last element. For element i, use binary search to find the previous element, which is the last not greater element, and update length array. Why can use binary search is because every time the updated element must not smaller than the new element, and it is already smaller than the next element. T(n)=O(nlogn), S(n)=O(n).
+
+Variant:
+- later <b>?</b>
+
+### Chapter 18
+
 
 ## Notation, Language and Index
 ### Notation
