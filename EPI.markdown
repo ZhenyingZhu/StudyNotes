@@ -1271,6 +1271,15 @@ Variant:
 
 ### Chapter 18
 
+#### 18.1
+Compute an optimum assignment of tasks
+- Pair the longest task with the shortest task. T(n)=O(nlogn), S(n)=O(n).
+
+#### 18.2
+Schedule to minimize waiting time
+- Sort the array. T(n)=O(nlogn), S(n)=O(1).
+
+#### 18.3
 
 ## Notation, Language and Index
 ### Notation
