@@ -1270,6 +1270,7 @@ Variant:
 - later <b>?</b>
 
 ### Chapter 18
+An invariant is a condition that is true during execution of a program.
 
 #### 18.1
 Compute an optimum assignment of tasks
@@ -1280,6 +1281,20 @@ Schedule to minimize waiting time
 - Sort the array. T(n)=O(nlogn), S(n)=O(1).
 
 #### 18.3
+The interval covering problem
+- A list of closed intervals. Find a set of numbers that all intervals have covered those numbers. Always pick the right point of the first end interval. T(n)=O(nlogn), S(n)=O(n).
+
+Variant:
+- later <b>?</b>
+
+#### 18.4
+The 3-sum problem
+- Sort the array. For each A(i), solve 3-sum problem for sum - A(i), by start from the sum of beginning and ending, and then move either one. T(n)=O(n^2), S(n)=O(n).
+
+Variant:
+- later <b>?</b>
+
+#### 18.5
 
 ## Notation, Language and Index
 ### Notation
