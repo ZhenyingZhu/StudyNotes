@@ -1307,6 +1307,18 @@ Variant:
 - later <b>?</b>
 
 #### 18.7
+Compute the maximum water trapped by a pair of vertical lines
+- Always be the distance between st and ed multiple min(A[st], A[ed]), so if A[st] < A[ed], st + 1, else ed - 1. T(n)=O(n), S(n)=O(1).
+
+#### 18.8
+Compute the largest rectangle under the skyline
+- For each start, find iteratively to an end that is just smaller than it, and then compare with the previous max value. T(n)=O(n^2), S(n)=O(1).
+- Use a stack to store increase build indexes. If meet a lower build than the last building in the stack, compute rectangles until the top of the stack is lower. Notice the width is not current idx - stack top. T(n)=O(n), S(n)=O(n).
+
+Variant:
+- later <b>?</b>
+
+### Chapter 19
 
 
 ## Notation, Language and Index
