@@ -1319,7 +1319,6 @@ Variant:
 - later <b>?</b>
 
 ### Chapter 19
-Why there is no commit?
 
 
 ## Notation, Language and Index
