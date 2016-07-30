@@ -1319,7 +1319,43 @@ Variant:
 - later <b>?</b>
 
 ### Chapter 19
+Graph: vertices and edges.
 
+Directed graph edge(u, v): u is the source, and v is the sink.
+
+Directed acyclic graph(DAC): no cycles. Vertices have topological order. Can have several sources and have several sinks.
+
+Weakly connected: a directed graph can produce a connected graph when replace all directed edges into undirected edges.
+
+Strongly connected: for every vertice, it can reach other vertices.
+
+Graph presentation:
+- adjacency lists
+- adjacency matrix
+
+Spanning tree of a graph: a tree that all its edges are a subnet of a graph.
+
+(The bootcamp is written by that drunk guy again)
+
+From a list of match results, find out if a team A has beat another team B:
+- create a directed graph from matches, where the winner is the source and loser is the sink. Then find path between A and B using DFS. T(n)=O(E), S(n)=O(E).
+
+Depth-first search:
+- T(n)=O(|V| + |E|)
+- Can also check if there are cycles
+- discovery time and finishing time
+
+Breadth-first search:
+- T(n)=O(|V| + |E|)
+- Can compute distances
+
+Advanced graph algorithms with polynominal time complexity
+- shortest path
+- minimum spanning tree <b>how?</b>
+- matching: given an undirected graph, find a maximum collection of edges subject to the constraint that every vertex is incident to at most one edge. <b>how?</b>
+- maximum flow <b>how?</b>
+
+#### 19.1
 
 ## Notation, Language and Index
 ### Notation
@@ -1394,3 +1430,5 @@ a ^ b = c, then a ^ c = b
 `unique(arr.begin(), arr.end())` remove all adjacent duplcates and return the iterator of next element of the end.
 
 http://stackoverflow.com/questions/32685540/c-unordered-map-with-pair-as-key-not-compiling
+
+`unordered_map::at`: return a reference of the key, or out-of-range error.
