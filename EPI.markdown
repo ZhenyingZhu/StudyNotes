@@ -1394,5 +1394,3 @@ a ^ b = c, then a ^ c = b
 `unique(arr.begin(), arr.end())` remove all adjacent duplcates and return the iterator of next element of the end.
 
 http://stackoverflow.com/questions/32685540/c-unordered-map-with-pair-as-key-not-compiling
-
-
