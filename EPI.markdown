@@ -1344,10 +1344,12 @@ Depth-first search:
 - T(n)=O(|V| + |E|)
 - Can also check if there are cycles
 - discovery time and finishing time
+- use stack, so can use recursive
 
 Breadth-first search:
 - T(n)=O(|V| + |E|)
 - Can compute distances
+- use queue
 
 Advanced graph algorithms with polynominal time complexity
 - shortest path
@@ -1356,6 +1358,11 @@ Advanced graph algorithms with polynominal time complexity
 - maximum flow <b>how?</b>
 
 #### 19.1
+Search a maze
+- Use DP. Need a hash table to record the path to each cell. T(n)=O(n^2), S(n)=O(n^2).
+- Model the maze as a indirected graph. Use DFS to find the path. T(n)=O(n^2), S(n)=O(n^2)
+
+#### 19.2 
 
 ## Notation, Language and Index
 ### Notation
