@@ -1363,6 +1363,18 @@ Search a maze
 - Model the maze as a indirected graph. Use DFS to find the path. T(n)=O(n^2), S(n)=O(n^2)
 
 #### 19.2 
+Painting a Boolean matrix
+- Given a matrix, flip all reachable cells from a given cell. Use BFS. T(n)=O(mn), S(n)=O(m+n).
+
+Variant:
+- later <b>?</b>
+
+#### 19.3
+Compute enclosed regions
+- Given a matrix with B and W color cells. Replace all W color cells with B if they cannot reach the boundary. Search from boundary, and mark these cells with another color. Then flip all cells. T(n)=O(mn), S(n)=O(m+n).
+
+#### 19.4
+
 
 ## Notation, Language and Index
 ### Notation
