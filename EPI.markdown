@@ -1374,7 +1374,17 @@ Compute enclosed regions
 - Given a matrix with B and W color cells. Replace all W color cells with B if they cannot reach the boundary. Search from boundary, and mark these cells with another color. Then flip all cells. T(n)=O(mn), S(n)=O(m+n).
 
 #### 19.4
+Deadlock detection
+- Nodes represent processes and edges represent dependencies. Use DFS to detect cycles. T(n)=O(|V|), S(n)=O(|V|).
 
+Variant:
+- later <b>?</b>
+
+#### 19.5
+Clone a graph
+- Directed graph. Use a map to store correspondent old and copied vertexes. Then use BFS to traverse. T(n)=O(|V| + |E|), S(n)=O(|V| + |E|).
+
+#### 19.6
 
 ## Notation, Language and Index
 ### Notation
