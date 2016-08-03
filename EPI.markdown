@@ -1385,6 +1385,17 @@ Clone a graph
 - Directed graph. Use a map to store correspondent old and copied vertexes. Then use BFS to traverse. T(n)=O(|V| + |E|), S(n)=O(|V| + |E|).
 
 #### 19.6
+Making wired connections
+- For a undirected graph, mark all path to be 0, 1, repeately show up. Use BFS. When there is an edge on the same level return false. T(n)=O(|V| + |E|), S(n)=O(|v| + |E|).
+
+#### 19.7
+Transform one string to another
+- From a dictionary, find strings that have only one char differ between each other, to convert one string to another. Use each string as a vertex, and use BFS to find the shortest path. T(n)=O(n), S(n)=O(n).
+
+Variant:
+- later <b>?</b>
+
+#### 19.8
 
 ## Notation, Language and Index
 ### Notation
