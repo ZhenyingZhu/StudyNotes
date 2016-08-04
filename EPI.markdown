@@ -1396,6 +1396,20 @@ Variant:
 - later <b>?</b>
 
 #### 19.8
+Team photo day 2
+- (Not related to team photo day 1 much). Find the longest path length in a DAG graph. Use a stack to record visited vertexes in DFS can order the vertexes in topological order, and the top is the source, which records the longest distance to a sink. T(n)=O(n^2), S(n)=O(n).
+
+Variant:
+- later <b>?</b>
+
+#### 19.9
+Compute a shortest path with fewest edges
+- Use Dijkstra shortest path algorithm but compare edge numbers as well. 
+
+Variant:
+- later <b>?</b>
+
+### Chapter 20
 
 ## Notation, Language and Index
 ### Notation
