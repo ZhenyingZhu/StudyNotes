@@ -1410,6 +1410,42 @@ Variant:
 - later <b>?</b>
 
 ### Chapter 20
+Benefits of parallelism:
+- High performance.
+- Better use of resource.
+- Fairness between users.
+
+Models:
+- shared memory model: any processors can access any where of memory. Used in multicore.
+- distributed memory model: a processor send a message to allow others access its memory. Used in cluster.
+
+Issues:
+- Race condition.
+- staravation (cannot get resource forever)
+- deadlock
+- livelock (keep retrying and fail)
+
+Thread level parallism.
+
+semaphore:
+- a synchronization construct
+- maintains a set of permits
+- a condition variable
+- a mutex
+- `acquire()`: a lock inited from mutex and let condition var to wait
+- `release()`: a lock guard inited from mutex. after use the resource, call condition var to notify all
+
+#### 20.1
+Implement caching for a multithreaded dictionary
+- Make sure read an write assignment are atomic
+
+Variant:
+- later <b>?</b>
+
+#### 20.2
+
+C++ library:
+- `std::unique_lock<mutex>``
 
 ## Notation, Language and Index
 ### Notation
