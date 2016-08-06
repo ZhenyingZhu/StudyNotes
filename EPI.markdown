@@ -1444,6 +1444,8 @@ Variant:
 
 #### 20.2
 
+Timestamp
+
 C++ library:
 - `std::unique_lock<mutex>``
 
