@@ -1443,8 +1443,17 @@ Variant:
 - later <b>?</b>
 
 #### 20.2
+Analyze two unsynchronized interleaved threads
+- Two threads both increase a static variable with N. The max result would be 2N, where no race happen.
+- The min result would be 1, if N=1, then 1, when thread1 read -> thread2 read -> thread1 write -> thread2 write
+- If N > 1, min is 2. thread1 read -> thread2 read -> thread write N-1(but thread2 think it is still 0) -> thread2 write 1 -> thread2 read -> thread1 read (so it is 1) -> thread2 write N -> thread1 write 2.
 
-Timestamp
+#### 20.3
+Implement synchronization for two interleaving threads
+- busy wait antipattern: use a lock on a variable which record who executed last time and who should execute this time. This solution waste resources.
+- Only block single thread by call `wait()` and then unblock it by call `notify_one()`
+
+#### 20.4
 
 C++ library:
 - `std::unique_lock<mutex>``
