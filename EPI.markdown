@@ -1435,6 +1435,12 @@ semaphore:
 - `acquire()`: a lock inited from mutex and let condition var to wait
 - `release()`: a lock guard inited from mutex. after use the resource, call condition var to notify all
 
+C++ library:
+- `std::unique_lock<mutex>`
+- `lock_guard<mutex>`
+- `condition_variable`
+- `thread`
+
 #### 20.1
 Implement caching for a multithreaded dictionary
 - Make sure read an write assignment are atomic
@@ -1454,9 +1460,15 @@ Implement synchronization for two interleaving threads
 - Only block single thread by call `wait()` and then unblock it by call `notify_one()`
 
 #### 20.4
+Implement a thread pool
+- a collection of threads with a bound of thread number. Use a blocking queue. `sync_bounded_queue`.
 
-C++ library:
-- `std::unique_lock<mutex>``
+#### 20.5
+Deadlock
+- Happens when threads need to accquire multiple locks. If two threads are the same method, can use a global lock on this thread class. But then it becomes single thread.
+- Accquire the lock in order <b>?</b>
+
+#### 20.6
 
 ## Notation, Language and Index
 ### Notation
