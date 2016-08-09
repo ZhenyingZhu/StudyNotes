@@ -1469,7 +1469,6 @@ Deadlock
 - Accquire the lock in order <b>?</b>
 
 #### 20.6
-Why the contribution does not shows up?
 
 ## Notation, Language and Index
 ### Notation
