@@ -1469,7 +1469,7 @@ Deadlock
 - Accquire the lock in order <b>?</b>
 
 #### 20.6
-Timestamp
+Why the contribution does not shows up?
 
 ## Notation, Language and Index
 ### Notation
