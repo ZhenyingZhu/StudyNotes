@@ -1469,6 +1469,7 @@ Deadlock
 - Accquire the lock in order <b>?</b>
 
 #### 20.6
+Timestamp
 
 ## Notation, Language and Index
 ### Notation
