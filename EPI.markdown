@@ -1469,6 +1469,18 @@ Deadlock
 - Accquire the lock in order <b>?</b>
 
 #### 20.6
+The readers-writers problem
+- while one thread is writting to the object, the object should be locked. But threads can share the object while only reading.
+- a reader and a writer lock, and a reader counter. LR only lock when update counter, but not lock when read. LW first lock writer, then lock LR to check if counter is 0. Keep locking until it finish writing, and then release LR and LW.
+
+#### 20.7
+The readers-writers problem with write preference
+- the solution for 20.6 make reader has high priority. Writer should have higher priority. So let reader request LW and release it at once.
+
+Variant:$
+- later <b>?</b>$
+
+#### 20.8
 
 ## Notation, Language and Index
 ### Notation
