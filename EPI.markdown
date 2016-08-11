@@ -1481,6 +1481,18 @@ Variant:$
 - later <b>?</b>$
 
 #### 20.8
+Implement a Timer class
+- Should be able to 1. start a thread at the given time, 2. cancel a thread that hasn't started yet. data structure is: a min-heap with key time and value threads. Sleep until if there are calls or the top of the heap need to be executed. Lock this heap when updates.
+
+#### 20.9
+Test the Collatz conjecture in parallel
+- Given a range of intergers. Use multicore machine to check if those intergers can become 1 through collatz conjecture. A master thread to distribute tasks. Slave threads deal with a range of intergers each. A solution is to seperate tasks by equal size of intergers.
+- Some intergers need longer execution time. Use a work-queue to reassign threads new tasks.
+
+<b>No idea how does the solution works. Definitely there is a bug.</b>
+
+### Chapter 21
+
 
 ## Notation, Language and Index
 ### Notation
