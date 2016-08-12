@@ -1492,6 +1492,18 @@ Test the Collatz conjecture in parallel
 <b>No idea how does the solution works. Definitely there is a bug.</b>
 
 ### Chapter 21
+(!!skiped!!)
+
+### Chapter 22
+(!!skiped!!)
+
+### Chapter 23
+(!!skiped!!)
+
+### Chapter 24
+(!!skiped!!)
+
+### Chapter 25
 
 
 ## Notation, Language and Index
