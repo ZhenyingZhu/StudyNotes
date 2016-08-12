@@ -71,8 +71,6 @@ icewm: a lightweight xwindow.
 
 [Getting-Partner-Flash](https://wiki.ubuntu.com/Chromium/Getting-Partner-Flash): If cannot install adobe-flashplugin, need add Canonical Partners in Software center.  
 
-vim `%` fast jump to the close of the partheses
-
 
 Search in less: 
 - ASCII regular express
@@ -183,8 +181,6 @@ https://en.wikipedia.org/wiki/Daemon_%28computing%29
 `/usr/bin/time echo Hello`: check how long to run a program.  
 
 Signal 6: http://stackoverflow.com/questions/3413166/when-does-a-process-get-sigabrt-signal-6  
-
-Run shell cmd in vim: https://www.linux.com/learn/tutorials/442419-vim-tips-working-with-external-commands  
 
 Check USB: http://www.wilf.cn/post/lsusb.html  
 http://ubuntuforums.org/showthread.php?t=1993135  
@@ -305,8 +301,6 @@ http://www.tecmint.com/12-top-command-examples-in-linux/
 http://www.rationallyparanoid.com/articles/tcpdump.html  
 
 https://en.wikipedia.org/wiki/XML-RPC  
-
-http://vimdoc.sourceforge.net/htmldoc/filetype.html  
 
 LLDP: https://en.wikipedia.org/wiki/Link_Layer_Discovery_Protocol  
 STP: https://en.wikipedia.org/wiki/Spanning_Tree_Protocol  
@@ -576,19 +570,6 @@ http://dougblack.io/words/a-good-vimrc.html
 
 http://stackoverflow.com/questions/16222738/how-do-i-install-ruby-2-0-0-correctly-on-ubuntu-12-04  
 
-[Vundle](https://github.com/gmarik/Vundle.vim)  
-```
-Plugin 'scrooloose/nerdtree'
-Plugin 'godlygeek/tabular'
-Plugin 'plasticboy/vim-markdown'
-```
-```
-:so ~/.vimrc
-:PluginInstall
-```
-
-[vim plugin](http://joelhooks.com/blog/2013/04/23/5-essential-vim-plugins/)  
-
 http://searchnetworking.techtarget.com/definition/Port-Address-Translation-PAT  
 
 http://stackoverflow.com/questions/6541109/send-string-to-stdin  
@@ -763,11 +744,6 @@ see MTU: ifconfig
 Need ICMP port open to access ping.  
 http://serverfault.com/questions/234311/testing-whether-jumbo-frames-are-actually-working  
 
-Add in the last line of a plain text file.  
-```
-# vim: set ts=4 sw=4 sts=4 et:
-```
-
 `dig` DNS lookup  
 `set -e` ? 
 `set -x` show all steps when executes a command
@@ -847,19 +823,6 @@ the enviroment will only exist in the cmd process.
 
 
 <code>sudo !!<code> ??? 
-
-### VIM
-```
-:%s/old/new/g 
-```
-otherwise only on the current line
-
-[vim search](http://vim.wikia.com/wiki/Search_and_replace>Replease and search tutorial)
-
-```
-:reg
-```
-to see the paste board
 
 ### SSH
 ##### Copy file:
