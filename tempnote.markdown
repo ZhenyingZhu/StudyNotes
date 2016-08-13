@@ -939,3 +939,10 @@ strace -c -p 3153
 
 # set nat
 http://www.ducea.com/2006/08/01/how-to-enable-ip-forwarding-in-linux/ 
+
+# ulimit
+Errors like "Too many open files " is complaining about open too many file descriptor, that is larger the ulimit.
+
+http://unix.stackexchange.com/questions/75996/modify-ulimit-open-files-of-a-specific-process
+
+
