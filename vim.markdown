@@ -1,9 +1,18 @@
-## Config
+# Config
+## location
 - `~/.vimrc`
 - `~/.viminfo`
 - `/etc/vim/vimrc`
+- `~/.vim/indent/python.vim` contains filetype indent.
 
-## Command mode
+
+## options
+See Command mode section as well.
+
+
+
+# VIM Modes
+## Normal mode
 ### Visual block
 - `v`: characters select
 - `V`: lines select
@@ -11,8 +20,27 @@
 
 - `%`: fast jump to the close of the partheses
 
-## Last line mode
+
+## Visual Mode
+
+
+## Insert Mode
+
+
+## Command mode
+[cmds](http://vim.wikia.com/wiki/Displaying_the_current_Vim_environment)
+
+- `:help cmd`
 - `:reg`: show paste board
+- `:let`: show all variables<b>?</b>
+- `:set all`: show all setting. If some settings are not enable, there are "no" before them.
+- `:set nu`, `:set nu!`
+- `:set showcmd`: in visual mode, show more information at the right down corner.
+- `:set cursorline`
+- `:set wildmenu`: press tab to auto complete vim cmds
+- `:set showmatch`: when complete a pair of braces, cursor jumps back to the start of brace and jump back at once.
+- `:set incsearch`: search when char are type in
+
 
 ### Multi-doc editiing
 `vim $file1 $file2`
@@ -27,6 +55,7 @@
 - `:%s/old/new/g`: `%` means all lines. `g` means replace all apperances of pattern old in the line.
 
 
+## 
 
 
 
@@ -37,8 +66,7 @@
 
 
 
-
-## tmp
+# tmp
 Run shell cmd in vim: https://www.linux.com/learn/tutorials/442419-vim-tips-working-with-external-commands  
 
 http://vimdoc.sourceforge.net/htmldoc/filetype.html  
