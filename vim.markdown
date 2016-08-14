@@ -55,7 +55,33 @@ See Command mode section as well.
 - `:%s/old/new/g`: `%` means all lines. `g` means replace all apperances of pattern old in the line.
 
 
-## 
+
+# Tool chain
+## ctags
+At the src root folder, call `ctags -R`, a `tags` file will be generated. Then use vim to open src files from root folder.
+
+- `ctrl+]`: goto
+- `ctrl+t`: return back
+
+
+## cscope for C
+Src root folder, `cscope -Rbq`, a `cscope.out` database will be generated.
+
+In vim, 
+- `:cs add cscope.out`: add datebase
+- `:cs find [mode] $var`. mode:
+  - `s`: Find this C symbol
+  - `g`: Find this definition
+  - `d`: Find functions called by this function
+  - `c`: Find functions calling this function
+  - `t`: Find this text string
+  - `e`: Find this egrep pattern
+  - `f`: Find this file
+  - `i`: Find files #including this file
+
+
+
+  
 
 
 
@@ -89,3 +115,5 @@ Add in the last line of a plain text file.
 # vim: set ts=4 sw=4 sts=4 et:
 ```
 
+[C++ vim setting](https://gist.github.com/rocarvaj/2513367)  
+[C++ IDE](http://www.alexeyshmalko.com/2014/using-vim-as-c-cpp-ide/)  
