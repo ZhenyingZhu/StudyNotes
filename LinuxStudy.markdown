@@ -2327,3 +2327,5 @@ install the reccomended driver
 sudo ubuntu-drivers autoinstall
 ```
 
+[Fix source games cannot show chinese char](https://www.zhihu.com/question/27527239)
+`sudo apt-get install fonts-wqy-zenhei`

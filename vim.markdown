@@ -20,6 +20,10 @@ See Command mode section as well.
 
 - `%`: fast jump to the close of the partheses
 
+### gf
+Quick open file that under cursor in another window
+
+`ctrl+w` then `ctrl+f`
 
 ## Visual Mode
 
