@@ -5318,3 +5318,8 @@ http://stackoverflow.com/questions/17793333/difference-between-const-shared-ptrt
 
 # std::move
 Move the content of the object to another place. So the source variable will be init one, but the target will be the source content.
+
+# code style
+https://google.github.io/styleguide/cppguide.html
+
+

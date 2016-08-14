@@ -57,6 +57,8 @@ See Command mode section as well.
 
 
 # Tool chain
+[Linux 平台下阅读源码的工具链](http://blog.jobbole.com/101322/)
+
 ## ctags
 At the src root folder, call `ctags -R`, a `tags` file will be generated. Then use vim to open src files from root folder.
 
@@ -80,10 +82,22 @@ In vim,
   - `i`: Find files #including this file
 
 
+## doxygen for C++
+To create documents and draw structure graphs.
 
-  
+Install:
+- `sudo apt install doxygen`
+- `sudo apt install graphviz` to install dot
 
+Src root folder, `doxygen -g`. Will generate `Doxyfile`, which is a config.
 
+Configuration: edit `Doxyfile`
+- `HAVE_DOT` set to yes, which is used to draw graph
+- `RECURSIVE = YES`
+- `CALL_GRAPH`, `CALLER_GRAPH`: generate function graphs
+- `EXTRACT_ALL`, `EXTRACT_STATIC`, `EXTRACT_PRIVATE`: write variables to documents.
+
+Then call `doxygen Doxyfile`. Will create html and latex two folders.
 
 
 
@@ -115,5 +129,14 @@ Add in the last line of a plain text file.
 # vim: set ts=4 sw=4 sts=4 et:
 ```
 
+[Vim and PEP 8 — Style Guide for Python Code](http://stackoverflow.com/questions/9864543/vim-and-pep-8-style-guide-for-python-code)
+
+[turning vim into a modern python ide](https://www.reddit.com/r/Python/comments/h75fm/turning_vim_into_a_modern_python_ide/)
+
+[Vim documentation: syntax](http://vimdoc.sourceforge.net/htmldoc/syntax.html#mysyntaxfile)
+
+[tpope/vim-markdown](https://github.com/tpope/vim-markdown)
+
 [C++ vim setting](https://gist.github.com/rocarvaj/2513367)  
 [C++ IDE](http://www.alexeyshmalko.com/2014/using-vim-as-c-cpp-ide/)  
+
