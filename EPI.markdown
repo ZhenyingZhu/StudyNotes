@@ -1491,11 +1491,22 @@ Test the Collatz conjecture in parallel
 
 <b>No idea how does the solution works. Definitely there is a bug.</b>
 
+
+## Domain Specific Problems
 ### Chapter 21
+Design Problems
 (!!skiped!!)
 
 ### Chapter 22
-(!!skiped!!)
+#### 22.1
+Difference between reference and pointer.
+- reference is an alias.
+- reference cannot be reassigned.
+
+#### 22.2
+Why is it preferable to pass-by-reference rather than pass-by-value?
+- pass-by-value leads to a deep copy of the object.
+- pass-by-value make an implicit type conversion, so that even pass in a child class instance, the override function won't be called, because it will be converted to the parent class.
 
 ### Chapter 23
 (!!skiped!!)
@@ -1581,3 +1592,11 @@ a ^ b = c, then a ^ c = b
 http://stackoverflow.com/questions/32685540/c-unordered-map-with-pair-as-key-not-compiling
 
 `unordered_map::at`: return a reference of the key, or out-of-range error.
+
+## terms
+- implicit type conversion
+- Polymorphism, polymorphic or polymorph
+- override, overwrite, overload
+- iterative
+
+
