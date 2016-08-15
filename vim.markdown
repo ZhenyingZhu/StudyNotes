@@ -25,6 +25,14 @@ Quick open file that under cursor in another window
 
 `ctrl+w` then `ctrl+f`
 
+### folding
+[Intro](http://vim.wikia.com/wiki/Folding)
+
+`:set fdm=syntax` to enable folding.
+
+`za` to toggle current fold.
+
+
 ## Visual Mode
 
 
@@ -44,7 +52,7 @@ Quick open file that under cursor in another window
 - `:set wildmenu`: press tab to auto complete vim cmds
 - `:set showmatch`: when complete a pair of braces, cursor jumps back to the start of brace and jump back at once.
 - `:set incsearch`: search when char are type in
-
+- `:set mouse=a`, `:set mouse=`: enable/disable mouse mode. After enabled, cannot copy by `ctrl+shift+c`.
 
 ### Multi-doc editiing
 `vim $file1 $file2`
@@ -58,6 +66,47 @@ Quick open file that under cursor in another window
 
 - `:%s/old/new/g`: `%` means all lines. `g` means replace all apperances of pattern old in the line.
 
+
+
+# plugin
+[如何将Vim打造成一个成熟的IDE](https://linux.cn/article-3314-1.html)
+
+## Pathogen
+[Intro](https://github.com/tpope/vim-pathogen)
+
+Install plugins
+```
+cd ~/.vim/bundle && git clone git://github.com/tpope/vim-sensible.git
+```
+
+Run `:Helptags` to load help docs. Then `:help $plugin_name`
+
+
+## SuperTab
+[Intro](https://github.com/ervandew/supertab)
+
+After press `tab`, a list of choices shows up. `ctrl+n` and `ctrl+p` switch between them, and then keep typing.
+
+
+## syntastic
+[Intro](https://github.com/scrooloose/syntastic)
+
+[C++11 support](http://stackoverflow.com/questions/18158772/how-to-add-c11-support-to-syntastic-vim-plugin): add to `vimrc`
+```
+let g:syntastic_cpp_compiler = 'clang++'
+let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
+```
+
+<b>Need some other plugins to make it fully work. Not finish yet</b>
+
+
+## NERDTree
+[Intro](https://github.com/scrooloose/nerdtree)
+
+Add to `vimrc`
+```
+autocmd vimenter * NERDTree
+```
 
 
 # Tool chain
