@@ -1508,6 +1508,43 @@ Why is it preferable to pass-by-reference rather than pass-by-value?
 - pass-by-value leads to a deep copy of the object.
 - pass-by-value make an implicit type conversion, so that even pass in a child class instance, the override function won't be called, because it will be converted to the parent class.
 
+#### 22.3
+What is a smart pointer? What are the three commonly used smart pointer types? What is the appropriate use case for each one?
+- encapsulate a pointer to dynamically allocate object, track usage, and deallocate memory.
+- `unique_ptr`: can transfer but only one pointer refer to the object. Destroy the object when goes out of scope.
+- `shared_ptr`: Keeps track of the reference count and destroy the object when it is no longer in use.
+- `weak_ptr`: refer to an object that is held by `shared_ptr` but shouldn't participate in reference count. So the object can be destroyed even `weak_ptr` is still in use. It is used to solve reference cycle.
+
+Detect object destroy:
+- output something in destructor
+- use `weak_ptr.lock()`
+
+#### 22.4
+In what ways are iterators similar to and different from pointers?
+- iterator has more fields like `next`.
+- cannot perform all simple arithmetic on different type of iterators, like decrement on a forward-iterator, or add an interger on a nonramdom-access iterator.
+- iterator can only refer to objects in containers.
+- cannot delete an iterator.
+
+#### 22.5
+What is a constructor? What is a default constructor? What is a copy constructor and how is it different from a move constructor?
+- subroutine that is used to create an object.
+- default constructor: no arguments. If user doesn't create one, compiler creates trivial constructor which only init primitive types and classes that have trivial constructors. Not allow to have virtual functions or default initializers for members.
+- copy constructor: argument is a const reference of itself class type.
+- move constructor: argument is a temporary object with `std::move` function.
+
+#### 22.6
+If you write a class that has no methods on it, and the class does not inherit from another class, the compiler will add four methods to it automatically. What are these methods?
+- default constructor
+- destructor: call super class destructor and destructors for member fields that are not primitive types.
+- copy constructor
+- copy assignment operator: `operator=`
+
+- move copy constructor(C++11 only)
+- move copy assignment(C++11 only)
+
+#### 22.7
+
 ### Chapter 23
 (!!skiped!!)
 
@@ -1592,6 +1629,10 @@ a ^ b = c, then a ^ c = b
 http://stackoverflow.com/questions/32685540/c-unordered-map-with-pair-as-key-not-compiling
 
 `unordered_map::at`: return a reference of the key, or out-of-range error.
+
+`make_shared` better than new: [ans](http://stackoverflow.com/questions/18301511/stdshared-ptr-initialization-make-sharedfoo-vs-shared-ptrtnew-foo)
+
+[use weak ptr in cache](http://stackoverflow.com/questions/12030650/when-is-stdweak-ptr-useful?rq=1)
 
 ## terms
 - implicit type conversion
