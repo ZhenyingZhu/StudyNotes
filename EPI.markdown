@@ -1544,6 +1544,37 @@ If you write a class that has no methods on it, and the class does not inherit f
 - move copy assignment(C++11 only)
 
 #### 22.7
+How are malloc()/free() similar to and different from new/delete?
+- Both allocate space on heap.
+- `malloc` is type-agnostic, i.e. the memory block is uninitialized and pointer is a void pointer.
+- `new` may throw an expection when no memory is available.
+- `delete` calls destructor along with free the memory.
+- usually `new` call `malloc` and `delete` call `free`.
+
+#### 22.8
+What are the differences between C-style strings and C++ strings?
+- C-style string is an array of char which ends with '\0', so call `null`.
+- C-style string lib functions might crash if `null` char is not present.
+- C++ string is an object. It has iterators, constructors, search methods and some operator overrides like `operator+`, and comparation like `operator<`.
+
+#### 22.9
+What is the difference between `vec.push_back("xyzzy")` and `vec.emplace_back("xyzzy")`?
+- `push_back` first create a tempory string copy from `char*`, and then call move constructor to add the tempory string into vector, and then destroy the tempory string.
+- `emplace_back` will be called directly with the `char*` input, and create a string object to be stored in the vector.
+
+#### 22.10
+Updating a map
+- When insert a key-value pair into map, the key is a copy. So any changes make on the original key will not shows in the map.
+- When use iterator to get a key-value pair from map, `iter->first` is const.
+- The efficient way to update a map is
+```
+auto it = table.find(k);
+k.attr = new_value;
+table[k] = move(it->second); // swap(table[k], it->second);
+table.erase(it);
+```
+
+#### 22.11
 
 ### Chapter 23
 (!!skiped!!)
