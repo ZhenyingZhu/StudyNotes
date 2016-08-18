@@ -1575,6 +1575,48 @@ table.erase(it);
 ```
 
 #### 22.11
+Fast function calls
+- Macro expands anything in the pass-in args, so if pass-in `++` operator, the arg will `++` in macro leads to errors.
+- Inline function is a better way than macro for fast function calls.
+
+#### 22.12
+Write a template function that takes two arguments and swaps them if the first is smaller than the second.
+- Use `swap` to save copy operations.
+```
+template <typename T>
+void minmax(T &x, T &y) {
+    if (x > y) {
+        std::swap(x, y);
+    }
+}
+```
+
+#### 22.13
+Run-Time Type Identification
+- C++11 new key word `override`. function signature `void foo() override;` make compiler check if it override base class function.
+- `typeid(object)` return a `std::type_info` that is unique for every class. `typeid(obj) == typeid(ClassName)` can check if an obj belongs to ClassName class.
+- instead of using `typeid`, use `dynamic_cast` would be better. `dynamic_cast` can only cast pointer or reference. If cast fail, return `nullptr`.
+
+Casts:
+- `(Class)var`: regular cast. Unsafe, but combined all other casts.
+- `const_cast`: convert a const var to unconst.
+- `static_cast`: convert var type. It make compiler ignore type check.
+- `dynamic_cast`: can cast when you don't know what type it should be. Need the cast type to be polymorphic, which means there should be virtual functions.
+- `reinterpret_cast`: convert the compiler understand of memory data.
+
+Up-cast always valid. Down-cast need to be polymorphic for `dynamic_cast`.
+
+#### 22.14
+Explain what dynamic linkage
+- Compiler build object files from srouce files, which contains addresses of external functions and global variables.
+- Linker takes object files and libraries and assembles them to an exectuable.
+- Static linking: program is not changed. It runs a sequence of machine instructions.
+- Dynamic linking: sorting routines, io are added to program after process start.
+- Dynamic loading: libraries are loaded after process start.
+
+Dynamic linkage:
+- advantage: smaller executable. No need to update binary when libraries changed.
+- disadvantage: no check for correct interaction when libraries update.
 
 ### Chapter 23
 (!!skiped!!)
