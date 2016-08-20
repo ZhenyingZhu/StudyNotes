@@ -5275,6 +5275,11 @@ inline template <typename T> T min(const T&, const T&);
 #### 16.1.2
 HERE
 
+# Multithread
+[C++并发编程(中文版)](https://chenxiaowei.gitbooks.io/cpp_concurrency_in_action/content/)
+
+
+
 # Boost
 [boost asio dispatch vs post](http://stackoverflow.com/questions/2326588/boost-asio-io-service-dispatch-vs-post)
 - post, always postphone; 

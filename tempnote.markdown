@@ -9,16 +9,11 @@ git diff HEAD:file1 file2
 
 [win7 linux time problem](http://askubuntu.com/questions/169376/clock-time-is-off-on-dual-boot)
 
-[fix eclipse in launcher](http://askubuntu.com/questions/80013/how-to-pin-eclipse-to-the-unity-launcher)
-
 [oracle jdk](http://www.wikihow.com/Install-Oracle-Java-on-Ubuntu-Linux)
 
 [different shebang](http://superuser.com/questions/502984/writing-shell-scripts-that-will-run-on-any-shell-using-multiple-shebang-lines)  
 
 [sshfs](https://www.digitalocean.com/community/tutorials/how-to-use-sshfs-to-mount-remote-file-systems-over-ssh)  
-
-[Eclipse C++11](http://stackoverflow.com/questions/17131744/eclipse-cdt-indexer-does-not-know-c11-containers)
-  Does not work
 
 [Ubuntu login loop](http://askubuntu.com/questions/223501/ubuntu-gets-stuck-in-a-login-loop)
   Remove ~/.Xauthority
@@ -58,8 +53,6 @@ icewm: a lightweight xwindow.
 [Git go back](http://githowto.com/getting_old_versions)  
 
 [Monit not start](http://www.idimmu.net/2013/03/28/monit-error-connecting-to-the-monit-daemon/)  
-
-[Install eclipse](http://difusal.blogspot.com/2015/06/how-to-install-eclipse-mars-45-on-ubuntu.html)  
 
 [rpc](http://searchsoa.techtarget.com/definition/Remote-Procedure-Call)  
 
@@ -218,11 +211,6 @@ Looks into Ubuntu launcher:
 ```
 gsettings get com.canonical.Unity.Launcher favorites  
 ```
-
-Install Eclipse CDT:  
-Find one URL here http://www.eclipse.org/cdt/downloads.php and add to eclipse install new software.  
-If running on windows, get rid of workplace/.metadata/.plugins/org.eclipse.core.resources/.snap, and turn off Indexing and automatic builds in CDT  
-Setup boost: https://theseekersquill.wordpress.com/2010/08/24/howto-boost-mingw/  
 
 Python not break iterator in loop:  
 ```
@@ -425,10 +413,6 @@ win7 set up FTP: (http://blog.sina.com.cn/s/blog_3f7e47f20100haur.html)
 - name: demo, Physical Path: Download  
 - IP address: 10.0.0.1. SSL: no. 
 - Authorize.  
-
-C++ on eclispe: http://stackoverflow.com/questions/4971926/launch-failed-binary-not-found-cdt-on-eclipse-helios
-
-install eclispe on ubuntu and config: http://difusal.blogspot.com/2015/06/how-to-install-eclipse-mars-45-on-ubuntu.html  
 
 `ssh apple uptime` can show the execute a cmd like uptime and return the result   
 
@@ -688,13 +672,6 @@ https://iperf.fr/#tuningtcp
 
 [tcpdump](http://www.thegeekstuff.com/2010/08/tcpdump-command-examples/)
 
-[eclipse](http://stackoverflow.com/questions/11596194/how-does-one-show-trailing-whitespace-in-eclipse) 
-eclipse show line number:  
-Window > Preferences > General > Editors > Text Editors 
-eclipse change tab to space:  
-Beside the previous step, do
-Window > Preferences > [Specific launguage] > Code Style > Formatter: create a profile with tab policy change to space only.  
-
 transport file (http://www.netperf.org/netperf/training/Netperf.html#0.2.2Z141Z1.SUJSTF.6R2DBD.2) 
 ```
 netserver
@@ -770,8 +747,6 @@ http://stackoverflow.com/questions/3961581/in-python-how-to-display-current-time
 Wrapper: ensure have the right path and enviroment.  
 Output of programs should goes to /var/your-program/xxx.yaml
 Put first execute file into bin. Modules into lib  
-
-ruby enviroment for eclipse https://eclipse.org/dltk/install.php
 
 [pgrep](http://linux.die.net/man/1/pgrep)
 search processes  
