@@ -5300,6 +5300,26 @@ HERE
 # Multithread
 [C++并发编程(中文版)](https://chenxiaowei.gitbooks.io/cpp_concurrency_in_action/content/)
 
+## Introduction
+- `std::thread`
+- `std::mutex`
+- `std::future`
+- `std::async`
+
+## Chapter 1
+
+### 1.1
+并发:指两个或更多独立的活动同时发生。
+
+#### 1.1.1
+concurrency:
+- task switching
+- hardware concurrency
+
+#### 1.1.2
+HERE
+
+
 
 
 # Boost
