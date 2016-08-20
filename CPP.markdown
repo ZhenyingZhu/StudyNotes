@@ -1,5 +1,7 @@
-﻿# C++ Primer 中文版
+# C++ Primer 中文版
+
 ## Chapter 1
+
 ### 1.1
 主函数
 ```
@@ -8,7 +10,7 @@ int main()
     return 0; // Means success
 } // this is curly brace
 ```
-函数必须指定4个元素：返回类型, 函数名, 形参表, 函数体。  
+函数必须指定4个元素：返回类型, 函数名, 形参表, 函数体。
 
 Linux下编译：
 ```
@@ -18,28 +20,31 @@ echo $? // see the return value from main
 ```
 
 ### 1.2
-Preprocessor directive: include尖括号中是头文件。标准库用`<>`括起来。自定义库用`""`。  
+Preprocessor directive: include尖括号中是头文件。标准库用`<>`括起来。自定义库用`""`。
 
 iostream
-* istream：cin。输入值与存入的变量类型不符合时, 或读入`ctrl+D`时, 返回的值为假, 可用于while的中。  
-* ostream：cout,  cerror, clog。  
-* iostream库能所有处理内置类型的输出。  
+* istream：cin。输入值与存入的变量类型不符合时, 或读入`ctrl+D`时, 返回的值为假, 可用于while的中。
+* ostream：cout,  cerror, clog。
+* iostream库能所有处理内置类型的输出。
+
 ```
 #include <iosteam>
 int main()
 {
     std::cout << "Enter two numbers: " << std::endl; // std::endl is one of manipulators
-    int v1, v2; 
-    std::cin >> v1 >> v2; 
-    std::cout << "Sum :" << v1 + v2 << std::endl; 
+    int v1, v2;
+    std::cin >> v1 >> v2;
+    std::cout << "Sum :" << v1 + v2 << std::endl;
 }
 ```
 
-`<<`操作符：每次接受两个操作数, 左边为ostream对象, 右边为内容。该表达式执行完后, 返回`void*`的`ostream`对象。  
-Manipulator操作符：`endl`, 换行并刷新缓冲区(buff)。  
+`<<`操作符：每次接受两个操作数, 左边为ostream对象, 右边为内容。该表达式执行完后, 返回`void*`的`ostream`对象。
 
-调用前需有`std::`是使用命名空间(namespace)std内的函数或操作符避免定义变量时冲突。  
-作用域(Scope)操作符：取namespace中的对象。  
+Manipulator操作符：`endl`, 换行并刷新缓冲区(buff)。
+
+调用前需有`std::`是使用命名空间(namespace)std内的函数或操作符避免定义变量时冲突。
+
+作用域(Scope)操作符：取namespace中的对象。
 
 对于出错的情况：
 ```
@@ -47,7 +52,7 @@ Manipulator操作符：`endl`, 换行并刷新缓冲区(buff)。
     return -1;
 ```
 
-内置类型：如int。最好都赋初值。  
+内置类型：如int。最好都赋初值。
 
 ### 1.3
 区块注释：
@@ -58,22 +63,22 @@ Manipulator操作符：`endl`, 换行并刷新缓冲区(buff)。
 ```
 
 ### 1.4
-控制结构:  
-迭代while：括号内条件式返回非0时执行。  
+控制结构:
+- 迭代while：括号内条件式返回非0时执行。
 ```
 int sum = 0, val;
 while(std::cin >> val) 
     sum += val;
 ```
 
-简化循环变量for：循环结束后循环变量释放, 不可再用。  
+- 简化循环变量for：循环结束后循环变量释放, 不可再用。
 ```
 int sum=0;
 for(int val = 1; val <= 10; ++val)
     sum += val;
 ```
 
-条件执行if：    
+- 条件执行if：
 ```
 if(条件)
     执行;
@@ -82,29 +87,32 @@ else
 ```
 
 ### 1.5
-类(class):  
-自定义数据类型。istream也是。  
-三要素：名字、定义域、可执行操作。  
-保存在一个与类名相同且后缀为`.h`文件中。  
+类(class):
+- 自定义数据类型。istream也是。
+- 三要素：名字、定义域、可执行操作。
+- 在一个与类名相同且后缀为`.h`文件中。
 实例化：
 ```
-Sales_item item; 
+Sales_item item;
 ```
 Sales_item是类, item是对象。
 
-成员函数：`item.same_isbn(item2)`是函数。  
-可以覆写操作符。  
+成员函数：`item.same_isbn(item2)`是函数。
 
-点操作符.：左操作数是类的对象, 右操作数是成员。  
-调用操作符()：扩住实参。  
+可以覆写操作符。
+
+点操作符.：左操作数是类的对象, 右操作数是成员。
+
+调用操作符()：扩住实参。
 
 ### 1.6
 
 ### 小结
-Argument: 实参; Parameter: 形参。Statement: 语句。  
+Argument: 实参; Parameter: 形参。Statement: 语句。
 
-Routine: 一系列操作组成。用以定义函数或数据类型。  
-Statically typed: C是而smalltalk不是。  
+Routine: 一系列操作组成。用以定义函数或数据类型。
+
+Statically typed: C是而smalltalk不是。
 
 ## Chapter 2
 ### 2.1
@@ -211,7 +219,7 @@ extern const int globalConst = val; // then can be declared in other file
 Reference(引用): 就是对象，主要用作形参。 
 - compound type: 用其他类型定义的。  
 - 变量名前加&, 将两个变量的地址联系起来。 
-- 引用的变量值不能被赋值, 即&refVal始终指向ival的地址。
+- 引用的变量值不能被赋值, 即`&refVal`始终指向`ival`的地址。
 ```
 int ival = 1024; 
 int &refVal = ival; 
@@ -326,6 +334,7 @@ string s4(n,’c’);
 - 返回的是布尔值。 文件尾或无效字符处返回非。 
 - 从非空字符开始, 到遇到空字符（space, enter, tab）结束。  
 - input： "  Hello World   "，则s1 为"Hello"。
+
 ```
 cin >> s1 >> s2; 
 ```
@@ -334,7 +343,10 @@ string IO 操作读入一整行： 输入流和string对象
 while(getline(cin, line)) 
     cout << line << endl; 
 ```
-与`cin`不同，不忽略enter。如果一行只有enter，则返回空string。  
+
+与`cin`不同，不忽略enter。如果一行只有enter，则返回空string。
+
+
 #### 3.2.3
 string API：
 ```
@@ -365,12 +377,13 @@ string s1 = "Hello" + "World"; // error
 
 下标操作符`[]`读入size_type类型数做index读入单个字符。
 - 下标从0开始。下标可以是任何整型值。
-- 上下界为0到`str.size()  1`。
+- 上下界为0到`str.size()-1`。
 ```
     for (string::size_type ix = 0; ix != s1.size(); ++ix) {
-        cout << s1[ix] << endl; 
+        cout << s1[ix] << endl;
     }
-``` 
+```
+
 #### 3.2.4
 `cctype`头文件中定义处理char值的函数：
 - 测试字符串中单个字符的函数, 返回一个int值, 失败为0, 其他为非0值。
@@ -396,6 +409,7 @@ vector：container(容器), 可包含同一类型其他对象的集合。
 using std::vector; 
 vector<int> ivec; 
 ```
+
 #### 3.3.1
 构造函数定义和初始化：
 ```
@@ -461,6 +475,7 @@ bitset：位操作。头文件`bitset`中。
 - 也是类模板，但是用长度区别。
 - 长度必须为整型字面值或const对象。
 - 32位bitset 的low-order bit 从0 开始，在最右，high-order bit 为31。
+
 ```
 bitset<32> bitvec; 
 
@@ -472,7 +487,8 @@ bitset<32> bitvec4(strval); // strval[3] -> bitvec4[0]
 
 bitset<32> bitval5(str, pos, n); // str[pos] to str[pos + n - 1]
 bitset<32> bitval6(str, pos); // str[pos] to the end
-``` 
+```
+
 #### 3.5.2
 bitset 对象的操作：
 - `bool is_set = bitvec.any(); ` 测试是否有1，返回1为true。`bitvec.none()`相反。
@@ -1001,6 +1017,7 @@ unsigned char b1 = 0145; // oct value
 unsigned char b2 = 0257;
 unsigned char result = b1 & b2; // 0045
 ```
+
 #### 5.3.1
 用`bitset`做布尔数组：
 ```
@@ -1063,6 +1080,7 @@ while ((i = getValue()) != 42)
 - `++i`是右结合的，返回的值是左值（对象本身）。
 - `i++`是左结合的，返回右值（对象原始值）。
 - 如无必要不使用后自增。只有int和指针编译器有优化。
+
 ```
 vector<int> ivec; 
 int cnt = 10; 
@@ -1198,7 +1216,8 @@ int *pi = new int(); // value-initialize, 0
 ```
 delete pi; 
 ```
-- 如果不是用`new`动态创建的对象，`delete`该指针非法。
+
+如果不是用`new`动态创建的对象，`delete`该指针非法。
 ```
 int i; 
 int *pi = &i; 
@@ -1209,7 +1228,8 @@ delete pi; // error but can compile
 delete str; // failed to compile
 delete pz; // ok but useless
 ```
-- 释放了对象后内存释放，但指针仍指向该处，为dangling pointer（悬垂指针）。为避免错误最好置0。
+
+释放了对象后内存释放，但指针仍指向该处，为dangling pointer（悬垂指针）。为避免错误最好置0。
 
 `const`对象创建时必须初始化。
 ```
@@ -1372,6 +1392,7 @@ while (cin >> ch) {
     }
 }
 ```
+
 #### 6.6.2
 ```
 switch (ch) {
@@ -1903,7 +1924,8 @@ inline &shortString(const string &s1, const string &s2) {
 ### 7.7
 成员函数： 
 - 函数原型必须在类中定义，即必须在类中声明函数。
-- 但是函数体可在类中或类外定义。  
+- 但是函数体可在类中或类外定义。
+
 ```
 class Sales_item {
 public: 
