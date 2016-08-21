@@ -5415,21 +5415,86 @@ Note: When use G++ to build, need add `-pthread` and `-lpthread` to add support 
 当线程执行完入口函数后，线程也会退出。
 
 #### 2.1.1
+线程应用的复杂情况
+- 线程运行时，任务中的函数对象需要通过某种通讯机制进行参数的传递，或者执行一系列独立操作;
+- 可以通过通讯机制传递信号，让线程停止。
 
+`std::thread`的一种构造函数参数为callable类型的实例。注意这个实例会被拷贝到线程中。
+```
+class background_task {
+public:
+  void operator()() {
+      do_something();
+      do_something_else();
+  }
+};
 
-# Boost
+background_task task;
+thread my_thread(task);
+```
+
+注意`std::thread my_thread(background_task());`是错误的语法，因为会被误认为是函数声明（C++’s most vexing parse）。正确的应为
+- 用多组括号: `thread my_thread((background_task()));`
+- 用新统一的初始化语法: `std::thread my_thread{background_task()};`
+- lambda表达式直接定义该类:
+```
+std::thread my_thread([]{
+  do_something();
+  do_something_else();
+});
+```
+
+线程执行方式: 一定要在线程对象销毁前做决定
+- 等待线程结束: 加入式(join)
+- 自主运行: 分离式(detach)，如果`main()`先结束了，thread内访问的资源可能已被销毁。所以要确保数据深拷贝到线程。
+
+#### 2.1.2
+```
+thread my_thread1(foo);
+thread my_thread2(foo);
+// now both threads are started
+my_thread1.join();
+my_thread2.join();
+```
+
+一个线程只能`join()`一次，`joinable()`函数可返回bool值表示该状态。
+
+#### 2.1.3
+注意如果在`join()`之前`main()`因异常终止，则`join()`会被跳过而造成问题。因而要在`throw`前处理`join`，或用`thread_guard`。
+
+thread guard实现:
+- 包含一个`thread`的引用
+- 在destructor中`join`这个`thread`
+- 不允许`copy constructor`
+
+分离线程:
+- `my_thread.detach();`
+- 可以避免异常安全(exception-safety)问题
+- 能确保`std::terminate()`在`std::thread`对象销毁才被调用。
+
+#### 2.1.4
+HERE
+
+# code style
+https://google.github.io/styleguide/cppguide.html
+
+# faq
+## Boost
 [boost asio dispatch vs post](http://stackoverflow.com/questions/2326588/boost-asio-io-service-dispatch-vs-post)
 - post, always postphone; 
 - dispatch, if call comes from ios itself, execute, otherwise queue.  
 
-[Tier](http://www.boost.org/doc/libs/1_55_0/libs/tuple/doc/tuple_users_guide.html)
+### `BOOST_CHECK` and `BOOST_REQUIRE`
+when check failed, test still continue; when require failed, test stop
+
+### [Tier](http://www.boost.org/doc/libs/1_55_0/libs/tuple/doc/tuple_users_guide.html)
 - tie: create a tuple with all elements that can use 
 
-# link
+## linker
 [CPP Weak vs Strong](https://en.wikipedia.org/wiki/Weak_symbol)
 - while linking, a strong symbol can override a weak symbol.  
 
-# access a reference
+## access a reference
 ```
 ItemBase i("item", 0.1);
 BulkItem b1(1.1, 0.1, 2);
@@ -5437,7 +5502,15 @@ BulkItem b2(1.2, 0.2, 4);
 b1.memfcn(b2, i);
 ```
 
-# const functions of a class cannot call size() of a member
+## cannot reassign reference
+But can create a new reference initiailzed by the old reference
+```
+int data = 0;
+int &ref = data; // any assign to ref is actually modify data
+int &ref2(ref);
+```
+
+## const functions of a class cannot call size() of a member
 ```
 class MyClass {
 public:
@@ -5449,19 +5522,28 @@ private:
 };
 ```
 
-# C++11
+## C++11
 `g++ -Wall -g -std=c++11 main.cpp -o out.o`
 
-# `BOOST_CHECK` and `BOOST_REQUIRE`
-when check failed, test still continue; when require failed, test stop
-
-# Const `shared_ptr`
+## Const `shared_ptr`
 http://stackoverflow.com/questions/17793333/difference-between-const-shared-ptrt-and-shared-ptrconst-t
 
-# std::move
+## std::move
 Move the content of the object to another place. So the source variable will be init one, but the target will be the source content.
 
-# code style
-https://google.github.io/styleguide/cppguide.html
+## [explicit](http://en.cppreference.com/w/cpp/language/explicit)
+disallow implicit conversions or copy-initialization.
 
+```
+explicit thread_guard(std::thread& t_):
+thread_guard(thread_guard const&)=delete;
+thread_guard& operator=(thread_guard const&)=delete;
+```
 
+## [Implicit conversions](http://en.cppreference.com/w/cpp/language/implicit_conversion)
+some conversion.
+
+# temp
+## C++’s most vexing parse
+
+## lambda
