@@ -5414,7 +5414,7 @@ Note: When use G++ to build, need add `-pthread` and `-lpthread` to add support 
 ### 2.1
 当线程执行完入口函数后，线程也会退出。
 
-### 2.2
+#### 2.1.1
 
 
 # Boost
