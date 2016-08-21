@@ -41,8 +41,9 @@ Setup boost: https://theseekersquill.wordpress.com/2010/08/24/howto-boost-mingw/
 
 This one works [eclipse C++11](http://stackoverflow.com/questions/8312854/eclipse-indexer-cant-resolve-shared-ptr)
 
-A better way [C++ build tool Dialect select C++11](https://www.eclipse.org/forums/index.php/t/1070790/)
-under C/C++ Build -> Settings -> Tool Settings. Each compiler on this page has a Dialect entry. You can pick C++11 from this page.
+A better way [C++ build tool Dialect select C++11](https://www.eclipse.org/forums/index.php/t/1070790/):
+- under C/C++ Build -> Settings -> Tool Settings. Each compiler on this page has a Dialect entry. You can pick C++11 from this page.
+- Also to use standard multithread library, add `-pthread` to builder dialect flag and `-pthread` and `-lpthread` to linker Miscellaneous flag.
 
 [Eclipse C++11](http://stackoverflow.com/questions/17131744/eclipse-cdt-indexer-does-not-know-c11-containers)
  Does not work
