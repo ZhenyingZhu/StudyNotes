@@ -5459,6 +5459,8 @@ my_thread2.join();
 
 一个线程只能`join()`一次，`joinable()`函数可返回bool值表示该状态。
 
+但是`joinable`无法判断线程是否已结束。
+
 #### 2.1.3
 注意如果在`join()`之前`main()`因异常终止，则`join()`会被跳过而造成问题。因而要在`throw`前处理`join`，或用`thread_guard`。
 
@@ -5473,7 +5475,103 @@ thread guard实现:
 - 能确保`std::terminate()`在`std::thread`对象销毁才被调用。
 
 #### 2.1.4
-HERE
+分离线程为守护线程(daemon threads),没有任何用户接口，并在后台运行的线程。fire and forget的任务就使用到线程的这种方式。
+
+```
+void edit_document(std::string const& filename) {
+  // open a new file and edit
+  std::string const new_name = get_filename_from_user();
+  std::thread t(edit_document, new_name);
+  t.detach();
+}
+```
+
+### 2.2
+给线程的初始函数传递参数
+```
+void f(int i, std::string const& s);
+std::thread t(f, 3, "hello");
+```
+
+注意参数列表中的引用会被深度拷贝，所以子线程中对该引用的修改并不会体现在主线程中。
+
+如果参数列表中的引用不是`const`的，则该函数不是callable函数，无法作为子thread的初始函数。
+
+如需要让初始函数修改引用对象的值，并在主线程中体现，用`<functional>`中定义的`std::ref`将该参数转换为可复制的reference wrapper.
+
+```
+void foo(int &data);
+
+int data = 0;
+std::thread t(foo, std::ref(data));
+```
+
+用bind?<b>?</b>
+
+thread的初始函数的参数如果有不允许复制的数据类型，那么可以用`std::move`.
+
+### 2.3
+C++标准库中有很多资源占有(resource-owning)类型，比如`std::ifstream`, `std::unique_ptr`还有`std::thread`都是可移动(movable)，但不可拷贝(copyable)的.
+
+可移动的对象可作为函数返回值，在函数内部移动。并且能直接移动给声明但尚未定义的变量，或函数实参的临时对象。
+```
+void foo(std::unique_ptr<int>); // a function that has non-copyable arg
+
+std::unique_ptr<int> return_uniptr() {
+    std::unique_ptr<int> up(new int(1));
+    return up;
+}
+
+std::unique_ptr<int> up = return_uniptr();
+
+foo(return_uniptr()); // but cannot be foo(up); because up will be copied
+foo(std::move(up));
+```
+
+不能通过赋一个新值给`std::thread`对象的方式来"丢弃"一个线程
+
+`std::terminate`可在线程的函数中调用以调用`std::thread`的析构函数。
+
+`std::thread`对象的容器，如果这个容器是移动敏感的(比如，标准中的`std::vector`)，那么移动操作同样适用于这些容器。
+
+```
+void do_work(unsigned id);
+
+void create_thread_vec()
+{
+  std::vector<std::thread> threads;
+  for(unsigned i=0; i < 10; ++i)
+  {
+    threads.push_back(std::thread(do_work,i));
+  }
+
+  std::for_each(threads.begin(),threads.end(),std::mem_fn(&std::thread::join));
+}
+```
+
+### 2.4
+`std::thread::hardware_concurrency()`返回能同时并发在一个程序中的线程数量。
+(!!Skip!!)
+
+### 2.5
+线程标识类型是`std::thread::id`
+- `std::thread`对象的成员函数`get_id()`获取。如果该对象没有关联线程，返回`std::thread::type`默认构造值。
+- 当前线程中调用`std::this_thread::get_id()`
+
+std::thread::id对象可以自由的拷贝和对比,因为标识符就可以复用。如果两个对象的std::thread::id相等，那它们就是同一个线程。
+
+std::thread::id类型对象提供相当丰富的对比操作。标准库也提供`std::hash<std::thread::id>`容器。
+
+### 2.6
+总结
+
+
+## Chapter 3
+
+
+
+
+
 
 # code style
 https://google.github.io/styleguide/cppguide.html
@@ -5547,3 +5645,11 @@ some conversion.
 ## C++’s most vexing parse
 
 ## lambda
+
+## [bind](http://en.cppreference.com/w/cpp/utility/functional/bind)
+
+## [Callable](http://en.cppreference.com/w/cpp/concept/Callable)
+
+## [for each](http://en.cppreference.com/w/cpp/algorithm/for_each)
+
+## [men fn](http://en.cppreference.com/w/cpp/utility/functional/mem_fn)
