@@ -5568,6 +5568,57 @@ std::thread::id类型对象提供相当丰富的对比操作。标准库也提�
 
 ## Chapter 3
 
+### 3.1
+只读操作不会影响到数据共享。
+
+不变量(invariants): 特殊结构体, 从开始修改到完全修改完成稳定下来的状态。不变量被破坏期间访问该结构体的对象会造成问题。
+
+#### 3.1.1
+恶性(problematic)条件竞争: data race, 会产生undefine behavior。
+
+#### 3.1.2
+避免条件竞争
+- 对数据保护
+- 无锁编程(lock-free programming): 结构必须能完成一系列不可分割的变化，也就是保证每个不变量保持稳定的状态. 难实现
+- 使用事务(transacting)的方式去处理数据结构的更新。数据结构被另一个线程修改后，或处理已经重启的情况下，提交就会无法进行，这称作为“软件事务内存”(software transactional memory (STM))。C++不直接支持。
+
+### 3.2
+互斥量mutex 会造成死锁，或是对数据保护的太多或太少.
+
+#### 3.2.1
+`std::mutex`: 头文件`<mutex>`定义
+- `lock()`进行上锁, `unlock()`解锁
+- 不应直接去调用`lock`函数，不然在每个函数出口都要去调用`unlock`，且异常处理要当心
+- RAII语法的模板类`std::lock_guard`管理锁
+
+```
+std::list<int> some_list;
+std::mutex some_mutex;
+
+void add_to_list(int new_value)
+{
+  std::lock_guard<std::mutex> guard(some_mutex);
+  some_list.push_back(new_value);
+}
+
+bool list_contains(int value_to_find)
+{
+  std::lock_guard<std::mutex> guard(some_mutex);
+  return std::find(some_list.begin(), some_list.end(), value_to_find) != some_list.end();
+}
+```
+两个函数被同一个互斥量保护，所以对数据的访问是互斥的。
+
+具有访问能力的指针或引用可以访问(并可能修改)被保护的数据，而不会被互斥锁限制。
+
+#### 3.2.2
+检查迷失指针或引用是很容易的，只要没有成员函数通过返回值或者输出参数的形式向其调用者返回指向受保护数据的指针或引用，数据就是安全的。
+
+
+
+
+
+
 
 
 
