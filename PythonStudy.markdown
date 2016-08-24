@@ -394,3 +394,7 @@ sys.path.append(src_path)
 
 [Python simulate web browser](http://stackoverflow.com/questions/14516590/how-to-save-complete-webpage-not-just-basic-html-using-python)  
 
+# os environ
+`os.putenv` actually set a copy of sys env. So that if it call a script, the script has that env. But the main script doesn't have that env.
+
+Can do a deep copy like this: `env = copy.deepcopy(os.environ)`
