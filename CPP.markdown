@@ -5626,7 +5626,8 @@ bool list_contains(int value_to_find)
 
 解决竞争2方案
 - 将`top`和`pop`并为一步，即删去`top`的接口，而让`pop`返回结果
-- HERE
+- 无异常抛出的拷贝构造函数或移动构造函数<b>?</b>
+- 返回指向弹出值的指针
 
 改变`stack`接口:
 1. 使用同一互斥量保护`top`和`pop`
