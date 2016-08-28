@@ -5633,12 +5633,34 @@ bool list_contains(int value_to_find)
 1. 使用同一互斥量保护`top`和`pop`
   - 真的能解决问题<b>?</b>
 2. 用抛出异常来处理`top`空栈的问题
-3. 
+3. 只提供`pop`, `empty`,`push`接口，`pop`返回`shared_ptr`. [example](https://github.com/bsmr-c-cpp/Cpp-Concurrency-in-Action/blob/master/listing_3.5.cpp)。注意拷贝栈时要对源栈上锁
 
+#### 3.2.4
+一个操作需要两个及以上的互斥量时，有可能死锁。
 
+`swap`死锁
+- `swap(a, b)`需要当把b赋值给a时b不改变，而a赋值给b时a不改变
 
+避免死锁:
+- 让互斥量总以相同的顺序上锁
+- 使用`<mutex>`中定义的`std::lock`对多个互斥量上锁
 
+```
+void swap(BigClass &lhs, BigClass &rhs) {
+  if (lhs == rhs)
+    return; // avoid lock the same mutex
 
+  std::lock(lhs.mutex, rhs.mutex); // already locked here
+  std::lock_guard<std::mutex> lock_l(lhs.mutex, std::adopt_lock); // adopt_lock means use the existing lock
+  std::lock_guard<std::mutex> lock_r(rhs.mutex, std::adopt_lock);
+  swap(lhs.data_, rhs.data_);
+}
+```
+
+`std::lock`可能会抛出异常。异常可能发生在尝试获取第二个互斥量的锁。如果获取失败，则释放第一个互斥量的锁。
+
+#### 3.2.5
+https://chenxiaowei.gitbooks.io/cpp_concurrency_in_action/content/content/chapter3/chapter3-chinese.html
 
 
 
@@ -5726,3 +5748,5 @@ some conversion.
 ## [for each](http://en.cppreference.com/w/cpp/algorithm/for_each)
 
 ## [men fn](http://en.cppreference.com/w/cpp/utility/functional/mem_fn)
+
+## [mutable](http://en.cppreference.com/w/cpp/language/cv)
