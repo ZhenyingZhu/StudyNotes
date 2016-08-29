@@ -5664,9 +5664,10 @@ void swap(BigClass &lhs, BigClass &rhs) {
 - 一个线程已获得一个锁时，再别去获取第二个。需要获取多个锁，使用一个`std::lock`
 - 避免在持有锁时调用用户提供的代码
 - 对列表类的容器，定义遍历的顺序，避免两个线程用相反的顺序同时尝试获取相邻两个节点的锁。
+- 使用锁的层次结构 (!!skipped!!)
 
+#### 3.2.6
 
-https://chenxiaowei.gitbooks.io/cpp_concurrency_in_action/content/content/chapter3/chapter3-chinese.html
 
 
 
@@ -5756,3 +5757,4 @@ some conversion.
 ## [men fn](http://en.cppreference.com/w/cpp/utility/functional/mem_fn)
 
 ## [mutable](http://en.cppreference.com/w/cpp/language/cv)
+
