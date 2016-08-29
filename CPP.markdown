@@ -5639,7 +5639,7 @@ bool list_contains(int value_to_find)
 一个操作需要两个及以上的互斥量时，有可能死锁。
 
 `swap`死锁
-- `swap(a, b)`需要当把b赋值给a时b不改变，而a赋值给b时a不改变
+- `swap(a, b)`需要先后获得a和b的锁。如果此时有个`swap(b, a)`操作在另一个线程中执行，则死锁。
 
 避免死锁:
 - 让互斥量总以相同的顺序上锁
@@ -5660,6 +5660,12 @@ void swap(BigClass &lhs, BigClass &rhs) {
 `std::lock`可能会抛出异常。异常可能发生在尝试获取第二个互斥量的锁。如果获取失败，则释放第一个互斥量的锁。
 
 #### 3.2.5
+避免死锁
+- 一个线程已获得一个锁时，再别去获取第二个。需要获取多个锁，使用一个`std::lock`
+- 避免在持有锁时调用用户提供的代码
+- 对列表类的容器，定义遍历的顺序，避免两个线程用相反的顺序同时尝试获取相邻两个节点的锁。
+
+
 https://chenxiaowei.gitbooks.io/cpp_concurrency_in_action/content/content/chapter3/chapter3-chinese.html
 
 
