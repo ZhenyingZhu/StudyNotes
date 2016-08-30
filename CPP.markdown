@@ -5667,7 +5667,7 @@ void swap(BigClass &lhs, BigClass &rhs) {
 - 使用锁的层次结构 (!!skipped!!)
 
 #### 3.2.6
-
+`std::unique_lock`实例不会总与互斥量的数据类型相关
 
 
 
