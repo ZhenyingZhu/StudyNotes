@@ -398,3 +398,15 @@ sys.path.append(src_path)
 `os.putenv` actually set a copy of sys env. So that if it call a script, the script has that env. But the main script doesn't have that env.
 
 Can do a deep copy like this: `env = copy.deepcopy(os.environ)`
+
+# install second python
+https://github.com/yyuu/pyenv
+
+- `pyenv install 2.7.8` to install a new python
+- `pyenv versions` to find all versions
+- `pyenv local 2.7.8` to change local python version
+
+The main python install libs under `/usr/lib/python2.7`
+
+`pyenv` installed everything under `~/.pyenv/versions/2.7.8/lib/`
+
