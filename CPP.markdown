@@ -5668,7 +5668,8 @@ void swap(BigClass &lhs, BigClass &rhs) {
 
 #### 3.2.6
 `std::unique_lock`实例不会总与互斥量的数据类型相关
-
+- `std::adopt_lock`作为第二个参数传入构造函数，可互斥量进行管理
+- `std::defer_lock`作为第二个参数传入构造函数，表明互斥量应保持解锁状态，之后可调用`std::unique_lock::lock()`
 
 
 
