@@ -5671,7 +5671,78 @@ void swap(BigClass &lhs, BigClass &rhs) {
 - `std::adopt_lock`作为第二个参数传入构造函数，可互斥量进行管理
 - `std::defer_lock`作为第二个参数传入构造函数，表明互斥量应保持解锁状态，之后可调用`std::unique_lock::lock()`
 
+```C++
+#include <mutex>
+#include <thread>
+#include <utility>
+#include <functional>
+#include <iostream>
 
+using namespace std;
+
+class some_big_object
+{
+public:
+    some_big_object(int i): id(i) { }
+public:
+    int id;
+};
+
+void swap(some_big_object& lhs,some_big_object& rhs)
+{
+    int tmp = lhs.id;
+    lhs.id = rhs.id;
+    rhs.id = tmp;
+}
+
+class X {
+public:
+    X(const some_big_object & sd):some_detail(sd){}
+    X(const X&) = delete;
+
+    friend void swap_x(X& lhs, X& rhs);
+
+private:
+    some_big_object some_detail;
+    mutable std::mutex m;
+};
+
+void swap_x(X &lhs, X &rhs) {
+    if(&lhs == &rhs)
+        return;
+
+    std::unique_lock<std::mutex> lock_a(lhs.m,std::defer_lock);
+    std::unique_lock<std::mutex> lock_b(rhs.m,std::defer_lock);
+    std::lock(lock_a,lock_b);
+
+    cout << "Before: " << endl;
+    cout << "left: " << lhs.some_detail.id <<
+            " right: " << rhs.some_detail.id << endl;
+
+    std::this_thread::sleep_for(chrono::seconds(1));
+    swap(lhs.some_detail, rhs.some_detail);
+
+    cout << "After: " << endl;
+    cout << "left: " << lhs.some_detail.id <<
+            " right: " << rhs.some_detail.id << endl;
+}
+
+int main()
+{
+    some_big_object s1(1), s2(2);
+
+    X x1(s1), x2(s2);
+
+    auto f1 = bind(swap_x, ref(x1), ref(x2));
+    auto f2 = bind(swap_x, ref(x2), ref(x1));
+
+    thread t1(f1);
+    thread t2(f2);
+    t1.join();
+    t2.join();
+}
+
+```
 
 
 
