@@ -5669,7 +5669,52 @@ void swap(BigClass &lhs, BigClass &rhs) {
 #### 3.2.6
 `std::unique_lock`实例不会总与互斥量的数据类型相关
 - `std::adopt_lock`作为第二个参数传入构造函数，可互斥量进行管理
-- `std::defer_lock`作为第二个参数传入构造函数，表明互斥量应保持解锁状态，之后可调用`std::unique_lock::lock()`
+- `std::defer_lock`作为第二个参数传入构造函数，表明互斥量应保持解锁状态，之后可调用`std::unique_lock::lock()`和`std::unique_lock::unlock()`
+- 成员函数`lock()`, `try_lock()`, `unlock()`。如果是仅用`mutex`一个参数构造的实例，那么功能类似`lock_guard`，但是开销略大
+- 如某个类的实例有互斥量，则析构函数必须调用`unlock()`，可通过`owns_lock()`成员函数查看。
+
+#### 3.2.7
+- 左值: 一个实际的值或是引用
+- 右值: 一个临时类型
+
+当源值是一个右值，为了避免转移所有权过程出错，就必须显式移动成左值。
+
+`std::unique_lock`是可移动，但不可赋值的类型
+
+在两个子程序中用同一个锁
+```C++
+std::unique_lock<std::mutex> get_lock() {
+  extern std::mutex some_mutex; // So compile not define it again
+  std::unique_lock<std::mutex> lk(some_mutex);
+  prepare_data();
+  return lk;
+}
+
+void process_data() {
+  std::unique_lock<std::mutex> lk(get_lock()); // compile call std::move() automatically
+  do_something();
+}
+```
+
+#### 3.2.8
+
+
+
+
+## 附录A
+https://chenxiaowei.gitbooks.io/cpp_concurrency_in_action/content/content/appendix_A/appendix_A-chinese.html
+
+https://github.com/bsmr-c-cpp/Cpp-Concurrency-in-Action
+
+
+
+
+
+
+
+
+
+
 
 ```C++
 #include <mutex>
@@ -5743,6 +5788,8 @@ int main()
 }
 
 ```
+
+
 
 
 
