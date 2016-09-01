@@ -410,3 +410,5 @@ The main python install libs under `/usr/lib/python2.7`
 
 `pyenv` installed everything under `~/.pyenv/versions/2.7.8/lib/`
 
+To make in python CLI, the move keys can actually move, [install libreadline](http://stackoverflow.com/questions/10765441/python3-2-can-not-recognize-up-down-left-right-keys-in-interpreter)
+

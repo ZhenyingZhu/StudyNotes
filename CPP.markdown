@@ -5830,3 +5830,6 @@ some conversion.
 
 ## [mutable](http://en.cppreference.com/w/cpp/language/cv)
 
+## [memset](http://www.cplusplus.com/reference/cstring/memset/)
+
+
