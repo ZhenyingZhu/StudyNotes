@@ -70,3 +70,4 @@ Socks v5
 
 While using chrome, if proxyswitch does not work, it might caused by other extensions like unblock Youku.  
 
+If on win7, shadowsocks block all traffic: go to internet setting, change the PAC script it use back to the default one.
