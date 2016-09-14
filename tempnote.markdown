@@ -907,6 +907,17 @@ The term datagram is often considered synonymous to packet but there are some nu
 cpu=`top -bn1 | grep -v monitor | grep -v grep | cut -c41-45 | cut -d. -f1 | head -1`; test $cpu -lt 90
 ```
 
+http://www.thegeekstuff.com/2009/10/how-to-capture-unix-top-command-output-to-a-file-in-readable-format/
+Easier version:
+`top -d 0.1 -p $process_id -n5 -b >cpu_memory_result`
+
+https://gist.github.com/netj/526585
+
+http://unix.stackexchange.com/questions/58539/top-and-ps-not-showing-the-same-cpu-result
+
+http://unix.stackexchange.com/questions/145247/understanding-cpu-while-running-top-command
+
+
 # find process system calls
 ```
 strace -c -p 3153
