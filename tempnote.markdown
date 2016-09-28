@@ -936,6 +936,7 @@ http://stackoverflow.com/questions/1624691/linux-kill-background-task
 
 # DHCP lease
 http://www.tcpipguide.com/free/t_DHCPLeaseLifeCycleOverviewAllocationReallocationRe.htm
+https://answers.yahoo.com/question/index?qid=20110512203756AAxefPM
 
 # timestamp section
 Sep 11 2016
