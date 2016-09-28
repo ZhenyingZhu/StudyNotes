@@ -128,7 +128,7 @@ Installed software: terminator, meld,
 
 [Add desktop shortcut](http://askubuntu.com/questions/142159/desktop-shortcut-to-create-a-new-desktop-shortcut-doesnt-do-anything): `gnome-desktop-item-edit ~/Desktop/ --create-new`. The official ways to do that is `xdg-desktop-menu`  
 
-[boost share from this](http://www.boost.org/doc/libs/1_40_0/libs/smart_ptr/enable_shared_from_this.html): return a `shared_ptr` of self.  
+[boost share from this](http://www.boost.org/doc/libs/1_40_0/libs/smart_ptr/enable_shared_from_this.html): return a ```shared_ptr``` of self.  
 
 [boost bind](http://theboostcpplibraries.com/boost.bind): a template for a function to compatiable with another function call that need different number of arguments.  
 
@@ -933,6 +933,9 @@ http://unix.stackexchange.com/questions/75996/modify-ulimit-open-files-of-a-spec
 
 # background processes
 http://stackoverflow.com/questions/1624691/linux-kill-background-task
+
+# DHCP lease
+http://www.tcpipguide.com/free/t_DHCPLeaseLifeCycleOverviewAllocationReallocationRe.htm
 
 # timestamp section
 Sep 11 2016
