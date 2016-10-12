@@ -938,5 +938,8 @@ http://stackoverflow.com/questions/1624691/linux-kill-background-task
 http://www.tcpipguide.com/free/t_DHCPLeaseLifeCycleOverviewAllocationReallocationRe.htm
 https://answers.yahoo.com/question/index?qid=20110512203756AAxefPM
 
+# `shared_ptr` reset vs operator=
+http://stackoverflow.com/questions/14836691/is-it-better-to-use-shared-ptr-reset-or-operator
+
 # timestamp section
 Sep 11 2016
