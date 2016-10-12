@@ -941,5 +941,9 @@ https://answers.yahoo.com/question/index?qid=20110512203756AAxefPM
 # `shared_ptr` reset vs operator=
 http://stackoverflow.com/questions/14836691/is-it-better-to-use-shared-ptr-reset-or-operator
 
+# where to put c++ default args
+in header
+http://stackoverflow.com/questions/9260246/function-default-arguments-and-headers
+
 # timestamp section
 Sep 11 2016
