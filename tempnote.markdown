@@ -945,5 +945,8 @@ http://stackoverflow.com/questions/14836691/is-it-better-to-use-shared-ptr-reset
 in header
 http://stackoverflow.com/questions/9260246/function-default-arguments-and-headers
 
+# const `shared_ptr`
+http://stackoverflow.com/questions/17793333/difference-between-const-shared-ptrt-and-shared-ptrconst-t
+
 # timestamp section
 Sep 11 2016
