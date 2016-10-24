@@ -100,7 +100,16 @@ Design Schema: E.g. Tweet table
 - content
 - ```created_at``` is timestamp
 
+Not like algorithms, the time complexity is computing DB read times, because DB IO time is much larger than memory access. O(n) DB read/write is not acceptable.
 
+[Fanout](http://stackoverflow.com/questions/22190885/what-is-fanout-in-r-tree)
+
+[Denormalization](https://en.wikipedia.org/wiki/Denormalization): adding redundant copies of data or by grouping data
+
+[Asynchronous](https://en.wikipedia.org/wiki/Asynchrony_(computer_programming)): here means do some compute without customer quest.
+
+Pull Model:
+- 
 
 #### Scale
 DB Optimize: [Sharding](https://en.wikipedia.org/wiki/Shard_(database_architecture)
