@@ -106,10 +106,46 @@ Not like algorithms, the time complexity is computing DB read times, because DB 
 
 [Denormalization](https://en.wikipedia.org/wiki/Denormalization): adding redundant copies of data or by grouping data
 
-[Asynchronous](https://en.wikipedia.org/wiki/Asynchrony_(computer_programming)): here means do some compute without customer quest.
+[Asynchronous](https://en.wikipedia.org/wiki/Asynchrony_(computer_programming)): not block user quest.
 
-Pull Model:
-- 
+While system design, don't ambivalent. Change plan is very expansive. Need always consider tradeoff. The design should be able to , or can be extend deal with special case.
+
+
+
+##### Pull Model:
+- Friendship table
+- Tweet table
+
+Get news feed
+1. Query following users
+2. Query recent 100 tweets post by those users
+3. sort those tweets by time and return recent 100
+
+Time complexity: if N following users
+- news feed: O(N) DB reads and O(NlogN) merge K sorted arrays time(which can be neglect). Users wait while this is procceeding.
+- post a tweet: O(1) DB write
+
+##### Push Model:
+- News feed table: each user has a copy of tweet in its news feed. Fields: user id, tweet(which include the tweet author info), tweet create time
+- Friendship table
+
+Get news feed
+1. find the user in the news feed table and return all tweets in his news feed
+
+Post a tweet has fanout N
+1. Query to get all followers
+2. add tweet to the news feed table one copy for each followers
+
+Time complexity:
+- news feed: O(1) DB read to get tweets
+- post a tweet: O(1) DB read to get followers, O(N) DB write to add tweets. But this can be done async in background. Though some users might see the tweet a little later than others, they won't notice.
+
+Disadvantage:
+- Some users cannot see updated tweet in time
+- Redundancy
+- The user with a lot of followers has very slow experience when post tweets
+
+
 
 #### Scale
 DB Optimize: [Sharding](https://en.wikipedia.org/wiki/Shard_(database_architecture)
