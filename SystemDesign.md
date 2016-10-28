@@ -8,6 +8,9 @@ SRE: 运维
 Design System:
 - Twitter: post tweet, follow/unfollow, timeline/news feed
 - Facebook: <b>?</b>
+- Instagram: <b>?</b>
+- Friend Circle: <b>?</b>
+- Google Reader(RSS Reader): <b>?</b>
 - Uber: <b>?</b>
 - Whatsapp: <b>?</b>
 - Yelp: <b>?</b>
@@ -104,12 +107,18 @@ Not like algorithms, the time complexity is computing DB read times, because DB 
 
 [Fanout](http://stackoverflow.com/questions/22190885/what-is-fanout-in-r-tree)
 
-[Denormalization](https://en.wikipedia.org/wiki/Denormalization): adding redundant copies of data or by grouping data
+[Denormalization](https://en.wikipedia.org/wiki/Denormalization): adding redundant copies of data or by grouping data. Disadvantage is not sync at real time.
 
 [Asynchronous](https://en.wikipedia.org/wiki/Asynchrony_(computer_programming)): not block user quest.
 
-While system design, don't ambivalent. Change plan is very expansive. Need always consider tradeoff. The design should be able to , or can be extend deal with special case.
+##### Design rules
+While system design, don't ambivalent. Change plan is very expansive, since if the system is online, changing DB tables needs a lot of work.
 
+Need always consider tradeoff. 
+
+The design should be able to, or can be extend to deal with special case.
+
+Draw schema, draw graphs to show storage blocks and data flow.
 
 
 ##### Pull Model:
@@ -124,6 +133,7 @@ Get news feed
 Time complexity: if N following users
 - news feed: O(N) DB reads and O(NlogN) merge K sorted arrays time(which can be neglect). Users wait while this is procceeding.
 - post a tweet: O(1) DB write
+
 
 ##### Push Model:
 - News feed table: each user has a copy of tweet in its news feed. Fields: user id, tweet(which include the tweet author info), tweet create time
@@ -148,7 +158,49 @@ Disadvantage:
 
 
 #### Scale
+- Optimize
+  - Special ways to deal with Special Cases: users with lot of followers, inactive users
+  - Add more features
+  - Solve design flaws: Indexing, Normalize
+- Maintenance
+  - Robust: if servers/DBs down
+  - Scalability
+
 DB Optimize: [Sharding](https://en.wikipedia.org/wiki/Shard_(database_architecture)
 
-Special way to deal with Special Case
+Scale up Pull Model:
+- Cache users' timeline. Tradeoff: how many to cache. 
+- Cache news feed.
+
+Cache is a key-value pair in memory.
+
+Can use in-memory distributed cache: [Memcached](https://memcached.org/), or use disk to cache (disk is cheap).
+
+[Message queue](https://zh.wikipedia.org/wiki/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97): For async tasks, each worker get a task from the queue, and report results when done.
+
+Scale up Push Model:
+- Inactive users: order by the last login time. If not active, stop his service until he login.
+- Users which follwers >> followings: Rank followers by weight. If over a threadshold, use pull model instead.
+- Issues with new solution:
+  - How to deal with users cross threadshold: One 大V suddenly goes below threadshold. 1. Still pull, 2. Start pushing when he goes below
+- Follow/unfollow: Async merge the following's timeline into user's news feed. Evatually sync.
+
+
+How to store likes:
+- denormalize like nums, comment nums, retweet nums from Like table into Tweet table.
+
+
+How to deal with [Hot spot](https://en.wikipedia.org/wiki/Thundering_herd_problem), when a 大V post a tweet
+- Load Balancer? Doesn't help since all LB hosts still need query this DB for the tweet.
+- Sharding? Doesn't help since the tweet only store on a single DB
+- Consistent hashing? Doesn't help
+- Add cache
+  - like, retweet, comment changes this tweet, how to update? [write through, write back](http://www.computerweekly.com/feature/Write-through-write-around-write-back-Cache-explained), [look aside](http://whatis.techtarget.com/definition/translation-look-aside-buffer-TLB)
+  - How to solve Cache invalid? happened when server down, or cache retirement solution wrong. Use [Facebook Lease Get](http://www.cs.utah.edu/~stutsman/cs6963/public/papers/memcached.pdf)
+
+
+Guide lines for solve scaling issues:
+- Made change as small as possible
+- Adding machines is always a solution
+- Estimate with numbers
 
