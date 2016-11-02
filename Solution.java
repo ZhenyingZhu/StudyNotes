@@ -21,8 +21,13 @@ class HtmlHelper {
     }
 
     public static List<String> parseUrls(String url) {
-        if (idx == urls.size()) {
-            idx = 0;
+        List<String> urlGroup = new ArrayList<String>();
+        for (int i = 0; i < 2; ++i) {
+            if (idx == urls.size()) {
+                idx = 0;
+            }
+            urlGroup.add(urls.get(idx));
+            ++idx;
         }
         return urls;
     }
@@ -73,6 +78,7 @@ class CrawlerThread extends Thread {
             } catch (MalformedURLException e) {
                 // e.printStackTrace(); 
             }
+            System.out.println(url + " - " + domain);
             if (!mp.containsKey(url) && domain.endsWith("wikipedia.org")) {
                 mp.put(url, true);
                 results.add(url);
@@ -96,7 +102,7 @@ public class Solution {
      */
     public static List<String> crawler(String url) {
         // Write your code here
-        int thread_num = 7;
+        int thread_num = 2;
         CrawlerThread.setFirstUrl(url, thread_num);
 
         CrawlerThread[] thread_pools = new CrawlerThread[thread_num];
@@ -105,7 +111,9 @@ public class Solution {
             thread_pools[i].start();
         }
         
-        while (CrawlerThread.getCounter() > 0);
+        while (CrawlerThread.getCounter() > 0) {
+            System.out.println(CrawlerThread.getCounter());
+        }
 
         for (int i = 0; i < thread_num; ++i) {
             thread_pools[i].stop();
