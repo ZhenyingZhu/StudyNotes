@@ -1,3 +1,9 @@
+/*$
+ * [Source] http://www.lintcode.com/en/problem/webpage-crawler/
+ * [Difficulty]: Hard
+ * [Tag]: $
+ */$
+
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ExecutorService;
@@ -107,7 +113,7 @@ class CrawlerThread extends Thread {
     }
 }
 
-public class Solution {
+public class WebpageCrawlerSolution {
     /**
      * @param url a url of root page
      * @return all urls
