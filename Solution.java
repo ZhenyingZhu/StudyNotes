@@ -39,6 +39,8 @@ class CrawlerThread extends Thread {
 
     private static HashMap<String, Boolean> mp = new HashMap<String, Boolean>();
     private static List<String> results = new ArrayList<String>();
+    public static int maxThreadsNum = 0;
+    private static int currentThreadsNum = 0;
 
     public static void setFirstUrl(String url, int thread_num) {
         counter = new AtomicLong(thread_num);
@@ -58,8 +60,17 @@ class CrawlerThread extends Thread {
         return results;
     }
 
+    public static int getMaxThreads() {
+        return maxThreadsNum;
+    }
+
     @Override
     public void run() {
+        ++currentThreadsNum;
+        if (currentThreadsNum > maxThreadsNum) {
+            maxThreadsNum = currentThreadsNum;
+        }
+        System.out.println("T " + currentThreadsNum);
         while (true) {
             String url = "";
             try {
@@ -92,6 +103,7 @@ class CrawlerThread extends Thread {
                 }
             }
         }
+        --currentThreadsNum;
     }
 }
 
@@ -102,7 +114,7 @@ public class Solution {
      */
     public static List<String> crawler(String url) {
         // Write your code here
-        int thread_num = 2;
+        int thread_num = 7;
         CrawlerThread.setFirstUrl(url, thread_num);
 
         CrawlerThread[] thread_pools = new CrawlerThread[thread_num];
@@ -112,21 +124,23 @@ public class Solution {
         }
         
         while (CrawlerThread.getCounter() > 0) {
-            System.out.println(CrawlerThread.getCounter());
+            //System.out.println(CrawlerThread.getCounter());
         }
 
         for (int i = 0; i < thread_num; ++i) {
             thread_pools[i].stop();
         }
         
+        System.out.println("===");
+        System.out.println( CrawlerThread.getMaxThreads() );
+        System.out.println("===");
         List<String> results = CrawlerThread.getResults();
         return results;
     }
     
     public static void main(String[] args) {
-        System.out.println("Hello World");
         HtmlHelper.updateUrls();
-        List<String> urls = crawler("https://www.wikipedia.org/");
+        List<String> urls = crawler("https://www.wikipedia.org");
         for (String url : urls) {
             System.out.println(url);
         }
