@@ -948,5 +948,201 @@ http://stackoverflow.com/questions/9260246/function-default-arguments-and-header
 # const `shared_ptr`
 http://stackoverflow.com/questions/17793333/difference-between-const-shared-ptrt-and-shared-ptrconst-t
 
+# Packet delay, jitter
+https://en.wikipedia.org/wiki/Packet_delay_variation
+
+# Locally and Remotely Renaming a Branch in Git
+http://www.benjaminlhaas.com/blog/locally-and-remotely-renaming-branch-git
+
+# What is an accessor? ruby
+http://www.rubyist.net/~slagell/ruby/accessors.html
+
+# Why is it bad style to `rescue Exception => e` in Ruby?
+http://stackoverflow.com/questions/10048173/why-is-it-bad-style-to-rescue-exception-e-in-ruby
+
+# How to highlight the “undefined method” in PyDev
+http://stackoverflow.com/questions/11476947/how-to-highlight-the-undefined-method-in-pydev
+
+# tcpdump
+http://www.tcpdump.org/manpages/tcpdump.1.html
+
+# Passing unique variables into a Ruby Thread
+http://stackoverflow.com/questions/13748547/passing-unique-variables-into-a-ruby-thread
+
+# 6 Ways to Run Shell Commands in Ruby
+http://tech.natemurray.com/2007/03/ruby-shell-commands.html
+
+# No module named Crypto.PublicKey
+http://redino.net/blog/2014/05/module-named-crypto-publickey/
+
+# Using do block vs brackets {}
+http://stackoverflow.com/questions/2122380/using-do-block-vs-brackets
+
+# nc(1) - Linux man page
+https://linux.die.net/man/1/nc
+
+# Ruby Operators
+http://www.tutorialspoint.com/ruby/ruby_operators.htm
+
+# Ruby Quick Reference Guide
+http://www.tutorialspoint.com/ruby/ruby_quick_guide.htm
+
+# Ruby中的map, reduce, select, reject, group_by理解 
+http://blog.csdn.net/xzyxuanyuan/article/details/7802049
+
+# What is the colon operator in Ruby?
+http://stackoverflow.com/questions/6337897/what-is-the-colon-operator-in-ruby
+
+# Learn About Scrum
+https://www.scrumalliance.org/why-scrum
+
+# CIDR
+https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing
+
+https://tools.ietf.org/html/rfc4632
+
+http://superuser.com/questions/394407/how-does-cidr-slow-the-exhaustion-of-ipv4
+
+https://tools.ietf.org/html/rfc4632#section-2
+
+# IP protocol
+https://tools.ietf.org/html/rfc791#section-2.3
+
+# svn switch
+http://svnbook.red-bean.com/en/1.4/svn.ref.svn.c.switch.html
+
+# Allow user sudo, but exclude some privileges (run shells, etc)
+http://www.thinkplexx.com/learn/howto/linux/system/allow-user-sudo-but-exlude-some-privileges-run-shells-etc
+
+# How to test if 9000 MTU/Jumbo Frames are working
+https://blah.cloud/hardware/test-jumbo-frames-working/
+
+# Testing whether jumbo frames are actually working
+http://serverfault.com/questions/234311/testing-whether-jumbo-frames-are-actually-working
+
+# What are popular packet sniffers on Linux
+http://xmodulo.com/what-are-popular-packet-sniffers-on-linux.html
+
+# netperf
+http://www.netperf.org/pipermail/netperf-talk/2015-April/001252.html
+
+# iperf
+https://iperf.fr/#tuningtcp
+
+# Specify packet size with Ruby TCPSocket
+http://stackoverflow.com/questions/1661367/specify-packet-size-with-ruby-tcpsocket
+
+# Path MTU Discovery
+https://en.wikipedia.org/wiki/Path_MTU_Discovery
+
+# How to ConfigParse a file keeping multiple values for identical keys? python
+http://stackoverflow.com/questions/15848674/how-to-configparse-a-file-keeping-multiple-values-for-identical-keys
+
+# I run `sudo apt-get remove python2.7`, can I restore my Ubuntu now?
+http://askubuntu.com/questions/187227/i-run-sudo-apt-get-remove-python2-7-can-i-restore-my-ubuntu-now
+
+# UML tool box
+http://bouml.fr/features.html
+
+# Rote learning is a memorization technique
+https://en.wikipedia.org/wiki/Rote_learning
+
+# eclipse Installing and updating the CDT
+http://help.eclipse.org/luna/index.jsp?topic=%2Forg.eclipse.cdt.doc.user%2Fgetting_started%2Fcdt_w_install_cdt.htm
+
+# What is SR-IOV?
+http://blog.scottlowe.org/2009/12/02/what-is-sr-iov/
+
+# Linux : NTP Error Message "kernel time sync error 0001"
+http://unixadminschool.com/blog/2011/05/linux-ntp-error-message-kernel-time-sync-error-0001/#
+
+# Markdown not working in Jekyll
+https://www.skratchdot.com/2012/05/markdown-not-working-in-jekyll/
+
+# Using Pageant for Authentication ssh
+http://winscp.net/eng/docs/ui_pageant
+
+# 如何搭建一个独立博客——简明 Github Pages与 jekyll 教程
+http://cnfeat.com/blog/2014/05/10/how-to-build-a-blog/
+
+# Ciro Santilli 烏坎事件2016六四事件 法轮功
+http://stackoverflow.com/users/895245/ciro-santilli-%e7%83%8f%e5%9d%8e%e4%ba%8b%e4%bb%b62016%e5%85%ad%e5%9b%9b%e4%ba%8b%e4%bb%b6-%e6%b3%95%e8%bd%ae%e5%8a%9f
+
+# Ideone is an online compiler and debugging tool 
+http://ideone.com/fork/elpZis
+
+# Linux Ubuntu桌面系统下使用shadowsocks
+http://www.8dlive.com/post/168.html
+
+# Google Compute Engine
+https://cloud.google.com/compute/
+
+# Linus Torvalds git
+https://github.com/torvalds?tab=overview&from=2016-11-17
+
+# 30 Things to Do After Minimal RHEL/CentOS 7 Installation
+http://www.tecmint.com/things-to-do-after-minimal-rhel-centos-7-installation/
+
+# Docker possible to change the default 172.17.0.0/16 network to "something else" ??
+https://groups.google.com/forum/#!topic/docker-user/P93kOO7-QvA
+
+# stackoverflow highest C++ user
+http://stackoverflow.com/users/34509/johannes-schaub-litb
+
+# Ubuntu 16
+16 Things To Do After Installing Ubuntu 16.04 LTS
+http://www.omgubuntu.co.uk/2016/04/10-things-to-do-after-installing-ubuntu-16-04-lts
+
+Can’t Install Third-Party Apps on Ubuntu 16.04? You’re Not Alone
+http://www.omgubuntu.co.uk/2016/04/ubuntu-16-04-deb-software-install-error
+
+# Installing nvidia-opencl-icd-367 breaks the package manager
+http://askubuntu.com/questions/783093/installing-nvidia-opencl-icd-367-breaks-the-package-manager
+
+# vim Creating your own syntax files
+http://vim.wikia.com/wiki/Creating_your_own_syntax_files
+
+# How to Run a script when a mail arrives in mail server? (Debian)
+http://serverfault.com/questions/261191/how-to-run-a-script-when-a-mail-arrives-in-mail-server-debian
+
+# Core dump file analysis GDB
+http://stackoverflow.com/questions/5115613/core-dump-file-analysis
+
+# cannot start browser for selenium through ssh firefox
+http://stackoverflow.com/questions/7109840/cannot-start-browser-for-selenium-through-ssh
+
+# Profiles - Where Firefox stores your bookmarks, passwords and other user data
+https://support.mozilla.org/en-US/kb/profiles-where-firefox-stores-user-data#w_finding-your-profile-without-opening-firefox
+
+# hellboundhackers.org How to Use Netcat port 23
+https://www.hellboundhackers.org/articles/read-article.php?article_id=59
+
+# Install Docker on Ubuntu
+https://docs.docker.com/engine/installation/linux/ubuntulinux/
+
+# 5 Open Source Lightweight Linux Desktop Environments for Your Old Computers
+http://www.tecmint.com/open-source-lightweight-linux-desktops/
+
+# GDB: The GNU Project Debugger
+http://www.gnu.org/software/gdb/
+
+# C++ Unit Testing With Boost.Test
+http://www.alittlemadness.com/2009/03/31/c-unit-testing-with-boosttest/
+
+# Top and ps not showing the same cpu result
+http://unix.stackexchange.com/questions/58539/top-and-ps-not-showing-the-same-cpu-result
+
+# What are the special dollar sign shell variables?
+http://stackoverflow.com/questions/5163144/what-are-the-special-dollar-sign-shell-variables
+
+# Measure Computing Time and I/O Time of a Program
+http://stackoverflow.com/questions/10416468/measure-computing-time-and-i-o-time-of-a-program
+
+# How to use strace for a daemon with multiple processes, including children
+http://baheyeldin.com/technology/linux/how-use-strace-daemon-multiple-processes-including-children.html
+
+# Android Without Google
+https://ianrenton.com/blog/android-without-google/
+
 # timestamp section
 Sep 11 2016
