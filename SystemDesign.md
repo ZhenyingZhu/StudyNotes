@@ -57,10 +57,12 @@ E.g. Enumerate Twitter features:
 - Timeline / News Feed: Important
 - Follow / Unfollow a user: Important
 
+https://github.com/ZhenyingZhu/CppAlgorithms/blob/master/src/lintcode/MiniTwitter.cpp
+
 Data:
 - QPS(quest/s): need gather first. Can be estimated from DAU and interfaces. Read QPS and Write QPS can affect design tradeoff.
 - DAU(daily active users), MAU is different from DAU * 30. [Find user habit from data](http://wechatinchina.com/thread-28820-1-1.html)
-- Concurrent User: DAU * (avg quest per user) / (2400 * 3600) . Daily Peak: Concurrent User * 3(experience number, pick from 2 to 9). Fast growing production, peak increase 2 times every 3 months.
+- Concurrent User: DAU * (daily avg quest per user) / (24 * 3600 = 86400 ~= 100k) . Daily Peak: Concurrent User * 3(experience number, pick from 2 to 9). Fast growing production, peak increase 2 times every 3 months.
 
 Server type:
 - QPS < 1000, PC is enough. QPS < 1M, couple servers are enough. QPS > 1M, web server cluster.
@@ -203,4 +205,45 @@ Guide lines for solve scaling issues:
 - Made change as small as possible
 - Adding machines is always a solution
 - Estimate with numbers
+
+
+
+
+## Points
+### Chapter 1
+Design System:
+- Twitter: post tweet, follow/unfollow, timeline/news feed
+- Facebook: <b>?</b>
+- Instagram: <b>?</b>
+- Friend Circle: <b>?</b>
+- Google Reader(RSS Reader): <b>?</b>
+- Uber: <b>?</b>
+- Whatsapp: <b>?</b>
+- Yelp: <b>?</b>
+- Design Tiny URL: <b>?</b>
+- Design NoSQL: <b>?</b>
+
+4S Analysis
+
+Compute read/write QPS from DAU
+
+- a SQL DB: 1k QPS, less if needs a lot of JOIN and INDEX query
+- a NoSQL DB like Cassandra: 10k QPS
+- a NoSQL DB like Memcached: 1M QPS
+
+Atomicity, Consistency, Isolation, Durability
+
+Denormalization
+
+Asynchronous
+
+Time complexity of DB
+
+write through(slow but I/O safe), write back(fast but not I/O safe)
+
+Mutual friend: http://www.jiuzhang.com/qa/954/
+
+- Memcached
+- Redis
+- Cassendra
 
