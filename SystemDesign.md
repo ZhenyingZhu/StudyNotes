@@ -207,6 +207,16 @@ Guide lines for solve scaling issues:
 - Estimate with numbers
 
 
+### Details
+[Mutual friend](http://www.jiuzhang.com/qa/954/)
+- Same amount of friends: 1. sort friend list; 2. find common friends with two points
+- A has much less friends than B: Use friends of A as key, query in B friends
+- Follow up: top 10 friends that have mutual friends: 1. Use a table always store top 10; 2. When add new friends, async update this table
+
+[How to pagination](http://www.jiuzhang.com/qa/1839/)
+- Can only be done by pull
+- Use the timestamp of 100th tweet, query 101 tweets from all friends after it, then merge
+
 
 
 ## Points
@@ -240,8 +250,6 @@ Asynchronous
 Time complexity of DB
 
 write through(slow but I/O safe), write back(fast but not I/O safe)
-
-Mutual friend: http://www.jiuzhang.com/qa/954/
 
 - Memcached
 - Redis
