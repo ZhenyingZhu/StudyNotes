@@ -251,7 +251,15 @@ Time complexity of DB
 
 write through(slow but I/O safe), write back(fast but not I/O safe)
 
-- Memcached
-- Redis
-- Cassendra
+- [_Memcached_](https://github.com/ZhenyingZhu/CppAlgorithms/blob/master/src/lintcode/Memcache.cpp): in ram
+- _Redis_: in ram, keep data on disk
+- _Cassendra_: on disk
+
+### Chapter 2
+_Sharding_
+
+_Replica_
+
+_Consistent Hashing_
+
 
