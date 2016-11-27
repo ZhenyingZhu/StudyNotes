@@ -1147,3 +1147,4 @@ https://ianrenton.com/blog/android-without-google/
 # timestamp section
 Sep 11 2016
 Nov 18 2016
+Nov 27 2016
