@@ -251,15 +251,23 @@ Time complexity of DB
 
 write through(slow but I/O safe), write back(fast but not I/O safe)
 
-- [_Memcached_](https://github.com/ZhenyingZhu/CppAlgorithms/blob/master/src/lintcode/Memcache.cpp): in ram
-- _Redis_: in ram, keep data on disk
-- _Cassendra_: on disk
-
 ### Chapter 2
+Cookie and session
+
+- [Memcached](https://github.com/ZhenyingZhu/CppAlgorithms/blob/master/src/lintcode/Memcache.cpp): in ram. Support read >>> write. Cache aside.
+- Redis: in ram, keep data on disk. Cache through.
+- [Cassendra](https://github.com/ZhenyingZhu/CppAlgorithms/blob/master/src/lintcode/MiniCassandra.cpp): on disk. Raw, column key.
+
+- Cache aside: DB, cache not communicate
+- Cache through: first cache, then DB
+
+SQL benefit: Transaction, [Serialization](https://github.com/ZhenyingZhu/CppAlgorithms/blob/master/src/lintcode/TrieSerialization.cpp), Secondary Index ...
+
+# P34
+
 _Sharding_
 
 _Replica_
 
 _Consistent Hashing_
-
 
