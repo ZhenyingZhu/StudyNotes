@@ -473,7 +473,7 @@ Ruby thread: http://stackoverflow.com/questions/9095316/handling-exceptions-rais
 
 P99: 99th percentile. https://en.wikipedia.org/wiki/Percentile  
 
-ruby: if string contain \n, it will also put out like this way. So need `\` to esape it.  
+ruby: if string contain \n, it will also put out like this way. So need '\' to esape it.  
 
 `grep`: http://www.shellhacks.com/en/Using-BASH-Grep-OR-Grep-AND-Grep-NOT-Operators  
 
@@ -1148,3 +1148,4 @@ https://ianrenton.com/blog/android-without-google/
 Sep 11 2016
 Nov 18 2016
 Nov 27 2016
+Dec 4 2016
