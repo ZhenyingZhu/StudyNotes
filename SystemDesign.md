@@ -45,6 +45,7 @@ Tradeoff example: local storage or remote storage
 - can expend the design with new requirements by modify the design cleanly, or if necessary, re-design components
 
 ### 4S Analysis
+
 #### Scenario
 Features/Interfaces.
 
