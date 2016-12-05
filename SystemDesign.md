@@ -253,7 +253,9 @@ Time complexity of DB
 write through(slow but I/O safe), write back(fast but not I/O safe)
 
 ### Chapter 2
-Cookie and session
+User system: 
+- Cookie and session
+- Friendship
 
 - [Memcached](https://github.com/ZhenyingZhu/CppAlgorithms/blob/master/src/lintcode/Memcache.cpp): in ram. Support read >>> write. Cache aside.
 - Redis: in ram, keep data on disk. Cache through.
@@ -264,11 +266,18 @@ Cookie and session
 
 SQL benefit: Transaction, [Serialization](https://github.com/ZhenyingZhu/CppAlgorithms/blob/master/src/lintcode/TrieSerialization.cpp), Secondary Index ...
 
-# P34
+Column family No SQL benefit: Replica, Sharding
 
-_Sharding_
+Single point failure:
+- Sharding
+- Replica
 
-_Replica_
+Vertical sharding: seperate table from freqent change parts and non-frequent change parts
 
-_Consistent Hashing_
+Horizontal Sharing: 
+- Consistent Hashing [1](https://github.com/ZhenyingZhu/CppAlgorithms/blob/master/src/lintcode/ConsistentHashing.cpp), [2](https://github.com/ZhenyingZhu/CppAlgorithms/blob/master/src/lintcode/ConsistentHashingII.cpp)
+
+Master - Slave for SQL replica: write ahead log
+
+### Chapter 3
 
