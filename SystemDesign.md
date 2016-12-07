@@ -280,4 +280,23 @@ Horizontal Sharing:
 Master - Slave for SQL replica: write ahead log
 
 ### Chapter 3
+web crawler
+- TaskService - Worker - StorageService
+- thread-safe Producer Consumer Pattern: from Message Queue to DB
+
+TaskService: Schema, sharding, Exponential backoff, quota on website
+
+Multi-thread:
+- sleep
+- condition variable
+- semaphore
+
+_BigTable_
+
+Typeahead
+
+HERE P44
+
+KB, MB, GB, TB, PB
+
 
