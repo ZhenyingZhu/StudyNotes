@@ -54,7 +54,7 @@ ACCEPT     all  --  anywhere             anywhere
 
 show more information:  
 ```
-zhenyinz@uc4346b7191ad54db70fc:~/GitHub/StudyNotes$ sudo iptables-save -c
+zhenyinz@uc4346b7191ad54db70fc:~/GitHub/StudyNotes$ sudo iptables-save -c >rules
 *filter
 :INPUT ACCEPT [1031492:170813312]
 :FORWARD ACCEPT [0:0]
