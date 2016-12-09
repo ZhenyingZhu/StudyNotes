@@ -264,7 +264,7 @@ User system:
 - Cache aside: DB, cache not communicate
 - Cache through: first cache, then DB
 
-SQL benefit: Transaction, [Serialization](https://github.com/ZhenyingZhu/CppAlgorithms/blob/master/src/lintcode/TrieSerialization.cpp), Secondary Index ...
+SQL benefit: Transaction, Serialization, Secondary Index ...
 
 Column family No SQL benefit: Replica, Sharding
 
@@ -280,7 +280,8 @@ Horizontal Sharing:
 Master - Slave for SQL replica: write ahead log
 
 ### Chapter 3
-web crawler
+[web crawler](https://github.com/ZhenyingZhu/StudyNotes/blob/master/java-example/WebpageCrawlerSolution.java)
+- [URL parser](https://github.com/ZhenyingZhu/StudyNotes/blob/master/python-example/UrlParser.py)
 - TaskService - Worker - StorageService
 - thread-safe Producer Consumer Pattern: from Message Queue to DB
 
@@ -293,10 +294,15 @@ Multi-thread:
 
 _BigTable_
 
-Typeahead
+[Typeahead](https://github.com/ZhenyingZhu/CppAlgorithms/blob/master/src/lintcode/Typeahead.cpp)
+- QueryService: [Trie](https://github.com/ZhenyingZhu/CppAlgorithms/blob/master/src/lintcode/ImplementTrie.cpp) with top n words on nodes. Store in both memory and disk. [Serialization](https://github.com/ZhenyingZhu/CppAlgorithms/blob/master/src/lintcode/TrieSerialization.cpp)
+- DataCollectionService
 
-HERE P44
+Pre-fetch
+
+Probabilistic logging
 
 KB, MB, GB, TB, PB
 
+### Chapter 4
 
