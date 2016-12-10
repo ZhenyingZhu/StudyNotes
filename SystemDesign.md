@@ -305,4 +305,23 @@ Probabilistic logging
 KB, MB, GB, TB, PB
 
 ### Chapter 4
+1. Distributed File System: metadata + chunk
+2. _Map Reduce_
+3. _Bigtable_
 
+[GFS](https://github.com/ZhenyingZhu/CppAlgorithms/blob/master/src/lintcode/GFSClient.cpp)
+
+- Peer to Peer
+- Master Slave: master for metadata, slave for ChunkServer
+
+Master bottlemneck
+
+Checksum
+
+Three Backup location
+
+[Heartbeat](https://github.com/ZhenyingZhu/CppAlgorithms/blob/master/src/lintcode/HeartBeat.cpp)
+
+_Lookup Service_
+
+### Chapter 5
