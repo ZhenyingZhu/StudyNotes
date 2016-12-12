@@ -8,12 +8,22 @@ sudo service mysql start
 /usr/bin/mysql -u root -p
 ```
 
-Queries:
+### Queries
+
+#### DB
 ```
 SHOW DATABASES;
 CREATE DATABASE test;
 USE test;
+```
 
+Describe all tables in a db
+```
+SELECT * FROM information_schema.columns WHERE table_schema = 'db_name';
+```
+
+#### create table and schema
+```
 CREATE TABLE test (id INT NOT NULL AUTO_INCREMENT, name VARCHAR(20), PRIMARY KEY(id) );
 DESCRIBE test;
 INSERT INTO test (id, name) VALUES(1, "hello");
