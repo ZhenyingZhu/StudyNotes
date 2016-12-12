@@ -221,6 +221,7 @@ Guide lines for solve scaling issues:
 
 
 ## Points
+
 ### Chapter 1
 Design System:
 - Twitter: post tweet, follow/unfollow, timeline/news feed
@@ -264,7 +265,7 @@ User system:
 - Cache aside: DB, cache not communicate
 - Cache through: first cache, then DB
 
-SQL benefit: Transaction, Serialization, Secondary Index ...
+SQL benefit: Transaction, Query, Campatiable, Sequencial id, Serialization, Secondary Index ...
 
 Column family No SQL benefit: Replica, Sharding
 
@@ -272,7 +273,7 @@ Single point failure:
 - Sharding
 - Replica
 
-Vertical sharding: seperate table from freqent change parts and non-frequent change parts
+Vertical sharding: seperate table from frequent change parts and non-frequent change parts
 
 Horizontal Sharing: 
 - Consistent Hashing [1](https://github.com/ZhenyingZhu/CppAlgorithms/blob/master/src/lintcode/ConsistentHashing.cpp), [2](https://github.com/ZhenyingZhu/CppAlgorithms/blob/master/src/lintcode/ConsistentHashingII.cpp)
@@ -325,3 +326,25 @@ Three Backup location
 _Lookup Service_
 
 ### Chapter 5
+web system
+- DNS: domain, IP Address, URL
+- Web server
+- HTTP server: on port tcp 80 of web server
+- web application: framework
+
+[tiny url](https://github.com/ZhenyingZhu/CppAlgorithms/blob/master/src/lintcode/TinyURL.cpp)
+- QPS, peak QPS, storage size
+- GET(short url) return long url, POST(long url) return short url
+
+Solve hash function conflict: add timestamp and retry
+
+Base62
+
+Increase read speed:
+- Use DNS to direct requests to different regions, and in each region there is a memcached
+- sharing with id, and use Zookeeper to generate sequencial id
+- hash(long url) get the sharding key, which is the machine id
+
+[tiny url support customer url](https://github.com/ZhenyingZhu/CppAlgorithms/blob/master/src/lintcode/TinyURLII.cpp)
+
+### Chapter 6
