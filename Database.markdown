@@ -31,6 +31,12 @@ INSERT INTO test (name) VALUES("world");
 SELECT * FROM test;
 ```
 
+#### migrate db
+```
+mysqldump -u root -p[root_password] [database_name] > dumpfilename.sql
+mysql -u root -p[root_password] [database_name] < dumpfilename.sql
+```
+
 ## Memcached
 [Install](https://www.liquidweb.com/kb/how-to-install-memcached-on-ubuntu-14-04-lts/)
 
