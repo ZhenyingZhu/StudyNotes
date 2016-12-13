@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.5.53, for debian-linux-gnu (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.16, for Linux (x86_64)
 --
 -- Host: localhost    Database: LEETCODEDB
 -- ------------------------------------------------------
--- Server version	5.5.53-0ubuntu0.12.04.1
+-- Server version	5.7.16-0ubuntu0.16.04.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -77,6 +77,7 @@ CREATE TABLE `Questions` (
   `url` varchar(255) NOT NULL,
   `name` varchar(200) DEFAULT NULL,
   `qid` int(11) DEFAULT NULL,
+  `difficulty` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -149,4 +150,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-12-12 17:48:46
+-- Dump completed on 2016-12-13  2:16:20
