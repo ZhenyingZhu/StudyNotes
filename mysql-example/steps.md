@@ -9,6 +9,8 @@ CREATE TABLE Questions (
     PRIMARY KEY(id)
 );
 
+ALTER TABLE Questions ADD difficulty VARCHAR(20);
+
 CREATE TABLE Metadata (
     id INT,
     priority INT,

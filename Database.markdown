@@ -22,6 +22,13 @@ Describe all tables in a db
 SELECT * FROM information_schema.columns WHERE table_schema = 'db_name';
 ```
 
+#### User
+```
+SELECT User, Host FROM mysql.user;
+SET global validate_password_policy=LOW;
+GRANT ALL PRIVILEGES ON dbTest.* To 'user'@'hostname' IDENTIFIED BY 'password';
+```
+
 #### create table and schema
 ```
 CREATE TABLE test (id INT NOT NULL AUTO_INCREMENT, name VARCHAR(20), PRIMARY KEY(id) );
