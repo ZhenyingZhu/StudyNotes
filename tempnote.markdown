@@ -1108,9 +1108,6 @@ http://serverfault.com/questions/261191/how-to-run-a-script-when-a-mail-arrives-
 # Core dump file analysis GDB
 http://stackoverflow.com/questions/5115613/core-dump-file-analysis
 
-# cannot start browser for selenium through ssh firefox
-http://stackoverflow.com/questions/7109840/cannot-start-browser-for-selenium-through-ssh
-
 # Profiles - Where Firefox stores your bookmarks, passwords and other user data
 https://support.mozilla.org/en-US/kb/profiles-where-firefox-stores-user-data#w_finding-your-profile-without-opening-firefox
 
