@@ -14,25 +14,48 @@ class Crawler:
             self.html_lines = self.html_page.split('\n')
             debug_file.close()
         else:
-            response = urllib2.urlopen(url)
-            self.html_page = response.read()
-            self.html_lines = self.html_page.split('\n')
-            debug_file = open('html_page', 'w')
-            debug_file.write(self.html_page)
-            debug_file.close()
+            try:
+                response = urllib2.urlopen(url)
+                self.html_page = ""
+                while 1:
+                    data = response.read()
+                    if not data:
+                        break
+                    self.html_page += data
+                if not self.html_page.endswith('</html>\n'):
+                    # maybe it is because memory not enough?
+                    print('partial read')
+
+                self.html_lines = self.html_page.split('\n')
+                debug_file = open('html_page', 'w')
+                debug_file.write(self.html_page)
+                debug_file.close()
+            except urllib2.HTTPError:
+                raise
+            except ValueError:
+                raise
 
     def get_title(self):
-        title = re.findall('<title>(.*?)</title>', self.html_page)[0]
-        # e.g. 'Two Sum | LeetCode OJ', get rid of the tail
-        return title[0:-14]
+        try:
+            title = re.findall('<title>(.*?)</title>', self.html_page)[0]
+            # e.g. 'Two Sum | LeetCode OJ', get rid of the tail
+            return title[0:-14]
+        except IndexError:
+            return raw_input("title of " + self.url + ": ")
 
     def get_question_id(self):
-        question_id = re.findall('name="question_id" value="(.*?)"', self.html_page)[0]
-        return int(question_id)
+        try:
+            question_id = re.findall('name="question_id" value="(.*?)"', self.html_page)[0]
+            return int(question_id)
+        except IndexError:
+            return raw_input("question id of " + self.url + ": ")
 
     def get_difficulty(self):
-        difficulty = re.findall('Difficulty: <strong>(.*?)</strong>', self.html_page)[0]
-        return difficulty
+        try:
+            difficulty = re.findall('Difficulty: <strong>(.*?)</strong>', self.html_page)[0]
+            return difficulty
+        except IndexError:
+            return raw_input("difficulty of " + self.url + ": ")
 
     def get_similar_questions(self):
         line_buffer = ""
