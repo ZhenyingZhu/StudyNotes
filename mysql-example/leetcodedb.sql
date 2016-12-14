@@ -62,6 +62,7 @@ CREATE TABLE `Metadata` (
 
 LOCK TABLES `Metadata` WRITE;
 /*!40000 ALTER TABLE `Metadata` DISABLE KEYS */;
+INSERT INTO `Metadata` VALUES (20,5,'2016-09-20',NULL);
 /*!40000 ALTER TABLE `Metadata` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -78,8 +79,9 @@ CREATE TABLE `Questions` (
   `name` varchar(200) DEFAULT NULL,
   `qid` int(11) DEFAULT NULL,
   `difficulty` varchar(20) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `url` (`url`)
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -88,6 +90,7 @@ CREATE TABLE `Questions` (
 
 LOCK TABLES `Questions` WRITE;
 /*!40000 ALTER TABLE `Questions` DISABLE KEYS */;
+INSERT INTO `Questions` VALUES (20,'https://leetcode.com/problems/trapping-rain-water/','Trapping Rain Water',42,'Hard');
 /*!40000 ALTER TABLE `Questions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -138,6 +141,7 @@ CREATE TABLE `Tag` (
 
 LOCK TABLES `Tag` WRITE;
 /*!40000 ALTER TABLE `Tag` DISABLE KEYS */;
+INSERT INTO `Tag` VALUES (20,'Array'),(20,'Stack'),(20,'Two Pointers');
 /*!40000 ALTER TABLE `Tag` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -150,4 +154,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-12-13  2:16:20
+-- Dump completed on 2016-12-14  1:37:47

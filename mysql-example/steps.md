@@ -10,6 +10,7 @@ CREATE TABLE Questions (
 );
 
 ALTER TABLE Questions ADD difficulty VARCHAR(20);
+ALTER TABLE Questions ADD UNIQUE (url);
 
 CREATE TABLE Metadata (
     id INT,
@@ -41,5 +42,9 @@ CREATE TABLE SimilarRel (
     FOREIGN KEY(low_id) REFERENCES Questions(id),
     FOREIGN KEY(high_id) REFERENCES Questions(id)
 );
+
+
+SELECT DISTINCT difficulty from Questions;
+SELECT * from Metadata ORDER BY last_touch DESC;
 
 
