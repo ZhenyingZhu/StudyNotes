@@ -22,7 +22,7 @@ CREATE TABLE Metadata (
 
 CREATE TABLE Company (
     id INT,
-    company VARCHAR(100),
+    company VARCHAR(100),  # need subscription
     PRIMARY KEY(id, company),
     FOREIGN KEY(id) REFERENCES Questions(id)
 );
