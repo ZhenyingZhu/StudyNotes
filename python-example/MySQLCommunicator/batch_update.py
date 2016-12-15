@@ -37,7 +37,11 @@ def parse_file(cpp_file):
 
 
 def iterator_files(path, sql_driver, failed_files):
-    cpp_files = glob.glob(expanduser("~") + path + "*.cpp")
+    # if the path is just a cpp file, read this file only
+    cpp_files = [path]
+    # otherwise it is a folder, read all cpp files in it
+    if not path.endswith("cpp"):
+        glob.glob(expanduser("~") + path + "*.cpp")
     for cpp_file in cpp_files:
         question_url = parse_file(cpp_file)
         if question_url == "":
@@ -56,7 +60,8 @@ def main():
     password = raw_input("password:")
     sql_driver = MySQLDriver(user, password)
 
-    path = "/Github/CppAlgorithms/src/leetcode/"
+    #path = "/Github/CppAlgorithms/src/leetcode/"
+    path = "/home/zhu91/Github/CppAlgorithms/src/leetcode/NonOverlappingIntervals.cpp"
     failed_files = []
     iterator_files(path, sql_driver, failed_files)
     print failed_files
