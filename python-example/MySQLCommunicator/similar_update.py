@@ -24,7 +24,7 @@ def main():
     password = raw_input("password:")
     sql_driver = MySQLDriver(user, password)
 
-    path = "/home/local/ANT/zhenyinz/Downloads/Generalized Abbreviation | LeetCode OJ.html"
+    path = "Generalized Abbreviation | LeetCode OJ.html"
     url = 'https://leetcode.com/problems/generalized-abbreviation/'
     insert_question_from_file(path, url, datetime.now(), sql_driver)
 
