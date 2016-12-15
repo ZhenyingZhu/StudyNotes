@@ -380,6 +380,15 @@ response.info()
 
 [Stop here](http://blog.csdn.net/pleasecallmewhy/article/details/8925978)  
 
+# Queue
+encap concurrent condition behaviour.
+
+```
+queue = Queue(size)
+queue.put(item)  # will wait until the queue size is less than the max size
+item = queue.get()  # will wait until the queue is not empty
+queue.task_done()  # inform that the get op is done
+
 # Other tips
 Python import path:  
 ```
