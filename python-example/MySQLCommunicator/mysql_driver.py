@@ -107,6 +107,28 @@ class MySQLDriver:
         sql = 'DELETE FROM Tag WHERE id=' + str(uid)
         self.mutate_sql(sql)
 
+    def insert_company(self, uid, company):
+        values = [str(uid), '"' + company + '"']
+        sql = 'INSERT INTO Company (id, company) VALUES (' + ', '.join(values) + ')'
+        self.mutate_sql(sql)
+
+    def delete_companies(self, uid):
+        sql = 'DELETE FROM Company WHERE id=' + str(uid)
+        self.mutate_sql(sql)
+
+    def insert_similar(self, uid1, uid2):
+        low_id = min(uid1, uid2)
+        high_id = max(uid1, uid2)
+        values = [str(low_id), str(high_id)]
+        sql = 'INSERT INTO SimilarRel (low_id, high_id) VALUES (' + ', '.join(values) + ')'
+        self.mutate_sql(sql)
+
+    def delete_similar(self, uid1, uid2):
+        low_id = min(uid1, uid2)
+        high_id = max(uid1, uid2)
+        sql = 'DELETE FROM Company WHERE low_id=' + str(low_id) + ' AND high_id=' + str(high_id)
+        self.mutate_sql(sql)
+
 
 def main():
     user = raw_input("username:")

@@ -46,5 +46,8 @@ CREATE TABLE SimilarRel (
 
 SELECT DISTINCT difficulty from Questions;
 SELECT * from Metadata ORDER BY last_touch DESC;
+SELECT * FROM Questions, Metadata WHERE Questions.id = Metadata.id AND Questions.url="https://leetcode.com/problems/two-sum/";
+SELECT * FROM Questions, Tag WHERE Questions.id = Tag.id AND Questions.url="https://leetcode.com/problems/add-two-numbers/";
+SELECT * FROM Questions LEFT JOIN Tag ON Questions.id = Tag.id WHERE Questions.url="https://leetcode.com/problems/two-sum/"; # no tag
 
 
