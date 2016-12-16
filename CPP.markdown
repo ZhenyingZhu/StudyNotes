@@ -5818,7 +5818,7 @@ when check failed, test still continue; when require failed, test stop
 ItemBase i("item", 0.1);
 BulkItem b1(1.1, 0.1, 2);
 BulkItem b2(1.2, 0.2, 4);
-b1.memfcn(b2, i);
+b1.memfcn(b2, i); <b>?</b>
 ```
 
 ## cannot reassign reference
@@ -5840,6 +5840,9 @@ private:
   vector<int> vec_;
 };
 ```
+
+## Use self-define class as value of map
+If use class as value of a map, need default constructor. When call map[key], it automatically instanize a value class.
 
 ## C++11
 `g++ -Wall -g -std=c++11 main.cpp -o out.o`
