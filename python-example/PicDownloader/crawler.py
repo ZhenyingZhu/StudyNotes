@@ -122,6 +122,7 @@ class Crawler:
     def download_pic(self, pic_url):
         filename = pic_url.split('/')[-1]
         save_position = self.save_path + '/' + filename
+        # TODO create folder
         try:
             if timeout(urllib.urlretrieve, args=(pic_url, save_position), timeout_duration=5):
                 return False
