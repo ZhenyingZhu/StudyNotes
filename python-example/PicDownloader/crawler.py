@@ -157,6 +157,7 @@ class Crawler:
             next_url = self.get_next_page()
             #time.sleep(0.5)
 
+        # TODO auto retry
         print failed_urls
 
 
