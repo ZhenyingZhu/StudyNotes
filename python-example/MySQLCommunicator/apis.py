@@ -29,13 +29,14 @@ def insert_question_from_url(question_url, modify_date, sql_driver):
         return HTTPERR
 
 
-def insert_question_from_file(path, question_url, modify_date, sql_driver):
+def insert_question_from_file(path, question_url, priority, modify_date, sql_driver):
     """
     First insert the question if not exist, otherwise skip, even modify_date is changed
     Then update company list
     Then update similar questions, notice dup can happened quite often at this step
     :param path: absolute file path
     :param question_url: url of the question, string
+    :param priority: priority of the question
     :param modify_date: datetime object
     :param sql_driver: the conn to the db
     :return: a code
@@ -55,6 +56,9 @@ def insert_question_from_file(path, question_url, modify_date, sql_driver):
     for company in crawler.get_companies():
         sql_driver.insert_company(uid, company)
     update_similar_questions(uid, crawler.get_similar_questions(), sql_driver)
+
+    update_priority(uid, priority, sql_driver)
+    update_last_touch(uid, modify_date, sql_driver)
     return SUCCESS
 
 
@@ -84,4 +88,14 @@ def update_similar_questions(uid, similar_questions, sql_driver):
         else:
             question_uid = sql_driver.get_unique_id(question_url)
             sql_driver.insert_similar(uid, question_uid)
+    return 0
+
+
+def update_priority(uid, priority, sql_driver):
+    sql_driver.update_priority(uid, priority)
+    return 0
+
+
+def update_last_touch(uid, modify_date, sql_driver):
+    sql_driver.update_last_touch(uid, modify_date)
     return 0

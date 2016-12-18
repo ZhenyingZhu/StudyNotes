@@ -31,7 +31,7 @@ class MySQLDriver:
         self.conn.close()
 
     def mutate_sql(self, sql):
-        # print sql
+        print sql
         cursor = self.conn.cursor()
         try:
             cursor.execute(sql)
@@ -129,31 +129,52 @@ class MySQLDriver:
         sql = 'DELETE FROM Company WHERE low_id=' + str(low_id) + ' AND high_id=' + str(high_id)
         self.mutate_sql(sql)
 
+    def update_priority(self, uid, priority):
+        sql = 'UPDATE Metadata SET priority=' + str(priority) + ' WHERE id=' + str(uid)
+        self.mutate_sql(sql)
+
+    def update_last_touch(self, uid, modify_date):
+        last_touch_date = '"' + modify_date.strftime("%Y-%m-%d") + '"'
+        sql = 'UPDATE Metadata SET last_touch=' + last_touch_date + ' WHERE id=' + str(uid)
+        self.mutate_sql(sql)
+
+    def find_next_not_complete_question(self):
+        sql = 'SELECT qid FROM Questions ORDER BY qid'
+        qids = self.query_sql(sql)
+        for i in range(1, len(qids)):
+            prev = int(qids[i - 1][0])
+            cur = int(qids[i][0])
+            if cur != prev + 1:
+                return prev + 1
+        return -1
+
 
 def main():
     user = raw_input("username:")
     password = raw_input("password:")
     sql_driver = MySQLDriver(user, password)
 
-    q = Question('url', 'name', 1, 'easy')
-    sql_driver.insert_question(q)
-    sql_driver.describe_questions()
-    print sql_driver.describe_question('url')
-    print sql_driver.describe_question('url2')
-    sql_driver.delete_question('url2')
+    print(sql_driver.find_next_not_complete_question())
 
-    uid = sql_driver.get_unique_id('url')
-    if uid == -1:
-        exit()
-
-    m = Metadata(uid, 5, datetime.now())
-    sql_driver.insert_metadata(m)
-
-    sql_driver.insert_tag(uid, 'test')
-
-    sql_driver.delete_metadata(uid)
-    sql_driver.delete_tags(uid)
-    sql_driver.delete_question('url')
+    # q = Question('url', 'name', 1, 'easy')
+    # sql_driver.insert_question(q)
+    # sql_driver.describe_questions()
+    # print sql_driver.describe_question('url')
+    # print sql_driver.describe_question('url2')
+    # sql_driver.delete_question('url2')
+    #
+    # uid = sql_driver.get_unique_id('url')
+    # if uid == -1:
+    #     exit()
+    #
+    # m = Metadata(uid, 5, datetime.now())
+    # sql_driver.insert_metadata(m)
+    #
+    # sql_driver.insert_tag(uid, 'test')
+    #
+    # sql_driver.delete_metadata(uid)
+    # sql_driver.delete_tags(uid)
+    # sql_driver.delete_question('url')
 
     sql_driver.conn.close()
 
