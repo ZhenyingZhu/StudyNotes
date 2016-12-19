@@ -50,4 +50,5 @@ SELECT * FROM Questions, Metadata WHERE Questions.id = Metadata.id AND Questions
 SELECT * FROM Questions, Tag WHERE Questions.id = Tag.id AND Questions.url="https://leetcode.com/problems/add-two-numbers/";
 SELECT * FROM Questions LEFT JOIN Tag ON Questions.id = Tag.id WHERE Questions.url="https://leetcode.com/problems/two-sum/"; # no tag
 UPDATE Metadata SET priority=2, last_touch=NOW(), note="Bucket Sort" WHERE id=246;
+SELECT * FROM Questions LEFT JOIN Metadata ON Questions.id=Metadata.id WHERE DATE(last_touch) BETWEEN DATE('2016-12-15') AND DATE('2016-12-19');
 
