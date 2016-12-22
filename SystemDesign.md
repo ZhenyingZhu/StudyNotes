@@ -315,7 +315,7 @@ KB, MB, GB, TB, PB
 - Peer to Peer
 - Master Slave: master for metadata, slave for ChunkServer
 
-Master bottlemneck
+Master bottleneck
 
 Checksum
 
