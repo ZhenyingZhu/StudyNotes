@@ -24,9 +24,14 @@ def main():
     password = raw_input("password:")
     sql_driver = MySQLDriver(user, password)
 
-    path = "Generalized Abbreviation | LeetCode OJ.html"
-    url = 'https://leetcode.com/problems/generalized-abbreviation/'
-    insert_question_from_file(path, url, datetime.now(), sql_driver)
+    print(sql_driver.find_next_not_complete_question())
+
+    raw_input("Continue to insert")
+
+    path = "Find the Duplicate Number.html"
+    url = 'https://leetcode.com/problems/find-the-duplicate-number/'
+    insert_question_from_file(path, url, 4, datetime.now(), sql_driver)
+
 
 if __name__ == '__main__':
     main()
