@@ -232,7 +232,7 @@ Design System:
 - Uber: <b>?</b>
 - Whatsapp: <b>?</b>
 - Yelp: <b>?</b>
-- Design Tiny URL: <b>?</b>
+- Design Tiny URL: base62
 - Design NoSQL: <b>?</b>
 
 4S Analysis
@@ -352,3 +352,30 @@ Increase read speed:
 [Rate Limiter](https://github.com/ZhenyingZhu/CppAlgorithms/blob/master/src/lintcode/RateLimiter.cpp)
 
 ### Chapter 6
+Map reduce:
+- Count word frequency
+- Build inverted index
+
+Map reduce framework Steps
+1. Input
+2. Split
+3. Map: find out which machine deal with which part
+4. Transmit: On map machine, run external sort; on reduce machine, run merge sort.
+5. Reduce: merge the result from map
+6. Output
+
+Machine number:
+- max is the number of key
+- machine boot time should not be too long compare to task running time on each machine
+
+[External Sorting](https://zh.wikipedia.org/wiki/%E5%A4%96%E6%8E%92%E5%BA%8F)
+
+Lookup service
+- Master: consist hashing hash the (latitude, longitude) pair to a slave machine
+- Slave Lookup system: a map use geo location as key and GFS chunk id as value
+- Storage:
+  - Big table is optimize for write not read
+  - GFS + binary search on file(on disk) directly
+- Cache: before GFS
+
+### Chapter 7
