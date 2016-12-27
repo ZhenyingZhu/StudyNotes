@@ -307,7 +307,7 @@ KB, MB, GB, TB, PB
 
 ### Chapter 4
 1. Distributed File System: metadata + chunk
-2. _Map Reduce_
+2. Map Reduce
 3. _Bigtable_
 
 [GFS](https://github.com/ZhenyingZhu/CppAlgorithms/blob/master/src/lintcode/GFSClient.cpp)
@@ -322,8 +322,6 @@ Checksum
 Three Backup location
 
 [Heartbeat](https://github.com/ZhenyingZhu/CppAlgorithms/blob/master/src/lintcode/HeartBeat.cpp)
-
-_Lookup Service_
 
 ### Chapter 5
 web system
@@ -379,3 +377,31 @@ Lookup service
 - Cache: before GFS
 
 ### Chapter 7
+Uber
+- RingPop: distributed
+- TChannel: RPC Protocol
+- Google S2: Location query
+- Riak: Dynamo DB
+
+Uber Services
+- Geo
+- Dispatch
+
+Geohash [encode](https://github.com/ZhenyingZhu/CppAlgorithms/blob/master/src/lintcode/Geohash.cpp), [decode](https://github.com/ZhenyingZhu/CppAlgorithms/blob/master/src/lintcode/GeohashII.cpp)
+- Base32 hashcode
+- Split an area into 32 pieces
+- If the prefixes of two hashcode are same, they are in the nearby location
+
+Query prefix:
+- SQL: SELECT * FROM table WHERE geohash LIKE "prefix%". Slow
+- Cassandra: range query prefix + 0 to z. The key shouldn't change too ofen
+- Memcached: levels of keys, like 1. prefix, 2. prefix+a, 3.prefix+ab. When update a set, need rewrite the whole set
+
+So Redis is the best solution for Uber
+
+Geo Fence: use polygon to define an area
+
+Check if a point is in polygon: from this point emit a line. If the line interset with borders odd times, the point is inside
+
+### Chapter 8
+
