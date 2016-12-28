@@ -406,4 +406,14 @@ Check if a point is in polygon: from this point emit a line. If the line interse
 [Yelp](https://github.com/ZhenyingZhu/CppAlgorithms/blob/master/src/lintcode/MiniYelp.cpp)
 
 ### Chapter 8
+Bigtable
+- scale up for NoSQL
+- optimize for write
 
+Write Ahead Log: The unsorted partition that in memory needs to be written to disk at the same time
+
+SStable
+
+Bloom Filter
+
+P39
