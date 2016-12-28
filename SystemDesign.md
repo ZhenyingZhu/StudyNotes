@@ -383,7 +383,7 @@ Uber
 - Google S2: Location query
 - Riak: Dynamo DB
 
-Uber Services
+[Uber](https://github.com/ZhenyingZhu/CppAlgorithms/blob/master/src/lintcode/MiniUber.cpp) Services
 - Geo
 - Dispatch
 
@@ -402,6 +402,8 @@ So Redis is the best solution for Uber
 Geo Fence: use polygon to define an area
 
 Check if a point is in polygon: from this point emit a line. If the line interset with borders odd times, the point is inside
+
+[Yelp](https://github.com/ZhenyingZhu/CppAlgorithms/blob/master/src/lintcode/MiniYelp.cpp)
 
 ### Chapter 8
 
