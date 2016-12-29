@@ -412,8 +412,50 @@ Bigtable
 
 Write Ahead Log: The unsorted partition that in memory needs to be written to disk at the same time
 
-SStable
+Build index
 
-Bloom Filter
+B-Tree
 
-P39
+- Sorted list in memory: Skip List
+- SStable on disk: Sorted string table, has B-Tree index
+
+Bloom filter: quickly check if a string is inside a SStable
+
+Lock: Chubby, Zookeeper
+
+### Chapter 9
+WhatsApp
+- Message service
+- Real-time service
+
+Message Table
+
+Thread table: Need index by several fields, so choose SQL
+- Need index
+  - Owner ID
+  - Thread ID
+  - Participants hash
+  - Updated time
+- Other fields
+  - Participants ID: can be stored in json
+
+Push service + socket
+
+Channel service for Thread
+- each client subscribe to channel through push service
+- information can be stored in memory only
+
+Rate Limiter
+- Need faster than SQL, so use Memcached
+- Not need to be very precise
+- Key is the current timestamp, and value is the count of this second
+- Each key pair is a bucket. Set ttl to be 1 minutes
+- When get counts for previous 1 minutes, sum up previous 60 buckets
+- Use level buckets
+
+Datadog
+- Level bucket
+- Aggregate counts in memory, and write to NoSQL DB every 15 seconds, to reduce the QPS to 1/15
+- Aggregate Retention
+
+### OOD
