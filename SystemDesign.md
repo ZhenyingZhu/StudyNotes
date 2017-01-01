@@ -459,3 +459,8 @@ Datadog
 - Aggregate Retention
 
 ### OOD
+Singleton
+
+Factory
+
+P25
