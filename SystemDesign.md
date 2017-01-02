@@ -463,4 +463,6 @@ Singleton
 
 Factory
 
-P25
+OOD is to design the message flow
+
+Manager controls how objects interact with each other
