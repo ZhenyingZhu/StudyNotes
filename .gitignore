@@ -3,3 +3,5 @@ mit6001/ProblemSet6/words.txt
 mit6001/ProblemSet6/story.txt
 .idea
 .python-version
+*.pyc
+html_page
