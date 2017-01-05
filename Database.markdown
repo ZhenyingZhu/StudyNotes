@@ -44,6 +44,11 @@ mysqldump -u root -p[root_password] [database_name] > dumpfilename.sql
 mysql -u root -p[root_password] [database_name] < dumpfilename.sql
 ```
 
+#### Select on Date
+```
+SELECT Questions.qid, Questions.url, Questions.difficulty, Metadata.priority, Metadata.last_touch FROM Questions LEFT JOIN Metadata ON Questions.id=Metadata.id WHERE DATE(last_touch) >= DATE('2016-12-15');
+```
+
 ## Memcached
 [Install](https://www.liquidweb.com/kb/how-to-install-memcached-on-ubuntu-14-04-lts/)
 
