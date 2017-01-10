@@ -49,6 +49,16 @@ mysql -u root -p[root_password] [database_name] < dumpfilename.sql
 SELECT Questions.qid, Questions.url, Questions.difficulty, Metadata.priority, Metadata.last_touch FROM Questions LEFT JOIN Metadata ON Questions.id=Metadata.id WHERE DATE(last_touch) >= DATE('2016-12-15');
 ```
 
+#### Count numbers
+```
+SELECT COUNT(*) FROM Questions LEFT JOIN Metadata ON Questions.id=Metadata.id WHERE DATE(last_touch) >= DATE('2016-12-15');
+```
+
+#### Limit result
+```
+SELECT Questions.qid, Questions.url, Questions.difficulty, Metadata.priority, Metadata.last_touch FROM Questions LEFT JOIN Metadata ON Questions.id=Metadata.id WHERE priority=5 ORDER BY qid LIMIT 10;
+```
+
 ## Memcached
 [Install](https://www.liquidweb.com/kb/how-to-install-memcached-on-ubuntu-14-04-lts/)
 
