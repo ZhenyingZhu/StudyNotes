@@ -145,8 +145,9 @@ class MySQLDriver:
             prev = int(qids[i - 1][0])
             cur = int(qids[i][0])
 
-            # missing 175-178, 180-185, 192-197, 262, 426-431, 433, 443, 457-458, 
-            if cur == 179 or cur == 186 or cur == 198 or cur == 263 or cur == 432 or cur == 434 or cur == 444 or cur == 459:
+            # missing 175-178, 180-185, 192-197, 262, 426-431, 433, 443, 457-458, 470, 478-480, 483, 486, 489-490, 492-493,
+            missing = [179, 186, 198, 263, 432, 434, 444, 459, 471, 481, 484, 487, 491, 494]
+            if cur in missing:
                 continue
 
             if cur != prev + 1:
