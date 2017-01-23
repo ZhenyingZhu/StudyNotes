@@ -24,4 +24,6 @@ a lock can only be locked and unlocked by the same thread. But semaphone can acq
 - livelock
 
 ## Message Queue
-(!!Review!!)
+A queue that can block when full or empty, and insert or pull when available. Use condition variable wait to implement. Need use unique ptr to maintain objects, so that threads can access objects without duplicate them.
+
+
