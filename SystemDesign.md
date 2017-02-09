@@ -223,17 +223,7 @@ Guide lines for solve scaling issues:
 ## Points
 
 ### Chapter 1
-Design System:
-- Twitter: post tweet, follow/unfollow, timeline/news feed
-- Facebook: <b>?</b>
-- Instagram: <b>?</b>
-- Friend Circle: <b>?</b>
-- Google Reader(RSS Reader): <b>?</b>
-- Uber: <b>?</b>
-- Whatsapp: <b>?</b>
-- Yelp: <b>?</b>
-- Design Tiny URL: base62
-- Design NoSQL: <b>?</b>
+Design System
 
 4S Analysis
 
@@ -466,3 +456,51 @@ Factory
 OOD is to design the message flow
 
 Manager controls how objects interact with each other
+
+### Summary
+Twitter
+- post tweet, follow/unfollow, timeline/news feed
+- Cassendra
+
+View a web page
+
+User system for web app
+- Reg/modify, login, friend
+- Service: User, Auth, Friendship
+- Cache for large amount of read: Session & cookie
+- Load Balancer
+- Vertical sharding, user table in a DB, friend table in a DB
+- Horizontal sharding use consistent hashing
+- SQL master - slave replica
+
+Friend Circle (Friendship Service)
+- Cassendra can range query
+- how to get mutant friends<b>?</b>
+
+Web crawler
+- TaskService, StorageService, CrawlerService
+- Producer consumer
+- Message queue to DB
+- thread-safe
+
+Google Suggestion (Typeahead)
+- Query service using trie. Each node store top n words
+- Data collection service with probailistic logging
+- Pre-fetch on web browser
+
+DFS
+- metadata + chunk with checksum
+- Master has metadata, slave has chunk
+- backup
+- health check using heartbeat
+
+HERE
+
+- Facebook: <b>?</b>
+- Instagram: <b>?</b>
+- Google Reader(RSS Reader): <b>?</b>
+- Uber: <b>?</b>
+- Whatsapp: <b>?</b>
+- Yelp: <b>?</b>
+- Design Tiny URL: base62
+- Design NoSQL: <b>?</b>
