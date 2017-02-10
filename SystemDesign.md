@@ -494,6 +494,29 @@ DFS
 - backup
 - health check using heartbeat
 
+Search on Google
+- Domain to IP
+- Firewall and Load Balancer
+- HTTP request to server (apache)
+- framework (Django) use on HTTP Server
+
+Tiny URL
+- assign each URL with an increasing ID (or compute a hash code that is not collide)
+- encode ID to a string using base62 
+- Storage size, QPS
+- Sharding with Zookeeper to maintain global id
+- hash long url to get the machine id
+
+Rate Limiter (Web Logger) <b>?</b>
+
+Lookup Service
+- A lookup Service, a storage service
+- Need a lot of disk space, so Lookup service use Master slave
+- sharding key is consist hasing of lat lon pair
+- store on DFS
+- Master keeps a key (lat lon) to slave server
+- slave server keeps a key to DFS chunk map
+
 HERE
 
 - Facebook: <b>?</b>
