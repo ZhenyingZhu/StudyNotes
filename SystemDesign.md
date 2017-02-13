@@ -517,13 +517,38 @@ Lookup Service
 - Master keeps a key (lat lon) to slave server
 - slave server keeps a key to DFS chunk map
 
-HERE
+Uber (Yelp)
+- Geo Service: geohash by search for same prefix
+- Dispatch service
+- Driver report location needs a lot of write
+- Use redis to store geohash using levels of keys
+
+Big Table (Dynamo DB)
+- Storage: Distributed file system
+- Files are sorted by the index
+- Changes are appended not modify previous files
+- Bloom filter
+- Memory keeps metadata
+- Need a distributed lock
+
+WhatsApp
+- Message Service, Realtime Service
+- Message Table (NoSQL), Thread table with paticipants hash(multiple index, SQL)
+- Push service with socket
+- Group chat, maintain channels for live users
+
+Rate Limiter
+- Memcached
+- each second is a bucket
+- level buckets
+
+Datadog
+- Storage: NoSQL
+- level bucket
+- first store counts in memory
+- every 15s write to DB
+
 
 - Facebook: <b>?</b>
 - Instagram: <b>?</b>
 - Google Reader(RSS Reader): <b>?</b>
-- Uber: <b>?</b>
-- Whatsapp: <b>?</b>
-- Yelp: <b>?</b>
-- Design Tiny URL: base62
-- Design NoSQL: <b>?</b>
