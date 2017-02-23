@@ -501,13 +501,22 @@ Search on Google
 - framework (Django) use on HTTP Server
 
 Tiny URL
-- assign each URL with an increasing ID (or compute a hash code that is not collide)
-- encode ID to a string using base62 
-- Storage size, QPS
-- Sharding with Zookeeper to maintain global id
-- hash long url to get the machine id
-
-Rate Limiter (Web Logger) <b>?</b>
+- Scenario:
+  - POST a long URL, GET a short URL
+  - Redirect short URL to long URL
+  - Base62, 5 digits can handle 200 billion URLs
+- Service:
+  - Tiny URL service
+    - assign each URL with an 1. increasing ID(hard to maintain if cross machine, can use another server as master to control assigning id) 2. generate a random number that is not collide with existing URLs
+    - encode ID to a string using base62
+- Storage:
+  - Read QPS: 10 * 500K / 86400 = 50 can be handled by single SQL
+  - Write QPS: 1 * 500K / 86400 = 5 can be handled by single SQL
+  - 1 URL 100 byte, 1 * 500K * 100 = 50 MB increasing every day
+- Scale:
+  - Sharding to different machine, key is 1. consist hashing on short URL, with Zookeeper to maintain global id 2. hash long url to get the machine id, and add machine id to short URL
+- Source:
+  - http://www.1point3acres.com/bbs/thread-227305-1-1.html
 
 Lookup Service
 - A lookup Service, a storage service
@@ -548,6 +557,10 @@ Datadog
 - first store counts in memory
 - every 15s write to DB
 
+Web Logger： real time, last 1 hour, most frequent 10 IP
+- Solve in memory, less than 1G is fine. write and read back is too expensive
+- Use hash count, don't matter too much if collide. O(1) get IP and update frequent, O(logk) to get top k frequency
+- reread the logs in previous 1 hour to reduce count
 
 - Facebook: <b>?</b>
 - Instagram: <b>?</b>
