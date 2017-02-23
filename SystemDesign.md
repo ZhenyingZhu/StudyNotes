@@ -562,6 +562,21 @@ Web Logger： real time, last 1 hour, most frequent 10 IP
 - Use hash count, don't matter too much if collide. O(1) get IP and update frequent, O(logk) to get top k frequency
 - reread the logs in previous 1 hour to reduce count
 
+Amazon product page
+- Scenario: 
+  - show product info using 1 DB read
+  - show product pictures using n disk IO
+  - QPS
+- Service：
+  - Product storage
+  - Product page render: getItem, getPic
+  - Suggest product: other people review history， 建一个Product weighted graph, 然后用BFS？
+  - Master slave + LB
+- Storage:
+  - SQL + memcached + GFS
+- Scale:
+  - Sharding by item name
+
 - Facebook: <b>?</b>
 - Instagram: <b>?</b>
 - Google Reader(RSS Reader): <b>?</b>
