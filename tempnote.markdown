@@ -1141,6 +1141,12 @@ http://baheyeldin.com/technology/linux/how-use-strace-daemon-multiple-processes-
 # Android Without Google
 https://ianrenton.com/blog/android-without-google/
 
+# See special key under Ubuntu
+http://stackoverflow.com/questions/8638012/fix-key-settings-home-end-insert-delete-in-zshrc-when-running-zsh-in-terminat?rq=1
+
+# binding for zsh
+http://www.ibb.net/~anne/keyboard.html
+
 # timestamp section
 Sep 11 2016
 Nov 18 2016
