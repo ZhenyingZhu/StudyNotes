@@ -475,7 +475,13 @@ User system for web app
 
 Friend Circle (Friendship Service)
 - Cassendra can range query
-- how to get mutant friends<b>?</b>
+- Get degree 2 and 3 friends from degree 1 friends
+  - Distributed Graph BFS: Producer push degree 1 and 2 friends to queue. Consumer pull a friend and call function to get friends
+  - Scaling
+    - Consistent Hashing Cache cluster stores n degree friends of each user
+	- If cache not hit, query distributed DBs. Before send back result, first merge.
+	- Greedy set cover algorithm: find the smallest subset that cover the max number of uncovered points in a large set.
+	- Group consistent hashing codes and query each DB with as many users as possible
 
 Web crawler
 - TaskService, StorageService, CrawlerService
@@ -570,12 +576,27 @@ Amazon product page
 - Service：
   - Product storage
   - Product page render: getItem, getPic
-  - Suggest product: other people review history， 建一个Product weighted graph, 然后用BFS？
+  - Suggest product: other people review history， Product weighted graph, and use BFS to get a list
   - Master slave + LB
 - Storage:
   - SQL + memcached + GFS
 - Scale:
   - Sharding by item name
+
+Linkedin user profile
+- Scenario
+  - Create/update user profile: 1 DB write, FS write
+  - search user: 1 DB read, n FS read
+- Service
+  - master looks up DB using consistent hashing
+  - distributed DB: SQL
+  - DFS for rich media file
+- Storage
+  - SQL and cache should be fine
+  - If search for users in a company or so, use Column family NoSQL
+  - Distributed File system for files
+- Scale
+  - sharding by user name, company
 
 - Facebook: <b>?</b>
 - Instagram: <b>?</b>
