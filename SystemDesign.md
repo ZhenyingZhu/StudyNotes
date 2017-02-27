@@ -598,6 +598,37 @@ Linkedin user profile
 - Scale
   - sharding by user name, company
 
+Evernote
+- Scenario
+  - Write note 1 DB write, 1 FS write
+  - Search note with n words, O(n) DB read, then O(1) merge
+  - Collaborate: 1 DB write, 3 ways merge/lock
+- Service
+  - Note storage: SQL vs NoSQL for metadata, FS for rich format. Can append only diff, or split into blocks
+  - User system: SQL
+  - Friendship: SQL, can merge into user system if not too complicate
+  - Search: async build inverted index
+  - Conflict resolver: get two files and resolve difference
+- Storage
+  - SQL for metadata, DFS for content
+- Scale
+  - DFS writes file in pieces. When modify, read all pieces, split again after modified, and write back
+  - To resolve conflict, only lock when check in. Use 3 ways different to merge
+
+Weekly digest
+- Scenario
+  - repost, 1 DB write
+  - Weekly digest: O(k) DB reads
+- Service
+  - Post storage service: consistent hash by artical name
+  - Digest service: get top 100 artical from each server, and merge sort
+- Storage
+  - Redis: artical 2 count
+  - A priority queue to store only 100 article
+- Scale
+  - sharding
+  - Each server only report a small portion
+
 - Facebook: <b>?</b>
 - Instagram: <b>?</b>
 - Google Reader(RSS Reader): <b>?</b>
