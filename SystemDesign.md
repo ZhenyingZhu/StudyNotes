@@ -598,7 +598,7 @@ Linkedin user profile
 - Scale
   - sharding by user name, company
 
-Evernote
+Evernote (Dropbox)
 - Scenario
   - Write note 1 DB write, 1 FS write
   - Search note with n words, O(n) DB read, then O(1) merge
