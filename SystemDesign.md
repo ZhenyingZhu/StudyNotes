@@ -629,6 +629,54 @@ Weekly digest
   - sharding
   - Each server only report a small portion
 
+Delay Scheduler
+- Scenario
+  - place an event: a timer class: name, time, run()
+  - execute the event: Execute in a thread
+  - cancel a thread
+- Service
+  - Scheduler: a min heap on time and value is thread. Add or cancel.
+  - Executor: a dispatch thread. sleep from call to call. Waken up every time a thread is added or deleted. Then check the top of the min heap, and sleep or execute it.
+- Scaling
+  - Need lock the min heap
+  - Use `condition_variable::wait_for(unique_lock, time, func);` and `condition_variable::notify_one()`. Or `thread::interrupt()`
+
+Kafka
+- Source: https://zhuanlan.zhihu.com/p/20545422
+- Service
+  - Producer: gather logs and send to broker. Push. 
+  - broker: distributed logs to consumers. Use 2 buckets, which are rolling list of sub level buckets
+  - consumer group： pull from broker
+  - zookeeper
+- Scaling
+  - Broker needs throttler to delay producer
+  - Producer use round robin to push to different brokers
+  - Message from producer use CRC to identify error package
+  - zookeeper is a distributed DB, maintains which message is on which broker. Consumers query zookeeper to get the message?
+  - message is ordered in memory and stored on disk. Timestamp is stored in message
+  - Offsets on a broker can be binary searched to get
+  - Broker backup: Primary sync each message to slave
+
+Calendar
+- Scenario
+  - Insert event, delete event: DB O(1) write
+  - Query event/Check available:: DB O(1) read
+  - Invite others: DB O(1) read and write
+  - Notify users: DB O(n) read
+- Service
+  - Calendar
+  - Notification: Subscription
+- Storage
+  - MySQL: event name, start, end, user set. Repeat event: event id, metadata key, metadata value, where meta key is repeat start and repeat interval num, and value is start time and length.
+  - Memcached
+  - Candance: partition key: email, clustering key: start time
+- Scale
+  - Sharding by user/event
+  - memcached for event query
+
+
 - Facebook: <b>?</b>
 - Instagram: <b>?</b>
 - Google Reader(RSS Reader): <b>?</b>
+
+
