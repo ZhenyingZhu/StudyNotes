@@ -1147,6 +1147,11 @@ http://stackoverflow.com/questions/8638012/fix-key-settings-home-end-insert-dele
 # binding for zsh
 http://www.ibb.net/~anne/keyboard.html
 
+# binary quick op
+- n & (-n): get the number represent last 1 bit
+- n & (n-1): remove last 1 bit
+
+
 # timestamp section
 Sep 11 2016
 Nov 18 2016
