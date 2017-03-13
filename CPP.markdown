@@ -1131,8 +1131,8 @@ cout << sizeof (a + b) << endl; // 4
 - 作用于指针，返回地址大小；作用于解引用的指针才返回对象大小：
 ```
     char *p; 
-    cout << sizeof p << endl; // 4
-    cout << sizeof *p << endl; // 1
+    cout << sizeof p << endl; // 4 it is the size of pointer itself, the pointer is a number that needs 4 byte to store
+    cout << sizeof *p << endl; // 1 it is the size of the object pointer points to
 ```
 - 作用于引用类型，返回存放引用类型对象所需的空间：
 ```
