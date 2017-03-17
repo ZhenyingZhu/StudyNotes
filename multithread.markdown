@@ -1,12 +1,23 @@
 ## Deadlock
+Source: CTCI v5 Chapter 16
+
 4 condition
 - mutual exclusion
 - hold and wait
 - no preemption
 - circular wait
 
+## Process vs Thread
+Source: CTCI v5 Chapter 16.1
+
+Process is an instance of a program, and an entity of system resources. Need use files, pipes and sockets to communiate with other processes.
+
+A thread is an execution path in a process
+
 ## Resource
 Each thread has its own stack, but share heap
+
+Thread within a same process share the same memory space
 
 ## Semaphore
 A counter. When wait, counter-1; when release, counter+1. 

@@ -31,3 +31,39 @@ AVL: Self-balancing binary search tree.
 
 B-Tree: self-balancing tree, n-ary. Store keys in nodes without duplicate keys in the leaves
 B+ tree: one of B-Tree. Each node contains key, but only leaves contain value
+
+## C++ key word
+`volatile`: the value can be changed from outside, so compiler load it from memory. multi-thread programming can change a variable stored in a memory in another process. But if not use `volatile` to define the variable, compiler might hard code the value
+
+`virtual`: with it, dynamic binding; without it, static binding
+
+`(void*)malloc(size_t)`: `free`
+
+`void** arr = (void**)(size_t offset);` create access the memory block offset as a pointer vector, so that `arr[-1]` is actually accessing offset-1 memory.
+
+## Smart pointer
+membership:
+- `T * obj;`
+- `unsigned * ref_cnt;`
+
+Constructor
+- assign obj
+- `ref_cnt` set to 1
+
+Copy constructor
+- point to the obj
+- `ref_cnt` inc
+
+operator=
+- check if same
+- dec `ref_cnt` of current obj. If `ref_cnt` is 0, delete
+- assign obj
+- assign `ref_cnt` to others
+- inc `ref_cnt`
+
+destructor
+- dec `ref_cnt`
+- if 0, release both obj and `ref_cnt`
+
+# Multi-thread
+See https://github.com/ZhenyingZhu/StudyNotes/blob/master/multithread.markdown
