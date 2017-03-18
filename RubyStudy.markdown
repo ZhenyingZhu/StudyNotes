@@ -1,12 +1,14 @@
+Todo: Merge in ruby.markdown 
+
 http://stackoverflow.com/questions/4190797/how-can-i-remove-the-string-n-from-a-ruby-string  
 
 http://stackoverflow.com/questions/15769739/determining-type-of-an-object-in-ruby  
 
-(yield)[http://www.tutorialspoint.com/ruby/ruby_blocks.htm]_
+(yield)[http://www.tutorialspoint.com/ruby/ruby_blocks.htm]
 
 (Ruby Socket)[http://ruby-doc.org/stdlib-1.9.3/libdoc/socket/rdoc/Socket.html#method-i-accept]   
-```
 # Pull down Google's web page
+```
 require 'socket'
 include Socket::Constants
 socket = Socket.new(AF_INET, SOCK_STREAM, 0)
@@ -27,13 +29,15 @@ results = socket.read
 Thread.join: http://ruby-doc.org/core-1.9.3/Thread.html
 http://stackoverflow.com/questions/3672586/what-is-the-difference-between-require-relative-and-require-in-ruby
 http://stackoverflow.com/questions/2416372/static-variables-in-ruby
-(http://en.wikibooks.org/wiki/Ruby_Programming/Syntax/Variables_and_Constants)_
+(http://en.wikibooks.org/wiki/Ruby_Programming/Syntax/Variables_and_Constants)
 http://stackoverflow.com/questions/2199282/killing-all-thread-workers-when-one-thread-found-the-answer-ruby
 [mutex](http://ruby-doc.org/core-1.9.3/Mutex.html)
 `<=>`: Combined comparison operator. Returns 0 if first operand equals second, 1 if first operand is greater than the second and -1 if first operand is less than the second.  
 `=~`: string regular express. (http://stackoverflow.com/questions/3025838/what-is-the-operator-in-ruby)
 `%r{}`: regular express (http://stackoverflow.com/questions/12384704/the-ruby-r-expression)  
 [ways to excute](http://tech.natemurray.com/2007/03/ruby-shell-commands.html)  
+
+ruby: `str[//]` to execute regular express.  
 
 ```
 kid_io = IO.popen(cmd)

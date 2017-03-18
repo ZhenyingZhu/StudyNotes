@@ -64,11 +64,6 @@ icewm: a lightweight xwindow.
 
 [Getting-Partner-Flash](https://wiki.ubuntu.com/Chromium/Getting-Partner-Flash): If cannot install adobe-flashplugin, need add Canonical Partners in Software center.  
 
-
-Search in less: 
-- ASCII regular express
-- E.g. [0-9]{2,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}
-
 [Ubuntu google pinyin](http://snowdream.github.io/blog/ubuntu/2013/09/25/ubuntu-how-to-install-google-pinyin-with-ibus/)  
 
 [apt remove](http://askubuntu.com/questions/190004/how-to-uninstall-virtualbox-in-12-04)  
@@ -560,8 +555,6 @@ http://stackoverflow.com/questions/6541109/send-string-to-stdin
 
 http://sc.tamu.edu/help/general/unix/redirection.html  
 http://linuxcommand.org/lts0060.php  
-
-ruby: `str[//]` to execute regular express.  
 
 http://askubuntu.com/questions/526082/2-usb-ports-stopped-working  
 
