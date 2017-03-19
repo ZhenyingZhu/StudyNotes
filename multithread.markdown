@@ -1,6 +1,13 @@
-## Deadlock
+## Challenges
+Source: EPI Chapter 20 intro
+- Race
+- Deadlock
+- starvation
+- livelock
+
 Source: CTCI v5 Chapter 16
 
+### Deadlock
 4 condition
 - mutual exclusion
 - hold and wait
@@ -39,27 +46,43 @@ As any mutex, it has only lock/unlock state. But it can be locked multiple times
 ### critical section
 Disable interrupt to achieve atomic access, as mutex does. But normally mutex is expensive.
 
-## Challenges
-- Race
-- Deadlock
-- starvation
-- livelock
-
 ## Message Queue
 A queue that can block when full or empty, and insert or pull when available. Use condition variable wait to implement. Need use unique ptr to maintain objects, so that threads can access objects without duplicate them.
+
+## Thread pool
+[src](http://tutorials.jenkov.com/java-concurrency/thread-pools.html)
+
+A size n array full of threads. A job queue shared by all threads. Threads waiting for queue being filled, then pull one job and execute.
 
 ## CPP programming
 [More details](https://github.com/ZhenyingZhu/StudyNotes/blob/master/CPP.markdown)
 
-thread
+`thread`
 - constructor: 1. a function, 2. an instance of a class that implement `void operator()()`
 - `t.join()` or `t.detach()`
 - `std::thread t(f, a, ref(b))` to create a thead with a function `void f(int a, int &b)`
 
-mutex
-- `lock()` and `unlock()`
-- a class `std::lock_guard<mutex> 
+`mutex`
+- `mutex::lock()` and `mutex::unlock()`: dangerous because it could be not unlock when exception happen.
+- a class `unique_lock<mutex> lck(mtx, std::defer_lock);` is safer than just call `mutex::lock()`. It locked mtx on constructor, and unlock on destructor.
+- a class `std::lock_guard<mutex> lck(mtx);`: lock mtx on constructor, and unlock it on destructor. It can only used to lock and unlock in the same code block.
 
-- `std::future`
-- `std::async`
+`lock` function (not mutex membership `mutex.lock()`)
+- `std::lock(mtx1, mtx2, ...)`: lock all the mutex thread-safely
+
+lock type, can be used as `lock_guard` and `unique_lock` constructor
+- `defer_lock`: not lock the mutex on constructor
+- `adopt_lock`: use exsiting lock
+- [example](http://en.cppreference.com/w/cpp/thread/lock_tag)
+
+`condition_variable`
+- block threads until be notified
+- `wait(unique_lock<mutex>& lck)`: 1. `lck.unlock();`, 2. if be notified, `lck.lock();`, 3. notice `unique_lock` lck will unlock itself in the destructor. Normally put into a while loop waiting for some condition to become false.
+- `wait_for(lck, time)`: when time duration time out or notified, move on. Return `cv_status::timeout` or `cv_status::no_timeout`
+- `wait_until(lck, time)`: time is a time point not duration
+- `notify_all()`, `notify_one()`: unlock threads/thread that are/is waiting for this condition variable
+
+`std::future`
+
+`std::async`
 
