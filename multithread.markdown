@@ -54,6 +54,14 @@ A queue that can block when full or empty, and insert or pull when available. Us
 
 A size n array full of threads. A job queue shared by all threads. Threads waiting for queue being filled, then pull one job and execute.
 
+## Readers writers problem
+Source EPI 20.6,7, [wiki](https://en.wikipedia.org/wiki/Readers%E2%80%93writers_problem)
+
+When read, there could be someone writing, leads to a out-of-date read. So need protect the data.
+1. lock the resource when read and write. Too much because read doesn't change the resource
+2. Reader perference: create a reader cnt, and read lock and write lock. Every time when start read, lock read lock, increaste the cnt, unlock read lock, and read, and lock read lock, decrease the cnt after read, and unlock read lock; when write, lock write lock, wait reader notified and check if reader cnt is 0, then write and unlock write lock.
+3. Writer perference: create a write lock. When read, first get the lock, then release and read; when write, first get the lock, then write and release
+
 ## CPP programming
 [More details](https://github.com/ZhenyingZhu/StudyNotes/blob/master/CPP.markdown)
 
@@ -63,7 +71,10 @@ A size n array full of threads. A job queue shared by all threads. Threads waiti
 - `std::thread t(f, a, ref(b))` to create a thead with a function `void f(int a, int &b)`
 
 `mutex`
-- `mutex::lock()` and `mutex::unlock()`: dangerous because it could be not unlock when exception happen.
+- [src](http://www.cplusplus.com/reference/mutex/mutex/lock/)
+- `mutex::lock()` and `mutex::unlock()`: try to lock the mutex, otherwise block the thread until the mutex is unlocked. dangerous because it could be not unlock when exception happen.
+- `mutex::try_lock()`: if the mutex is locked by another thread, return fail not block. If the mutex is locked by the same thread, it create a deadlock, use recursive mutex instead.
+- a class `recursive_mutex`: only the same thread can lock the mutex several times
 - a class `unique_lock<mutex> lck(mtx, std::defer_lock);` is safer than just call `mutex::lock()`. It locked mtx on constructor, and unlock on destructor.
 - a class `std::lock_guard<mutex> lck(mtx);`: lock mtx on constructor, and unlock it on destructor. It can only used to lock and unlock in the same code block.
 
