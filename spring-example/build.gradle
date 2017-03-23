@@ -1,8 +1,7 @@
 apply plugin: 'java'
-apply plugin: 'eclipse'
 apply plugin: 'application'
 
-mainClassName = 'hello.HelloWorld'
+mainClassName = 'hello.Application'
 
 // tag::repositories[]
 repositories {
@@ -22,7 +21,7 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 dependencies {
-    compile "joda-time:joda-time:2.2"
+    //compile "joda-time:joda-time:2.2"
     testCompile "junit:junit:4.12"
 }
 // end::dependencies[]
