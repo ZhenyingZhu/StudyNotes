@@ -6,3 +6,6 @@ mit6001/ProblemSet6/story.txt
 *.pyc
 html_page
 .gradle
+.metadata
+RemoteSystemsTempFiles
+
