@@ -51,7 +51,17 @@ class Crawler:
 
     def get_page_from_url(self, url):
         try:
-            response = urllib2.urlopen(url)
+            hdr = {
+                'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.64 Safari/537.11',
+                'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+                'Accept-Charset': 'ISO-8859-1,utf-8;q=0.7,*;q=0.3',
+                'Accept-Encoding': 'none',
+                'Accept-Language': 'en-US,en;q=0.8',
+                'Connection': 'keep-alive'}
+
+            req = urllib2.Request(url, headers=hdr)
+
+            response = urllib2.urlopen(req)
 
             # The problem here is that read() might not get the entire HTTP response
             self.html_page = ""
@@ -93,7 +103,7 @@ class Crawler:
             return "default title"
 
     def get_next_page(self):
-        hrefs = re.findall('a href="(.*?)">', self.html_page)
+        hrefs = re.findall('href="(.*?)">', self.html_page)
         candidate_hrefs = []
         for href in hrefs:
             id = self.get_url_pattern(href)
@@ -109,7 +119,7 @@ class Crawler:
 
     def get_pic_url(self):
         try:
-            pic_urls = re.findall('<img src=(.*?)/>', self.html_page)
+            pic_urls = re.findall('<img id=\"img\" src=(.*?)/>', self.html_page)
             for pic_url in pic_urls:
                 if "style" in pic_url:
                     return re.findall('"(.*?)" style', pic_url)[0]
@@ -124,7 +134,7 @@ class Crawler:
         save_position = self.save_path + '/' + filename
         # TODO create folder
         try:
-            if timeout(urllib.urlretrieve, args=(pic_url, save_position), timeout_duration=5):
+            if timeout(urllib.urlretrieve, args=(pic_url, save_position), timeout_duration=60):
                 return False
             return True
         except IOError:
@@ -162,6 +172,7 @@ class Crawler:
 
 
 def main():
+    # TODO start from an info page, and a list of urls
     my_url = ''
     c = Crawler(my_url, "/tmp/crawler/")
     c.start()
