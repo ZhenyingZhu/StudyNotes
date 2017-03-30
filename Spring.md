@@ -108,3 +108,9 @@ Properties
 
 ### Lifecycle
 JVM grace shutdown: `AbstractApplicationContext::registerShutdownHook()`
+
+Can define `default-init-method` and `default-destroy-method` for beans node
+
+### Post Processors/Callback
+
+

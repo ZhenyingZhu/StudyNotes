@@ -65,5 +65,16 @@ destructor
 - dec `ref_cnt`
 - if 0, release both obj and `ref_cnt`
 
-# Multi-thread
+## Multi-thread
 See https://github.com/ZhenyingZhu/StudyNotes/blob/master/multithread.markdown
+
+## Callback
+[src](https://en.wikipedia.org/wiki/Callback_(computer_programming))
+
+blocking/sync callback
+- Pass a function as an argument
+
+deffered/async callback
+- The callback is executed after an event happened. [src](http://softwareengineering.stackexchange.com/questions/143623/what-are-deferred-callbacks)
+
+
