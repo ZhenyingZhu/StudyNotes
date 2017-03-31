@@ -7,11 +7,48 @@
 	
 	<bean id = "HelloWorld" class = "com.tutorialspoint.HelloWorld"
 		init-method="init" destroy-method = "destroy">
-		<property name = "message" value = "Hello World~" />
+		<property name = "message1" value = "Hello World message1" />
+		<property name = "message2" value = "Hello World message2" />
 	</bean>
 
-	<bean id = "GoodbyeWorld" class = "com.tutorialspoint.GoodbyeWorld" >
-		<property name = "message" value = "Goodbye World~" />
+	<bean id = "GoodbyeWorld" class = "com.tutorialspoint.GoodbyeWorld" parent = "HelloWorld">
+		<property name = "message1" value = "Goodbye World message1" />
+		<property name = "message3" value = "Goodbye World message3" />
+	</bean>
+
+	<bean id = "JavaCollection" class = "com.tutorialspoint.JavaCollection">
+		<property name = "addressList">
+			<list>
+				<value>listEle1</value>
+				<value>listEle2</value>
+				<value>listEle1</value>
+			</list>
+		</property>
+
+		<property name = "addressSet">
+			<set>
+				<value>setEle1</value>
+				<value>setEle2</value>
+				<value>setEle1</value>
+			</set>
+		</property>
+
+		<property name = "addressMap">
+			<map>
+				<entry key = "1" value = "mapEle1"/>
+				<entry key = "2" value = "mapEle1"/>
+				<entry key = "1" value = "mapEle2"/>
+			</map>
+		</property>
+
+		<property name = "addressProp">
+			<props>
+				<prop key = "1">propEle1</prop>
+				<prop key = "2">propEle1</prop>
+				<prop key = "1">propEle1</prop>
+			</props>
+		</property>
+
 	</bean>
 	
 	<bean class = "com.tutorialspoint.InitWorld" />

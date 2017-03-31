@@ -109,8 +109,131 @@ Properties
 ### Lifecycle
 JVM grace shutdown: `AbstractApplicationContext::registerShutdownHook()`
 
-Can define `default-init-method` and `default-destroy-method` for beans node
+Can define attribute `default-init-method` and `default-destroy-method` for beans node
 
 ### Post Processors/Callback
+Create a bean that implement `BeanPostProcessor`, then it will be called before and after each other bean init.
 
+### Bean definition inheritance
+Bean definition contains
+- constructor arguments
+- property values
+- container-specific information such as initialization method, static factory method name
+
+A child bean definition inherits configuration data from a parent definition. The child definition can override some values, or add others. Set `parent` attribute
+
+A bean template
+```
+   <bean id = "beanTeamplate" abstract = "true">
+      <property name = "message1" value = "Hello World!"/>
+      <property name = "message2" value = "Hello Second World!"/>
+      <property name = "message3" value = "Namaste India!"/>
+   </bean>
+```
+
+### Dependency injection
+Application classes should be as independent as possible of other Java classes to increase the possibility to reuse these classes and to test them independently of other classes while unit testing. Dependency Injection (or sometime called wiring) helps in gluing these classes together and at the same time keeping them independent.
+
+In IoC, instead of init an object in another object, init objects in the container and inject objects to the objects that depend on them
+- Constructor-based dependency injection: for mandatory dependencies
+- Setter-based dependency injection: for optional dependencies.
+
+
+### Injecting collection
+the property of bean can be
+- value: primitive data
+- ref: object reference
+- list
+- set
+- map
+- props: name-value pairs(just like hashmap) where name and values are both strings. Short for properties
+
+Primitive data xml setting
+```
+<bean id = "..." class = "exampleBean">
+   <property name = "email" value = ""/>
+   <property name = "email"><null/></property>
+</bean>
+```
+
+List xml setting
+```
+<property name = "addressList">
+   <list>
+      <ref bean = "address1"/>
+      <value>Pakistan</value>
+   </list>
+</property>
+```
+
+Map xml setting
+```
+<property name = "addressMap">
+   <map>
+      <entry key = "1" value = "INDIA"/>
+      <entry key = "two" value-ref = "address1"/>
+   </map>
+</property>
+```
+
+Prop xml setting
+```
+<property name = "addressProp">
+   <props>
+      <prop key = "one">INDIA</prop>
+   </props>
+</property>
+```
+
+### Auto-Wiring
+The Spring container can autowire relationships between collaborating beans without using `<constructor-arg>` and `<property>` elements
+
+autowire mode
+- no: need config DI in beans config xml manually
+- byName
+- byType
+- constructor
+- autodetect
+
+Limitation
+- if still use `constructor-arg` and `property` setting at the same time, there chould be overriding
+- cannot autowired primitives, Strings and Classes
+- confusing than explicit wiring
+
+### Annotation based config
+Annotation injection is performed before XML injection, so latter one override the former one
+
+Enable annotation:
+```
+<beans xmlns = "http://www.springframework.org/schema/beans"
+   xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+   xmlns:context = "http://www.springframework.org/schema/context"
+   xsi:schemaLocation = "http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+   http://www.springframework.org/schema/context
+   http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+   <context:annotation-config/>
+   <!-- bean definitions go here -->
+
+</beans>
+```
+
+Annotations
+- `@Required`: setter
+- `@Autowired`: setter methods, non-setter methods, constructor and properties
+- `@Qualifier`: along with `@Autowired` can be used to remove the confusion by specifiying which exact bean will be wired.
+- JSR-250 Annotations: `@Resource`, `@PostConstruct` and `@PreDestroy` annotations.
+
+### Java Based Configuration
+`@Configuration` before a configuration class and `@Bean` before methods in this configuration class that return classes(create beans where ids are the method names) is same as define a bean in xml
+
+`@import` before config class but after `@configuration`, then the import bean is not needed for instantiating the context.
+
+Define init and destroy method: `@Bean(initMethod = "init", destroyMethod = "cleanup" )`
+
+`@Scope("prototype")` make the bean not singleton
+
+
+### Event handling
 
