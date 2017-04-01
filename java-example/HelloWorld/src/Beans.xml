@@ -14,6 +14,11 @@
 	<bean id = "GoodbyeWorld" class = "com.tutorialspoint.GoodbyeWorld" parent = "HelloWorld">
 		<property name = "message1" value = "Goodbye World message1" />
 		<property name = "message3" value = "Goodbye World message3" />
+		<property name = "SubGoodWorld">
+			<bean id = "SubGoodWorld" class  = "com.tutorialspoint.SubGoodWorld">
+				<property name = "message" value = "SubGoodWorld" />
+			</bean>
+		</property>
 	</bean>
 
 	<bean id = "JavaCollection" class = "com.tutorialspoint.JavaCollection">
@@ -50,6 +55,10 @@
 		</property>
 
 	</bean>
+	
+	<bean id = "cStartEventHandler" class = "com.tutorialspoint.CStartEventHandler"/>
+	<bean id = "cStopEventHandler" class = "com.tutorialspoint.CStopEventHandler"/>
+	
 	
 	<bean class = "com.tutorialspoint.InitWorld" />
 	

@@ -123,7 +123,7 @@ Bean definition contains
 A child bean definition inherits configuration data from a parent definition. The child definition can override some values, or add others. Set `parent` attribute
 
 A bean template
-```
+```xml
    <bean id = "beanTeamplate" abstract = "true">
       <property name = "message1" value = "Hello World!"/>
       <property name = "message2" value = "Hello Second World!"/>
@@ -137,6 +137,15 @@ Application classes should be as independent as possible of other Java classes t
 In IoC, instead of init an object in another object, init objects in the container and inject objects to the objects that depend on them
 - Constructor-based dependency injection: for mandatory dependencies
 - Setter-based dependency injection: for optional dependencies.
+
+### Inner beans
+```
+   <bean id = "outerBean" class = "...">
+      <property name = "target">
+         <bean id = "innerBean" class = "..."/>
+      </property>
+   </bean>
+```
 
 
 ### Injecting collection
@@ -177,7 +186,7 @@ Map xml setting
 ```
 
 Prop xml setting
-```
+```xml
 <property name = "addressProp">
    <props>
       <prop key = "one">INDIA</prop>
@@ -204,7 +213,7 @@ Limitation
 Annotation injection is performed before XML injection, so latter one override the former one
 
 Enable annotation:
-```
+```xml
 <beans xmlns = "http://www.springframework.org/schema/beans"
    xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
    xmlns:context = "http://www.springframework.org/schema/context"
@@ -236,4 +245,17 @@ Define init and destroy method: `@Bean(initMethod = "init", destroyMethod = "cle
 
 
 ### Event handling
+`ApplicationContext` manages the complete life cycle of beans. It publishes certain types of events when loading the beans
+- `ContextStartedEvent`: also be raised when call `ConfigurableApplicationContext::start()`
+- `ContextStoppedEvent`: the context can restart if it is stopped
+- `ContextRefreshedEvent`: also be raised when call `ConfigurableApplicationContext::refresh()`
+- `ContextClosedEvent`: cannot restart
+- `RequestHandledEvent`: an HTTP request has been serviced
+
+If a bean implements the `ApplicationListener`, then every time an `ApplicationEvent` gets published to the `ApplicationContext`, that bean is notified.
+
+Spring's event handling is single-threaded so if an event is published, until and unless all the receivers get the message, the processes are blocked and the flow will not continue. 
+
+
+
 

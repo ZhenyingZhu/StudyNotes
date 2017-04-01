@@ -21,11 +21,18 @@ public class MainApp {
 //		objC.getMessage2();
 //		objC.getMessage3();
 		
-		JavaCollection javaCollection = (JavaCollection) context.getBean("JavaCollection");
-		javaCollection.getAddressList();
-		javaCollection.getAddressSet();
-		javaCollection.getAddressMap();
-		javaCollection.getAddressProp();
+		context.start();
+
+//		JavaCollection javaCollection = (JavaCollection) context.getBean("JavaCollection");
+//		javaCollection.getAddressList();
+//		javaCollection.getAddressSet();
+//		javaCollection.getAddressMap();
+//		javaCollection.getAddressProp();
+		
+		GoodbyeWorld goodbyeWorld = (GoodbyeWorld) context.getBean("GoodbyeWorld");
+		goodbyeWorld.getSubGoodWorld().printMessage();
+		
+		context.stop();
 
 		context.registerShutdownHook();
 	}
