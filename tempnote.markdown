@@ -164,11 +164,11 @@ UNIX signals: http://programmergamer.blogspot.com/2013/05/clarification-on-sigin
 
 http://stackoverflow.com/questions/717239/io-service-why-and-how-is-it-used  
 
-https://en.wikipedia.org/wiki/Daemon_%28computing%29  
+[Deamon](https://en.wikipedia.org/wiki/Daemon_%28computing%29)
 
-`/usr/bin/time echo Hello`: check how long to run a program.  
+`/usr/bin/time echo Hello`: check how long to run a program.
 
-Signal 6: http://stackoverflow.com/questions/3413166/when-does-a-process-get-sigabrt-signal-6  
+[Signal 6](http://stackoverflow.com/questions/3413166/when-does-a-process-get-sigabrt-signal-6)
 
 Check USB: http://www.wilf.cn/post/lsusb.html  
 http://ubuntuforums.org/showthread.php?t=1993135  
