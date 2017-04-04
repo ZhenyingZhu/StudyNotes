@@ -256,6 +256,21 @@ If a bean implements the `ApplicationListener`, then every time an `ApplicationE
 
 Spring's event handling is single-threaded so if an event is published, until and unless all the receivers get the message, the processes are blocked and the flow will not continue. 
 
+### Custom Events
+Create 
+- a class, `CustomEvent`, that inherit `ApplicationEvent`: init from an object
+- a class, `CustomEventPublisher`, implement `ApplicationEventPublisherAware`: has a `ApplicationEventPublisher` memeber and can publish a `CustomEvent`
+- a class implement `ApplicationListener<CustomEvent>`: response to event and do something
+
+
+### Aspect oriented programming 
+[AOP](https://en.wikipedia.org/wiki/Aspect-oriented_programming)
+
+crosscut: if two concerns have some same methods, they are corosscut
+
+cross-cutting concerns: Functions that span multiple points of an app, and are conceptually separate from the application's business logic.
+
+Spring AOP module provides interceptors to intercept an application. For example, when a method is executed, you can add extra functionality before or after the method execution.
 
 
 
