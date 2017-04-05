@@ -1,3 +1,45 @@
+# Design pattern
+[Intro](https://en.wikipedia.org/wiki/Software_design_pattern)
+
+
+### Messaging pattern
+Use a communication protocol to establish a communication channel between two different parts of a message passing system
+
+- reuqest-response pattern
+- one-way pattern
+
+SOAP(Simple Object Access protocol)
+
+
+### Observer pattern
+- subject maintains a list of dependents/observers
+- subject notifies observers when state changes
+- used to implement distributed event handling system
+- a key part in the familiar MVC(model–view–controller) architectural pattern
+
+
+### Pub/sub pattern
+[src](https://en.wikipedia.org/wiki/Publish%E2%80%93subscribe_pattern)
+
+A messaging pattern
+
+publisher always send all classes of messages. subscriber only receive classes it interested to by filtering.
+
+filtering:
+- topic-based: published to logical channels. Publisher define classes
+- content-based: subscriber classifying messages.
+- hybrid of two: publisher post messages to a topic, subscribers register content-based subscriptions to one or more topics
+
+topologies
+- publisher post messages to an intermediary message broker or event bus
+- subscribers register subscriptions with the broker
+- broker perform the filtering. It have a store and forward function and prioritize messages
+
+#### Event bus
+One of publish/subscribe pattern. 
+
+[src](http://timnew.me/blog/2014/12/06/typical-eventbus-design-patterns/)
+enable message to be delivered between components without requiring the components to register itself to others.
 
 
 ### Producer-consumer

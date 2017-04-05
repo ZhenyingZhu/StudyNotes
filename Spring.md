@@ -135,8 +135,10 @@ A bean template
 Application classes should be as independent as possible of other Java classes to increase the possibility to reuse these classes and to test them independently of other classes while unit testing. Dependency Injection (or sometime called wiring) helps in gluing these classes together and at the same time keeping them independent.
 
 In IoC, instead of init an object in another object, init objects in the container and inject objects to the objects that depend on them
-- Constructor-based dependency injection: for mandatory dependencies
-- Setter-based dependency injection: for optional dependencies.
+- Constructor-based dependency injection: Use `<constructor-arg>`, for mandatory dependencies
+- Setter-based dependency injection: Use `<property>` for optional dependencies.
+
+If two beans are defined in the same container(xml file), `@Autowired` makes a method can access other beans.
 
 ### Inner beans
 ```

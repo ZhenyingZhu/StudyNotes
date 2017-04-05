@@ -77,4 +77,3 @@ blocking/sync callback
 deffered/async callback
 - The callback is executed after an event happened. [src](http://softwareengineering.stackexchange.com/questions/143623/what-are-deferred-callbacks)
 
-
