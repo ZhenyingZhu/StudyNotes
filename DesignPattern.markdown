@@ -61,4 +61,18 @@ producer:
 
 If need put a max size on the queue, make producer wait until consumer notify on the same condition
 
+### Adapter pattern
+[src](https://en.wikipedia.org/wiki/Adapter_pattern) Wrapper
+
+Client contains an Adaptor. Adaptor contains a list of Adaptee. When Client wants to call a method of Adaptee but APIs are not same, it call Adaptor method which call Adaptee method.
+
+### Command pattern
+[src](https://en.wikipedia.org/wiki/Command_pattern)
+
+- Invoker/executor: doesn't know concrete command, but Command interface
+- Client: hold invoker and concrete commands objects
+- Receiver
+- Command interface: have ref to a receiver
+- Concrete commands implement Command
+
 
