@@ -39,6 +39,10 @@ Steps
 [src1](http://www.mkyong.com/spring/spring-auto-wiring-beans-in-xml/)
 [src2](https://www.mkyong.com/spring/spring-auto-wiring-beans-with-autowired-annotation/)
 
+[autowired vs import](https://www.quora.com/What-is-difference-between-Autowired-and-Importa-in-Spring)
+- It is about dependency injection not only import the class.
+- With autowired, no need to explicitly add constructor-arg or property for each field in a bean. Spring server will find and inject by type.
+
 ## Notations
 - `@RequestParam`
 - `@RestController`=`@Controller`+`@ResponseBody`

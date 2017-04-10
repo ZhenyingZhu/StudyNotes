@@ -29,8 +29,12 @@ public class MainApp {
 //		javaCollection.getAddressMap();
 //		javaCollection.getAddressProp();
 		
-		GoodbyeWorld goodbyeWorld = (GoodbyeWorld) context.getBean("GoodbyeWorld");
-		goodbyeWorld.getSubGoodWorld().printMessage();
+//		GoodbyeWorld goodbyeWorld = (GoodbyeWorld) context.getBean("GoodbyeWorld");
+//		goodbyeWorld.getSubGoodWorld().printMessage();
+		
+		AutowiredB autowiredB = (AutowiredB) context.getBean("AutowiredBBean");
+		System.out.println(autowiredB.getName());
+		System.out.println(autowiredB.getAutowiredAName());
 		
 		context.stop();
 
