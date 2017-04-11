@@ -278,5 +278,8 @@ cross-cutting concerns: Functions that span multiple points of an app, and are c
 
 Spring AOP module provides interceptors to intercept an application. For example, when a method is executed, you can add extra functionality before or after the method execution.
 
+### Spring beans instanize order
+[src](http://stackoverflow.com/questions/13770225/spring-3-bean-instantiation-sequence) If a bean has DI another bean, it will instanize later. Otherwise use `depends-on`
+
 
 
