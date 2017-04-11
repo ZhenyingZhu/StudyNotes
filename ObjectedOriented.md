@@ -29,3 +29,42 @@ Engineering Model
 Cannot be proved. Can only be tested
 
 #### Video 6
+Different OOD model:
+- Peter Coad
+- Grady Booch
+- Ivar Jacobson
+
+Workflow
+1. Needs model
+2. Analysis model
+3. Design model
+
+#### Video 7
+Method = model + process
+
+UML
+
+Language:
+- Syntax
+- Semantics
+- Pragmatics
+
+Difference
+- Concrect Syntax: use graph or xml to represent a model
+- Abstract Syntax: use Class, Association to reprensent a model
+- Semantics: the real meaning
+
+#### Video 8
+Methods:
+- Structure: Data flow + preceeding
+- E-R: Relation between static entities
+- Finite Status Machine: event driven. Good for concurent, or complicate behavior
+- Rules: Good for game theory
+  - uniform game tree
+  - Backtracking
+- formalize: Flowchart
+  - Hoare logic
+  - petri net 
+  - Process Algebra
+
+#### Video 9
