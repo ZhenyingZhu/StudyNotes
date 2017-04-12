@@ -68,3 +68,41 @@ Methods:
   - Process Algebra
 
 #### Video 9
+OOD design paradigm
+- Real world
+- Needs analysis
+- System Analysis
+- System Design
+- OO languange
+- non-OO language
+- Assembly language
+- Computer
+
+
+Principles [src](http://bijian1013.iteye.com/blog/2282565)
+- Encapsulation
+- Message passing
+- Delegation
+- Dynamic binding
+- Instantiation
+- Generic and polymorphism
+- Relation
+
+Aspect-oriented programming
+- Aspect
+- Join point
+- Advice
+- Pointcut
+- Introduction
+- Target object
+- Weaving
+
+Service-Oreinted Architecture，Component-Based Development
+
+#### Video 10
+
+
+
+
+
+
