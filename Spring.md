@@ -239,6 +239,7 @@ Annotations
 - `@Autowired`: setter methods, non-setter methods, constructor and properties
 - `@Qualifier`: along with `@Autowired` can be used to remove the confusion by specifiying which exact bean will be wired.
 - JSR-250 Annotations: `@Resource`, `@PostConstruct` and `@PreDestroy` annotations.
+  - `@resource(&beanId)`: get the instance of the bean
 
 ### Java Based Configuration
 `@Configuration` before a configuration class and `@Bean` before methods in this configuration class that return classes(create beans where ids are the method names) is same as define a bean in xml
@@ -281,5 +282,18 @@ Spring AOP module provides interceptors to intercept an application. For example
 ### Spring beans instanize order
 [src](http://stackoverflow.com/questions/13770225/spring-3-bean-instantiation-sequence) If a bean has DI another bean, it will instanize later. Otherwise use `depends-on`
 
+
+## Factory bean
+[src](http://www.baeldung.com/spring-factorybean)
+
+Implement `FactoryBean` or inherit from `AbstractFactoryBean`
+
+To create non-singleton beans, call `setSingleton(false)` in the constructor of the Factory.
+
+Use XML-base config, no need to call `FactoryBean::getObject()`. But need explicitly call it when use Java-base config <b>Really?</b>
+
+Use factory method [src](https://docs.spring.io/spring/docs/current/spring-framework-reference/html/beans.html#beans-factory-class)
+
+Static factory method can create a singleton bean which is itself. Instance factory method can create beans based on `factory-method`
 
 
