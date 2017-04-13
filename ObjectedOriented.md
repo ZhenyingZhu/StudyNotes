@@ -99,10 +99,37 @@ Aspect-oriented programming
 
 Service-Oreinted Architecture，Component-Based Development
 
-#### Video 10
+#### Video 10, 11
+Why and how to extend UML
 
+BACS(or Backus?) UML Diagram
 
+Class diagram
 
+UML Profile: the extended UML. Can be downloaded from OMG
 
+SysML
 
+#### Video 12, 13
+Meta: control, describe
+
+Backus Naur Form: `::= |`
+
+Meta model: 4 layers
+- M0: Objects
+- M1: Model
+- M2: Meta-Model
+
+UML OCL: to describe classes with context relation
+
+UML extension method:
+- UML 1.x
+  - Stereotypes
+  - Constraints
+  - Tagged Values
+- UML 2.0
+  - Profile
+  - Meta model
+
+#### Video 14
 
