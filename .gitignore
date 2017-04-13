@@ -10,3 +10,8 @@ html_page
 .recommenders
 RemoteSystemsTempFiles
 build/
+*.iml
+*.ipr
+*.iws
+spring-example/src/main/java/hello/beans/
+

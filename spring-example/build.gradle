@@ -26,6 +26,8 @@ targetCompatibility = 1.8
 
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-web")
+    compile ("com.google.guava:guava:16+")
+    compile("org.apache.commons:commons-lang3:3.0")
     testCompile('org.springframework.boot:spring-boot-starter-test')
     testCompile('com.jayway.jsonpath:json-path')
 }
