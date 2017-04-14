@@ -132,4 +132,17 @@ UML extension method:
   - Meta model
 
 #### Video 14
+MDA:
+- procedural technology: Pascal, C
+- object tecnology: Smalltalk, c++
+- component technology: packages, framworks, patterns
+- model technology: meta-models, xml, uml, MOF, XMI, XSLT
+
+#### Video 15
+[Eclipse modeling framework](http://www.eclipse.org/modeling/emf/)
+
+[QVT](http://www.omg.org/spec/QVT/)
+
+[JMF](http://www.oracle.com/technetwork/articles/javase/index-jsp-140239.html)
+
 
