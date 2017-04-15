@@ -22,7 +22,9 @@ public class Application {
     public static void main(String[] args) {
         AbstractApplicationContext context = new ClassPathXmlApplicationContext("application.xml");
 
-        SpringSessionContextFactory springSessionContextFactory = (SpringSessionContextFactory) context.getBean("SpringSessionContextFactory");
-        springSessionContextFactory.newContext("test");
+//        SpringSessionContextFactory springSessionContextFactory = (SpringSessionContextFactory) context.getBean("SpringSessionContextFactory");
+//        springSessionContextFactory.newContext("test");
+
+
     }
 }
