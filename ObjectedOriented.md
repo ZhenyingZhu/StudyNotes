@@ -145,4 +145,49 @@ MDA:
 
 [JMF](http://www.oracle.com/technetwork/articles/javase/index-jsp-140239.html)
 
+### Chapter 2
 
+#### Video 1
+Modeling element
+- Class
+- Relation
+- Properity
+- Operation
+- Inherit
+- Aggration
+- Message
+
+Principle
+- Abstract
+- Classify
+- Encapsulation
+- Inherit
+- Aggration
+- Relation
+- Message communication: objects can only use message to complicate with other objects
+- Grading control: package
+- Behavior analysis: all behaviors belones to some class
+
+#### Video 2
+OOA: analysis
+- Needs model
+- Basic model: classes
+  - Object layer
+  - Characteristic layer
+  - Relation layer
+- Aid model
+  - package graph
+  - order graph
+  - active graph
+  - FSM
+
+OOD: design
+- problem domain
+- UI
+- Data API: persist
+- Control driver
+
+#### Video 3
+Modeling process
+1. Needs model
+  - 
