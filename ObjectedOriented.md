@@ -190,4 +190,27 @@ OOD: design
 #### Video 3
 Modeling process
 1. Needs model
-  - 
+  - system border
+  - participant
+  - use case
+2. basic model
+  - objects
+  - characteristics of objects
+  - relation between objects
+3. Aid model
+
+#### Video 4
+Books OOA and OOD written by Coad and Yourdon
+
+Model-driven architecture (MDA) raised by Object Management Group (OMG)
+
+From Platform-independent model (PIM) to Platform-specific model (PSM)
+
+#### Video 5, 6
+Use case analysis: can use a tree to define use cases and their sub use cases. Root is participant
+- include relation: the sub use case always happen
+- extend relation: not always happen
+- generic relation
+
+#### Video 7
+
