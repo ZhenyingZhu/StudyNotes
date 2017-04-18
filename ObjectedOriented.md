@@ -212,7 +212,32 @@ Use case analysis: can use a tree to define use cases and their sub use cases. R
 - extend relation: not always happen
 - generic relation
 
-#### Video 7
+#### Video 7, 8, 9
+System duty vs problem domain
+
+Relation includes
+- aggration relation
+- entirety-partial relation
+
+Diagrams
+- A class diagram
+- A Sequence diagram
+- An activation diagram
+
+Sync or Async message
+
+#### Video 10, 11
+UI and Control driver design
+
+- Identify passive class(send out message and control other classes)
+- use process or thread
+
+Control flow
+
+I/O intensive vs CPU intensive
+
+#### Video 12
+
 
 
 # Defination
