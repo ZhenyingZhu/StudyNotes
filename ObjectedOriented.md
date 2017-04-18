@@ -214,3 +214,8 @@ Use case analysis: can use a tree to define use cases and their sub use cases. R
 
 #### Video 7
 
+
+# Defination
+coarse-grained, fine-grained [Granularity](https://en.wikipedia.org/wiki/Granularity)
+
+
