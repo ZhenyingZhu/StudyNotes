@@ -226,7 +226,7 @@ Diagrams
 
 Sync or Async message
 
-#### Video 10, 11
+#### Video 10, 11, Video 12
 UI and Control driver design
 
 - Identify passive class(send out message and control other classes)
@@ -236,7 +236,20 @@ Control flow
 
 I/O intensive vs CPU intensive
 
-#### Video 12
+### Chapter 3
+#### Video 1, 2, 3
+Object vs Subject
+
+Object is an instance of a Class
+
+Properties and Methods
+
+#### Video 4
+Object based: cannot derive new classes
+- Javascript
+- OCL
+
+#### Video 5
 
 
 
