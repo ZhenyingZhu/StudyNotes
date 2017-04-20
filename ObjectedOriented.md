@@ -268,11 +268,39 @@ Abstract Data Type (ADT): used by Ada and CLU
 #### Video 7, 8
 Message passing
 - The explaination of the message is owned by receiver
-- function overload, polymorphism, code reuse all need message passing mechanism
+- function override, polymorphism, code reuse all need message passing mechanism
 
 There is a delay to pass message to another object
 
+#### Video 9, 10, 11
+generics and polymorphism
 
+Genertic
+- inherit
+
+polymorphism
+- override
+- interface reuse
+
+override: replace an implementation with specific cases; is polymorphism, use dynamic link. Use virtual table to implement. Expensive
+
+overload: different functions with a same name; not polymorphism, use static link
+
+overwrite: put something else in the place, like rewrite a file. not related here. 
+
+function signature vs prototype
+
+#### Video 12
+Association and Aggration
+
+Association
+- The relationship between objects
+- Dependency relation is not association
+
+Aggration
+- Entire-partial relation
+
+### Chapter 4
 
 
 # Defination
