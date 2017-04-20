@@ -61,3 +61,6 @@ Event subscriber: `@Subscribe` on a method which does something when event occur
 `EventBus eBus =  new AsyncEventBus(java.util.concurrent.Executors.newCachedThreadPool());`
 
 
+
+# Junit
+
