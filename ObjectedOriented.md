@@ -250,6 +250,28 @@ Object based: cannot derive new classes
 - OCL
 
 #### Video 5
+encapsulate
+- combine properties and operations together
+- avoid outside objects directly modify inner properties
+- information hidden: make static, unchangable services public (public, private, protected, friend)
+
+
+Process oriented: only operations
+
+ER diagram: only properties
+
+#### Video 6
+Instantiation
+
+Abstract Data Type (ADT): used by Ada and CLU
+
+#### Video 7, 8
+Message passing
+- The explaination of the message is owned by receiver
+- function overload, polymorphism, code reuse all need message passing mechanism
+
+There is a delay to pass message to another object
+
 
 
 
