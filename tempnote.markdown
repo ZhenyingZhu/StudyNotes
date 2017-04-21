@@ -1147,6 +1147,14 @@ http://www.ibb.net/~anne/keyboard.html
 # MVC vs RESTful
 A key difference between a traditional MVC controller and the RESTful web service controller above is the way that the HTTP response body is created. Rather than relying on a view technology to perform server-side rendering of the greeting data to HTML, this RESTful web service controller simply populates and returns a Greeting object. The object data will be written directly to the HTTP response as JSON. [src](https://spring.io/guides/gs/rest-service/)
 
+# stub class in UT
+use a factory to create some inner objects. So that when testing, can insert a stub object into the class
+
+# clean code
+Make unchanged properities in a class to be static (not change after set)
+
+Make unchanged valie to be const
+
 
 # timestamp section
 Sep 11 2016

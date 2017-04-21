@@ -296,4 +296,7 @@ Use factory method [src](https://docs.spring.io/spring/docs/current/spring-frame
 
 Static factory method can create a singleton bean which is itself. Instance factory method can create beans based on `factory-method`
 
+## Profiles
+[src](https://dzone.com/articles/using-spring-profiles-xml)
+
 
