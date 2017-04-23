@@ -301,6 +301,21 @@ Aggration
 - Entire-partial relation
 
 ### Chapter 4
+#### Video 1, 2
+Book chapter 2
+
+Function decomposition methods
+- Structure design: data flow diagram
+- Information modeling: E-R diagram. Entity and relation. Both of them are defined by properties
+
+#### Video 3
+Problem domain
+
+System responsibilities
+
+#### Video 4
+
+
 
 
 # Defination
