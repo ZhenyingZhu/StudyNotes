@@ -313,7 +313,53 @@ Problem domain
 
 System responsibilities
 
-#### Video 4
+#### Video 4, 5, 6, 7
+OOD methods
+- Booch
+- Coad-Yourdon
+- Firesmith
+- Jacobson (OOSE)
+- Martin-Odell
+- Rumbaugh (OMT)
+- Seidewitz-Stark
+- Shlaer-Mellor
+- Wirfs-Borck
+
+Booch
+- Class diagram
+- Object diagram
+- Module diagram
+- Process diagram
+- State transfer diagram
+- Interactive diagram
+
+Coad Yourdon 5 layers
+- Subject layer
+- Class and object layer
+- Structure layer
+- Property layer
+- Service layer
+
+4 components
+- Human interface component
+- Problem domain component
+- Task management component
+- Data management component
+
+Jacobson focus on use case
+
+3 objects
+- entity object
+- interface object
+- control object
+
+Rumbaugh 3 model
+- function model
+- Object model
+- Dynamic model
+
+#### Video 8
+
 
 
 
