@@ -141,6 +141,8 @@ Solve black screen terminal problem caused by Nvidia driver: http://ubuntuforums
 
 Win7 hibernate: http://answers.microsoft.com/en-us/windows/forum/all/windows-7-what-no-hibernate/2761b1ad-3623-4808-b6a9-a23999ddddb8?auth=1  
 
+windows update freeze: https://answers.microsoft.com/en-us/windows/forum/windows_7update/windows7updateproblemsreadthisfirst/28147a5fb0b0480bbed9834a2da7a375  
+
 Shell array:  
 - `arr=(1 2 3)`
 - `arr[0]=1; arr[1]=2`
