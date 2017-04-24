@@ -358,9 +358,72 @@ Rumbaugh 3 model
 - Object model
 - Dynamic model
 
-#### Video 8
+#### Video 8, 9, 10, 11
+Book Chapter 3
+
+specification vs standard
+
+UML1 parts
+- Summary
+- Semantics
+- Notation guide
+- Example profiles
+- model interchange
+- Object constranit language
+
+4 layers
+- Meta-metamodel
+- Metamodel
+- Model
+- User object
+
+#### Video 12
+Static Structure Diagram
+- Class Diagram
+- Object Diagram
+- Use case Diagram
+
+Interaction Diagram
+- Sequence Diagram
+- Collaboration Diagram
+- State chart Diagram
+- Activity Diagram
+
+Implementation Diagram
+- Component Diagram
+- Deployment Diagram
+
+Extension mechanism
+- Constraint
+- Comment
+- Tagged value
+- Stereotype
+
+#### Video 13, 14, 15
+UML2 models
+
+Diagram
+  - Structure
+    - Class
+	- Composite Structure
+	- Component
+	- Deployment
+	- Object
+	- Package
+  - Behavior
+    - Actuvity
+	- Interaction
+	  - Sequence
+	  - Communication
+	  - Interaction Overview
+	  - Timeing
+	- Use case
+	- State machine
+
+#### Video 16
 
 
+### Chapter 5
 
 
 
