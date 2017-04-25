@@ -5,17 +5,46 @@
 [`->`](http://stackoverflow.com/questions/15146052/what-does-the-arrow-operator-do-in-java)
 
 
+## Lambda
+Syntax: `(args1, args2, args3, ...) -> { body }`
+
+When there is a single parameter, no need to use brace and class name.
+
+Can only work with a class that has only one or less abstract method. 
+
+Functional interface: an interface with only one abstract method. `@FunctionalInterface`
+
+[src](https://blog.idrsolutions.com/2015/02/java-8-method-references-explained-5-minutes/)
+method reference can all methods in Lambda. Also in Lambda you can use variables from outter place.
+
+## Default method
+[src](https://blog.idrsolutions.com/2015/01/java-8-default-methods-explained-5-minutes/)
+
+In an interface, implement some methods to make it work with lambda
+
+```
+interface InterfaceA {
+    public void foo1(); // lambda implement it
+
+    default public void foo2() { // inherit class can use it, or implement their own
+        // do something
+    }
+}
+```
+
+If a class implement from two interfaces that have default methods with same name, the class needs to override it
+```
+@Override
+public void overlapDefaultMethod {
+    InterfaceA.super.overlapDefaultMethod();
+}
+```
+
 ## Interface
 ### Predicate
-
-### Consumer
+A function interface that has `test` abstract method.
 
 ### Function
-
-### Supplier
-[src](https://dzone.com/articles/supplier-interface)
-
-A Supplier `Supplier<? extends Vehicle> supplier` can be passed to a function and `supplier.get()` return an instance or an inherit instance of `Vehicle` 
 
 ### Future
 [src](https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/Future.html)
@@ -23,6 +52,38 @@ A Supplier `Supplier<? extends Vehicle> supplier` can be passed to a function an
 - `cancel`
 - `isDone`
 - `isCancelled`
+
+### Stream
+[src](https://blog.idrsolutions.com/2014/11/java-8-streams-explained-5-minutes/)
+
+- intermediate operations are lazy evaluate. Only execute when terminal op is called.
+  - `filter(Predicate)`: create a new stream
+  - `map(a lambda exp)`: lambda create a class instance of `Function` which act as a mapper (for map-reduce)
+  - `sorted()`
+- terminal operation
+  - `forEach(a lambda exp)`: lambda create a class instance of `Consumer`
+
+`filter()` and `map()` are stateless, `sorted()` is stateful.
+
+`Predicate` has a abstract function `test`
+
+
+### Supplier and Consumer
+[src](https://blog.idrsolutions.com/2015/03/java-8-consumer-supplier-explained-in-5-minutes/)
+
+[src](https://dzone.com/articles/supplier-interface)  
+A Supplier `Supplier<? extends Vehicle> supplier` can be passed to a function and `supplier.get()` return an instance or an inherit instance of `Vehicle` 
+
+Supplier:
+- is a `FunctionalInterface`
+- has abstract method `T get()`
+
+Consumer:
+- is a `FunctionalInterface`
+- abstract method `accept`, default `andThen` makes it work with stream
+- can use a static function to init it: `Comsumer comsumer = foo;`
+- assignment target for a lambda expression or method reference
+
 
 ### ExecutorService
 [src](https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/ExecutorService.html)
@@ -63,4 +124,11 @@ Event subscriber: `@Subscribe` on a method which does something when event occur
 
 
 # Junit
+`ArgumentCaptor`
+
+`when`
+
+`verify`
+
+`@Rule`: [src](https://carlosbecker.com/posts/junit-rules/)
 
