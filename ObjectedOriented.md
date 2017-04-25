@@ -424,6 +424,32 @@ Diagram
 
 
 ### Chapter 5
+#### Video 1
+use case diagram
+
+1. Define border of the system: how outer objects can interact with the system, don't think about how system provide those business functions
+2. Find actors
+3. Find usecase
+
+From actor point of view
+
+#### Video 2, 3, 4
+- Actor send request to system
+- system ask actor to provide services
+
+Actors can have generic relation between actors
+
+Strategy to identify actors
+- The human class that directly interact with the system
+- Outer systems
+- Devices, if the system we develop needs to deal with them
+- External events, e.g. time event, that needs the system to responce
+
+Use case: the description of how the actors use one function of the system. Is a special sequence of transaction
+
+Actors can have association relation with use cases
+
+
 
 
 
