@@ -1,0 +1,14 @@
+Start java program:
+```
+cd out/production/jmx-example
+java com.zhenying.jmx.SystemConfigManagement
+```
+
+Open jmx:
+```
+jconsole
+```
+
+Find `MBeans` tab
+
+

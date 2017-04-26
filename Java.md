@@ -1,3 +1,11 @@
+## Start
+[How to execute a java class](http://stackoverflow.com/questions/18093928/what-does-could-not-find-or-load-main-class-mean)
+1. `java [ <option> ... ] <class-name> [<argument> ...]`
+  - class name includes package name
+  - execute in the root folder, which is where contains com folder
+  - example: `java -Xmx100m com.acme.example.ListUsers fred joe bert`
+(NOT DONE)
+
 ## Gramma
 
 [`...`](http://stackoverflow.com/questions/11640507/difference-between-arrays-and-3-dots-in-java)
@@ -184,7 +192,9 @@ Java Dynamic Management Kit: Monitor resources represented by Managed Beans (MBe
 - Remote management level: enable remote apps to access MBeanServer through connectors and adaptors. JMX Connectors like JConsole
 
 [src](http://www.journaldev.com/1352/what-is-jmx-mbean-jconsole-tutorial)
-
+1. Create a MBean
+2. Create MBeanServer use `MBeanServer mbs = ManagementFactory.getPlatformMBeanServer();`
+3. reg `mbs.registerMBean(mBean, objectName);`
 
 
 
