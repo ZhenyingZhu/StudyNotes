@@ -175,3 +175,16 @@ Event subscriber: `@Subscribe` on a method which does something when event occur
 
 `@Rule`: [src](https://carlosbecker.com/posts/junit-rules/)
 
+
+
+# JMX
+Java Dynamic Management Kit: Monitor resources represented by Managed Beans (MBeans)
+- Probe/Instrumentation level: MBeans, needs to reg to MBean server
+- Agent level: MBeanServer. core of JMX
+- Remote management level: enable remote apps to access MBeanServer through connectors and adaptors. JMX Connectors like JConsole
+
+[src](http://www.journaldev.com/1352/what-is-jmx-mbean-jconsole-tutorial)
+
+
+
+
