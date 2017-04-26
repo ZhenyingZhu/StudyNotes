@@ -3,6 +3,9 @@ https://spring.io/guides/gs/rest-service/
 
 http://www.tutorialspoint.com/spring/
 
+## Concepts
+[Java bean vs POJO vs Spring bean]( http://www.shaunabram.com/beans-vs-pojos/)
+
 ## Prerequist
 1. [SDKMAN!](http://sdkman.io/install.html)
 `curl -s "https://get.sdkman.io" | bash`

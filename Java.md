@@ -85,10 +85,53 @@ Consumer:
 - assignment target for a lambda expression or method reference
 
 
-### ExecutorService
+### Executor interface
+decoupling task submission from the mechanics of how each task will be run, including details of thread use, scheduling, etc.
+
+- `execute`: handle how to run, and how to schedule next runnable task
+
+### ExecutorService interface
 [src](https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/ExecutorService.html)
-- `submit`: args is a `Callable<T>` instance.
+It can be used as thread pool. Can be shutdown
+- `submit`: args is a `Callable<T>` instance, return a `Future`
 - `execute`: inherit from `Executor`
+- `shutdown`
+- `invokeAll`: return a list of `Future`
+
+Init: `private final ExecutorService pool = Executors.newFixedThreadPool(poolSize);`
+
+### ScheduledExecutorService interface
+can schedule commands to run after a given delay, or to execute periodically.
+- `schedule`: args are a callable, a delay and a time unit. Return `ScheduledFuture`
+
+init: `private final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);`
+
+### AbstractExecutorService
+Implementation of ExecutorService
+
+### ThreadPoolExecutor
+extend `AbstractExecutorService`
+
+executes each submitted task using one of possibly several pooled threads
+
+Address two problems:
+- improved performance when executing large numbers of asynchronous tasks
+- provide a means of bounding and managing the resources, including threads, consumed when executing a collection of tasks
+
+Use exiting methods to init
+- `Executors.newCachedThreadPool()`
+- `Executors.newFixedThreadPool(int)`
+- ` Executors.newSingleThreadExecutor()`
+
+Init args
+- corePoolSize, maximumPoolSize
+- ThreadFactory: create new thread. By default `Executors.defaultThreadFactory()`
+- keepAliveTime: how long a thread can be idle before be terminated
+
+### ScheduledThreadPoolExecutor
+extends ThreadPoolExecutor and implements ScheduledExecutorService
+
+Delayed tasks execute no sooner than they are enabled, but without any real-time guarantees. Tasks scheduled for exactly the same execution time are enabled in first-in-first-out (FIFO) order of submission.
 
 ### EventBus
 [src1](http://tomaszdziurko.com/2012/01/google-guava-eventbus-easy-elegant-publisher-subscriber-cases/)
