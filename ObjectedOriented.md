@@ -237,6 +237,7 @@ Control flow
 I/O intensive vs CPU intensive
 
 ### Chapter 3
+
 #### Video 1, 2, 3
 Object vs Subject
 
@@ -275,7 +276,7 @@ There is a delay to pass message to another object
 #### Video 9, 10, 11
 generics and polymorphism
 
-Genertic
+Generic
 - inherit
 
 polymorphism
@@ -433,7 +434,7 @@ use case diagram
 
 From actor point of view
 
-#### Video 2, 3, 4
+#### Video 2, 3, 4, 5, 6
 - Actor send request to system
 - system ask actor to provide services
 
@@ -449,8 +450,15 @@ Use case: the description of how the actors use one function of the system. Is a
 
 Actors can have association relation with use cases
 
+One use case can associate with two actors. It doesn't mean two actors have generic relation. It means two actors both involve in this use case.
 
+**Extend**: relation between use case and use case. A points to B means A is a generic use case, while B is some special cases of A. B has extension point to describe the special condition of it.
 
+**Include**: Use case A points to B means A include the behavior of use case B.
+
+**Generic**: The sub use case can overload some behavior of super use case
+
+#### Video 7
 
 
 # Defination
