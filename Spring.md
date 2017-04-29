@@ -303,3 +303,7 @@ Static factory method can create a singleton bean which is itself. Instance fact
 [src](https://dzone.com/articles/using-spring-profiles-xml)
 
 
+## JMX
+[src](http://docs.spring.io/autorepo/docs/spring-framework/3.0.0.M3/reference/html/ch24s02.html)
+
+
