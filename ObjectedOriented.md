@@ -459,6 +459,22 @@ One use case can associate with two actors. It doesn't mean two actors have gene
 **Generic**: The sub use case can overload some behavior of super use case
 
 #### Video 7
+Use cases include both success cases and failure cases
+
+Use case needs to describe 1. what are actors' cases, 2. what are system cases
+
+#### Video 8, 9
+Group use cases into packages
+
+Extreme programming (XP): One of the agile software development
+
+#### Video 10
+eclipse GMF
+
+### Chapter 6
+
+
+
 
 
 # Defination
