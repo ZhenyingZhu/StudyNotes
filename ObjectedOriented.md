@@ -473,6 +473,29 @@ eclipse GMF
 
 ### Chapter 6
 
+#### Video 1
+Object vs Class
+
+active object
+
+Domain model diagram
+
+Diagram of Implementation Classes
+
+Object Diagram
+
+#### Video 2, 3
+CRC card to find system responsibilities
+- each card is a class
+- first define responsibilities of a class
+- if those responsibities cannot be done by this class only, create a new card as helper
+
+Review and discard some useless objects
+
+Properties of a class cannot relate to another class. Create a relation class.
+
+#### Video 4
+
 
 
 
@@ -480,4 +503,4 @@ eclipse GMF
 # Defination
 coarse-grained, fine-grained [Granularity](https://en.wikipedia.org/wiki/Granularity)
 
-
+[SOLID](https://en.wikipedia.org/wiki/SOLID_(object-oriented_design))
