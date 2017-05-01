@@ -10,5 +10,5 @@ public interface SystemConfigMBean {
     public void setSchemaName(String schemaName);
     public String getSchemaName();
 
-    public String doConfig();
+    public String printConfig();
 }

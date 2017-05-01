@@ -1,7 +1,7 @@
 Start java program:
 ```
 cd out/production/jmx-example
-java com.zhenying.jmx.SystemConfigManagement
+java SystemConfigManagement
 ```
 
 Open jmx:

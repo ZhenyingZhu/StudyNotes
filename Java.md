@@ -175,6 +175,11 @@ Event subscriber: `@Subscribe` on a method which does something when event occur
 
 
 # Junit
+[Create a Junit test](https://www.tutorialspoint.com/junit/junit_suite_test.htm):
+1. A TestRunner `Result result = JUnitCore.runClasses(JunitTestSuite.class);`
+2. A JunitTestSuite `@Suite.SuiteClasses({Test1.class, Test2.class})`
+3. public Test classes `@Test`
+
 `ArgumentCaptor`
 
 `when`
@@ -196,5 +201,7 @@ Java Dynamic Management Kit: Monitor resources represented by Managed Beans (MBe
 2. Create MBeanServer use `MBeanServer mbs = ManagementFactory.getPlatformMBeanServer();`
 3. reg `mbs.registerMBean(mBean, objectName);`
 
+
+[Client](https://docs.oracle.com/javase/tutorial/jmx/remote/custom.html)
 
 

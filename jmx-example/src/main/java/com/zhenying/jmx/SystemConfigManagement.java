@@ -22,13 +22,19 @@ public class SystemConfigManagement {
 
         SystemConfig mBean = new SystemConfig(DEFAULT_NO_THREADS, DEFAULT_SCHEMA);
 
-        ObjectName name = new ObjectName("com.zhenying.jmx:type=SystemConfigTest");
+        ObjectName name = new ObjectName("com.zhenying.jmx:type=SystemConfig");
 
         mbs.registerMBean(mBean, name);
 
+        int runCnt = 0;
         do {
             Thread.sleep(3000);
             System.out.println( "Thread Count="+mBean.getThreadCount()+":::Schema Name="+mBean.getSchemaName() );
+            runCnt++;
+            if (runCnt % 2 == 0) {
+                int curThread = mBean.getThreadCount();
+                mBean.setThreadCount(--curThread);
+            }
         } while (mBean.getThreadCount() != 0);
     }
 }

@@ -33,7 +33,8 @@ public class SystemConfig implements SystemConfigMBean {
     }
 
     @Override
-    public String doConfig() {
+    public String printConfig() {
         return "NoOfThreads=" + threadCount + " DB SchemaName=" + schemaName;
     }
+
 }
