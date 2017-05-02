@@ -203,5 +203,12 @@ Java Dynamic Management Kit: Monitor resources represented by Managed Beans (MBe
 
 
 [Client](https://docs.oracle.com/javase/tutorial/jmx/remote/custom.html)
+Server side: Start server with `-Dcom.sun.management.jmxremote.port=9999 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false` to disable SSL
+
+Client side:
+1. A ClientListener implements `NotificationListener`
+2. A `JMXConnector` use specific `JMXServiceURL`
+3. Get `MBeanServerConnection mbsc = jmxc.getMBeanServerConnection();`
+4. Create a mBeanProxy `MBean mBean = JMX.newMBeanProxy(mbsc, mbeanName, MBean.class, true);`
 
 
