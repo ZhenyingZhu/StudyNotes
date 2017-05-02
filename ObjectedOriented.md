@@ -495,9 +495,16 @@ Review and discard some useless objects
 Properties of a class cannot relate to another class. Create a relation class.
 
 #### Video 4
+**Generization**: is a
 
+Power type & stereotype
 
+#### Video 5
+**Association**: zero or one-to-zero or one, one-to-one, one-to-many, many to many(try to avoid many-to-many, use one-to-one instead)
 
+**Direct Association**: From A can access B but from B cannot access A
+
+#### Video 6
 
 
 # Defination
