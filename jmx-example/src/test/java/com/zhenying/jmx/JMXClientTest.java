@@ -25,7 +25,7 @@ public class JMXClientTest {
 
     @Before
     public void setupJMXClient() throws Exception {
-        JMXServiceURL url = new JMXServiceURL("service:jmx:rmi:///jndi/rmi://:90/jmxrmi");
+        JMXServiceURL url = new JMXServiceURL("service:jmx:rmi:///jndi/rmi://:9999/jmxrmi");
         JMXConnector jmxc = JMXConnectorFactory.connect(url, null);
 
         MBeanServerConnection mbsc = jmxc.getMBeanServerConnection();
