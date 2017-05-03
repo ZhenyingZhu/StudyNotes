@@ -505,6 +505,19 @@ Power type & stereotype
 **Direct Association**: From A can access B but from B cannot access A
 
 #### Video 6
+If an association has properties, can use a class to describe it
+
+Extended association types
+- Qualifier: avoid many-to-many relation. break it into two one-to-many relation
+- XOR: either relate to this or that
+- Ordered
+
+Two ways to implement association
+- message passing
+- database store args
+
+#### Video 7
+
 
 
 # Defination
