@@ -12,6 +12,12 @@
 
 [`->`](http://stackoverflow.com/questions/15146052/what-does-the-arrow-operator-do-in-java)
 
+## Reflection
+[class new instance](http://stackoverflow.com/questions/15941957/passing-class-type-as-parameter-and-creating-instance-of-it)
+
+## Java factory
+[Builder](https://en.wikipedia.org/wiki/Builder_pattern)
+
 
 ## Lambda
 Syntax: `(args1, args2, args3, ...) -> { body }`
