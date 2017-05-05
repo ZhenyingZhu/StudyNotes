@@ -16,7 +16,10 @@
 [class new instance](http://stackoverflow.com/questions/15941957/passing-class-type-as-parameter-and-creating-instance-of-it)
 
 ## Java factory
-[Builder](https://en.wikipedia.org/wiki/Builder_pattern)
+[Builder](https://en.wikipedia.org/wiki/Builder_pattern) http://stackoverflow.com/questions/13885836/factory-in-java-when-concrete-objects-take-different-constructor-parameters
+
+## final class
+http://stackoverflow.com/questions/5181578/use-of-final-class-in-java
 
 
 ## Lambda
