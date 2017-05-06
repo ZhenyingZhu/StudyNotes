@@ -517,6 +517,12 @@ Two ways to implement association
 - database store args
 
 #### Video 7
+**Analysis pattern(Martin Fowler)**
+- Accountability: Party, organization hierarchies, Organization structure, 
+- Observation and measurements
+- Rederring to objects
+
+#### Video 8
 
 
 
