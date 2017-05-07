@@ -523,6 +523,13 @@ Two ways to implement association
 - Rederring to objects
 
 #### Video 8
+**Aggregation**: has a
+
+**Composition**: one of aggregation. All composites combine to be an entire part.
+
+There are some case which can both use aggregation and generization. If one instance of the subclass can change into another class, use aggregation is better.
+
+#### Video 9
 
 
 
