@@ -530,6 +530,24 @@ Two ways to implement association
 There are some case which can both use aggregation and generization. If one instance of the subclass can change into another class, use aggregation is better.
 
 #### Video 9
+**Dependency**: all other relations
+- access: message passing
+- derive
+- import
+- refine
+- trace
+- use
+- include
+- extend
+
+**Interface realization**
+
+Iterfaces between 
+- processes: OCL
+- languages: IDL
+- hosts: ejb, com, dcom
+
+#### Video 10
 
 
 
