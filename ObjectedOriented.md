@@ -548,6 +548,19 @@ Iterfaces between
 - hosts: ejb, com, dcom
 
 #### Video 10
+package diagram
+
+import vs access
+
+visibility:
+- `+`: public
+- `#`: protected
+- `-`: private
+- `~`: only elements in the same package can access
+
+
+#### Chapter 7
+
 
 
 
