@@ -22,6 +22,28 @@
 http://stackoverflow.com/questions/5181578/use-of-final-class-in-java
 
 
+## JSON
+[src](http://www.javased.com/?api=org.json.JSONWriter)
+```
+StringWriter writer = new StringWriter();
+JSONWriter jsonWriter = new JSONWriter(writer);
+
+jsonWriter.object();
+jsonWriter.key("title").value("hello world");
+jsonWriter.key("array");
+jsonWriter.array();
+for (int i = 0; i < 3; i++) {
+    jsonWriter.value(i);
+}
+jsonWriter.endArray();
+jsonWriter..endObject();
+return writer.getBuffer().toString();
+```
+
+[Convention](https://google.github.io/styleguide/jsoncstyleguide.xml)
+
+
+
 ## Lambda
 Syntax: `(args1, args2, args3, ...) -> { body }`
 
