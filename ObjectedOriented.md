@@ -559,7 +559,37 @@ visibility:
 - `~`: only elements in the same package can access
 
 
-#### Chapter 7
+### Chapter 7
+
+#### Video 1
+Interaction diagram
+
+Intro
+- good at describe control flow and data flow
+- good at describe static activity
+- not good at describe event driven, dynamic activity
+
+Diagrams
+- Sequence diagram
+- Communication diagram
+- ?
+- ?
+
+#### Video 2
+Sequence diagram
+- object
+- lifecycle line: contains both active state and hibernate state of an object
+- activate
+- message
+
+Message
+- Syncronized message: block the sender thread until get response
+- Async message: in buffer
+- return message
+
+#### Video 3
+
+
 
 
 
