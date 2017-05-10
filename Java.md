@@ -40,9 +40,6 @@ jsonWriter..endObject();
 return writer.getBuffer().toString();
 ```
 
-[Convention](https://google.github.io/styleguide/jsoncstyleguide.xml)
-
-
 
 ## Lambda
 Syntax: `(args1, args2, args3, ...) -> { body }`
