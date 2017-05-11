@@ -240,3 +240,8 @@ Client side:
 4. Create a mBeanProxy `MBean mBean = JMX.newMBeanProxy(mbsc, mbeanName, MBean.class, true);`
 
 
+# Apache common cli
+[Option Group](http://www.programcreek.com/java-api-examples/index.php?api=org.apache.commons.cli.OptionGroup): Mutex options
+
+
+
