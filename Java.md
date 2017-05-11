@@ -21,6 +21,9 @@
 ## final class
 http://stackoverflow.com/questions/5181578/use-of-final-class-in-java
 
+## Enum
+should use `==` not `equals`. [src](http://stackoverflow.com/questions/1750435/comparing-java-enum-members-or-equals)
+
 
 ## JSON
 [src](http://www.javased.com/?api=org.json.JSONWriter)
