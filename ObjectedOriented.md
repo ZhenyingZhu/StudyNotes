@@ -588,8 +588,32 @@ Message
 - return message
 
 #### Video 3
+Inorder system
+- Messages are sync messages
+- each message only have one receiver
 
+Concurrent system
 
+#### Video 4, 5
+Async message: To receiver, the message is an event
+
+UML define this kind of message as signal, which only has properties, but not methods
+
+UML 2.0
+- message occurrence
+- execution occurrence
+- interaction fragment
+- combined fragment
+- formal gates
+- actual gates
+- expression gates
+
+#### Video 6
+- Communication diagram
+- Interaction abstract diagram
+- Timing diagram
+
+### Chapter 8
 
 
 
