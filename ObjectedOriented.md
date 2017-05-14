@@ -615,6 +615,28 @@ UML 2.0
 
 ### Chapter 8
 
+#### Video 1
+State chart diagram
+- State
+- event
+- action
+- state transfer
+
+Events
+- interaction
+- timing
+- entity value changing
+
+#### Video 2
+Represent a state:
+- state name
+- a pair of event and action
+
+Pseudo state
+
+Final state
+
+#### Video 3
 
 
 
