@@ -637,6 +637,23 @@ Pseudo state
 Final state
 
 #### Video 3
+Action vs event
+
+#### Video 4
+Pseudo state
+- Junction
+- Choice
+
+#### Video 5
+How to draw state flow chart
+
+#### Video 6
+How to convert state flow chart to C++
+
+#### Video 7
+
+
+#### Video 5
 
 
 
