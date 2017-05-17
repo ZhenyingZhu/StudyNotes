@@ -650,10 +650,20 @@ How to draw state flow chart
 #### Video 6
 How to convert state flow chart to C++
 
-#### Video 7
+#### Video 7, 8
+Advanced status
+- Composition status
+- Historical status
+- Concurrent status: Orthogonality
+
+#### Video 9
+Examples:
+- TCP
+- Elevator
 
 
-#### Video 5
+### Chapter 9
+
 
 
 
