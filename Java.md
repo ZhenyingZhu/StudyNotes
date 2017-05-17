@@ -24,6 +24,8 @@ http://stackoverflow.com/questions/5181578/use-of-final-class-in-java
 ## Enum
 should use `==` not `equals`. [src](http://stackoverflow.com/questions/1750435/comparing-java-enum-members-or-equals)
 
+Make enum a class [src](http://www.java2s.com/Code/Java/Language-Basics/Useanenumconstructorinstancevariableandmethod.htm)
+
 
 ## JSON
 [src](http://www.javased.com/?api=org.json.JSONWriter)
@@ -123,6 +125,15 @@ Consumer:
 - can use a static function to init it: `Comsumer comsumer = foo;`
 - assignment target for a lambda expression or method reference
 
+A factory can use supplier:
+```
+private static final Map<String, Supplier<? extends BaseClass>> MAP = new HashMap<>();
+
+static {
+    MAP.put(ClassEnum.Enum.getName(), TheClassAssociateWithThisEnum::new);
+}
+
+```
 
 ### Executor interface
 decoupling task submission from the mechanics of how each task will be run, including details of thread use, scheduling, etc.
