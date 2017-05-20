@@ -25,6 +25,12 @@ var date = DateTime.Now;
 Console.WriteLine("\n {0}, {1:d}, {1:t}", name, date);
 ```
 
+Create a class library as an extension method
+- a third-party component
+- include it as a bundled component with one or more applications.
+
+
+
 ## APIs
 [doc](https://docs.microsoft.com/en-us/dotnet/api/index?view=netframework-4.7)
 
@@ -36,4 +42,4 @@ class
 
 
 # Stack
-https://docs.microsoft.com/en-us/dotnet/articles/csharp/getting-started/library-with-visual-studio
+https://docs.microsoft.com/en-us/dotnet/articles/csharp/getting-started/testing-library-with-visual-studio
