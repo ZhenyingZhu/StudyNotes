@@ -29,6 +29,22 @@ Create a class library as an extension method
 - a third-party component
 - include it as a bundled component with one or more applications.
 
+Create a unit test
+- Add a dependency
+- Use `Assert` class
+
+`String.Empty` vs `null`
+
+A static method can be called as a method of an instance and as a static method
+
+If the library will be used by a single solution, include it as a project in your solution
+- create a project and `Set as StartUp Project`
+- `Add Reference`
+
+If the library will be generally accessible, you can distribute it as a NuGet package
+- Under the project directory with `*.csproj` file, run `dotnet pack --no-build`. The `*.nupkg` is the package
+
+`where dotnet.exe`
 
 
 ## APIs
@@ -42,4 +58,4 @@ class
 
 
 # Stack
-https://docs.microsoft.com/en-us/dotnet/articles/csharp/getting-started/testing-library-with-visual-studio
+https://docs.microsoft.com/en-us/dotnet/articles/csharp/tutorials/
