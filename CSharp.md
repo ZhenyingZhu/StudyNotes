@@ -47,8 +47,33 @@ If the library will be generally accessible, you can distribute it as a NuGet pa
 `where dotnet.exe`
 
 
+## Create package from CLI
+[src](https://docs.microsoft.com/en-us/dotnet/articles/csharp/tutorials/console-teleprompter)
+1. `dotnet new console`
+2. `dotnet restore`: run NuGet package management
+3. `dotnet build`
+4. `dotnet run`
+
+
+## Concepts
+Enumerator method: [example](https://github.com/dotnet/docs/tree/master/samples/csharp/getting-started/console-teleprompter)
+- Enumerator methods return sequences that are evaluated lazily.
+- contain one or more yield return statements. 
+- `foreach (var x in IEnumerable)`
+
+I​Disposable Interface
+- Provides a mechanism for releasing unmanaged resources.
+- `Dispose`
+- `using`
+
+implicitly typed local variable
+- `var`
+
+
 ## APIs
 [doc](https://docs.microsoft.com/en-us/dotnet/api/index?view=netframework-4.7)
+
+[sample](https://github.com/dotnet/docs/tree/master/samples)
 
 namespace
 - System
@@ -58,4 +83,10 @@ class
 
 
 # Stack
-https://docs.microsoft.com/en-us/dotnet/articles/csharp/tutorials/
+https://docs.microsoft.com/en-us/dotnet/articles/welcome
+https://docs.microsoft.com/en-us/dotnet/articles/csharp/
+https://docs.microsoft.com/en-us/dotnet/articles/csharp/tutorials/index
+https://docs.microsoft.com/en-us/dotnet/articles/csharp/tutorials/console-teleprompter
+Adding Delays and Formatting output
+
+
