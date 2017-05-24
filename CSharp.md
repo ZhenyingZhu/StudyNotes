@@ -58,7 +58,7 @@ If the library will be generally accessible, you can distribute it as a NuGet pa
 ## Concepts
 Enumerator method: [example](https://github.com/dotnet/docs/tree/master/samples/csharp/getting-started/console-teleprompter)
 - Enumerator methods return sequences that are evaluated lazily.
-- contain one or more yield return statements. 
+- contain one or more `yield` return statements. 
 - `foreach (var x in IEnumerable)`
 
 I​Disposable Interface
@@ -68,6 +68,35 @@ I​Disposable Interface
 
 implicitly typed local variable
 - `var`
+
+Async Tasks
+- `private static async Task Foo()`
+- `await` return a `Task`. When reach `await`, the `Task` returns but will resume
+- `Task.Wait()`
+- `Main` cannot use `await` operator
+- `Task.Run(lambda)`
+- `Task.WhenAny(Task[])` when anyone first finish
+
+Lock
+- Create a private object as a mutex: `private object lockHandle = new object();`
+- `lock (lockHandle)`
+
+Lambda
+- `Action work = () => {};`
+
+Access
+- `internal class MyClass`
+- `public int DelayInMilliseconds { get; private set; } = 200;`
+
+Using
+- `using static System.Math;`
+
+Class property
+- define `internal class Config`
+
+
+## Question
+`public int DelayInMilliseconds { get; private set; } = 200;` what is get and private set?
 
 
 ## APIs
@@ -81,12 +110,13 @@ namespace
 class
 - System.Console
 
+`System.Threading.Tasks.Task(seconds).Wait()`
+
 
 # Stack
 https://docs.microsoft.com/en-us/dotnet/articles/welcome
-https://docs.microsoft.com/en-us/dotnet/articles/csharp/
-https://docs.microsoft.com/en-us/dotnet/articles/csharp/tutorials/index
-https://docs.microsoft.com/en-us/dotnet/articles/csharp/tutorials/console-teleprompter
-Adding Delays and Formatting output
+  https://docs.microsoft.com/en-us/dotnet/articles/csharp/
+    https://docs.microsoft.com/en-us/dotnet/articles/csharp/tutorials/index
+      https://docs.microsoft.com/en-us/dotnet/articles/csharp/tutorials/console-teleprompter
 
 

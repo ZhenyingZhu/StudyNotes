@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace TeleprompterConsole
 {
@@ -10,13 +11,47 @@ namespace TeleprompterConsole
     {
         public static void Main(string[] args)
         {
-            var lines = ReadFrom("sampleQuotes.txt");
-            foreach (var line in lines)
-            {
-                Console.WriteLine(line);
-            }
+            RunTelepromoter().Wait();
+        }
 
-            Console.ReadKey();
+        private static async Task RunTelepromoter()
+        {
+            var config = new TelePrompterConfig();
+            var displayTask = ShowTelepromoter(config);
+
+            var speedTask = GetInput();
+            await Task.WhenAny(displayTask, speedTask);
+
+        }
+
+        private static async Task GetInput()
+        {
+            var delay = 200;
+            Action work = () =>
+            {
+                do {
+                    var key = Console.ReadKey(true);
+                    if (key.KeyChar == '>')
+                        delay -= 10;
+                    else if (key.KeyChar == '<')
+                        delay += 10;
+                } while (true);
+            };
+            await Task.Run(work);
+        }
+
+        private static async Task ShowTelepromoter(TelePrompterConfig config)
+        {
+            var words = ReadFrom("sampleQuotes.txt");
+            foreach (var word in words)
+            {
+                Console.Write(word);
+                if (!string.IsNullOrEmpty(word))
+                {
+                    await Task.Delay(config.DelayInMilliseconds);
+                }
+            }
+            config.SetDone();
         }
 
         // Enumerator method
@@ -27,7 +62,22 @@ namespace TeleprompterConsole
             {
                 while ((line = reader.ReadLine()) != null)
                 {
-                    yield return line;
+                    var lineLength = 0;
+
+                    var words = line.Split(' ');
+                    foreach (var word in words)
+                    {
+                        lineLength += word.Length + 1;
+                        if (lineLength > 70)
+                        {
+                            lineLength = 0;
+                            yield return Environment.NewLine;
+                        }
+
+                        // will it skip one word?
+                        yield return word + " ";
+                    }
+                    yield return Environment.NewLine;
                 }
             }
         }
