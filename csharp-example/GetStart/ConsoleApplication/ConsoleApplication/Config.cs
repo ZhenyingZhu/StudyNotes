@@ -17,5 +17,14 @@ namespace TeleprompterConsole
                 DelayInMilliseconds = newDelay;
             }
         }
+
+        public bool Done => done;
+
+        private bool done;
+
+        public void SetDone()
+        {
+            done = true;
+        }
     }
 }

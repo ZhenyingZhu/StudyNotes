@@ -19,23 +19,22 @@ namespace TeleprompterConsole
             var config = new TelePrompterConfig();
             var displayTask = ShowTelepromoter(config);
 
-            var speedTask = GetInput();
+            var speedTask = GetInput(config);
             await Task.WhenAny(displayTask, speedTask);
 
         }
 
-        private static async Task GetInput()
+        private static async Task GetInput(TelePrompterConfig config)
         {
-            var delay = 200;
             Action work = () =>
             {
                 do {
                     var key = Console.ReadKey(true);
                     if (key.KeyChar == '>')
-                        delay -= 10;
+                        config.UpdateDelay(-10);
                     else if (key.KeyChar == '<')
-                        delay += 10;
-                } while (true);
+                        config.UpdateDelay(+10);
+                } while (!config.Done);
             };
             await Task.Run(work);
         }

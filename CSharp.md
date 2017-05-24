@@ -93,7 +93,7 @@ Using
 
 Class property
 - define `internal class Config`
-
+- `public bool Done => done;` make a property `Done` that can access private `done`
 
 ## Question
 `public int DelayInMilliseconds { get; private set; } = 200;` what is get and private set?
@@ -117,6 +117,7 @@ class
 https://docs.microsoft.com/en-us/dotnet/articles/welcome
   https://docs.microsoft.com/en-us/dotnet/articles/csharp/
     https://docs.microsoft.com/en-us/dotnet/articles/csharp/tutorials/index
-      https://docs.microsoft.com/en-us/dotnet/articles/csharp/tutorials/console-teleprompter
+      [console teleprompter](https://docs.microsoft.com/en-us/dotnet/articles/csharp/tutorials/console-teleprompter)
+	  https://docs.microsoft.com/en-us/dotnet/articles/csharp/tutorials/inheritance
 
 
