@@ -46,9 +46,7 @@ If the library will be generally accessible, you can distribute it as a NuGet pa
 
 `where dotnet.exe`
 
-
-## Create package from CLI
-[src](https://docs.microsoft.com/en-us/dotnet/articles/csharp/tutorials/console-teleprompter)
+Create package from CLI: [src](https://docs.microsoft.com/en-us/dotnet/articles/csharp/tutorials/console-teleprompter)
 1. `dotnet new console`
 2. `dotnet restore`: run NuGet package management
 3. `dotnet build`
@@ -95,8 +93,61 @@ Class property
 - define `internal class Config`
 - `public bool Done => done;` make a property `Done` that can access private `done`
 
+type categories
+- class: inherit from `Object`
+- structs: `Object` and `ValueType`
+- delegates: `MulticastDelegate`, `Delegate`, `Object`
+- enums: `Enum`, `System.ValueType`, `Object`
+
+`Object`
+- All types implicitly inherit from Object
+- members: 
+  - `ToString`
+  - `Equals(Object)` and static `Equals(Object, Object)` and static `ReferenceEquals(Object, Object)`
+  - `GetHashCode`
+  - `GetType`
+  - protected `Finalize` is desctructor
+  - `MemberwiseClone` return a shallow clone
+  - `.ctor` default constructor
+
+`System.Reflection`
+- inspect a type's metadata to get information about that type
+- `Type t = typeof(SimpleClass);`
+
+inheritance
+- base class vs derived class
+- support single inheritance only, but transitive
+- Static constructors, Instance constructors, Finalizers are not inherited
+- accessibility
+  - Private members are visible only in derived classes that are nested in their base class.
+  - Protected members are visible only in derived classes.
+  - Internal members are visible only in derived classes that are located in the same assembly as the base class.
+  - Public members are visible in derived classes and are part of the derived class' public interface.
+- In order to be able to override a member, the member in the base class must be marked with the `virtual`, `abstract`, or `override`.
+
+"is a" relation represent by inherit from a class, "can do" represents by inherit from interfaces  
+
+Nested class `A.B`:
+```
+public class A 
+{
+   private int value = 10;
+
+   public class B : A
+   {
+       public int GetValue()
+       {
+           return this.value;
+       }
+   }
+}
+```
+
+
 ## Question
 `public int DelayInMilliseconds { get; private set; } = 200;` what is get and private set?
+`BindingFlags flags = BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.FlattenHierarchy;`
+`var method = member as MethodBase;`
 
 
 ## APIs
@@ -119,5 +170,6 @@ https://docs.microsoft.com/en-us/dotnet/articles/welcome
     https://docs.microsoft.com/en-us/dotnet/articles/csharp/tutorials/index
       [console teleprompter](https://docs.microsoft.com/en-us/dotnet/articles/csharp/tutorials/console-teleprompter)
 	  https://docs.microsoft.com/en-us/dotnet/articles/csharp/tutorials/inheritance
+	    Inheritance and an "is a" relationship
 
 
