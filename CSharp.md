@@ -81,6 +81,7 @@ Lock
 
 Lambda
 - `Action work = () => {};`
+- can also used to define class memeber `public override string ToString() => Title;`
 
 Access
 - `internal class MyClass`
@@ -103,8 +104,8 @@ type categories
 - All types implicitly inherit from Object
 - members: 
   - `ToString`
-  - `Equals(Object)` and static `Equals(Object, Object)` and static `ReferenceEquals(Object, Object)`
-  - `GetHashCode`
+  - `Equals(Object)` and static `Equals(Object, Object)` and static `ReferenceEquals(Object, Object)`. Unless it is overridden, the `Equals(Object)` method tests for reference equality.
+  - `GetHashCode`: When you override the `Equals(Object)` method, you must also override the `GetHashCode()` method
   - `GetType`
   - protected `Finalize` is desctructor
   - `MemberwiseClone` return a shallow clone
@@ -124,6 +125,9 @@ inheritance
   - Internal members are visible only in derived classes that are located in the same assembly as the base class.
   - Public members are visible in derived classes and are part of the derived class' public interface.
 - In order to be able to override a member, the member in the base class must be marked with the `virtual`, `abstract`, or `override`.
+- `sealed` to make a sure a class cannot be use as a base class
+- `this`, `base`
+
 
 "is a" relation represent by inherit from a class, "can do" represents by inherit from interfaces  
 
@@ -143,11 +147,34 @@ public class A
 }
 ```
 
+Ctor
+- If constructor is not present in the base class' source code, the C# compiler automatically provides a default (parameterless) constructor.
+- If you don't make an explicit call to a base class constructor in your source code, the C# compiler automatically supplies a call to the base class' default or parameterless constructor.
+
+`var method = member as MethodBase;` convert type. If not convertable, return null
+
 
 ## Question
 `public int DelayInMilliseconds { get; private set; } = 200;` what is get and private set?
+```
+   public int Pages
+   { get { return totalPages; }
+     set 
+     {
+         if (value <= 0)
+            throw new ArgumentOutOfRangeException("The number of pages cannot be zero or negative.");
+         totalPages = value;   
+     }
+   }
+```
+
 `BindingFlags flags = BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.FlattenHierarchy;`
-`var method = member as MethodBase;`
+
+
+
+instantiate the class by using reflection
+
+`ulong nISBN = 0; if (! UInt64.TryParse(isbn, out nISBN))`
 
 
 ## APIs
@@ -169,7 +196,6 @@ https://docs.microsoft.com/en-us/dotnet/articles/welcome
   https://docs.microsoft.com/en-us/dotnet/articles/csharp/
     https://docs.microsoft.com/en-us/dotnet/articles/csharp/tutorials/index
       [console teleprompter](https://docs.microsoft.com/en-us/dotnet/articles/csharp/tutorials/console-teleprompter)
-	  https://docs.microsoft.com/en-us/dotnet/articles/csharp/tutorials/inheritance
-	    Inheritance and an "is a" relationship
+	  [inheritance]https://docs.microsoft.com/en-us/dotnet/articles/csharp/tutorials/inheritance
 
 
