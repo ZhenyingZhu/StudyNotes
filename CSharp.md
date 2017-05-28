@@ -16,7 +16,7 @@ Run it:
 dotnet HelloWorld.dll
 ```
 
-## Get start
+## Console
 [src](https://docs.microsoft.com/en-us/dotnet/articles/csharp/getting-started/getting-started-with-csharp)
 
 ```
@@ -33,10 +33,6 @@ Create a unit test
 - Add a dependency
 - Use `Assert` class
 
-`String.Empty` vs `null`
-
-A static method can be called as a method of an instance and as a static method
-
 If the library will be used by a single solution, include it as a project in your solution
 - create a project and `Set as StartUp Project`
 - `Add Reference`
@@ -52,8 +48,18 @@ Create package from CLI: [src](https://docs.microsoft.com/en-us/dotnet/articles/
 3. `dotnet build`
 4. `dotnet run`
 
+Compile C# program: 
+- `csc hello.cs`. It return an exe, which compiles for the full framework, and may not be available on all platforms.
+- `csc /t:library acme.cs` return a dll
+- `csc /r:acme.dll example.cs`
+- When a multi-file C# program is compiled, all of the source files are processed together, and the source files can freely reference each other
+- `dotnet` also manage dependencies and then invoke `csc`
 
 ## Concepts
+`String.Empty` vs `null`
+
+A static method can be called as a method of an instance and as a static method
+
 Enumerator method: [example](https://github.com/dotnet/docs/tree/master/samples/csharp/getting-started/console-teleprompter)
 - Enumerator methods return sequences that are evaluated lazily.
 - contain one or more `yield` return statements. 
@@ -101,7 +107,7 @@ type categories
 - enums: `Enum`, `System.ValueType`, `Object`
 
 `Object`
-- All types implicitly inherit from Object
+- All types implicitly inherit from Object, include primitive types such as int and double
 - members: 
   - `ToString`
   - `Equals(Object)` and static `Equals(Object, Object)` and static `ReferenceEquals(Object, Object)`. Unless it is overridden, the `Equals(Object)` method tests for reference equality.
@@ -153,6 +159,56 @@ Ctor
 
 `var method = member as MethodBase;` convert type. If not convertable, return null
 
+component-oriented programming
+- components present a programming model with properties, methods, and events
+
+Program Structure
+- programs
+- namespaces
+- types
+- members
+- assemblies
+
+Assemblies
+- typically have the file extension .exe or .dll, depending on whether they implement applications or libraries
+- contain executable code in the form of Intermediate Language (IL) instructions
+- contains symbolic information in the form of metadata
+- Before it is executed, the IL code in an assembly is automatically converted to processor-specific code by the Just-In-Time (JIT) compiler of .NET Common Language Runtime
+
+Types [src](https://docs.microsoft.com/en-us/dotnet/csharp/tour-of-csharp/types-and-variables)
+- value
+  - simple
+  - enum: Every enum type has an underlying type
+  - struct: do not typically require heap allocation.
+  - nullable value: Extensions of all other value types with a null value. `T?` is the extension of `T`
+- Reference, i.e. object
+  - class
+  - interface
+  - array: multi-dimensional `int[,]`
+  - delegate: `delegate int D(...)`, references to methods with a particular parameter list and return type
+
+Boxing: `int i = 1; object o = i;`; Unboxing: `int j = (int)o;`
+
+variables : represent storage locations
+- fields
+- array elements
+- local variables
+- parameters
+
+
+## APIs
+[doc](https://docs.microsoft.com/en-us/dotnet/api/index?view=netframework-4.7)
+
+[sample](https://github.com/dotnet/docs/tree/master/samples)
+
+namespace
+- System
+
+class
+- System.Console
+
+`System.Threading.Tasks.Task(seconds).Wait()`
+
 
 ## Question
 `public int DelayInMilliseconds { get; private set; } = 200;` what is get and private set?
@@ -170,32 +226,22 @@ Ctor
 
 `BindingFlags flags = BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.FlattenHierarchy;`
 
-
-
 instantiate the class by using reflection
 
-`ulong nISBN = 0; if (! UInt64.TryParse(isbn, out nISBN))`
+`ref` vs `out`: `ulong nISBN = 0; if (! UInt64.TryParse(isbn, out nISBN))`
 
-
-## APIs
-[doc](https://docs.microsoft.com/en-us/dotnet/api/index?view=netframework-4.7)
-
-[sample](https://github.com/dotnet/docs/tree/master/samples)
-
-namespace
-- System
-
-class
-- System.Console
-
-`System.Threading.Tasks.Task(seconds).Wait()`
-
+mechanisms
 
 # Stack
 https://docs.microsoft.com/en-us/dotnet/articles/welcome
   https://docs.microsoft.com/en-us/dotnet/articles/csharp/
+    Fin: Get Started
     https://docs.microsoft.com/en-us/dotnet/articles/csharp/tutorials/index
-      [console teleprompter](https://docs.microsoft.com/en-us/dotnet/articles/csharp/tutorials/console-teleprompter)
-	  [inheritance]https://docs.microsoft.com/en-us/dotnet/articles/csharp/tutorials/inheritance
+      Fin: console teleprompter, inheritance
+	https://docs.microsoft.com/en-us/dotnet/csharp/tour-of-csharp/
+	  Fin: Program Structure, Types and variables
+	  https://docs.microsoft.com/en-us/dotnet/csharp/tour-of-csharp/expressions
+	  
+  
 
-
+https://www.microsoft.com/net/tutorials/csharp/getting-started/
