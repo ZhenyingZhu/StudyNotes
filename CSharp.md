@@ -157,8 +157,6 @@ Ctor
 - If constructor is not present in the base class' source code, the C# compiler automatically provides a default (parameterless) constructor.
 - If you don't make an explicit call to a base class constructor in your source code, the C# compiler automatically supplies a call to the base class' default or parameterless constructor.
 
-`var method = member as MethodBase;` convert type. If not convertable, return null
-
 component-oriented programming
 - components present a programming model with properties, methods, and events
 
@@ -194,6 +192,88 @@ variables : represent storage locations
 - array elements
 - local variables
 - parameters
+
+Expression: [src](https://docs.microsoft.com/en-us/dotnet/csharp/tour-of-csharp/expressions)
+- precedence of the operators
+  - Object creation with initializer: `new T(...){...}`
+  - Anonymous object initializer: `new {...}`
+  - Array creation: `new T[..]`
+  - Obtain Type object: `typeof(T)`
+  - Evaluate expression in checked/unchecked context: `checked(x)`/`unchecked(x)`
+  - Obtain default value: `default(T)`
+  - Anonymous function: `delegate {...}`
+  - Bitwise negation: `~x`
+  - Asynchronously wait: `await x`
+  - Return true if x is a T: `x is T`
+  - Return x typed as T, or null if x is not a T: `x as T`. `var method = member as MethodBase;` convert type. If not convertable, return null
+  - Null coalescing: `x ?? y` Evaluates to y if x is null, to x otherwise
+  - Anonymous function (lambda expression): `(T x) => y`
+- associativity of the operators 
+  - assignment operator `=` and conditional operator `?:` is right-associative
+- overloaded operators 
+
+Statements
+- block: a list of statements written between the delimiters `{` and `}`
+- Declaration statement
+- Expression statement
+- Selection statement: `switch (var) { }`
+- Iteration statement: `foreach (var in Collection)`
+- Jump statement: `goto`, `throw`, `yield`
+- `try`, `catch`, `finally`
+- `checked` and `unchecked` statements are used to control the overflow-checking context for integral-type arithmetic operations and conversions
+- `lock` statement
+- `using` statement
+
+`const`
+
+The end of foreach
+```
+static IEnumerable<int> Range(int from, int to) 
+{
+    for (int i = from; i < to; i++) 
+    {
+        yield return i;
+    }
+    yield break;
+}
+static void YieldStatement(string[] args)
+{
+    foreach (int i in Range(-10,10)) 
+    {
+        Console.WriteLine(i);
+    }
+}
+```
+
+throw and catch in the same block
+```
+    try 
+    {
+        if (args.Length != 2) 
+        {
+            throw new InvalidOperationException("Two numbers required");
+        }
+    }
+    catch (InvalidOperationException e) 
+    {
+        Console.WriteLine(e.Message);
+    }
+```
+
+Check if overflow
+```
+    int x = int.MaxValue;
+    unchecked 
+    {
+        Console.WriteLine(x + 1);  // Overflow
+    }
+    checked 
+    {
+        Console.WriteLine(x + 1);  // Exception
+    }
+```
+
+
 
 
 ## APIs
@@ -239,8 +319,8 @@ https://docs.microsoft.com/en-us/dotnet/articles/welcome
     https://docs.microsoft.com/en-us/dotnet/articles/csharp/tutorials/index
       Fin: console teleprompter, inheritance
 	https://docs.microsoft.com/en-us/dotnet/csharp/tour-of-csharp/
-	  Fin: Program Structure, Types and variables
-	  https://docs.microsoft.com/en-us/dotnet/csharp/tour-of-csharp/expressions
+	  Fin: Program Structure, Types and variables, Expressions, Statements
+	  https://docs.microsoft.com/en-us/dotnet/csharp/tour-of-csharp/classes-and-objects
 	  
   
 
