@@ -308,6 +308,60 @@ Pair<int,string> pair = new Pair<int,string> { First = 1, Second = "two" };
 int i = pair.First;     // TFirst is int
 ```
 
+Struct
+- do not require heap allocation
+- all struct types implicitly inherit from type `System.ValueType`
+
+Array
+- elements 
+- Array types are reference types, means an array variable is a pointer
+- `int[] a = new int[10];`
+- a rank 3 array: `int[,,] a3 = new int[10, 5, 2];`
+- jagged array: An array with elements of an array type `int[][] a = new int[3][];`
+- default is 0 for int or null
+- array initializer: `int[] a = new int[] {1, 2, 3};`
+
+
+Interface [src](https://docs.microsoft.com/en-us/dotnet/csharp/tour-of-csharp/interfaces)
+- explicit interface member implementations: `void IControl.Paint() { }`. But can only access throw the interface type.
+
+Enum
+- a distinct value type with a set of named constants
+- use one of the integral value types as their underlying storage
+- define enum use underlying type
+```
+enum Alignment: sbyte
+{
+    Left = -1,
+    Center = 0,
+    Right = 1
+}
+```
+
+delegate type
+- can reference any method, even static method, that has the same argument list and return type
+- anonymous functions: `(double x) => x * 2.0`
+```
+delegate double Function(double x);
+class Multiplier
+{
+    double factor;
+    public Multiplier(double factor) 
+    {
+        this.factor = factor;
+    }
+    public double Multiply(double x) 
+    {
+        return x * factor;
+    }
+}
+
+Multiplier m = new Multiplier(2.0);
+Function f = m.Multiply;
+double res = f(3.0);
+```
+
+
 
 ## APIs
 [doc](https://docs.microsoft.com/en-us/dotnet/api/index?view=netframework-4.7)
@@ -341,6 +395,8 @@ class
 
 instantiate the class by using reflection
 
+attribute and reflection https://docs.microsoft.com/en-us/dotnet/csharp/tour-of-csharp/attributes
+
 mechanisms
 
 # Stack
@@ -350,7 +406,7 @@ https://docs.microsoft.com/en-us/dotnet/articles/welcome
     https://docs.microsoft.com/en-us/dotnet/articles/csharp/tutorials/index
       Fin: console teleprompter, inheritance
 	https://docs.microsoft.com/en-us/dotnet/csharp/tour-of-csharp/
-	  Fin: Program Structure, Types and variables, Expressions, Statements, Classes and objects
-	  https://docs.microsoft.com/en-us/dotnet/csharp/tour-of-csharp/structs
+	  Fin: Program Structure, Types and variables, Expressions, Statements, Classes and objects, Structs, Arrays, Interfaces, Enums, Delegates, 
+	  https://docs.microsoft.com/en-us/dotnet/csharp/tour-of-csharp/arrays
 
 https://www.microsoft.com/net/tutorials/csharp/getting-started/
