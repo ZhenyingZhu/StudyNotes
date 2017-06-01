@@ -497,3 +497,10 @@ The use of multicast addressing is expanded and simplified
 
 
 
+# Some notes
+[No buffer space available](https://community.sophos.com/products/unified-threat-management/f/management-networking-logging-and-reporting/31186/105-no-buffer-space-available)
+[on ubuntu](https://ubuntuforums.org/showthread.php?t=1880804)
+[explaination](https://serverfault.com/questions/614453/no-buffer-space-available-on-connect)
+[might related to SKB](http://vger.kernel.org/~davem/skb_data.html)
+
+
