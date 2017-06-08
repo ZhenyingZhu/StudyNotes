@@ -32,3 +32,11 @@ Azure AD:
 Build the app: https://github.com/Azure-Samples/active-directory-dotnet-webapp-webapi-openidconnect
 - First build the app by using "ctrl+shift+B", then run with browser
 - Use https://localhost:44322/ to sign in. Though the service running locally, when sign in, it will send a request to Azure AD and check the key.
+
+API:
+- Owin.IAppBuilder.UseWindowsAzureActiveDirectoryBearerAuthentication
+
+ASP.NET:
+- Controllers
+- jQuery
+
