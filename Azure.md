@@ -40,3 +40,7 @@ ASP.NET:
 - Controllers
 - jQuery
 
+ADAL:
+- PCL: core
+- WinRT: Windows Store
+- CoreCLR: Core CLR
