@@ -376,6 +376,12 @@ class
 
 `System.Threading.Tasks.Task(seconds).Wait()`
 
+## Others
+resx
+- https://docs.microsoft.com/en-us/dotnet/framework/resources/working-with-resx-files-programmatically
+
+
+
 
 ## Question
 `public int DelayInMilliseconds { get; private set; } = 200;` what is get and private set?
