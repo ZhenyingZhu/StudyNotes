@@ -35,6 +35,8 @@ git commit -m "Add new feature."
 ```
 
 Change docker ip: `/etc/default/docker` [Change docker OPTs](https://groups.google.com/forum/#!topic/docker-user/P93kOO7-QvA)
+add a line into `/etc/default/docker`: `DOCKER_OPTS="--bip=10.66.33.10/24"`Then restart.
+
 
 NOOP: no operation.  
 
