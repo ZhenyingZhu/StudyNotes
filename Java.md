@@ -253,6 +253,9 @@ Client side:
 3. Get `MBeanServerConnection mbsc = jmxc.getMBeanServerConnection();`
 4. Create a mBeanProxy `MBean mBean = JMX.newMBeanProxy(mbsc, mbeanName, MBean.class, true);`
 
+CLI tool:
+https://stackoverflow.com/questions/1751130/calling-jmx-mbean-method-from-a-shell-script
+
 
 # Apache common cli
 [Option Group](http://www.programcreek.com/java-api-examples/index.php?api=org.apache.commons.cli.OptionGroup): Mutex options

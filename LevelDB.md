@@ -13,6 +13,7 @@ https://github.com/0x00A/ldb/issues/48
 - version: could store a version number at the end of each key (one byte should suffice for most uses). When you wish to switch to a new key format (e.g., adding an optional third part to the keys processed by TwoPartComparator), (a) keep the same comparator name (b) increment the version number for new keys (c) change the comparator function so it uses the version numbers found in the keys to decide how to interpret them.
 - snapshot: Snapshots provide consistent read-only views over the entire state of the key-value store
 - WriteBatch: Atomic Updates so that several updates can either all success or fail
+- Synchronous Writes: return only when all data written
 
 ## Steps
 
