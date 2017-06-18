@@ -116,6 +116,7 @@ JavaScript中所有事物都是对象。
 JavaScript面向对象但不使用类，使用prototype。
 
 [src](http://www.w3school.com.cn/js/js_objects.asp)
+
 数值类型属性：`MAX VALUE`，`MIN VALUE`，`NEGATIVE INFINITIVE`，`POSITIVE INFINITIVE`，`NaN`，`prototype`，`constructor`
 
 字符串对象：
@@ -182,6 +183,7 @@ patt1.compile("d");
 
 ### Expression
 [src](http://www.w3school.com.cn/js/js_functions.asp)
+
 函数：`function myFunction(参量表){var x; return x;}`
 - 函数内部的是局部变量，函数外的是全局变量。全局变量可直接在函数内部使用。全局变量在页面关闭时删除。
 
@@ -310,9 +312,13 @@ function foo() {
 
 
 ### 文档对象模型(DOM)
+[src](http://www.w3school.com.cn/js/js_htmldom.asp)
+
+当网页被加载时，浏览器会创建页面的文档对象模型（Document Object Model）。
+
+[DOM Tree](./Javascript_files/DOM_Tree.jpg)
+
 **HERE**
-http://www.w3school.com.cn/js/js_htmldom.asp
- 
 JavaScript 能够改变页面中的所有 HTML 元素，HTML 属性，CSS 样式。
 JavaScript 能够对页面中的所有事件做出反应
 查找元素：
