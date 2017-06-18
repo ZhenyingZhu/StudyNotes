@@ -316,7 +316,7 @@ function foo() {
 
 当网页被加载时，浏览器会创建页面的文档对象模型（Document Object Model）。
 
-[DOM Tree](./Javascript_files/DOM_Tree.jpg)
+![DOM Tree](./Javascript_files/DOM_Tree.jpg)
 
 **HERE**
 JavaScript 能够改变页面中的所有 HTML 元素，HTML 属性，CSS 样式。
