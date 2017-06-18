@@ -33,6 +33,7 @@ res/values/:
 - Other XML files that contain a collection resources.  
 
 ## Run the app
+
 ### Install ADB driver
 https://www.youtube.com/watch?v=vUSRmtexmUo
 Install ADB driver on Windows: 
