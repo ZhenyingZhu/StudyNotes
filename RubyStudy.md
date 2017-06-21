@@ -332,3 +332,6 @@ class Greeter
 end
 ```
 
+### Ruby HTTP
+https://docs.ruby-lang.org/en/2.0.0/Net/HTTP.html
+
