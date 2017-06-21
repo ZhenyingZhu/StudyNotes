@@ -274,6 +274,10 @@ yum reinstall $PACKAGE
 yum upgrade $PACKAGE
 
 yum-config-manager --disable 
+
+yumdownloader --urls aws-vpc-nat
+
+rpm2cpio php-5.1.4-1.esp1.x86_64.rpm | cpio -idmv
 ```
 
 Gnome Keyring: setting in an app called "Passwords and Keys"  
