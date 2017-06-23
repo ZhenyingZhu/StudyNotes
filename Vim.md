@@ -1,3 +1,93 @@
+# Hard Way
+
+## Source
+{{{
+
+http://learnvimscriptthehardway.stevelosh.com/chapters/00.html
+
+}}}
+
+## Notes
+{{{
+
+`:echo` and `:echom`: `:messages` can see `echom` but not `echo`
+
+comment: start with `"`
+
+`:set <field>?` to check, `:set <field>!` or `:set no<field>` to toggle
+
+### Map
+{{{{
+[map keys](http://learnvimscriptthehardway.stevelosh.com/chapters/03.html)
+
+`:vsplit` and `:split`
+
+[abbr](http://learnvimscriptthehardway.stevelosh.com/chapters/08.html)
+
+`:setlocal` perbuff
+
+}}}}
+
+### Auto command
+{{{{
+```
+:edit foo " open file
+:quit
+```
+
+`:help autocmd-events` see all events
+
+To execute a command when "BufNewFile" event happened on the pattern ".txt"
+```
+:autocmd BufNewFile *.txt :write
+```
+
+For now, let's take it as vim will reindent the current file
+```
+:normal gg=G
+```
+
+A common idiom in vim scripting is to pair the "BufRead" and "BufNewFile" events together
+
+"FileType" is fired whenever Vim sets a buffer's "filetype".
+```
+:autocmd FileType python nnoremap <buffer> <localleader>c I#<esc>
+```
+
+To avoid autocmd defined multiple times
+```
+augroup filetype_html
+    autocmd!
+    autocmd FileType html nnoremap <buffer> <localleader>f Vatzf
+augroup END
+```
+
+}}}}
+
+### Operator
+{{{{
+`d`, `y`, `c` are operators that wait for a movement
+
+[operator mapping](http://learnvimscriptthehardway.stevelosh.com/chapters/15.html)
+
+}}}}
+
+### Status line
+{{{{
+[format status line](http://learnvimscriptthehardway.stevelosh.com/chapters/17.html)
+- `%f`: Path to the file
+- `%y`: Filetype of the file
+
+}}}}
+
+### Write VIM scripts
+{{{{
+[Responsible Coding](http://learnvimscriptthehardway.stevelosh.com/chapters/18.html)
+
+
+}}}}
+}}}
+
 # Config
 ## location
 - `~/.vimrc`
