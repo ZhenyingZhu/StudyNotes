@@ -5,11 +5,8 @@
 - `/etc/vim/vimrc`
 - `~/.vim/indent/python.vim` contains filetype indent.
 
-
 ## options
 See Command mode section as well.
-
-
 
 # VIM Modes
 ## Normal mode
@@ -202,4 +199,7 @@ Add in the last line of a plain text file.
 
 [C++ vim setting](https://gist.github.com/rocarvaj/2513367)  
 [C++ IDE](http://www.alexeyshmalko.com/2014/using-vim-as-c-cpp-ide/)  
+
+[Define own highlight](https://superuser.com/questions/194459/vim-syntax-highlighting-how-to-stop-the-automatic-underlining-of-a-href)
+copy /usr/share/vim/vim74/syntax/markdown.vim to ~/.vim/syntax, and remove `_` from markdownError in it
 

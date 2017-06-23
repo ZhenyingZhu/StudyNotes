@@ -28,7 +28,7 @@ def generate_md5_map(target_dir):
     for (dir_path, dir_names, file_names) in os.walk(target_dir):
         for file_name in file_names:
             file_path = os.sep.join([dir_path, file_name])
-            file_md5 = get_ssh_md5(file_path)
+            file_md5 = get_md5(file_path)
 
             if file_md5 == '':
                 continue
@@ -50,7 +50,7 @@ def promote_delete(path_list):
         for idx, path in enumerate(path_list):
             if idx != keep_idx:
                 print('Removing ' + path)
-                #os.remove(path)
+                os.remove(path)
 
 
 def main():
