@@ -311,3 +311,6 @@ __pycache__/
 
 # ldb file
 .ldb_history
+
+# music files
+*.wav

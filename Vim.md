@@ -1,14 +1,9 @@
-# Hard Way
+# VIM
 
-## Source
-{{{
+## Turtorial
 
+### Hard Way
 http://learnvimscriptthehardway.stevelosh.com/chapters/00.html
-
-}}}
-
-## Notes
-{{{
 
 `:echo` and `:echom`: `:messages` can see `echom` but not `echo`
 
@@ -16,8 +11,7 @@ comment: start with `"`
 
 `:set <field>?` to check, `:set <field>!` or `:set no<field>` to toggle
 
-### Map
-{{{{
+#### Map
 [map keys](http://learnvimscriptthehardway.stevelosh.com/chapters/03.html)
 
 `:vsplit` and `:split`
@@ -26,10 +20,7 @@ comment: start with `"`
 
 `:setlocal` perbuff
 
-}}}}
-
-### Auto command
-{{{{
+#### Auto command
 ```
 :edit foo " open file
 :quit
@@ -62,57 +53,48 @@ augroup filetype_html
 augroup END
 ```
 
-}}}}
-
-### Operator
-{{{{
+#### Operator
 `d`, `y`, `c` are operators that wait for a movement
 
 [operator mapping](http://learnvimscriptthehardway.stevelosh.com/chapters/15.html)
 
-}}}}
-
-### Status line
-{{{{
+#### Status line
 [format status line](http://learnvimscriptthehardway.stevelosh.com/chapters/17.html)
 - `%f`: Path to the file
 - `%y`: Filetype of the file
 
-}}}}
-
-### Write VIM scripts
-{{{{
+#### Write VIM scripts
 [Responsible Coding](http://learnvimscriptthehardway.stevelosh.com/chapters/18.html)
 
 
-}}}}
-}}}
+## Config
 
-# Config
-## location
+### location
 - `~/.vimrc`
 - `~/.viminfo`
 - `/etc/vim/vimrc`
 - `~/.vim/indent/python.vim` contains filetype indent.
 
-## options
+### options
 See Command mode section as well.
 
-# VIM Modes
-## Normal mode
-### Visual block
+## VIM Modes
+
+### Normal mode
+
+#### Visual block
 - `v`: characters select
 - `V`: lines select
 - `^v`: block select
 
 - `%`: fast jump to the close of the partheses
 
-### gf
+#### gf
 Quick open file that under cursor in another window
 
 `ctrl+w` then `ctrl+f`
 
-### folding
+#### folding
 [Intro](http://vim.wikia.com/wiki/Folding)
 
 `:set fdm=syntax` to enable folding.
@@ -120,13 +102,13 @@ Quick open file that under cursor in another window
 `za` to toggle current fold.
 
 
-## Visual Mode
+### Visual Mode
 
 
-## Insert Mode
+### Insert Mode
 
 
-## Command mode
+### Command mode
 [cmds](http://vim.wikia.com/wiki/Displaying_the_current_Vim_environment)
 
 - `:help cmd`
@@ -141,24 +123,24 @@ Quick open file that under cursor in another window
 - `:set incsearch`: search when char are type in
 - `:set mouse=a`, `:set mouse=`: enable/disable mouse mode. After enabled, cannot copy by `ctrl+shift+c`.
 
-### Multi-doc editiing
+#### Multi-doc editiing
 `vim $file1 $file2`
 
 - `:n`/`:N`: next/prev doc.
 - `:files`
 - `:sp file`: split the window vertically, and open the file. `^w+k`/`^w+j` switch between files.
 
-### Search and replace
+#### Search and replace
 [vim search](http://vim.wikia.com/wiki/Search_and_replace>Replease and search tutorial)
 
 - `:%s/old/new/g`: `%` means all lines. `g` means replace all apperances of pattern old in the line.
 
 
 
-# plugin
+## plugin
 [如何将Vim打造成一个成熟的IDE](https://linux.cn/article-3314-1.html)
 
-## Pathogen
+### Pathogen
 [Intro](https://github.com/tpope/vim-pathogen)
 
 Install plugins
@@ -169,13 +151,13 @@ cd ~/.vim/bundle && git clone git://github.com/tpope/vim-sensible.git
 Run `:Helptags` to load help docs. Then `:help $plugin_name`
 
 
-## SuperTab
+### SuperTab
 [Intro](https://github.com/ervandew/supertab)
 
 After press `tab`, a list of choices shows up. `ctrl+n` and `ctrl+p` switch between them, and then keep typing.
 
 
-## syntastic
+### syntastic
 [Intro](https://github.com/scrooloose/syntastic)
 
 [C++11 support](http://stackoverflow.com/questions/18158772/how-to-add-c11-support-to-syntastic-vim-plugin): add to `vimrc`
@@ -187,7 +169,7 @@ let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
 <b>Need some other plugins to make it fully work. Not finish yet</b>
 
 
-## NERDTree
+### NERDTree
 [Intro](https://github.com/scrooloose/nerdtree)
 
 Add to `vimrc`
@@ -204,19 +186,24 @@ Shortcuts:
 - `R`: Refresh the tree, useful if files change outside of Vim
 - `?`: Toggle NERD Tree's quick help
 
+### undotree
+[info](https://github.com/mbbill/undotree)
+
+### vim-markdown
+[Info](https://github.com/tpope/vim-markdown)
 
 
-# Tool chain
+## Tool chain
 [Linux 平台下阅读源码的工具链](http://blog.jobbole.com/101322/)
 
-## ctags
+### ctags
 At the src root folder, call `ctags -R`, a `tags` file will be generated. Then use vim to open src files from root folder.
 
 - `ctrl+]`: goto
 - `ctrl+t`: return back
 
 
-## cscope for C
+### cscope for C
 Src root folder, `cscope -Rbq`, a `cscope.out` database will be generated.
 
 In vim, 
@@ -232,7 +219,7 @@ In vim,
   - `i`: Find files #including this file
 
 
-## doxygen for C++
+### doxygen for C++
 To create documents and draw structure graphs.
 
 Install:
@@ -254,9 +241,7 @@ Then call `doxygen Doxyfile`. Will create html and latex two folders.
 
 
 
-
-
-# tmp
+## tmp
 Run shell cmd in vim: https://www.linux.com/learn/tutorials/442419-vim-tips-working-with-external-commands  
 
 http://vimdoc.sourceforge.net/htmldoc/filetype.html  
@@ -292,4 +277,10 @@ Add in the last line of a plain text file.
 
 [Define own highlight](https://superuser.com/questions/194459/vim-syntax-highlighting-how-to-stop-the-automatic-underlining-of-a-href)
 copy /usr/share/vim/vim74/syntax/markdown.vim to ~/.vim/syntax, and remove `_` from markdownError in it
+
+[Keep undo history](https://askubuntu.com/questions/292/how-do-i-get-vim-to-keep-its-undo-history)
+```
+set undofile
+set undodir=/home/yourname/.vimundo/
+```
 

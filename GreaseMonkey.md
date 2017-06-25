@@ -41,4 +41,21 @@ $.ajaxSetup({
 
 ```
 
+To click a button:
+```
+$('.badge_craft_button').click();
+```
+
+Where the button is
+```
+<div class="badge_craft_button" onclick="Profile_CraftGameBadge();" />
+```
+
+Reload the page after 100 ms
+```
+setTimeout(function() {
+    window.location.reload();
+}, 100);
+```
+
 
