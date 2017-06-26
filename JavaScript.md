@@ -60,7 +60,7 @@ JavaScript是脚本型语言，边读取代码边执行。
 注释：`//`, `/**/`
 
 Variable
-- 声明变量：`var x;`。赋值`x=2;`。`var name= "Bill";` 变量名一定要以字母开始。不赋值之前值为`undefined`。
+- 声明变量：`var x;`。赋值`x=2;`。`var name="Bill";` 变量名一定要以字母开始。不赋值之前值为`undefined`。
 - 重复声明不会使值消失。`var x=2; var x; // x is still 2`
 - 数据类型是动态的，可赋不同类型的值。
 - 字符串用单或双引号括起来。内部可包含与整个字符串外部不同的引号。
@@ -84,7 +84,7 @@ Variable
   - 使用literals创建：`person={firstname:"John",lastname:"Doe",age:50,eyecolor:"blue"};`
   - 使用构造器：`var myFather=new person("Bill","Gates",56,"blue");`
 
-构造器
+构造器函数
 ```
 function person(firstname,lastname,age,eyecolor){
   this.firstname=firstname;
@@ -549,6 +549,7 @@ function myFunction() {
 $(document).ready(myFunction); // onload
 ```
 
+See JQuery.md
 
 ### AJAX
 [src](http://www.w3school.com.cn/php/php_ajax_xmlhttprequest.asp)
