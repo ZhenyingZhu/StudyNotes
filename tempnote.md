@@ -1164,6 +1164,11 @@ Make unchanged properities in a class to be static (not change after set)
 
 Make unchanged valie to be const
 
+# Koji
+https://fedoraproject.org/wiki/Koji
+
+
+
 
 # timestamp section
 Sep 11 2016
