@@ -1167,6 +1167,8 @@ Make unchanged valie to be const
 # Koji
 https://fedoraproject.org/wiki/Koji
 
+# same all output on terminal
+https://unix.stackexchange.com/questions/200637/save-all-the-terminal-output-to-a-file
 
 
 
