@@ -1170,6 +1170,7 @@ https://fedoraproject.org/wiki/Koji
 # same all output on terminal
 https://unix.stackexchange.com/questions/200637/save-all-the-terminal-output-to-a-file
 
+https://askubuntu.com/questions/690703/save-current-terminal-scrollback-to-file
 
 
 # timestamp section
