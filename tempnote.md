@@ -1172,6 +1172,8 @@ https://unix.stackexchange.com/questions/200637/save-all-the-terminal-output-to-
 
 https://askubuntu.com/questions/690703/save-current-terminal-scrollback-to-file
 
+# json compare tool
+https://jsonlint.com/
 
 # timestamp section
 Sep 11 2016
