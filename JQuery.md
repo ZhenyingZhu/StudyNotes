@@ -309,7 +309,99 @@ Traversing a DOM tree. move up (ancestors), down (descendants) and sideways (sib
 
 Traverse Up:
 - `parent()`
-- `parents()`
-- `parentsUntil()`
+- `parents()`: all the way up to the document's root element `<html>`
+- `parentsUntil()`: `$("span").parentsUntil("div");`
 
-HERE https://www.w3schools.com/jquery/jquery_traversing_ancestors.asp
+Filter
+```
+$(document).ready(function(){
+    $("span").parents("ul").css({"color": "red", "border": "2px solid red"});
+});
+```
+
+Traverse Down:
+- `children()`: single level down
+- `find()`: returns descendant elements of the selected element, all the way down to the last descendant. All: `$("div").find("*");`
+
+Filter
+```
+$(document).ready(function(){
+    $("div").children("p.first");
+});
+```
+
+Traversing Sideways
+- `siblings()`: all sibling elements of the selected element, not include itself.
+- `next()`
+- `nextAll()`
+- `nextUntil()`: not include the target.
+- `prev()`
+- `prevAll()`
+- `prevUntil()`
+
+Filtering
+- `first()`: `$("div").first();` the first `<div>`
+- `last()`
+- `eq()`: specify index number. `$("p").eq(1);`
+- `filter()`: `$("p").filter(".intro");` select all `<p class="intro">`
+- `not()`: `$("p").not(".intro");`
+
+[jQuery AJAX](https://www.w3schools.com/jquery/jquery_ajax_intro.asp)
+
+With the jQuery AJAX methods, you can request text, HTML, XML, or JSON from a remote server using both HTTP Get and HTTP Post. And you can load the external data directly into the selected HTML elements of your web page!
+
+Because different browsers have different syntax for AJAX implementation. This means that you will have to write extra code to test for different browsers. However, the jQuery team has taken care of this for us.
+
+AJAX `load()` Method
+- Syntax: `$(selector).load(URL,data,callback);`
+- `$("#div1").load("demo_test.txt #p1");` load the element with id `p1` in this URL
+- Callback: 
+  - `responseTxt`: contains the resulting content if the call succeeds
+  - `statusTxt`: contains the status of the call
+  - `xhr`: contains the XMLHttpRequest object
+
+Get the status from load method
+```
+$("button").click(function(){
+    $("#div1").load("demo_test.txt", function(responseTxt, statusTxt, xhr){
+        if(statusTxt == "success")
+            alert("External content loaded successfully!");
+        if(statusTxt == "error")
+            alert("Error: " + xhr.status + ": " + xhr.statusText);
+    });
+});
+```
+
+GET and POST
+- the POST method NEVER caches data, and is often used to send data along with the request.
+- GET Syntax: `$.get(URL,callback);`
+- POST Syntax: `$.post(URL,data,callback);`
+
+
+GET
+```
+$("button").click(function(){
+    $.get("demo_test.asp", function(data, status){
+        alert("Data: " + data + "\nStatus: " + status);
+    });
+});
+```
+
+POST
+```
+$("button").click(function(){
+    $.post("demo_test_post.asp",
+    {
+        name: "Donald Duck",
+        city: "Duckburg"
+    },
+    function(data, status){
+        alert("Data: " + data + "\nStatus: " + status);
+    });
+});
+```
+
+[The `noConflict()` Method](https://www.w3schools.com/jquery/jquery_noconflict.asp)
+
+If two different frameworks are using the same shortcut, one of them might stop working. The `noConflict()` method releases the hold on the $ shortcut identifier, so that other scripts can use it.
+
