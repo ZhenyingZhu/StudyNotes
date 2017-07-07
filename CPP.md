@@ -5872,6 +5872,34 @@ some conversion.
 ## lambda
 
 ## [bind](http://en.cppreference.com/w/cpp/utility/functional/bind)
+- [Boost bind](https://theboostcpplibraries.com/boost.bind)
+- [An example for callback](https://stackoverflow.com/questions/2471529/how-to-implement-generic-callbacks-in-c)
+
+A callback function signature that input string and output void
+```
+boost::function<void, const std::string&> callback;
+```
+
+A function that will call this callback after something is done
+```
+void DoLongOperation(boost::function<void, const std::string&> callback)
+{
+  std::string result = DoSomeLengthyStuff();
+  callback(result);
+}
+```
+
+Two callback functions
+```
+void CompleteRoutine1(const std::string&);
+void CompleteRoutine2(int param, const std::string&);
+```
+
+To call the second one, it should be first convert to a function object that only accept one string arg, by using `boost::bind`. Note it is matching the signature of callback arg.
+```
+DoLongOperation(&CompleteRoutine1); // Matches directly
+DoLongOperation(boost::bind(&CompleteRoutine2, 7, _1)); // int parameter is bound to constant.
+```
 
 ## [Callable](http://en.cppreference.com/w/cpp/concept/Callable)
 
