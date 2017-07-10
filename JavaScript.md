@@ -679,3 +679,8 @@ echo $response; //output the response
 ?>
 ```
 
+# Code Reading
+
+## Steam trading card bulk buyer
+[src](https://bitbucket.org/Doctor_McKay/steam-trading-card-bulk-buyer/raw/tip/badgebuy.user.js)
+
