@@ -70,4 +70,16 @@ zhenyinz@uc4346b7191ad54db70fc:~/GitHub/StudyNotes$ sudo iptables-save -c >rules
 COMMIT
 ```
 
+## Flow
+https://unix.stackexchange.com/questions/189905/how-iptables-tables-and-chains-are-traversed
+
+https://en.wikipedia.org/wiki/Netfilter
+
+upload.wikimedia.org/wikipedia/commons/3/37/Netfilter-packet-flow.svg
+
+http://www.iptables.info/en/structure-of-iptables.html
+
+
+www.csie.ntu.edu.tw/~b93070/CNL/v4.0/CNLv4.0.files/Page697.htm
+
 
