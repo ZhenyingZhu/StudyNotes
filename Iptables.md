@@ -79,7 +79,72 @@ upload.wikimedia.org/wikipedia/commons/3/37/Netfilter-packet-flow.svg
 
 http://www.iptables.info/en/structure-of-iptables.html
 
+A packet hits
+1. Firewall
+2. the proper device driver in kernel
+3. iptables
+4. either local app or forward to another host
+
+Dist local host
+1. raw PREROUTING: before connection tracking
+2. conntrack
+3. mangle PREROUTING: change packets IP header
+4. nat PREROUTING: DNAT. Don't filter in this chain
+5. routing decision: local host or forward
+6. mangle INPUT: after routed, but before send to the process on the machine
+7. filter INPUT: all packets dest for this host no matter which interface or which direction
+
+Source local host
+1. routing decision: What source address to use, what outgoing interface to use
+2. raw OUTPUT
+3. conntrack
+4. mangle OUTPUT
+5. nat OUTPUT: for NAT
+6. routing decision: route based on mangle and nat changes
+7. filter OUTPUT
+8. mangle POSTROUTING: mangle packets for both packets hit the firewall and packets created by firewall
+9. nat POSTROUTING: SNAT. Don't do filtering here.
+
+Forwarded: Table 6-3
+
+mangle table
+- TOS
+- TTL
+- MARK: add marks that recognized by `iproute2`. Can do bandwidth limiting and Class Based Queuing based on these marks.
+- SECMARK: marks for SELinux
+- CONNSECMARK: similar to SECMARK
+
+nat table
+- only the first packet in a stream will hit this table. After this, the rest of the packets will automatically have the same action
+- DNAT: ingress
+- SNAT: egress
+- MASQUERADE: similiar to SNAT, but do more to support DHCP
+- REDIRECT
+
+raw table
+- set a mark on packets to make them not handled by conntrack
+- using the NOTRACK target on the packet
+- PREROUTING
+- OUTPUT
+- the `iptable_raw` module must be loaded. It will be loaded automatically if `iptables` is run with the `-t raw`
+
+filter table
+- DROP
+- ACCEPT
+
+user specified chains
+- can specify a jump rule to a different chain within the same table
+- new chain must be userspecified
+- only built in chains can have a default policy
+- user chain can add a jump rule at the end that jump back
+
+[conntrack](https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Security_Guide/sect-Security_Guide-Firewalls-IPTables_and_Connection_Tracking.html)
+- connection tracking: store info about incoming connections. States: NEW, ESTABLISHED, RELATED, INVALID
+
+[Masquerade](http://www.tldp.org/HOWTO/IP-Masquerade-HOWTO/ipmasq-background2.1.html)
+- similar to 1-to-many NAT. If a host connect to internet, internal computers can connect to this host and then connect to the internet
+
+
 
 www.csie.ntu.edu.tw/~b93070/CNL/v4.0/CNLv4.0.files/Page697.htm
-
 
