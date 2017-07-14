@@ -5,4 +5,7 @@ http://wiki.ubuntu.org.cn/index.php?title=%E7%94%A8GDB%E8%B0%83%E8%AF%95%E7%A8%8
 gdb --args executablename arg1 arg2 arg3
 ```
 
-
+To make GDB work in Docker: 
+```
+sudo docker run -it -p 2220:22 --security-opt seccomp=unconfined --name ${container name} -v ${local path}:${mount path} ${image} bash
+```
