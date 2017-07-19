@@ -1175,6 +1175,11 @@ https://askubuntu.com/questions/690703/save-current-terminal-scrollback-to-file
 # json compare tool
 https://jsonlint.com/
 
+# modprobe
+[src](https://en.wikipedia.org/wiki/Modprobe)
+
+Basic version: `insmod` and `rmmod`
+
 # timestamp section
 Sep 11 2016
 Nov 18 2016
