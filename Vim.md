@@ -101,6 +101,8 @@ Quick open file that under cursor in another window
 
 `za` to toggle current fold.
 
+`:set fdm=marker` use more than three `{{{}}}` to define folding. First type `}` can avoid affect following folding
+
 
 ### Visual Mode
 
