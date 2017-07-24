@@ -307,7 +307,7 @@ Segment
 - TCP send two packets to different sockets if they have different source. 
 
 - Slammer worm. 
-- Port scan: `nmap` 
+- Port scan: `nmap` [link] (https://nmap.org/)
 
 - Web server only use one process, but use a thread for each socket.  
 
