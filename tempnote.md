@@ -1180,6 +1180,9 @@ https://jsonlint.com/
 
 Basic version: `insmod` and `rmmod`
 
+# flow hash
+https://blog.cloudflare.com/how-to-receive-a-million-packets/
+
 # timestamp section
 Sep 11 2016
 Nov 18 2016
