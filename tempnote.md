@@ -1183,6 +1183,11 @@ Basic version: `insmod` and `rmmod`
 # flow hash
 https://blog.cloudflare.com/how-to-receive-a-million-packets/
 
+# flat buffer
+https://google.github.io/flatbuffers/
+
+Use for serialization and deserialization
+
 # timestamp section
 Sep 11 2016
 Nov 18 2016
@@ -1203,6 +1208,8 @@ Jun 9 2017
 Jun 11 2017
 Jun 15 2017
 Jun 25 2017
+
+The whole month that is not learning any thing
 Jul 2 2017
 Jul 3 2017
 Jul 4 2017
@@ -1225,3 +1232,5 @@ Jul 28 2017
 Jul 30 2017
 Jul 31 2017
 Aug 2 2017
+
+
