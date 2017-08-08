@@ -4,5 +4,13 @@ https://www.edx.org/micromasters/software-development
 ## How to Code: Simple Data
 https://www.edx.org/course/how-code-simple-data-ubcx-htc1x
 
+### Beginning Student Language
+Primitive call
+
+```
+(require 2htdp/image)
+```
+
+
 
 
