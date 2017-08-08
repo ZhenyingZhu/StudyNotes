@@ -1188,6 +1188,11 @@ https://google.github.io/flatbuffers/
 
 Use for serialization and deserialization
 
+# ping with timestamp
+```
+ping 192.168.63.15 | while read pong; do echo "$(date +"%Y-%m-%d %H:%M:%S,%3N"): $pong"; done
+```
+
 # timestamp section
 Sep 11 2016
 Nov 18 2016
