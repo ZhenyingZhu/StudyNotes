@@ -421,3 +421,13 @@ The main python install libs under `/usr/lib/python2.7`
 
 To make in python CLI, the move keys can actually move, [install libreadline](http://stackoverflow.com/questions/10765441/python3-2-can-not-recognize-up-down-left-right-keys-in-interpreter)
 
+# inspect
+To see all the members of an instance
+
+```
+import inspect
+from pprint import pprint
+
+pprint(inspect.getmembers(my_instance))
+```
+
