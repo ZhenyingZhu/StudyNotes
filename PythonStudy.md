@@ -431,3 +431,47 @@ from pprint import pprint
 pprint(inspect.getmembers(my_instance))
 ```
 
+# Star operator
+`*` unpack a seq/collection to make it fit arguments:
+```
+def sum(a, b):
+    return a + b
+
+values = (1, 2)
+return sum(*values)
+```
+
+`**` unpack a dict
+
+```
+def sum(a, b, c, d):
+    return a + b + c + d
+
+values1 = (1, 2)
+values2 = { 'c': 10, 'd': 15 }
+s = sum(*values1, **values2)
+```
+will execute as:
+```
+s = sum(1, 2, c=10, d=15)
+```
+
+In arg list, `*args` means it accept arbitrary number of arguments, `**args` accepts dict
+```
+def foo(*args):
+    for a in args:
+        print a
+```
+
+```
+def bar(**kwargs):
+    for a in kwargs:
+        print a, kwargs[a]
+
+bar(name='one', age=27)
+```
+
+# Unicode does not work
+```
+u.topic.encode('ascii','ignore').startswith("something")
+```
