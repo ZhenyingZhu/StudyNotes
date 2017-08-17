@@ -475,3 +475,11 @@ bar(name='one', age=27)
 ```
 u.topic.encode('ascii','ignore').startswith("something")
 ```
+
+# swap two elements in a list
+```
+lst = [1,2,3]
+lst[0], lst[2] = lst[2], lst[0]
+```
+
+
