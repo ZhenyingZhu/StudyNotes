@@ -5,7 +5,10 @@ https://www.edx.org/micromasters/software-development
 https://www.edx.org/course/how-code-simple-data-ubcx-htc1x
 
 ### Beginning Student Language
-https://courses.edx.org/courses/course-v1:UBCx+HtC1x+2T2017/a24b7341216346f2a5c99c6391f64229/
+
+Manual:
+- https://courses.edx.org/courses/course-v1:UBCx+HtC1x+2T2017/a24b7341216346f2a5c99c6391f64229/
+- file:///C:/Program%20Files/Racket/doc/search/index.html
 
 Primitive call
 
