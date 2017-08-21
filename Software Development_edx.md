@@ -4,6 +4,8 @@ https://www.edx.org/micromasters/software-development
 ## How to Code: Simple Data
 https://www.edx.org/course/how-code-simple-data-ubcx-htc1x
 
+### Introduction
+
 ### Beginning Student Language
 
 Manual:
@@ -22,4 +24,4 @@ Define a function
   (op arg))
 ```
 
-
+### How to Design Functions
