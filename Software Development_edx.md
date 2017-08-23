@@ -46,4 +46,28 @@ Use enought test cases to get code coverage
 - boundary cases
 
 ### How to Design Data
+HtDD: https://courses.edx.org/courses/course-v1:UBCx+HtC1x+2T2017/77860a93562d40bda45e452ea064998b/#HtDD
+- identify problem domain information: simple atomic data, intervals, enumerations, itemizations and mixed data itemizations
+- templates for functions operating on atomic data
+
+From problem domain to data, interpret real world information as data.
+
+HtDD
+- structure defination
+- type comment
+- interpretation
+- examples
+- template of a 1 arg func operating on this data
+
+No-primitive data
+- Simple Atomic Data, normally primitive data with certain domain
+- Interval
+- Enumeration
+- Itemization: is comprised of 2 or more subclasses, at least one of which is not a distinct item	
+
+Compound data
+- Compound data: consists of two or more items that naturally belong together	
+- References to other defined type: is naturally composed of different parts	
+- self-referential or mutually referential: is of arbitrary (unknown) size	
+
 
