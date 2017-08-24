@@ -63,7 +63,7 @@ No-primitive data
 - Simple Atomic Data, normally primitive data with certain domain
 - Interval
 - Enumeration
-- Itemization: is comprised of 2 or more subclasses, at least one of which is not a distinct item	
+- [Itemization](https://courses.edx.org/courses/course-v1:UBCx+HtC1x+2T2017/77860a93562d40bda45e452ea064998b/#Itemization): is comprised of 2 or more subclasses, at least one of which is not a distinct item. Need a guard when check if one the itemization data is which subclass iteam.
 
 Compound data
 - Compound data: consists of two or more items that naturally belong together	
