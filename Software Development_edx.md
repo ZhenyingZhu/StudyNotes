@@ -70,4 +70,8 @@ Compound data
 - References to other defined type: is naturally composed of different parts	
 - self-referential or mutually referential: is of arbitrary (unknown) size	
 
+Data driven: Assamble the functions operate on a data type together.
+
+Fault injection: add faults to code to make it break in an expected way
+
 
