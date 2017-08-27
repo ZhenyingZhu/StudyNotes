@@ -1206,6 +1206,9 @@ ping 192.168.63.15 | while read pong; do echo "$(date +"%Y-%m-%d %H:%M:%S,%3N"):
 [src](https://askubuntu.com/questions/187888/what-is-the-correct-way-to-completely-remove-an-application)
 `apt-get remove --purge packagename`
 
+# Markdown extensions for Visual Studio Code
+https://code.visualstudio.com/docs/languages/markdown
+
 # timestamp section
 Sep 11 2016
 Nov 18 2016
