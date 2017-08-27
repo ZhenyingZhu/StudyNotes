@@ -1209,6 +1209,9 @@ ping 192.168.63.15 | while read pong; do echo "$(date +"%Y-%m-%d %H:%M:%S,%3N"):
 # Markdown extensions for Visual Studio Code
 https://code.visualstudio.com/docs/languages/markdown
 
+# Fiddler
+Windows mock http request
+
 # timestamp section
 Sep 11 2016
 Nov 18 2016
