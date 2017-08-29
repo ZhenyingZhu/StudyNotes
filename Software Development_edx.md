@@ -74,7 +74,7 @@ Data driven: Assamble the functions operate on a data type together.
 
 Fault injection: add faults to code to make it break in an expected way
 
-Templates
+Examples
 - simple atomic data: One or two data examples.  Additional tests are required if there are multiple cases involved.
 - Intervals: three data examples. be sure to test closed boundaries as well as midpoints
 - Enumerations: have (at least) as many tests as there are cases in the enumeration.
