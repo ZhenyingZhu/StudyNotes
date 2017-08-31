@@ -80,5 +80,5 @@ Examples
 - Enumerations: have (at least) as many tests as there are cases in the enumeration.
 - Itemizations: should have at least as many tests as there are cases in the itemizations. 
 
-
+Identify the structure of the information.
 
