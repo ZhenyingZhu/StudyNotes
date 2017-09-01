@@ -416,3 +416,8 @@ https://docs.microsoft.com/en-us/dotnet/articles/welcome
 	  https://docs.microsoft.com/en-us/dotnet/csharp/tour-of-csharp/arrays
 
 https://www.microsoft.com/net/tutorials/csharp/getting-started/
+
+# Compare two lists
+https://msdn.microsoft.com/en-us/library/bb348567(v=vs.110).aspx
+
+
