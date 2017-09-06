@@ -421,3 +421,5 @@ https://www.microsoft.com/net/tutorials/csharp/getting-started/
 https://msdn.microsoft.com/en-us/library/bb348567(v=vs.110).aspx
 
 
+# Dictionary
+TryGetValue can test if key exist or not.
