@@ -1,11 +1,16 @@
 #!/usr/bin/python
 
+import os
+from sys import argv
+import pickle
 import urllib
-import urllib2
+import urllib.request
+import shutil
 import re
 import time
 
 
+""" Windows does not have SIGALM
 def timeout(func, args=(), kwargs={}, timeout_duration=1):
     import signal
 
@@ -27,15 +32,19 @@ def timeout(func, args=(), kwargs={}, timeout_duration=1):
         signal.alarm(0)
 
     return result
+"""
 
 
 class Crawler:
     def __init__(self, first_url, save_path):
-        # TODO: Strong coupling between crawler and saving file
+        # TODO: Strong coupling between crawler and saving file. Need decouple
         self.first_url = first_url
         self.save_path = save_path
-        if not self.save_path.endswith('/'):
-            self.save_path += '/'
+
+        # TODO: is it really needed?
+        #if not self.save_path.endswith('/'):
+        #    self.save_path += '/'
+
         self.html_page = ""
         self.last_url_id = self.get_url_pattern(first_url)
         self.last_url = first_url
@@ -60,9 +69,9 @@ class Crawler:
                 'Accept-Language': 'en-US,en;q=0.8',
                 'Connection': 'keep-alive'}
 
-            req = urllib2.Request(url, headers=hdr)
+            req = urllib.request.Request(url, headers=hdr)
 
-            response = urllib2.urlopen(req)
+            response = urllib.request.urlopen(req)
 
             # The problem here is that read() might not get the entire HTTP response
             self.html_page = ""
@@ -71,7 +80,7 @@ class Crawler:
                 if not data:
                     last_part = response.read()
                     break
-                self.html_page += data
+                self.html_page += data.decode("utf-8") 
             if not self.html_page.endswith('</html>\n'):
                 # maybe it is because memory not enough?
                 print('partial read, the last part of the data: ')
@@ -80,7 +89,7 @@ class Crawler:
             debug_file = open('html_page', 'w')
             debug_file.write(self.html_page)
             debug_file.close()
-        except urllib2.HTTPError:
+        except urllib.request.HTTPError:
             raise
         except ValueError:
             raise
@@ -132,13 +141,19 @@ class Crawler:
 
     def download_pic(self, pic_url):
         filename = pic_url.split('/')[-1]
-        save_position = self.save_path + '/' + filename
+        save_position = os.path.normpath(os.path.join(self.save_path, filename))
         # TODO create folder
         try:
-            if timeout(urllib.urlretrieve, args=(pic_url, save_position), timeout_duration=60):
-                return False
+            #if timeout(urllib.request.urlretrieve, args=(pic_url, save_position), timeout_duration=60):
+            #    return False
+            #return True
+            
+            local_filename, headers = urllib.request.urlretrieve(pic_url)
+            shutil.move(local_filename, save_position)
+            
             return True
-        except IOError:
+        except IOError as e:
+            print(e)
             print("Cannot download pic, skipping...")
             return False
         except KeyboardInterrupt:
@@ -169,13 +184,13 @@ class Crawler:
             #time.sleep(0.5)
 
         # TODO auto retry
-        print failed_urls
+        print(failed_urls)
 
 
 def main():
     # TODO start from an info page, and a list of urls
     my_url = ''
-    c = Crawler(my_url, "/tmp/crawler/")
+    c = Crawler(my_url, "F:/Downloads/tmp/")
     c.start()
 
 if __name__ == '__main__':
