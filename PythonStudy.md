@@ -483,3 +483,7 @@ lst[0], lst[2] = lst[2], lst[0]
 ```
 
 
+# Element tree
+[API](https://docs.python.org/2/library/xml.etree.elementtree.html)
+
+Notice there is a namespace when search for element.
