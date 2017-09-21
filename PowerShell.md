@@ -21,3 +21,6 @@ $envvar = $env:SOMETHING
 ```
 $states = @{"Washington" = "Olympia"; "Oregon" = "Salem"; California = "Sacramento"}
 ```
+
+# Check properfy
+`$obj | fl`
