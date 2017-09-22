@@ -24,3 +24,7 @@ $states = @{"Washington" = "Olympia"; "Oregon" = "Salem"; California = "Sacramen
 
 # Check properfy
 `$obj | fl`
+
+# List or Array
+https://stackoverflow.com/questions/24754822/powershell-remove-item-0-from-an-array
+
