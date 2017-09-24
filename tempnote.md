@@ -642,7 +642,11 @@ http://effbot.org/zone/python-with-statement.htm
 
 `sudo yum -y --enablerepo="epel" install hping3`  
 
-`$ dpkg -l | grep python`  
+`$ dpkg -l | grep python` 
+
+[src](https://askubuntu.com/questions/17823/how-to-list-all-installed-packages)
+- `dpkg --get-selections | grep -v deinstall` 
+- `dpkg -l`
 
 [DF flag](http://yurisk.info/2009/09/01/ping-setting-dont-fragment-bit-in-linuxfreebsdsolarisciscojuniper/)  
 [wireshark](http://anonscm.debian.org/viewvc/collab-maint/ext-maint/wireshark/trunk/debian/README.Debian?view=markup)  
@@ -1188,6 +1192,29 @@ https://google.github.io/flatbuffers/
 
 Use for serialization and deserialization
 
+# ping with timestamp
+```
+ping 192.168.63.15 | while read pong; do echo "$(date +"%Y-%m-%d %H:%M:%S,%3N"): $pong"; done
+```
+
+# apt list all installed
+[src](https://askubuntu.com/questions/17823/how-to-list-all-installed-packages)
+
+`apt list --installed`
+
+# apt remove package
+[src](https://askubuntu.com/questions/187888/what-is-the-correct-way-to-completely-remove-an-application)
+`apt-get remove --purge packagename`
+
+# Markdown extensions for Visual Studio Code
+https://code.visualstudio.com/docs/languages/markdown
+
+# Fiddler
+Windows mock http request
+
+# IIS
+https://docs.microsoft.com/en-us/iis/extensions/introduction-to-iis-express/iis-express-overview
+
 # timestamp section
 Sep 11 2016
 Nov 18 2016
@@ -1234,3 +1261,4 @@ Jul 31 2017
 Aug 2 2017
 Aug 4 2017
 Aug 5 2017
+Aug 9 2017

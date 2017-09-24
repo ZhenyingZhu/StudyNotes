@@ -421,3 +421,69 @@ The main python install libs under `/usr/lib/python2.7`
 
 To make in python CLI, the move keys can actually move, [install libreadline](http://stackoverflow.com/questions/10765441/python3-2-can-not-recognize-up-down-left-right-keys-in-interpreter)
 
+# inspect
+To see all the members of an instance
+
+```
+import inspect
+from pprint import pprint
+
+pprint(inspect.getmembers(my_instance))
+```
+
+# Star operator
+`*` unpack a seq/collection to make it fit arguments:
+```
+def sum(a, b):
+    return a + b
+
+values = (1, 2)
+return sum(*values)
+```
+
+`**` unpack a dict
+
+```
+def sum(a, b, c, d):
+    return a + b + c + d
+
+values1 = (1, 2)
+values2 = { 'c': 10, 'd': 15 }
+s = sum(*values1, **values2)
+```
+will execute as:
+```
+s = sum(1, 2, c=10, d=15)
+```
+
+In arg list, `*args` means it accept arbitrary number of arguments, `**args` accepts dict
+```
+def foo(*args):
+    for a in args:
+        print a
+```
+
+```
+def bar(**kwargs):
+    for a in kwargs:
+        print a, kwargs[a]
+
+bar(name='one', age=27)
+```
+
+# Unicode does not work
+```
+u.topic.encode('ascii','ignore').startswith("something")
+```
+
+# swap two elements in a list
+```
+lst = [1,2,3]
+lst[0], lst[2] = lst[2], lst[0]
+```
+
+
+# Element tree
+[API](https://docs.python.org/2/library/xml.etree.elementtree.html)
+
+Notice there is a namespace when search for element.
