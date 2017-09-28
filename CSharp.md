@@ -424,5 +424,9 @@ https://msdn.microsoft.com/en-us/library/bb348567(v=vs.110).aspx
 # Dictionary
 TryGetValue can test if key exist or not.
 
+# Write to a file
+https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/file-system/how-to-write-to-a-text-file
+
 # UT
 https://docs.microsoft.com/en-us/visualstudio/test/unit-test-basics
+
