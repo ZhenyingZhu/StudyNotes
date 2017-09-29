@@ -59,7 +59,7 @@ private:
 	}
 };
 
-int main() {
+int LongestCommonPrefixMain() {
 	JiabinSolution sol;
 	vector<string> input = { "apple", "app","apply" };
 	//{"abc", "ab", "abcd"};
