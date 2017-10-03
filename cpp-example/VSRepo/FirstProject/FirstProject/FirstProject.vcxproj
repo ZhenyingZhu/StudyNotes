@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="LongestCommonPrefix.cpp" />
     <ClCompile Include="SearchInsertPosition.cpp" />
+    <ClCompile Include="TestConstructor.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
