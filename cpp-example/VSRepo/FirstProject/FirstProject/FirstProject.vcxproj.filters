@@ -24,5 +24,8 @@
     <ClCompile Include="TestConstructor.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="HasPtr.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

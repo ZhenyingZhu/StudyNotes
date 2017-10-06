@@ -2,6 +2,7 @@
 
 using namespace std;
 
+namespace TestConstructor {
 class MyClass {
 public:
 	MyClass(): num(0) {
@@ -30,7 +31,7 @@ public:
 	int num;
 };
 
-int main() {
+int TestConstructorMain() {
 	// MyClass mc1 = MyClass(1); // only run one copy?
 	MyClass mc2(2);
 	MyClass mc2c = mc2;
@@ -38,4 +39,5 @@ int main() {
 	cout << mc2c.num << endl;
 
 	return 0;
+}
 }
