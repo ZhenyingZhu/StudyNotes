@@ -19,12 +19,19 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Folder.cpp" />
     <ClCompile Include="HasPtr.cpp" />
     <ClCompile Include="LongestCommonPrefix.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Message.cpp" />
     <ClCompile Include="SearchInsertPosition.cpp" />
     <ClCompile Include="TestConstructor.cpp" />
     <ClCompile Include="TestExplicit.cpp" />
     <ClCompile Include="TestFailureConstructor.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Folder.h" />
+    <ClInclude Include="Message.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
