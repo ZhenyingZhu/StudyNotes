@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ZhenyingTest
+namespace QuickTest
 {
     abstract class Parent
     {
@@ -16,9 +16,9 @@ namespace ZhenyingTest
         public string Name { get; set; }
     }
 
-    class Program
+    class TestInit
     {
-        static void Main(string[] args)
+        public void TestMain()
         {
             Child child = new Child()
             {
@@ -30,6 +30,5 @@ namespace ZhenyingTest
             
             Console.ReadLine();
         }
-
     }
 }
