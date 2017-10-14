@@ -6,6 +6,8 @@
 
 using namespace std;
 
+namespace LongestCommonPrefix {
+
 class JiabinSolution {
 public:
 	string longestCommonPrefix(vector<string> strs) {
@@ -67,4 +69,6 @@ int LongestCommonPrefixMain() {
 	cout << sol.longestCommonPrefix(input) << endl;
 
 	return 0;
+}
+
 }
