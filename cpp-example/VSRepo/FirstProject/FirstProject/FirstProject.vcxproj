@@ -28,6 +28,7 @@
     <ClCompile Include="TestConstructor.cpp" />
     <ClCompile Include="TestExplicit.cpp" />
     <ClCompile Include="TestFailureConstructor.cpp" />
+    <ClCompile Include="TrySharePtr.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Folder.h" />
