@@ -1,0 +1,2 @@
+CREATE SCHEMA `taggedfs` DEFAULT CHARACTER SET utf8 ;
+

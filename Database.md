@@ -71,3 +71,6 @@ telnet localhost 11211
 stats
 
 ```
+
+### miscellaneous
+[Schema vs Database](https://stackoverflow.com/questions/11618277/difference-between-schema-database-in-mysql)

@@ -17,7 +17,7 @@ Arrange documents.
 - TODO: save versions of a file? or just use backup softwares?
 
 ## DB
-File table:
+Files table:
 - id: 6 digits. Enough for 1,000,000 files.
 - path: should be compatiable with windows and linux. should encode in utf8. should be relative path. Something similar to `file:///E:/Documents/`
 - description: a short description, and better with a link to a onenote link (need cross reference). Need support utf8. Might need able to search in description?
