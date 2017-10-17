@@ -74,3 +74,11 @@ stats
 
 ### miscellaneous
 [Schema vs Database](https://stackoverflow.com/questions/11618277/difference-between-schema-database-in-mysql)
+
+[Auto increase ID size](https://stackoverflow.com/questions/3562737/what-size-int-should-i-use-for-my-autoincrement-ids-mysql)
+
+[VCHAR size](https://stackoverflow.com/questions/13506832/what-is-the-mysql-varchar-max-size)
+
+[VCHAR vs TEXT](https://stackoverflow.com/questions/25300821/difference-between-varchar-and-text-in-mysql)
+
+[INT(7) is display width](https://stackoverflow.com/questions/5562322/difference-between-int-and-int3-data-types-in-my-sql)
