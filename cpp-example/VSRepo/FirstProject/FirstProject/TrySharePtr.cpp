@@ -47,12 +47,12 @@ namespace TrySharePtr {
 
 	void TestUniquePtrMain() {
 		MyClass mc(1);
-		unique_ptr<MyClass> p 
+		unique_ptr<MyClass> p;
 	}
-}
 
 int main() {
 	TrySharePtr::TestUniquePtrMain();
 
 	return 0;
+}
 }
