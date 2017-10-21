@@ -438,3 +438,5 @@ Thread.sleep
 
 # GUID never conflict
 https://www.guidgen.com/
+
+# Create a mock
