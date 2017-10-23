@@ -440,3 +440,11 @@ Thread.sleep
 https://www.guidgen.com/
 
 # Create a mock
+var myClassObj = MockRepository.GenerateMock<MyClass>();
+
+# [Traverse an Enum](https://stackoverflow.com/questions/972307/can-you-loop-through-all-enum-values)
+var values = Enum.GetValues(typeof(Foos));
+
+# [foreach skip one](https://stackoverflow.com/questions/7942389/how-to-skip-a-specific-position-within-a-for-each-loop-in-c-sharp)
+Can also use if == continue.
+
