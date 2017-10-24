@@ -448,3 +448,8 @@ var values = Enum.GetValues(typeof(Foos));
 # [foreach skip one](https://stackoverflow.com/questions/7942389/how-to-skip-a-specific-position-within-a-for-each-loop-in-c-sharp)
 Can also use if == continue.
 
+# [ReadOnlyDictionary](http://www.dotnetcurry.com/dotnet/973/read-only-dictionary-dotnet-45)
+Need create by a dictionary and convert to readonly.
+
+# [obj folder struct](https://social.msdn.microsoft.com/Forums/en-US/456ebb0e-6fa3-4a77-a723-6984c5208562/what-is-with-all-of-the-files-for-a-simple-program?forum=csharpide)
+
