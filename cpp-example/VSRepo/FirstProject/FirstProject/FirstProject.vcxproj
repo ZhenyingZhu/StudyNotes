@@ -29,6 +29,7 @@
     <ClCompile Include="TestDynamicArray.cpp" />
     <ClCompile Include="TestExplicit.cpp" />
     <ClCompile Include="TestFailureConstructor.cpp" />
+    <ClCompile Include="TryDerive.cpp" />
     <ClCompile Include="TrySharePtr.cpp" />
   </ItemGroup>
   <ItemGroup>
