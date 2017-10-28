@@ -82,3 +82,5 @@ stats
 [VCHAR vs TEXT](https://stackoverflow.com/questions/25300821/difference-between-varchar-and-text-in-mysql)
 
 [INT(7) is display width](https://stackoverflow.com/questions/5562322/difference-between-int-and-int3-data-types-in-my-sql)
+
+https://en.wikipedia.org/wiki/InnoDB
