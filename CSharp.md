@@ -456,3 +456,6 @@ Need create by a dictionary and convert to readonly.
 # [Tuple as key](https://stackoverflow.com/questions/955982/tuples-or-arrays-as-dictionary-keys-in-c-sharp)
 
 # [print object id](https://stackoverflow.com/questions/5703993/how-to-print-object-id)
+
+# [using for unmanaged resources](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/using-statement)
+
