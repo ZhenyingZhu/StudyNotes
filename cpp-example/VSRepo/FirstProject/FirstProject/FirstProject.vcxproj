@@ -31,10 +31,12 @@
     <ClCompile Include="TestFailureConstructor.cpp" />
     <ClCompile Include="TryDerive.cpp" />
     <ClCompile Include="TrySharePtr.cpp" />
+    <ClCompile Include="V3d.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Folder.h" />
     <ClInclude Include="Message.h" />
+    <ClInclude Include="V3d.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

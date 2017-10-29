@@ -51,6 +51,9 @@
     <ClCompile Include="TryDerive.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="V3d.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Message.h">
@@ -58,6 +61,9 @@
     </ClInclude>
     <ClInclude Include="Folder.h">
       <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="V3d.h">
+      <Filter>源文件</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
