@@ -459,3 +459,20 @@ Need create by a dictionary and convert to readonly.
 
 # [using for unmanaged resources](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/using-statement)
 
+# Cannot use out in linq
+
+Cannot:
+```
+void foo(out int i) {
+    ()=>(i);
+}
+```
+
+Can:
+```
+void foo(out int i) {
+    int j;
+    ()=>(j);
+	i = j;
+}
+```
