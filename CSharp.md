@@ -442,6 +442,8 @@ https://www.guidgen.com/
 # Create a mock
 var myClassObj = MockRepository.GenerateMock<MyClass>();
 
+https://stackoverflow.com/questions/466520/what-is-rhino-mocks-repeat
+
 # [Traverse an Enum](https://stackoverflow.com/questions/972307/can-you-loop-through-all-enum-values)
 var values = Enum.GetValues(typeof(Foos));
 
