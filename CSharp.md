@@ -1,3 +1,15 @@
+# Doc Stack
+https://docs.microsoft.com/en-us/dotnet/articles/welcome
+  https://docs.microsoft.com/en-us/dotnet/articles/csharp/
+    Fin: Get Started
+    https://docs.microsoft.com/en-us/dotnet/articles/csharp/tutorials/index
+      Fin: console teleprompter, inheritance
+    https://docs.microsoft.com/en-us/dotnet/csharp/tour-of-csharp/
+      Fin: Program Structure, Types and variables, Expressions, Statements, Classes and objects, Structs, Arrays, Interfaces, Enums, Delegates, 
+      https://docs.microsoft.com/en-us/dotnet/csharp/tour-of-csharp/arrays
+
+https://www.microsoft.com/net/tutorials/csharp/getting-started/
+
 ## IDE
 [Visual Studio](https://docs.microsoft.com/en-us/dotnet/articles/csharp/getting-started/with-visual-studio)
 
@@ -361,8 +373,6 @@ Function f = m.Multiply;
 double res = f(3.0);
 ```
 
-
-
 ## APIs
 [doc](https://docs.microsoft.com/en-us/dotnet/api/index?view=netframework-4.7)
 
@@ -376,15 +386,14 @@ class
 
 `System.Threading.Tasks.Task(seconds).Wait()`
 
+
 ## Others
 resx
 - https://docs.microsoft.com/en-us/dotnet/framework/resources/working-with-resx-files-programmatically
 
 
-
-
 ## Question
-`public int DelayInMilliseconds { get; private set; } = 200;` what is get and private set?
+`public int DelayInMilliseconds { get; private set; } = 200;` // what is get and private set?
 ```
    public int Pages
    { get { return totalPages; }
@@ -405,64 +414,137 @@ attribute and reflection https://docs.microsoft.com/en-us/dotnet/csharp/tour-of-
 
 mechanisms
 
-# Stack
-https://docs.microsoft.com/en-us/dotnet/articles/welcome
-  https://docs.microsoft.com/en-us/dotnet/articles/csharp/
-    Fin: Get Started
-    https://docs.microsoft.com/en-us/dotnet/articles/csharp/tutorials/index
-      Fin: console teleprompter, inheritance
-	https://docs.microsoft.com/en-us/dotnet/csharp/tour-of-csharp/
-	  Fin: Program Structure, Types and variables, Expressions, Statements, Classes and objects, Structs, Arrays, Interfaces, Enums, Delegates, 
-	  https://docs.microsoft.com/en-us/dotnet/csharp/tour-of-csharp/arrays
 
-https://www.microsoft.com/net/tutorials/csharp/getting-started/
 
-# Compare two lists
+
+# LINQ
+
+## Examples
+[src](https://code.msdn.microsoft.com/101-LINQ-Samples-3fb9811b)
+
+_NOT DONE_
+
+## Function / Action / Predicate
+[src](https://stackoverflow.com/questions/4317479/func-vs-action-vs-predicate)
+
+_NOT DONE_
+
+## Delegate
+[src](https://stackoverflow.com/questions/8694921/delegates-vs-interfaces-in-c-sharp)
+
+
+
+# Unit Test
+
+## Visual studio UT framework
+[src](https://docs.microsoft.com/en-us/visualstudio/test/unit-test-basics)
+
+Add a test project to the solution and add reference.
+
+A test case:
+```
+[TestMethod]
+[ExpectedException(typeof(ArgumentException))]
+[Timeout(2000)]  // Milliseconds
+public void TestFoo() {
+    ...
+    Assert.AreEqual(expected, actual);
+}
+```
+
+
+## Rhino mocks
+[src](https://hibernatingrhinos.com/oss/rhino-mocks)
+
+### Create a mock object
+[src](https://stackoverflow.com/questions/7831404/can-you-explain-difference-between-strictmock-and-partialmock)
+
+```
+var myClassObj = MockRepository.GenerateMock<MyClass>();
+```
+
+### Mock a method
+```
+class MyClass {
+    public MyReturn Foo(MyArg1 arg1, MyArg2 arg2) {
+        try {
+            return MyReturn r;
+        } catch(Exception e) {
+             throw(new MyException());
+        }
+    }
+}
+
+MyClass mc = MockRepository.GenerateMock<MyClass>();
+MyReturn mr = new MyReturn();
+MyException me = new MyException();
+
+Expect.Call(mc.Foo(Arg<MyArg1>.Is.Anything, Arg<MyArg2>.Is.Anything)).Return(mr);
+Expect.Call(mc.Foo(Arg<MyArg1>.Is.Anything, Arg<MyArg2>.Is.Anything)).Return(mr).Repeat.Times(5);
+Expect.Call(mc.Foo(Arg<MyArg1>.Is.Anything, Arg<MyArg2>.Is.Anything)).Throw(me);
+```
+
+or
+
+```
+MockRepository mocks = new MockRepository();
+MyClass mc = mocks.PartialMock<MyClass>();
+MyReturn mr = new MyReturn();
+MyException me = new MyException();
+
+Expect.Call(mc.Foo(Arg<MyArg1>.Is.Anything, Arg<MyArg2>.Matches(() => true))).Return(mr);
+mocks.ReplayAll(); // to call those mock methods
+
+// Test some real code.
+
+mc.VerifyAllExpectations();
+mocks.VerifyAll();
+```
+
+[src](https://stackoverflow.com/questions/466520/what-is-rhino-mocks-repeat)
+If not a repeat, it only call once.
+
+[src](https://stackoverflow.com/questions/2764929/rhino-mocks-partial-mock)
+Partial mock needs work on virtual methods.
+
+# Miscellaneous
+
+## Compare two lists
 https://msdn.microsoft.com/en-us/library/bb348567(v=vs.110).aspx
 
-
-# Dictionary
+## Dictionary
 TryGetValue can test if key exist or not.
 
-# Write to a file
+## Write to a file
 https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/file-system/how-to-write-to-a-text-file
 
-# UT
-https://docs.microsoft.com/en-us/visualstudio/test/unit-test-basics
-
-# Action
+## Action
 https://msdn.microsoft.com/en-us/library/018hxwa8(v=vs.110).aspx
 
-# sleep
+## sleep
 Thread.sleep
 
-# GUID never conflict
+## GUID never conflict
 https://www.guidgen.com/
 
-# Create a mock
-var myClassObj = MockRepository.GenerateMock<MyClass>();
-
-https://stackoverflow.com/questions/466520/what-is-rhino-mocks-repeat
-
-# [Traverse an Enum](https://stackoverflow.com/questions/972307/can-you-loop-through-all-enum-values)
+## [Traverse an Enum](https://stackoverflow.com/questions/972307/can-you-loop-through-all-enum-values)
 var values = Enum.GetValues(typeof(Foos));
 
-# [foreach skip one](https://stackoverflow.com/questions/7942389/how-to-skip-a-specific-position-within-a-for-each-loop-in-c-sharp)
+## [foreach skip one](https://stackoverflow.com/questions/7942389/how-to-skip-a-specific-position-within-a-for-each-loop-in-c-sharp)
 Can also use if == continue.
 
-# [ReadOnlyDictionary](http://www.dotnetcurry.com/dotnet/973/read-only-dictionary-dotnet-45)
+## [ReadOnlyDictionary](http://www.dotnetcurry.com/dotnet/973/read-only-dictionary-dotnet-45)
 Need create by a dictionary and convert to readonly.
 
-# [obj folder struct](https://social.msdn.microsoft.com/Forums/en-US/456ebb0e-6fa3-4a77-a723-6984c5208562/what-is-with-all-of-the-files-for-a-simple-program?forum=csharpide)
+## [obj folder struct](https://social.msdn.microsoft.com/Forums/en-US/456ebb0e-6fa3-4a77-a723-6984c5208562/what-is-with-all-of-the-files-for-a-simple-program?forum=csharpide)
 
-# [Tuple as key](https://stackoverflow.com/questions/955982/tuples-or-arrays-as-dictionary-keys-in-c-sharp)
+## [Tuple as key](https://stackoverflow.com/questions/955982/tuples-or-arrays-as-dictionary-keys-in-c-sharp)
 
-# [print object id](https://stackoverflow.com/questions/5703993/how-to-print-object-id)
+## [print object id](https://stackoverflow.com/questions/5703993/how-to-print-object-id)
 
-# [using for unmanaged resources](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/using-statement)
+## [using for unmanaged resources](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/using-statement)
 
-# Cannot use out in linq
-
+## Cannot use out in linq
 Cannot:
 ```
 void foo(out int i) {
@@ -475,6 +557,6 @@ Can:
 void foo(out int i) {
     int j;
     ()=>(j);
-	i = j;
+    i = j;
 }
 ```
