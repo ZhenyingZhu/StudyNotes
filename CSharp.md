@@ -414,6 +414,66 @@ attribute and reflection https://docs.microsoft.com/en-us/dotnet/csharp/tour-of-
 
 mechanisms
 
+^((.|[\r\n])+\:(.|[\r\n])+)$
+
+# C# Regex
+[Rule](https://docs.microsoft.com/en-us/dotnet/standard/base-types/regular-expression-language-quick-reference)
+
+E.g.:
+A pattern:
+'^(([^sS](.|[\r\n])*)|([sS][^mM](.|[\r\n])*)|([sS][mM][^tT](.|[\r\n])*)|([sS][mM][tT][^pP](.|[\r\n])*)|([sS][mM][tT][pP][^\:](.|[\r\n])*)|([sS][mM][tT][pP]\:((([\u0021-\u007E-[<>\(\)\[\]\\\.,;:@"]]|(\\[\u0000-\u007F]))+(\.([\u0021-\u007E-[<>\(\)\[\]\\\.,;:@"]]|(\\[\u0000-\u007F]))+)*)|("((\\[\u0000-\u007F])|[\u0000-\u007F-[\r\n"\\]])+"))@[^@]*))$'
+
+^ // line start with
+( // group a subexpression
+ ([^sS] // not in this character group, here means not s or S
+  (
+    . // any single character except \n
+    | // or operator
+    [\r\n] // in this character group, here means enter
+  )
+  * // match previous element 0 or more times
+ )
+ |
+ ([sS][^mM](.|[\r\n])*)
+ |
+ ([sS][mM][^tT](.|[\r\n])*)
+ |
+ ([sS][mM][tT][^pP](.|[\r\n])*)
+ |
+ ([sS][mM][tT][pP][^\:](.|[\r\n])*)
+ |
+ ([sS][mM][tT][pP]
+ \: // escape :
+  (
+   (
+    ([
+      \u0021 // !
+      -
+      \u007E // ~
+      -
+      [<>\(\)\[\]\\\.,;:@"] // one of those symbols
+     ] // [A-Z-[BCD]] means A to Z exclude BCD
+     |
+     (\\[\u0000-\u007F])
+    )
+    + // match previous element 0 or more times
+    (\.
+     ([\u0021-\u007E-[<>\(\)\[\]\\\.,;:@"]]
+      |
+      (\\[\u0000-\u007F])
+     )+
+    )*
+   )|
+   ("
+    (
+     (\\[\u0000-\u007F])|[\u0000-\u007F-[\r\n"\\]]
+    )+"
+   )
+  )
+  @[^@]* // Actually it is an @ with repeat 0 or more no @
+ )
+)
+$ // line end with
 
 
 

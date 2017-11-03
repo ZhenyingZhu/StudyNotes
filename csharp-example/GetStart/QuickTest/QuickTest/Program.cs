@@ -10,7 +10,7 @@ namespace QuickTest
     {
         static void Main(string[] args)
         {
-            TestDictionaryWithListValue.TestMain();
+            TestStringPatternMatch.TestMain();
         }
     }
 }
