@@ -6,27 +6,17 @@ using System.Threading.Tasks;
 
 namespace QuickTest
 {
-    abstract class Parent
-    {
-        public int Id { get; set; }
-    }
-
-    class Child : Parent
-    {
-        public string Name { get; set; }
-    }
-
-    class TestInit
+    class TestInitClassWithProperties
     {
         public void TestMain()
         {
-            Child child = new Child()
+            MyDerive1 myDerive1 = new MyDerive1()
             {
                 Id = 1,
-                Name = "child"
+                Name = "MyDerive1"
             };
 
-            Console.WriteLine("See if it works: " + child.Name + child.Id);
+            Console.WriteLine("See if it works: " + myDerive1.Name + myDerive1.Id);
             
             Console.ReadLine();
         }

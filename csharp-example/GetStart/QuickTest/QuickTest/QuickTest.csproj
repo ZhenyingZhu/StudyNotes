@@ -41,6 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MyDerive1.cs" />
+    <Compile Include="MyBase.cs" />
+    <Compile Include="TestConvertBaseToDerived.cs" />
     <Compile Include="TestStringPatternMatch.cs" />
     <Compile Include="TestDictionaryWithListValue.cs" />
     <Compile Include="Program.cs" />

@@ -567,6 +567,11 @@ If not a repeat, it only call once.
 [src](https://stackoverflow.com/questions/2764929/rhino-mocks-partial-mock)
 Partial mock needs work on virtual methods.
 
+### Arg Matches
+[src](https://stackoverflow.com/questions/3520911/rhino-mocks-using-arg-matches)
+
+
+
 # Miscellaneous
 
 ## Compare two lists
@@ -618,5 +623,16 @@ void foo(out int i) {
     int j;
     ()=>(j);
     i = j;
+}
+```
+
+## Check if a base object is a derive class
+```
+MyBase myDerive = new MyDerive();
+MyDerive res = myDerive as MyDerive;
+
+if (res == null)
+{
+    Console.WriteLine("It is not derive");
 }
 ```

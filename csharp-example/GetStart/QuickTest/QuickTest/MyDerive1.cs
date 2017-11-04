@@ -6,11 +6,8 @@ using System.Threading.Tasks;
 
 namespace QuickTest
 {
-    class Program
+    class MyDerive1 : MyBase
     {
-        static void Main(string[] args)
-        {
-            TestConvertBaseToDerived.TestMain();
-        }
+        public string Name { get; set; }
     }
 }
