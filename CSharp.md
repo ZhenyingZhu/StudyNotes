@@ -571,6 +571,11 @@ Partial mock needs work on virtual methods.
 [src](https://stackoverflow.com/questions/3520911/rhino-mocks-using-arg-matches)
 
 
+# NuGet
+## CxCache
+It is folder to hold dependency packages. Maybe is related to https://www.nuget.org/packages/xCache/ ?
+
+
 
 # Miscellaneous
 
