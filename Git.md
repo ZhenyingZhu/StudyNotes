@@ -6,3 +6,5 @@
 [Create a branch from another local repo](http://stackoverflow.com/questions/10603671/git-how-to-add-a-local-repo-and-treat-it-as-a-remote-one)
 
 [count number of lines](http://stackoverflow.com/questions/26881441/can-you-get-the-number-of-lines-of-code-from-a-github-repository)
+
+[encounter merge conflict](https://stackoverflow.com/questions/914939/simple-tool-to-accept-theirs-or-accept-mine-on-a-whole-file-using-git)
