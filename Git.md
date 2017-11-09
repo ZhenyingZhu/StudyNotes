@@ -7,4 +7,9 @@
 
 [count number of lines](http://stackoverflow.com/questions/26881441/can-you-get-the-number-of-lines-of-code-from-a-github-repository)
 
-[encounter merge conflict](https://stackoverflow.com/questions/914939/simple-tool-to-accept-theirs-or-accept-mine-on-a-whole-file-using-git)
+[take mine when merge conflict](https://stackoverflow.com/questions/914939/simple-tool-to-accept-theirs-or-accept-mine-on-a-whole-file-using-git)
+
+[revert a merge](https://stackoverflow.com/questions/7099833/how-to-revert-a-merge-commit-thats-already-pushed-to-remote-branch)
+
+[git base](https://git-scm.com/book/en/v2/Git-Branching-Rebasing)
+Make the master branch as base, and then apply your changes on it one commit by one.
