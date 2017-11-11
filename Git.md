@@ -13,3 +13,9 @@
 
 [git base](https://git-scm.com/book/en/v2/Git-Branching-Rebasing)
 Make the master branch as base, and then apply your changes on it one commit by one.
+
+Before merging master, better push local branch to remote, so that if merging master causing issue, I can reset back to remote branch and have all my changes.
+
+Create a folder in remote: make the branch name as: folder/branch
+
+[git blame a line](https://stackoverflow.com/questions/13692072/git-blame-committed-line)

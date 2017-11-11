@@ -641,3 +641,15 @@ if (res == null)
     Console.WriteLine("It is not derive");
 }
 ```
+
+## Init a Directory
+```
+Dictionary<string, List<string>> myD = new Dictionary<string, List<string>>()
+{
+  {"tab1", MyList }
+};
+```
+
+## Public attribute
+Don't forget to add `[DataMember]`
+
