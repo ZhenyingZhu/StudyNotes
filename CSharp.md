@@ -492,7 +492,7 @@ _NOT DONE_
 ## Delegate
 [src](https://stackoverflow.com/questions/8694921/delegates-vs-interfaces-in-c-sharp)
 
-
+[use delegate as a callback](https://stackoverflow.com/questions/667742/callbacks-in-c-sharp)
 
 # Unit Test
 
