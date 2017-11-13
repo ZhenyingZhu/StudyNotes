@@ -576,6 +576,9 @@ Partial mock needs work on virtual methods.
 It is folder to hold dependency packages. Maybe is related to https://www.nuget.org/packages/xCache/ ?
 
 
+# MySQL
+[MySQL connect](https://stackoverflow.com/questions/21618015/how-to-connect-to-mysql-database)
+
 
 # Miscellaneous
 
