@@ -1,6 +1,8 @@
 ## MySQL
 [Install](https://support.rackspace.com/how-to/installing-mysql-server-on-ubuntu/)
 
+[Visual studio support](https://bugs.mysql.com/bug.php?id=85908)
+
 ### Start
 Start mysql shell:
 ```
