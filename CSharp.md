@@ -584,6 +584,12 @@ If an object is disposed, you cannot access it's field any more.
 [example in DB](https://stackoverflow.com/questions/5350109/cannot-access-a-disposed-object)
 
 
+
+# MySQL
+[MySQL connect](https://stackoverflow.com/questions/21618015/how-to-connect-to-mysql-database)
+
+
+
 # Miscellaneous
 
 ## Compare two lists
