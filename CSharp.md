@@ -572,9 +572,16 @@ Partial mock needs work on virtual methods.
 
 
 # NuGet
+
 ## CxCache
 It is folder to hold dependency packages. Maybe is related to https://www.nuget.org/packages/xCache/ ?
 
+
+# Multi-thread
+
+## Dispose
+If an object is disposed, you cannot access it's field any more.
+[example in DB](https://stackoverflow.com/questions/5350109/cannot-access-a-disposed-object)
 
 
 # Miscellaneous
