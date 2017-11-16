@@ -1,15 +1,19 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace HelloWorld
+namespace QuickTest
 {
-    class Program
+    class TestPrint
     {
         static void Print(string name, DateTime date)
         {
             Console.WriteLine("\n {0}, {1:d}, {1:t}", name, date);
         }
 
-        static void Main(string[] args)
+        public static void TestMain()
         {
             Console.WriteLine("Hello World!");
 
@@ -18,9 +22,6 @@ namespace HelloWorld
             var date = DateTime.Now;
 
             Print(name, date);
-
-            Console.WriteLine("Press key");
-            Console.ReadKey();
         }
     }
 }

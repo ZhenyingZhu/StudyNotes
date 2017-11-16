@@ -10,7 +10,10 @@ namespace QuickTest
     {
         static void Main(string[] args)
         {
-            TestConvertBaseToDerived.TestMain();
+            TestPrint.TestMain();
+
+            Console.WriteLine("Press key");
+            Console.ReadKey();
         }
     }
 }
