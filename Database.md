@@ -3,6 +3,9 @@
 
 [Visual studio support](https://bugs.mysql.com/bug.php?id=85908)
 
+Use https://dev.mysql.com/downloads/windows/visualstudio/
+
+
 ### Start
 Start mysql shell:
 ```

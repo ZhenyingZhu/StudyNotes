@@ -4,14 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QuickTest
+namespace MySQLConnTest
 {
     class Program
     {
-        static void Main(string[] args)
+        static void TestMain(string[] args)
         {
-            MySQLConnTest.MySQLConn.TestMain();
-
             Console.WriteLine("Press key");
             Console.ReadKey();
         }
