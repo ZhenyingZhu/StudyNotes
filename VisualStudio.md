@@ -1,4 +1,10 @@
-# VS build
+# Ref
+See CPP.md, CSharp.md and Database.md
+
+
+# VS tutorial
+
+## VS build
 https://docs.microsoft.com/zh-CN/visualstudio/ide/get-started-with-visual-studio
 
 Building blocks
@@ -10,9 +16,18 @@ To run a console app with arg, change project properties.
 
 If tests failed. Check if the arch is changed to x64
 
+Change the build configuration from Debug to Release, then build solution.
 
-# Ref
-See CPP.md, CSharp.md and Database.md
+## Pic View
+https://docs.microsoft.com/en-us/visualstudio/ide/step-1-create-a-windows-forms-application-project
+
+Windows Forms Application project
+
+Leftside, Toolbox, TableLayoutPanel.
+- Dock means how the panel window is attached to the main window.
+
+
+HERE: https://docs.microsoft.com/en-us/visualstudio/ide/step-5-add-controls-to-your-form
 
 
 # Show white spaces
