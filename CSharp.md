@@ -476,6 +476,11 @@ A pattern:
 $ // line end with
 
 
+# query
+https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/query-keywords
+
+
+
 
 # LINQ
 
