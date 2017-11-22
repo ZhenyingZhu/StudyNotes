@@ -22,12 +22,16 @@ Change the build configuration from Debug to Release, then build solution.
 https://docs.microsoft.com/en-us/visualstudio/ide/step-1-create-a-windows-forms-application-project
 
 Windows Forms Application project
+- Add Leftside, Toolbox, TableLayoutPanel.
+- Dock the TableLayoutPanel to the form. It means how the panel window is attached to the main window.
+- Add Common controls, PictureBox to the TableLayoutPanel.
+- Add Common controls, CheckBox to the TableLayoutPanel.
+- Add Container, FlowLayoutPanel to the TableLayoutPanel.
+- Add Common controls, Button to the FlowLayoutPanel.
 
-Leftside, Toolbox, TableLayoutPanel.
-- Dock means how the panel window is attached to the main window.
 
-
-HERE: https://docs.microsoft.com/en-us/visualstudio/ide/step-5-add-controls-to-your-form
+## Timed quiz
+HERE: https://docs.microsoft.com/en-us/visualstudio/ide/tutorial-2-create-a-timed-math-quiz
 
 
 # Show white spaces
