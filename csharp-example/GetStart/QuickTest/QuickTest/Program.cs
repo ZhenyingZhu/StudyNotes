@@ -10,7 +10,7 @@ namespace QuickTest
     {
         static void Main(string[] args)
         {
-            MySQLConnTest.MySQLConn.TestMain();
+            TryProcess.TestMain();
 
             Console.WriteLine("Press key");
             Console.ReadKey();

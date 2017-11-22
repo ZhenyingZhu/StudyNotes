@@ -8,8 +8,10 @@ namespace MySQLConnTest
 {
     class Program
     {
-        static void TestMain(string[] args)
+        static void Main(string[] args)
         {
+            MySQLConn.TestMain();
+
             Console.WriteLine("Press key");
             Console.ReadKey();
         }
