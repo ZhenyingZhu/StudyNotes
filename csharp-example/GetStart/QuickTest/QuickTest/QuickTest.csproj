@@ -43,6 +43,8 @@
   <ItemGroup>
     <Compile Include="MyDerive1.cs" />
     <Compile Include="MyBase.cs" />
+    <Compile Include="SelectTest.cs" />
+    <Compile Include="SelectTestClass.cs" />
     <Compile Include="TestConvertBaseToDerived.cs" />
     <Compile Include="TestPrint.cs" />
     <Compile Include="TestStringPatternMatch.cs" />

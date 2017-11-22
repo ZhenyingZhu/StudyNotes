@@ -10,7 +10,7 @@ namespace QuickTest
     {
         static void Main(string[] args)
         {
-            TryProcess.TestMain();
+            SelectTest.TestMain();
 
             Console.WriteLine("Press key");
             Console.ReadKey();
