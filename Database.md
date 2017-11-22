@@ -77,6 +77,12 @@ stats
 
 ```
 
+## SQLite
+A standalone SQL. It is not Server-client.
+
+https://www.codeproject.com/articles/22165/using-sqlite-in-your-c-application
+
+
 ### miscellaneous
 [Schema vs Database](https://stackoverflow.com/questions/11618277/difference-between-schema-database-in-mysql)
 

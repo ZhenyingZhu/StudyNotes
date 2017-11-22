@@ -593,6 +593,8 @@ If an object is disposed, you cannot access it's field any more.
 # MySQL
 [MySQL connect](https://stackoverflow.com/questions/21618015/how-to-connect-to-mysql-database)
 
+# SQLite
+https://stackoverflow.com/questions/19665370/missing-sqlite-data-provider-in-vs-2013
 
 
 # Miscellaneous
