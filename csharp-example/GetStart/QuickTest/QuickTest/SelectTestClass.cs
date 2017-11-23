@@ -8,24 +8,24 @@ namespace QuickTest
 {
     class SelectTestClass
     {
-        private readonly int _id;
+        public int Id;
 
-        private readonly bool _mightNotTrue;
+        public bool MightNotTrue;
 
         public SelectTestClass(int i, bool s)
         {
-            _id = i;
-            _mightNotTrue = s;
+            Id = i;
+            MightNotTrue = s;
         }
 
         public static SelectTestClass SelectSomeItems(SelectTestClass stc)
         {
-            return new SelectTestClass(stc._id, true);
+            return new SelectTestClass(stc.Id, true);
         }
 
         public override string ToString()
         {
-            return string.Format("id: {0}, selected: {1}", _id, _mightNotTrue);
+            return string.Format("id: {0}, selected: {1}", Id, MightNotTrue);
         }
     }
 }

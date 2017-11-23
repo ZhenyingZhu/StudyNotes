@@ -487,6 +487,8 @@ https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/query
 ## Examples
 [src](https://code.msdn.microsoft.com/101-LINQ-Samples-3fb9811b)
 
+group: return an IGroup
+
 _NOT DONE_
 
 ## Function / Action / Predicate
@@ -672,4 +674,7 @@ Dictionary<string, List<string>> myD = new Dictionary<string, List<string>>()
 
 ## Public attribute
 Don't forget to add `[DataMember]`
+
+## sealed class
+Cannot inherit from it.
 
