@@ -578,7 +578,27 @@ Partial mock needs work on virtual methods.
 [src](https://stackoverflow.com/questions/3520911/rhino-mocks-using-arg-matches)
 
 
+# Collection
+
+## Init a Directory
+```
+Dictionary<string, List<string>> myD = new Dictionary<string, List<string>>()
+{
+  {"tab1", MyList }
+};
+```
+
+## Dictionary
+TryGetValue can test if key exist or not.
+
+## Enumerable.Intersect
+https://msdn.microsoft.com/en-us/library/bb460136(v=vs.110).aspx
+
+
 # NuGet
+https://stackoverflow.com/questions/7015149/multiperson-team-using-nuget-and-source-control
+
+https://stackoverflow.com/questions/7018913/where-does-nuget-put-the-dll
 
 ## CxCache
 It is folder to hold dependency packages. Maybe is related to https://www.nuget.org/packages/xCache/ ?
@@ -603,9 +623,6 @@ https://stackoverflow.com/questions/19665370/missing-sqlite-data-provider-in-vs-
 
 ## Compare two lists
 https://msdn.microsoft.com/en-us/library/bb348567(v=vs.110).aspx
-
-## Dictionary
-TryGetValue can test if key exist or not.
 
 ## Write to a file
 https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/file-system/how-to-write-to-a-text-file
@@ -662,14 +679,6 @@ if (res == null)
 {
     Console.WriteLine("It is not derive");
 }
-```
-
-## Init a Directory
-```
-Dictionary<string, List<string>> myD = new Dictionary<string, List<string>>()
-{
-  {"tab1", MyList }
-};
 ```
 
 ## Public attribute
