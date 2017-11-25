@@ -476,13 +476,10 @@ A pattern:
 $ // line end with
 
 
-# query
-https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/query-keywords
-
-
-
-
 # LINQ
+
+## query
+https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/query-keywords
 
 ## Examples
 [src](https://code.msdn.microsoft.com/101-LINQ-Samples-3fb9811b)
@@ -697,3 +694,7 @@ Don't forget to add `[DataMember]`
 ## sealed class
 Cannot inherit from it.
 
+## string with @
+https://stackoverflow.com/questions/6134547/what-does-the-prefix-do-on-string-literals-in-c
+
+Means no need to escape.
