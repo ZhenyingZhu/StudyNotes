@@ -12,6 +12,7 @@ namespace SQLiteTest
         public static void TestMain()
         {
             var dbConnection = new SQLiteConnection();
+            dbConnection.ConnectionString = @"data source=test.s3db;version=3;";
             dbConnection.Open();
 
             string sql = "create table highscores (name varchar(20), score int)";

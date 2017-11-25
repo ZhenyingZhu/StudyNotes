@@ -617,7 +617,17 @@ If an object is disposed, you cannot access it's field any more.
 
 # SQLite
 https://stackoverflow.com/questions/19665370/missing-sqlite-data-provider-in-vs-2013
+- My solution: find `SQLite.Interop.dll` and put under the run path. For example:
+- Build setting: Debug x64
 
+Folder
+```
+Project
+  bin
+    x64
+      Debug
+        put x64\SQLite.Interop.dll here
+```
 
 # Miscellaneous
 
