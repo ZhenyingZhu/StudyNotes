@@ -82,6 +82,15 @@ A standalone SQL. It is not Server-client.
 
 https://www.codeproject.com/articles/22165/using-sqlite-in-your-c-application
 
+### Turtorial
+https://sqlite.org/quickstart.html
+
+http://zetcode.com/db/sqlite/tool/
+1. Download sqlite-tools-win32-x86-3210000.zip
+2. D:\sqlite-tools\sqlite3.exe E:\Documents\GitHub\StudyNotes\csharp-example\GetStart\DatabaseTest\DatabaseTest\bin\Debug\test.s3db
+3. `.tables` to see all tables
+4. `select * from mytable;`
+
 
 ### miscellaneous
 [Schema vs Database](https://stackoverflow.com/questions/11618277/difference-between-schema-database-in-mysql)
