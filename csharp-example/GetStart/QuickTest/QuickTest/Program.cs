@@ -10,9 +10,9 @@ namespace QuickTest
     {
         static void Main(string[] args)
         {
-            SelectTest.TestMain();
+            //PictureViewer.Program.Main();
 
-            Console.WriteLine("Press key");
+            Console.WriteLine("\nPress key");
             Console.ReadKey();
         }
     }

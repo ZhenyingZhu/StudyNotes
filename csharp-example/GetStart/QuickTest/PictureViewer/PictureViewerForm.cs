@@ -15,6 +15,8 @@ namespace PictureViewer
         public PictureViewerForm()
         {
             InitializeComponent();
+            // TODO: probably should not do so.
+            InitFlowLayoutPanelCheckBoxes();
         }
 
         /// <summary>
@@ -74,6 +76,24 @@ namespace PictureViewer
                 pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
             else
                 pictureBox.SizeMode = PictureBoxSizeMode.CenterImage;
+        }
+
+        // Dynamically add some boxes.
+        private void InitFlowLayoutPanelCheckBoxes()
+        {
+            List<string> list = new List<string>{"a", "b", "c"};
+
+            CheckBox box;
+            foreach (var name in list)
+            {
+                box = new CheckBox
+                {
+                    Tag = name,
+                    Text = name
+                };
+                //box.Location = new Point(10, 50);
+                this.flowLayoutPanelCheckBoxes.Controls.Add(box);
+            }
         }
     }
 }

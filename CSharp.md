@@ -386,11 +386,9 @@ class
 
 `System.Threading.Tasks.Task(seconds).Wait()`
 
-
 ## Others
 resx
 - https://docs.microsoft.com/en-us/dotnet/framework/resources/working-with-resx-files-programmatically
-
 
 ## Question
 `public int DelayInMilliseconds { get; private set; } = 200;` // what is get and private set?
@@ -415,6 +413,8 @@ attribute and reflection https://docs.microsoft.com/en-us/dotnet/csharp/tour-of-
 mechanisms
 
 ^((.|[\r\n])+\:(.|[\r\n])+)$
+
+
 
 # C# Regex
 [Rule](https://docs.microsoft.com/en-us/dotnet/standard/base-types/regular-expression-language-quick-reference)
@@ -476,6 +476,7 @@ A pattern:
 $ // line end with
 
 
+
 # LINQ
 
 ## query
@@ -498,6 +499,8 @@ _NOT DONE_
 
 [use delegate as a callback](https://stackoverflow.com/questions/667742/callbacks-in-c-sharp)
 
+
+
 # Unit Test
 
 ## Visual studio UT framework
@@ -515,7 +518,6 @@ public void TestFoo() {
     Assert.AreEqual(expected, actual);
 }
 ```
-
 
 ## Rhino mocks
 [src](https://hibernatingrhinos.com/oss/rhino-mocks)
@@ -575,6 +577,7 @@ Partial mock needs work on virtual methods.
 [src](https://stackoverflow.com/questions/3520911/rhino-mocks-using-arg-matches)
 
 
+
 # Collection
 
 ## Init a Directory
@@ -592,6 +595,7 @@ TryGetValue can test if key exist or not.
 https://msdn.microsoft.com/en-us/library/bb460136(v=vs.110).aspx
 
 
+
 # NuGet
 https://stackoverflow.com/questions/7015149/multiperson-team-using-nuget-and-source-control
 
@@ -599,6 +603,7 @@ https://stackoverflow.com/questions/7018913/where-does-nuget-put-the-dll
 
 ## CxCache
 It is folder to hold dependency packages. Maybe is related to https://www.nuget.org/packages/xCache/ ?
+
 
 
 # Multi-thread
@@ -611,6 +616,8 @@ If an object is disposed, you cannot access it's field any more.
 
 # MySQL
 [MySQL connect](https://stackoverflow.com/questions/21618015/how-to-connect-to-mysql-database)
+
+
 
 # SQLite
 https://stackoverflow.com/questions/19665370/missing-sqlite-data-provider-in-vs-2013
@@ -625,6 +632,17 @@ Project
       Debug
         put x64\SQLite.Interop.dll here
 ```
+
+
+
+# UI
+See VisualStudio.md
+
+Choose Windows Application.
+
+FlowLayoutPanel: arranges its contents in a horizontal or vertical flow direction. You can wrap the control's contents from one row to the next, or from one column to the next.
+
+
 
 # Miscellaneous
 
