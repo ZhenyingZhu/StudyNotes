@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickTest", "QuickTest\Quic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PictureViewer", "PictureViewer\PictureViewer.csproj", "{254A66F6-D8C9-4E6C-A587-074562030313}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MathQuiz", "MathQuiz\MathQuiz.csproj", "{E7A98811-26FC-4FA1-8837-C9B93B77B8F5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{254A66F6-D8C9-4E6C-A587-074562030313}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{254A66F6-D8C9-4E6C-A587-074562030313}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{254A66F6-D8C9-4E6C-A587-074562030313}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E7A98811-26FC-4FA1-8837-C9B93B77B8F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7A98811-26FC-4FA1-8837-C9B93B77B8F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7A98811-26FC-4FA1-8837-C9B93B77B8F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7A98811-26FC-4FA1-8837-C9B93B77B8F5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
