@@ -44,3 +44,7 @@ ADAL:
 - PCL: core
 - WinRT: Windows Store
 - CoreCLR: Core CLR
+
+
+#### Template
+https://github.com/Azure/azure-quickstart-templates
