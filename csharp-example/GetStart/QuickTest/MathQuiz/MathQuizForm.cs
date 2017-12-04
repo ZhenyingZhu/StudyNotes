@@ -17,7 +17,9 @@ namespace MathQuiz
         int addend1;
         int addend2;
 
-        public void StartTheQuiz()
+        int timeLeft;
+
+        private void StartTheQuiz()
         {
             addend1 = randomizer.Next(51);
             addend2 = randomizer.Next(51);
@@ -26,6 +28,16 @@ namespace MathQuiz
             plusRightLabel.Text = addend2.ToString();
 
             sumNumericUpDown.Value = 0;
+        }
+
+        private void ShowTimeLeft()
+        {
+            timeLabel.Text = timeLeft + " seconds";
+        }
+
+        private bool CheckTheAnswer()
+        {
+            return sumNumericUpDown.Value == addend1 + addend2;
         }
 
         public MathQuizForm()
@@ -37,6 +49,33 @@ namespace MathQuiz
         {
             StartTheQuiz();
             startButton.Enabled = false;
+
+            timeLeft = 5;
+            ShowTimeLeft();
+            mathQuizTimer.Start();
+        }
+
+        private void mathQuizTimer_Tick(object sender, EventArgs e)
+        {
+            if (CheckTheAnswer())
+            {
+                mathQuizTimer.Stop();
+                startButton.Enabled = true;
+                MessageBox.Show("You are bang bang!", "Success");
+            }
+            else if (timeLeft > 0)
+            {
+                timeLeft--;
+                ShowTimeLeft();
+            }
+            else
+            {
+                mathQuizTimer.Stop();
+                timeLabel.Text = "Time is up";
+                MessageBox.Show("You are too slow!", "Fail");
+                sumNumericUpDown.Value = addend1 + addend2;
+                startButton.Enabled = true;
+            }
         }
     }
 }

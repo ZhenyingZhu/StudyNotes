@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.timeLabel = new System.Windows.Forms.Label();
             this.timeLeftLabel = new System.Windows.Forms.Label();
             this.plusLeftLabel = new System.Windows.Forms.Label();
@@ -51,6 +52,7 @@
             this.divideRightLabel = new System.Windows.Forms.Label();
             this.divideLeftLabel = new System.Windows.Forms.Label();
             this.startButton = new System.Windows.Forms.Button();
+            this.mathQuizTimer = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.sumNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.differenceNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productNumericUpDown)).BeginInit();
@@ -280,6 +282,11 @@
             this.startButton.UseVisualStyleBackColor = true;
             this.startButton.Click += new System.EventHandler(this.startButton_Click);
             // 
+            // mathQuizTimer
+            // 
+            this.mathQuizTimer.Interval = 1000;
+            this.mathQuizTimer.Tick += new System.EventHandler(this.mathQuizTimer_Tick);
+            // 
             // MathQuizForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -346,6 +353,7 @@
         private System.Windows.Forms.Label divideRightLabel;
         private System.Windows.Forms.Label divideLeftLabel;
         private System.Windows.Forms.Button startButton;
+        private System.Windows.Forms.Timer mathQuizTimer;
     }
 }
 

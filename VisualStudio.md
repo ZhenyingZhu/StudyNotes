@@ -33,7 +33,7 @@ Windows Forms Application project
 ## Timed quiz
 https://docs.microsoft.com/en-us/visualstudio/ide/tutorial-2-create-a-timed-math-quiz
 
-HERE: https://docs.microsoft.com/en-us/visualstudio/ide/step-2-create-a-random-addition-problem
+HERE: https://docs.microsoft.com/en-us/visualstudio/ide/step-5-add-enter-event-handlers-for-the-numericupdown-controls
 
 
 # Show white spaces
