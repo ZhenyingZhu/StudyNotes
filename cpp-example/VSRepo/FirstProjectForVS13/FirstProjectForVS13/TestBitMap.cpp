@@ -78,6 +78,7 @@ ostream& operator<<(ostream& s, const Bitmap& a) {
 	return s;
 }
 
+/*
 int main() {
 	Bitmap b1(3, 5); // rows, cols
 	cout << b1;
@@ -88,3 +89,4 @@ int main() {
 
 	return 0;
 }
+*/
