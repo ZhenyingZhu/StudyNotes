@@ -13,5 +13,7 @@ int main() {
 	Complex<int> r = -c;
 	cout << r << endl;
 
+	//Complex<char> r;
+
 	return 0;
 }
