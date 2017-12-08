@@ -125,6 +125,7 @@
             this.sumNumericUpDown.Name = "sumNumericUpDown";
             this.sumNumericUpDown.Size = new System.Drawing.Size(100, 35);
             this.sumNumericUpDown.TabIndex = 2;
+            this.sumNumericUpDown.Enter += new System.EventHandler(this.answer_Enter);
             // 
             // differenceNumericUpDown
             // 
@@ -133,6 +134,7 @@
             this.differenceNumericUpDown.Name = "differenceNumericUpDown";
             this.differenceNumericUpDown.Size = new System.Drawing.Size(100, 35);
             this.differenceNumericUpDown.TabIndex = 3;
+            this.differenceNumericUpDown.Enter += new System.EventHandler(this.answer_Enter);
             // 
             // equalSignLabel2
             // 
@@ -181,6 +183,7 @@
             this.productNumericUpDown.Name = "productNumericUpDown";
             this.productNumericUpDown.Size = new System.Drawing.Size(100, 35);
             this.productNumericUpDown.TabIndex = 4;
+            this.productNumericUpDown.Enter += new System.EventHandler(this.answer_Enter);
             // 
             // equalSignLabel3
             // 
@@ -225,15 +228,16 @@
             // quotientNumericUpDown
             // 
             this.quotientNumericUpDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.quotientNumericUpDown.Location = new System.Drawing.Point(302, 181);
+            this.quotientNumericUpDown.Location = new System.Drawing.Point(302, 191);
             this.quotientNumericUpDown.Name = "quotientNumericUpDown";
             this.quotientNumericUpDown.Size = new System.Drawing.Size(100, 35);
             this.quotientNumericUpDown.TabIndex = 5;
+            this.quotientNumericUpDown.Enter += new System.EventHandler(this.answer_Enter);
             // 
             // equalSignLabel4
             // 
             this.equalSignLabel4.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.equalSignLabel4.Location = new System.Drawing.Point(223, 181);
+            this.equalSignLabel4.Location = new System.Drawing.Point(223, 191);
             this.equalSignLabel4.Name = "equalSignLabel4";
             this.equalSignLabel4.Size = new System.Drawing.Size(60, 46);
             this.equalSignLabel4.TabIndex = 20;
@@ -243,7 +247,7 @@
             // divideLabel
             // 
             this.divideLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.divideLabel.Location = new System.Drawing.Point(120, 181);
+            this.divideLabel.Location = new System.Drawing.Point(120, 191);
             this.divideLabel.Name = "divideLabel";
             this.divideLabel.Size = new System.Drawing.Size(60, 46);
             this.divideLabel.TabIndex = 19;
@@ -253,7 +257,7 @@
             // divideRightLabel
             // 
             this.divideRightLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.divideRightLabel.Location = new System.Drawing.Point(170, 181);
+            this.divideRightLabel.Location = new System.Drawing.Point(170, 191);
             this.divideRightLabel.Name = "divideRightLabel";
             this.divideRightLabel.Size = new System.Drawing.Size(60, 46);
             this.divideRightLabel.TabIndex = 18;
@@ -263,7 +267,7 @@
             // divideLeftLabel
             // 
             this.divideLeftLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.divideLeftLabel.Location = new System.Drawing.Point(66, 181);
+            this.divideLeftLabel.Location = new System.Drawing.Point(66, 191);
             this.divideLeftLabel.Name = "divideLeftLabel";
             this.divideLeftLabel.Size = new System.Drawing.Size(60, 46);
             this.divideLeftLabel.TabIndex = 17;
