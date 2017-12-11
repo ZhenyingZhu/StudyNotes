@@ -52,6 +52,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestInitClassWithProperties.cs" />
+    <Compile Include="TryNewList.cs" />
     <Compile Include="TryProcess.cs" />
   </ItemGroup>
   <ItemGroup>
