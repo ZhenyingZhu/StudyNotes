@@ -35,7 +35,7 @@ https://docs.microsoft.com/en-us/visualstudio/ide/tutorial-2-create-a-timed-math
 
 Add an event for a component and create an event handler.
 
-HERE: https://docs.microsoft.com/en-us/visualstudio/ide/step-6-add-a-subtraction-problem
+HERE: https://docs.microsoft.com/en-us/visualstudio/ide/step-8-customize-the-quiz
 
 
 # Show white spaces

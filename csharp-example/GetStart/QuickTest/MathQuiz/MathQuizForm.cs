@@ -17,17 +17,44 @@ namespace MathQuiz
         int addend1;
         int addend2;
 
+        int minuend;
+        int subtrahend;
+
+        int multiplicand;
+        int multiplier;
+
+        int dividend;
+        int divisor;
+
         int timeLeft;
 
         private void StartTheQuiz()
         {
             addend1 = randomizer.Next(51);
             addend2 = randomizer.Next(51);
-
             plusLeftLabel.Text = addend1.ToString();
             plusRightLabel.Text = addend2.ToString();
-
             sumNumericUpDown.Value = 0;
+
+            minuend = randomizer.Next(1, 101);
+            subtrahend = randomizer.Next(1, minuend);
+            minusLeftLabel.Text = minuend.ToString();
+            minusRightLabel.Text = subtrahend.ToString();
+            differenceNumericUpDown.Value = 0;
+
+            multiplicand = randomizer.Next(2, 11);
+            multiplier = randomizer.Next(2, 11);
+            multipleLeftLabel.Text = multiplicand.ToString();
+            multipleRightLabel.Text = multiplier.ToString();
+            productNumericUpDown.Value = 0;
+
+
+            divisor = randomizer.Next(2, 11);
+            int temporaryQuotient = randomizer.Next(2, 11);
+            dividend = divisor * temporaryQuotient;
+            divideLeftLabel.Text = dividend.ToString();
+            divideRightLabel.Text = divisor.ToString();
+            quotientNumericUpDown.Value = 0;
         }
 
         private void ShowTimeLeft()
@@ -37,7 +64,10 @@ namespace MathQuiz
 
         private bool CheckTheAnswer()
         {
-            return sumNumericUpDown.Value == addend1 + addend2;
+            return sumNumericUpDown.Value == addend1 + addend2
+                && differenceNumericUpDown.Value == minuend - subtrahend
+                && productNumericUpDown.Value == multiplicand * multiplier
+                && quotientNumericUpDown.Value == dividend / divisor;
         }
 
         public MathQuizForm()
@@ -50,7 +80,7 @@ namespace MathQuiz
             StartTheQuiz();
             startButton.Enabled = false;
 
-            timeLeft = 5;
+            timeLeft = 20;
             ShowTimeLeft();
             mathQuizTimer.Start();
         }
@@ -73,7 +103,12 @@ namespace MathQuiz
                 mathQuizTimer.Stop();
                 timeLabel.Text = "Time is up";
                 MessageBox.Show("You are too slow!", "Fail");
+                
                 sumNumericUpDown.Value = addend1 + addend2;
+                differenceNumericUpDown.Value = minuend - subtrahend;
+                productNumericUpDown.Value = multiplier * multiplicand;
+                quotientNumericUpDown.Value = dividend / divisor;
+
                 startButton.Enabled = true;
             }
         }
