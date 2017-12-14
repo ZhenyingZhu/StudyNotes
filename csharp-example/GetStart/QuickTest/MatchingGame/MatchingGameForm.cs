@@ -25,17 +25,33 @@ namespace MatchingGame
 
         private void AssignIconsToSquares()
         {
-            foreach(Control control in matchingGameTableLayoutPanel.Controls)
+            foreach (Control control in matchingGameTableLayoutPanel.Controls)
             {
                 Label iconLabel = control as Label;
                 if (iconLabel != null)
                 {
                     int randomNumber = random.Next(0, icons.Count);
                     iconLabel.Text = icons[randomNumber];
-                    iconLabel.ForeColor = Color.CornflowerBlue;
+                    iconLabel.ForeColor = iconLabel.BackColor;
                     icons.RemoveAt(randomNumber);
                 }
             }
+        }
+
+        private void CheckForWinner()
+        {
+            foreach (Control control in matchingGameTableLayoutPanel.Controls)
+            {
+                Label iconLabel = control as Label;
+                if (iconLabel != null)
+                {
+                    if (iconLabel.ForeColor == iconLabel.BackColor)
+                        return;
+                }
+            }
+
+            MessageBox.Show("You matched all the icons!", "Congratulations");
+            Close();
         }
 
         public MatchingGameForm()
@@ -49,22 +65,40 @@ namespace MatchingGame
         {
             Label clickedLabel = sender as Label;
 
-            if (clickedLabel == null || clickedLabel.ForeColor == Color.Black)
+            if (clickedLabel == null ||
+                clickedLabel.ForeColor == Color.Black ||
+                matchingGameTimer.Enabled)
             {
                 return;
             }
 
+            clickedLabel.ForeColor = Color.Black;
             if (firstClicked == null)
             {
-                clickedLabel.ForeColor = Color.Black;
                 firstClicked = clickedLabel;
+            }
+            else if (clickedLabel.Text == firstClicked.Text)
+            {
+                CheckForWinner();
+                firstClicked = null;
             }
             else
             {
-                
+                secondClicked = clickedLabel;
+                matchingGameTimer.Start();
             }
-            
 
+        }
+
+        private void matchingGameTimer_Tick(object sender, EventArgs e)
+        {
+            matchingGameTimer.Stop();
+
+            firstClicked.ForeColor = firstClicked.BackColor;
+            secondClicked.ForeColor = secondClicked.BackColor;
+
+            firstClicked = null;
+            secondClicked = null;
         }
     }
 }
