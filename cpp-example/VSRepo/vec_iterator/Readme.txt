@@ -1,0 +1,1 @@
+Using iterator to change all the elements to 0; 
