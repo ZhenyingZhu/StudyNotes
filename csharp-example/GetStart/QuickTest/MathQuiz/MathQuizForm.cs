@@ -59,15 +59,50 @@ namespace MathQuiz
 
         private void ShowTimeLeft()
         {
+            if (timeLeft <= 5 && timeLeft >= 0)
+            {
+                timeLabel.BackColor = Color.Red;
+            }
+            else
+            {
+                timeLabel.BackColor = Color.White;
+            }
             timeLabel.Text = timeLeft + " seconds";
+        }
+
+        private bool IsSumAnswerCorrect()
+        {
+            return sumNumericUpDown.Value == addend1 + addend2;
+        }
+
+        private bool IsDifferenceAnswerCorrect()
+        {
+            return differenceNumericUpDown.Value == minuend - subtrahend;
+        }
+
+        private bool IsProductAnswerCorrect()
+        {
+            return productNumericUpDown.Value == multiplicand * multiplier;
+        }
+
+        private bool IsQuotientAnswerCorrect()
+        {
+            return quotientNumericUpDown.Value == dividend / divisor;
         }
 
         private bool CheckTheAnswer()
         {
-            return sumNumericUpDown.Value == addend1 + addend2
-                && differenceNumericUpDown.Value == minuend - subtrahend
-                && productNumericUpDown.Value == multiplicand * multiplier
-                && quotientNumericUpDown.Value == dividend / divisor;
+            return IsSumAnswerCorrect()
+                && IsDifferenceAnswerCorrect()
+                && IsProductAnswerCorrect()
+                && IsQuotientAnswerCorrect();
+        }
+
+        private void TestComplete()
+        {
+            mathQuizTimer.Stop();
+            timeLabel.BackColor = Color.White;
+            startButton.Enabled = true;
         }
 
         public MathQuizForm()
@@ -89,8 +124,9 @@ namespace MathQuiz
         {
             if (CheckTheAnswer())
             {
-                mathQuizTimer.Stop();
-                startButton.Enabled = true;
+                // Timer stop must place here. Otherwise it will keep running.
+                TestComplete();
+
                 MessageBox.Show("You are bang bang!", "Success");
             }
             else if (timeLeft > 0)
@@ -100,7 +136,8 @@ namespace MathQuiz
             }
             else
             {
-                mathQuizTimer.Stop();
+                TestComplete();
+
                 timeLabel.Text = "Time is up";
                 MessageBox.Show("You are too slow!", "Fail");
                 
@@ -108,8 +145,6 @@ namespace MathQuiz
                 differenceNumericUpDown.Value = minuend - subtrahend;
                 productNumericUpDown.Value = multiplier * multiplicand;
                 quotientNumericUpDown.Value = dividend / divisor;
-
-                startButton.Enabled = true;
             }
         }
 
@@ -122,6 +157,33 @@ namespace MathQuiz
                 int lenOfAns = answerBox.Value.ToString().Length;
                 answerBox.Select(0, lenOfAns);
             }
+        }
+
+        private void play_Sound_If_Correct(object sender, EventArgs e)
+        {
+            NumericUpDown answerBox = sender as NumericUpDown;
+
+            if (answerBox == null)
+                return;
+
+            if ((answerBox == sumNumericUpDown && IsSumAnswerCorrect()) ||
+                (answerBox == differenceNumericUpDown && IsDifferenceAnswerCorrect()) ||
+                (answerBox == productNumericUpDown && IsProductAnswerCorrect()) ||
+                (answerBox == quotientNumericUpDown && IsQuotientAnswerCorrect()))
+            {
+                PlaySound();
+            }
+        }
+
+        private void PlaySound()
+        {
+            /*
+            string rootLocation = typeof(Program).Assembly.Location;
+            string fullPathToSound = System.IO.Path.Combine(rootLocation, @"Data\Sounds\beep.wav");
+            */
+            string fullPathToSound = @"beep.wav";
+            System.Media.SoundPlayer player = new System.Media.SoundPlayer(fullPathToSound);
+            player.Play();
         }
     }
 }

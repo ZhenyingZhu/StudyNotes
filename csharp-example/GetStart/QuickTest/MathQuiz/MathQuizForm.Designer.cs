@@ -125,6 +125,7 @@
             this.sumNumericUpDown.Name = "sumNumericUpDown";
             this.sumNumericUpDown.Size = new System.Drawing.Size(100, 35);
             this.sumNumericUpDown.TabIndex = 2;
+            this.sumNumericUpDown.ValueChanged += new System.EventHandler(this.play_Sound_If_Correct);
             this.sumNumericUpDown.Enter += new System.EventHandler(this.answer_Enter);
             // 
             // differenceNumericUpDown
@@ -134,6 +135,7 @@
             this.differenceNumericUpDown.Name = "differenceNumericUpDown";
             this.differenceNumericUpDown.Size = new System.Drawing.Size(100, 35);
             this.differenceNumericUpDown.TabIndex = 3;
+            this.differenceNumericUpDown.ValueChanged += new System.EventHandler(this.play_Sound_If_Correct);
             this.differenceNumericUpDown.Enter += new System.EventHandler(this.answer_Enter);
             // 
             // equalSignLabel2
@@ -183,6 +185,7 @@
             this.productNumericUpDown.Name = "productNumericUpDown";
             this.productNumericUpDown.Size = new System.Drawing.Size(100, 35);
             this.productNumericUpDown.TabIndex = 4;
+            this.productNumericUpDown.ValueChanged += new System.EventHandler(this.play_Sound_If_Correct);
             this.productNumericUpDown.Enter += new System.EventHandler(this.answer_Enter);
             // 
             // equalSignLabel3
@@ -232,6 +235,7 @@
             this.quotientNumericUpDown.Name = "quotientNumericUpDown";
             this.quotientNumericUpDown.Size = new System.Drawing.Size(100, 35);
             this.quotientNumericUpDown.TabIndex = 5;
+            this.quotientNumericUpDown.ValueChanged += new System.EventHandler(this.play_Sound_If_Correct);
             this.quotientNumericUpDown.Enter += new System.EventHandler(this.answer_Enter);
             // 
             // equalSignLabel4

@@ -1,0 +1,1 @@
+Hyper-V doesn't have a valid IP configuration
