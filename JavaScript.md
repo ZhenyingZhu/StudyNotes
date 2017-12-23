@@ -678,26 +678,3 @@ if ($hint == ""){
 echo $response; //output the response
 ?>
 ```
-
-# Code Reading
-
-## Steam trading card bulk buyer
-[src](https://bitbucket.org/Doctor_McKay/steam-trading-card-bulk-buyer/raw/tip/badgebuy.user.js)
-
-Header contains match and require.
-```
-// ==UserScript==
-// @match			*://steamcommunity.com/*/gamecards/*
-// @require			https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js
-// ==/UserScript==
-```
-
-[XHR](https://en.wikipedia.org/wiki/XMLHttpRequest)
-```
-$.ajaxSetup({
-	xhrFields: {
-		withCredentials: true
-	}
-});
-```
-
