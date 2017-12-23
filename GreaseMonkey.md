@@ -26,6 +26,13 @@ https://hibbard.eu/tampermonkey-tutorial/
 
 https://github.com/OpenUserJs/OpenUserJS.org/wiki/Userscript-Beginners-HOWTO
 
+## Debugger
+https://www.w3schools.com/js/js_debugging.asp
+
+```
+console.log(c);
+```
+
 ## Example
 
 ### Steam Trading Cards Bulk Buyer
@@ -109,20 +116,16 @@ Test here: https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_document_
 
 <script>
 function myFunction() {
-    var output = document.getElementsByClassName("example");
-    
-    var header2 = document.getElementsByTagName('h2');
-    var atts = header2.attributes;
-    var result = "1";
-    for (var i = 0; i < 4; i++)
-    {
-    	result += "1";
-    }
-
-    output[0].innerHTML = result;
+    var output = document.getElementsByClassName("news_type_block");
+    var header2 = output[0].getElementsByTagName('h2')[0];
+    var link = header2.getElementsByTagName('a')[0].href;
+    console.log(link);
+    window.open(link,"_self");
 }
 </script>
 
 </body>
 </html>
 ```
+
+Maybe use http://www.netinstructions.com/how-to-make-a-simple-web-crawler-in-javascript-and-node-js/
