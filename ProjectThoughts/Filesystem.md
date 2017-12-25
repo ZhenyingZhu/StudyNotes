@@ -46,6 +46,13 @@ FileTag table:
 ## What to write in description
 tag should be enough? just a link to oneonte?
 
-## Control
-- a UI to write to db?
-- a UI to easy search?
+# UI
+## Write
+- passing a file, with text fields, store it in the db correctly.
+- can see similiar files in the db.
+
+## Search
+- a list of tags on the screen
+- a search bar
+- show the result in list with details
+- open the file
