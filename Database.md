@@ -91,6 +91,8 @@ http://zetcode.com/db/sqlite/tool/
 3. `.tables` to see all tables
 4. `select * from mytable;`
 
+Need place SQLite.Interop.dll from StudyNotes\csharp-example\GetStart\DatabaseTest\SQLiteTest\bin\Debug\x86 to StudyNotes\csharp-example\GetStart\DatabaseTest\DatabaseTest\bin\Debug
+
 
 ### miscellaneous
 [Schema vs Database](https://stackoverflow.com/questions/11618277/difference-between-schema-database-in-mysql)
