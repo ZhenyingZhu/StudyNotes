@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2010
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaggedFSWindowsForm", "TaggedFSWindowsForm\TaggedFSWindowsForm.csproj", "{6AEE7B27-2B2B-4C3F-8807-F8EC8998DB06}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaggedFSSQLiteLibrary", "TaggedFSSQLiteLibrary\TaggedFSSQLiteLibrary.csproj", "{AA302946-36C4-4203-A9EF-72AC0E2A06D4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6AEE7B27-2B2B-4C3F-8807-F8EC8998DB06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6AEE7B27-2B2B-4C3F-8807-F8EC8998DB06}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6AEE7B27-2B2B-4C3F-8807-F8EC8998DB06}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6AEE7B27-2B2B-4C3F-8807-F8EC8998DB06}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA302946-36C4-4203-A9EF-72AC0E2A06D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA302946-36C4-4203-A9EF-72AC0E2A06D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA302946-36C4-4203-A9EF-72AC0E2A06D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA302946-36C4-4203-A9EF-72AC0E2A06D4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FD1CA306-C33A-4BE9-A2DD-19E3AAB5121B}
+	EndGlobalSection
+EndGlobal
