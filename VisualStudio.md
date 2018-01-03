@@ -37,6 +37,16 @@ Add an event for a component and create an event handler.
 
 HERE: https://docs.microsoft.com/en-us/visualstudio/ide/step-9-try-other-features
 
+## Idle Master
+Name conversion
+- Form elements start with small letter.
+
+
+ToolStripMenuItem
+- `&About` draw an underline under "A"
+
+
+
 
 # Show white spaces
 ctrl+R and ctrl+w to toggle.
