@@ -39,11 +39,56 @@ HERE: https://docs.microsoft.com/en-us/visualstudio/ide/step-9-try-other-feature
 
 ## Idle Master
 Name conversion
-- Form elements start with small letter.
+- Forms elements start with small letter.
 
-
+### Form elements
 ToolStripMenuItem
 - `&About` draw an underline under "A"
+
+Button
+- Click Event
+
+Form
+- FormClosed Event
+- Load Event
+
+ColumnHeader
+- In the ListView
+
+ListView
+- A list
+
+Label
+
+LinkLabel
+- LinkClicked Event
+
+ToolStripStatusLabel
+- The text to display on the strip
+- vs Label ??
+
+MenuStrip
+- The container to place ToolStripMenuItem
+
+NotifyIcon
+- icon to display in the system tray
+- not place on the form
+
+ToolStripProcessBar
+- Process bar
+
+PictureBox
+- display the picture
+
+StatusStrip
+- Can place ToolStripStatusLabel
+
+Timer
+- Tick Event
+- not place on the form
+
+ToolStripSeparator
+- A line between ToolStripItems
 
 
 
