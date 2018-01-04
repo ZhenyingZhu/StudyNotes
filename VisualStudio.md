@@ -95,6 +95,20 @@ TableLayoutPanel
 
 NumericUpDown
 
+ColorDialog
+- select a color
+- not place on the form
+
+FlowLayoutPanel
+- Property controls can add CheckedBoxes.
+
+OpenFileDialog
+- not place on the form
+
+TextBox
+- [How to limit the char to number](http://blog.csdn.net/hjingtao/article/details/7302448)
+- How to limit the number of char: change property MaxLength
+
 
 ### How to add a resource
 Add to resx. Then VS will generate a designer file. Move the code that related to the resource manager to the form code.

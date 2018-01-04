@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickTest", "QuickTest\QuickTest.csproj", "{1A31DADC-FB65-4A49-B723-EE2424FC8F77}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MathQuiz", "MathQuiz\MathQuiz.csproj", "{E7A98811-26FC-4FA1-8837-C9B93B77B8F5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MatchingGame", "MatchingGame\MatchingGame.csproj", "{05C107FB-8C98-451A-8A29-6947D97D0A69}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GuessNumber", "GuessNumber\GuessNumber.csproj", "{AD2DFB70-633C-46DA-B80F-84A1E6925DD0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,8 +35,15 @@ Global
 		{05C107FB-8C98-451A-8A29-6947D97D0A69}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{05C107FB-8C98-451A-8A29-6947D97D0A69}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{05C107FB-8C98-451A-8A29-6947D97D0A69}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD2DFB70-633C-46DA-B80F-84A1E6925DD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD2DFB70-633C-46DA-B80F-84A1E6925DD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD2DFB70-633C-46DA-B80F-84A1E6925DD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD2DFB70-633C-46DA-B80F-84A1E6925DD0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9400E293-E4FF-4359-8790-9ABB8A2FE39E}
 	EndGlobalSection
 EndGlobal

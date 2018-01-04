@@ -36,9 +36,9 @@
             this.clearButton = new System.Windows.Forms.Button();
             this.backgroundButton = new System.Windows.Forms.Button();
             this.closeButton = new System.Windows.Forms.Button();
+            this.flowLayoutPanelCheckBoxes = new System.Windows.Forms.FlowLayoutPanel();
             this.openPictureDialog = new System.Windows.Forms.OpenFileDialog();
             this.backgroundColorDialog = new System.Windows.Forms.ColorDialog();
-            this.flowLayoutPanelCheckBoxes = new System.Windows.Forms.FlowLayoutPanel();
             this.pictureViewerTableLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.pictureControlFlowLayoutPanel.SuspendLayout();
@@ -60,8 +60,8 @@
             this.pictureViewerTableLayoutPanel.RowCount = 3;
             this.pictureViewerTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 90.72681F));
             this.pictureViewerTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.273183F));
-            this.pictureViewerTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 77F));
-            this.pictureViewerTableLayoutPanel.Size = new System.Drawing.Size(558, 477);
+            this.pictureViewerTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 71F));
+            this.pictureViewerTableLayoutPanel.Size = new System.Drawing.Size(558, 440);
             this.pictureViewerTableLayoutPanel.TabIndex = 0;
             // 
             // pictureBox
@@ -71,7 +71,7 @@
             this.pictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox.Location = new System.Drawing.Point(3, 3);
             this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(552, 356);
+            this.pictureBox.Size = new System.Drawing.Size(552, 328);
             this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox.TabIndex = 0;
             this.pictureBox.TabStop = false;
@@ -79,9 +79,9 @@
             // stretchCheckBox
             // 
             this.stretchCheckBox.AutoSize = true;
-            this.stretchCheckBox.Location = new System.Drawing.Point(3, 365);
+            this.stretchCheckBox.Location = new System.Drawing.Point(3, 337);
             this.stretchCheckBox.Name = "stretchCheckBox";
-            this.stretchCheckBox.Size = new System.Drawing.Size(60, 17);
+            this.stretchCheckBox.Size = new System.Drawing.Size(66, 16);
             this.stretchCheckBox.TabIndex = 1;
             this.stretchCheckBox.Text = "Stretch";
             this.stretchCheckBox.UseVisualStyleBackColor = true;
@@ -95,9 +95,9 @@
             this.pictureControlFlowLayoutPanel.Controls.Add(this.closeButton);
             this.pictureControlFlowLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureControlFlowLayoutPanel.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.pictureControlFlowLayoutPanel.Location = new System.Drawing.Point(86, 365);
+            this.pictureControlFlowLayoutPanel.Location = new System.Drawing.Point(86, 337);
             this.pictureControlFlowLayoutPanel.Name = "pictureControlFlowLayoutPanel";
-            this.pictureControlFlowLayoutPanel.Size = new System.Drawing.Size(469, 31);
+            this.pictureControlFlowLayoutPanel.Size = new System.Drawing.Size(469, 28);
             this.pictureControlFlowLayoutPanel.TabIndex = 2;
             // 
             // showButton
@@ -105,7 +105,7 @@
             this.showButton.AutoSize = true;
             this.showButton.Location = new System.Drawing.Point(367, 3);
             this.showButton.Name = "showButton";
-            this.showButton.Size = new System.Drawing.Size(99, 25);
+            this.showButton.Size = new System.Drawing.Size(99, 23);
             this.showButton.TabIndex = 0;
             this.showButton.Text = "Show a picture";
             this.showButton.UseVisualStyleBackColor = true;
@@ -116,7 +116,7 @@
             this.clearButton.AutoSize = true;
             this.clearButton.Location = new System.Drawing.Point(244, 3);
             this.clearButton.Name = "clearButton";
-            this.clearButton.Size = new System.Drawing.Size(117, 25);
+            this.clearButton.Size = new System.Drawing.Size(117, 23);
             this.clearButton.TabIndex = 1;
             this.clearButton.Text = "Clear the picture";
             this.clearButton.UseVisualStyleBackColor = true;
@@ -127,7 +127,7 @@
             this.backgroundButton.AutoSize = true;
             this.backgroundButton.Location = new System.Drawing.Point(85, 3);
             this.backgroundButton.Name = "backgroundButton";
-            this.backgroundButton.Size = new System.Drawing.Size(153, 25);
+            this.backgroundButton.Size = new System.Drawing.Size(153, 23);
             this.backgroundButton.TabIndex = 2;
             this.backgroundButton.Text = "Set the backgroud color";
             this.backgroundButton.UseVisualStyleBackColor = true;
@@ -138,29 +138,29 @@
             this.closeButton.AutoSize = true;
             this.closeButton.Location = new System.Drawing.Point(4, 3);
             this.closeButton.Name = "closeButton";
-            this.closeButton.Size = new System.Drawing.Size(75, 25);
+            this.closeButton.Size = new System.Drawing.Size(75, 23);
             this.closeButton.TabIndex = 3;
             this.closeButton.Text = "Close";
             this.closeButton.UseVisualStyleBackColor = true;
             this.closeButton.Click += new System.EventHandler(this.closeButton_Click);
             // 
+            // flowLayoutPanelCheckBoxes
+            // 
+            this.flowLayoutPanelCheckBoxes.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanelCheckBoxes.Location = new System.Drawing.Point(86, 371);
+            this.flowLayoutPanelCheckBoxes.Name = "flowLayoutPanelCheckBoxes";
+            this.flowLayoutPanelCheckBoxes.Size = new System.Drawing.Size(469, 66);
+            this.flowLayoutPanelCheckBoxes.TabIndex = 3;
+            // 
             // openPictureDialog
             // 
             this.openPictureDialog.InitialDirectory = "E:\\Pictures\\动物";
             // 
-            // flowLayoutPanelCheckBoxes
-            // 
-            this.flowLayoutPanelCheckBoxes.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanelCheckBoxes.Location = new System.Drawing.Point(86, 402);
-            this.flowLayoutPanelCheckBoxes.Name = "flowLayoutPanelCheckBoxes";
-            this.flowLayoutPanelCheckBoxes.Size = new System.Drawing.Size(469, 72);
-            this.flowLayoutPanelCheckBoxes.TabIndex = 3;
-            // 
             // PictureViewerForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(558, 477);
+            this.ClientSize = new System.Drawing.Size(558, 440);
             this.Controls.Add(this.pictureViewerTableLayoutPanel);
             this.Name = "PictureViewerForm";
             this.Text = "Picture Viewer";
