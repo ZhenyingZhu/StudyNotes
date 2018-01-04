@@ -90,8 +90,16 @@ Timer
 ToolStripSeparator
 - A line between ToolStripItems
 
+TableLayoutPanel
+- A container with a table
+
+NumericUpDown
 
 
+### How to add a resource
+Add to resx. Then VS will generate a designer file. Move the code that related to the resource manager to the form code.
+
+Relative path ??
 
 # Show white spaces
 ctrl+R and ctrl+w to toggle.

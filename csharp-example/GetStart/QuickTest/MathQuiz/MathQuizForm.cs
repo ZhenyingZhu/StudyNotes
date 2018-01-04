@@ -12,6 +12,61 @@ namespace MathQuiz
 {
     public partial class MathQuizForm : Form
     {
+        private static global::System.Resources.ResourceManager resourceMan;
+        private static global::System.Globalization.CultureInfo resourceCulture;
+
+        [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
+        public static global::System.Resources.ResourceManager ResourceManager
+        {
+            get
+            {
+                if (object.ReferenceEquals(resourceMan, null))
+                {
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MathQuiz.MathQuizForm", typeof(MathQuizForm).Assembly);
+                    resourceMan = temp;
+                }
+                return resourceMan;
+            }
+        }
+
+        [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
+        public static global::System.Globalization.CultureInfo Culture
+        {
+            get
+            {
+                return resourceCulture;
+            }
+            set
+            {
+                resourceCulture = value;
+            }
+        }
+
+        public static System.IO.UnmanagedMemoryStream beep
+        {
+            get
+            {
+                return ResourceManager.GetStream("beep", resourceCulture);
+            }
+        }
+
+        public static System.Drawing.Point mathQuizTimer_TrayLocation
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("mathQuizTimer.TrayLocation", resourceCulture);
+                return ((System.Drawing.Point)(obj));
+            }
+        }
+
+        public static string TestResx
+        {
+            get
+            {
+                return ResourceManager.GetString("TestResx", resourceCulture);
+            }
+        }
+
         Random randomizer = new Random();
 
         int addend1;
@@ -181,8 +236,9 @@ namespace MathQuiz
             string rootLocation = typeof(Program).Assembly.Location;
             string fullPathToSound = System.IO.Path.Combine(rootLocation, @"Data\Sounds\beep.wav");
             */
-            string fullPathToSound = @"beep.wav";
-            System.Media.SoundPlayer player = new System.Media.SoundPlayer(fullPathToSound);
+
+            //string fullPathToSound = @"beep.wav";
+            System.Media.SoundPlayer player = new System.Media.SoundPlayer(beep);
             player.Play();
         }
     }
