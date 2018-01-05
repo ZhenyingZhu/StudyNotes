@@ -115,6 +115,13 @@ Add to resx. Then VS will generate a designer file. Move the code that related t
 
 Relative path ??
 
+### app.config
+`<userSettings>`
+
+### localization
+Use resx to store strings in different language.
+
+
 # Show white spaces
 ctrl+R and ctrl+w to toggle.
 
