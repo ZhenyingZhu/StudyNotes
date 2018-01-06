@@ -99,7 +99,8 @@ namespace GuessNumber
             {
                 Label label = new Label();
                 label.Text = GetHintString(userAnswer);
-                label.Font = new Font("Calibri", 12, FontStyle.Bold);
+                label.Font = new Font("Calibri", 18, FontStyle.Bold);
+                label.AutoSize = true;
                 numberTableLayoutPanel.Controls.Add(label);
             }
 
