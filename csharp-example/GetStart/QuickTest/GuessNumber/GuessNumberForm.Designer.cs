@@ -38,8 +38,9 @@
             // 
             // numberTableLayoutPanel
             // 
-            this.numberTableLayoutPanel.ColumnCount = 1;
-            this.numberTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.numberTableLayoutPanel.ColumnCount = 2;
+            this.numberTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.numberTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 90F));
             this.numberTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.numberTableLayoutPanel.Location = new System.Drawing.Point(0, 84);
             this.numberTableLayoutPanel.Name = "numberTableLayoutPanel";

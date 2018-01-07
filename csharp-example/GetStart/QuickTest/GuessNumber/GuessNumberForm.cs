@@ -97,11 +97,16 @@ namespace GuessNumber
             }
             else
             {
-                Label label = new Label();
-                label.Text = GetHintString(userAnswer);
-                label.Font = new Font("Calibri", 18, FontStyle.Bold);
-                label.AutoSize = true;
-                numberTableLayoutPanel.Controls.Add(label);
+                Label guessCountLabel = new Label();
+                guessCountLabel.Text = guessCount.ToString();
+                guessCountLabel.Font = new Font("Calibri", 18);
+                numberTableLayoutPanel.Controls.Add(guessCountLabel, 0, guessCount);
+
+                Label hintLabel = new Label();
+                hintLabel.Text = GetHintString(userAnswer);
+                hintLabel.Font = new Font("Calibri", 18, FontStyle.Bold);
+                hintLabel.AutoSize = true;
+                numberTableLayoutPanel.Controls.Add(hintLabel, 1, guessCount++);
             }
 
             numberTextBox1.Text = string.Empty;
@@ -116,6 +121,7 @@ namespace GuessNumber
             if (!started)
             {
                 GenerateAnswer();
+                guessCount = 0;
                 started = true;
             }
 
