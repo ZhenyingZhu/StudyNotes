@@ -1221,6 +1221,13 @@ https://docs.microsoft.com/en-us/iis/extensions/introduction-to-iis-express/iis-
 # windows search
 https://support.office.com/en-us/article/Tips-for-searching-notes-f4552a65-afd2-421f-9837-d7334d99abf4
 
+# DNSCrypt
+https://www.opendns.com/about/innovations/dnscrypt/
+
+https://www.52pojie.cn/forum.php?mod=viewthread&tid=627211
+
+http://www.williamlong.info/archives/3890.html
+
 # timestamp section
 Sep 11 2016
 Nov 18 2016
