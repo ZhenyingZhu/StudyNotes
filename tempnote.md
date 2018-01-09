@@ -1228,6 +1228,10 @@ https://www.52pojie.cn/forum.php?mod=viewthread&tid=627211
 
 http://www.williamlong.info/archives/3890.html
 
+# windows ip commands
+`ipconfig /flushdns`
+
+
 # timestamp section
 Sep 11 2016
 Nov 18 2016
