@@ -716,3 +716,18 @@ Cannot inherit from it.
 https://stackoverflow.com/questions/6134547/what-does-the-prefix-do-on-string-literals-in-c
 
 Means no need to escape.
+
+## Customize set accessor
+https://stackoverflow.com/questions/1227205/why-can-i-not-add-a-set-accessor-to-an-overriden-property
+```
+class MyClass
+{
+    private int myPropertyCpy;
+
+    public int myProperty
+    {
+        get { return myPropertyCpy; } // cannot use myProperty directly because this will cause infinity loop.
+        set { myPropertyCpy = value; }
+    }
+}
+```
