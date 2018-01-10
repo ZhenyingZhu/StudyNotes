@@ -12,11 +12,11 @@ namespace GuessNumber
 {
     public partial class GuessNumberForm : Form
     {
-        private bool started;
+        private bool _started;
 
-        private int guessCount;
+        private int _guessCount;
 
-        private int[] answer;
+        private int[] _answer;
 
         public GuessNumberForm()
         {
@@ -25,28 +25,23 @@ namespace GuessNumber
 
         private void GenerateAnswer()
         {
-            answer = new int[4];
+            _answer = new int[4];
 
             Random randomizer = new Random();
             int idx = 0;
             while (idx < 4)
             {
                 int num = randomizer.Next(10);
-                if (!answer.Contains(num))
+                if (!_answer.Contains(num))
                 {
-                    answer[idx++] = num;
+                    _answer[idx++] = num;
                 }
             }
         }
 
         private bool IsCorrectAnswer(int[] userAnswer)
         {
-            for (int i = 0; i < userAnswer.Length; i++)
-            {
-                if (answer[i] != userAnswer[i])
-                    return false;
-            }
-            return true;
+            return !userAnswer.Where((t, i) => _answer[i] != t).Any();
         }
 
         private string GetHintString(int[] userAnswer)
@@ -54,21 +49,11 @@ namespace GuessNumber
             string hint = string.Join(",", userAnswer);
             hint += " ";
 
-            int correctNumber = 0;
-            foreach (int num in answer)
-            {
-                if (userAnswer.Contains(num))
-                    correctNumber++;
-            }
+            int correctNumber = _answer.Count(userAnswer.Contains);
 
-            int correctPlaced = 0;
-            for (int i = 0; i < answer.Length; i++)
-            {
-                if (answer[i] == userAnswer[i])
-                    correctPlaced++;
-            }
+            int correctPlaced = _answer.Where((t, i) => t == userAnswer[i]).Count();
 
-            hint += correctPlaced.ToString() + "A" + (correctNumber - correctPlaced).ToString() + "B";
+            hint += correctPlaced + "A" + (correctNumber - correctPlaced) + "B";
 
             return hint;
         }
@@ -88,25 +73,39 @@ namespace GuessNumber
                 return;
             }
 
+            _guessCount++;
             if (IsCorrectAnswer(userAnswer))
             {
-                MessageBox.Show("Bingo!", "Success");
+                MessageBox.Show("Bingo!", "Success"); // should use localization string.
 
                 numberTableLayoutPanel.Controls.Clear();
-                started = false;
+                _started = false;
             }
             else
             {
-                Label guessCountLabel = new Label();
-                guessCountLabel.Text = guessCount.ToString();
-                guessCountLabel.Font = new Font("Calibri", 18);
-                numberTableLayoutPanel.Controls.Add(guessCountLabel, 0, guessCount);
+                Label guessCountLabel = new Label
+                {
+                    Text = _guessCount.ToString(),
+                    Font = new Font("Calibri", 15),
+                    AutoSize = true
+                };
+                numberTableLayoutPanel.Controls.Add(guessCountLabel, 0, _guessCount - 1);
 
-                Label hintLabel = new Label();
-                hintLabel.Text = GetHintString(userAnswer);
-                hintLabel.Font = new Font("Calibri", 18, FontStyle.Bold);
-                hintLabel.AutoSize = true;
-                numberTableLayoutPanel.Controls.Add(hintLabel, 1, guessCount++);
+                Label hintLabel = new Label
+                {
+                    Text = GetHintString(userAnswer),
+                    Font = new Font("Calibri", 18, FontStyle.Bold),
+                    AutoSize = true
+                };
+                numberTableLayoutPanel.Controls.Add(hintLabel, 1, _guessCount - 1);
+            }
+
+            if (_guessCount == 10) // should move it to app.config.
+            {
+                MessageBox.Show("You lose!", "Fail");
+
+                numberTableLayoutPanel.Controls.Clear();
+                _started = false;
             }
 
             numberTextBox1.Text = string.Empty;
@@ -118,11 +117,11 @@ namespace GuessNumber
 
         private void enterButton_Click(object sender, EventArgs e)
         {
-            if (!started)
+            if (!_started)
             {
                 GenerateAnswer();
-                guessCount = 0;
-                started = true;
+                _guessCount = 0;
+                _started = true;
             }
 
             CheckAnswer();
@@ -137,7 +136,7 @@ namespace GuessNumber
             else if (e.KeyChar == '\b')
             {
                 TextBox textBox = sender as TextBox;
-                if (textBox.Text != string.Empty)
+                if (textBox == null || textBox.Text != string.Empty)
                 {
                     return;
                 }
