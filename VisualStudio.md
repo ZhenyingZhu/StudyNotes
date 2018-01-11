@@ -118,6 +118,8 @@ Relative path ??
 ### app.config
 `<userSettings>`
 
+https://www.cnblogs.com/yang-fei/p/4744698.html
+
 ### localization
 Use resx to store strings in different language.
 
