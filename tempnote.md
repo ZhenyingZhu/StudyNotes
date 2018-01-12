@@ -1228,6 +1228,27 @@ https://www.52pojie.cn/forum.php?mod=viewthread&tid=627211
 
 http://www.williamlong.info/archives/3890.html
 
+https://www.dnscrypt.org/#dnscrypt-windows
+
+```
+https://www.pixiv.net/
+
+推荐安装Daedalus ，通过系统***的方式来重定向dns解析。
+http://t.cn/RpsMXMG 密码：pixiv
+内置了Pure DNS , Fun DNS，可以快速提供无污染的解析结果。支持tcp查讯DNS....
+如果你启用后已经可以打开P站，则无需再设置。
+如果还是被污染，这可以使用该软件在本地提供解析。
+这里我选择写dnsmasp文件，可以进行泛域名解析。
+在文件管理中新建一个name.conf文件
+写入
+address=/.pixiv.net/210.129.120.43
+保存
+再在daedalus中侧栏规则，
+新建一个规则，规则名称规则文件名随意填写，规则类型选择DNSmasq，
+然后通过下方的导入刚刚保存的name.conf文件，
+回到规则列表，激活新建的规则即可。
+```
+
 # windows ip commands
 `ipconfig /flushdns`
 
