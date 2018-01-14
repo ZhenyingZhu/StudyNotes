@@ -48,3 +48,6 @@ ADAL:
 
 #### Template
 https://github.com/Azure/azure-quickstart-templates
+
+This is for openvpn:
+https://github.com/Azure/azure-quickstart-templates/tree/master/openvpn-access-server-ubuntu
