@@ -1246,6 +1246,11 @@ address=/.pixiv.net/210.129.120.43
 再在daedalus中侧栏规则，新建一个规则，规则名称规则文件名随意填写，规则类型选择DNSmasq，然后通过下方的导入刚刚保存的name.conf文件，回到规则列表，激活新建的规则即可。
 ```
 
+steam DNS
+```
+http://www.vgtime.com/forum/664333.jhtml
+```
+
 # windows ip commands
 `ipconfig /flushdns`
 
