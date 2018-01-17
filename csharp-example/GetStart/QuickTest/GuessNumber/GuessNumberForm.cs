@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GuessNumber.Properties;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -100,7 +101,7 @@ namespace GuessNumber
                 numberTableLayoutPanel.Controls.Add(hintLabel, 1, _guessCount - 1);
             }
 
-            if (_guessCount == 10) // should move it to app.config.
+            if (_guessCount == Settings.Default.guessTimeMax)
             {
                 MessageBox.Show("You lose!", "Fail");
 

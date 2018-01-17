@@ -29,7 +29,6 @@ Windows Forms Application project
 - Add Container, FlowLayoutPanel to the TableLayoutPanel.
 - Add Common controls, Button to the FlowLayoutPanel.
 
-
 ## Timed quiz
 https://docs.microsoft.com/en-us/visualstudio/ide/tutorial-2-create-a-timed-math-quiz
 
@@ -38,8 +37,38 @@ Add an event for a component and create an event handler.
 HERE: https://docs.microsoft.com/en-us/visualstudio/ide/step-9-try-other-features
 
 ## Idle Master
-Name conversion
+### Name conversion
 - Forms elements start with small letter.
+
+### Windows regedit
+C# class `Registry`, `RegistryKey`
+
+### ClickOnce
+Project property
+
+https://docs.microsoft.com/en-us/visualstudio/deployment/clickonce-security-and-deployment
+
+1. provide updates automatically.
+2. With Windows Installer deployment, applications often rely on shared components, but use ClickOnce, each application is self-contained and cannot interfere with other applications.
+3. ClickOnce deployment enables non-administrative users to install.
+
+### Publish
+Project property
+
+### Command Line Args
+`string[] args = Environment.GetCommandLineArgs();`
+
+`args[0]` is the assembling file.
+
+### Application
+Start application with ex handling.
+```
+Application.ThreadException += (o, a) => Logger.Exception(a.Exception);
+Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
+Application.EnableVisualStyles();
+Application.SetCompatibleTextRenderingDefault(false);
+Application.Run(new frmMain());
+```
 
 ### Form elements
 ToolStripMenuItem
@@ -119,6 +148,8 @@ Relative path ??
 `<userSettings>`
 
 https://www.cnblogs.com/yang-fei/p/4744698.html
+
+Edit Project `Settings.settings`, then include `using [Project].Properties;`.
 
 ### localization
 Use resx to store strings in different language.
