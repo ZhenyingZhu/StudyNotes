@@ -53,6 +53,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="settingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="settingForm.Designer.cs">
+      <DependentUpon>settingForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="GuessNumberForm.resx">
       <DependentUpon>GuessNumberForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -64,6 +70,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -77,6 +84,63 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ban-2x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bar-chart-2x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\check-2x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cog-2x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document-2x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\eye-2x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\globe-2x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\info-2x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lock-locked-2x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\media-pause.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\media-pause-2x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\media-play.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\media-play-2x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\media-step-forward.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\media-step-forward-2x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\power-standby-2x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\select2-spinner.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\trash-2x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\x-2x.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

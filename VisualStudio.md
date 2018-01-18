@@ -151,6 +151,13 @@ https://www.cnblogs.com/yang-fei/p/4744698.html
 
 Edit Project `Settings.settings`, then include `using [Project].Properties;`.
 
+### Create a new form
+First add a form `newForm` to the project. Then add the code
+```
+Form newForm = new newForm();
+newForm.ShowDialog();
+```
+
 ### localization
 Use resx to store strings in different language.
 

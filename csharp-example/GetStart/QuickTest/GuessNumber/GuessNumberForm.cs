@@ -160,5 +160,11 @@ namespace GuessNumber
                 e.Handled = true;
             }
         }
+
+        private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form settingForm = new settingForm();
+            settingForm.ShowDialog();
+        }
     }
 }
