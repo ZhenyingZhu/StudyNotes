@@ -51,7 +51,7 @@ print 'We are the %s who say %s' % (who, ((what + ' ') * 4))
 在print 语句最后加`,`，可以取消换行。
 
 `print "%s is number %d" % ("Python", 1)`  
-可以用>>重导向导出到屏幕上作为系统报错  
+可以用`>>`重导向导出到屏幕上作为系统报错  
 ```
 import sys
 print >> sys.stderr, 'Error'
@@ -87,16 +87,16 @@ def foo():
 ```
 
 ### 运算符：
-+, -, \*, //整形除(当其中有浮点数时仍下取整), \*\*指数, /浮点除(但两数均为整型时仍为整型除), %。  
+`+`, `-`, `\*`, `//`整形除(当其中有浮点数时仍下取整), `\*\*`指数, `/`浮点除(但两数均为整型时仍为整型除), `%`。  
 几乎所有数据类型都可以用+运算符。数组和字符串为串接操作。  
-<, <=, >, >=, ==, !=, <>等同于前者。支持3\<4\<5的操作，用and连接。  
+`<`, `<=`, `>`, `>=`, `==`, `!=`, `<>`等同于前者。支持`3<4<5`的操作，用and连接。  
 and, or, not。  
 变量名：大小写敏感，字母开始。  
 动态类型语言：不需要先声明。  
 不支持自增++，支持增量赋值 `n \*= 10 `  
 数字：int(0x80, -0X92), long(-20L, 0xAEL), bool(True = 1), float(-6.0e23, 1.5E-19), complex(0+1j, -1.23-875J)。导入后可用decimal类型，用以处理十进制小数的误差（outdate）。  
 Python 支持使用成对的单引号或双引号，三引号（三个连续的单引号或者双引号）可以用来包含特殊字符。  
-第一个字符的索引是0，最后一个字符的索引是-1。字符串连接运算+，字符串重复*。  
+第一个字符的索引是0，最后一个字符的索引是-1。字符串连接运算+，字符串重复`*`。  
 使用[ ]和[:]可以得到子字符串。  
 ```
 pystr = 'python'
@@ -111,7 +111,7 @@ is cool
 
 ### 数组：
 可以混合储存任何类型。  
-List用[]创建，可以通过下标重新赋值。  
+List用`[]`创建，可以通过下标重新赋值。  
 Tuple用()表示，不可以重新赋值。
 ```
 aList = [1, 2, 3, 4] # Create a list
@@ -288,11 +288,35 @@ Is a way to run the script with self defined function
 `type(obj)`：返回对象类型。返回值为type 类的实例。  
 `obj.__doc__`：显示帮助文档。  
 
+# 九章算法
+
+## Class
+Attributes: `hasattr`, `getattr`, `setattr`.
+
+`_xxx`: protected. `__xxx`: private. `__xx__`: special methods.
+
+`__init__`, `__doc__`, `__dict__`, `__name__`, `__str__`, `__add__`
+
+`isinstance(obj, type)`: check if obj is an obj of type or a child type.
+
+## Except
+```
+try:
+except:
+else:
+```
+
+- ValueError
+- IOError
+- RuntimeError
+- TypeError
+- NameError
 
 # [Web Spider](http://blog.csdn.net/column/details/why-bug.html)
+
 ## Introduction
 Universal Resource Identifier URL是URI的一个子集。它是Uniform Resource Locator的缩写 
-URL format: protocol :// hostname[:port] / path / [;parameters][?query]#fragment  
+URL format: `protocol :// hostname[:port] / path / [;parameters][?query]#fragment  `
 
 ## urllib2
 Get html stream:  
@@ -305,7 +329,7 @@ print html
 用你要请求的地址创建一个Request对象, 通过调用urlopen并传入Request对象，将返回一个相关请求response对象.  
 
 Interact with HTML: 
-发送一些数据到URL(通常URL与CGI[通用网关接口]脚本，或其他WEB应用程序挂接)。在HTTP中,这个经常使用熟知的POST请求发送。  
+发送一些数据到URL(通常URL与CGI`[通用网关接口]`脚本，或其他WEB应用程序挂接)。在HTTP中,这个经常使用熟知的POST请求发送。  
 
 一般的HTML表单，data需要编码成标准形式。然后做为data参数传到Request对象。
 
@@ -340,7 +364,7 @@ Data同样可以通过在Get请求的URL本身上面编码来传送。
 - 204：服务器端已经实现了请求，但是没有返回新的信息。如果客户是用户代理，则无须为此更新自身的文档视图。处理方式：丢弃
 - 300：该状态码不被HTTP/1.0的应用程序直接使用，只是作为3XX类型回应的默认解释。存在多个可用的被请求资源。处理方式：若程序中能够处理，则进行进一步处理，如果程序中不能处理，则丢弃
 - 301：请求到的资源都会分配一个永久的URL，这样就可以在将来通过该URL来访问此资源. 处理方式：重定向到分配的URL
-- 302：请求到的资源在一个不同的URL处临时保存. 处理方式：重定向到临时的URL 
+- 302：请求到的资源在一个不同的URL处临时保存. 处理方式：重定向到临时的URL
 - 304 请求的资源未更新. 处理方式：丢弃 
 - 400 非法请求. 处理方式：丢弃 
 - 401 未授权. 处理方式：丢弃 
@@ -388,6 +412,7 @@ queue = Queue(size)
 queue.put(item)  # will wait until the queue size is less than the max size
 item = queue.get()  # will wait until the queue is not empty
 queue.task_done()  # inform that the get op is done
+```
 
 # Other tips
 Python import path:  
