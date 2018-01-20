@@ -1,12 +1,10 @@
 ﻿using GuessNumber.Properties;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace GuessNumber
@@ -21,6 +19,7 @@ namespace GuessNumber
 
         public GuessNumberForm()
         {
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("zh-ZH");
             InitializeComponent();
         }
 
@@ -77,7 +76,7 @@ namespace GuessNumber
             _guessCount++;
             if (IsCorrectAnswer(userAnswer))
             {
-                MessageBox.Show("Bingo!", "Success"); // should use localization string.
+                MessageBox.Show("Bingo!", strings.Success);
 
                 numberTableLayoutPanel.Controls.Clear();
                 _started = false;

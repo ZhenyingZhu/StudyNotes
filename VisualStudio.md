@@ -161,6 +161,9 @@ newForm.ShowDialog();
 ### localization
 Use resx to store strings in different language.
 
+resx can also create designer.
+
+https://stackoverflow.com/questions/1142802/how-to-use-localization-in-c-sharp
 
 # Show white spaces
 ctrl+R and ctrl+w to toggle.
