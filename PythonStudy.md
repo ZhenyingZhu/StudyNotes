@@ -512,3 +512,6 @@ lst[0], lst[2] = lst[2], lst[0]
 [API](https://docs.python.org/2/library/xml.etree.elementtree.html)
 
 Notice there is a namespace when search for element.
+
+# API to modify PDF
+https://www.binpress.com/tutorial/manipulating-pdfs-with-python/167
