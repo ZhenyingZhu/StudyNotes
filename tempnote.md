@@ -1249,6 +1249,7 @@ address=/.pixiv.net/210.129.120.43
 steam DNS
 ```
 http://www.vgtime.com/forum/664333.jhtml
+http://dl.3dmgame.com/201712/119389.html
 ```
 
 # windows ip commands
