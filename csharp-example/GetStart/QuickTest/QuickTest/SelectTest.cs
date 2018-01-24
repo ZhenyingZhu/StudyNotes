@@ -47,8 +47,6 @@ namespace QuickTest
             };
 
             SelectByGroup(oldList);
-
-
         }
     }
 }

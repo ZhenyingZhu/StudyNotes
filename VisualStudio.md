@@ -70,6 +70,9 @@ Application.SetCompatibleTextRenderingDefault(false);
 Application.Run(new frmMain());
 ```
 
+### Reflection
+http://www.runoob.com/csharp/csharp-reflection.html
+
 ### Form elements
 ToolStripMenuItem
 - `&About` draw an underline under "A"
