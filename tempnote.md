@@ -1212,6 +1212,9 @@ https://code.visualstudio.com/docs/languages/markdown
 # Markdown extensions for notepad++
 https://github.com/Edditoria/markdown-plus-plus
 
+# notepad++ block selection
+https://jingyan.baidu.com/article/fea4511a0e305cf7bb91253a.html
+
 # Fiddler
 Windows mock http request
 

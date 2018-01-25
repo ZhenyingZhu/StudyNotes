@@ -14,6 +14,11 @@ namespace QuickTest
             {
                 Type t = GetType();
                 Console.WriteLine(t.ToString());
+                var type_ass = GetType().Assembly;
+                Console.WriteLine(type_ass.ToString());
+                var sys_ass = System.Reflection.Assembly.GetExecutingAssembly();
+                Console.WriteLine(type_ass.ToString());
+                Console.WriteLine(type_ass == sys_ass); // true
             }
         }
 

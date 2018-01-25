@@ -73,6 +73,41 @@ Application.Run(new frmMain());
 ### Reflection
 http://www.runoob.com/csharp/csharp-reflection.html
 
+`GetType().Assembly` is the executing assembly, which return the same thing as `System.Reflection.Assembly.GetExecutingAssembly()`.
+
+### Get resource from assembly
+http://blog.csdn.net/lyncai/article/details/12945069
+
+`assembly.GetManifestResourceStream`
+
+Return null if the resource is not embedded resource.
+
+It can be used as moving dll files. First add dll as embedded resource, and then
+```
+private void CopyResource(string resourceName, string file)
+{
+    using (var resource = GetType().Assembly.GetManifestResourceStream(resourceName))
+    {
+        if (resource == null)
+        {
+            return;
+        }
+        using (Stream output = File.OpenWrite(file))
+        {
+            resource.CopyTo(output);
+        }
+    }
+}
+```
+
+Call
+```
+if (File.Exists(Environment.CurrentDirectory + "\\steam_api.dll") == false)
+{
+    CopyResource("IdleMaster.Resources.steam_api.dll", Environment.CurrentDirectory + @"\steam_api.dll");
+}
+```
+
 ### Form elements
 ToolStripMenuItem
 - `&About` draw an underline under "A"
