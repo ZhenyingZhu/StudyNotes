@@ -108,6 +108,18 @@ if (File.Exists(Environment.CurrentDirectory + "\\steam_api.dll") == false)
 }
 ```
 
+### Stream
+Copy non-text file to another place.
+```
+Stream resource = xxx;
+string file = "some place";
+
+using (Stream output = File.OpenWrite(file))
+{
+    resource.CopyTo(output);
+}
+```
+
 ### Form elements
 ToolStripMenuItem
 - `&About` draw an underline under "A"
