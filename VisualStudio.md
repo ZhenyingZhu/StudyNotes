@@ -230,3 +230,7 @@ https://stackoverflow.com/questions/21618015/how-to-connect-to-mysql-database
 VS plugin: Funel https://marketplace.visualstudio.com/items?itemName=DimitriDering.Funnel
 
 Reshapper plugin: for stycop tool
+
+# Wildcard search
+https://docs.microsoft.com/en-us/sql/relational-databases/scripting/search-text-with-wildcards
+
