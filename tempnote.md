@@ -1258,6 +1258,8 @@ http://dl.3dmgame.com/201712/119389.html
 # windows ip commands
 `ipconfig /flushdns`
 
+# Windows see disk read speed
+`winsat disk`
 
 # timestamp section
 Sep 11 2016
