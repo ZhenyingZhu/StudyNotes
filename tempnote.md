@@ -1264,6 +1264,9 @@ http://dl.3dmgame.com/201712/119389.html
 # WeChat Crawler
 https://www.zhihu.com/question/31285583
 
+# How to add ssh key to server
+https://stackoverflow.com/questions/6377009/adding-public-key-to-ssh-authorized-keys-does-not-log-me-in-automatically
+
 # timestamp section
 Sep 11 2016
 Nov 18 2016
