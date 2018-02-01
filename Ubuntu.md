@@ -45,3 +45,6 @@ https://askubuntu.com/questions/148095/how-do-i-set-the-grub-timeout-and-the-gru
 10. Save changes
 https://askubuntu.com/questions/77714/how-can-i-save-settings-on-a-live-usb
 https://www.howtogeek.com/howto/14912/create-a-persistent-bootable-ubuntu-usb-flash-drive/
+
+How to format a USB
+https://petejcullen.wordpress.com/2009/11/18/formatting-a-usb-drive-to-fat-32-using-ubuntu/
