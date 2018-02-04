@@ -19,3 +19,6 @@ Before merging master, better push local branch to remote, so that if merging ma
 Create a folder in remote: make the branch name as: folder/branch
 
 [git blame a line](https://stackoverflow.com/questions/13692072/git-blame-committed-line)
+
+`git gc` garbage clean. Might need to run `git prune`.
+
