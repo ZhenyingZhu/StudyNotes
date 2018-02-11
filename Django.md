@@ -23,3 +23,15 @@ Web framework
 - Nodejs: express, koa
 
 Python 3.4+ with virtual env.
+
+```
+curl -L https://raw.githubusercontent.com/pyenv/pyenv-installer/master/bin/pyenv-installer | bash
+
+# the following to ~/.bashrc:
+export PATH="/home/zhu91/.pyenv/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+
+pyenv install 3.4.6
+```
+
