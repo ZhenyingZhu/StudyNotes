@@ -314,3 +314,6 @@ __pycache__/
 
 # music files
 *.wav
+
+# python secret
+settings_secret.py
