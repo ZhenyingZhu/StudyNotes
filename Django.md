@@ -54,6 +54,14 @@ Install pycharm
 sudo snap install pycharm-community --classic
 ```
 
+Start a new Django app:
+```
+python manage.py startapp todolist
+```
+and add 'todolist' to mysite/settings.py `INSTALLED_APPS`, add 'todolist.urls' to mysite/urls.py.
+
+[Move out the secret key](http://fearofcode.github.io/blog/2013/01/15/how-to-scrub-sensitive-information-from-django-settings-dot-py-files/)
+
 
 HERE:
 http://www.jiuzhang.com/tutorial/django-101/108
