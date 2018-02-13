@@ -1,3 +1,8 @@
 from django.shortcuts import render
+from django.http import HttpResponse
+import datetime
 
-# Create your views here.
+# A basic view.
+def index(request):
+    message = "当前时间:{}".format(datetime.datetime.now())
+    return HttpResponse(message)
