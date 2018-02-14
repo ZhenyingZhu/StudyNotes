@@ -10,4 +10,5 @@ def index(request):
 
 
 def todo_list(request):
-    return render(request, 'base.html')
+    # return render(request, 'base.html')
+    return render(request, 'tagTest.html')
