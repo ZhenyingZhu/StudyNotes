@@ -1,15 +1,22 @@
 body {
-    background-color: powderblue;
-}
-h1 {
-    color: blue;
+    background-image:
+    url(http://78.media.tumblr.com/8090c501b56245d9fac31732ee3a7765/tumblr_inline_mjoflvghiP1qz4rgp.png);
+    background-repeat: repeat-y
 }
 .test-class {
-    background-color: white;
+    background-color: blue;
 }
 .test-class p {
-    color: green;
-}
-div + p {
     color: yellow;
+}
+.test-class + p {
+    color: blue;
+}
+span.highlight {
+    color: rgb(0, 255, 0);
+}
+p#test-long-paragraph {
+    width:300px;
+    height:100px;
+    overflow: scroll;
 }

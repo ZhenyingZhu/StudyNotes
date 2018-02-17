@@ -7,6 +7,7 @@ http://www.jiuzhang.com/tutorial/django-101/236
 - MDN Document: JavaScript
 - Professional JavaScript for Web Developers
 
+## Frameworks and tech stack
 Front-end frameworks
 - React
 - Vue
@@ -24,6 +25,7 @@ Web framework
 
 Python 3.4+ with virtual env.
 
+## Django
 Install Django
 ```
 curl -L https://raw.githubusercontent.com/pyenv/pyenv-installer/master/bin/pyenv-installer | bash
@@ -62,7 +64,13 @@ and add 'todolist' to mysite/settings.py `INSTALLED_APPS`, add 'todolist.urls' t
 
 [Move out the secret key](http://fearofcode.github.io/blog/2013/01/15/how-to-scrub-sensitive-information-from-django-settings-dot-py-files/)
 
-HTML
+[Django manage static](https://docs.djangoproject.com/en/dev/howto/static-files/#basic-usage)
+
+[Django search path](https://stackoverflow.com/questions/42826048/how-to-load-external-html-into-html-inside-django-template)
+
+Django has `template` dir to put html, and `static` dir to put css, picture, and javascript.
+
+## HTML
 - element: `<html></html>`
 - class: `<div class="class1 class2"></div>`
 - ID: `<div id="unique-value"></div>`
@@ -71,15 +79,18 @@ HTML
 - children: `<ul id="parent"><ui id="child"></ui></ul>`
 - attribute and content: `<div attr="attr">content</div>`
 
-[Django manage static](https://docs.djangoproject.com/en/dev/howto/static-files/#basic-usage)
-
-[Django search path](https://stackoverflow.com/questions/42826048/how-to-load-external-html-into-html-inside-django-template)
-
-Django has `template` dir to put html, and `static` dir to put css, picture, and javascript.
-
+## CSS
 Cascading Style Sheets(CSS)
 
 define `<style>` or `<link rel="stylesheet" href="/static/css/bootstrap.min.css">` in header.
+
+```
+<head>
+<style type="text/css">
+    span.highlight {color:rgb(0,0,255)}
+</style>
+</head>
+```
 
 class selector
 ```
@@ -124,9 +135,12 @@ div + p {
 <!-- all p that are next to div elements -->
 ```
 
+## JavaScript
+ECMAScript ES6, ES7: define the standard of JavaScript.
 
 
 
 
-HERE:
+
+## HERE
 http://www.jiuzhang.com/tutorial/django-101/108
