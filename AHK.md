@@ -1,0 +1,1 @@
+https://autohotkey.com/docs/Tutorial.htm
