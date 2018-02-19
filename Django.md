@@ -135,9 +135,86 @@ div + p {
 <!-- all p that are next to div elements -->
 ```
 
+Box Model
+- margin
+- border
+- padding
+- content: which is the element. Has height, width.
+
+```
+div {
+    width: 300px;
+    border: 25px solid green;
+    padding: 25px;
+    margin: 25px;
+}
+```
+
+
 ## JavaScript
 ECMAScript ES6, ES7: define the standard of JavaScript.
 
+primitive types
+- Undefined
+- Boolean
+- Number
+- String
+
+Object
+- Null
+
+## DOM
+In JavaScript
+- `window`: properties `innerWidth`, `innerHeight`.
+- `screen`: `width`, `height`.
+- `location`: dealing with URL. `host`, `port`.
+- `navigator`: deal with browser. `navigator.userAgent`.
+- `document`: DOM. `document.title`.
+
+In header define
+```
+<script>
+    lfkdsk = document.getElementById("testid");
+    document.write("<p> Got " + testid.innerHTML + "</p>");
+</script>
+```
+
+Add a node
+```
+<script>
+    var para = document.createElement("p");
+    var node = document.createTextNode("Test paragraph.");
+    para.appendChild(node);
+
+    var element = document.getElementById("div1");
+    element.appendChild(para); # Or insertBefore
+</script>
+```
+
+Remove a node
+```
+<script>
+    var element=document.getElementById("div1");
+    var p1 = document.getElementById("p1");
+    element.removeChild(p1);
+</script>
+```
+
+Element has
+- `innerHTML`: tags are tags.
+- `innerText`: tags are also text.
+- `textContent`: also include text that is hidden by CSS.
+- `style.color`
+
+Everything is an object.
+
+Define a function:
+- `function foo() {}`
+- `var foo = function() {}`
+
+`myobj.__proto__`
+
+`Object` is a constructor, and it has the property `Object.prototype`.
 
 
 
