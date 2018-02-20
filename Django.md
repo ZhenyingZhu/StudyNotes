@@ -1,4 +1,4 @@
-# Django
+# Jiuzhang Django from 0 to 1
 
 http://www.jiuzhang.com/tutorial/django-101/236
 
@@ -69,6 +69,44 @@ and add 'todolist' to mysite/settings.py `INSTALLED_APPS`, add 'todolist.urls' t
 [Django search path](https://stackoverflow.com/questions/42826048/how-to-load-external-html-into-html-inside-django-template)
 
 Django has `template` dir to put html, and `static` dir to put css, picture, and javascript.
+
+### Template engine
+Related to the `TEMPLATES` and `STATIC` in settings.py.
+
+Add to settings.py:
+```
+STATICFILES_DIRS = (
+	os.path.join(BASE_DIR, "static"),
+)
+```
+
+Then can put pic, font, css, js folders into static folder.
+
+Template HTMLs can be used to generate other pages.
+
+In body of base.html, add a Django block, which is parsed as python code:
+```
+{% block content %}
+{% endblock %}
+```
+
+Then create another html that inherit from this base.html
+```
+{% extends 'base.html' %}
+{% block content %}
+<table class="table">
+  <thread>
+    <tr>
+	  <th>some entry</th>
+	</tr>
+  </thread>
+  <tbody>
+  </tbody>
+</table>
+
+{% endblock %}
+```
+
 
 ## HTML
 - element: `<html></html>`
@@ -217,7 +255,10 @@ Define a function:
 `Object` is a constructor, and it has the property `Object.prototype`.
 
 
-
-
 ## HERE
 http://www.jiuzhang.com/tutorial/django-101/108
+
+
+
+# Official tutorial
+https://docs.djangoproject.com/en/2.0/intro/tutorial01/
