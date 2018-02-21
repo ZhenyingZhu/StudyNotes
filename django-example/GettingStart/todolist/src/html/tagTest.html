@@ -10,7 +10,7 @@
 
     <title>Tag Test</title>
 
-    <link rel="stylesheet" href="/todolist/src/css/selector.css">
+    <link rel="stylesheet" href="{% static "css/selector.css" %}">
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <!-- Optional theme -->
@@ -20,11 +20,13 @@
 </head>
 
 <body>
+    {% load static %}
+
     <div class="container">
         <h1 align="center">Head 1</h1>
 
         <div class="test-class">
-            <img src="/todolist/src/pic/kitten.jpg" />
+            <img src="{% static "pic/kitten.jpg" %}" />
 
             <p>Test content in div.</p>
         </div>

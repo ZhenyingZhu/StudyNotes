@@ -1,7 +1,8 @@
 body {
     background-image:
     url(http://78.media.tumblr.com/8090c501b56245d9fac31732ee3a7765/tumblr_inline_mjoflvghiP1qz4rgp.png);
-    background-repeat: repeat-y
+    background-size:100% 100%;
+    background-repeat: no-repeat;
 }
 .test-class {
     background-color: blue;

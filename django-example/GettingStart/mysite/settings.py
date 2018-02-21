@@ -57,7 +57,7 @@ ROOT_URLCONF = 'mysite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'todolist/src/html')],
+        'DIRS': [os.path.join(BASE_DIR, 'todolist/src/html')], # zhenying: make the tagTest.html work.
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -101,8 +101,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
-STATIC_URL = 'todolist/src/'
+# zhenying: This and STATICFILES_DIRS make the src/ static link works.
+STATIC_URL = '/todolist/src/'
 
-STATICFILES_DIRS = (
+STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'todolist/src/'),
-)
+]

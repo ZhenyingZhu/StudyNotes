@@ -73,14 +73,34 @@ Django has `template` dir to put html, and `static` dir to put css, picture, and
 ### Template engine
 Related to the `TEMPLATES` and `STATIC` in settings.py.
 
-Add to settings.py:
+Folder:
 ```
-STATICFILES_DIRS = (
-	os.path.join(BASE_DIR, "static"),
-)
+mysite
+  settings.py
+todolist
+  src
+    pic
+      kitten.jpg
 ```
 
+Add to settings.py: `STATICFILES_DIRS` is for static assets that aren’t tied to a particular app.
+```
+STATIC_URL = '/todolist/src/'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'todolist/src/'),
+]
+```
+It make `http://localhost:8000/todolist/src/pic/kitten.jpg` works.
+
 Then can put pic, font, css, js folders into static folder.
+
+In HTML, head and body both need to add
+```
+{% load static %}
+<img src="{% static "pic/kitten.jpg" %}" />
+```
+
 
 Template HTMLs can be used to generate other pages.
 
