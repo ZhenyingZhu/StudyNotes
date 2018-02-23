@@ -12,3 +12,7 @@ def index(request):
 def todo_list(request):
     # return render(request, 'base.html')
     return render(request, 'tagTest.html')
+
+
+def template_inherit(request):
+    return render(request, 'templateInheritTest.html')

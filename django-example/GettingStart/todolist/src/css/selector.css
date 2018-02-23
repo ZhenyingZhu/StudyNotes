@@ -21,3 +21,6 @@ p#test-long-paragraph {
     height:100px;
     overflow: scroll;
 }
+.table {
+    background-color: red;
+}
