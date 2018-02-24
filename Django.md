@@ -275,6 +275,36 @@ Define a function:
 `Object` is a constructor, and it has the property `Object.prototype`.
 
 
+## Database
+Define classes in models.py.
+```
+title = models.CharField(max_length=255)
+description = models.TextField(blank=True)
+completed = models.BooleanField(default=False)
+created_at = models.DateTimeField(auto_now_add=True)
+updated_at = models.DateTimeField(auto_now=True)
+```
+
+A default property
+```
+id = models.AutoField(primary_key=True)
+```
+
+Define an inner class to control the object
+```
+class Meta:
+    ordering = ('completed', '-updated_at',)
+```
+
+If settings.py `INSTALLED_APPS` has this project, then 
+```
+python manager.py makemigrations
+python manager.py migrate
+```
+Can let Django update the db..sqlite3.
+
+
+
 ## HERE
 http://www.jiuzhang.com/tutorial/django-101/108
 
