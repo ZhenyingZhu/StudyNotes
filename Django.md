@@ -306,7 +306,7 @@ Can let Django update the db..sqlite3.
 
 
 ## HERE
-http://www.jiuzhang.com/tutorial/django-101/108
+http://www.jiuzhang.com/tutorial/django-101/119
 
 
 
