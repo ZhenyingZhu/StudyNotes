@@ -25,3 +25,6 @@ Create a folder in remote: make the branch name as: folder/branch
 `git fsck` see nasty commits.
 
 `git config --global gc.auto 0` set disable auto GC.
+
+`git checkout branch -- file` get a file from another branch.
+
