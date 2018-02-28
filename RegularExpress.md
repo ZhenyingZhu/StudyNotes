@@ -31,7 +31,7 @@ Need to backclash when use them as character
 - the asterisk or star *
 - the plus sign +
 - the opening parenthesis (. and the closing parenthesis )
-- the opening square bracket [, and the opening curly brace {
+- the opening square bracket `[`, and the opening curly brace `{`
 
 ### Character classes or sets
 - `[ae]` means could be a or e
