@@ -633,7 +633,7 @@ Project
         put x64\SQLite.Interop.dll here
 ```
 
-
+http://blog.tigrangasparian.com/2012/02/09/getting-started-with-sqlite-in-c-part-one/
 
 # UI
 See VisualStudio.md

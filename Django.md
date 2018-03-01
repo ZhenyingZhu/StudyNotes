@@ -285,6 +285,11 @@ created_at = models.DateTimeField(auto_now_add=True)
 updated_at = models.DateTimeField(auto_now=True)
 ```
 
+`auto_now_add` is set only on when the entry is created. while `auto_now` is set when every time call `save()`.
+
+Might not be a good idea to use them. [Django auto_now and auto_now_add](https://stackoverflow.com/questions/1737017/django-auto-now-and-auto-now-add)
+
+
 A default property
 ```
 id = models.AutoField(primary_key=True)
@@ -303,10 +308,11 @@ python manager.py migrate
 ```
 Can let Django update the db..sqlite3.
 
+PyCharm has a DB tool to test connection.
 
 
 ## HERE
-http://www.jiuzhang.com/tutorial/django-101/108
+http://www.jiuzhang.com/tutorial/django-101/119
 
 
 
