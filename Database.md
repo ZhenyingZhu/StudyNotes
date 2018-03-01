@@ -93,6 +93,21 @@ http://zetcode.com/db/sqlite/tool/
 
 Need place SQLite.Interop.dll from StudyNotes\csharp-example\GetStart\DatabaseTest\SQLiteTest\bin\Debug\x86 to StudyNotes\csharp-example\GetStart\DatabaseTest\DatabaseTest\bin\Debug
 
+### SQLite tool
+`sqlite3 db.sqlite3`
+
+[Meta Commands](https://www.sitepoint.com/getting-started-sqlite3-basic-commands/)
+- `.show`: Displays current settings for various parameters
+- `.databases`: Provides database names and files
+- `.quit`: Quit sqlite3 program
+- `.tables`: Show current tables
+- `.schema`: Display schema of table
+- `.header`: Display or hide the output table header
+- `.mode`: Select mode for the output table
+- `.dump`: Dump database in SQL text format
+```
+
+
 
 ### miscellaneous
 [Schema vs Database](https://stackoverflow.com/questions/11618277/difference-between-schema-database-in-mysql)
