@@ -14,5 +14,15 @@ def todo_list(request):
     return render(request, 'tagTest.html')
 
 
+def delete(request):
+    message = "Delete"
+    return HttpResponse(message)
+
+
+def complete(request):
+    message = "complete"
+    return HttpResponse(message)
+
+
 def template_inherit(request):
     return render(request, 'templateInheritTest.html')

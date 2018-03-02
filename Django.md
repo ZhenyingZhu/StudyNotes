@@ -127,6 +127,27 @@ Then create another html that inherit from this base.html
 {% endblock %}
 ```
 
+Django Template configuration:
+- `BACKEND`
+- `DIRS`
+- `APP_DIRS`: whether to search templates in APP.
+
+Django Template tags:
+- `extends`
+- `block`, `endblock`
+- `for`, `in`, `endfor`
+- `cycle`, `as`
+- `filter`, `endfilter`
+- `if`, `elif`, `else`, `endif`
+- `comment`, `endcomment`
+- `debug`
+
+Django Template Filter:
+- Variable: `{{ variable }}`, `{{ variable.attr }}`
+- Filter: `{{ name|lower }}`, `{{ text|escape|linebreaks }}`
+
+Django template comment: `{# comment #}`
+
 
 ## HTML
 - element: `<html></html>`

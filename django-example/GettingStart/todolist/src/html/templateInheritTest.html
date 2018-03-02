@@ -4,10 +4,19 @@
 <table class="table">
   <thead>
     <tr>
-      <th>some entry</th>
+      <th>Title</th>
+      <th>Completed</th>
+      <th>Delete</th>
     </tr>
   </thead>
   <tbody>
+  {% for todo in todolist %}
+    <tr>
+      <td>{{ todo.title }}</td>
+      <td>"Completed"</td>
+      <td>"Delete"</td>
+    </tr>
+  {% endfor %}
   </tbody>
 </table>
 {% endblock %}
