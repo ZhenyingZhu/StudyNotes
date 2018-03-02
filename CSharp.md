@@ -567,6 +567,16 @@ mc.VerifyAllExpectations();
 mocks.VerifyAll();
 ```
 
+or
+```
+MockRepository mocks = new MockRepository();
+MyClass mc = mocks.DynamicMock<MyClass>();
+mc.Stub(x => x.property).Return(value);
+mockRequestContext.Replay();
+
+return mc;
+```
+
 [src](https://stackoverflow.com/questions/466520/what-is-rhino-mocks-repeat)
 If not a repeat, it only call once.
 
