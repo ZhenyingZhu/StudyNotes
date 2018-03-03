@@ -229,6 +229,8 @@ div {
 }
 ```
 
+[Modal](https://getbootstrap.com/docs/4.0/components/modal/)
+
 
 ## JavaScript
 ECMAScript ES6, ES7: define the standard of JavaScript.

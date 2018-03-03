@@ -1,6 +1,12 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 import datetime
+from .models import Todo
+
+class MyClass:
+    def __init__(self, title, field):
+        self.title = title
+        self.field = field
 
 
 # A basic view.
@@ -10,8 +16,10 @@ def index(request):
 
 
 def todo_list(request):
-    # return render(request, 'base.html')
-    return render(request, 'tagTest.html')
+    # read from database.
+    todo_lst = Todo.objects.all()
+
+    return render(request, 'tagTest.html', locals())
 
 
 def delete(request):
@@ -25,4 +33,9 @@ def complete(request):
 
 
 def template_inherit(request):
-    return render(request, 'templateInheritTest.html')
+    myclass_lst = []
+    for value in range(0, 10):
+        myclass_lst.append(MyClass("my class" + str(value), "value " + str(value)))
+
+    # locals is the local objects.
+    return render(request, 'templateInheritTest.html', locals())

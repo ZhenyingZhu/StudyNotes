@@ -36,6 +36,10 @@
         <ol start="11">
             <oi>item 11</oi><br/>
             <oi>item 12</oi><br/>
+
+            {% for todo in todo_lst %}
+                <oi>{{ todo.title }}</oi>
+            {% endfor %}
         </ol>
 
         <p id="test-long-paragraph">It is a very long paragraph. It is a very long paragraph. It is a very long paragraph. It is a very long paragraph. It is a very long paragraph. It is a very long paragraph. It is a very long paragraph. It is a very long paragraph. It is a very long paragraph. It is a very long paragraph. It is a very long paragraph. It is a very long paragraph. It is a very long paragraph. It is a very long paragraph. </p>
