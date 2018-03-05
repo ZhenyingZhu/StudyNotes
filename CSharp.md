@@ -522,12 +522,13 @@ public void TestFoo() {
 ## Rhino mocks
 [src](https://hibernatingrhinos.com/oss/rhino-mocks)
 
-### Create a mock object
-[src](https://stackoverflow.com/questions/7831404/can-you-explain-difference-between-strictmock-and-partialmock)
+[wiki](http://www.ayende.com/wiki/Rhino+Mocks.ashx?AspxAutoDetectCookieSupport=1)
 
-```
-var myClassObj = MockRepository.GenerateMock<MyClass>();
-```
+### Examples
+https://github.com/hibernating-rhinos/rhino-mocks/tree/master/Rhino.Mocks.GettingStarted
+
+- `var foo = MockRepository.GenerateStub<IFoo>();`: Create a stub instance foo of the interface IFoo.
+- `foo.Stub(x => x.ID).Return(123);`: Set a property of the stub instance.
 
 ### Mock a method
 ```
@@ -583,9 +584,13 @@ If not a repeat, it only call once.
 [src](https://stackoverflow.com/questions/2764929/rhino-mocks-partial-mock)
 Partial mock needs work on virtual methods.
 
+
+
+### Create a mock object
+[src](https://stackoverflow.com/questions/7831404/can-you-explain-difference-between-strictmock-and-partialmock)
+
 ### Arg Matches
 [src](https://stackoverflow.com/questions/3520911/rhino-mocks-using-arg-matches)
-
 
 
 # Collection
