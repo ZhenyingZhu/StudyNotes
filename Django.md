@@ -333,6 +333,23 @@ Can let Django update the db..sqlite3.
 
 PyCharm has a DB tool to test connection.
 
+## HTML form
+```
+<form action="/complete/{{ todo.id }}/">
+    <button class="btn btn-primary" type="submit">Mark as complete</button>
+</form>
+```
+
+Use bootstrap [input group](https://getbootstrap.com/docs/4.0/components/input-group/)
+
+Add `{% csrf_token %}` to avoid attack.
+
+backend code:
+```
+if request.method == 'POST':
+    action = request.POST.get('action')
+```
+
 
 ## HERE
 http://www.jiuzhang.com/tutorial/django-101/119

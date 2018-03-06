@@ -16,6 +16,11 @@ def index(request):
 
 
 def todo_list(request):
+    if request.method == 'POST':
+        if request.POST.get('action') == 'add':
+            title = request.POST.get('title')
+            Todo.objects.create(title=title)
+
     # read from database.
     todo_lst = Todo.objects.all()
 
