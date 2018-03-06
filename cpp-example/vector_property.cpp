@@ -5,12 +5,17 @@ using namespace std;
 
 class MyClass {
 public:
-    MyClass() {
+    MyClass(int size = 2) {
+        for (int i = 0; i < size; i++) {
+            myVec.push_back(vector<int>(size));
+        }
+    }
+
+    void setValue() {
         int val = 0;
-        for (int i = 0; i < 2; i++) {
-            myVec.push_back(vector<int>());
-            for (int j = 0; j < 2; j++) {
-                myVec[i].push_back(val++);
+        for (int i = 0; i < myVec.size(); i++) {
+            for (int j = 0; j < myVec.size(); j++) {
+                myVec[i][j] = val++;
             }
         }
     }
@@ -25,6 +30,7 @@ private:
 
 int main() {
     MyClass mc;
+    mc.setValue();
 
     for (int i = 0; i < 2; i++) {
         for (int j = 0; j < 2; j++) {
