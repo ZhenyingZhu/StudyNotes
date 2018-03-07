@@ -352,8 +352,7 @@ if request.method == 'POST':
 
 
 ## HERE
-http://www.jiuzhang.com/tutorial/django-101/119
-
+http://www.jiuzhang.com/tutorial/django-101/123 8:52
 
 
 # Official tutorial
