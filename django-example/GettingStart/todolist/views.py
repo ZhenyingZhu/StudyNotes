@@ -16,14 +16,6 @@ def index(request):
 
 
 def todo_list(request):
-    if request.method == 'POST':
-        if request.POST.get('action') == 'add':
-            title = request.POST.get('title')
-            Todo.objects.create(title=title)
-
-    # read from database.
-    todo_lst = Todo.objects.all()
-
     return render(request, 'tagTest.html', locals())
 
 
@@ -38,9 +30,17 @@ def complete(request):
 
 
 def template_inherit(request):
+    if request.method == 'POST':
+        if request.POST.get('action') == 'add':
+            title = request.POST.get('title')
+            Todo.objects.create(title=title)
+
     myclass_lst = []
-    for value in range(0, 10):
+    for value in range(0, 1):
         myclass_lst.append(MyClass("my class" + str(value), "value " + str(value)))
+
+    # read from database.
+    todo_lst = Todo.objects.all()
 
     # locals is the local objects.
     return render(request, 'templateInheritTest.html', locals())

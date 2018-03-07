@@ -10,10 +10,10 @@
     </tr>
   </thead>
   <tbody>
-  {% for myclass in myclass_lst %}
+  {% for todo in todo_lst %}
     <tr>
-      <td>{{ myclass.title }}</td>
-      <td>{{ myclass.field }}</td>
+      <td>{{ todo.title }}</td>
+      <td>{{ todo.completed }}</td>
       <td>"Delete"</td>
     </tr>
   {% endfor %}
