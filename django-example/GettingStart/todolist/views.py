@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, HttpResponseRedirect
 from django.http import HttpResponse
 import datetime
 from .models import Todo
@@ -19,14 +19,17 @@ def todo_list(request):
     return render(request, 'tagTest.html', locals())
 
 
-def delete(request):
-    message = "Delete"
-    return HttpResponse(message)
+def delete(request, todo_id):
+    todo_item = get_object_or_404(Todo, id=todo_id)
+    todo_item.delete()
+    return HttpResponseRedirect("/world")
 
 
-def complete(request):
-    message = "complete"
-    return HttpResponse(message)
+def complete(request, todo_id):
+    todo_item = get_object_or_404(Todo, id=todo_id)
+    todo_item.completed = True
+    todo_item.save()
+    return HttpResponseRedirect("/world")
 
 
 def template_inherit(request):

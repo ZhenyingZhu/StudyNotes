@@ -5,16 +5,30 @@
   <thead>
     <tr>
       <th>Title</th>
-      <th>Field</th>
-      <th>Button</th>
+      <th>Description</th>
+      <th>Completed</th>
+      <th>Delete</th>
     </tr>
   </thead>
   <tbody>
   {% for todo in todo_lst %}
     <tr>
       <td>{{ todo.title }}</td>
-      <td>{{ todo.completed }}</td>
-      <td>"Delete"</td>
+      <td>{{ todo.description }}</td>
+      {% if todo.completed %}
+        <td><del>"Completed"</del></td>
+      {% else %}
+        <td>
+          <form action="/complete/{{ todo.id }}">
+              <button class="btn btn-primary" type="submit">Complete</button>
+          </form>
+        </td>
+      {% endif %}
+      <td>
+        <form action="/delete/{{ todo.id }}">
+          <button class="btn btn-primary" type="submit">Delete</button>
+        </form>
+      </td>
     </tr>
   {% endfor %}
   </tbody>
