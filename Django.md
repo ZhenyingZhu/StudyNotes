@@ -350,10 +350,25 @@ if request.method == 'POST':
     action = request.POST.get('action')
 ```
 
+`django.shortcuts` methods:
+- `get_object_or_404(MyModel, id=object_id)` can either get the object from DB or return 404 page.
+- `return HttpResponseRedirect('url')` render that page.
 
-## HERE
-http://www.jiuzhang.com/tutorial/django-101/123 8:52
+Regular express: `()` is the capture mode. so `^/action/(?P<id>\d+)` matchs to `/action/123` and the view would be
+```
+def action(request, id):
+    do something
+```
+Notice `?P<id>` is define what the param it is.
 
+
+## Extended Read
+- Python编程：从入门到实践
+- 流畅的 Python
+- CSS 设计指南
+- Head First JavaScript
+- JavaScript 高级编程
+- Vue.js
 
 # Official tutorial
 https://docs.djangoproject.com/en/2.0/intro/tutorial01/
