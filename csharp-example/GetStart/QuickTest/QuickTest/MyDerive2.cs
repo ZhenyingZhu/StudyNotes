@@ -6,13 +6,11 @@ using System.Threading.Tasks;
 
 namespace QuickTest
 {
-    abstract class MyBase
+    class MyDerive2: MyBase
     {
-        public int Id { get; set; }
-
-        public virtual void PrintId()
+        public override void PrintId()
         {
-            Console.WriteLine(@"base print Id: {0}", Id);
+            Console.WriteLine(@"MyDerive2 print Id: {0}", Id);
         }
     }
 }

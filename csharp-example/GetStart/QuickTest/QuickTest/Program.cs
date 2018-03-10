@@ -10,7 +10,7 @@ namespace QuickTest
     {
         static void Main(string[] args)
         {
-            TryGetType.TestMain();
+            TestNotAddDuplicates.TestMain();
 
             Console.WriteLine(@"Press key");
             Console.ReadKey();
