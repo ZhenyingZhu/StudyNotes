@@ -22,6 +22,7 @@
     <ClCompile Include="Folder.cpp" />
     <ClCompile Include="HasPtr.cpp" />
     <ClCompile Include="LongestCommonPrefix.cpp" />
+    <ClCompile Include="LongestSubstringWithoutRepeatingCharacters.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Message.cpp" />
     <ClCompile Include="SearchInsertPosition.cpp" />
@@ -42,7 +43,7 @@
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{41BA6A83-F332-4AC0-9F7C-B1E5D53F68BA}</ProjectGuid>
     <RootNamespace>FirstProject</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
