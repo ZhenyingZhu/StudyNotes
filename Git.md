@@ -31,3 +31,5 @@ Create a folder in remote: make the branch name as: folder/branch
 Check which commit deleted a line: `git log -S "deleted line" file`
 
 `git checkout -b branch_name origin/branch_name` to set the track
+
+`git branch --set-upstream-to=origin/[branch] [branch]`
