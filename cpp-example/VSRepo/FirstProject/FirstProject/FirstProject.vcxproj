@@ -27,6 +27,7 @@
     <ClCompile Include="Message.cpp" />
     <ClCompile Include="SearchInsertPosition.cpp" />
     <ClCompile Include="TestConstructor.cpp" />
+    <ClCompile Include="TestCreateTree.cpp" />
     <ClCompile Include="TestDynamicArray.cpp" />
     <ClCompile Include="TestExplicit.cpp" />
     <ClCompile Include="TestFailureConstructor.cpp" />
