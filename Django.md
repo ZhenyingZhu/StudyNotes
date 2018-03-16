@@ -371,4 +371,34 @@ Notice `?P<id>` is define what the param it is.
 - Vue.js
 
 # Official tutorial
+
+## Overview
+DB model:
+- create an entry: `myClass = MyClass(field='value')` then `myClass.save()`
+- Read from the DB: `MyClass.objects.get(id=myClass.id)` or `MyClass.objects.get(field__startswith='str')`, `field__contains='str'`. get can replace with filter.
+
+Define a foreign key:
+```
+class UseAsFK(models.Model):
+    ...
+
+class MyClass(models.Model):
+    field = models.ForeignKey(UseAsFK, on_delete=models.CASCADE)
+
+k = UseAsFK()
+myClass = MyClass(field=k)
+myClass.save()
+```
+
+The foreign key object has API access to who refer to it.
+```
+k.myclass_set.all()
+```
+
+Filter vs Get:
+- get returns one entry, while filter returns a set
+
+
 https://docs.djangoproject.com/en/2.0/intro/tutorial01/
+
+
