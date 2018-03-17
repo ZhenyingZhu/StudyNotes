@@ -398,6 +398,13 @@ k.myclass_set.all()
 Filter vs Get:
 - get returns one entry, while filter returns a set
 
+Use admin
+```
+from django.contrib import admin
+from . import models
+admin.site.register(models.Article)
+```
+
 
 https://docs.djangoproject.com/en/2.0/intro/overview/
 
