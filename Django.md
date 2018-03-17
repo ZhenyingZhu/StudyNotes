@@ -405,7 +405,26 @@ from . import models
 admin.site.register(models.Article)
 ```
 
+URLConf: matching is in-order, and return the python callback when hit the first match.
+```
+from django.urls import path
+from . import views
+urlpatterns = [
+    path('articles/<int:year>/<int:month>/<int:pk>/', views.article_detail),
+]
+```
+So with a URL: "/articles/2005/05/39323/", a call `views.article_detail(request, year=2005, month=5, pk=39323)` is made.
 
-https://docs.djangoproject.com/en/2.0/intro/overview/
+Views callbacks
+- return a HTTPResonse or a HTTPException.
 
+Templates
+- Search path is `DIRS`.
+- variables: `{{ var }}`. It is python variable.
+- template filter is like unix pipe: `{{ article.pub_date|date:"F j, Y" }}`. Here is using [php date format](http://php.net/manual/en/function.date.php)
+- inherit: `{% extend "something.html" %}`
+- use static files: `{% load static %}`, and then `{% static "images/sitelogo.png" %}"` to refer to a png.
+
+
+https://docs.djangoproject.com/en/2.0/intro/install/
 
