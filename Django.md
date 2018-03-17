@@ -399,6 +399,6 @@ Filter vs Get:
 - get returns one entry, while filter returns a set
 
 
-https://docs.djangoproject.com/en/2.0/intro/tutorial01/
+https://docs.djangoproject.com/en/2.0/intro/overview/
 
 
