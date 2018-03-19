@@ -60,6 +60,9 @@
     <ClCompile Include="TestCreateTree.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="FindPrimeNumbers.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Message.h">
