@@ -515,3 +515,11 @@ Notice there is a namespace when search for element.
 
 # API to modify PDF
 https://www.binpress.com/tutorial/manipulating-pdfs-with-python/167
+
+# UPS Crawler
+https://stackoverflow.com/questions/5879953/tracking-api-for-fedex-and-ups
+
+https://stackoverflow.com/questions/46614788/python-ups-xml-tracking
+
+https://www.ups.com/upsdeveloperkit?loc
+
