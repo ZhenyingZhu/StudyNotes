@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="FindPrimeNumbers.cpp" />
     <ClCompile Include="Folder.cpp" />
     <ClCompile Include="HasPtr.cpp" />
     <ClCompile Include="LongestCommonPrefix.cpp" />

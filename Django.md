@@ -425,6 +425,13 @@ Templates
 - inherit: `{% extend "something.html" %}`
 - use static files: `{% load static %}`, and then `{% static "images/sitelogo.png" %}"` to refer to a png.
 
+Python includes a lightweight database called SQLite.
 
-https://docs.djangoproject.com/en/2.0/intro/install/
+Verify installation:
+```
+import django
+print(django.get_version())
+```
+
+https://docs.djangoproject.com/en/2.0/intro/tutorial01/
 

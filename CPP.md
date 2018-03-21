@@ -5914,4 +5914,7 @@ DoLongOperation(boost::bind(&CompleteRoutine2, 7, _1)); // int parameter is boun
 
 ## [memset](http://www.cplusplus.com/reference/cstring/memset/)
 
+## Cannot use bool vector
+https://stackoverflow.com/questions/17794569/why-is-vectorbool-not-a-stl-container
 
+Should use deque instead.
