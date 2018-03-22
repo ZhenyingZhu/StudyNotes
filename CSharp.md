@@ -67,6 +67,11 @@ Compile C# program:
 - When a multi-file C# program is compiled, all of the source files are processed together, and the source files can freely reference each other
 - `dotnet` also manage dependencies and then invoke `csc`
 
+### VS Code
+https://docs.microsoft.com/en-us/dotnet/core/tutorials/with-visual-studio-code#debug
+
+
+
 ## Concepts
 `String.Empty` vs `null`
 
