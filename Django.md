@@ -433,5 +433,16 @@ import django
 print(django.get_version())
 ```
 
+Start a project
+```
+django-admin startproject mysite
+```
+
+The inner `mysite/` directory is the actual Python package for your project. So can import `mysite.urls`.
+
+`mysite/wsgi.py`: An entry-point for WSGI-compatible web servers
+
+
+
 https://docs.djangoproject.com/en/2.0/intro/tutorial01/
 
