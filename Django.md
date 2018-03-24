@@ -442,6 +442,12 @@ The inner `mysite/` directory is the actual Python package for your project. So 
 
 `mysite/wsgi.py`: An entry-point for WSGI-compatible web servers
 
+Don’t use this server in anything resembling a production environment.
+```
+python manage.py runserver 0:8000 # ip 0.0.0.0:8000
+```
+The runserver is auto reloading, but adding files need manually restart it.
+
 
 
 https://docs.djangoproject.com/en/2.0/intro/tutorial01/
