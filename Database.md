@@ -49,6 +49,12 @@ mysqldump -u root -p[root_password] [database_name] > dumpfilename.sql
 mysql -u root -p[root_password] [database_name] < dumpfilename.sql
 ```
 
+From [mysql to sqlite](https://github.com/dumblob/mysql2sqlite):
+```
+mysqldump -u $username -p --skip-extended-insert --compact $dbname > dump_mysql.sql
+./mysql2sqlite dump_mysql.sql | sqlite3 mysqlite3.db
+```
+
 #### Select on Date
 ```
 SELECT Questions.qid, Questions.url, Questions.difficulty, Metadata.priority, Metadata.last_touch FROM Questions LEFT JOIN Metadata ON Questions.id=Metadata.id WHERE DATE(last_touch) >= DATE('2016-12-15');
