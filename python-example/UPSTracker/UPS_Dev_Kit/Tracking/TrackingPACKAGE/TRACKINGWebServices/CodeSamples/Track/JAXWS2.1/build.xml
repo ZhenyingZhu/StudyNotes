@@ -1,0 +1,38 @@
+<project name="jaxws sample code for UPS Track Web service" default="all" basedir=".">
+	<property file="build.properties"/>
+		<target name="all" depends="run"/>
+		<path id="classpath">
+			<fileset dir="${lib}" includes="*.jar"/>
+			<pathelement path="${build.classes}"/>
+		</path>
+		<taskdef name="wsimport" classname="com.sun.tools.ws.ant.WsImport">
+			<classpath refid="classpath"/>
+		</taskdef>
+		<target name="clean">
+			<delete dir="build"/>
+			<delete dir="${src}/${gensrc1}"/>
+			<delete dir="${src}/${gensrc2}"/>
+		</target>
+		<target name="init" depends="clean" description="Creates the build and dist directories">
+			<echo message="Creating the required directories...."/>
+			<mkdir dir="${build.classes}"/>
+		</target>
+		<target name="genclient" depends="init">
+			<wsimport fork="true" debug="${debug}" verbose="${verbose}" keep="${keep}" destdir="${build.classes}" sourcedestdir="${src}" wsdl="${wsdl.home}/${wsdlfilename}"/>
+		</target>
+		<target name="compileclient" depends="genclient" description="Compiles the client-side test source code">
+			<echo message="Compiling the client source code...."/>
+			<javac srcdir="${src}" destdir="${build.classes}">
+				<include name="**/*.java"/>
+				<classpath refid="classpath"/>
+				<classpath path="${build.classes}"/>
+			</javac>
+		</target>
+		<target name="run" depends="compileclient" description="Run the sample app">
+			<echo message="Running the sample application..."/>
+			<java classname="${client.class}" fork="true">
+				<classpath refid="classpath"/>
+			</java>
+		</target>
+	
+</project>

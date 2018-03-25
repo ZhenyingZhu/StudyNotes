@@ -1,0 +1,55 @@
+<?xml version="1.0" standalone="yes"?>
+<project name="jaxb sample code for UPS Track Tool" basedir="." default="compile">
+  <property file="build.properties"/>
+	
+  <path id="classpath">
+    <pathelement path="${src}" />
+    <pathelement path="${build.classes}" />
+  	<fileset dir="${jaxb.home}" includes="*.jar" />
+  </path>
+	
+	<target name="clean" description="Deletes all the generated artifacts.">
+		<delete dir="${deletedir1}" />
+		<delete dir="${deletedir2}" />
+		<delete dir="${deletedir3}" />
+		<delete dir="build" />
+	 </target>
+	
+	<target name="init" depends="clean">
+		<mkdir dir="${build.classes}" />
+	</target>
+	
+  <taskdef name="xjc" classname="com.sun.tools.xjc.XJCTask">
+    <classpath refid="classpath" />
+  </taskdef>
+		
+  <target name="generate" depends="init">
+    <echo message="Generating  binding objects ..." />
+  	<xjc schema="${requestxsd}" package="${requestpackage}"  destdir="${src}">
+  	      <produces dir="${src}/${requestpackage}" includes="**/*.java" />
+  	</xjc>
+  	<xjc schema="${responsexsd}" package="${responsepackage}"  destdir="${src}">
+  		<produces dir="${src}/${responsepackage}" includes="**/*.java" />
+  	</xjc>
+  	<xjc schema="${accessrequestxsd}" package="${accessrequestpackage}"  destdir="${src}">
+  	  	  <produces dir="${src}/${accessrequestpackage}" includes="**/*.java" />
+  	</xjc>
+  </target>
+	
+	<target name="compile" depends="generate">
+		<echo message="Compiling the java source files..." />
+		<javac destdir="${build.classes}"  deprecation="true" failonerror="true" debug="true">
+	      <src path="${src}" />
+	      <classpath refid="classpath" />    	
+	    </javac>
+	</target>
+	
+  <target name="run" depends="compile" description="Run the sample app">
+    <echo message="Running the sample application..." />
+    <java classname="com.ups.xolt.codesamples.JAXBTrackClient" fork="true">
+      <classpath refid="classpath" />
+    </java>
+  </target>
+	
+</project>
+
