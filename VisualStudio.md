@@ -218,6 +218,8 @@ https://stackoverflow.com/questions/1142802/how-to-use-localization-in-c-sharp
 # Show white spaces
 ctrl+R and ctrl+w to toggle.
 
+# Jump between braces
+`ctrl+[` jump to the defination of the method. `ctrl+]` jump between braces.
 
 # Connect to MySQL
 1. Install connector and MySQL for VS: See Database.md
