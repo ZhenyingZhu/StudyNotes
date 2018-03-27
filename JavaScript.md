@@ -678,3 +678,6 @@ if ($hint == ""){
 echo $response; //output the response
 ?>
 ```
+
+# Node.js
+https://www.nczonline.net/blog/2013/10/07/node-js-and-the-new-web-front-end/

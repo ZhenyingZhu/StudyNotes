@@ -234,3 +234,5 @@ Reshapper plugin: for stycop tool
 # Wildcard search
 https://docs.microsoft.com/en-us/sql/relational-databases/scripting/search-text-with-wildcards
 
+# tab management
+https://stackoverflow.com/questions/14254005/let-visual-studio-2012-2013-open-files-to-the-right-instead-of-to-the-left
