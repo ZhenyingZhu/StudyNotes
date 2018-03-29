@@ -448,7 +448,14 @@ python manage.py runserver 0:8000 # ip 0.0.0.0:8000
 ```
 The runserver is auto reloading, but adding files need manually restart it.
 
+Projects vs. apps: A project can contain multiple apps. An app can be in multiple projects.
 
+Create an app call polls:
+```
+python manage.py startapp polls
+```
+
+HERE: Write your first view
 
 https://docs.djangoproject.com/en/2.0/intro/tutorial01/
 
