@@ -189,7 +189,7 @@ class Crawler:
 
 def main():
     # TODO start from an info page, and a list of urls
-    my_url = 'https://e-hentai.org/s/2d16ae5994/1117245-1'
+    my_url = ''
     c = Crawler(my_url, "F:/Downloads/tmp/")
     c.start()
 
