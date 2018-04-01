@@ -5918,3 +5918,27 @@ DoLongOperation(boost::bind(&CompleteRoutine2, 7, _1)); // int parameter is boun
 https://stackoverflow.com/questions/17794569/why-is-vectorbool-not-a-stl-container
 
 Should use deque instead.
+
+## Array of pointers
+The static array, which will be released by itself. But the object in the array would not be released:
+```
+int *tmp = new int(5);
+int* arr[10] = {NULL};
+arr[4] = tmp;
+
+for (int i = 0; i < 10; i++)
+{
+        if (arr[i] != NULL)
+        {
+                cout << *arr[i] << endl;
+                delete arr[i];
+                arr[i] = NULL;
+        }
+}
+```
+
+The dynamic array:
+```
+int** arr[10] = new int*[10];
+delete [] arr;
+```
