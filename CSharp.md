@@ -751,3 +751,15 @@ class MyClass
     }
 }
 ```
+
+## Entity Data Model
+[Entity type](https://msdn.microsoft.com/en-us/library/ee382837(v=vs.100).aspx) vs. [Complex Type](https://msdn.microsoft.com/en-us/library/ee382831(v=vs.100).aspx)
+
+Entity type
+- Entity name
+- Key
+- Properties: are also entities.
+
+Complex types
+- It is used as value of entites or other complex types.
+- do not have identities and therefore cannot exist independently.
