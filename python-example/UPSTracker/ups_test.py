@@ -9,7 +9,7 @@ with open('ups_creds.json') as creds:
   access_license_number = data['access_license_number']
 
 # Need replace this number with a real tracking number.
-track_number = "1Z12345E1512345676"
+track_number = "5007052424"
 
 # Send REST request.
 ups_tracking_test_url = 'https://wwwcie.ups.com/rest/Track'
