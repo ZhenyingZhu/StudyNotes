@@ -455,7 +455,20 @@ Create an app call polls:
 python manage.py startapp polls
 ```
 
-HERE: Write your first view
+URLconf is a urls.py file. It defines urlpatterns. It needs to be included in `mysite/urls.py` to use.
+```
+urlpatterns = [
+    path('polls/', include('polls.urls')),
+    path('admin/', admin.site.urls),
+]
+```
 
-https://docs.djangoproject.com/en/2.0/intro/tutorial01/
+`path` method args:
+- route: doesn't search GET and POST parameters.
+- view
+- kwargs: can be passed in a dictionary to the target view.
+- name: Name of the URL.
+
+
+HERE: https://docs.djangoproject.com/en/2.0/intro/tutorial02/
 
