@@ -1,38 +1,15 @@
 #!/usr/bin/python
 
+import io
 import os
 from sys import argv
 import pickle
 import urllib
 import urllib.request
+import requests
 import shutil
 import re
 import time
-
-
-""" Windows does not have SIGALM
-def timeout(func, args=(), kwargs={}, timeout_duration=1):
-    import signal
-
-    class TimeoutError(Exception):
-        pass
-
-    def handler(signum, frame):
-        raise TimeoutError()
-
-    # set the timeout handler
-    signal.signal(signal.SIGALRM, handler)
-    signal.alarm(timeout_duration)
-    try:
-        func(*args, **kwargs)
-        result = False
-    except TimeoutError as exc:
-        result = True
-    finally:
-        signal.alarm(0)
-
-    return result
-"""
 
 
 class Crawler:
@@ -40,10 +17,6 @@ class Crawler:
         # TODO: Strong coupling between crawler and saving file. Need decouple
         self.first_url = first_url
         self.save_path = save_path
-
-        # TODO: is it really needed?
-        #if not self.save_path.endswith('/'):
-        #    self.save_path += '/'
 
         self.html_page = ""
         self.last_url_id = self.get_url_pattern(first_url)
@@ -69,31 +42,16 @@ class Crawler:
                 'Accept-Language': 'en-US,en;q=0.8',
                 'Connection': 'keep-alive'}
 
-            req = urllib.request.Request(url, headers=hdr)
+            req = requests.get(url, headers=hdr)
 
-            response = urllib.request.urlopen(req)
+            self.html_page = req.text
 
-            # The problem here is that read() might not get the entire HTTP response
-            self.html_page = ""
-            while 1:
-                data = response.read()
-                if not data:
-                    last_part = response.read()
-                    break
-                self.html_page += data.decode("utf-8") 
-            if not self.html_page.endswith('</html>\n'):
-                # maybe it is because memory not enough?
-                print('partial read, the last part of the data: ')
-                print(last_part)
-
-            debug_file = open('html_page', 'w')
+            debug_file = open('html_page', 'w', encoding="utf-8")
             debug_file.write(self.html_page)
             debug_file.close()
-        except urllib.request.HTTPError:
-            raise
         except ValueError:
             raise
-
+			
     def get_page_from_file(self, path):
         # read from html_page which is stored by previous parse
         try:
@@ -144,10 +102,6 @@ class Crawler:
         save_position = os.path.normpath(os.path.join(self.save_path, filename))
         # TODO create folder
         try:
-            #if timeout(urllib.request.urlretrieve, args=(pic_url, save_position), timeout_duration=60):
-            #    return False
-            #return True
-            
             local_filename, headers = urllib.request.urlretrieve(pic_url)
             shutil.move(local_filename, save_position)
             
@@ -190,7 +144,7 @@ class Crawler:
 def main():
     # TODO start from an info page, and a list of urls
     my_url = ''
-    c = Crawler(my_url, "F:/Downloads/tmp/")
+    c = Crawler(my_url, "D:/Downloads/tmp/")
     c.start()
 
 if __name__ == '__main__':
