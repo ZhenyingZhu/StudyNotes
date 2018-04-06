@@ -469,6 +469,21 @@ urlpatterns = [
 - kwargs: can be passed in a dictionary to the target view.
 - name: Name of the URL.
 
+Setting database
+- `mysite/settings.py`
+- To use other database: https://docs.djangoproject.com/en/2.0/topics/install/#database-installation
+- ENGINE is the db. NAME is tha path.
+
+INSTALLED_APPS contains apps which come with Django:
+- django.contrib.admin – The admin site.
+- django.contrib.auth – An authentication system.
+- django.contrib.contenttypes – A framework for content types.
+- django.contrib.sessions – A session framework.
+- django.contrib.messages – A messaging framework.
+- django.contrib.staticfiles – A framework for managing static files.
+
+Run `python manage.py migrate` to create databases based on the apps.
+
 
 HERE: https://docs.djangoproject.com/en/2.0/intro/tutorial02/
 
