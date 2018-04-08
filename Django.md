@@ -484,6 +484,11 @@ INSTALLED_APPS contains apps which come with Django:
 
 Run `python manage.py migrate` to create databases based on the apps.
 
+Django follows the DRY Principle. The goal is to define your data model in one place and automatically derive things from it.
+
+`pub_date = models.DateTimeField('date published')` Now 'date published' is the field name, instead of 'pub_date'.
+
+
 
 HERE: https://docs.djangoproject.com/en/2.0/intro/tutorial02/
 
