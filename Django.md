@@ -488,7 +488,35 @@ Django follows the DRY Principle. The goal is to define your data model in one p
 
 `pub_date = models.DateTimeField('date published')` Now 'date published' is the field name, instead of 'pub_date'.
 
+Django apps are “pluggable”: You can use an app in multiple projects.
+
+The `PollsConfig` class is in the `polls/apps.py` file, so its dotted path is 'polls.apps.PollsConfig'.
+```
+INSTALLED_APPS = [
+    'polls.apps.PollsConfig',
+    'django.contrib.admin',
+...
+]
+```
+
+To tell Django that you’ve made some changes to your models, and you’d like the changes to be stored as a migration.
+```
+python manage.py makemigrations polls
+```
+
+The migration file `polls/migrations/0001_initial.py` is human readable.
+
+Run `python manage.py sqlmigrate polls 0001` can see how the SQL would look like, but won't actually execute them.
+
+`python manage.py check;` can check problems.
+
+Table `django_migrations` track migration process.
+
+Summary
+1. Change your models (in models.py).
+2. Run `python manage.py makemigrations` to create migrations for those changes. The result should commit to git.
+3. Run `python manage.py migrate` to apply those changes to the database.
 
 
 HERE: https://docs.djangoproject.com/en/2.0/intro/tutorial02/
-
+Playing with the API¶
