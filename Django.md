@@ -518,5 +518,29 @@ Summary
 3. Run `python manage.py migrate` to apply those changes to the database.
 
 
+Get a python shell with the Django app environment: `python manage.py shell`
+
+Database APIs:
+```
+Question.objects.all() # return Question.__str__()
+q = Question(question_text="", pub_date=timezone.now())
+q.save()
+q.id
+q.pub_date
+q.question_text="a"
+q.save()
+Question.objects.filter(question_text__startswith='a') # this call return empty QuerySet when not found.
+Question.objects.get(id=2) # throw DoesNotExist
+Question.objects.get(pk=1) # pk is primary key
+q.choice_set.all() # access the set define Question as foreign key
+c = q.choice_set.create(choice_text='b', votes=0)
+c.question
+Choice.objects.filter(question__pub_date__year=current_year) # double underscore access the property filed and create a filter.
+```
+
+`timezone.now()` vs `datetime.datetime.now()`
+- Django expects a datetime with tzinfo.
+- `timezone` needs `from django.utils import timezone`
+
 HERE: https://docs.djangoproject.com/en/2.0/intro/tutorial02/
-Playing with the API¶
+Introducing the Django Admin
