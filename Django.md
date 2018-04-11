@@ -542,5 +542,9 @@ Choice.objects.filter(question__pub_date__year=current_year) # double underscore
 - Django expects a datetime with tzinfo.
 - `timezone` needs `from django.utils import timezone`
 
+Create an admin: `python manage.py createsuperuser`
+
+Login through `localhost/admin/`
+
 HERE: https://docs.djangoproject.com/en/2.0/intro/tutorial02/
-Introducing the Django Admin
+Make the poll app modifiable in the admin
