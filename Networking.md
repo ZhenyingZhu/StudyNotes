@@ -504,3 +504,14 @@ The use of multicast addressing is expanded and simplified
 [might related to SKB](http://vger.kernel.org/~davem/skb_data.html)
 [south and north](https://networkengineering.stackexchange.com/questions/18873/what-is-the-meaning-origin-of-the-terms-north-south-and-east-west-traffic)
 
+
+# Fiddler
+Fiddler add a filter:
+- Right window : Filters.
+- Right click the previous response.
+
+Fiddler decrept HTTPS traffic:
+- [Block all HTTPS traffic if not provide cert](https://www.telerik.com/forums/fiddler-blocks-all-other-websites)
+- Actions button on Fiddler's Tools > Fiddler Options > HTTPS
+- [Only decrept for certain hosts](http://docs.telerik.com/fiddler/Configure-Fiddler/Tasks/DecryptHTTPS)
+

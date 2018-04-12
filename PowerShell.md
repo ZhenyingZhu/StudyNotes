@@ -33,3 +33,9 @@ For example set python:
 ```
 [Environment]::SetEnvironmentVariable("Path", "$env:Path;C:\Python3.6;C:\Python3.6\Scripts")
 ```
+
+# Get all commands in a module
+```
+Get-Command -Module <Module name>
+```
+
