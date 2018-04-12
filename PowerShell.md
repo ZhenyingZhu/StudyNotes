@@ -28,3 +28,8 @@ $states = @{"Washington" = "Olympia"; "Oregon" = "Salem"; California = "Sacramen
 # List or Array
 https://stackoverflow.com/questions/24754822/powershell-remove-item-0-from-an-array
 
+# Set system path
+For example set python:
+```
+[Environment]::SetEnvironmentVariable("Path", "$env:Path;C:\Python3.6;C:\Python3.6\Scripts")
+```
