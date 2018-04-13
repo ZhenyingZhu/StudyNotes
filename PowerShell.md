@@ -39,3 +39,21 @@ For example set python:
 Get-Command -Module <Module name>
 ```
 
+# Write result to a file
+```
+Compare-Object $(Get-Content c:\user\documents\List1.txt) $(Get-Content c:\user\documents\List2.txt) | Out-File C:\filename.txt -Encoding utf8
+```
+
+# See port usage
+[How can you find out which process is listening on a port on Windows](https://stackoverflow.com/questions/48198/how-can-you-find-out-which-process-is-listening-on-a-port-on-windows)
+```
+netstat -a -b -n -o
+```
+
+# Remove an app
+[Full Fix: OneNote Issues in Windows 10](https://windowsreport.com/onenote-problems-windows-10/)
+```
+get-appxpackage *microsoft.office.onenote* | remove-appxpackage
+remove-appxprovisionedpackage –Online –PackageName Microsoft.Office.OneNote_2014.919.2035.737_neutral_~_8wekyb3d8bbwe
+```
+then restart the computer.
