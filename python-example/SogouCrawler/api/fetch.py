@@ -23,7 +23,6 @@ class SogouAPI:
     def __init__(self, retries=5):
         self.retries = retries
 
-    # 抓取函数
     def fetch(self, url):
         response = self.__get_and_unlock(
             url,
@@ -42,7 +41,7 @@ class SogouAPI:
             identify_image_callback=self.identify_image_callback_by_hand)
         return Parser.parse_article(response.text)
 
-    # 抓取公众号信息，或者response text, 然后parse
+    # Fetch the public info of the account.
     def fetch_gzh_info(self, keyword):
         url = SogouRequest.generate_search_gzh_url(keyword)
         response = self.__get_and_unlock(url,
@@ -157,7 +156,7 @@ class SogouAPI:
 
 if __name__ == '__main__':
     api = SogouAPI()
-    info = api.fetch_gzh_info(keyword='九章算法')
+    info = api.fetch_gzh_info(keyword='北美留学生日报')
 
     if 'profile' in info[0]['profile_url']:
         articles = api.fetch_history_urls_from_profile(info[0]['profile_url'])

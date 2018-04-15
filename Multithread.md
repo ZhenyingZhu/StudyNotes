@@ -97,3 +97,11 @@ lock type, can be used as `lock_guard` and `unique_lock` constructor
 
 `std::async`
 
+## Python programming
+
+### Sogou Crawler
+Crawler: a message queue, a thread pool, an API.
+
+CrawlerThread: the thread to put into the pool. They share the same queue.
+
+[Why use hashlib.md5().update](https://www.techopedia.com/definition/4024/message-digest)

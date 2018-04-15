@@ -50,5 +50,5 @@ class SogouRequest:
         return 'http://weixin.sogou.com/weixin?%s' % urlencode(query)
 
 if __name__ == '__main__':
-    url = SogouRequest.generate_search_gzh_url('九章算法')
+    url = SogouRequest.generate_search_gzh_url('')
     print url
