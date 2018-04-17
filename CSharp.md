@@ -529,6 +529,25 @@ public void TestFoo() {
 
 [wiki](http://www.ayende.com/wiki/Rhino+Mocks.ashx?AspxAutoDetectCookieSupport=1)
 
+### Defination
+- Mock object
+- Interaction based testing
+- State based testing
+- Expectation
+- Record & replay model
+- Ordering
+
+Rhino Mocks can only mock interfaces, delegates and virtual methods of classes.
+
+- Mock Objects: `StrictMock()`. Any methods that are not recorded throw exception.
+- Dynamic Mock: `DynamicMock()`. Not recorded methods return null or 0.
+- Partial Mock: `PartialMock()`. Not recorded methods call real implementation.
+
+Stub
+- `MockRepository.GenerateStub<T>`
+- Mock the thing you are testing, Stub the thing that are just involved.
+
+
 ### Examples
 https://github.com/hibernating-rhinos/rhino-mocks/tree/master/Rhino.Mocks.GettingStarted
 
