@@ -546,5 +546,14 @@ Create an admin: `python manage.py createsuperuser`
 
 Login through `localhost/admin/`
 
-HERE: https://docs.djangoproject.com/en/2.0/intro/tutorial02/
-Make the poll app modifiable in the admin
+To allow admin interact with Question, update `polls/admin.py`
+```
+from django.contrib import admin
+from .models import Question
+admin.site.register(Question)
+```
+
+Django handles different model field types (`DateTimeField`, `CharField`) with appropriate HTML input widget.
+
+HERE: https://docs.djangoproject.com/en/2.0/intro/tutorial03/
+
