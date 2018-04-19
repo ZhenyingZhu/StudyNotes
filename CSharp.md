@@ -782,3 +782,16 @@ Entity type
 Complex types
 - It is used as value of entites or other complex types.
 - do not have identities and therefore cannot exist independently.
+
+## Make internal visiable in other class
+In the class that define as internal, update the AssemblyInfo.cs
+```
+[assembly: InternalsVisibleTo("<namespace>")]
+```
+
+## Resolve duplicate reference
+Add the line at the top
+```
+using dup = rightnamespace.dup;
+```
+
