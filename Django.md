@@ -555,5 +555,8 @@ admin.site.register(Question)
 
 Django handles different model field types (`DateTimeField`, `CharField`) with appropriate HTML input widget.
 
-HERE: https://docs.djangoproject.com/en/2.0/intro/tutorial03/
+A view is a “type” of Web page. Each view is represented by a simple Python function.
 
+
+HERE: https://docs.djangoproject.com/en/2.0/intro/tutorial03/
+Writing more views
