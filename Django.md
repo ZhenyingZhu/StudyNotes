@@ -557,6 +557,20 @@ Django handles different model field types (`DateTimeField`, `CharField`) with a
 
 A view is a “type” of Web page. Each view is represented by a simple Python function.
 
+A route:
+```
+path('<int:question_id>/results/', views.results, name='results')
+```
+
+Match to
+```
+def results(request, question_id):
+    response = "You're looking at the results of question %s."
+    return HttpResponse(response % question_id)
+```
+
+Django search route start from `ROOT_URLCONF`.
+
 
 HERE: https://docs.djangoproject.com/en/2.0/intro/tutorial03/
-Writing more views
+Write views that actually do something
