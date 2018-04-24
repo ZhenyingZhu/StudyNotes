@@ -571,6 +571,37 @@ def results(request, question_id):
 
 Django search route start from `ROOT_URLCONF`.
 
+Each view is responsible for doing one of two things: returning an HttpResponse object containing the content for the requested page, or raising an exception such as Http404.
+
+Use Django’s template system to separate the design from Python by creating a template that the view can use.
+
+Your project’s TEMPLATES setting describes how Django will load and render templates. The default settings file configures a DjangoTemplates backend whose APP_DIRS option is set to True. By convention DjangoTemplates looks for a “templates” subdirectory in each of the INSTALLED_APPS.
+
+`polls/templates/polls/index.html` can be refer to as polls/index.html. The second `polls` in the path is to namespacing the template. Django cannot distinguish same template files in different apps.
+
+Load a template:
+```
+from django.http import HttpResponse
+from django.template import loader
+
+from .models import Question
+
+def index(request):
+    latest_question_list = Question.objects.order_by('-pub_date')[:5]
+    template = loader.get_template('polls/index.html')
+    context = {
+        'latest_question_list': latest_question_list,
+    }
+    return HttpResponse(template.render(context, request))
+```
+
+A shortcuts of the same logic
+```
+def index(request):
+    latest_question_list = Question.objects.order_by('-pub_date')[:5]
+    context = {'latest_question_list': latest_question_list}
+    return render(request, 'polls/index.html', context)
+```
 
 HERE: https://docs.djangoproject.com/en/2.0/intro/tutorial03/
-Write views that actually do something
+Raising a 404 error
