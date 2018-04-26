@@ -33,3 +33,5 @@ Check which commit deleted a line: `git log -S "deleted line" file`
 `git checkout -b branch_name origin/branch_name` to set the track
 
 `git branch --set-upstream-to=origin/[branch] [branch]`
+
+To force commit the local change to remote, such as after done a rebase, do `git push -f origin <branch>`
