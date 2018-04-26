@@ -603,5 +603,24 @@ def index(request):
     return render(request, 'polls/index.html', context)
 ```
 
+Raise an Exception
+```
+from django.http import Http404
+
+def detail(request, question_id):
+    try:
+        question = Question.objects.get(pk=question_id)
+    except Question.DoesNotExist:
+        raise Http404("Question does not exist")
+```
+
+A shortcut:
+```
+from django.shortcuts import get_object_or_404, render
+question = get_object_or_404(Question, pk=question_id)
+```
+
+Same is `get_list_or_404()` function, which use `filter()` instead of `get()`.
+
 HERE: https://docs.djangoproject.com/en/2.0/intro/tutorial03/
-Raising a 404 error
+Use the template system
