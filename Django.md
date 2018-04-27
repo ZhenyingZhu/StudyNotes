@@ -622,5 +622,19 @@ question = get_object_or_404(Question, pk=question_id)
 
 Same is `get_list_or_404()` function, which use `filter()` instead of `get()`.
 
+Template `polls/templates/polls/detail.html`
+```
+<h1>{{ question.question_text }}</h1>
+<ul>
+{% for choice in question.choice_set.all %}
+    <li>{{ choice.choice_text }}</li>
+{% endfor %}
+</ul>
+```
+
+`question.question_text`: Django first search if question is a dictionary and has a key `question_text`. No, then search properties. No, then search if `question` is a list.
+
+
+
 HERE: https://docs.djangoproject.com/en/2.0/intro/tutorial03/
-Use the template system
+Removing hardcoded URLs in templates
