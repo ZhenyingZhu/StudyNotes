@@ -634,7 +634,18 @@ Template `polls/templates/polls/detail.html`
 
 `question.question_text`: Django first search if question is a dictionary and has a key `question_text`. No, then search properties. No, then search if `question` is a list.
 
-
+Define URL by using `path()`
+```
+path('<int:question_id>/', views.detail, name='detail'),
+```
+Then can change
+```
+<li><a href="/polls/{{ question.id }}/">{{ question.question_text }}</a></li>
+```
+to
+```
+<li><a href="{% url 'detail' question.id %}">{{ question.question_text }}</a></li>
+```
 
 HERE: https://docs.djangoproject.com/en/2.0/intro/tutorial03/
-Removing hardcoded URLs in templates
+Namespacing URL names
