@@ -647,5 +647,20 @@ to
 <li><a href="{% url 'detail' question.id %}">{{ question.question_text }}</a></li>
 ```
 
-HERE: https://docs.djangoproject.com/en/2.0/intro/tutorial03/
-Namespacing URL names
+In URLconf file `polls/urls.py`, add namespace by
+```
+app_name = 'polls'
+urlpatterns = [
+    path('', views.index, name='index'),
+    path('<int:question_id>/', views.detail, name='detail'),
+    path('<int:question_id>/results/', views.results, name='results'),
+    path('<int:question_id>/vote/', views.vote, name='vote'),
+]
+```
+
+Then in the template file `polls/index.html`
+```
+<li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
+```
+
+HERE: https://docs.djangoproject.com/en/2.0/intro/tutorial04/
