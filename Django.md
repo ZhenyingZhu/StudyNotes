@@ -663,4 +663,48 @@ Then in the template file `polls/index.html`
 <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
 ```
 
+polls/templates/polls/detail.html
+```
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="{% url 'polls:vote' question.id %}" method="post">
+{% csrf_token %}
+{% for choice in question.choice_set.all %}
+    <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}" />
+    <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br />
+{% endfor %}
+<input type="submit" value="Vote" />
+</form>
+```
+
+Whenever you create a form that alters data server-side, use method="post".
+
+POST forms that are targeted at internal URLs should use the `{% csrf_token %}` template tag, to deal with Cross Site Request Forgeries.
+
+```
+def vote(request, question_id):
+    question = get_object_or_404(Question, pk=question_id)
+    try:
+        selected_choice = question.choice_set.get(pk=request.POST['choice'])
+    except (KeyError, Choice.DoesNotExist):
+        # Redisplay the question voting form.
+        return render(request, 'polls/detail.html', {
+            'question': question,
+            'error_message': "You didn't select a choice.",
+        })
+    else:
+        selected_choice.votes += 1
+        selected_choice.save()
+        return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
+```
+
+This piece of code can cause race condition.
+
+Always return an HttpResponseRedirect after successfully dealing with POST data. This prevents data from being posted twice if a user hits the Back button.
+
+`reverse()` craft a URL for a view.
+
+
+
 HERE: https://docs.djangoproject.com/en/2.0/intro/tutorial04/
+Use generic views: Less code is better
