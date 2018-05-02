@@ -704,7 +704,37 @@ Always return an HttpResponseRedirect after successfully dealing with POST data.
 
 `reverse()` craft a URL for a view.
 
+Use generic views: `ListView` and `DetailView`.
+
+URLConf:
+```
+app_name = 'polls'
+urlpatterns = [
+    path('', views.IndexView.as_view(), name='index'),
+    path('<int:pk>/', views.DetailView.as_view(), name='detail'),
+    path('<int:pk>/results/', views.ResultsView.as_view(), name='results'),
+    path('<int:question_id>/vote/', views.vote, name='vote'),
+]
+```
+
+Views
+```
+class IndexView(generic.ListView):
+    template_name = 'polls/index.html'
+    context_object_name = 'latest_question_list'
+
+    def get_queryset(self):
+        return Question.objects.order_by('-pub_date')[:5]
 
 
-HERE: https://docs.djangoproject.com/en/2.0/intro/tutorial04/
-Use generic views: Less code is better
+class DetailView(generic.DetailView):
+    model = Question
+    template_name = 'polls/detail.html'
+
+
+class ResultsView(generic.DetailView):
+    model = Question
+    template_name = 'polls/results.html'
+```
+
+HERE: https://docs.djangoproject.com/en/2.0/intro/tutorial05/
