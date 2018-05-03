@@ -523,3 +523,12 @@ https://stackoverflow.com/questions/46614788/python-ups-xml-tracking
 
 https://www.ups.com/upsdeveloperkit?loc
 
+
+# Setting python on windows
+https://docs.python.org/3/using/windows.html
+
+```
+PATH=C:\Python 3.6;C:\Python 3.6\Scripts\
+PYTHONPATH=C:\Python 3.6;C:\Python 3.6\Lib
+
+```

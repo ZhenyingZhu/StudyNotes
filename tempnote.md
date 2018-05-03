@@ -1215,6 +1215,11 @@ https://github.com/Edditoria/markdown-plus-plus
 # notepad++ block selection
 https://jingyan.baidu.com/article/fea4511a0e305cf7bb91253a.html
 
+# notepad++ font for chinese and code
+https://github.com/yakumioto/YaHei-Consolas-Hybrid-1.12
+
+https://www.xia1ge.com/yahei-consolas.html
+
 # Fiddler
 Windows mock http request
 
