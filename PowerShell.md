@@ -50,6 +50,13 @@ Compare-Object $(Get-Content c:\user\documents\List1.txt) $(Get-Content c:\user\
 netstat -a -b -n -o
 ```
 
+# where
+Get all elements that return true.
+```
+$list = 1, 2, 3, 1
+$list | where { $_ -eq 1 }
+```
+
 # Remove an app
 [Full Fix: OneNote Issues in Windows 10](https://windowsreport.com/onenote-problems-windows-10/)
 ```
