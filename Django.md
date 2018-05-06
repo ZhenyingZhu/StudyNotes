@@ -1,3 +1,49 @@
+# IDE
+[VSCode](http://ruddra.com/2017/08/19/vs-code-for-python-development/)
+
+[workon doesn't work in powershell](https://stackoverflow.com/questions/38944525/workon-command-doesnt-work-in-windows-powershell-to-activate-virtualenv)
+```
+pip install virtualenvwrapper-win
+mkvirtualenv venv
+cmd /k workon venv
+```
+
+Install extention `Python`.
+
+Update VSCode workspace settings
+```
+"editor.rulers": [
+        80,
+        120
+    ],
+"files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        ".vscode": true,
+        "**/*.pyc": true
+    },
+```
+
+Debug Section - Python Django.
+
+Install code auto analysis
+```
+pip install pylint
+pip install pylint-django
+pip install autopep8
+```
+
+Add to workspace setting.
+```
+    "python.linting.pylintArgs": [
+        "--load-plugins=pylint_django"
+   ],
+```
+
+
 # Jiuzhang Django from 0 to 1
 
 http://www.jiuzhang.com/tutorial/django-101/236
@@ -738,3 +784,5 @@ class ResultsView(generic.DetailView):
 ```
 
 HERE: https://docs.djangoproject.com/en/2.0/intro/tutorial05/
+
+
