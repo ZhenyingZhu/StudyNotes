@@ -64,3 +64,9 @@ get-appxpackage *microsoft.office.onenote* | remove-appxpackage
 remove-appxprovisionedpackage –Online –PackageName Microsoft.Office.OneNote_2014.919.2035.737_neutral_~_8wekyb3d8bbwe
 ```
 then restart the computer.
+
+# Run C# codes
+```
+Add-Type -Path "$packagesRoot\Newtonsoft.Json.dll"
+$dataView = New-Object System.Data.DataView($dataTable)
+```

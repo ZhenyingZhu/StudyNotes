@@ -795,3 +795,7 @@ Add the line at the top
 using dup = rightnamespace.dup;
 ```
 
+## DataView
+System.Data.DataView.
+
+`foreach(var dataRow in dataView)` to traverse.
