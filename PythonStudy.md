@@ -535,3 +535,15 @@ PYTHONPATH=C:\Python 3.6;C:\Python 3.6\Lib
 
 # Python import
 import from local path??
+
+# Python CSV coding
+```
+try:
+    with open(path, 'r') as csv_file:
+        dict_reader = csv.DictReader(csv_file)
+        for entry in dict_reader:
+            print(entry['column_name'])
+
+except FileNotFoundError:
+    print("File not found.")
+```
