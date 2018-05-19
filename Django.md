@@ -801,3 +801,4 @@ HERE: https://docs.djangoproject.com/en/2.0/intro/tutorial05/
 - `python manage.py runserver`
 
 HERE https://docs.djangoproject.com/en/2.0/intro/tutorial03/
+Write views that actually do something
