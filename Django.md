@@ -802,5 +802,4 @@ HERE: https://docs.djangoproject.com/en/2.0/intro/tutorial05/
 - In views, render templates.
 - `python manage.py runserver`
 
-HERE https://docs.djangoproject.com/en/2.0/intro/tutorial03/
-Write views that actually do something
+HERE https://docs.djangoproject.com/en/2.0/intro/tutorial05/
