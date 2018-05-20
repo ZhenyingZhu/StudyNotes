@@ -693,7 +693,7 @@ to
 <li><a href="{% url 'detail' question.id %}">{{ question.question_text }}</a></li>
 ```
 
-In URLconf file `polls/urls.py`, add namespace by
+In URLconf file `polls/urls.py`, add namespace by add `app_name`
 ```
 app_name = 'polls'
 urlpatterns = [
@@ -798,6 +798,8 @@ HERE: https://docs.djangoproject.com/en/2.0/intro/tutorial05/
 - `python manage.py migrate`
 - `python manage.py createsuperuser`: admin, zaq12345
 - In poll.admin register the model `admin.site.register(Question)`.
+- Create a folder "templates" under the app root and add html templates.
+- In views, render templates.
 - `python manage.py runserver`
 
 HERE https://docs.djangoproject.com/en/2.0/intro/tutorial03/

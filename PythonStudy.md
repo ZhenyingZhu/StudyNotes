@@ -530,8 +530,9 @@ https://docs.python.org/3/using/windows.html
 ```
 PATH=C:\Python 3.6;C:\Python 3.6\Scripts\
 PYTHONPATH=C:\Python 3.6;C:\Python 3.6\Lib
-
 ```
+
+If python is installed in "Program files", need change the permission of python folder to be write and readable by all users.
 
 # Python import
 import from local path??

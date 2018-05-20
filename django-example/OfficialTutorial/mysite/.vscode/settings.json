@@ -1,2 +1,18 @@
 {
+    "python.linting.pylintArgs": [
+        "--load-plugins=pylint_django"
+   ],
+   "editor.rulers": [
+        80,
+        120
+    ],
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        ".vscode": true,
+        "**/*.pyc": true
+    },
 }
