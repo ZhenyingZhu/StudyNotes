@@ -7,7 +7,8 @@ namespace DotNetCoreConsole
     {
         static void Main(string[] args)
         {
-            GenerateGuid.TestMain.testMain();
+            for (int i = 0; i < 5; i++)
+                GenerateGuid.TestMain.testMain();
         }
     }
 }
