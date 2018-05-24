@@ -1,3 +1,7 @@
+## Terms
+- Idempotency
+- Sanity check
+
 ## Memory
 address represents in hex.
 
