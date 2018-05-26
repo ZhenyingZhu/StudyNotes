@@ -70,3 +70,8 @@ then restart the computer.
 Add-Type -Path "$packagesRoot\Newtonsoft.Json.dll"
 $dataView = New-Object System.Data.DataView($dataTable)
 ```
+
+# Edit reg
+```
+reg add "HKEY_CURRENT_USER\Software\Valve\Steam" /v AutoLoginUser /t REG_SZ /d [DATA] /f
+```
