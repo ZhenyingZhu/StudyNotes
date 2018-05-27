@@ -783,8 +783,25 @@ class ResultsView(generic.DetailView):
     template_name = 'polls/results.html'
 ```
 
-HERE: https://docs.djangoproject.com/en/2.0/intro/tutorial05/
+Write test in app.tests.py
+```
+from django.test import TestCase
 
+class TargetTests(TestCase):
+    def test_case(self):
+        self.assertIs(somelogic, True)
+```
+
+Run test
+```
+python manage.py test app
+```
+- it created a special database for the purpose of testing
+- it looked for test methods - ones whose names begin with test
+
+
+HERE: https://docs.djangoproject.com/en/2.0/intro/tutorial05/
+Test a view
 
 ## Review
 - `django-admin startproject mysite`
