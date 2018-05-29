@@ -22,4 +22,4 @@ b25e5911-9a82-4f06-8f59-b40805ef1bb7
 ## [Sample code](https://docs.microsoft.com/en-us/onedrive/developer/sample-code)
 
 ### [OneDrive Explorer](https://github.com/OneDrive/onedrive-sample-apibrowser-dotnet)
-
+`OneDriveApiBrowser\FormBrowser.cs` simpleUploadToolStripMenuItem_Click contains the logic to upload a file.
