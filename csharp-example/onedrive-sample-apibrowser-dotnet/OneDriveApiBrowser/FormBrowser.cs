@@ -503,5 +503,76 @@ namespace OneDriveApiBrowser
                 await stream.CopyToAsync(outputStream);
             }
         }
+
+        private System.IO.Stream GetFileStream(string path)
+        {
+            try
+            {
+                return new System.IO.FileStream(path, System.IO.FileMode.Open);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Cannot create FileStream: " + ex.Message);
+                return null;
+            }
+        }
+
+        /*
+        private System.IO.Stream GetFolderStreamForUpload(string targetFolderName, out string originalFoldername)
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Title = "Upload to " + targetFolderName;
+            dialog.Filter = "All Files (*.*)|*.*";
+            dialog.CheckFileExists = true;
+            var response = dialog.ShowDialog();
+            if (response != DialogResult.OK)
+            {
+                originalFilename = null;
+                return null;
+            }
+        }
+        */
+
+        private async void updateFolderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var targetFolder = this.CurrentFolder;
+
+            /* zhenying too hard to understand. The API is so bad that it doesn't worth learning.
+            var uploadProvider = new ChunkedUploadProvider(
+                this.graphClient,
+                );
+            */
+
+            string filename;
+            using (var stream = GetFileStreamForUpload(targetFolder.Name, out filename))
+            {
+                if (stream != null)
+                {
+                    // Since the ItemWithPath method is available only at Drive.Root, we need to strip
+                    // /drive/root: (12 characters) from the parent path string.
+                    string folderPath = (targetFolder.ParentReference == null || targetFolder.ParentReference.Path == null)
+                        ? ""
+                        : targetFolder.ParentReference.Path.Remove(0, 12) + "/" + Uri.EscapeUriString(targetFolder.Name);
+                    var uploadPath = folderPath + "/" + Uri.EscapeUriString(System.IO.Path.GetFileName(filename));
+
+                    try
+                    {
+                        var uploadedItem =
+                            await
+                                this.graphClient.Drive.Root.ItemWithPath(uploadPath).Content.Request().PutAsync<DriveItem>(stream);
+
+                        this.graphClient.Drive.Root.
+
+                        //AddItemToFolderContents(uploadedItem);
+
+                        //MessageBox.Show("Uploaded with ID: " + uploadedItem.Id);
+                    }
+                    catch (Exception exception)
+                    {
+                        PresentServiceException(exception);
+                    }
+                }
+            }
+        }
     }
 }
