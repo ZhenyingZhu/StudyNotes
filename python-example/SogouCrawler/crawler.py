@@ -6,7 +6,7 @@ from threading import Thread
 
 import json
 import hashlib
-
+import datetime
 
 class CrawlerThread(Thread):
 
@@ -55,6 +55,7 @@ class Crawler:
 
     def start(self):
         print 'Start to processing...'
+        start_time = datetime.datetime.now()
         # Fetch the public info of the account.
         gzh_info = self.sogou_api.fetch_gzh_info(keyword='北美留学生日报')
         # Use the profile page to fetch articles.
@@ -63,3 +64,7 @@ class Crawler:
                             'title': info['wechat_id']})
         self.queue.join()
         print 'Finish!'
+        end_time = datetime.datetime.now()
+        print start_time
+        print end_time
+        print end_time - start_time

@@ -3,7 +3,8 @@ from crawler import Crawler
 
 
 def main():
-    crawler = Crawler(10)
+    #crawler = Crawler(10)
+    crawler = Crawler(1)
     crawler.start()
 
 
