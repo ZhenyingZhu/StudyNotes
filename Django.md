@@ -809,7 +809,7 @@ response.status_code # 404
 
 
 HERE: https://docs.djangoproject.com/en/2.0/intro/tutorial05/
-Improving our view
+Testing the DetailView
 
 
 ## Review

@@ -13,6 +13,7 @@
         "**/CVS": true,
         "**/.DS_Store": true,
         ".vscode": true,
-        "**/*.pyc": true
+        "**/*.pyc": true,
+        "**/__pycache__/": true
     },
 }
