@@ -799,9 +799,18 @@ python manage.py test app
 - it created a special database for the purpose of testing
 - it looked for test methods - ones whose names begin with test
 
+Django test client: it use the existing DB.
+```
+setup_test_environment()
+client = Client()
+response = client.get('/')
+response.status_code # 404
+```
+
 
 HERE: https://docs.djangoproject.com/en/2.0/intro/tutorial05/
-Test a view
+Improving our view
+
 
 ## Review
 - `django-admin startproject mysite`
