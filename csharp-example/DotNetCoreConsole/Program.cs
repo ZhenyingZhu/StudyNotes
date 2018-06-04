@@ -7,7 +7,7 @@ namespace DotNetCoreConsole
     {
         static void Main(string[] args)
         {
-            PlayWithDateTime.TestMain.testMain();
+            TestObjectReference.TestMain.testMain();
         }
     }
 }
