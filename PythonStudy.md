@@ -548,3 +548,9 @@ try:
 except FileNotFoundError:
     print("File not found.")
 ```
+
+# Scrapy Crawler
+https://medium.com/python-pandemonium/develop-your-first-web-crawler-in-python-scrapy-6b2ee4baf954
+
+https://wiki.python.org/moin/WindowsCompilers
+
