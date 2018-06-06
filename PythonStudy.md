@@ -553,4 +553,27 @@ except FileNotFoundError:
 https://medium.com/python-pandemonium/develop-your-first-web-crawler-in-python-scrapy-6b2ee4baf954
 
 https://wiki.python.org/moin/WindowsCompilers
+- Install VS C++.
+- `pip install pypiwin32`
 
+- `scrapy startproject olx`
+- `scrapy genspider electronics www.olx.com.pk`
+- `scrapy crawl electronics`
+- update electronics.py
+- update items.py with an OlxItem model.
+- `scrapy crawl electronics -o data.csv -t csv`
+
+Rule: if set follow to True, it will continue to run until the rule is no mean.
+
+To test
+```
+scrapy shell [url]
+response.css('h1::text').extract()[0].strip()
+```
+
+To store with different JSON files: change setting.py
+```
+FEED_URI = 'data/%(name)s/%(time)s.json' # name: crawler name. time: timestamp.
+FEED_FORMAT = 'json'
+```
+Then run `scrapy crawl electronics`.
