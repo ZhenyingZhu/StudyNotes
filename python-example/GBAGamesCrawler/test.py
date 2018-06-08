@@ -1,28 +1,14 @@
 import csv
 import os
 
-with open("FTGGames.csv") as f:
-    reader = csv.reader(f)
-    #next(reader) # skip header
-    data = [r for r in reader]
+exist_game_ids = []
+with open(r"D:\Downloads\all.txt") as f:
+    content = f.readlines()
+    content = [x.strip() for x in content] 
+    for line in content:
+        exist_game_ids.append(line[:4])
 
-for r in data:
-    pic_id = int(r[0])
-
-    found = False
-    pic_file_a = str(pic_id) + 'a.png'
-    try:
-        os.rename(pic_file_a, 'target/' + pic_file_a)
-        found = True
-    except:
-        continue
-
-    pic_file_b = str(pic_id) + 'b.png'
-    try:
-        os.rename(pic_file_b, 'target/' + pic_file_b)
-        found = True
-    except:
-        continue
-
-    if not found:
-        print(pic_id)
+for game_id in range(1, 2820):
+    game_id_str = format(game_id, '04d')
+    if game_id_str not in exist_game_ids:
+        print(game_id_str + ' -')
