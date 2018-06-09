@@ -1,7 +1,7 @@
 """Poll App Views.
 """
 
-from django.db.models import F
+from django.db.models import Count, F
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
@@ -18,17 +18,48 @@ class IndexView(generic.ListView):
     def get_queryset(self):
         return Question.objects.filter(
             pub_date__lte=timezone.now()
+        ).annotate(
+            num_choices=Count('choice')
+        ).filter(
+            num_choices__gt=0
         ).order_by('-pub_date')[:5]
+
 
 class DetailView(generic.DetailView):
     """Detail view."""
     model = Question
     template_name = 'polls/detail.html'
 
+    def get_queryset(self):
+        """
+        Excludes any questions that aren't published yet or no chice.
+        """
+        return Question.objects.filter(
+            pub_date__lte=timezone.now()
+        ).annotate(
+            num_choices=Count('choice')
+        ).filter(
+            num_choices__gt=0
+        )
+
+
 class ResultsView(generic.DetailView):
     """Result view."""
     model = Question
     template_name = 'polls/results.html'
+
+    def get_queryset(self):
+        """
+        Excludes any questions that aren't published yet or no chice.
+        """
+        return Question.objects.filter(
+            pub_date__lte=timezone.now()
+        ).annotate(
+            num_choices=Count('choice')
+        ).filter(
+            num_choices__gt=0
+        )
+
 
 def vote(request, question_id):
     '''Vote view.'''

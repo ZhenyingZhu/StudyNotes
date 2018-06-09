@@ -50,7 +50,7 @@
             ]
         },
         {
-            "name": "Python: Django test",
+            "name": "Python: Django test polls",
             "type": "python",
             "request": "launch",
             "program": "${workspaceFolder}/manage.py",
