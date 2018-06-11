@@ -577,3 +577,8 @@ FEED_URI = 'data/%(name)s/%(time)s.json' # name: crawler name. time: timestamp.
 FEED_FORMAT = 'json'
 ```
 Then run `scrapy crawl electronics`.
+
+# CSV
+[Merge CSV files](https://stackoverflow.com/questions/2512386/how-to-merge-200-csv-files-in-python)
+
+[python move file](https://stackoverflow.com/questions/8858008/how-to-move-a-file-in-python)
