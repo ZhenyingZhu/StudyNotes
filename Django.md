@@ -818,7 +818,7 @@ Games.objects.annotate(num_players=Count('player')).filter(num_players__gt=10)
 [Selenium](https://www.seleniumhq.org/) can use to automate web browers to perform tests. Use Django `LiveServerTestCase` to work with it.
 
 HERE: https://docs.djangoproject.com/en/2.0/intro/tutorial06/
-
+Customize your app’s look and feel
 
 ## Review
 - `django-admin startproject mysite`
