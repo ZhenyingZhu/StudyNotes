@@ -817,8 +817,19 @@ Games.objects.annotate(num_players=Count('player')).filter(num_players__gt=10)
 
 [Selenium](https://www.seleniumhq.org/) can use to automate web browers to perform tests. Use Django `LiveServerTestCase` to work with it.
 
+Static files: `polls/static`. 
+
+A list of finders are setted in `STATICFILES_FINDERS`. `AppDirectoriesFinder` looks for `static` subfolders in each `INSTALLED_APPS`.
+
+Use the css file in static folder.
+```
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}" />
+```
+
 HERE: https://docs.djangoproject.com/en/2.0/intro/tutorial06/
-Customize your app’s look and feel
+Adding a background-image
 
 ## Review
 - `django-admin startproject mysite`
