@@ -828,8 +828,7 @@ Use the css file in static folder.
 <link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}" />
 ```
 
-HERE: https://docs.djangoproject.com/en/2.0/intro/tutorial06/
-Adding a background-image
+HERE: https://docs.djangoproject.com/en/2.0/intro/tutorial07/
 
 ## Review
 - `django-admin startproject mysite`
