@@ -828,7 +828,11 @@ Use the css file in static folder.
 <link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}" />
 ```
 
+Define how admin sees a schema:
+`admin.site.register(Question, QuestionAdmin)`
+
 HERE: https://docs.djangoproject.com/en/2.0/intro/tutorial07/
+Adding related objects
 
 ## Review
 - `django-admin startproject mysite`
