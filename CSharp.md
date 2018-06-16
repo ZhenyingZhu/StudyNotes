@@ -783,6 +783,8 @@ Complex types
 - It is used as value of entites or other complex types.
 - do not have identities and therefore cannot exist independently.
 
+https://msdn.microsoft.com/en-us/library/jj652004(v=vs.113).aspx
+
 ## Make internal visiable in other class
 In the class that define as internal, update the AssemblyInfo.cs
 ```
