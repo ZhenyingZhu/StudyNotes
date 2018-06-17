@@ -58,6 +58,19 @@ Attribute Routing in Web API 2.
 - need decorating http methods: Delete, Get, Head, Options, Patch, Post, Put.
 - need controller methods return a data transfer object (DTO) instead of the EF model. 
 
+AJAX isn't new, but today there are JavaScript frameworks that make it easier to build and maintain a large sophisticated SPA application. This tutorial uses `Knockout.js`。
+building blocks
+- ASP.NET MVC creates the HTML page.
+- ASP.NET Web API handles the AJAX requests and returns JSON data.
+- Knockout.js data-binds the HTML elements to the JSON data.
+- Entity Framework talks to the database.
+
+"Code First" approach to EF: write C# classes that correspond to database tables, and EF creates the database.
+
+Write domain objects as POCOs (plain-old CLR objects).
+
+
+
 HERE: https://docs.microsoft.com/en-us/aspnet/web-api/overview/data/
 
 Expend:
