@@ -70,8 +70,15 @@ building blocks
 Write domain objects as POCOs (plain-old CLR objects).
 
 
+circular navigation properties: EF models can have navigation properties, which are another model. If both entities have reference to the other, a circular created. Use DTOs or change the JSON/XML formatters to solve the problem.
 
-HERE: https://docs.microsoft.com/en-us/aspnet/web-api/overview/data/
+three ways to load related data in EF
+- eager loading: load while init DB query, use `System.Data.Entity.Include`.
+- lazy loading: automatically loads when the navigation property for that entity is dereferenced. make the navigation property virtual. It can cause serialization problems. Can serialize data transfer objects (DTOs) instead of entity objects to solve it.
+- explicit loading: write personal codes to do lazy loading.
+
+
+HERE: https://docs.microsoft.com/en-us/aspnet/web-api/overview/data/using-web-api-with-entity-framework/part-5
 
 Expend:
 https://docs.microsoft.com/en-us/aspnet/web-api/overview/odata-support-in-aspnet-web-api/using-select-expand-and-value
