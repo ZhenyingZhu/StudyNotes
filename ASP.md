@@ -77,12 +77,137 @@ three ways to load related data in EF
 - lazy loading: automatically loads when the navigation property for that entity is dereferenced. make the navigation property virtual. It can cause serialization problems. Can serialize data transfer objects (DTOs) instead of entity objects to solve it.
 - explicit loading: write personal codes to do lazy loading.
 
+DTOs:
+- change the database schema to return the client.
+- Remove circular references.
+- Hide particular properties.
+- Flatten object graphs that contain nested objects.
+- Avoid "over-posting" vulnerabilities: user posts some properties that are read-only/not exist.
+- Decouple your service layer from your database layer.
 
-HERE: https://docs.microsoft.com/en-us/aspnet/web-api/overview/data/using-web-api-with-entity-framework/part-5
+Open Data Protocol (OData)
+- a uniform way to query and manipulate data sets through CRUD operations.
+- can have a v4 endpoint that runs side-by-side with a v3 endpoint.
 
-Expend:
-https://docs.microsoft.com/en-us/aspnet/web-api/overview/odata-support-in-aspnet-web-api/using-select-expand-and-value
+In `Web.config`, add `connectionStrings` for setup the DB connection.
 
+In `App_Start/WebApiConfig.cs`, update `Register` method to setup Entity Data Model (EDM) and route.
+- Route setup endpoints.
+
+The `[EnableQuery]` attribute enables clients to modify the query, by using query options such as $filter, $sort, and $page. 
+
+OData supports two different semantics for updating
+- `PATCH` performs a partial update. The client specifies just the properties to update.
+- `PUT` replaces the entire entity.
+
+Using OData, clients can navigate over entity relations. 
+
+OData supports creating or removing reference(Odata4)/link(OData3), which is relationships, between two existing entities.
+
+The URI of the reference: `http:/host/Products(1)/Supplier/$ref`
+- PUT if the navigation property is a single entity.
+- POST if the navigation property is a collection.
+
+actions and functions are a way to add server-side behaviors that are not easily defined as CRUD operations on entities.
+- actions have side effects but functions don't.
+- actions can used to Complex transactions, Manipulating several entities at once, Allowing updates only to certain properties of an entity, Sending data that is not an entity.
+- Functions are useful for returning information that does not correspond directly to an entity or collection.
+- binding: An action (or function) can target a single entity or a collection. So it is an action for some entity.
+- "unbound" actions/functions: static operations on the service. It is not for some specific entity.
+
+A complex type is a structured type without a key.
+
+[Service Metadata Document](https://docs.microsoft.com/en-us/aspnet/web-api/overview/odata-support-in-aspnet-web-api/odata-v3/creating-an-odata-endpoint#service-metadata-document)
+- describes the data model of the service.
+- using an XML language called the Conceptual Schema Definition Language (CSDL).
+- The metadata document shows the structure of the data in the service, and can be used to generate client code.
+- To get the metadata document, send a GET request to `http://localhost:port/odata/$metadata`.
+- EntityContainer and EntitySet are defined if an entity can be get in groups.
+
+To add an entity:
+1. Create a class.
+2. Set up Context class to make EF include the table.
+3. Update csdl so client knows the data structure.
+4. Write Controller codes to support CRUD.
+
+`[FromOdataUri]` attribute in the key parameter: tells Web API to use OData syntax rules when it parses the key from the request URI.
+
+links:
+- uri: `entity/$links/entity`.
+
+Generate Service Proxy for client
+- proxy is a .NET class that defines methods for accessing the OData service.
+- The proxy translates method calls into HTTP requests.
+- setup uri.
+
+Apply Query options
+- use LINQ expressions.
+- define a method.
+
+`where` clause: GET `http://localhost/odata/Products()?$filter=Category eq 'apparel'`
+
+`orderby` clause: GET `http://localhost/odata/Products()?$orderby=Price desc`
+
+Client-Side Paging
+- client might want to limit the number of results.
+- `Skip` and `Take`: GET `http://localhost/odata/Products()?$orderby=Price desc&$skip=40&$top=10`
+
+`DataServiceQuery<t>.Expand`: GET `http://localhost/odata/Products()?$expand=Supplier`
+
+`select`: GET `http://localhost/odata/Products()?$select=Name`
+
+A `select` clause can include related entities. In that case, do not call `expand`.
+
+Query options: the parameters the client send in the query string.
+- expand.
+- filter: based on a boolean condition.
+- inlinecount: include the total count of matching entities in the response. used for server-side paging.
+- orderby.
+- select.
+- skip.
+- top.
+
+Need `EnableQuerySupport` in the startup `HttpConfiguration`, which enables Query options for any controller action that returns an IQueryable type. Or add `[Queryable]` attribute to the action method.
+
+Filter example
+- `http://localhost/Products?$filter=Category eq 'Toys'`
+- `http://localhost/Products?$filter=Price ge 5 and Price le 15`
+- `http://localhost/Products?$filter=substringof('zz',Name)`
+- `http://localhost/Products?$filter=year(ReleaseDate) gt 2005`
+
+[Server-Driven Paging](https://docs.microsoft.com/en-us/aspnet/web-api/overview/odata-support-in-aspnet-web-api/supporting-odata-query-options)
+- `[Queryable(PageSize=10)]`
+- response will have `"odata.nextLink":"http://localhost/Products?$skip=10"`
+- client can see total number of results `http://localhost/Products?$inlinecount=allpages`
+
+Allow ordering only by certain properties, to prevent sorting on properties that are not indexed in the database:
+- `[Queryable(AllowedOrderByProperties="Id")]`
+
+`Web.Http.OData.Query.Validators` can validate queries.
+
+Expand example:
+- `http://localhost/odata/Products(1)?$expand=Category,Supplier`
+
+Web API limits the maximum expansion depth to 2, to avoid creating large responses.
+
+You can combine `$select` and `$expand` in the same query. Make sure to include the expanded property in the `$select` option.
+- `http://localhost/odata/Products?$select=Name,Supplier&$expand=Supplier`
+
+select the properties within an expanded property, e.g. Name is Product property:
+- `http://localhost/odata/Categories?$expand=Products&$select=Name,Products/Name`
+
+Raw value of the property substruct the value:
+- `http://localhost/odata/Products(1)/Name/$value` returns "Hat", but otherwise it will have odata.metadata includes.
+
+
+
+HERE: 
+https://docs.microsoft.com/en-us/aspnet/web-api/overview/odata-support-in-aspnet-web-api/odata-routing-conventions
+
+[Filter with any](https://stackoverflow.com/questions/15475593/webapi-odata-filter-any-or-all-query-not-working)
+`~/api/Blogs?$filter=Tags/any(tag: tag/Name eq 'csharp')`
+
+https://help.nintex.com/en-us/insight/OData/HE_CON_ODATAQueryCheatSheet.htm
 
 
 # Entity Framework(EF)
