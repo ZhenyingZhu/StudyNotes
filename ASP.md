@@ -199,10 +199,34 @@ select the properties within an expanded property, e.g. Name is Product property
 Raw value of the property substruct the value:
 - `http://localhost/odata/Products(1)/Name/$value` returns "Hat", but otherwise it will have odata.metadata includes.
 
+When Web API gets an OData request, it maps the request to a controller name and an action name.
+
+OData URI consists of
+- The service root: `https://example.com/odata`
+- The resource path: `/Products(1)/Supplier/`
+- Query options: `?$top=2`
+
+resource path is divided into segments.
+- `Products`
+- `1`
+- `Supplier`
+
+Controller name is the root of the resource path, which is `ProductsController`.
+
+Action Name is the path segments plus the entity data model(EDM):
+- `/Products`: GetProducts
+- `Products(1)`: GetProduct
+- `Products(1)/Models.Book`: GetBook
+- `/Products(1)/Supplier` where Supplier is navigation property: GetSupplierFromProduct
+- `/Products(1)/$links/Supplier`: CreateLink
+- `/Products(1)/Name` where name is a property: GetNameFromProduct
+- `/Products(1)/Rate` where Rate is an action: RateOnProduct
+
 
 
 HERE: 
 https://docs.microsoft.com/en-us/aspnet/web-api/overview/odata-support-in-aspnet-web-api/odata-routing-conventions
+Method Signatures
 
 [Filter with any](https://stackoverflow.com/questions/15475593/webapi-odata-filter-any-or-all-query-not-working)
 `~/api/Blogs?$filter=Tags/any(tag: tag/Name eq 'csharp')`
