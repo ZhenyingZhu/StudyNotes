@@ -222,11 +222,18 @@ Action Name is the path segments plus the entity data model(EDM):
 - `/Products(1)/Name` where name is a property: GetNameFromProduct
 - `/Products(1)/Rate` where Rate is an action: RateOnProduct
 
+Method Signature rule:
+- If the path contains a key, the action should have a parameter named key.
+- If the path contains a key into a navigation property, the action should have a parameter named relatedKey.
+- Decorate key and relatedKey parameters with the `[FromODataUri]` parameter.
+- POST and PUT requests take a parameter of the entity type.
+- PATCH requests take a parameter of type Delta<T>, where T is the entity type.
+
+[examples](https://docs.microsoft.com/en-us/aspnet/web-api/overview/odata-support-in-aspnet-web-api/odata-routing-conventions)
 
 
 HERE: 
-https://docs.microsoft.com/en-us/aspnet/web-api/overview/odata-support-in-aspnet-web-api/odata-routing-conventions
-Method Signatures
+https://docs.microsoft.com/en-us/aspnet/web-api/overview/odata-support-in-aspnet-web-api/odata-security-guidance
 
 [Filter with any](https://stackoverflow.com/questions/15475593/webapi-odata-filter-any-or-all-query-not-working)
 `~/api/Blogs?$filter=Tags/any(tag: tag/Name eq 'csharp')`
