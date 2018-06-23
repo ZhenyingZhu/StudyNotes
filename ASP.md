@@ -69,9 +69,9 @@ building blocks
 
 Write domain objects as POCOs (plain-old CLR objects).
 
+CRUD operations: Create, read, update and delete.
 
-
-HERE: https://docs.microsoft.com/en-us/aspnet/web-api/overview/data/
+HERE: https://docs.microsoft.com/en-us/aspnet/web-api/overview/data/using-web-api-with-entity-framework/part-4
 
 Expend:
 https://docs.microsoft.com/en-us/aspnet/web-api/overview/odata-support-in-aspnet-web-api/using-select-expand-and-value
