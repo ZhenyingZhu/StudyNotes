@@ -232,9 +232,23 @@ Method Signature rule:
 
 [examples](https://docs.microsoft.com/en-us/aspnet/web-api/overview/odata-support-in-aspnet-web-api/odata-routing-conventions)
 
+Exlude a property from the EDM
+- Set the `[IgnoreDataMember]`
+- `employees.EntityType.Ignore(emp => emp.Salary);`
+
+Allow/disable filter methods
+- `[Queryable(PageSize=10)]`
+- `[Queryable(AllowedQueryOptions=AllowedQueryOptions.Skip | AllowedQueryOptions.Top)]`
+- `[Queryable(AllowedOrderByProperties="Id,Name")]`
+- `[Queryable(MaxNodeCount=20)]`
+- `[Queryable(AllowedFunctions= AllowedFunctions.AllFunctions & ~AllowedFunctions.All & ~AllowedFunctions.Any)]`
+- `[Queryable(AllowedFunctions=AllowedFunctions.AllFunctions & ~AllowedFunctions.AllStringFunctions)]`
+- 
+
+Filtering on navigation properties can result in a join, if not indexed.
 
 HERE: 
-https://docs.microsoft.com/en-us/aspnet/web-api/overview/odata-support-in-aspnet-web-api/odata-security-guidance
+https://docs.microsoft.com/en-us/aspnet/web-api/overview/formats-and-model-binding/media-formatters
 
 [Filter with any](https://stackoverflow.com/questions/15475593/webapi-odata-filter-any-or-all-query-not-working)
 `~/api/Blogs?$filter=Tags/any(tag: tag/Name eq 'csharp')`
