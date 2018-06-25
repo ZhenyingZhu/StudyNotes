@@ -7,7 +7,7 @@ namespace DotNetCoreConsole
     {
         static void Main(string[] args)
         {
-            TestObjectReference.TestMain.testMain();
+            IEnumerablePrint.TestMain.testMain();
         }
     }
 }

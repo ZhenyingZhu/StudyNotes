@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace IEnumerablePrint
 {
@@ -24,6 +25,9 @@ namespace IEnumerablePrint
             IEnumerable<MyClass> mcList = new List<MyClass> {mc1, mc2};
 
             System.Console.WriteLine("[" + String.Join(", ", mcList) + "]");
+
+            List<int> idList = mcList.Select(x => x.id).ToList();
+            System.Console.WriteLine("[" + String.Join(", ", idList) + "]");
         }
     }
 }
