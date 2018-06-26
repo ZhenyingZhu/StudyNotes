@@ -247,8 +247,29 @@ Allow/disable filter methods
 
 Filtering on navigation properties can result in a join, if not indexed.
 
+MIME type: media type. Consists of two strings, a type and a subtype.
+- text/html
+- image/png
+- application/json
+
+response:
+```
+HTTP/1.1 200 OK
+Content-Length: 95267
+Content-Type: image/png
+```
+
+request:
+```
+Accept: text/html,application/xhtml+xml,application/xml
+```
+
+Web API has built-in support for XML, JSON, BSON, and form-urlencoded data, and you can support additional media types by writing a `media formatter`.
+
+
+
 HERE: 
-https://docs.microsoft.com/en-us/aspnet/web-api/overview/formats-and-model-binding/media-formatters
+https://docs.microsoft.com/en-us/aspnet/web-api/overview/formats-and-model-binding/json-and-xml-serialization
 
 [Filter with any](https://stackoverflow.com/questions/15475593/webapi-odata-filter-any-or-all-query-not-working)
 `~/api/Blogs?$filter=Tags/any(tag: tag/Name eq 'csharp')`
