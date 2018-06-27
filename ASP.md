@@ -266,10 +266,16 @@ Accept: text/html,application/xhtml+xml,application/xml
 
 Web API has built-in support for XML, JSON, BSON, and form-urlencoded data, and you can support additional media types by writing a `media formatter`.
 
+JSON and XML formatters serialize objects.
+
+Circular Object References
+- If two properties refer to the same object, or if the same object appears twice in a collection, the formatter will serialize the object twice.
+- `json.SerializerSettings.PreserveReferencesHandling` to prevent it.
+
 
 
 HERE: 
-https://docs.microsoft.com/en-us/aspnet/web-api/overview/formats-and-model-binding/json-and-xml-serialization
+https://docs.microsoft.com/en-us/aspnet/web-api/overview/formats-and-model-binding/bson-support-in-web-api-21
 
 [Filter with any](https://stackoverflow.com/questions/15475593/webapi-odata-filter-any-or-all-query-not-working)
 `~/api/Blogs?$filter=Tags/any(tag: tag/Name eq 'csharp')`
