@@ -272,10 +272,16 @@ Circular Object References
 - If two properties refer to the same object, or if the same object appears twice in a collection, the formatter will serialize the object twice.
 - `json.SerializerSettings.PreserveReferencesHandling` to prevent it.
 
+BSON
+- BSON is a binary serialization format. 
+- stands for "Binary JSON"
+- BSON and JSON are serialized very differently.
+- numeric data types are stored as bytes, not strings.
+- designed to be lightweight, easy to scan, and fast to encode/decode.
 
 
-HERE: 
-https://docs.microsoft.com/en-us/aspnet/web-api/overview/formats-and-model-binding/bson-support-in-web-api-21
+HERE:
+https://docs.microsoft.com/en-us/aspnet/web-api/overview/formats-and-model-binding/content-negotiation
 
 [Filter with any](https://stackoverflow.com/questions/15475593/webapi-odata-filter-any-or-all-query-not-working)
 `~/api/Blogs?$filter=Tags/any(tag: tag/Name eq 'csharp')`
