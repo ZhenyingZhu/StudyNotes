@@ -279,9 +279,14 @@ BSON
 - numeric data types are stored as bytes, not strings.
 - designed to be lightweight, easy to scan, and fast to encode/decode.
 
+content negotiation
+- HTTP specification (RFC 2616)
+- the process of selecting the best representation for a given response when there are multiple representations available.
+- Accept, Accept-Charset, Accept-Encoding, Accept-Language.
+
 
 HERE:
-https://docs.microsoft.com/en-us/aspnet/web-api/overview/formats-and-model-binding/content-negotiation
+https://docs.microsoft.com/en-us/aspnet/web-api/overview/formats-and-model-binding/model-validation-in-aspnet-web-api
 
 [Filter with any](https://stackoverflow.com/questions/15475593/webapi-odata-filter-any-or-all-query-not-working)
 `~/api/Blogs?$filter=Tags/any(tag: tag/Name eq 'csharp')`
