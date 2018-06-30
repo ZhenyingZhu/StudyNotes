@@ -284,9 +284,17 @@ content negotiation
 - the process of selecting the best representation for a given response when there are multiple representations available.
 - Accept, Accept-Charset, Accept-Encoding, Accept-Language.
 
+Validate rules for properties on the model
+- use attributes in `System.ComponentModel.DataAnnotations`
+- `Required`
+- `Range(0, 999)`
+- without over-posting, Web API ignore additional attributes client sents.
+- to validate over-posting, create a model class that only has attributes that client is allow to send.
+
 
 HERE:
 https://docs.microsoft.com/en-us/aspnet/web-api/overview/formats-and-model-binding/model-validation-in-aspnet-web-api
+Handling Validation Errors
 
 [Filter with any](https://stackoverflow.com/questions/15475593/webapi-odata-filter-any-or-all-query-not-working)
 `~/api/Blogs?$filter=Tags/any(tag: tag/Name eq 'csharp')`
