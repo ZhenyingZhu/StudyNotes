@@ -291,10 +291,11 @@ Validate rules for properties on the model
 - without over-posting, Web API ignore additional attributes client sents.
 - to validate over-posting, create a model class that only has attributes that client is allow to send.
 
+Web API does not automatically return an error to the client when validation fails. It is up to the controller action to check the model state and respond appropriately.
+
 
 HERE:
-https://docs.microsoft.com/en-us/aspnet/web-api/overview/formats-and-model-binding/model-validation-in-aspnet-web-api
-Handling Validation Errors
+https://docs.microsoft.com/en-us/aspnet/web-api/overview/formats-and-model-binding/parameter-binding-in-aspnet-web-api
 
 [Filter with any](https://stackoverflow.com/questions/15475593/webapi-odata-filter-any-or-all-query-not-working)
 `~/api/Blogs?$filter=Tags/any(tag: tag/Name eq 'csharp')`
