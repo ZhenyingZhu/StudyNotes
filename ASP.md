@@ -293,9 +293,15 @@ Validate rules for properties on the model
 
 Web API does not automatically return an error to the client when validation fails. It is up to the controller action to check the model state and respond appropriately.
 
+Parameter binding
+- primitive types can be put in the URI, such as int, bool, double, TimeSpan, DateTime, Guid, decimal, and string. `[FromUri]`.
+- complex types using a media-type formatter. `[FromBody]`.
+
+`ExceptionFilterAttribute`: implement a `OnException` to catch unhandled exceptions. Then register it `GlobalConfiguration.Configuration.Filters.Add(new ProductStore.NotImplExceptionFilterAttribute())`.
+
 
 HERE:
-https://docs.microsoft.com/en-us/aspnet/web-api/overview/formats-and-model-binding/parameter-binding-in-aspnet-web-api
+https://docs.microsoft.com/en-us/aspnet/web-api/overview/error-handling/web-api-global-error-handling
 
 [Filter with any](https://stackoverflow.com/questions/15475593/webapi-odata-filter-any-or-all-query-not-working)
 `~/api/Blogs?$filter=Tags/any(tag: tag/Name eq 'csharp')`
