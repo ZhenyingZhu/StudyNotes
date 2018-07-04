@@ -299,9 +299,13 @@ Parameter binding
 
 `ExceptionFilterAttribute`: implement a `OnException` to catch unhandled exceptions. Then register it `GlobalConfiguration.Configuration.Filters.Add(new ProductStore.NotImplExceptionFilterAttribute())`.
 
+`IExceptionLogger` and `IExceptionHandler`, to log and handle unhandled exceptions. 
+- registering multiple exception loggers but only a single exception handler.
+- Exception loggers always get called
+
 
 HERE:
-https://docs.microsoft.com/en-us/aspnet/web-api/overview/error-handling/web-api-global-error-handling
+https://docs.microsoft.com/en-us/aspnet/web-api/overview/testing-and-debugging/tracing-in-aspnet-web-api
 
 [Filter with any](https://stackoverflow.com/questions/15475593/webapi-odata-filter-any-or-all-query-not-working)
 `~/api/Blogs?$filter=Tags/any(tag: tag/Name eq 'csharp')`
