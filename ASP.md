@@ -303,9 +303,12 @@ Parameter binding
 - registering multiple exception loggers but only a single exception handler.
 - Exception loggers always get called
 
+Use `Microsoft.AspNet.WebApi.Tracing` to add tracking.
+
+To write UT, use a pattern called dependency injection. Basically add interface for the real classes and create mock classes.
 
 HERE:
-https://docs.microsoft.com/en-us/aspnet/web-api/overview/testing-and-debugging/tracing-in-aspnet-web-api
+https://docs.microsoft.com/en-us/aspnet/web-api/overview/security/authentication-and-authorization-in-aspnet-web-api
 
 [Filter with any](https://stackoverflow.com/questions/15475593/webapi-odata-filter-any-or-all-query-not-working)
 `~/api/Blogs?$filter=Tags/any(tag: tag/Name eq 'csharp')`
