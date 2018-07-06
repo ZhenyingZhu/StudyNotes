@@ -307,6 +307,8 @@ Use `Microsoft.AspNet.WebApi.Tracing` to add tracking.
 
 To write UT, use a pattern called dependency injection. Basically add interface for the real classes and create mock classes.
 
+Web API assumes that authentication happens in the host. For web-hosting, the host is IIS, which uses HTTP modules for authentication. When the host authenticates the user, it creates a principal, which is an IPrincipal object that represents the security context under which code is running.
+
 HERE:
 https://docs.microsoft.com/en-us/aspnet/web-api/overview/security/authentication-and-authorization-in-aspnet-web-api
 
