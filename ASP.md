@@ -316,7 +316,7 @@ Instead of using the host for authentication, you can put authentication logic i
 - HTTP modules participate in IIS logging, auditing, and so on.
 - HTTP modules run earlier in the pipeline. If you handle authentication in a message handler, the principal does not get set until the handler runs. Moreover, the principal reverts back to the previous principal when the response leaves the message handler.
 
-Web API project templateS have three options for authentication
+Web API project templates have three options for authentication
 - Individual accounts. The app uses a membership database.
 - Organizational accounts. Users sign in with their Azure Active Directory, Office 365, or on-premise Active Directory credentials.
 - Windows authentication. This option is intended for Intranet applications, and uses the Windows Authentication IIS module.
