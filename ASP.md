@@ -321,8 +321,12 @@ Web API project templates have three options for authentication
 - Organizational accounts. Users sign in with their Azure Active Directory, Office 365, or on-premise Active Directory credentials.
 - Windows authentication. This option is intended for Intranet applications, and uses the Windows Authentication IIS module.
 
+ASP.NET 4.5.1 expand the security options for Single Page Applications (SPA) and Web API services to integrate with external authentication services, which include several OAuth/OpenID and social media authentication services: Microsoft Accounts, Twitter, Facebook, and Google.
+
+
+
 HERE:
-https://docs.microsoft.com/en-us/aspnet/web-api/overview/security/external-authentication-services
+https://docs.microsoft.com/en-us/aspnet/web-api/overview/security/preventing-cross-site-request-forgery-csrf-attacks
 
 [Filter with any](https://stackoverflow.com/questions/15475593/webapi-odata-filter-any-or-all-query-not-working)
 `~/api/Blogs?$filter=Tags/any(tag: tag/Name eq 'csharp')`
