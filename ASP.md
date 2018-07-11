@@ -323,6 +323,7 @@ Web API project templates have three options for authentication
 
 ASP.NET 4.5.1 expand the security options for Single Page Applications (SPA) and Web API services to integrate with external authentication services, which include several OAuth/OpenID and social media authentication services: Microsoft Accounts, Twitter, Facebook, and Google.
 
+Cross-Site Request Forgery (CSRF) is an attack where a malicious site sends a request to a vulnerable site where the user is currently logged in.
 
 
 HERE:
