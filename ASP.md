@@ -327,6 +327,8 @@ Cross-Site Request Forgery (CSRF) is an attack where a malicious site sends a re
 
 To help prevent CSRF attacks, ASP.NET MVC uses anti-forgery tokens, also called request verification tokens. Malicious page cannot read the user's tokens, due to same-origin policies. (Same-origin policies prevent documents hosted on two different sites from accessing each other's content.
 
+CORS
+
 HERE:
 https://docs.microsoft.com/en-us/aspnet/web-api/overview/security/enabling-cross-origin-requests-in-web-api
 
