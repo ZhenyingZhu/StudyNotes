@@ -327,10 +327,16 @@ Cross-Site Request Forgery (CSRF) is an attack where a malicious site sends a re
 
 To help prevent CSRF attacks, ASP.NET MVC uses anti-forgery tokens, also called request verification tokens. Malicious page cannot read the user's tokens, due to same-origin policies. (Same-origin policies prevent documents hosted on two different sites from accessing each other's content.
 
-CORS
+Cross Origin Resource Sharing (CORS)
+- a W3C standard
+- allows a server to relax the same-origin policy
+- a server can explicitly allow some cross-origin requests while rejecting others
+- similar to JSONP
+
+
 
 HERE:
-https://docs.microsoft.com/en-us/aspnet/web-api/overview/security/enabling-cross-origin-requests-in-web-api
+https://docs.microsoft.com/en-us/aspnet/web-api/overview/security/authentication-filters
 
 [Filter with any](https://stackoverflow.com/questions/15475593/webapi-odata-filter-any-or-all-query-not-working)
 `~/api/Blogs?$filter=Tags/any(tag: tag/Name eq 'csharp')`
