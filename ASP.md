@@ -333,10 +333,12 @@ Cross Origin Resource Sharing (CORS)
 - a server can explicitly allow some cross-origin requests while rejecting others
 - similar to JSONP
 
+Authentication filters let you set an authentication scheme for individual controllers or actions. That way, your app can support different authentication mechanisms for different HTTP resources.
 
+Authenticated doesn't mean authorized to perform an action.
 
 HERE:
-https://docs.microsoft.com/en-us/aspnet/web-api/overview/security/authentication-filters
+https://docs.microsoft.com/en-us/aspnet/web-api/overview/security/basic-authentication
 
 [Filter with any](https://stackoverflow.com/questions/15475593/webapi-odata-filter-any-or-all-query-not-working)
 `~/api/Blogs?$filter=Tags/any(tag: tag/Name eq 'csharp')`
