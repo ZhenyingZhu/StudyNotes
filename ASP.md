@@ -337,8 +337,20 @@ Authentication filters let you set an authentication scheme for individual contr
 
 Authenticated doesn't mean authorized to perform an action.
 
+[Basic authentication](http://www.ietf.org/rfc/rfc2617.txt)
+- If a request requires authentication, the server returns 401 (Unauthorized). The response includes a WWW-Authenticate header, indicating the server supports Basic authentication. The client sends another request, with the client credentials in the Authorization header. The credentials are formatted as the string "name:password", base64-encoded. The credentials are not encrypted.
+- Basic authentication is performed within the context of a "realm".
+- Internet standard.
+- Supported by all major browsers.
+- Relatively simple protocol.
+- User credentials are sent in the request.
+- Credentials are sent as plaintext.
+- Credentials are sent with every request.
+- No way to log out, except by ending the browser session.
+- Vulnerable to cross-site request forgery (CSRF); requires anti-CSRF measures.
+
 HERE:
-https://docs.microsoft.com/en-us/aspnet/web-api/overview/security/basic-authentication
+https://docs.microsoft.com/en-us/aspnet/web-api/overview/security/forms-authentication
 
 [Filter with any](https://stackoverflow.com/questions/15475593/webapi-odata-filter-any-or-all-query-not-working)
 `~/api/Blogs?$filter=Tags/any(tag: tag/Name eq 'csharp')`
