@@ -357,6 +357,8 @@ https://docs.microsoft.com/en-us/aspnet/web-api/overview/security/forms-authenti
 
 https://help.nintex.com/en-us/insight/OData/HE_CON_ODATAQueryCheatSheet.htm
 
+https://blogs.sap.com/2013/04/26/what-is-the-difference-between-a-operation-a-function-and-an-action/
+
 
 # Entity Framework(EF)
 
