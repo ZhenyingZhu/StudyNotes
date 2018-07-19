@@ -357,8 +357,13 @@ https://docs.microsoft.com/en-us/aspnet/web-api/overview/security/forms-authenti
 
 https://help.nintex.com/en-us/insight/OData/HE_CON_ODATAQueryCheatSheet.htm
 
-https://blogs.sap.com/2013/04/26/what-is-the-difference-between-a-operation-a-function-and-an-action/
-
+[OData operation vs function vs action?](https://blogs.sap.com/2013/04/26/what-is-the-difference-between-a-operation-a-function-and-an-action/)
+- Operations: llow the client to be able to execute a business process on the server.
+- Operations are the base for two specialized forms of operations, functions and actions.
+- Functions must always return data and must never alter data on the backend so that there are no observable side effects to the function call. This means they are almost always GET HTTP operations.
+- Actions on the other hand are a superset of functions in that the two criteria of a function are relaxed – actions do not have to always return a result and executing the action can cause changes to the backend data. actions are performed using the POST.
+- Since functions are idempotent they can be used in $filter and $sortby system queries to provide a better fidelity in filtering and sorting queries.
+- operations parameters are handled much like querying for an entity with a compound key. The parameters are wrapped in brackets in the format “name = value” seperated by a comma.
 
 # Entity Framework(EF)
 
