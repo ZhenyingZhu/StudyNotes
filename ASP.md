@@ -349,8 +349,12 @@ Authenticated doesn't mean authorized to perform an action.
 - No way to log out, except by ending the browser session.
 - Vulnerable to cross-site request forgery (CSRF); requires anti-CSRF measures.
 
+Forms Authentication
+- not an Internet standard.
+- Easy to implement: Built into ASP.NET.
+
 HERE:
-https://docs.microsoft.com/en-us/aspnet/web-api/overview/security/forms-authentication
+https://docs.microsoft.com/en-us/aspnet/web-api/overview/security/integrated-windows-authentication
 
 [Filter with any](https://stackoverflow.com/questions/15475593/webapi-odata-filter-any-or-all-query-not-working)
 `~/api/Blogs?$filter=Tags/any(tag: tag/Name eq 'csharp')`
