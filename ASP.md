@@ -353,8 +353,18 @@ Forms Authentication
 - not an Internet standard.
 - Easy to implement: Built into ASP.NET.
 
+Integrated Windows authentication
+- using Kerberos or NTLM. 
+- best suited for an intranet environment.
+- Built into IIS.
+- Does not send the user credentials in the request.
+- If the client computer belongs to the domain (for example, intranet application), the user does not need to enter credentials.
+- Not recommended for Internet applications.
+- Requires Kerberos or NTLM support in the client.
+- Client must be in the Active Directory domain.
+
 HERE:
-https://docs.microsoft.com/en-us/aspnet/web-api/overview/security/integrated-windows-authentication
+https://docs.microsoft.com/en-us/aspnet/web-api/overview/security/working-with-ssl-in-web-api
 
 [Filter with any](https://stackoverflow.com/questions/15475593/webapi-odata-filter-any-or-all-query-not-working)
 `~/api/Blogs?$filter=Tags/any(tag: tag/Name eq 'csharp')`
