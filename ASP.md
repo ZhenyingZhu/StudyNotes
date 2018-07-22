@@ -364,7 +364,7 @@ Integrated Windows authentication
 - Client must be in the Active Directory domain.
 
 HERE:
-https://docs.microsoft.com/en-us/aspnet/web-api/overview/security/working-with-ssl-in-web-api
+https://docs.microsoft.com/en-us/aspnet/web-api/overview/hosting-aspnet-web-api/use-owin-to-self-host-web-api
 
 [Filter with any](https://stackoverflow.com/questions/15475593/webapi-odata-filter-any-or-all-query-not-working)
 `~/api/Blogs?$filter=Tags/any(tag: tag/Name eq 'csharp')`
