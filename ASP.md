@@ -367,8 +367,20 @@ Open Web Interface for .NET (OWIN)
 - defines an abstraction between .NET web servers and web applications.
 - decouples the web application from the server, which makes OWIN ideal for self-hosting a web application in your own process, outside of IIS, inside an Azure worker role.
 
+Web API configuration: in the HttpConfiguration class.
+- DependencyResolver: Enables dependency injection for controllers.
+- Filters: Action filters.
+- Formatters: Media-type formatters.
+- IncludeErrorDetailPolicy: Specifies whether the server should include error details, such as exception messages and stack traces, in HTTP response messages.
+- Initializer: A function that performs final initialization of the HttpConfiguration.
+- MessageHandlers: HTTP message handlers.
+- ParameterBindingRules: A collection of rules for binding parameters on controller actions.
+- Properties: A generic property bag.
+- Routes: The collection of routes.
+- Services: The collection of services.
+
 HERE:
-https://docs.microsoft.com/en-us/aspnet/web-api/overview/advanced/configuring-aspnet-web-api
+https://docs.microsoft.com/en-us/aspnet/web-api/overview/advanced/dependency-injection
 
 [Filter with any](https://stackoverflow.com/questions/15475593/webapi-odata-filter-any-or-all-query-not-working)
 `~/api/Blogs?$filter=Tags/any(tag: tag/Name eq 'csharp')`
