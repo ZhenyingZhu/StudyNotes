@@ -379,8 +379,14 @@ Web API configuration: in the HttpConfiguration class.
 - Routes: The collection of routes.
 - Services: The collection of services.
 
+Dependency Injection
+- constructor injection
+- Web API Dependency Resolver
+- IoC(inversion of control) container is a software component that is responsible for managing dependencies
+
+
 HERE:
-https://docs.microsoft.com/en-us/aspnet/web-api/overview/advanced/dependency-injection
+https://docs.microsoft.com/en-us/aspnet/web-api/overview/advanced/calling-a-web-api-from-a-net-client
 
 [Filter with any](https://stackoverflow.com/questions/15475593/webapi-odata-filter-any-or-all-query-not-working)
 `~/api/Blogs?$filter=Tags/any(tag: tag/Name eq 'csharp')`
