@@ -384,9 +384,14 @@ Dependency Injection
 - Web API Dependency Resolver
 - IoC(inversion of control) container is a software component that is responsible for managing dependencies
 
+Web API example:
+- GET /api/products/id
+- POST /api/products
+- PUT /api/products/id # update
+- DELETE /api/products/id
 
 HERE:
-https://docs.microsoft.com/en-us/aspnet/web-api/overview/advanced/calling-a-web-api-from-a-net-client
+https://docs.microsoft.com/en-us/aspnet/web-api/overview/advanced/http-message-handlers
 
 [Filter with any](https://stackoverflow.com/questions/15475593/webapi-odata-filter-any-or-all-query-not-working)
 `~/api/Blogs?$filter=Tags/any(tag: tag/Name eq 'csharp')`
