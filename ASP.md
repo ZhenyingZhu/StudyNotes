@@ -414,7 +414,7 @@ enctype: form attribute specifies the format of request body.
 - multipart/form-data: Form data is encoded as a multipart MIME message. Use this format if you are uploading a file to the server.
 
 HERE:
-https://docs.microsoft.com/en-us/aspnet/web-api/overview/advanced/sending-html-form-data-part-2
+https://docs.microsoft.com/en-us/aspnet/web-api/overview/advanced/http-cookies
 
 [Filter with any](https://stackoverflow.com/questions/15475593/webapi-odata-filter-any-or-all-query-not-working)
 `~/api/Blogs?$filter=Tags/any(tag: tag/Name eq 'csharp')`
