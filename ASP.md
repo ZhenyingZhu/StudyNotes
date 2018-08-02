@@ -413,8 +413,15 @@ enctype: form attribute specifies the format of request body.
 - application/x-www-form-urlencoded: Form data is encoded as name/value pairs, similar to a URI query string. This is the default format for POST.
 - multipart/form-data: Form data is encoded as a multipart MIME message. Use this format if you are uploading a file to the server.
 
+Cookie attributes
+- Domain
+- Path
+- Expires
+- Max-Age
+
+
 HERE:
-https://docs.microsoft.com/en-us/aspnet/web-api/overview/advanced/http-cookies
+https://docs.microsoft.com/en-us/aspnet/web-api/overview/releases/whats-new-in-aspnet-web-api-odata-53
 
 [Filter with any](https://stackoverflow.com/questions/15475593/webapi-odata-filter-any-or-all-query-not-working)
 `~/api/Blogs?$filter=Tags/any(tag: tag/Name eq 'csharp')`
