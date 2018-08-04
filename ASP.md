@@ -419,6 +419,14 @@ Cookie attributes
 - Expires
 - Max-Age
 
+CRUD
+- GET retrieves the representation of the resource at a specified URI. GET should have no side effects on the server.
+- PUT updates a resource at a specified URI. PUT can also be used to create a new resource at a specified URI, if the server allows clients to specify new URIs. For this tutorial, the API will not support creation through PUT.
+- POST creates a new resource. The server assigns the URI for the new object and returns this URI as part of the response message.
+- DELETE deletes a resource at a specified URI.
+Note: The PUT method replaces the entire product entity. That is, the client is expected to send a complete representation of the updated product. If you want to support partial updates, the PATCH method is preferred. This tutorial does not implement PATCH.
+
+
 
 HERE:
 https://docs.microsoft.com/en-us/aspnet/web-api/overview/older-versions/creating-a-web-api-that-supports-crud-operations
