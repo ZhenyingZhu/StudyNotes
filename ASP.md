@@ -428,8 +428,14 @@ Note: The PUT method replaces the entire product entity. That is, the client is 
 
 Get a product by category: `/api/products?category=category`
 
+Entity Framework translates the C# models used by Web API into database entities.
+
+wire format: transmit data to the client via HTTP.
+
+
+
 HERE:
-https://docs.microsoft.com/en-us/aspnet/web-api/overview/older-versions/using-web-api-1-with-entity-framework-5/using-web-api-with-entity-framework-part-1
+https://docs.microsoft.com/en-us/aspnet/web-api/overview/older-versions/using-web-api-1-with-entity-framework-5/using-web-api-with-entity-framework-part-2
 
 [Filter with any](https://stackoverflow.com/questions/15475593/webapi-odata-filter-any-or-all-query-not-working)
 `~/api/Blogs?$filter=Tags/any(tag: tag/Name eq 'csharp')`
