@@ -442,7 +442,7 @@ Knockout.js is a Javascript library that makes it easy to bind HTML controls to 
 - The view-model also gets events from the view.
 
 HERE:
-https://docs.microsoft.com/en-us/aspnet/web-api/overview/older-versions/using-web-api-1-with-entity-framework-5/using-web-api-with-entity-framework-part-7
+https://docs.microsoft.com/en-us/aspnet/web-api/overview/older-versions/self-host-a-web-api
 
 [Filter with any](https://stackoverflow.com/questions/15475593/webapi-odata-filter-any-or-all-query-not-working)
 `~/api/Blogs?$filter=Tags/any(tag: tag/Name eq 'csharp')`
