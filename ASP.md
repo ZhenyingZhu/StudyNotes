@@ -441,6 +441,8 @@ Knockout.js is a Javascript library that makes it easy to bind HTML controls to 
 - Updates to the view-model are automatically reflected in the view.
 - The view-model also gets events from the view.
 
+self-host a web API in your own host process: without IIS.
+
 HERE:
 https://docs.microsoft.com/en-us/aspnet/web-api/overview/older-versions/build-restful-apis-with-aspnet-web-api
 
