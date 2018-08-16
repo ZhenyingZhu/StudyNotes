@@ -443,8 +443,10 @@ Knockout.js is a Javascript library that makes it easy to bind HTML controls to 
 
 self-host a web API in your own host process: without IIS.
 
+Code samples: https://docs.microsoft.com/en-us/aspnet/web-api/samples-list
+
 HERE:
-https://docs.microsoft.com/en-us/aspnet/web-api/samples-list
+https://docs.microsoft.com/en-us/aspnet/web-pages/overview/getting-started/program-asp-net-web-pages-in-visual-studio
 
 [Filter with any](https://stackoverflow.com/questions/15475593/webapi-odata-filter-any-or-all-query-not-working)
 `~/api/Blogs?$filter=Tags/any(tag: tag/Name eq 'csharp')`
