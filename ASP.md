@@ -445,6 +445,8 @@ self-host a web API in your own host process: without IIS.
 
 Code samples: https://docs.microsoft.com/en-us/aspnet/web-api/samples-list
 
+Razor syntax is a simple programming syntax for embedding server-based code in a web page.
+
 HERE:
 https://docs.microsoft.com/en-us/aspnet/web-pages/overview/getting-started/introducing-razor-syntax-c
 Basic Programming Concepts
