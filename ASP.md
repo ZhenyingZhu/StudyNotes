@@ -447,9 +447,28 @@ Code samples: https://docs.microsoft.com/en-us/aspnet/web-api/samples-list
 
 Razor syntax is a simple programming syntax for embedding server-based code in a web page.
 
+It is something like HTML
+```
+<!-- Single statement blocks  -->
+@{ var total = 7; }
+@{ var myMessage = "Hello World"; }
+
+<!-- Inline expressions -->
+<p>The value of your account is: @total </p>
+<p>The value of myMessage is: @myMessage</p>
+
+<!-- Multi-statement block -->
+@{
+    var greeting = "Welcome to our site!";
+    var weekDay = DateTime.Now.DayOfWeek;
+    var greetingMessage = greeting + " Today is: " + weekDay;
+}
+<p>The greeting is: @greetingMessage</p>
+```
+
 HERE:
 https://docs.microsoft.com/en-us/aspnet/web-pages/overview/getting-started/introducing-razor-syntax-c
-Basic Programming Concepts
+A Simple Code Example
 
 [Filter with any](https://stackoverflow.com/questions/15475593/webapi-odata-filter-any-or-all-query-not-working)
 `~/api/Blogs?$filter=Tags/any(tag: tag/Name eq 'csharp')`
