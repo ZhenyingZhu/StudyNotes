@@ -466,9 +466,16 @@ It is something like HTML
 <p>The greeting is: @greetingMessage</p>
 ```
 
+Client content is the stuff you're used to in web pages.
+
+Razor syntax lets you add server code to this client content. If there's server code in the page, the server runs that code first, before it sends the page to the browser.
+
+
 HERE:
 https://docs.microsoft.com/en-us/aspnet/web-pages/overview/getting-started/introducing-razor-syntax-c
-Basic Programming Concepts
+Where does ASP.NET fit in
+
+
 
 [Filter with any](https://stackoverflow.com/questions/15475593/webapi-odata-filter-any-or-all-query-not-working)
 `~/api/Blogs?$filter=Tags/any(tag: tag/Name eq 'csharp')`
