@@ -1321,4 +1321,4 @@ Aug 5 2017
 Aug 9 2017
 Dec 23 2017
 Fev 5 2018
-
+Aug 23 2018: internet got disconnected. 
