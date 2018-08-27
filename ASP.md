@@ -470,9 +470,17 @@ Client content is the stuff you're used to in web pages.
 
 Razor syntax lets you add server code to this client content. If there's server code in the page, the server runs that code first, before it sends the page to the browser.
 
+Can define variable type, but not necessary to.
+```
+@{
+    var greeting = "Welcome!";
+    string name = "Joe";
+    DateTime tomorrow = DateTime.Now.AddDays(1);
+}
+```
 
 HERE:
-https://docs.microsoft.com/en-us/aspnet/web-pages/overview/getting-started/introducing-razor-syntax-c#whitespace
+https://docs.microsoft.com/en-us/aspnet/web-pages/overview/getting-started/introducing-razor-syntax-c#working-with-file-and-folder-paths-in-code
 
 
 [Filter with any](https://stackoverflow.com/questions/15475593/webapi-odata-filter-any-or-all-query-not-working)
