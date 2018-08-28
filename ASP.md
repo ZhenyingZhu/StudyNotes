@@ -480,7 +480,7 @@ Can define variable type, but not necessary to.
 ```
 
 HERE:
-https://docs.microsoft.com/en-us/aspnet/web-pages/overview/getting-started/introducing-razor-syntax-c#working-with-file-and-folder-paths-in-code
+https://docs.microsoft.com/en-us/aspnet/web-pages/overview/getting-started/introducing-razor-syntax-c#conditional-logic-and-loops
 
 
 [Filter with any](https://stackoverflow.com/questions/15475593/webapi-odata-filter-any-or-all-query-not-working)
