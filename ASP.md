@@ -481,8 +481,10 @@ Can define variable type, but not necessary to.
 
 [Conditional check](https://docs.microsoft.com/en-us/aspnet/web-pages/overview/getting-started/introducing-razor-syntax-c#conditional-logic-and-loops)
 
+`this` is a page object. `this.Request` shows request collection.
+
 HERE:
-https://docs.microsoft.com/en-us/aspnet/web-pages/overview/getting-started/introducing-razor-syntax-c#objects-and-collections
+https://docs.microsoft.com/en-us/aspnet/web-pages/overview/getting-started/introducing-razor-syntax-c#calling-methods-with-parameters
 
 
 [Filter with any](https://stackoverflow.com/questions/15475593/webapi-odata-filter-any-or-all-query-not-working)
