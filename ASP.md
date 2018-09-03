@@ -484,7 +484,7 @@ Can define variable type, but not necessary to.
 `this` is a page object. `this.Request` shows request collection.
 
 HERE:
-https://docs.microsoft.com/en-us/aspnet/web-pages/overview/getting-started/13-adding-social-networking-to-your-web-site
+https://docs.microsoft.com/en-us/aspnet/web-pages/overview/getting-started/introducing-aspnet-web-pages-2/getting-started
 
 
 [Filter with any](https://stackoverflow.com/questions/15475593/webapi-odata-filter-any-or-all-query-not-working)
