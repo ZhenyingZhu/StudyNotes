@@ -485,6 +485,10 @@ Can define variable type, but not necessary to.
 
 WebMatrix is a tool that integrates a web page editor, a database utility, a web server for testing pages, and features for publishing your website to the Internet.
 
+NuGet: the package manager.
+
+The Gravatar helper.
+
 HERE:
 https://docs.microsoft.com/en-us/aspnet/web-pages/overview/getting-started/introducing-aspnet-web-pages-2/getting-started
 
