@@ -490,6 +490,8 @@ NuGet: the package manager.
 The Gravatar helper.
 [MSDN subscription](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A443DD604)
 
+The @ character tells ASP.NET that what follows is Razor code, not HTML. ASP.NET will treat everything after the @ character as code until it runs into some HTML again.
+
 HERE:
 https://docs.microsoft.com/en-us/aspnet/web-pages/overview/getting-started/introducing-aspnet-web-pages-2/intro-to-web-pages-programming
 
