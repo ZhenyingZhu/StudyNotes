@@ -495,7 +495,6 @@ The @ character tells ASP.NET that what follows is Razor code, not HTML. ASP.NET
 HERE:
 https://docs.microsoft.com/en-us/aspnet/web-pages/overview/getting-started/introducing-aspnet-web-pages-2/layouts
 
-
 [Filter with any](https://stackoverflow.com/questions/15475593/webapi-odata-filter-any-or-all-query-not-working)
 `~/api/Blogs?$filter=Tags/any(tag: tag/Name eq 'csharp')`
 
