@@ -1,63 +1,87 @@
+# Android
+
 ## Create project
-http://developer.android.com/training/basics/firstapp/creating-project.html
-Activity: 
-- provide user with access to app. 
+
+<http://developer.android.com/training/basics/firstapp/creating-project.html>
+
+Activity
+
+- provide user with access to app.
 - APP usually have a main activity when user launch it
 - another activity when user selects some content to view
 
-app/src/main/res/layout/activity_my.xml:  
-- The screen UI.  
+app/src/main/res/layout/activity_my.xml
+
+- The screen UI.
 - in content_my.xml, there is a TextView element. 
 - And it will show in screen UI.  
 
-app/src/main/java/com.mycompany.myfirstapp/MyActivity.java:  
+app/src/main/java/com.mycompany.myfirstapp/MyActivity.java
+
 - Start the activity and load layout file.  
 
-app/src/main/AndroidManifest.xml: 
-- describe the fundamental characteristics and components.  
+app/src/main/AndroidManifest.xml
 
-app/build.gradle: 
-- Gradle is compiler and builder.  
-- Each module has a build.gradle. This one is for app module.  
-- The whole project also has a build.gradle.  
-- Contain defaultConfig settings.  
+- describe the fundamental characteristics and components.
 
-res/drawable<density>:  
-- drawable objects like bitmaps put here.  
-- density: medium-density (mdpi) and high-density (hdpi) screens.  
+app/build.gradle
 
-res/menu/:  
-- app's menu items.  
+- Gradle is compiler and builder.
+- Each module has a build.gradle. This one is for app module.
+- The whole project also has a build.gradle.
+- Contain defaultConfig settings.
 
-res/values/:  
-- Other XML files that contain a collection resources.  
+`res/drawable<density>`
+
+- drawable objects like bitmaps put here.
+- density: medium-density (mdpi) and high-density (hdpi) screens.
+
+res/menu/
+
+- app's menu items.
+
+res/values/
+
+- Other XML files that contain a collection resources.
 
 ## Run the app
 
 ### Install ADB driver
-https://www.youtube.com/watch?v=vUSRmtexmUo
-Install ADB driver on Windows: 
-- Android\sdk\SDK Manager.exe: download usb driver.  
+
+<https://www.youtube.com/watch?v=vUSRmtexmUo>
+
+Install ADB driver on Windows
+
+- Android\sdk\SDK Manager.exe: download usb driver.
 - Device Manager: install driver from Android\sdk\extras\google\usb_driver
-- cmd: `cd Android\sdk\platform-tools\; adb devices` to see if the device shows up.  
+- cmd: `cd Android\sdk\platform-tools\; adb devices` to see if the device shows up.
 
 ### Run
-http://developer.android.com/training/basics/firstapp/running-app.html
-On device: Enable USB debugging, then click run.  
 
-On Emulator: 
-- Install HAXM installer through SDK Manager. sdk\extras\intel\Hardware_Accelerated_Execution_Manager\intelhaxm.exe (Doesn't work)
-- Create AVD: Tools > Android > AVD Manager. 
+<http://developer.android.com/training/basics/firstapp/running-app.html>
 
-After gradle build, an apk shows under app\build\outputs\apk  
+On device
+
+- Enable USB debugging, then click run.
+
+On Emulator
+
+- Install HAXM installer through SDK Manager. `sdk\extras\intel\Hardware_Accelerated_Execution_Manager\intelhaxm.exe` (Doesn't work)
+- Create AVD: Tools > Android > AVD Manager.
+
+After gradle build, an apk shows under app\build\outputs\apk
 
 ## Build UI
-http://developer.android.com/training/basics/firstapp/building-ui.html
-Goal: create a layout in XML that includes a text field and a button.  
 
-View Object: UI widgets like button or text field.  
-ViewGroup Object: view container. Define how child view are laid out, grid or vertical list.  
-Layouts: subclass of ViewGroup.  
+<http://developer.android.com/training/basics/firstapp/building-ui.html>
+
+Goal
+
+- create a layout in XML that includes a text field and a button.
+
+View Object: UI widgets like button or text field.
+ViewGroup Object: view container. Define how child view are laid out, grid or vertical list.
+Layouts: subclass of ViewGroup.
 
 content_my.xml has a `RelativeLayout`, contain a `TextView`.  
 
