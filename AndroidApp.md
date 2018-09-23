@@ -93,15 +93,16 @@ Each child of a LinearLayout appears on the screen in the order in which it appe
 `android:layout_width` and `android:layout_height`, are required for all views in order to specify their size.  
 Set `width` and `height` to "match_parent" fill up the parent view, which is screen here.  
 
-Add `EditText` View with attributes:  
-- `android:id`: id for this view. 
-- `android:layout_width` and `android:layout_height` set to `wrap_content`.  
-- `android:hint`: refer to `edit_message`. It is not the previous `edit_message` because type is not same(id vs. string).  
+Add `EditText` View with attributes
 
-`@` means refer to resource object from XML, follow with `type/resource_name`.   
-`+` before resource ID means define for the first time. After compile resource id shows in `gen/R.java`.  
+- `android:id`: id for this view.
+- `android:layout_width` and `android:layout_height` set to `wrap_content`.
+- `android:hint`: refer to `edit_message`. It is not the previous `edit_message` because type is not same(id vs. string).
 
-```
+`@` means refer to resource object from XML, follow with `type/resource_name`.
+`+` before resource ID means define for the first time. After compile resource id shows in `gen/R.java`.
+
+```xml
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -114,41 +115,48 @@ Add `EditText` View with attributes:
 </LinearLayout>
 ```
 
-Add `edit_message` string:  
-- Add to res\values\strings.xml.  
-- name tag is the resource name.  
-- All UI string should be put here.  
+Add `edit_message` string
 
-Add a Button:  
-- "wrap_content" let button only as large as button text.  
-- `android:text`: text label.  
-- If it is not referenced from the activity code, then not need to set ID.  
-- `android:layout_weight`: let text field fill the unused screen. 
-- Weight: specify the amount of remaining space. Weight of this element divide sum of weights means the ratio of this element on the screen.  
-- `android:layout_width`: set to `0dp` can reduce the caculation of CPU to improve performance.  
+- Add to res\values\strings.xml.
+- name tag is the resource name.
+- All UI string should be put here.
+
+Add a Button
+
+- "wrap_content" let button only as large as button text.
+- `android:text`: text label.
+- If it is not referenced from the activity code, then not need to set ID.
+- `android:layout_weight`: let text field fill the unused screen.
+- Weight: specify the amount of remaining space. Weight of this element divide sum of weights means the ratio of this element on the screen.
+- `android:layout_width`: set to `0dp` can reduce the caculation of CPU to improve performance.
 
 ## Button activity
-http://developer.android.com/training/basics/firstapp/starting-activity.html
-Add activity to Button:  
-- To the <Button> element, add the `android:onClick` attribute "SendMessage".  
-- So "SendMessage" is a method in java/com.mycompany.myfirstapp/MyActivity.java in `MyActivity` class.  
-- This method should be public, have void return, and input a `View`.  
-- New an Intent in the method.  
-- Find the `edit_message` by `findViewById` and return an `EditText` object.  
-- Put message from `edit_message` to intent using a unique key, like projectname.MESSAGE.  
-- Call `startActivity(intent);`  
 
-Intent Object:  
-- provide runtime binding between components like two activities.  
-- mostly used to start another activity.  
-- its constructor has two parameters: `Context` like an `Activity` and the binding `Class`.  
-- `import android.content.Intent;`  
-- An Intent can carry data types as key-value pairs called extras.  
+<http://developer.android.com/training/basics/firstapp/starting-activity.html>
 
-Create a new Activity:  
-- All subclasses of Activity must implement the `onCreate()` method.  
-- `onCreate()` method must define the activity layout with the setContentView() method.  
-- New > Activity > Blank Activity  
-- Every Activity is invoked by an Intent.  
+Add activity to Button
+
+- To the `<Button>` element, add the `android:onClick` attribute "SendMessage".
+- So "SendMessage" is a method in java/com.mycompany.myfirstapp/MyActivity.java in `MyActivity` class.
+- This method should be public, have void return, and input a `View`.
+- New an Intent in the method.
+- Find the `edit_message` by `findViewById` and return an `EditText` object.
+- Put message from `edit_message` to intent using a unique key, like projectname.MESSAGE.
+- Call `startActivity(intent);`
+
+Intent Object
+
+- provide runtime binding between components like two activities.
+- mostly used to start another activity.
+- its constructor has two parameters: `Context` like an `Activity` and the binding `Class`.
+- `import android.content.Intent;`
+- An Intent can carry data types as key-value pairs called extras.
+
+Create a new Activity
+
+- All subclasses of Activity must implement the `onCreate()` method.
+- `onCreate()` method must define the activity layout with the setContentView() method.
+- New > Activity > Blank Activity
+- Every Activity is invoked by an Intent.
 
 (Doesn't work with the newest android studio)
