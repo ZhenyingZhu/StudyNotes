@@ -1,7 +1,8 @@
+# Git
 
-[Git remove a local commit](http://stackoverflow.com/questions/5097456/throw-away-local-commits-in-git)  
+[Git remove a local commit](http://stackoverflow.com/questions/5097456/throw-away-local-commits-in-git)
 
-[merge git commits into one](http://gitready.com/advanced/2009/02/10/squashing-commits-with-rebase.html)  
+[merge git commits into one](http://gitready.com/advanced/2009/02/10/squashing-commits-with-rebase.html)
 
 [Create a branch from another local repo](http://stackoverflow.com/questions/10603671/git-how-to-add-a-local-repo-and-treat-it-as-a-remote-one)
 
@@ -11,7 +12,7 @@
 
 [revert a merge](https://stackoverflow.com/questions/7099833/how-to-revert-a-merge-commit-thats-already-pushed-to-remote-branch)
 
-[git base](https://git-scm.com/book/en/v2/Git-Branching-Rebasing)
+[git rebase](https://git-scm.com/book/en/v2/Git-Branching-Rebasing)
 Make the master branch as base, and then apply your changes on it one commit by one.
 
 Before merging master, better push local branch to remote, so that if merging master causing issue, I can reset back to remote branch and have all my changes.
@@ -35,3 +36,9 @@ Check which commit deleted a line: `git log -S "deleted line" file`
 `git branch --set-upstream-to=origin/[branch] [branch]`
 
 To force commit the local change to remote, such as after done a rebase, do `git push -f origin <branch>`
+
+Uncommit a local change
+
+- If need the history: `git revert <commit id>`
+- If need files in the last commit: `git reset --soft HEAD~1`
+- If don't need files: `git reset --hard HEAD~1`
