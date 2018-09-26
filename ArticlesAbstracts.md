@@ -47,7 +47,7 @@
 
 ## 麦子学院IT课程
 
-- http://www.maiziedu.com
+- <http://www.maiziedu.com>
 - 三节课了解Android L-你不得不听的技巧
 - Android Client与Server的数据交互
 - Cocos2d-x开发深入进阶之lua篇
@@ -101,20 +101,22 @@
 - 树莓派板子深入研究
 
 ## 阅读源码，推荐 10 个 C 语言开源项目
-http://blog.jobbole.com/79023/
 
-- Webbench: http://home.tiscali.cz/~cz210552/webbench.html
-- Tinyhttpd: http://sourceforge.net/projects/tinyhttpd/
-- cJSON: http://sourceforge.net/projects/cjson/
-- CMockery: http://code.google.com/p/cmockery/downloads/list
-- Libev: http://software.schmorp.de/pkg/libev.html
-- Memcached: http://memcached.org/
-- Lua: http://www.lua.org/
-- SQLite: http://www.sqlite.org/
-- UNIX v6: http://minnie.tuhs.org/cgi-bin/utree.pl?file=V6
-- NETBSD: http://www.netbsd.org/
+<http://blog.jobbole.com/79023/>
+
+- [Webbench](http://home.tiscali.cz/~cz210552/webbench.html)
+- [Tinyhttpd](http://sourceforge.net/projects/tinyhttpd/)
+- [cJSON](http://sourceforge.net/projects/cjson/)
+- [CMockery](http://code.google.com/p/cmockery/downloads/list)
+- [Libev](http://software.schmorp.de/pkg/libev.html)
+- [Memcached](http://memcached.org/)
+- [Lua](http://www.lua.org/)
+- [SQLite](http://www.sqlite.org/)
+- [UNIX v6](http://minnie.tuhs.org/cgi-bin/utree.pl?file=V6)
+- [NETBSD](http://www.netbsd.org/)
 
 ## C 语言进阶有哪些优秀的代码可以阅读？
+
 C 语言进阶有哪些优秀的代码可以阅读？ http://top.jobbole.com/14814/
 
 ## 阅读优秀代码是提高开发人员修为的一种捷径
