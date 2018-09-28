@@ -494,6 +494,12 @@ group: return an IGroup
 
 _NOT DONE_
 
+```C#
+List<int> list1 = {1, 2, 3};
+List<int> list2 = {3, 4};
+int sameNumCnt = list2.Select(x => x).Intersect(list1).Count;
+```
+
 ## Function / Action / Predicate
 [src](https://stackoverflow.com/questions/4317479/func-vs-action-vs-predicate)
 
