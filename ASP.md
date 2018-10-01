@@ -109,7 +109,7 @@ In `App_Start/WebApiConfig.cs`, update `Register` method to setup Entity Data Mo
 
 - Route setup endpoints.
 
-The `[EnableQuery]` attribute enables clients to modify the query, by using query options such as $filter, $sort, and $page. 
+The `[EnableQuery]` attribute enables clients to modify the query, by using query options such as $filter, $sort, and $page.
 
 OData supports two different semantics for updating
 
@@ -153,14 +153,17 @@ To add an entity:
 `[FromOdataUri]` attribute in the key parameter: tells Web API to use OData syntax rules when it parses the key from the request URI.
 
 links:
+
 - uri: `entity/$links/entity`.
 
 Generate Service Proxy for client
+
 - proxy is a .NET class that defines methods for accessing the OData service.
 - The proxy translates method calls into HTTP requests.
 - setup uri.
 
 Apply Query options
+
 - use LINQ expressions.
 - define a method.
 
@@ -169,6 +172,7 @@ Apply Query options
 `orderby` clause: GET `http://localhost/odata/Products()?$orderby=Price desc`
 
 Client-Side Paging
+
 - client might want to limit the number of results.
 - `Skip` and `Take`: GET `http://localhost/odata/Products()?$orderby=Price desc&$skip=40&$top=10`
 
@@ -179,6 +183,7 @@ Client-Side Paging
 A `select` clause can include related entities. In that case, do not call `expand`.
 
 Query options: the parameters the client send in the query string.
+
 - expand.
 - filter: based on a boolean condition.
 - inlinecount: include the total count of matching entities in the response. used for server-side paging.
