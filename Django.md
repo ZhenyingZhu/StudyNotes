@@ -1,8 +1,12 @@
-# IDE
+# Django
+
+## IDE
+
 [VSCode](http://ruddra.com/2017/08/19/vs-code-for-python-development/)
 
 [workon doesn't work in powershell](https://stackoverflow.com/questions/38944525/workon-command-doesnt-work-in-windows-powershell-to-activate-virtualenv)
-```
+
+```bat
 pip install virtualenvwrapper-win
 mkvirtualenv venv
 cmd /k workon venv
@@ -11,7 +15,8 @@ cmd /k workon venv
 Install extention `Python`.
 
 Update VSCode workspace settings
-```
+
+```yaml
 "editor.rulers": [
         80,
         120
@@ -30,40 +35,45 @@ Update VSCode workspace settings
 Debug Section - Python Django.
 
 Install code auto analysis
-```
+
+```bat
 pip install pylint
 pip install pylint-django
 pip install autopep8
 ```
 
 Add to workspace setting.
-```
+
+```yaml
     "python.linting.pylintArgs": [
         "--load-plugins=pylint_django"
    ],
 ```
 
+## Jiuzhang Django from 0 to 1
 
-# Jiuzhang Django from 0 to 1
+<http://www.jiuzhang.com/tutorial/django-101/236>
 
-http://www.jiuzhang.com/tutorial/django-101/236
+### Books
 
-## Books
-- Write ldiomatic Python
+- Write idiomatic Python
 - MDN Document: JavaScript
 - Professional JavaScript for Web Developers
 
-## Frameworks and tech stack
+### Frameworks and tech stack
+
 Front-end frameworks
+
 - React
 - Vue
 - Angular
 
-ES6+
+JavaScript version: ES6+
 
 PyCharm + WebStorm
 
 Web framework
+
 - Php: Thinkphp, Laravel
 - Python: Django, Flask
 - Ruby: rails
@@ -71,9 +81,9 @@ Web framework
 
 Python 3.4+ with virtual env.
 
-## Django
-Install Django
-```
+### Start Using Django
+
+```bash
 curl -L https://raw.githubusercontent.com/pyenv/pyenv-installer/master/bin/pyenv-installer | bash
 # the following to ~/.bashrc:
 export PATH="/home/zhu91/.pyenv/bin:$PATH"
@@ -92,20 +102,24 @@ pip install django==1.8
 ```
 
 Create Django project
-```
+
+```bash
 django-admin startproject mysite .
 python manage.py runserver 0.0.0.0:8000
 ```
 
 Install pycharm
-```
+
+```bash
 sudo snap install pycharm-community --classic
 ```
 
-Start a new Django app:
-```
+Start a new Django app
+
+```bash
 python manage.py startapp todolist
 ```
+
 and add 'todolist' to mysite/settings.py `INSTALLED_APPS`, add 'todolist.urls' to mysite/urls.py.
 
 [Move out the secret key](http://fearofcode.github.io/blog/2013/01/15/how-to-scrub-sensitive-information-from-django-settings-dot-py-files/)
@@ -117,6 +131,7 @@ and add 'todolist' to mysite/settings.py `INSTALLED_APPS`, add 'todolist.urls' t
 Django has `template` dir to put html, and `static` dir to put css, picture, and javascript.
 
 ### Template engine
+
 Related to the `TEMPLATES` and `STATIC` in settings.py.
 
 Folder:
@@ -195,7 +210,7 @@ Django Template Filter:
 Django template comment: `{# comment #}`
 
 
-## HTML
+### HTML
 - element: `<html></html>`
 - class: `<div class="class1 class2"></div>`
 - ID: `<div id="unique-value"></div>`
@@ -204,7 +219,7 @@ Django template comment: `{# comment #}`
 - children: `<ul id="parent"><ui id="child"></ui></ul>`
 - attribute and content: `<div attr="attr">content</div>`
 
-## CSS
+### CSS
 Cascading Style Sheets(CSS)
 
 define `<style>` or `<link rel="stylesheet" href="/static/css/bootstrap.min.css">` in header.
@@ -278,7 +293,7 @@ div {
 [Modal](https://getbootstrap.com/docs/4.0/components/modal/)
 
 
-## JavaScript
+### JavaScript
 ECMAScript ES6, ES7: define the standard of JavaScript.
 
 primitive types
@@ -290,7 +305,7 @@ primitive types
 Object
 - Null
 
-## DOM
+### DOM
 In JavaScript
 - `window`: properties `innerWidth`, `innerHeight`.
 - `screen`: `width`, `height`.
@@ -344,7 +359,7 @@ Define a function:
 `Object` is a constructor, and it has the property `Object.prototype`.
 
 
-## Database
+### Database
 Define classes in models.py.
 ```
 title = models.CharField(max_length=255)
@@ -379,7 +394,7 @@ Can let Django update the db..sqlite3.
 
 PyCharm has a DB tool to test connection.
 
-## HTML form
+### HTML form
 ```
 <form action="/complete/{{ todo.id }}/">
     <button class="btn btn-primary" type="submit">Mark as complete</button>
@@ -408,7 +423,7 @@ def action(request, id):
 Notice `?P<id>` is define what the param it is.
 
 
-## Extended Read
+### Extended Read
 - Python编程：从入门到实践
 - 流畅的 Python
 - CSS 设计指南
@@ -416,9 +431,9 @@ Notice `?P<id>` is define what the param it is.
 - JavaScript 高级编程
 - Vue.js
 
-# Official tutorial
+## Official tutorial
 
-## Overview
+### Overview
 DB model:
 - create an entry: `myClass = MyClass(field='value')` then `myClass.save()`
 - Read from the DB: `MyClass.objects.get(id=myClass.id)` or `MyClass.objects.get(field__startswith='str')`, `field__contains='str'`. get can replace with filter.
@@ -834,7 +849,7 @@ Define how admin sees a schema:
 HERE: https://docs.djangoproject.com/en/2.0/intro/tutorial07/
 Adding related objects
 
-## Review
+### Review
 - `django-admin startproject mysite`
 - `python manage.py runserver`
 - `python manage.py startapp polls`
