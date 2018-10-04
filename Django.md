@@ -134,8 +134,9 @@ Django has `template` dir to put html, and `static` dir to put css, picture, and
 
 Related to the `TEMPLATES` and `STATIC` in settings.py.
 
-Folder:
-```
+Folder
+
+```bash
 mysite
   settings.py
 todolist
@@ -145,41 +146,45 @@ todolist
 ```
 
 Add to settings.py: `STATICFILES_DIRS` is for static assets that aren’t tied to a particular app.
-```
+
+```bash
 STATIC_URL = '/todolist/src/'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'todolist/src/'),
 ]
 ```
+
 It make `http://localhost:8000/todolist/src/pic/kitten.jpg` works.
 
 Then can put pic, font, css, js folders into static folder.
 
 In HTML, head and body both need to add
-```
+
+```html
 {% load static %}
 <img src="{% static "pic/kitten.jpg" %}" />
 ```
 
-
 Template HTMLs can be used to generate other pages.
 
 In body of base.html, add a Django block, which is parsed as python code:
-```
+
+```html
 {% block content %}
 {% endblock %}
 ```
 
 Then create another html that inherit from this base.html
-```
+
+```html
 {% extends 'base.html' %}
 {% block content %}
 <table class="table">
   <thread>
     <tr>
-	  <th>some entry</th>
-	</tr>
+      <th>some entry</th>
+    </tr>
   </thread>
   <tbody>
   </tbody>
@@ -189,11 +194,13 @@ Then create another html that inherit from this base.html
 ```
 
 Django Template configuration:
+
 - `BACKEND`
 - `DIRS`
 - `APP_DIRS`: whether to search templates in APP.
 
 Django Template tags:
+
 - `extends`
 - `block`, `endblock`
 - `for`, `in`, `endfor`
@@ -204,13 +211,14 @@ Django Template tags:
 - `debug`
 
 Django Template Filter:
+
 - Variable: `{{ variable }}`, `{{ variable.attr }}`
 - Filter: `{{ name|lower }}`, `{{ text|escape|linebreaks }}`
 
 Django template comment: `{# comment #}`
 
-
 ### HTML
+
 - element: `<html></html>`
 - class: `<div class="class1 class2"></div>`
 - ID: `<div id="unique-value"></div>`
@@ -220,11 +228,12 @@ Django template comment: `{# comment #}`
 - attribute and content: `<div attr="attr">content</div>`
 
 ### CSS
+
 Cascading Style Sheets(CSS)
 
 define `<style>` or `<link rel="stylesheet" href="/static/css/bootstrap.min.css">` in header.
 
-```
+```html
 <head>
 <style type="text/css">
     span.highlight {color:rgb(0,0,255)}
@@ -233,32 +242,36 @@ define `<style>` or `<link rel="stylesheet" href="/static/css/bootstrap.min.css"
 ```
 
 class selector
-```
+
+```html
 <p class="lfkdsk">Content</p>
 .lfkdsk {
-	background-color:yellow;
+    background-color:yellow;
 }
 ```
 
 ID selector
-```
+
+```html
 <p id="lfkdsk">Content</p>
-#lfkdsk { 
-	background-color:yellow;
+#lfkdsk {
+    background-color:yellow;
 }
 ```
 
 Tag selector
-```
+
+```html
 <p>Content</p>
 p {
-	background-color:yellow;
+    background-color:yellow;
 }
 ```
 
 Selector gramma
-```
-p,div { 
+
+```css
+p,div {
 }
 <!-- select all p and div -->
 
@@ -276,12 +289,13 @@ div + p {
 ```
 
 Box Model
+
 - margin
 - border
 - padding
 - content: which is the element. Has height, width.
 
-```
+```css
 div {
     width: 300px;
     border: 25px solid green;
@@ -292,8 +306,8 @@ div {
 
 [Modal](https://getbootstrap.com/docs/4.0/components/modal/)
 
-
 ### JavaScript
+
 ECMAScript ES6, ES7: define the standard of JavaScript.
 
 primitive types
