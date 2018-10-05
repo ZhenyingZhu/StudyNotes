@@ -311,16 +311,20 @@ div {
 ECMAScript ES6, ES7: define the standard of JavaScript.
 
 primitive types
+
 - Undefined
 - Boolean
 - Number
 - String
 
 Object
+
 - Null
 
 ### DOM
+
 In JavaScript
+
 - `window`: properties `innerWidth`, `innerHeight`.
 - `screen`: `width`, `height`.
 - `location`: dealing with URL. `host`, `port`.
@@ -328,7 +332,8 @@ In JavaScript
 - `document`: DOM. `document.title`.
 
 In header define
-```
+
+```html
 <script>
     lfkdsk = document.getElementById("testid");
     document.write("<p> Got " + testid.innerHTML + "</p>");
@@ -336,7 +341,8 @@ In header define
 ```
 
 Add a node
-```
+
+```html
 <script>
     var para = document.createElement("p");
     var node = document.createTextNode("Test paragraph.");
@@ -348,7 +354,8 @@ Add a node
 ```
 
 Remove a node
-```
+
+```html
 <script>
     var element=document.getElementById("div1");
     var p1 = document.getElementById("p1");
@@ -357,6 +364,7 @@ Remove a node
 ```
 
 Element has
+
 - `innerHTML`: tags are tags.
 - `innerText`: tags are also text.
 - `textContent`: also include text that is hidden by CSS.
@@ -365,6 +373,7 @@ Element has
 Everything is an object.
 
 Define a function:
+
 - `function foo() {}`
 - `var foo = function() {}`
 
@@ -372,10 +381,11 @@ Define a function:
 
 `Object` is a constructor, and it has the property `Object.prototype`.
 
-
 ### Database
+
 Define classes in models.py.
-```
+
+```python
 title = models.CharField(max_length=255)
 description = models.TextField(blank=True)
 completed = models.BooleanField(default=False)
@@ -387,29 +397,33 @@ updated_at = models.DateTimeField(auto_now=True)
 
 Might not be a good idea to use them. [Django auto_now and auto_now_add](https://stackoverflow.com/questions/1737017/django-auto-now-and-auto-now-add)
 
-
 A default property
-```
+
+```python
 id = models.AutoField(primary_key=True)
 ```
 
 Define an inner class to control the object
-```
+
+```python
 class Meta:
     ordering = ('completed', '-updated_at',)
 ```
 
-If settings.py `INSTALLED_APPS` has this project, then 
-```
+If settings.py `INSTALLED_APPS` has this project, then
+
+```bash
 python manager.py makemigrations
 python manager.py migrate
 ```
+
 Can let Django update the db..sqlite3.
 
 PyCharm has a DB tool to test connection.
 
 ### HTML form
-```
+
+```html
 <form action="/complete/{{ todo.id }}/">
     <button class="btn btn-primary" type="submit">Mark as complete</button>
 </form>
@@ -420,24 +434,28 @@ Use bootstrap [input group](https://getbootstrap.com/docs/4.0/components/input-g
 Add `{% csrf_token %}` to avoid attack.
 
 backend code:
-```
+
+```python
 if request.method == 'POST':
     action = request.POST.get('action')
 ```
 
 `django.shortcuts` methods:
+
 - `get_object_or_404(MyModel, id=object_id)` can either get the object from DB or return 404 page.
 - `return HttpResponseRedirect('url')` render that page.
 
 Regular express: `()` is the capture mode. so `^/action/(?P<id>\d+)` matchs to `/action/123` and the view would be
-```
+
+```python
 def action(request, id):
     do something
 ```
+
 Notice `?P<id>` is define what the param it is.
 
-
 ### Extended Read
+
 - Python编程：从入门到实践
 - 流畅的 Python
 - CSS 设计指南
