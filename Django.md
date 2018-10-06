@@ -466,12 +466,15 @@ Notice `?P<id>` is define what the param it is.
 ## Official tutorial
 
 ### Overview
+
 DB model:
+
 - create an entry: `myClass = MyClass(field='value')` then `myClass.save()`
 - Read from the DB: `MyClass.objects.get(id=myClass.id)` or `MyClass.objects.get(field__startswith='str')`, `field__contains='str'`. get can replace with filter.
 
 Define a foreign key:
-```
+
+```python
 class UseAsFK(models.Model):
     ...
 
@@ -484,34 +487,41 @@ myClass.save()
 ```
 
 The foreign key object has API access to who refer to it.
-```
+
+```python
 k.myclass_set.all()
 ```
 
 Filter vs Get:
+
 - get returns one entry, while filter returns a set
 
 Use admin
-```
+
+```python
 from django.contrib import admin
 from . import models
 admin.site.register(models.Article)
 ```
 
 URLConf: matching is in-order, and return the python callback when hit the first match.
-```
+
+```python
 from django.urls import path
 from . import views
 urlpatterns = [
     path('articles/<int:year>/<int:month>/<int:pk>/', views.article_detail),
 ]
 ```
+
 So with a URL: "/articles/2005/05/39323/", a call `views.article_detail(request, year=2005, month=5, pk=39323)` is made.
 
 Views callbacks
+
 - return a HTTPResonse or a HTTPException.
 
 Templates
+
 - Search path is `DIRS`.
 - variables: `{{ var }}`. It is python variable.
 - template filter is like unix pipe: `{{ article.pub_date|date:"F j, Y" }}`. Here is using [php date format](http://php.net/manual/en/function.date.php)
@@ -521,13 +531,15 @@ Templates
 Python includes a lightweight database called SQLite.
 
 Verify installation:
-```
+
+```python
 import django
 print(django.get_version())
 ```
 
 Start a project
-```
+
+```bash
 django-admin startproject mysite
 ```
 
@@ -536,20 +548,24 @@ The inner `mysite/` directory is the actual Python package for your project. So 
 `mysite/wsgi.py`: An entry-point for WSGI-compatible web servers
 
 Don’t use this server in anything resembling a production environment.
-```
+
+```bash
 python manage.py runserver 0:8000 # ip 0.0.0.0:8000
 ```
+
 The runserver is auto reloading, but adding files need manually restart it.
 
 Projects vs. apps: A project can contain multiple apps. An app can be in multiple projects.
 
 Create an app call polls:
-```
+
+```bash
 python manage.py startapp polls
 ```
 
 URLconf is a urls.py file. It defines urlpatterns. It needs to be included in `mysite/urls.py` to use.
-```
+
+```python
 urlpatterns = [
     path('polls/', include('polls.urls')),
     path('admin/', admin.site.urls),
@@ -557,17 +573,20 @@ urlpatterns = [
 ```
 
 `path` method args:
+
 - route: doesn't search GET and POST parameters.
 - view
 - kwargs: can be passed in a dictionary to the target view.
 - name: Name of the URL.
 
 Setting database
+
 - `mysite/settings.py`
-- To use other database: https://docs.djangoproject.com/en/2.0/topics/install/#database-installation
+- To use other database: <https://docs.djangoproject.com/en/2.0/topics/install/#database-installation>
 - ENGINE is the db. NAME is tha path.
 
 INSTALLED_APPS contains apps which come with Django:
+
 - django.contrib.admin – The admin site.
 - django.contrib.auth – An authentication system.
 - django.contrib.contenttypes – A framework for content types.
@@ -584,7 +603,8 @@ Django follows the DRY Principle. The goal is to define your data model in one p
 Django apps are “pluggable”: You can use an app in multiple projects.
 
 The `PollsConfig` class is in the `polls/apps.py` file, so its dotted path is 'polls.apps.PollsConfig'.
-```
+
+```python
 INSTALLED_APPS = [
     'polls.apps.PollsConfig',
     'django.contrib.admin',
@@ -593,7 +613,8 @@ INSTALLED_APPS = [
 ```
 
 To tell Django that you’ve made some changes to your models, and you’d like the changes to be stored as a migration.
-```
+
+```bash
 python manage.py makemigrations polls
 ```
 
