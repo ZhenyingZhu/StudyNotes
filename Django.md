@@ -627,15 +627,16 @@ Run `python manage.py sqlmigrate polls 0001` can see how the SQL would look like
 Table `django_migrations` track migration process.
 
 Summary
+
 1. Change your models (in models.py).
 2. Run `python manage.py makemigrations` to create migrations for those changes. The result should commit to git.
 3. Run `python manage.py migrate` to apply those changes to the database.
 
-
 Get a python shell with the Django app environment: `python manage.py shell`
 
 Database APIs:
-```
+
+```python
 Question.objects.all() # return Question.__str__()
 q = Question(question_text="", pub_date=timezone.now())
 q.save()
@@ -653,6 +654,7 @@ Choice.objects.filter(question__pub_date__year=current_year) # double underscore
 ```
 
 `timezone.now()` vs `datetime.datetime.now()`
+
 - Django expects a datetime with tzinfo.
 - `timezone` needs `from django.utils import timezone`
 
@@ -661,7 +663,8 @@ Create an admin: `python manage.py createsuperuser`
 Login through `localhost/admin/`
 
 To allow admin interact with Question, update `polls/admin.py`
-```
+
+```python
 from django.contrib import admin
 from .models import Question
 admin.site.register(Question)
@@ -672,12 +675,14 @@ Django handles different model field types (`DateTimeField`, `CharField`) with a
 A view is a “type” of Web page. Each view is represented by a simple Python function.
 
 A route:
-```
+
+```python
 path('<int:question_id>/results/', views.results, name='results')
 ```
 
 Match to
-```
+
+```python
 def results(request, question_id):
     response = "You're looking at the results of question %s."
     return HttpResponse(response % question_id)
@@ -694,7 +699,8 @@ Your project’s TEMPLATES setting describes how Django will load and render tem
 `polls/templates/polls/index.html` can be refer to as polls/index.html. The second `polls` in the path is to namespacing the template. Django cannot distinguish same template files in different apps.
 
 Load a template:
-```
+
+```python
 from django.http import HttpResponse
 from django.template import loader
 
@@ -710,7 +716,8 @@ def index(request):
 ```
 
 A shortcuts of the same logic
-```
+
+```python
 def index(request):
     latest_question_list = Question.objects.order_by('-pub_date')[:5]
     context = {'latest_question_list': latest_question_list}
@@ -718,7 +725,8 @@ def index(request):
 ```
 
 Raise an Exception
-```
+
+```python
 from django.http import Http404
 
 def detail(request, question_id):
@@ -729,7 +737,8 @@ def detail(request, question_id):
 ```
 
 A shortcut:
-```
+
+```python
 from django.shortcuts import get_object_or_404, render
 question = get_object_or_404(Question, pk=question_id)
 ```
@@ -737,7 +746,8 @@ question = get_object_or_404(Question, pk=question_id)
 Same is `get_list_or_404()` function, which use `filter()` instead of `get()`.
 
 Template `polls/templates/polls/detail.html`
-```
+
+```html
 <h1>{{ question.question_text }}</h1>
 <ul>
 {% for choice in question.choice_set.all %}
@@ -749,20 +759,26 @@ Template `polls/templates/polls/detail.html`
 `question.question_text`: Django first search if question is a dictionary and has a key `question_text`. No, then search properties. No, then search if `question` is a list.
 
 Define URL by using `path()`
-```
+
+```python
 path('<int:question_id>/', views.detail, name='detail'),
 ```
+
 Then can change
-```
+
+```html
 <li><a href="/polls/{{ question.id }}/">{{ question.question_text }}</a></li>
 ```
+
 to
-```
+
+```html
 <li><a href="{% url 'detail' question.id %}">{{ question.question_text }}</a></li>
 ```
 
 In URLconf file `polls/urls.py`, add namespace by add `app_name`
-```
+
+```python
 app_name = 'polls'
 urlpatterns = [
     path('', views.index, name='index'),
@@ -773,12 +789,14 @@ urlpatterns = [
 ```
 
 Then in the template file `polls/index.html`
-```
+
+```html
 <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
 ```
 
-polls/templates/polls/detail.html
-```
+<polls/templates/polls/detail.html>
+
+```html
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
 <form action="{% url 'polls:vote' question.id %}" method="post">
@@ -795,7 +813,7 @@ Whenever you create a form that alters data server-side, use method="post".
 
 POST forms that are targeted at internal URLs should use the `{% csrf_token %}` template tag, to deal with Cross Site Request Forgeries.
 
-```
+```python
 def vote(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
     try:
@@ -821,7 +839,8 @@ Always return an HttpResponseRedirect after successfully dealing with POST data.
 Use generic views: `ListView` and `DetailView`.
 
 URLConf:
-```
+
+```python
 app_name = 'polls'
 urlpatterns = [
     path('', views.IndexView.as_view(), name='index'),
@@ -832,7 +851,8 @@ urlpatterns = [
 ```
 
 Views
-```
+
+```python
 class IndexView(generic.ListView):
     template_name = 'polls/index.html'
     context_object_name = 'latest_question_list'
@@ -852,7 +872,8 @@ class ResultsView(generic.DetailView):
 ```
 
 Write test in app.tests.py
-```
+
+```python
 from django.test import TestCase
 
 class TargetTests(TestCase):
@@ -861,14 +882,17 @@ class TargetTests(TestCase):
 ```
 
 Run test
-```
+
+```bash
 python manage.py test app
 ```
+
 - it created a special database for the purpose of testing
 - it looked for test methods - ones whose names begin with test
 
 Django test client: it use the existing DB.
-```
+
+```python
 setup_test_environment()
 client = Client()
 response = client.get('/')
@@ -876,7 +900,8 @@ response.status_code # 404
 ```
 
 [Filter by reference count](https://stackoverflow.com/questions/5080366/django-how-to-get-a-queryset-based-on-a-count-of-references-to-foreign-field)
-```
+
+```python
 # Player refer to Game
 
 from django.db.models import Count
@@ -885,12 +910,13 @@ Games.objects.annotate(num_players=Count('player')).filter(num_players__gt=10)
 
 [Selenium](https://www.seleniumhq.org/) can use to automate web browers to perform tests. Use Django `LiveServerTestCase` to work with it.
 
-Static files: `polls/static`. 
+Static files: `polls/static`.
 
 A list of finders are setted in `STATICFILES_FINDERS`. `AppDirectoriesFinder` looks for `static` subfolders in each `INSTALLED_APPS`.
 
 Use the css file in static folder.
-```
+
+```html
 {% load static %}
 
 <link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}" />
@@ -899,10 +925,11 @@ Use the css file in static folder.
 Define how admin sees a schema:
 `admin.site.register(Question, QuestionAdmin)`
 
-HERE: https://docs.djangoproject.com/en/2.0/intro/tutorial07/
+HERE: <https://docs.djangoproject.com/en/2.0/intro/tutorial07/>
 Adding related objects
 
 ### Review
+
 - `django-admin startproject mysite`
 - `python manage.py runserver`
 - `python manage.py startapp polls`
@@ -918,4 +945,4 @@ Adding related objects
 - In views, render templates.
 - `python manage.py runserver`
 
-HERE https://docs.djangoproject.com/en/2.0/intro/tutorial05/
+HERE <https://docs.djangoproject.com/en/2.0/intro/tutorial05/>
