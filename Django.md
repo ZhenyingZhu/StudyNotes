@@ -1,5 +1,22 @@
 # Django
 
+## Review
+
+- `django-admin startproject mysite`
+- `python manage.py runserver`
+- `python manage.py startapp polls`
+- Write Views for polls app.
+- Add the view to URLConf.
+- Write models.
+- Add the app to mysite.setting.INSTALLED APPS.
+- `python manage.py makemigrations polls`
+- `python manage.py migrate`
+- `python manage.py createsuperuser`: admin, zaq12345
+- In poll.admin register the model `admin.site.register(Question)`.
+- Create a folder "templates" under the app root and add html templates.
+- In views, render templates.
+- `python manage.py runserver`
+
 ## IDE
 
 [VSCode](http://ruddra.com/2017/08/19/vs-code-for-python-development/)
@@ -928,21 +945,5 @@ Define how admin sees a schema:
 HERE: <https://docs.djangoproject.com/en/2.0/intro/tutorial07/>
 Adding related objects
 
-### Review
-
-- `django-admin startproject mysite`
-- `python manage.py runserver`
-- `python manage.py startapp polls`
-- Write Views for polls app.
-- Add the view to URLConf.
-- Write models.
-- Add the app to mysite.setting.INSTALLED APPS.
-- `python manage.py makemigrations polls`
-- `python manage.py migrate`
-- `python manage.py createsuperuser`: admin, zaq12345
-- In poll.admin register the model `admin.site.register(Question)`.
-- Create a folder "templates" under the app root and add html templates.
-- In views, render templates.
-- `python manage.py runserver`
 
 HERE <https://docs.djangoproject.com/en/2.0/intro/tutorial05/>
