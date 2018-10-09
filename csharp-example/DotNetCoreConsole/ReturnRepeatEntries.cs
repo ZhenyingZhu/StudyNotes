@@ -41,7 +41,7 @@ namespace ReturnRepeatEntries
             };
             myList.Add(mc);
 
-            List<int> res = myList.Where(x => x.shouldBeSelected).Select(x => x.num).ToList();
+            var res = myList.Where(x => x.shouldBeSelected).Select(x => x.num); //.ToList();
             System.Console.WriteLine("[" + String.Join(", ", res) + "]");
         }
     }

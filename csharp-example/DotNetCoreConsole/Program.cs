@@ -7,7 +7,7 @@ namespace DotNetCoreConsole
     {
         static void Main(string[] args)
         {
-            TestEqualsForStringAndEnum.TestMain.testMain();
+            ReturnRepeatEntries.TestMain.testMain();
         }
     }
 }
