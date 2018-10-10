@@ -482,6 +482,8 @@ Notice `?P<id>` is define what the param it is.
 
 ## Official tutorial
 
+<https://docs.djangoproject.com/en/2.0/intro/>
+
 ### Overview
 
 DB model:
