@@ -195,43 +195,52 @@ Query options: the parameters the client send in the query string.
 Need `EnableQuerySupport` in the startup `HttpConfiguration`, which enables Query options for any controller action that returns an IQueryable type. Or add `[Queryable]` attribute to the action method.
 
 Filter example
+
 - `http://localhost/Products?$filter=Category eq 'Toys'`
 - `http://localhost/Products?$filter=Price ge 5 and Price le 15`
 - `http://localhost/Products?$filter=substringof('zz',Name)`
 - `http://localhost/Products?$filter=year(ReleaseDate) gt 2005`
 
 [Server-Driven Paging](https://docs.microsoft.com/en-us/aspnet/web-api/overview/odata-support-in-aspnet-web-api/supporting-odata-query-options)
+
 - `[Queryable(PageSize=10)]`
 - response will have `"odata.nextLink":"http://localhost/Products?$skip=10"`
 - client can see total number of results `http://localhost/Products?$inlinecount=allpages`
 
 Allow ordering only by certain properties, to prevent sorting on properties that are not indexed in the database:
+
 - `[Queryable(AllowedOrderByProperties="Id")]`
 
 `Web.Http.OData.Query.Validators` can validate queries.
 
 Expand example:
+
 - `http://localhost/odata/Products(1)?$expand=Category,Supplier`
 
 Web API limits the maximum expansion depth to 2, to avoid creating large responses.
 
 You can combine `$select` and `$expand` in the same query. Make sure to include the expanded property in the `$select` option.
+
 - `http://localhost/odata/Products?$select=Name,Supplier&$expand=Supplier`
 
 select the properties within an expanded property, e.g. Name is Product property:
+
 - `http://localhost/odata/Categories?$expand=Products&$select=Name,Products/Name`
 
 Raw value of the property substruct the value:
+
 - `http://localhost/odata/Products(1)/Name/$value` returns "Hat", but otherwise it will have odata.metadata includes.
 
 When Web API gets an OData request, it maps the request to a controller name and an action name.
 
 OData URI consists of
+
 - The service root: `https://example.com/odata`
 - The resource path: `/Products(1)/Supplier/`
 - Query options: `?$top=2`
 
 resource path is divided into segments.
+
 - `Products`
 - `1`
 - `Supplier`
@@ -239,6 +248,7 @@ resource path is divided into segments.
 Controller name is the root of the resource path, which is `ProductsController`.
 
 Action Name is the path segments plus the entity data model(EDM):
+
 - `/Products`: GetProducts
 - `Products(1)`: GetProduct
 - `Products(1)/Models.Book`: GetBook
@@ -248,43 +258,48 @@ Action Name is the path segments plus the entity data model(EDM):
 - `/Products(1)/Rate` where Rate is an action: RateOnProduct
 
 Method Signature rule:
+
 - If the path contains a key, the action should have a parameter named key.
 - If the path contains a key into a navigation property, the action should have a parameter named relatedKey.
 - Decorate key and relatedKey parameters with the `[FromODataUri]` parameter.
 - POST and PUT requests take a parameter of the entity type.
-- PATCH requests take a parameter of type Delta<T>, where T is the entity type.
+- PATCH requests take a parameter of type `Delta<T>`, where T is the entity type.
 
 [examples](https://docs.microsoft.com/en-us/aspnet/web-api/overview/odata-support-in-aspnet-web-api/odata-routing-conventions)
 
 Exlude a property from the EDM
+
 - Set the `[IgnoreDataMember]`
 - `employees.EntityType.Ignore(emp => emp.Salary);`
 
 Allow/disable filter methods
+
 - `[Queryable(PageSize=10)]`
 - `[Queryable(AllowedQueryOptions=AllowedQueryOptions.Skip | AllowedQueryOptions.Top)]`
 - `[Queryable(AllowedOrderByProperties="Id,Name")]`
 - `[Queryable(MaxNodeCount=20)]`
 - `[Queryable(AllowedFunctions= AllowedFunctions.AllFunctions & ~AllowedFunctions.All & ~AllowedFunctions.Any)]`
 - `[Queryable(AllowedFunctions=AllowedFunctions.AllFunctions & ~AllowedFunctions.AllStringFunctions)]`
-- 
 
 Filtering on navigation properties can result in a join, if not indexed.
 
 MIME type: media type. Consists of two strings, a type and a subtype.
+
 - text/html
 - image/png
 - application/json
 
 response:
-```
+
+```http
 HTTP/1.1 200 OK
 Content-Length: 95267
 Content-Type: image/png
 ```
 
 request:
-```
+
+```http
 Accept: text/html,application/xhtml+xml,application/xml
 ```
 
@@ -293,22 +308,26 @@ Web API has built-in support for XML, JSON, BSON, and form-urlencoded data, and 
 JSON and XML formatters serialize objects.
 
 Circular Object References
+
 - If two properties refer to the same object, or if the same object appears twice in a collection, the formatter will serialize the object twice.
 - `json.SerializerSettings.PreserveReferencesHandling` to prevent it.
 
 BSON
-- BSON is a binary serialization format. 
+
+- BSON is a binary serialization format.
 - stands for "Binary JSON"
 - BSON and JSON are serialized very differently.
 - numeric data types are stored as bytes, not strings.
 - designed to be lightweight, easy to scan, and fast to encode/decode.
 
 content negotiation
+
 - HTTP specification (RFC 2616)
 - the process of selecting the best representation for a given response when there are multiple representations available.
 - Accept, Accept-Charset, Accept-Encoding, Accept-Language.
 
 Validate rules for properties on the model
+
 - use attributes in `System.ComponentModel.DataAnnotations`
 - `Required`
 - `Range(0, 999)`
