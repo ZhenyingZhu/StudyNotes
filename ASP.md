@@ -337,12 +337,14 @@ Validate rules for properties on the model
 Web API does not automatically return an error to the client when validation fails. It is up to the controller action to check the model state and respond appropriately.
 
 Parameter binding
+
 - primitive types can be put in the URI, such as int, bool, double, TimeSpan, DateTime, Guid, decimal, and string. `[FromUri]`.
 - complex types using a media-type formatter. `[FromBody]`.
 
 `ExceptionFilterAttribute`: implement a `OnException` to catch unhandled exceptions. Then register it `GlobalConfiguration.Configuration.Filters.Add(new ProductStore.NotImplExceptionFilterAttribute())`.
 
-`IExceptionLogger` and `IExceptionHandler`, to log and handle unhandled exceptions. 
+`IExceptionLogger` and `IExceptionHandler`, to log and handle unhandled exceptions.
+
 - registering multiple exception loggers but only a single exception handler.
 - Exception loggers always get called
 
@@ -353,6 +355,7 @@ To write UT, use a pattern called dependency injection. Basically add interface 
 Web API assumes that authentication happens in the host. For web-hosting, the host is IIS, which uses HTTP modules for authentication. When the host authenticates the user, it creates a principal, which is an IPrincipal object that represents the security context under which code is running.
 
 Instead of using the host for authentication, you can put authentication logic into an HTTP message handler. In that case, the message handler examines the HTTP request and sets the principal.
+
 - An HTTP module sees all requests that go through the ASP.NET pipeline. A message handler only sees requests that are routed to Web API.
 - You can set per-route message handlers, which lets you apply an authentication scheme to a specific route.
 - HTTP modules are specific to IIS. Message handlers are host-agnostic, so they can be used with both web-hosting and self-hosting.
@@ -360,6 +363,7 @@ Instead of using the host for authentication, you can put authentication logic i
 - HTTP modules run earlier in the pipeline. If you handle authentication in a message handler, the principal does not get set until the handler runs. Moreover, the principal reverts back to the previous principal when the response leaves the message handler.
 
 Web API project templates have three options for authentication
+
 - Individual accounts. The app uses a membership database.
 - Organizational accounts. Users sign in with their Azure Active Directory, Office 365, or on-premise Active Directory credentials.
 - Windows authentication. This option is intended for Intranet applications, and uses the Windows Authentication IIS module.
@@ -371,6 +375,7 @@ Cross-Site Request Forgery (CSRF) is an attack where a malicious site sends a re
 To help prevent CSRF attacks, ASP.NET MVC uses anti-forgery tokens, also called request verification tokens. Malicious page cannot read the user's tokens, due to same-origin policies. (Same-origin policies prevent documents hosted on two different sites from accessing each other's content.
 
 Cross Origin Resource Sharing (CORS)
+
 - a W3C standard
 - allows a server to relax the same-origin policy
 - a server can explicitly allow some cross-origin requests while rejecting others
@@ -381,6 +386,7 @@ Authentication filters let you set an authentication scheme for individual contr
 Authenticated doesn't mean authorized to perform an action.
 
 [Basic authentication](http://www.ietf.org/rfc/rfc2617.txt)
+
 - If a request requires authentication, the server returns 401 (Unauthorized). The response includes a WWW-Authenticate header, indicating the server supports Basic authentication. The client sends another request, with the client credentials in the Authorization header. The credentials are formatted as the string "name:password", base64-encoded. The credentials are not encrypted.
 - Basic authentication is performed within the context of a "realm".
 - Internet standard.
@@ -393,11 +399,13 @@ Authenticated doesn't mean authorized to perform an action.
 - Vulnerable to cross-site request forgery (CSRF); requires anti-CSRF measures.
 
 Forms Authentication
+
 - not an Internet standard.
 - Easy to implement: Built into ASP.NET.
 
 Integrated Windows authentication
-- using Kerberos or NTLM. 
+
+- using Kerberos or NTLM.
 - best suited for an intranet environment.
 - Built into IIS.
 - Does not send the user credentials in the request.
@@ -407,10 +415,12 @@ Integrated Windows authentication
 - Client must be in the Active Directory domain.
 
 Open Web Interface for .NET (OWIN)
+
 - defines an abstraction between .NET web servers and web applications.
 - decouples the web application from the server, which makes OWIN ideal for self-hosting a web application in your own process, outside of IIS, inside an Azure worker role.
 
 Web API configuration: in the HttpConfiguration class.
+
 - DependencyResolver: Enables dependency injection for controllers.
 - Filters: Action filters.
 - Formatters: Media-type formatters.
@@ -423,11 +433,13 @@ Web API configuration: in the HttpConfiguration class.
 - Services: The collection of services.
 
 Dependency Injection
+
 - constructor injection
 - Web API Dependency Resolver
 - IoC(inversion of control) container is a software component that is responsible for managing dependencies
 
 Web API example:
+
 - GET /api/products/id
 - POST /api/products
 - PUT /api/products/id # update
@@ -436,7 +448,8 @@ Web API example:
 A message handler is a class that receives an HTTP request and returns an HTTP response. Typically, a series of message handlers are chained together. The first handler receives an HTTP request, does some processing, and gives the request to the next handler. At some point, the response is created and goes back up the chain. This pattern is called a delegating handler.
 
 HTML form
-```
+
+```html
 <form name="form1" method="post" enctype="multipart/form-data" action="api/upload">
     <div>
         <label for="caption">Image Caption</label>
@@ -453,20 +466,24 @@ HTML form
 ```
 
 enctype: form attribute specifies the format of request body.
+
 - application/x-www-form-urlencoded: Form data is encoded as name/value pairs, similar to a URI query string. This is the default format for POST.
 - multipart/form-data: Form data is encoded as a multipart MIME message. Use this format if you are uploading a file to the server.
 
 Cookie attributes
+
 - Domain
 - Path
 - Expires
 - Max-Age
 
 CRUD
+
 - GET retrieves the representation of the resource at a specified URI. GET should have no side effects on the server.
 - PUT updates a resource at a specified URI. PUT can also be used to create a new resource at a specified URI, if the server allows clients to specify new URIs. For this tutorial, the API will not support creation through PUT.
 - POST creates a new resource. The server assigns the URI for the new object and returns this URI as part of the response message.
 - DELETE deletes a resource at a specified URI.
+
 Note: The PUT method replaces the entire product entity. That is, the client is expected to send a complete representation of the updated product. If you want to support partial updates, the PATCH method is preferred. This tutorial does not implement PATCH.
 
 Get a product by category: `/api/products?category=category`
@@ -478,6 +495,7 @@ wire format: transmit data to the client via HTTP.
 POCOs(plain-old CLR objects) do not carry any extra properties that describe database state, they can easily be serialized to JSON or XML. However, that does not mean you should always expose your Entity Framework models directly to clients, as we'll see later in the tutorial.
 
 Knockout.js is a Javascript library that makes it easy to bind HTML controls to data. Knockout.js uses the Model-View-ViewModel (MVVM) pattern.
+
 - The model is the server-side representation of the data in the business domain (in our case, products and orders).
 - The view is the presentation layer (HTML).
 - The view-model is a Javascript object that holds the model data. The view-model is a code abstraction of the UI. It has no knowledge of the HTML representation. Instead, it represents abstract features of the view, such as "a list of items".
@@ -486,12 +504,13 @@ Knockout.js is a Javascript library that makes it easy to bind HTML controls to 
 
 self-host a web API in your own host process: without IIS.
 
-Code samples: https://docs.microsoft.com/en-us/aspnet/web-api/samples-list
+Code samples: <https://docs.microsoft.com/en-us/aspnet/web-api/samples-list>
 
 Razor syntax is a simple programming syntax for embedding server-based code in a web page.
 
 It is something like HTML
-```
+
+```html
 <!-- Single statement blocks  -->
 @{ var total = 7; }
 @{ var myMessage = "Hello World"; }
@@ -514,7 +533,8 @@ Client content is the stuff you're used to in web pages.
 Razor syntax lets you add server code to this client content. If there's server code in the page, the server runs that code first, before it sends the page to the browser.
 
 Can define variable type, but not necessary to.
-```
+
+```powershell
 @{
     var greeting = "Welcome!";
     string name = "Joe";
@@ -536,14 +556,15 @@ The Gravatar helper.
 The @ character tells ASP.NET that what follows is Razor code, not HTML. ASP.NET will treat everything after the @ character as code until it runs into some HTML again.
 
 HERE:
-https://docs.microsoft.com/en-us/aspnet/web-pages/overview/getting-started/introducing-aspnet-web-pages-2/layouts
+<https://docs.microsoft.com/en-us/aspnet/web-pages/overview/getting-started/introducing-aspnet-web-pages-2/layouts>
 
 [Filter with any](https://stackoverflow.com/questions/15475593/webapi-odata-filter-any-or-all-query-not-working)
 `~/api/Blogs?$filter=Tags/any(tag: tag/Name eq 'csharp')`
 
-https://help.nintex.com/en-us/insight/OData/HE_CON_ODATAQueryCheatSheet.htm
+<https://help.nintex.com/en-us/insight/OData/HE_CON_ODATAQueryCheatSheet.htm>
 
 [OData operation vs function vs action?](https://blogs.sap.com/2013/04/26/what-is-the-difference-between-a-operation-a-function-and-an-action/)
+
 - Operations: llow the client to be able to execute a business process on the server.
 - Operations are the base for two specialized forms of operations, functions and actions.
 - Functions must always return data and must never alter data on the backend so that there are no observable side effects to the function call. This means they are almost always GET HTTP operations.
@@ -553,8 +574,8 @@ https://help.nintex.com/en-us/insight/OData/HE_CON_ODATAQueryCheatSheet.htm
 
 # Entity Framework(EF)
 
-https://docs.microsoft.com/en-us/aspnet/entity-framework
+<https://docs.microsoft.com/en-us/aspnet/entity-framework>
 
 # RESTful
 
-https://www.tutorialspoint.com/restful/index.htm
+<https://www.tutorialspoint.com/restful/index.htm>
