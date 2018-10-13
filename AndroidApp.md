@@ -13,7 +13,7 @@ Activity
 app/src/main/res/layout/activity_my.xml
 
 - The screen UI.
-- in content_my.xml, there is a TextView element. 
+- in content_my.xml, there is a TextView element.
 - And it will show in screen UI.  
 
 app/src/main/java/com.mycompany.myfirstapp/MyActivity.java
