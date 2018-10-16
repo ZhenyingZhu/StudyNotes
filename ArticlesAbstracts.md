@@ -167,3 +167,9 @@ C 语言进阶有哪些优秀的代码可以阅读？ <http://top.jobbole.com/14
 - Amazon Echo
 - Amazon.com
 - Nasdaq
+
+## "Java之父"高斯林加盟亚马逊云计算
+
+James Gosling.
+
+高斯林共事的还有很多技术大牛，他们包括：微服务架构专家阿德里安-考克罗夫（Adrian Cockroft）、人工智能副总裁斯瓦米-西瓦苏布拉马尼娜（Swami Sivasubramanian）和首席技术官沃纳-威格尔（Verner Vogels）.
