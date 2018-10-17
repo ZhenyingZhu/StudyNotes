@@ -173,3 +173,18 @@ C 语言进阶有哪些优秀的代码可以阅读？ <http://top.jobbole.com/14
 James Gosling.
 
 高斯林共事的还有很多技术大牛，他们包括：微服务架构专家阿德里安-考克罗夫（Adrian Cockroft）、人工智能副总裁斯瓦米-西瓦苏布拉马尼娜（Swami Sivasubramanian）和首席技术官沃纳-威格尔（Verner Vogels）.
+
+## 《财富》公布2017年全美百大最适宜工作公司
+
+<https://mp.weixin.qq.com/s/VTyF3VU_LGP85xEeflZ9cg?>
+
+《财富》杂志（Fortune）公布了"2017年全美最适宜工作的100家公司"榜单.
+
+1. 谷歌（Google），地点：加州山景城（Mountain View, CA），行业：信息技术（IT）。
+2. 威格曼斯食品超市（Wegmans Food Markets），地点：纽约罗彻斯特（ Rochester, New York），行业：零售。
+3. 波士顿咨询公司（The Boston Consulting Group），地点：马萨诸塞州波士顿（Boston,Massachusetts），行业：咨询。
+4. NA
+5. NA
+6. 基因泰克（Genetech），地点：加州旧金山（San Francisco,CA），行业：科技。
+7. NA
+8. 赛富时（Salesforce），地点：加州旧金山（SanFrancisco, CA），行业：IT。
