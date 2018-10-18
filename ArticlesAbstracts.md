@@ -188,3 +188,33 @@ James Gosling.
 6. 基因泰克（Genetech），地点：加州旧金山（San Francisco,CA），行业：科技。
 7. NA
 8. 赛富时（Salesforce），地点：加州旧金山（SanFrancisco, CA），行业：IT。
+
+## Google, Facebook, Amazon and Microsoft Salaries
+
+<https://www.cnblogs.com/kungfupanda/p/6578112.html>
+
+ 	 	Count	Annual Comp (Median)	Salary (Median)	Bonus (Median)	Stock Bonus (Median)	Signing Bonus (Median)
+Level 1	 	 	 	 	 	 	 
+Amazon	SDE1	33	$ 117,500	$95,000	$15,000	$20,625	$25,000
+Facebook	E3	14	$ 154,550	$107,000	$10,800	$33,750	$75,000
+Google	T3	10	$ 172,000	$110,000	$16,125	$49,000	$11,000
+Microsoft	SDE1 (59 or 60)	32	$ 123,500	$107,500	$11,000	$12,500	$15,000
+ 	 	 	 	 	 	 	 
+Level 2	 	 	 	 	 	 	 
+Amazon	SDE2	25	$ 147,500	$120,000	$42,000	$25,000	$25,000
+Facebook	E4	20	$ 183,050	$138,500	$33,750	$33,750	$25,000
+Google	T4	25	$ 201,000	$ 130,000	$49,000	$49,000	$ 15,000
+Microsoft	SDE2 (61 or 62)	53	$ 143,000	$123,000	$10,000	$10,000	$20,000
+ 	 	 	 	 	 	 	 
+Level 3	 	 	 	 	 	 	 
+Amazon	SDE3	11	$ 180,000	$140,000	$0	$38,769	$50,000
+Facebook	E5	19	$ 249,700	$170,000	$62,500	$62,500	$50,000
+Facebook	E6	4	$ 358,750	$200,000	$118,750	$118,750	$20,000
+Google	T5	12	$ 306,500	$ 160,000	$100,000	$100,000	$ 30,000
+Google	T6	2	$ 472,500	$ 207,500	$205,000	$205,000	$ 7,000
+Microsoft	Senior SDE (63 or 64)	7	$ 199,000	$143,733	$24,000	$24,000	$17,500
+ 	 	 	 	 	 	 	 
+Level 4	 	 	 	 	 	 	 
+Amazon	Principal Software Engineer	1	$ 445,000	$160,000	$35,000	$250,000	 
+Google	T6	2	$ 472,500	$ 207,500	$205,000	$205,000	$ 7,000
+Microsoft	Principal SDE (65, 66, or 67)	1	$ 261,000	$179,000	$43,000	$43,000	 
