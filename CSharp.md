@@ -807,3 +807,29 @@ using dup = rightnamespace.dup;
 System.Data.DataView.
 
 `foreach(var dataRow in dataView)` to traverse.
+
+## Process
+
+```c#
+ProcessStartInfo startInfo = new ProcessStartInfo("ProcessName");
+startInfo.UseShellExecute = false;
+startInfo.RedirectStandardOutput = true;
+startInfo.RedirectStandardError = true;
+StringBuilder argumentBuilder = new StringBuilder();
+// Add arguments.
+startInfo.Arguments = argumentBuilder.ToString();
+
+Process process = Process.Start(startInfo);
+string stdout = process.StandardOutput.ReadToEnd();
+string stderr = process.StandardError.ReadToEnd();
+process.WaitForExit(10 * 1000); // wait 10 seconds.
+
+if (process.ExitCode == 0)
+{
+    Logging.Logger.LogInfo(stdout);
+}
+else
+{
+    Logging.Logger.LogError(stderr);
+}
+```
