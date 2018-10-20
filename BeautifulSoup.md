@@ -1,11 +1,13 @@
 
 # BeautifulSoup
+
 [BeautifulSoup Doc](http://www.crummy.com/software/BeautifulSoup/bs4/doc.zh/)  
 
 ## Objects
 
 ### BeautifulSoup Object
-```
+
+```python
 from bs4 import BeautifulSoup
 
 soup = BeautifulSoup("<html>data</html>")
