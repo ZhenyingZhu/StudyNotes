@@ -1,3 +1,14 @@
+# C# and .NET
+
+## Resources
+
+<https://www.microsoft.com/net/learn/dotnet/what-is-dotnet>
+
+<https://docs.microsoft.com/en-us/dotnet/>
+
+
+Need reconstruct
+
 # Doc Stack
 https://docs.microsoft.com/en-us/dotnet/articles/welcome
   https://docs.microsoft.com/en-us/dotnet/articles/csharp/
