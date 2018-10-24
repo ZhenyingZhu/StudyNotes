@@ -134,7 +134,7 @@ Amazon Elastic Compute Cloud (Amazon EC2): The instance is an Amazon EBS-backed 
 3. `sudo yum groupinstall -y “Web Server” “MySQL Database” “PHP Support”`
 4. `sudo yum install -y php-mysql`
 5. `sudo service httpd start`
-6. `sudo chkconfig httpd on` to let httpd start every boot and check if the server start    chkconfig --list httpd   the number is the runlevels. 
+6. `sudo chkconfig httpd on` to let httpd start every boot and check if the server start    chkconfig --list httpd   the number is the runlevels.
 7. Use the public ip to see the test page.
 8. `sudo groupadd www`
 9. `sudo usermod -a -G www ec2-user`
@@ -143,7 +143,7 @@ Amazon Elastic Compute Cloud (Amazon EC2): The instance is an Amazon EBS-backed 
 12. `sudo chmod 2775 /var/www` and `find /var/www -type d -exec sudo chmod 2775 {} +` and `find /var/www -type f -exec sudo chmod 0664 {} +`
 13. Add contents to /var/www/: `echo "<?php phpinfo(); ?>" > /var/www/html/phpinfo.php`
 14. `sudo service mysqld start`
-15. `sudo mysql_secure_installation`   to start configuration. Root has no password so enter. Press yes and follow instruction. 
+15. `sudo mysql_secure_installation` to start configuration. Root has no password so enter. Press yes and follow instruction.
 16. `mysql -u root -p`
 17. `CREATE USER 'newuser'@'localhost' IDENTIFIED BY 'PASSWORD'; GRANT ALL PRIVILEGES ON * . * TO 'newuser'@'localhost'; FLUSH PRIVILEGES;`
 18. CREATE DATABASE my_db;
@@ -152,7 +152,7 @@ Amazon Elastic Compute Cloud (Amazon EC2): The instance is an Amazon EBS-backed 
 Tutorial: Installing a LAMP Web Server
 
 1. Tomcat: `wget http://www.webhostingjams.com/mirror/apache/tomcat/tomcat-7/v7.0.57/bin/apache-tomcat-7.0.57.tar.gz`
-2. sudo -i and tar the file. 
+2. sudo -i and tar the file.
 3. Create tomcat in /etc/init.d to let it start each time restart the instance.
 
 ```bash
@@ -166,7 +166,7 @@ export CATALINA_HOME
 exec $CATALINA_HOME/bin/catalina.sh $*
 ```
 
-4. Start it: chmod 755 /etc/rc.d/init.d/tomcat    chkconfig --level 2345 tomcat on
+4. Start it: `chmod 755 /etc/rc.d/init.d/tomcat` and `chkconfig --level 2345 tomcat on`
 5. Create user by modify apache-tomcat-7.0.42/config/tomcat-user.xml
 
 ```xml
@@ -185,16 +185,19 @@ exec $CATALINA_HOME/bin/catalina.sh $*
 Amazon Free Usage Tier: Installing Tomcat 7 on an EC2 Linux instance
 
 ## S3
-s3cmd is a community tool written in python. 
-```
+
+s3cmd is a community tool written in python.
+
+```bash
 s3cmd --configure
-    Access Key and Secret Key: In credentials.csv. 
+    Access Key and Secret Key: In credentials.csv.
     Encryption password: A password for encrypt. S+Z1
-    GPG: just press Enter. 
-    HTTPs and other setting: Don't need ssh. 
-    After setting, a s3cfg file will be saved. 
+    GPG: just press Enter.
+    HTTPs and other setting: Don't need ssh.
+    After setting, a s3cfg file will be saved.
 ```
-http://kb.site5.com/shell-access-ssh/how-to-setup-and-configure-the-s3cmd-tool-for-amazon-s3/
+
+<http://kb.site5.com/shell-access-ssh/how-to-setup-and-configure-the-s3cmd-tool-for-amazon-s3/>
 
 ##
 Get metadata from instance
