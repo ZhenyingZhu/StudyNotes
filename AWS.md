@@ -152,8 +152,8 @@ Amazon Elastic Compute Cloud (Amazon EC2): The instance is an Amazon EBS-backed 
 Tutorial: Installing a LAMP Web Server
 
 1. Tomcat: `wget http://www.webhostingjams.com/mirror/apache/tomcat/tomcat-7/v7.0.57/bin/apache-tomcat-7.0.57.tar.gz`
-2. sudo -i and tar the file.
-3. Create tomcat in /etc/init.d to let it start each time restart the instance.
+1. sudo -i and tar the file.
+1. Create tomcat in /etc/init.d to let it start each time restart the instance.
 
 ```bash
 !/bin/sh
@@ -166,8 +166,8 @@ export CATALINA_HOME
 exec $CATALINA_HOME/bin/catalina.sh $*
 ```
 
-4. Start it: `chmod 755 /etc/rc.d/init.d/tomcat` and `chkconfig --level 2345 tomcat on`
-5. Create user by modify apache-tomcat-7.0.42/config/tomcat-user.xml
+1. Start it: `chmod 755 /etc/rc.d/init.d/tomcat` and `chkconfig --level 2345 tomcat on`
+1. Create user by modify apache-tomcat-7.0.42/config/tomcat-user.xml
 
 ```xml
 <role rolename="manager-gui"/>
@@ -180,7 +180,7 @@ exec $CATALINA_HOME/bin/catalina.sh $*
 <user username="tomcattools" password="password" roles="manager-jmx,manager-script"/>
 ```
 
-6. Reboot the instance. Check the 8080 port. Click the Manage App and enter the password.
+1. Reboot the instance. Check the 8080 port. Click the Manage App and enter the password.
 
 Amazon Free Usage Tier: Installing Tomcat 7 on an EC2 Linux instance
 
@@ -199,8 +199,10 @@ s3cmd --configure
 
 <http://kb.site5.com/shell-access-ssh/how-to-setup-and-configure-the-s3cmd-tool-for-amazon-s3/>
 
-##
+## Others
+
 Get metadata from instance
-```
+
+```bash
 curl -f http://169.254.169.254/latest/meta-data/public-keys/0/openssh-key  > /root/.ssh/authorized_keys
 ```
