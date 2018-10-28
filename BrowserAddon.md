@@ -1,5 +1,17 @@
 # Userscript
 
+Tampermonkey for chrome and Greasemonkey for firefox.
+
+## Resources
+
+[Tempermonkey welcome](https://tampermonkey.net/index.php?version=4.7&ext=dhdg&updated=true)
+
+[Tempermonkey document](https://tampermonkey.net/documentation.php)
+
+[DOM reference](https://devdocs.io/dom/)
+
+[Applying JavaScript: User Scripts](https://medium.freecodecamp.org/applying-javascript-user-scripts-2e505643644d)
+
 ## Turtorial
 
 [Applying JavaScript: User Scripts](https://medium.freecodecamp.com/applying-javascript-user-scripts-2e505643644d)
