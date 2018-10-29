@@ -10,28 +10,70 @@ Tampermonkey for chrome and Greasemonkey for firefox.
 
 [DOM reference](https://devdocs.io/dom/)
 
-[Applying JavaScript: User Scripts](https://medium.freecodecamp.org/applying-javascript-user-scripts-2e505643644d)
-
 ## Turtorial
 
 [Applying JavaScript: User Scripts](https://medium.freecodecamp.com/applying-javascript-user-scripts-2e505643644d)
 
-Add jQuery
-```
-// @require http://code.jquery.com/jquery-latest.js
+Add jQuery header
+
+```javascript
+// ==UserScript==
+// @require https://code.jquery.com/jquery-latest.js
+// ==/UserScript==
 ```
 
-Change css:
+Pop a message box
+
+```javascript
+alert('WINNING');
+```
+
+Target is to change the background color of the Hacker News links.
+
+Using debug tool, found links html is
+
+```html
+<tr class="athing" id="18321884">
+  <td align="right" valign="top" class="title"><span class="rank">1.</span></td>
+  <td valign="top" class="votelinks">
+    <center><a id="up_18321884" href="vote?id=18321884&amp;how=up&amp;goto=news"><div class="votearrow" title="upvote"></div></a></center>
+  </td>
+  <td class="title">
+    <a href="https://www.redhat.com/en/blog/red-hat-ibm-creating-leading-hybrid-cloud-provider" class="storylink">IBM acquires Red Hat</a>
+    <span class="sitebit comhead"> (<a href="from?site=redhat.com"><span class="sitestr">redhat.com</span></a>)</span>
+  </td>
+</tr>
+```
+
+To change the css
+
 - `.athing` pick up all `<tr class='athing' /tr>`
 - `:odd` pick the elements one skip by one
 
-```
+```javascript
+// ==UserScript==
+// @name         Zhenying Test
+// @namespace    http://tampermonkey.net/
+// @version      0.1
+// @description  Learning Applying JavaScript: User Scripts
+// @author       You
+// @match        https://news.ycombinator.com/
+// @grant        none
+// @require      https://code.jquery.com/jquery-latest.js
+// ==/UserScript==
+
+var $ = window.jQuery;
+
 $(document).ready(function() {
-  $('.athing:odd').css('background-color', '#DDD');
-});
+    'use strict';
+
+    // Your code here...
+    $('.athing:odd').css('background-color', '#DDD');
+})();
 ```
 
 ### Pending
+
 http://hayageek.com/greasemonkey-tutorial/#install-greasemonkey
 
 https://hibbard.eu/tampermonkey-tutorial/

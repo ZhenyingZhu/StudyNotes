@@ -1,19 +1,35 @@
-# JavaScript
+# JavaScript Related
 
-## w3school
-http://www.w3school.com.cn/js/index.asp
+## JavaScript
 
-### Integrate with Html
+### Resources
+
+<http://www.w3school.com.cn/js/index.asp>
+
+### Introduction
+
 [src1](http://www.w3school.com.cn/js/js_howto.asp), [src2](http://www.w3school.com.cn/js/js_whereto.asp)
 
 HTML 中的脚本(也就是HTML无法访问的内容，如变量，函数内容，而非函数名)必须位于`<script>` 与`</script>` 标签之间。脚本可被放置在HTML 页面的`<body>` 和`<head>` 部分中。函数通常放于`<head>` 中或`<body>` 底部。
 
 旧版本需`<script>` 标签中使用`type="text/javascript"` 。现在不必。
 
+可把脚本存于*.js文件中，并通过`<script src="myScript.js"></script>`导入。外部脚本不能有`<script>`标签。
+
+### Output
+
+- write to an exsiting HTML element: `innerHTML`.
+- write to somewhere in the whole HTML page: `document.write()`.
+- write to a alert box: `window.alert()`.
+- write to browser console: `console.log()`.
+
+脚本通过`id`访问HTML元素。`document.getElementById("id")`。HTML元素的内容为`innerHTML`。
+
 脚本可设置在某个事件发生时执行代码。
 
 点击Try it 按钮，则A Paragraph变为My First JavaScript Function。
-```
+
+```html
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,38 +48,81 @@ function myFunction(){
 </html>
 ```
 
-可把脚本存于*.js文件中，并通过`<script src="myScript.js"></script>`导入。外部脚本不能有`<script>`标签。
+直接写入HTML输出中：在页面加载时script向页面写文本`document.write()`。
 
-脚本通过`id`访问HTML元素。`document.getElementById("id")`。HTML元素的内容为`innerHTML`。
+Never call document.write after the document has finished loading. It will overwrite the whole document.
 
-直接写入HTML输出中：在页面加载时script向页面写文本`document.write()`。不能用于函数中，不然执行时覆盖全部HTML内容。
-```
+```html
 <body><p></p>
 <script>
-document.write("<h1>This is a heading</h1>");
-document.write("<p>This is a paragraph</p>");
+  document.write("<h1>This is a heading</h1>");
+  document.write("<p>This is a paragraph</p>");
 </script>
-<p></p></body>
+<button type="button" onclick="document.write(5 + 6)">Try it</button>
+</p></p></body>
 ```
 
 ### Gramma
+
 [src](http://www.w3school.com.cn/js/js_statements.asp)
 
 Statement
+
 - 脚本代码用`;`分隔，但不必须用来结束语句。
 - JavaScript对大小写敏感。
 - 忽略多余空格。
-- 可在字符串中用`\ `跳脱回车。但是不能用于其它地方。
+- 可在字符串中用`\`跳脱回车。但是不能用于其它地方。
 
 JavaScript是脚本型语言，边读取代码边执行。
 
 注释：`//`, `/**/`
 
+Keywords
+
+- break
+- continue
+- debugger: Stops the execution of JavaScript, and calls (if available) the debugging function.
+- do ... while
+- for
+- function
+- if ... else
+- return
+- switch
+- try ... catch
+- var
+
+Comparison operators
+
+- `===`: equal value and equal type.
+- `!==`
+- `?`: tenary operator.
+
+Type operators
+
+- `typeof`: `typeof "John Doe" // string`.
+- `instanceof`
+
+[Operator Precedence Values](https://www.w3schools.com/js/js_arithmetic.asp)
+
+- `in`: Property in Object.
+- `yield`: Pause function.
+
+`null` is an object. `undefined` is actually null.
+
+- `null == undefined` true.
+- `null === undefined` false.
+
+arrays are objects.
+
+# HERE https://www.w3schools.com/js/js_functions.asp
+
 Variable
-- 声明变量：`var x;`。赋值`x=2;`。`var name="Bill";` 变量名一定要以字母开始。不赋值之前值为`undefined`。
+
+- 声明(declare)变量：`var x;`。赋值`x=2;`。`var name="Bill";` 变量名一定要以字母开始。不赋值之前值为`undefined`。
 - 重复声明不会使值消失。`var x=2; var x; // x is still 2`
 - 数据类型是动态的，可赋不同类型的值。
 - 字符串用单或双引号括起来。内部可包含与整个字符串外部不同的引号。
+- After hit the first variable that is a string, all the numbers variables that are not yet evaludated will be treated as concating strings. `2+3+"5"=55`.
 - 数字类型只有一种，小数点可有可无。`var z=123e-5;` 均使用8 byte十位底的浮点数存储。
   - 整数精度最多17位，小数误差通过对每个操作数先乘十再除十消除。
   - 前缀为0和x的为8和16进制。
@@ -74,9 +133,9 @@ Variable
   - 或condensed array: `var cars=new Array("Audi","BMW","Volvo");`
   - 或literal array: `var cars=["Audi","BMW","Volvo"];`
   - 如果你需要在数组内指定数值或者逻辑值，那么变量类型应该是数值变量或者布尔变量，而不是字符变量。 **?**
-  - 合并数组：`arr.concat(arr2); `
+  - 合并数组：`arr.concat(arr2);`
   - 将整个数组组成字符串：`arr.join(".");` 如果不加字符则缺省为`","`。
-  - 排序：`arr.sort();` 
+  - 排序：`arr.sort();`
 - 对象：属性值对形式定义。`var person={firstname:"Bill", lastname:"Gates", id:5566};`
   - 寻址方式：`name=person.lastname;` 或 `name=person["lastname"];`
   - 调用方法：`objectName.methodName();`
@@ -85,7 +144,8 @@ Variable
   - 使用构造器：`var myFather=new person("Bill","Gates",56,"blue");`
 
 构造器函数
-```
+
+```javascript
 function person(firstname,lastname,age,eyecolor){
   this.firstname=firstname;
   this.lastname=lastname;
@@ -98,7 +158,8 @@ function person(firstname,lastname,age,eyecolor){
 ```
 
 声明变量类型：
-```
+
+```javascript
 var carname=new String;
 var x=      new Number;
 var y=      new Boolean;
@@ -106,7 +167,7 @@ var cars=   new Array;
 var person= new Object;
 ```
 
-null值：可通过将变量设为此值将变量设为undefined。 
+null值：可通过将变量设为此值将变量设为undefined。
 
 ### Object
 [src](http://www.w3school.com.cn/js/js_obj_intro.asp)
