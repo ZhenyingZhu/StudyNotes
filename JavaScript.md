@@ -114,8 +114,6 @@ Type operators
 
 arrays are objects.
 
-# HERE https://www.w3schools.com/js/js_functions.asp
-
 Variable
 
 - 声明(declare)变量：`var x;`。赋值`x=2;`。`var name="Bill";` 变量名一定要以字母开始。不赋值之前值为`undefined`。
@@ -142,6 +140,10 @@ Variable
   - 声明新变量: `person=new Object(); person.firstname="Bill"; person.lastname="Gates"; person.age=56; person.eyecolor="blue";`
   - 使用literals创建：`person={firstname:"John",lastname:"Doe",age:50,eyecolor:"blue"};`
   - 使用构造器：`var myFather=new person("Bill","Gates",56,"blue");`
+
+Functions
+
+- Accessing a function without () will return the function definition, which means the code of the function represent in string.
 
 构造器函数
 
@@ -170,6 +172,9 @@ var person= new Object;
 null值：可通过将变量设为此值将变量设为undefined。
 
 ### Object
+
+# HERE https://www.w3schools.com/js/js_objects.asp
+
 [src](http://www.w3school.com.cn/js/js_obj_intro.asp)
 
 JavaScript中所有事物都是对象。
