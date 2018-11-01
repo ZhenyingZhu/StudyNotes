@@ -262,7 +262,47 @@ if (!String.prototype.trim) {
 </script>
 ```
 
-# HERE https://www.w3schools.com/js/js_numbers.asp
+```javascript
+var x = 0.2 + 0.1; // x will be 0.30000000000000004
+var x = (0.2 * 10 + 0.1 * 10) / 10; // x will be 0.3
+```
+
+JavaScript will try to convert strings to numbers in all numeric operations, except `+`.
+
+```javascript
+var x = "100";
+var y = "10";
+var z = x / y; // z will be 10
+```
+
+NaN means not a number.
+
+```javascript
+var x = 100 / "Apple"; // x will be NaN (Not a Number)
+isNaN(x); // true
+
+var x = 100 / "10"; // x will be 10
+
+typeof NaN; // returns "number"
+```
+
+Infinity (or -Infinity) is a number.
+
+```javascript
+var x =  2 / 0; // x will be Infinity
+var y = -2 / 0; // y will be -Infinity
+```
+
+Never write a number with a leading zero (like 07). Some JavaScript versions interpret numbers as octal if they are written with a leading zero.
+
+Use toString to display in base.
+
+```javascript
+var myNumber = 32;
+myNumber.toString(16); // 32 in base 16 is 10.
+```
+
+# HERE https://www.w3schools.com/js/js_number_methods.asp
 
 日期对象：
 - `Date()`获取当前日期；
