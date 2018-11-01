@@ -125,7 +125,7 @@ Variable
   - 整数精度最多17位，小数误差通过对每个操作数先乘十再除十消除。
   - 前缀为0和x的为8和16进制。
 - 方法：`toExponential()`，`toFixed()`，`toPrecision()`，`toString()`，`valueOf()`
-- 布尔：`var x=true;` 通过构造器时，`var x=new Boolean(值);` 空是`false`，0是`false`,1是`true`,空字符串是`false`, `null`是`false`, `NaN`是`false`,字符串`'false'`是`true`。
+- 布尔：`var x=true;` 通过构造器时，`var x=new Boolean(值);` 空是`false`，0是`false`, 1是`true`, `false`, `null`是`false`, `NaN`是`false`,字符串`'false'`是`true`。
 - 数组：
   - 创建`var cars=new Array(); cars[0]="Audi"; cars[1]="BMW"; cars[2]="Volvo";`
   - 或condensed array: `var cars=new Array("Audi","BMW","Volvo");`
@@ -135,10 +135,10 @@ Variable
   - 将整个数组组成字符串：`arr.join(".");` 如果不加字符则缺省为`","`。
   - 排序：`arr.sort();`
 - 对象：属性值对形式定义。`var person={firstname:"Bill", lastname:"Gates", id:5566};`
-  - 寻址方式：`name=person.lastname;` 或 `name=person["lastname"];`
+  - 寻址方式 access object properties：`name=person.lastname;` 或 `name=person["lastname"];`
   - 调用方法：`objectName.methodName();`
   - 声明新变量: `person=new Object(); person.firstname="Bill"; person.lastname="Gates"; person.age=56; person.eyecolor="blue";`
-  - 使用literals创建：`person={firstname:"John",lastname:"Doe",age:50,eyecolor:"blue"};`
+  - 使用literals创建：`person={firstname:"John",lastname:"Doe",age:50,eyecolor:"blue",fuuName:function(){return this.firstName+" "+this.lastName}};`
   - 使用构造器：`var myFather=new person("Bill","Gates",56,"blue");`
 
 Functions
@@ -171,9 +171,34 @@ var person= new Object;
 
 null值：可通过将变量设为此值将变量设为undefined。
 
-### Object
+### Events
 
-# HERE https://www.w3schools.com/js/js_objects.asp
+`<element event="some JavaScript"/>`
+
+An example: button is the element, onclick is the event.
+
+```javascript
+<button onclick="displayDate()">The time is?</button>
+
+<script>
+function displayDate() {
+    document.getElementById("demo").innerHTML = Date();
+}
+</script>
+
+<p id="demo"></p>
+```
+
+Common HTML Events:
+
+- `onchange`
+- `onclick`
+- `onmouseover`
+- `onmounseout`
+- `onkeydown`
+- `onload`
+
+### Object
 
 [src](http://www.w3school.com.cn/js/js_obj_intro.asp)
 
@@ -183,17 +208,61 @@ JavaScript面向对象但不使用类，使用prototype。
 
 [src](http://www.w3school.com.cn/js/js_objects.asp)
 
+```javascript
+var x = "John";
+var y = new String("John");
+var z = new String("John");
+
+x == y // true
+x === y // false. x is string, y is object.
+y == z // false. They are different objects. Compare two objects will always be false.
+```
+
 数值类型属性：`MAX VALUE`，`MIN VALUE`，`NEGATIVE INFINITIVE`，`POSITIVE INFINITIVE`，`NaN`，`prototype`，`constructor`
 
 字符串对象：
+
 - 属性：txt.length=5
 - 方法：
-  - `txt.indexOf(str)`返回str第一次出现在txt中位置，如果在头出现就为0；
-  - `txt.replace()`；
-  - `txt.search()`；
-  - `toUpperCase()`；
-  - `txt.match(str)`查找str，如果找到返回str，不然返回Null；
-  - `str.replace(/Microsoft/,"W3School")`；
+  - `txt.indexOf(str,pos)`返回str第一次出现在txt中位置，如果在头出现就为0；
+  - `txt.lastIndexOf()`;
+  - `txt.search()`; Can take Regular express.
+  - `txt.slice(start, end)`;
+  - `txt.substring(start, end)`;
+  - `txt.substr(start, length)`;
+  - `var str = txt.replace(/MICROSOFT/i, W3Schools")`; Case sensitive. Accept Regex. Flags: `/i` ignore case. `/g` global match.
+  - `toUpperCase()`;
+  - `toLowerCase()`;
+  - `concat()`;
+  - `trim()`; same as `str.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, '')`
+  - `txt.match(str)`查找str，如果找到返回str，不然返回Null;
+  - `charAt`
+  - `charCodeAt`: return the UTF-16 code the char.
+  - `str[0]`: It makes strings look like arrays (but they are not).
+  - `txt.split(",");` or even `txt.split("");`
+
+Understanding of the regular express: `/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g`
+
+- Use <https://regex101.com/>
+- `\s` any unprintable chars equal to `[\r\n\t\f\v ]`
+- `\uFEFF` this is BOM.
+- `\xA0` is the space.
+- `|` means the alternative.
+- `/g` means not return after the first match. Without it the spaces at the end won't be found.
+
+Define a method to replace the build-in string method:
+
+```javascript
+<script>
+if (!String.prototype.trim) {
+  String.prototype.trim = function () {
+    return this.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, '');
+  };
+};
+</script>
+```
+
+# HERE https://www.w3schools.com/js/js_numbers.asp
 
 日期对象：
 - `Date()`获取当前日期；
