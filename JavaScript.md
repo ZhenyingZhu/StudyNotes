@@ -62,7 +62,7 @@ Never call document.write after the document has finished loading. It will overw
 </p></p></body>
 ```
 
-### Gramma
+### Syntax
 
 [src](http://www.w3school.com.cn/js/js_statements.asp)
 
@@ -120,54 +120,6 @@ Variable
 - 重复声明不会使值消失。`var x=2; var x; // x is still 2`
 - 数据类型是动态的，可赋不同类型的值。
 - 字符串用单或双引号括起来。内部可包含与整个字符串外部不同的引号。
-- After hit the first variable that is a string, all the numbers variables that are not yet evaludated will be treated as concating strings. `2+3+"5"=55`.
-- 数字类型只有一种，小数点可有可无。`var z=123e-5;` 均使用8 byte十位底的浮点数存储。
-  - 整数精度最多17位，小数误差通过对每个操作数先乘十再除十消除。
-  - 前缀为0和x的为8和16进制。
-- 方法：`toExponential()`，`toFixed()`，`toPrecision()`，`toString()`，`valueOf()`
-- 布尔：`var x=true;` 通过构造器时，`var x=new Boolean(值);` 空是`false`，0是`false`, 1是`true`, `false`, `null`是`false`, `NaN`是`false`,字符串`'false'`是`true`。
-- 数组：
-  - 创建`var cars=new Array(); cars[0]="Audi"; cars[1]="BMW"; cars[2]="Volvo";`
-  - 或condensed array: `var cars=new Array("Audi","BMW","Volvo");`
-  - 或literal array: `var cars=["Audi","BMW","Volvo"];`
-  - 如果你需要在数组内指定数值或者逻辑值，那么变量类型应该是数值变量或者布尔变量，而不是字符变量。 **?**
-  - 合并数组：`arr.concat(arr2);`
-  - 将整个数组组成字符串：`arr.join(".");` 如果不加字符则缺省为`","`。
-  - 排序：`arr.sort();`
-- 对象：属性值对形式定义。`var person={firstname:"Bill", lastname:"Gates", id:5566};`
-  - 寻址方式 access object properties：`name=person.lastname;` 或 `name=person["lastname"];`
-  - 调用方法：`objectName.methodName();`
-  - 声明新变量: `person=new Object(); person.firstname="Bill"; person.lastname="Gates"; person.age=56; person.eyecolor="blue";`
-  - 使用literals创建：`person={firstname:"John",lastname:"Doe",age:50,eyecolor:"blue",fuuName:function(){return this.firstName+" "+this.lastName}};`
-  - 使用构造器：`var myFather=new person("Bill","Gates",56,"blue");`
-
-Functions
-
-- Accessing a function without () will return the function definition, which means the code of the function represent in string.
-
-构造器函数
-
-```javascript
-function person(firstname,lastname,age,eyecolor){
-  this.firstname=firstname;
-  this.lastname=lastname;
-  this.age=age;
-  this.eyecolor=eyecolor;
-  function changeName(name){
-    this.lastname=name;
-  }
-}
-```
-
-声明变量类型：
-
-```javascript
-var carname=new String;
-var x=      new Number;
-var y=      new Boolean;
-var cars=   new Array;
-var person= new Object;
-```
 
 null值：可通过将变量设为此值将变量设为undefined。
 
@@ -208,6 +160,41 @@ JavaScript面向对象但不使用类，使用prototype。
 
 [src](http://www.w3school.com.cn/js/js_objects.asp)
 
+- 对象：属性值对形式定义。`var person={firstname:"Bill", lastname:"Gates", id:5566};`
+  - 寻址方式 access object properties：`name=person.lastname;` 或 `name=person["lastname"];`
+  - 调用方法：`objectName.methodName();`
+  - 声明新变量: `person=new Object(); person.firstname="Bill"; person.lastname="Gates"; person.age=56; person.eyecolor="blue";`
+  - 使用literals创建：`person={firstname:"John",lastname:"Doe",age:50,eyecolor:"blue",fuuName:function(){return this.firstName+" "+this.lastName}};`
+  - 使用构造器：`var myFather=new person("Bill","Gates",56,"blue");`
+
+Functions
+
+- Accessing a function without () will return the function definition, which means the code of the function represent in string.
+
+构造器函数
+
+```javascript
+function person(firstname,lastname,age,eyecolor){
+  this.firstname=firstname;
+  this.lastname=lastname;
+  this.age=age;
+  this.eyecolor=eyecolor;
+  function changeName(name){
+    this.lastname=name;
+  }
+}
+```
+
+声明变量类型：
+
+```javascript
+var carname=new String;
+var x=      new Number;
+var y=      new Boolean;
+var cars=   new Array;
+var person= new Object;
+```
+
 ```javascript
 var x = "John";
 var y = new String("John");
@@ -217,6 +204,13 @@ x == y // true
 x === y // false. x is string, y is object.
 y == z // false. They are different objects. Compare two objects will always be false.
 ```
+
+- After hit the first variable that is a string, all the numbers variables that are not yet evaludated will be treated as concating strings. `2+3+"5"=55`.
+- 数字类型只有一种，小数点可有可无。`var z=123e-5;` 均使用8 byte十位底的浮点数存储。
+  - 整数精度最多17位，小数误差通过对每个操作数先乘十再除十消除。
+  - 前缀为0和x的为8和16进制。
+- 方法：`toExponential()`，`toFixed()`，`toPrecision()`，`toString()`，`valueOf()`
+- 布尔：`var x=true;` 通过构造器时，`var x=new Boolean(值);` 空是`false`，0是`false`, 1是`true`, `false`, `null`是`false`, `NaN`是`false`,字符串`'false'`是`true`。
 
 数值类型属性：`MAX VALUE`，`MIN VALUE`，`NEGATIVE INFINITIVE`，`POSITIVE INFINITIVE`，`NaN`，`prototype`，`constructor`
 
@@ -302,7 +296,111 @@ var myNumber = 32;
 myNumber.toString(16); // 32 in base 16 is 10.
 ```
 
-# HERE https://www.w3schools.com/js/js_number_methods.asp
+methods and properties are also available to primitive values.
+
+```javascript
+(123).toString();
+```
+
+Number methods:
+
+- `toExponential()`
+- `toFixed()`
+- `toPrecision()`
+- `valueOf()`: There is no reason to use it in your code.
+
+Global JavaScript Methods invole numbers:
+
+- `Number(new Date("2017-09-30"))`
+- `parseInt()`
+- `parseFloat()`
+
+Number properties
+
+```javascript
+var x = Number.MAX_VALUE;
+var y = x.MAX_VALUE; // cannot use on virable. y becomes undefined
+```
+
+- `MAX_VALUE`
+- `MIN_VALUE`
+- `POSITIVE_INFINITY`
+- `NEGATIVE_INFINITY`
+- `NaN`
+
+- 数组：
+  - 创建`var cars=new Array(); cars[0]="Audi"; cars[1]="BMW"; cars[2]="Volvo";`
+  - 或condensed array: `var cars=new Array("Audi","BMW","Volvo");`
+  - 或literal array: `var cars=["Audi","BMW","Volvo"];`
+  - 如果你需要在数组内指定数值或者逻辑值，那么变量类型应该是数值变量或者布尔变量，而不是字符变量。 **?**
+  - `arr.length`
+  - 合并数组：`arr.concat(arr2);`
+  - 将整个数组组成字符串：`arr.join(".");` 如果不加字符则缺省为`","`。
+  - `slice()`
+  - 排序：`arr.sort();`, `reverse()`.
+  - `arr.push(ele)`: same as `arr[arr.length] = ele;`
+  - `pop()`
+  - `shift()`
+  - `unshift()`
+  - `delete fruits[0];` delete and leave a hole.
+  - `fruits.splice(2, 0, "Lemon", "Kiwi");` 2 is the index to insert, 0 is the number of elements to remove.
+  - `var numbers2 = numbers1.map(myFunction);`
+  - `var over18 = numbers.filter(myFunction);`
+  - `var sum = numbers1.reduce(myFunction);`, `var sum = numbers1.reduceRight(myFunction);`.
+  - `var isAllOver18 = numbers.every(myFunction);`
+  - `var isSomeOver18 = numbers.some(myFunction);`
+  - `indexOf()`
+  - `lastIndexOf()`
+  - `find()`
+  - `findIndex()`
+
+```javascript
+var fruits = ["apple", "banana"]
+var text = "<ul>";
+fruits.forEach(myFunction);
+text += "</ul>";
+
+function myFunction(value) {
+    text += "<li>" + value + "</li>";
+}
+```
+
+ECMAScript 5 defines a method to check if an object is as array, because `typeof(arr)` returns object.
+
+```javascript
+Array.isArray(fruits); // returns true
+```
+
+Same as
+
+```javascript
+function isArray(x) {
+    return x.constructor.toString().indexOf("Array") > -1;
+}
+```
+
+and
+
+```javascript
+fruits instanceof Array;
+```
+
+To avoid sort alphabetically:
+
+```javascript
+var points = [40, 100, 1, 5, 25, 10];
+points.sort(function(a, b){return a - b});
+
+points.sort(function(a, b){return 0.5 - Math.random()}); // random
+```
+
+Find max/min in an array
+
+```javascript
+Math.max.apply(null, arr); // equals to Math.max(arr[0], arr[1] ...)
+```
+
+# HERE https://www.w3schools.com/js/js_dates.asp
 
 日期对象：
 - `Date()`获取当前日期；
