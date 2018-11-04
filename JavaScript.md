@@ -332,7 +332,7 @@ var y = x.MAX_VALUE; // cannot use on virable. y becomes undefined
   - 创建`var cars=new Array(); cars[0]="Audi"; cars[1]="BMW"; cars[2]="Volvo";`
   - 或condensed array: `var cars=new Array("Audi","BMW","Volvo");`
   - 或literal array: `var cars=["Audi","BMW","Volvo"];`
-  - 如果你需要在数组内指定数值或者逻辑值，那么变量类型应该是数值变量或者布尔变量，而不是字符变量。 **?**
+  - 如果你需要在数组内指定数值或者逻辑值，那么变量类型应该是数值变量或者布尔变量，而不是字符变量。`true` vs `"true"`
   - `arr.length`
   - 合并数组：`arr.concat(arr2);`
   - 将整个数组组成字符串：`arr.join(".");` 如果不加字符则缺省为`","`。
@@ -400,33 +400,186 @@ Find max/min in an array
 Math.max.apply(null, arr); // equals to Math.max(arr[0], arr[1] ...)
 ```
 
-# HERE https://www.w3schools.com/js/js_dates.asp
-
 日期对象：
+
 - `Date()`获取当前日期；
 - `getTime()`返回1970.1.1至今的毫秒数；
 - `date.setFullYear(1992,10,1)`,注意是月是从0开始的为1月；
   - `myDate.setFullYear(2008,8,9);var today = new Date();`
 - `date.toUTCString()`返回UTC标准的字符串；
+- `date.toDateString()`.
 - `date.getDay()`返回数字表示的今天是周几；
-- 构造器：`var d=new Date(); `
+- ISO Date: `2018-11-03`.
+- 构造器：`var d=new Date();`
+- `Date.parse("March 21, 2012")` return the ms since 1970.
 - 可用`<`, `>`比较日期：
   - `if (myDate>today){alert("before 9th August 2008");}`
+- `date + 50` add 50 days.
+
+More methods see <https://www.w3schools.com/jsref/jsref_obj_date.asp>
+
+Note the difference between using number (millisecond) vs. using string (ISO Date).
+
+```javascript
+var d1 = new Date(2018); // It is 2018 ms since 1970.
+var d2 = new Date(2018, 1); // With the month, it is Feb 1 2018.
+var d3 = new Date("2018"); // It is Jan 1 2018 in the timezone of the current computer.
+var d4 = new Date("2018-1"); // Jan 1 2018.
+var d5 = new Date("2018-1-1Z"); // In UTC/GMT.
+```
 
 算术对象：
+
 - `Math.round(数)` 按小数部分最高位四舍五入；
 - `Math.random()`随机产生一个0到1之间的值，产生0～10之间：`Math.floor(Math.random()*11)`；
 - `Math.max(a, b)`返回两个数中较大的值；
 - `Math.min(a, b)`；
+- `Math.sin(90 * Math.PI / 180);` 90 degree. It only accept radians.
 - 可被访问的算术值：
   - 常数: `Math.E`;
-  - 圆周率: `Math.PI`; 
-  - 2 的平方根: `Math.SQRT2`; 
-  - 1/2 的平方根: `Math.SQRT1_2`; 
-  - 2 的自然对数: `Math.LN2`; 
-  - 10 的自然对数: `Math.LN10`; 
-  - 以 2 为底的 e 的对数: `Math.LOG2E`; 
-  - 以 10 为底的 e 的对数: `Math.LOG10E`;
+  - 圆周率: `Math.PI`;
+  - 2 的平方根: `Math.SQRT2`;
+  - 1/2 的平方根: `Math.SQRT1_2`;
+  - 2 的自然对数: `Math.LN2`;
+  - 10 的自然对数: `Math.LN10`;
+  - 以 2 为底的 e 的对数: `Math.LOG2E`;
+  - 以 10 为底的 e 的对数: `Math.LOG10E`
+
+More methods see <https://www.w3schools.com/jsref/jsref_obj_math.asp>
+
+### Expression
+
+[src](http://www.w3school.com.cn/js/js_functions.asp)
+
+运算符：
+
+- 算术：`+-*/%,++,--`
+- 赋值：`=,+=,-=,*=,/=,%=`
+- 字符串运算符：`string1+string2`。数字与字符串相加，数字转为字符。
+- 比较：`==`,`===`值和类型全等，`!=`，`>=`，`<=`，`>`，`<`
+- 逻辑：`&&` `||` `!`
+- 条件运算：`variablename=(condition)?value1:value2;`
+
+When compare, make sure compare numbers not string.
+
+```javascript
+age = Number(age);
+if (isNaN(age)) {
+    voteable = "Input is not a number";
+} else {
+    voteable = (age < 18) ? "Too young too simple" : "Old enough";
+}
+```
+
+函数：`function myFunction(参量表){var x; return x;}`
+
+函数内部的是局部变量，函数外的是全局变量。全局变量可直接在函数内部使用。全局变量在页面关闭时删除。
+
+条件控制：
+
+- `if`：
+
+```javascript
+if (time<10) {
+  x="Good morning";
+} else if (time<20) {
+  x="Good day";
+} else {
+  x="Good evening";
+}
+```
+
+- `switch`：
+
+Switch cases use strict comparison (===).
+
+```javascript
+var day=new Date().getDay();
+switch (day) {
+case 6:
+  x="Today it's Saturday";
+  break;
+case 0:
+  x="Today it's Sunday";
+  break;
+default:
+  x="Looking forward to the Weekend";
+}
+```
+
+- `for`：
+
+```javascript
+for (var i=0,len=cars.length; i<len; i++) {
+  document.write(cars[i] + "<br>");
+}
+```
+
+或
+
+```javascript
+var i=2,len=cars.length;
+for (; i<len; i++)
+{
+  document.write(cars[i] + "<br>");
+}
+```
+
+- `for in`：对对象中的所有属性执行一遍。
+
+```javascript
+var person={fname:"John",lname:"Doe",age:25};
+for (x in person){
+  txt=txt + person[x];
+}
+```
+
+也可对数组遍历。
+
+```javascript
+var mycars =["Saab", "Volvo", "BMW"];
+var x;
+for (x in mycars){
+  document.write(mycars[x] + "<br />")
+}
+```
+
+- `while`：
+
+```javascript
+cars=["BMW","Volvo","Saab","Ford"];
+var i=0;
+while (cars[i]){
+  document.write(cars[i] + "<br>");
+  i++;
+}
+```
+
+- `do while`：
+
+```javascript
+do{
+  x=x + "The number is " + i + "<br>";
+  i++;
+}while (i<5);
+```
+
+- 循环控制：`break`，`continue`。
+
+对语句设定label以后，break label可跳出代码块。
+
+```javascript
+cars=["BMW","Volvo","Saab","Ford"];
+list: {
+  document.write(cars[0] + "<br>");
+  break list;
+  document.write(cars[3] + "<br>");
+  document.write(cars[4] + "<br>");
+  document.write(cars[5] + "<br>");
+}
+```
+
+# HERE https://www.w3schools.com/js/js_type_conversion.asp
 
 ### 正则表达式
 [src](http://www.w3school.com.cn/js/js_obj_regexp.asp)
@@ -452,111 +605,6 @@ while (result!=null) // output is eeeeeenull
 ```
 var patt1=new RegExp("e");
 patt1.compile("d");
-```
-
-### Expression
-[src](http://www.w3school.com.cn/js/js_functions.asp)
-
-函数：`function myFunction(参量表){var x; return x;}`
-- 函数内部的是局部变量，函数外的是全局变量。全局变量可直接在函数内部使用。全局变量在页面关闭时删除。
-
-运算符：
-- 算术：`+-*/%,++,--`
-- 赋值：`=,+=,-=,*=,/=,%=`
-- 字符串运算符：`string1+string2`。数字与字符串相加，数字转为字符。
-- 比较：`==`,`===`值和类型全等，`!=`，`>=`，`<=`，`>`，`<`
-- 逻辑：`&&` `||` `!`
-- 条件运算：`variablename=(condition)?value1:value2;`
-
-条件控制：
-1. `if`：
-```
-if (time<10) {
-  x="Good morning";
-} else if (time<20) {
-  x="Good day";
-} else {
-  x="Good evening";
-}
-```
-
-2. `switch`：
-```
-var day=new Date().getDay();
-switch (day) {
-case 6:
-  x="Today it's Saturday";
-  break;
-case 0:
-  x="Today it's Sunday";
-  break;
-default:
-  x="Looking forward to the Weekend";
-}
-```
-
-3. `for`：
-```
-for (var i=0,len=cars.length; i<len; i++) {
-  document.write(cars[i] + "<br>");
-}
-```
-或
-```
-var i=2,len=cars.length;
-for (; i<len; i++)
-{
-  document.write(cars[i] + "<br>");
-}
-```
-
-4. `for in`：对对象中的所有属性执行一遍。
-```
-var person={fname:"John",lname:"Doe",age:25};
-for (x in person){
-  txt=txt + person[x];
-}
-```
-
-也可对数组遍历。
-```
-var mycars =["Saab", "Volvo", "BMW"];
-var x;
-for (x in mycars){
-  document.write(mycars[x] + "<br />")
-}
-```
-
-5. `while`：
-```
-cars=["BMW","Volvo","Saab","Ford"];
-var i=0;
-while (cars[i]){
-  document.write(cars[i] + "<br>");
-  i++;
-}
-```
-
-6.`do while`：
-```
-do{
-  x=x + "The number is " + i + "<br>";
-  i++;
-}while (i<5);
-```
-
-7. 循环控制：`break`，`continue`。
-
-对语句设定label以后，break label可跳出代码块。
-```
-cars=["BMW","Volvo","Saab","Ford"];
-list: {
-  document.write(cars[0] + "<br>"); 
-  break list;
-  document.write(cars[3] + "<br>"); 
-  document.write(cars[4] + "<br>"); 
-  document.write(cars[5] + "<br>"); 
-}
 ```
 
 ### 错误处理
@@ -954,3 +1002,4 @@ echo $response; //output the response
 
 # Node.js
 https://www.nczonline.net/blog/2013/10/07/node-js-and-the-new-web-front-end/
+
