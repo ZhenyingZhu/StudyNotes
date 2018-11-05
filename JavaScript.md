@@ -579,19 +579,66 @@ list: {
 }
 ```
 
-# HERE https://www.w3schools.com/js/js_type_conversion.asp
+Data types:
+
+- string
+- number
+- boolean
+- object
+- function
+
+Object types:
+
+- Object
+- Date
+- Array
+
+No value types:
+
+- null
+- undefined
+
+constructor: can be `Array` or `Date`.
+
+```javascript
+myDate.constructor === Date;
+```
 
 ### 正则表达式
+
 [src](http://www.w3school.com.cn/js/js_obj_regexp.asp)
 
 RegExp: 多个字符，解析，格式检查，替换。设置索引位置，要检查的字符串类型。
+
 - 声明：`var patt1=new RegExp("e");` 单个字符'e'表明检查字符串中是否存在这个字符。
+- Or `var patt = /w3schools/i;` following `/pattern/modifiers;`.
   - 可添加参数如`var patt1=new RegExp("e","g")`; `g`表明查找所有符合的结果。
 - `test()`方法为检索字符串中的指定值，返回布尔值。`patt1.test("The best things in life are free");` 就为true。
 - `exec()`同`test()`，但返回该指定值或Null。
 - `compile()` 方法用于改变 RegExp。`compile()` 既可以改变检索模式，也可以添加或删除第二个参数。
 
-```
+Modifier:
+
+- `i`: case-insensitive.
+- `g`: global match.
+- `m`: multiple lines.
+
+Metacharacters:
+
+- `\d`: digit
+- `\s`: whitespace.
+- `\b`: begin or end.
+- `\uxxxx`: unicode.
+
+Quantifiers:
+
+- `n+`: at least 1.
+- `n*`: 0 or more.
+- `n?`" 0 or 1.
+
+More details see <https://www.w3schools.com/jsref/jsref_obj_regexp.asp>
+
+```javascript
 var patt1=new RegExp("e","g");
 do
 {
@@ -601,17 +648,19 @@ do
 while (result!=null) // output is eeeeeenull
 ```
 
-等同于`var pattl=new RegExp("d");` 
-```
-var patt1=new RegExp("e");
-patt1.compile("d");
+等同于`var patt1=/d/g;`
+
+```javascript
+/e/.compile("d");
 ```
 
 ### 错误处理
+
 [src](http://www.w3school.com.cn/js/js_errors.asp)
 
 try catch
-```
+
+```javascript
 var txt="";
 try {
   ...
@@ -621,12 +670,75 @@ try {
 ```
 
 throw
-```
+
+```javascript
 function foo() {
   var x=document.getElementById("demo").value;
   if (x<0)  throw "negative value";
 }
 ```
+
+Error name values:
+
+- `RangeError`: A number "out of range" has occurred.
+- `ReferenceError`: An illegal reference has occurred.
+- `SyntaxError`:A syntax error has occurred. Include old error `EvalError`.
+- `TypeError`: A type error has occurred.
+- `URIError`: An error in encodeURI() has occurred.
+
+### Scope
+
+Global variables:
+
+- in HTML, the global scope is the window object.
+- If you assign a value to a variable that has not been declared, it will automatically become a GLOBAL variable.
+- JavaScript Declarations are Hoisted: a variable can be used before it has been declared.
+- Hoisting is JavaScript's default behavior of moving all declarations to the top of the current scope.
+- Variables and constants declared with let or const are not hoisted!
+- `"use strict";` in ECMAScript v5 can prevent those unexpected issues.
+
+Not in strict mode, this in a function refer to the object window. In strict mode, it is undefined.
+
+This in event handler refer to the element receive the event:
+
+```javascript
+<button onclick="this.style.display='none'">
+    Click to Remove Me!
+</button>
+```
+
+Explicit Function Binding:
+
+```javascript
+var person1 = {
+    fullName: function() {
+        return this.firstName + " " + this.lastName;
+    }
+}
+var person2 = {
+    firstName:"John",
+    lastName: "Doe",
+}
+person1.fullName.call(person2); // Will return "John Doe"
+```
+
+In ECMAScript 2015, block scope is provided with `let`. Also `const` is provided.
+
+```javascript
+{
+    var x = 2;
+}
+// x CAN be used here
+
+{
+    let x = 2;
+}
+// x can NOT be used here
+```
+
+The keyword const does NOT define a constant value, but a constant reference to a value. So the properties of constant objects can be changed.
+
+# HERE https://www.w3schools.com/js/js_debugging.asp
 
 ### 表单验证
 [src](http://www.w3school.com.cn/js/js_form_validation.asp)
