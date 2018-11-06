@@ -738,11 +738,170 @@ In ECMAScript 2015, block scope is provided with `let`. Also `const` is provided
 
 The keyword const does NOT define a constant value, but a constant reference to a value. So the properties of constant objects can be changed.
 
-# HERE https://www.w3schools.com/js/js_debugging.asp
+### Debug
+
+In browser's develop tool, console tab, the `console.log()` can be seen.
+
+`debugger;` is used as a breakpoint.
+
+```javascript
+<script>
+var text = '<p id="demo"></p>';
+document.write(text);
+debugger;
+var x = 'content';
+document.getElementById('demo').innerHTML = x;
+debugger;
+</script>
+```
+
+### Code style
+
+Naming:
+
+- Hyphens: not allowed in JS.
+- Underscores.
+- PascalCase.
+- camelCase: JS perfered.
+
+Put all declarations and init at the top of each script or function.
+
+```javascript
+// Declare at the beginning
+var firstName = "", lastName = "";
+
+// Use later
+firstName = "John";
+lastName = "Doe";
+```
+
+Always use `===` Comparison.
+
+Always use parameter defaults:
+
+```javascript
+function (a=1, b=1) {
+  // function code
+}
+```
+
+Don't break return, because `return` is a closing statement and semicolon is not needed to complete it:
+
+```javascript
+function myFunction1(a) {
+  return 3
+    * a; // return 3 * a
+}
+
+function myFunction2(a) {
+  return
+    3 * a; // return undefined
+}
+```
+
+To test if an object is empty:
+
+```javascript
+if (typeof myObj !== "undefined" && myObj !== null) {}
+```
+
+This loop:
+
+```javascript
+var i;
+var l = arr.length;
+for (i = 0; i < l; i++) { }
+```
+
+is faster than:
+
+```javascript
+var i;
+for (i = 0; i < arr.length; i++) { }
+```
+
+DOM access is very slow, so store it as a local variable:
+
+```javascript
+var obj;
+obj = document.getElementById("demo");
+obj.innerHTML = "Hello";
+```
+
+Putting your scripts at the bottom of the page body lets the browser load the page first.
+
+Avoid using any words from here as variable name: <https://www.w3schools.com/js/js_reserved.asp>
+
+### JSON
+
+J(ava)S(cript)O(bject)N(otation).
+
+- Data is in name/value pairs: must use double quotes.
+- Data is separated by commas
+- Curly braces hold objects
+- Square brackets hold arrays
+- `var obj = JSON.parse(text);`
+- `var text = JSON.stringify(obj);`
+
+```json
+{
+  "employees":[
+    {"firstName":"John", "lastName":"Doe"},
+    {"firstName":"Peter", "lastName":"Jones"}
+  ]
+}
+```
+
+### ES5 and ES6 features
+
+Object.defineProperty:
+
+```javascript
+// Create an Object:
+var person = {
+    firstName: "John",
+    lastName : "Doe",
+    language : "NO", 
+};
+// Change a Property:
+Object.defineProperty(person, "language", {
+    value: "EN",
+    writable : true,
+    enumerable : false,
+    configurable : true
+});
+
+Object.defineProperty(person, "language", {
+get : function() { return language },
+set : function(value) { language = value.toUpperCase()}
+});
+
+// Enumerate Properties
+var txt = "";
+for (var x in person) {
+    txt += person[x] + "<br>";
+}
+document.getElementById("demo").innerHTML = txt;
+```
+
+A safe integer is an integer that can be exactly represented as a double precision number.
+
+Arrow functions
+
+```javascript
+// ES5
+var x = function(x, y) {
+     return x * y;
+}
+
+// ES6
+const x = (x, y) => x * y; // function is always const so don't use var.
+```
 
 ### 表单验证
 [src](http://www.w3school.com.cn/js/js_form_validation.asp)
 
+# HERE https://www.w3schools.com/js/js_validation.asp
 
 ### 文档对象模型(DOM)
 [src](http://www.w3school.com.cn/js/js_htmldom.asp)
