@@ -861,7 +861,7 @@ Object.defineProperty:
 var person = {
     firstName: "John",
     lastName : "Doe",
-    language : "NO", 
+    language : "NO",
 };
 // Change a Property:
 Object.defineProperty(person, "language", {
