@@ -579,7 +579,7 @@ list: {
 }
 ```
 
-Data types:
+Primitive Data types:
 
 - string
 - number
@@ -944,7 +944,63 @@ HTML Constraint Validation: Browser can automatically run the form validation.
 </form>
 ```
 
-# HERE https://www.w3schools.com/js/js_validation.asp
+### Objects
+
+`var x = anObject;` x is a reference.
+
+`objectName.property` is same as `objectName["property"]`.
+
+So properties can be iterated.
+
+```javascript
+var txt = "";
+var person = {fname:"Jhon", lname:"Doe", age:25};
+for (x in person) {
+  txt += person[x];
+}
+```
+
+`delete` can deletes a property. It can only be used on object properties.
+
+Property attributes:
+
+- value.
+- enumerable.
+- configurable.
+- writeable.
+
+All attributes can be read, but only the value attribute can be changed.
+
+Inherit:
+
+- objects can inherit from their prototype.
+- delete the prototype property will affect all inherited objects.
+
+Add a method to an object:
+
+```javascript
+person.name = function() {
+  return this.firstName + " " + this.lastName;
+}
+```
+
+Why Using Getters and Setters?
+
+- It gives simpler syntax
+- It allows equal syntax for properties and methods
+- It can secure better data quality
+- It is useful for doing things behind-the-scenes
+
+Use `Object.defineProperty()` to add getter:
+
+```javascript
+var obj = {counter : 0};
+Object.defineProperty(obj, "reset", {
+    get : function () {this.counter = 0;}
+});
+```
+
+# HERE https://www.w3schools.com/js/js_object_constructors.asp
 
 ### 文档对象模型(DOM)
 [src](http://www.w3school.com.cn/js/js_htmldom.asp)
