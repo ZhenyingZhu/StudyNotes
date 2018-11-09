@@ -944,7 +944,28 @@ HTML Constraint Validation: Browser can automatically run the form validation.
 </form>
 ```
 
-# HERE https://www.w3schools.com/js/js_validation.asp
+Constraint validation DOM methods:
+
+- `checkValidity()`: Returns true if an input element contains valid data.
+- `setCustomValidity()`: Sets the validationMessage property of an input element.
+
+```html
+<input id="id1" type="number" min="100" max="300" required>
+<button onclick="myFunction()">OK</button>
+
+<p id="demo"></p>
+
+<script>
+function myFunction() {
+    var inpObj = document.getElementById("id1");
+    if (!inpObj.checkValidity()) { // Auto check if 100 <= number <= 300.
+        document.getElementById("demo").innerHTML = inpObj.validationMessage;
+    }
+}
+</script>
+```
+
+# HERE https://www.w3schools.com/js/js_object_definition.asp
 
 ### 文档对象模型(DOM)
 [src](http://www.w3school.com.cn/js/js_htmldom.asp)
