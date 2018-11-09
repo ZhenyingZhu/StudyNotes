@@ -579,7 +579,7 @@ list: {
 }
 ```
 
-Data types:
+Primitive Data types:
 
 - string
 - number
@@ -861,7 +861,7 @@ Object.defineProperty:
 var person = {
     firstName: "John",
     lastName : "Doe",
-    language : "NO", 
+    language : "NO",
 };
 // Change a Property:
 Object.defineProperty(person, "language", {
@@ -928,22 +928,6 @@ function validateForm() {
 </html>
 ```
 
-HTML Constraint Validation: Browser can automatically run the form validation.
-
-- disabled: Specifies that the input element should be disabled
-- max: Specifies the maximum value of an input element
-- min: Specifies the minimum value of an input element
-- pattern: Specifies the value pattern of an input element
-- required: Specifies that the input field requires an element
-- type: Specifies the type of an input element
-
-```html
-<form action="/action_page.php" method="post">
-  <input type="text" name="fname" required>
-  <input type="submit" value="Submit">
-</form>
-```
-
 Constraint validation DOM methods:
 
 - `checkValidity()`: Returns true if an input element contains valid data.
@@ -965,7 +949,80 @@ function myFunction() {
 </script>
 ```
 
-# HERE https://www.w3schools.com/js/js_object_definition.asp
+HTML Constraint Validation: Browser can automatically run the form validation.
+
+- disabled: Specifies that the input element should be disabled
+- max: Specifies the maximum value of an input element
+- min: Specifies the minimum value of an input element
+- pattern: Specifies the value pattern of an input element
+- required: Specifies that the input field requires an element
+- type: Specifies the type of an input element
+
+```html
+<form action="/action_page.php" method="post">
+  <input type="text" name="fname" required>
+  <input type="submit" value="Submit">
+</form>
+```
+
+### Objects
+
+`var x = anObject;` x is a reference.
+
+`objectName.property` is same as `objectName["property"]`.
+
+So properties can be iterated.
+
+```javascript
+var txt = "";
+var person = {fname:"Jhon", lname:"Doe", age:25};
+for (x in person) {
+  txt += person[x];
+}
+```
+
+`delete` can deletes a property. It can only be used on object properties.
+
+Property attributes:
+
+- value.
+- enumerable.
+- configurable.
+- writeable.
+
+All attributes can be read, but only the value attribute can be changed.
+
+Inherit:
+
+- objects can inherit from their prototype.
+- delete the prototype property will affect all inherited objects.
+
+Add a method to an object:
+
+```javascript
+person.name = function() {
+  return this.firstName + " " + this.lastName;
+}
+```
+
+Why Using Getters and Setters?
+
+- It gives simpler syntax
+- It allows equal syntax for properties and methods
+- It can secure better data quality
+- It is useful for doing things behind-the-scenes
+
+Use `Object.defineProperty()` to add getter:
+
+```javascript
+var obj = {counter : 0};
+Object.defineProperty(obj, "reset", {
+    get : function () {this.counter = 0;}
+});
+```
+
+# HERE https://www.w3schools.com/js/js_object_constructors.asp
+>>>>>>> 1470f7d22dcc7a2f6c31fe163423e2af984ff4a8
 
 ### 文档对象模型(DOM)
 [src](http://www.w3school.com.cn/js/js_htmldom.asp)
