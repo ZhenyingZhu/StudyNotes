@@ -447,6 +447,30 @@ var d5 = new Date("2018-1-1Z"); // In UTC/GMT.
 
 More methods see <https://www.w3schools.com/jsref/jsref_obj_math.asp>
 
+Object constructor:
+
+```javascript
+// Constructor function for Person objects
+function Person(first, last, age, eye) {
+    this.firstName = first;
+    this.lastName = last;
+    this.age = age;
+    this.eyeColor = eye;
+}
+
+// Create two Person objects
+var myFather = new Person("John", "Doe", 50, "blue");
+var myMother = new Person("Sally", "Rally", 48, "green");
+```
+
+Add method to prototype:
+
+```javascript
+Person.prototype.name = function() {
+    return this.firstName + " " + this.lastName;
+};
+```
+
 ### Expression
 
 [src](http://www.w3school.com.cn/js/js_functions.asp)
@@ -1021,10 +1045,118 @@ Object.defineProperty(obj, "reset", {
 });
 ```
 
-# HERE https://www.w3schools.com/js/js_object_constructors.asp
->>>>>>> 1470f7d22dcc7a2f6c31fe163423e2af984ff4a8
+### Functions
+
+Declaration:
+
+```javascript
+function myFunction(a, b) {
+    return a * b;
+}
+
+var x = function (a, b) {return a * b}; // anonymous function
+
+var myFunction = new Function("a", "b", "return a * b");
+```
+
+Self-invoking functions: Function expressions will execute automatically if the expression is followed by ().
+
+```javascript
+(function () {
+    var x = "Hello!!"; // anonymous self-invoking function
+})();
+
+```
+
+Functions have both properties and methods:
+
+```javascript
+function myFunction(a, b) {
+    return arguments.length;
+}
+
+var txt = myFunction.toString();
+```
+
+JS doesn't check passed arguments. If a parameter is missing, the argument of it set to undefined.
+
+```javascript
+function myFunction(x, y) {
+    if (y === undefined) {
+          y = 0;
+    }
+}
+
+function (a=1, b=1) { }
+```
+
+Use arguments property to implement max:
+
+```javascript
+x = findMax(1, 123, 500, 115, 44, 88);
+
+function findMax() {
+    var i;
+    var max = -Infinity;
+    for (i = 0; i < arguments.length; i++) {
+        if (arguments[i] > max) {
+            max = arguments[i];
+        }
+    }
+    return max;
+}
+```
+
+Arguments are passed by value, so changing values in arguments won't change the value outside the function.
+
+A normal but not good way to invoke a function:
+
+```javascript
+function myFunction(a, b) {
+    return a * b;
+}
+window.myFunction(10, 2);    // Will also return 20
+```
+
+With `call()` and `apply()`, an object can use a method belonging to another object.
+
+```javascript
+var person = {
+    fullName: function(city, country) {
+        return this.firstName + " " + this.lastName + "," + city + "," + country;
+    }
+}
+var person1 = {
+    firstName:"John",
+    lastName: "Doe",
+}
+person.fullName.call(person1, "Oslo", "Norway");
+
+person.fullName.apply(person1, ["Oslo", "Norway"]);
+```
+
+- The `call()` method takes arguments separately.
+- The `apply()` method takes arguments as an array.
+
+Variables created without the keyword var, are always global, even if they are created inside a function.
+
+JavaScript Nested Functions/inner functions:
+
+```javascript
+var add = (function () {
+    var counter = 0;
+    return function () {counter += 1; return counter}
+})();
+```
+
+- The self-invoke function only run once, and return the inner function it defines.
+- The inner function is stored in var add.
+- This is called a JavaScript closure. It is a function having access to the parent scope, even after the parent function has closed.
 
 ### 文档对象模型(DOM)
+
+# HERE https://www.w3schools.com/js/js_htmldom.asp
+
 [src](http://www.w3school.com.cn/js/js_htmldom.asp)
 
 当网页被加载时，浏览器会创建页面的文档对象模型（Document Object Model）。
@@ -1061,6 +1193,7 @@ HTML事件：
 
 用this表明当前元素，`this.innerHTML和this.attribute`。
 ```
+
 <div onmouseover="mOver(this)" onmouseout="mOut(this)" style="background-color:green;width:120px;height:20px;padding:40px;color:#ffffff;">把鼠标移到上面</div>
 <script>
 function mOver(obj)
