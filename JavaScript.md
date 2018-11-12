@@ -1155,8 +1155,6 @@ var add = (function () {
 
 ### 文档对象模型(DOM)
 
-# HERE https://www.w3schools.com/js/js_htmldom.asp
-
 [src](http://www.w3school.com.cn/js/js_htmldom.asp)
 
 当网页被加载时，浏览器会创建页面的文档对象模型（Document Object Model）。
@@ -1164,26 +1162,74 @@ var add = (function () {
 ![DOM Tree](./Javascript_files/DOM_Tree.jpg)
 
 - JavaScript 能够改变页面中的所有 HTML 元素，HTML 属性，CSS 样式。
-- JavaScript 能够对页面中的所有事件做出反应
+- JavaScript 能够对页面中的所有事件做出反应.
+- JavaScript can react to all existing HTML events in the page.
+- JavaScript can create new HTML events in the page.
+
+W3C DOM standard is separated into 3 different parts:
+
+- Core DOM
+- XML DOM
+- HTML DOM
+
+HTML DOM is a standard object model and programming interface for HTML that defines:
+
+- The HTML elements as objects
+- The properties of all HTML elements
+- The methods to access all HTML elements
+- The events for all HTML elements
+
+document object is the root of a web page.
+
+Methods and properties:
+
+- `document.getElementById(id)`
+- `document.getElementsByTagName(tag)`
+- `document.getElementsByClassName(class)`
+- `element.style.property = new style`
+- `document.createElement(element)`
+- `document.removeChild(element)`
+- `document.appendChild(element)`
+- `document.replaceChild(element)`
+- `document.write(text)`
+- `document.getElementById(id).onclick = function(){code}`: adding ebent handler.
+- `document.anchors`: `<a>` elements.
+- `document.baseURI`: HTML DOM Level 3.
+- `document.body`
+- `document.cookie`
+- `document.domain`
+- `document.forms`
+- `document.images`
+- `document.links`: also include `<area>`.
+- `document.referrer`: The linking document.
+- `document.scripts`: Level 3.
+- `document.title`
+- `document.URL`
 
 查找元素：
+
 - 通过id：`var x=document.getElementById("intro");` 失败返回Null。
 - 通过标签名：`var x=document.getElementById("main"); var y=x.getElementsByTagName("p");` 则找到`<div id=main>`中所有`<p>`元素。
 
-改变
+改变:
+
 - 改变内容：`element.innerHTML`指的是标签开始到标签结束之间的内容。
 - 改变属性：如`element.src= "new.gif";`
 - 改变样式：`element.style.属性名`，如`elment.style.visibility='hidden'/ 'visible';`可显示或隐藏元素。
 
+# HERE https://www.w3schools.com/js/js_htmldom_elements.asp
+
 HTML事件：
+
 - 点击鼠标：`onclick`。
 - 载入：`onload` 和 `onunload` 事件会在用户进入或离开页面时被触发。用于检测浏览器版本和处理`cookie`。`<body onload="checkCookies()">`是否启用cookies.
 - 字段验证：`onchange`，字段改变时调用。`<input type="text" id="fname" onchange="upperCase()">`。
 - 鼠标事件：`onmouseover`，`onmouseout`，`onmousedown`，`onmouseup`。
 - 输入字段获得焦点：`onfocus`。
 
-在属性中添加事件不用<script>标签。
-```
+在属性中添加事件不用`<script>`标签。
+
+```html
 <button type="button" onclick="document.getElementById('id1').style.color='red'">点击这里！</button>
 ```
 
@@ -1192,8 +1238,8 @@ HTML事件：
 还可通过分配属性分配事件：`<script>document.getElementById("myBtn").onclick=function(){displayDate()};</script>` 注意此时不是用引号括起函数名。在HTML中直接执行一段JavaScript函数的方式。
 
 用this表明当前元素，`this.innerHTML和this.attribute`。
-```
 
+```html
 <div onmouseover="mOver(this)" onmouseout="mOut(this)" style="background-color:green;width:120px;height:20px;padding:40px;color:#ffffff;">把鼠标移到上面</div>
 <script>
 function mOver(obj)
@@ -1208,7 +1254,8 @@ function mOut(obj)
 ```
 
 添加元素：首先创建节点，在朝里面添加内容。
-```
+
+```html
 <div id="div1"></div>
 <script>
 var para=document.createElement("p");
@@ -1220,7 +1267,8 @@ element.appendChild(para);
 ```
 
 删除元素：找到父元素并删除。可以通过属性`parentNode`找到。`child.parentNode.removeChild(child);`
-```
+
+```html
 <div id="div1"><p id="p1">这是一个段落。</p></div>
 <script>
 var parent=document.getElementById("div1");
