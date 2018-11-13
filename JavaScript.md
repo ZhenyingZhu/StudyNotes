@@ -1262,9 +1262,20 @@ HTML objects:
 - document.scripts
 - document.title
 
+Don't call `document.write()` after the page is loaded. For example in the console.
 
+Change value of attributes: `document.getElementById(id).attribute = "new value"`
 
-# HERE https://www.w3schools.com/js/js_htmldom_elements.asp
+Change CSS: `document.getElementById(id).style.property = "new style"`
+
+[All the styles](https://www.w3schools.com/jsref/dom_obj_style.asp)
+
+Handle events:
+
+```javascript
+<input type="button" value="Hide text" onclick="document.getElementById('p1').style.visibility='hidden'">
+<input type="button" value="Show text" onclick="document.getElementById('p1').style.visibility='visible'">
+```
 
 HTML事件：
 
@@ -1323,6 +1334,46 @@ var child=document.getElementById("p1");
 parent.removeChild(child);
 </script>
 ```
+
+Create animate: See <https://www.w3schools.com/js/tryit.asp?filename=tryjs_dom_animate_3>
+
+Use a timer: by calling `timer = setInterval(frame, 5)` and `clearInterval(timer)`.
+
+Events:
+
+- `onload`: can be used to check browser, cookies.
+- `onchange`: validate input.
+
+[All events](https://www.w3schools.com/jsref/dom_obj_event.asp)
+
+addEventListener:
+
+- `document.getElementById("myBtn").addEventListener("click", displayDate);`
+- can add multiple, same events without overwriting existing event handlers.
+- can add event listeners to any DOM object not only HTML elements. i.e the window object.
+
+Passing parameters:
+
+```javascript
+var p1 = 5;
+var p2 = 7;
+
+document.getElementById("myBtn").addEventListener("click", function() {
+    myFunction(p1, p2);
+});
+
+function myFunction(a, b) {
+    var result = a * b;
+    document.getElementById("demo").innerHTML = result;
+}
+```
+
+event propagation in the HTML DOM: when an element is inside another element and both have an event occured
+
+- bubbling: inner most element's event handled first.
+- capturing: vice versa.
+
+# HERE https://www.w3schools.com/js/js_htmldom_navigation.asp
 
 ### JS Window
 [src](http://www.w3school.com.cn/js/js_window.asp)
