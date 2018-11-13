@@ -1217,6 +1217,53 @@ Methods and properties:
 - 改变属性：如`element.src= "new.gif";`
 - 改变样式：`element.style.属性名`，如`elment.style.visibility='hidden'/ 'visible';`可显示或隐藏元素。
 
+Use CSS selector:
+
+```javascript
+var x = document.querySelectorAll("p.intro");
+```
+
+Finding HTML Elements by HTML Object Collections:
+
+```html
+<form id="frm1" action="/action_page.php">
+  First name: <input type="text" name="fname" value="Donald"><br>
+  Last name: <input type="text" name="lname" value="Duck"><br><br>
+  <input type="submit" value="Submit">
+</form>
+
+<button onclick="myFunction()">Try it</button>
+
+<p id="demo"></p>
+
+<script>
+function myFunction() {
+    var x = document.forms["frm1"];
+    var text = "";
+    var i;
+    for (i = 0; i < x.length ;i++) {
+        text += x.elements[i].value + "<br>";
+    }
+    document.getElementById("demo").innerHTML = text;
+}
+</script>
+```
+
+HTML objects:
+
+- document.anchors
+- document.body
+- document.documentElement
+- document.embeds
+- document.forms
+- document.head
+- document.images
+- document.links
+- document.scripts
+- document.title
+
+
+
 # HERE https://www.w3schools.com/js/js_htmldom_elements.asp
 
 HTML事件：
