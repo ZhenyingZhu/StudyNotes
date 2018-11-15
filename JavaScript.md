@@ -1373,7 +1373,65 @@ event propagation in the HTML DOM: when an element is inside another element and
 - bubbling: inner most element's event handled first.
 - capturing: vice versa.
 
-# HERE https://www.w3schools.com/js/js_htmldom_navigation.asp
+DOM Nodes:
+
+- document node.
+- element node.
+- text node.
+- attrbute node (deprecated).
+- comment node.
+
+Note relations:
+
+- root.
+- 1 parent, n children.
+- siblings: has orders.
+
+Text node is also a child.
+
+For
+
+```html
+<title id="demo">DOM Tutorial</title>
+```
+
+They are same:
+
+```javascript
+var myTitle = document.getElementById("demo").innerHTML;
+var myTitle = document.getElementById("demo").firstChild.nodeValue;
+var myTitle = document.getElementById("demo").childNodes[0].nodeValue;
+```
+
+Root node access:
+
+- `document.body`
+- `document.documentElement`: even `<head/>` is included.
+
+NodeName property:
+
+- nodeName is read-only.
+- nodeName of an element node is the same as the tag name.
+- nodeName of an attribute node is the attribute name.
+- nodeName of a text node is always `#text`.
+- nodeName of the document node is always `#document`.
+
+NodeValue property:
+
+- nodeValue for element nodes is undefined.
+- nodeValue for text nodes is the text itself.
+- nodeValue for attribute nodes is the attribute value.
+
+NodeType property:
+
+- 1: `ELEMENT_NODE`
+- 2: `ATTRIBUTE_NODE` (deprecated)
+- 3: `TEXT_NODE`
+- 8: `COMMENT_NODE`
+- 9: `DOCUMENT_NODE`
+- 10: `DOCUMENT_TYPE_NODE`
+
+# HERE https://www.w3schools.com/js/js_htmldom_nodes.asp
 
 ### JS Window
 [src](http://www.w3school.com.cn/js/js_window.asp)
