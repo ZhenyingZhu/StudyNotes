@@ -1431,7 +1431,34 @@ NodeType property:
 - 9: `DOCUMENT_NODE`
 - 10: `DOCUMENT_TYPE_NODE`
 
-# HERE https://www.w3schools.com/js/js_htmldom_nodes.asp
+Create a node:
+
+```html
+<div id="div1">
+  <p id="p1">something</p>
+</div>
+```
+
+```javascript
+var para = document.createElement("p");
+var node = document.createTextNode("This is new.");
+para.appendChild(node);
+
+var element = document.getElementById("div1");
+var child = document.getElementById("p1");
+element.insertBefore(para, child);
+```
+
+Remove: `removeChild`. DOM needs to know both the element you want to remove, and its parent.
+
+```javascript
+var child = document.getElementById("p1");
+child.parentNode.removeChild(child);
+```
+
+Replace: `replaceChild`.
+
+# HERE https://www.w3schools.com/js/js_htmldom_collections.asp
 
 ### JS Window
 [src](http://www.w3school.com.cn/js/js_window.asp)
