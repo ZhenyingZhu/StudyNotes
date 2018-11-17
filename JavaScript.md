@@ -1458,6 +1458,8 @@ child.parentNode.removeChild(child);
 
 Replace: `replaceChild`.
 
+`getElementsByTagName()` method returns an `HTMLCollection` object.
+
 # HERE https://www.w3schools.com/js/js_htmldom_collections.asp
 
 ### JS Window
