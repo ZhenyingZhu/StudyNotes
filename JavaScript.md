@@ -1458,9 +1458,13 @@ child.parentNode.removeChild(child);
 
 Replace: `replaceChild`.
 
-`getElementsByTagName()` method returns an `HTMLCollection` object.
+`getElementsByTagName()` method returns an `HTMLCollection` object:
 
-# HERE https://www.w3schools.com/js/js_htmldom_collections.asp
+- It can be access using index.
+- It has `length` property.
+- It is not an array so array APIs doesn't work.
+
+# HERE https://www.w3schools.com/js/js_htmldom_nodelist.asp
 
 ### JS Window
 [src](http://www.w3school.com.cn/js/js_window.asp)
