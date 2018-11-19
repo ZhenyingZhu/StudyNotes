@@ -1464,7 +1464,14 @@ Replace: `replaceChild`.
 - It has `length` property.
 - It is not an array so array APIs doesn't work.
 
-# HERE https://www.w3schools.com/js/js_htmldom_nodelist.asp
+`childNodes` returns an `NodeList` object:
+
+- Almost same as `HTMLCollection`.
+- The difference is that it returns Nodes instead of HTML Elements.
+- HTMLCollection items can be accessed by their name, id, or index number.
+- Only the NodeList object can contain attribute nodes and text nodes.
+
+# HERE https://www.w3schools.com/js/js_window.asp
 
 ### JS Window
 [src](http://www.w3school.com.cn/js/js_window.asp)
