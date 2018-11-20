@@ -1471,7 +1471,19 @@ Replace: `replaceChild`.
 - HTMLCollection items can be accessed by their name, id, or index number.
 - Only the NodeList object can contain attribute nodes and text nodes.
 
-# HERE https://www.w3schools.com/js/js_window.asp
+Browser Object Model (BOM):
+
+- no official standards.
+
+JS Window:
+
+- `window`: `document` object and other global variables/methods are its properties.
+- `window.innerHeight` and `window.innerWidth`.
+- `window.open()` and `window.close()`.
+- `window.moveTo()`.
+- `window.resizeTo()`
+
+# HERE https://www.w3schools.com/js/js_window_screen.asp
 
 ### JS Window
 [src](http://www.w3school.com.cn/js/js_window.asp)
