@@ -1483,7 +1483,40 @@ JS Window:
 - `window.moveTo()`.
 - `window.resizeTo()`
 
-# HERE https://www.w3schools.com/js/js_window_screen.asp
+`window.screen`:
+
+- `screen.width`, `screen.height`
+- `screen.availWidth`, `screen.availHeight`
+- `screen.colorDepth`
+- `screen.pixelDepth`
+
+`window.location`:
+
+- `location.href` returns the href (URL) of the current page.
+- `location.hostname` returns the domain name of the web host.
+- `location.pathname` returns the path and filename of the current page.
+- `location.protocol` returns the web protocol used.
+- `location.assign` loads a new document. `window.location.assign("https://www.w3schools.com")`
+
+`window.history`:
+
+- `history.back()`, `history.forward()`.
+
+`window.navigator`: info about visitor's browser.
+
+- `navigator.appName`: Netscape
+- `navigator.appCodeName`: Mozilla
+- `navigator.platform`: operating system
+- `navigator.product`: Gecko.
+- `navigator.appVersion`
+- `navigator.userAgent`
+- `navigator.cookieEnabled`
+- `navigator.language`
+- `navigator.onLine`
+- `navigator.javaEnabled()`
+
+
+# HERE https://www.w3schools.com/js/js_popup.asp
 
 ### JS Window
 [src](http://www.w3school.com.cn/js/js_window.asp)
