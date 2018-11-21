@@ -1471,6 +1471,8 @@ Replace: `replaceChild`.
 - HTMLCollection items can be accessed by their name, id, or index number.
 - Only the NodeList object can contain attribute nodes and text nodes.
 
+### JS Browser BOM
+
 Browser Object Model (BOM):
 
 - no official standards.
@@ -1515,15 +1517,12 @@ JS Window:
 - `navigator.onLine`
 - `navigator.javaEnabled()`
 
-
-# HERE https://www.w3schools.com/js/js_popup.asp
-
-### JS Window
 [src](http://www.w3school.com.cn/js/js_window.asp)
 
 Browser Object Model: 和浏览器的交互。
 
 Window对象：浏览器窗口。
+
 - 所有全局对象，函数和变量均是window的成员。
 - 窗口尺寸：`window.innerHeight`，`window.innerWidth`。考虑到老版本的浏览器：`var w=window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;`
 - 方法：打开新窗口：`window.open()`。
@@ -1532,10 +1531,12 @@ Window对象：浏览器窗口。
 - 调整当前窗口的尺寸：`window.resizeTo()`。
 
 屏幕对象：`window.screen`，可不使用window 这个前缀。
+
 - 可用的屏幕宽度：`screen.availWidth`。以像素计，减去了界面特性如任务栏。
 - 可用的屏幕高度：`screen.availHeight`。
 
 页面地址对象：`window.location` 对象用于获得当前页面的地址 (URL)，并把浏览器重定向到新的页面。可省window。
+
 - 主机的域名：`location.hostname`。
 - 当前页面的路径和文件名：`location.pathname`。
 - 端口(80或443): `location.port`。
@@ -1544,38 +1545,64 @@ Window对象：浏览器窗口。
 - 加载新的文档：`window.location.assign("http://www.w3school.com.cn")`;
 
 页面跳转：[src](http://www.111cn.net/wy/js-ajax/48824.htm)
-```
+
+```javascript
 onclick="window.location.href='www.aaa.com'"
 ```
 
 历史对象：`window.history`对象可省前缀，有一定限制。
+
 - 后退到前一个页面：`history.back();`
 - 向前到后一个页面：`history.forward();`
 
 [用navigator检测浏览器](http://www.w3school.com.cn/js/js_window_navigator.asp)
 
+popup boxes:
+
+- Alert box: `window.alert()`
+- Confirm box: `window.confirm()`
+- Prompt box: `window.prompt()`
 
 三种消息框：
+
 - 警告框：弹出窗口显示字符串：`alert("string”+’\n’+”string");`
 - 确认框：OK或Cancel按钮。`confirm(‘’string’);` 返回true或false。
 - 提示框：输入值并确认或返回。`prompt("string","default");` 返回输入值或null。
 
-计时事件：
-- 延时发生事件：`var t=setTimeout("函数名或执行语句",毫秒); `
+Timing Events: use methods of the HTML DOM Window object.
+
+- `setTimeout(function, milliseconds)`: Executes a function, after waiting a specified number of milliseconds. Can be stopped by `clearTimeout()`.
+- `setInterval(function, milliseconds)`: but repeats the execution of the function continuously. Can be stopped by `clearInterval()`.
+
+```html
+<button onclick="myVar = setTimeout(myFunction, 3000)">Try it</button>
+<button onclick="clearTimeout(myVar)">Stop it</button>
+<script>
+function myFunction() {
+    alert("Hello");
+}
+</script>
 ```
+
+计时事件：
+
+- 延时发生事件：`var t=setTimeout("函数名或执行语句",毫秒);`
+
+```javascript
 var c=0
 var t
 function timedCount(){
-		document.getElementById('txt').value=c
-		c=c+1
-		t=setTimeout("timedCount()",1000)
+  document.getElementById('txt').value=c
+  c=c+1
+  t=setTimeout("timedCount()",1000)
 }
 ```
 
 - 清除计时器：`clearTimeout(setTimeout_variable)`。
 
 简单时钟：
-```
+
+```html
 <html>
 <head>
 <script type="text/javascript">
@@ -1584,7 +1611,7 @@ function startTime(){
   var h=today.getHours()
   var m=today.getMinutes()
   var s=today.getSeconds()
-  
+
   // add a zero in front of numbers<10
   m=checkTime(m)
   s=checkTime(s)
@@ -1594,7 +1621,7 @@ function startTime(){
 }
 
 function checkTime(i){
-  if (i<10) 
+  if (i<10)
     {i="0" + i}
     return i
 }
@@ -1606,8 +1633,19 @@ function checkTime(i){
 </html>
 ```
 
-cookie对象：`document.cookie`可储存各种信息，甚至是密码。
+`document.cookie`:
+
+- can be set with a string, but it won't override the old cookie. So it would be `cookie1=value; cookie2=value;`
+- read can get all the cookies for the page in one string.
+- with `expires` set, the cookie will delete itself, but make sure the `path` is defined.
+
+```javascript
+document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
 ```
+
+cookie对象：`document.cookie`可储存各种信息，甚至是密码。
+
+```html
 <html>
 <head>
 <script>
@@ -1617,9 +1655,9 @@ function getCookie(c_name){ // Find element
     if (c_start!=-1){
       c_start=c_start + c_name.length+1;
       c_end=document.cookie.indexOf(";",c_start); // The char after an index
-      if (c_end==-1) c_end=document.cookie.length; 
+      if (c_end==-1) c_end=document.cookie.length;
       return decodeURI(document.cookie.substring(c_start,c_end));
-    } 
+    }
   }
   return "";
 }
@@ -1637,7 +1675,7 @@ function checkCookie(){
   }else{
     username=prompt('Please enter your name:',"");
     if (username!=null && username!=""){
-      setCookie('username',username,365); 
+      setCookie('username',username,365);
     }
   }
 }
@@ -1648,43 +1686,7 @@ function checkCookie(){
 </html>
 ```
 
-
-### JavaScript 库
-[src](http://www.w3school.com.cn/js/js_library_jquery.asp)
-
-JavaScript框架：库，高级应用程序设计。特别针对浏览器差异处理。常用的有jQuery、Prototype、MooTools。
-
-CDN (Content Delivery Network)把框架库存放在一个通用的位置供每个网页分享就变得很有意义了。
-
-### JQuery
-[src](http://www.w3school.com.cn/js/js_library_jquery.asp)
-
-使用前需要引用jQuery 库。
-```
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js">
-</script>
-<script>
-mycode
-...
-</script>
-```
-
-测试 JavaScript 框架库
-- 主要的jQuery 函数是`$()` 函数(jQuery 函数)。
-- 如果您向该函数传递DOM 对象，它会返回jQuery 对象，带有向其添加的jQuery 功能。
-- 可以通过CSS 选择器来选取元素
-- jQuery 函数返回jQuery 对象。
-
-DOM 对象$(document) 传递到jQuery。返回的jQuery对象有ready 方法。
-```
-function myFunction() {
-  $("#h01").html("Hello jQuery"); // element id "h01", innerHTML set to "Hello jQuery"
-}
-
-$(document).ready(myFunction); // onload
-```
-
-See JQuery.md
+# HERE https://www.w3schools.com/js/js_ajax_intro.asp
 
 ### AJAX
 [src](http://www.w3school.com.cn/php/php_ajax_xmlhttprequest.asp)
@@ -1813,6 +1815,45 @@ if ($hint == ""){
 echo $response; //output the response
 ?>
 ```
+
+
+
+### JavaScript 库
+[src](http://www.w3school.com.cn/js/js_library_jquery.asp)
+
+JavaScript框架：库，高级应用程序设计。特别针对浏览器差异处理。常用的有jQuery、Prototype、MooTools。
+
+CDN (Content Delivery Network)把框架库存放在一个通用的位置供每个网页分享就变得很有意义了。
+
+### JQuery
+[src](http://www.w3school.com.cn/js/js_library_jquery.asp)
+
+使用前需要引用jQuery 库。
+```
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js">
+</script>
+<script>
+mycode
+...
+</script>
+```
+
+测试 JavaScript 框架库
+- 主要的jQuery 函数是`$()` 函数(jQuery 函数)。
+- 如果您向该函数传递DOM 对象，它会返回jQuery 对象，带有向其添加的jQuery 功能。
+- 可以通过CSS 选择器来选取元素
+- jQuery 函数返回jQuery 对象。
+
+DOM 对象$(document) 传递到jQuery。返回的jQuery对象有ready 方法。
+```
+function myFunction() {
+  $("#h01").html("Hello jQuery"); // element id "h01", innerHTML set to "Hello jQuery"
+}
+
+$(document).ready(myFunction); // onload
+```
+
+See JQuery.md
 
 # Node.js
 https://www.nczonline.net/blog/2013/10/07/node-js-and-the-new-web-front-end/
