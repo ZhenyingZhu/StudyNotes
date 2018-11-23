@@ -1686,15 +1686,46 @@ function checkCookie(){
 </html>
 ```
 
-# HERE https://www.w3schools.com/js/js_ajax_intro.asp
-
 ### AJAX
+
 [src](http://www.w3school.com.cn/php/php_ajax_xmlhttprequest.asp)
 
-AJAX(Asynchronous JavaScript And XML)：运用JavaScript，XML，HTML，CSS，通过在幕后向服务器发送 HTTP 请求并交换数据，而不是每当用户作出改变时重载整个 web 页面，AJAX 技术可以使网页更迅速地响应。
+AJAX(Asynchronous JavaScript And XML):
+
+- a technique for accessing web servers from a web page
+- Read data from a web server after the page has loaded
+- Update a web page without reloading the page
+- Send data to a web server in the background
+
+运用JavaScript，XML，HTML，CSS，通过在幕后向服务器发送 HTTP 请求并交换数据，而不是每当用户作出改变时重载整个 web 页面，AJAX 技术可以使网页更迅速地响应。
+
+```html
+<div id="demo">
+<h2>The XMLHttpRequest Object</h2>
+<button type="button" onclick="loadDoc()">Change Content</button>
+</div>
+
+<script>
+function loadDoc() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("demo").innerHTML =
+      this.responseText;
+    }
+  };
+  xhttp.open("GET", "ajax_info.txt", true);
+  xhttp.send();
+}
+</script>
+```
+
+# HERE https://www.w3schools.com/js/js_ajax_http.asp
+
 
 不同的浏览器使用不同的方法来创建 XMLHttpRequest 对象：Internet Explorer 使用`ActiveXObject`。其他浏览器使用名为`XMLHttpRequest` 的`JavaScript` 内建对象。
-```
+
+```javascript
 function GetXmlHttpObject(){
  var xmlHttp=null;
  try{
@@ -1815,7 +1846,6 @@ if ($hint == ""){
 echo $response; //output the response
 ?>
 ```
-
 
 
 ### JavaScript 库
