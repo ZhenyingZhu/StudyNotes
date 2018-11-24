@@ -1720,9 +1720,6 @@ function loadDoc() {
 </script>
 ```
 
-# HERE https://www.w3schools.com/js/js_ajax_http.asp
-
-
 不同的浏览器使用不同的方法来创建 XMLHttpRequest 对象：Internet Explorer 使用`ActiveXObject`。其他浏览器使用名为`XMLHttpRequest` 的`JavaScript` 内建对象。
 
 ```javascript
@@ -1743,7 +1740,38 @@ function GetXmlHttpObject(){
 }
 ```
 
+Modern browsers do not allow access across domains.
+
+XMLHttpRequest methods:
+
+- `new XMLHttpRequest()`
+- `abort()`
+- `getAllResponseHeaders()`, `getResponseHeader("header name")`
+- `open(method, url, async, user, psw)`:
+  - method: `GET`, `POST`
+  - url: since it cannot across domain, it is the file location.
+  - async: boolean.
+  - user: user name.
+  - psw: password.
+- `send()` for GET, and `send(string)` for POST.
+- `setRequestHeader()`
+
+XMLHttpRequest properties:
+
+- `onreadystatechange`: Defines a function to be called (so it is a callback function) when the readyState property changes
+- `readyState`:
+  - 0: request not initialized
+  - 1: server connection established
+  - 2: request received
+  - 3: processing request
+  - 4: request finished and response is ready
+- `responseText`
+- `responseXML`
+- `status`: [HTTP return code](https://www.w3schools.com/tags/ref_httpmessages.asp).
+- `statusText`
+
 用xmlHttp对象来后台交互数据。
+
 - `open(method,url,async)`: 规定请求的类型、URL 以及是否异步处理请求。
   - method: 请求的类型；GET 或 POST
   - url: 文件在服务器上的位置
@@ -1752,14 +1780,29 @@ function GetXmlHttpObject(){
   - string: 仅用于 POST 请求
 
 GET 更简单也更快，并且在大部分情况下都能用。GET的信息包含在url中。
+
+```javascript
+xmlHttp.open("GET", "demo_get.php?qid=信息&sid="+Math.random(),true); xmlHttp.send();
 ```
-xmlHttp.open("GET", "demo_get.php?q信息&sid="+Math.random(),true); xmlHttp.send();
+
+If just get the filename, the server might return a cached page. Add an id to avoid that. (The page need to be dynamically generated)
+
+```javascript
+xhttp.open("GET", "demo_get.asp?t=" + Math.random(), true);
+xhttp.send();
 ```
+
+Use POST when:
+
+- A cached file is not an option (update a file or database on the server), so that you need to send some data to the server.
+- Sending a large amount of data to the server (POST has no size limitations).
+- Sending user input (which can contain unknown characters), POST is more robust and secure than GET.
 
 无法使用缓存文件（更新服务器上的文件或数据库，或向服务器发送大量数据（POST 没有数据量限制），或发送包含未知字符的用户输入时，POST 比 GET 更稳定也更可靠。
 
 POST需要为HTML请求添加头。
-```
+
+```javascript
 xmlhttp.open("POST","demo_post.php",true);
 xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 xmlhttp.send("fname=Bill&lname=Gates");
@@ -1772,6 +1815,7 @@ xmlhttp.send("fname=Bill&lname=Gates");
 响应数据：`responseText`属性为获得字符串形式的响应数据；`responseXML`为获得XML 形式的响应数据。
 
 onreadystatechange事件：
+
 - `onreadystatechange`: 存储函数（或函数名），每当 readyState 属性改变时，就会调用该函数。
 - `readyState`: 存有 XMLHttpRequest 的状态。从 0 到 4 发生变化。
   - 0: 请求未初始化
@@ -1781,10 +1825,11 @@ onreadystatechange事件：
   - 4: 请求已完成，且响应已就绪
 
 status
+
 - 200: "OK"
 - 404: 未找到页面
 
-```
+```javascript
 xmlhttp.onreadystatechange=function(){
   if (xmlhttp.readyState==4 && xmlhttp.status==200){
     document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
@@ -1792,12 +1837,52 @@ xmlhttp.onreadystatechange=function(){
 }
 ```
 
-下例是一段根据form中`<input type="text" id="txt1" onkeyup="showHint(this.value)">`内容显示数据的JavaScript脚本。
+A callback function is a function passed as a parameter to another function.
+
+XMLHttpRequest has a build-in XML parser.
+
+XML nodes have tags like HTML DOM modes. Text is child node of a tag node.
+
+cd_catalog.xml:
+
+```xml
+<CATALOG>
+  <CD>
+    <TITLE>Empire Burlesque</TITLE>
+    <ARTIST>Bob Dylan</ARTIST>
+  </CD>
+</CATALOG>
 ```
+
+```html
+<p id="demo"></p>
+
+<script>
+var xhttp, xmlDoc, txt, x, i;
+xhttp = new XMLHttpRequest();
+xhttp.onreadystatechange = function() {
+if (this.readyState == 4 && this.status == 200) {
+  xmlDoc = this.responseXML;
+  txt = "";
+  x = xmlDoc.getElementsByTagName("ARTIST");
+  for (i = 0; i < x.length; i++) {
+    txt = txt + x[i].childNodes[0].nodeValue + "<br>";
+  }
+  document.getElementById("demo").innerHTML = txt;
+  }
+};
+xhttp.open("GET", "cd_catalog.xml", true);
+xhttp.send();
+</script>
+```
+
+下例是一段根据form中`<input type="text" id="txt1" onkeyup="showHint(this.value)">`内容显示数据的JavaScript脚本。
+
+```javascript
 var xmlHttp;
 
 function showHint(str){
-  if (str.length==0){ 
+  if (str.length==0){
     document.getElementById("txtHint").innerHTML="";
     return;
   }
@@ -1805,23 +1890,24 @@ function showHint(str){
   if (xmlHttp==null){
     alert ("Browser does not support HTTP Request");
     return;
-  } 
-  var url="gethint.php"; 
+  }
+  var url="gethint.php";
   url=url+"?q="+str+"&sid="+Math.random(); // 随机数用于防止浏览器使用缓存
-  xmlHttp.onreadystatechange=stateChanged(); 
+  xmlHttp.onreadystatechange=stateChanged();
   xmlHttp.open("GET", url, true); // 发送的目的地
   xmlHttp.send(null); // 发送的内容，因为get的内容在url中。
 }
 
-function stateChanged(){ 
+function stateChanged(){
   if (xmlHttp.readyState==4 || xmlHttp.readyState=="complete"){
     document.getElementById("txtHint").innerHTML=xmlHttp.responseText; //完成，输出信息到<p>Suggestions: <span id="txtHint"></span></p>
-  } 
+  }
 }
 ```
 
 用gethint.php接收get的内容并作出回应。
-```
+
+```php
 <?php
 $a[]="Anna"; // Suggestion
 $q=$_GET["q"]; //get the q parameter from URL
@@ -1847,6 +1933,7 @@ echo $response; //output the response
 ?>
 ```
 
+# HERE https://www.w3schools.com/js/js_json_intro.asp
 
 ### JavaScript 库
 [src](http://www.w3school.com.cn/js/js_library_jquery.asp)
