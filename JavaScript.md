@@ -2,11 +2,11 @@
 
 ## JavaScript
 
-### Resources
+### JS Resources
 
 <http://www.w3school.com.cn/js/index.asp>
 
-### Introduction
+### JS Introduction
 
 [src1](http://www.w3school.com.cn/js/js_howto.asp), [src2](http://www.w3school.com.cn/js/js_whereto.asp)
 
@@ -15,8 +15,6 @@ HTML 中的脚本(也就是HTML无法访问的内容，如变量，函数内容�
 旧版本需`<script>` 标签中使用`type="text/javascript"` 。现在不必。
 
 可把脚本存于*.js文件中，并通过`<script src="myScript.js"></script>`导入。外部脚本不能有`<script>`标签。
-
-### Output
 
 - write to an exsiting HTML element: `innerHTML`.
 - write to somewhere in the whole HTML page: `document.write()`.
@@ -61,8 +59,6 @@ Never call document.write after the document has finished loading. It will overw
 <button type="button" onclick="document.write(5 + 6)">Try it</button>
 </p></p></body>
 ```
-
-### Syntax
 
 [src](http://www.w3school.com.cn/js/js_statements.asp)
 
@@ -123,7 +119,7 @@ Variable
 
 null值：可通过将变量设为此值将变量设为undefined。
 
-### Events
+### JS Events
 
 `<element event="some JavaScript"/>`
 
@@ -150,7 +146,7 @@ Common HTML Events:
 - `onkeydown`
 - `onload`
 
-### Object
+### JS Object
 
 [src](http://www.w3school.com.cn/js/js_obj_intro.asp)
 
@@ -471,7 +467,7 @@ Person.prototype.name = function() {
 };
 ```
 
-### Expression
+### JS Expression
 
 [src](http://www.w3school.com.cn/js/js_functions.asp)
 
@@ -628,7 +624,7 @@ constructor: can be `Array` or `Date`.
 myDate.constructor === Date;
 ```
 
-### 正则表达式
+### JS 正则表达式
 
 [src](http://www.w3school.com.cn/js/js_obj_regexp.asp)
 
@@ -678,7 +674,7 @@ while (result!=null) // output is eeeeeenull
 /e/.compile("d");
 ```
 
-### 错误处理
+### JS 错误处理
 
 [src](http://www.w3school.com.cn/js/js_errors.asp)
 
@@ -710,7 +706,7 @@ Error name values:
 - `TypeError`: A type error has occurred.
 - `URIError`: An error in encodeURI() has occurred.
 
-### Scope
+### JS Scope
 
 Global variables:
 
@@ -762,7 +758,7 @@ In ECMAScript 2015, block scope is provided with `let`. Also `const` is provided
 
 The keyword const does NOT define a constant value, but a constant reference to a value. So the properties of constant objects can be changed.
 
-### Debug
+### JS Debug
 
 In browser's develop tool, console tab, the `console.log()` can be seen.
 
@@ -779,7 +775,7 @@ debugger;
 </script>
 ```
 
-### Code style
+### JS Code style
 
 Naming:
 
@@ -1933,45 +1929,140 @@ echo $response; //output the response
 ?>
 ```
 
-# HERE https://www.w3schools.com/js/js_json_intro.asp
+### JS JSON
 
-### JavaScript 库
-[src](http://www.w3school.com.cn/js/js_library_jquery.asp)
+More details see Json.md
 
-JavaScript框架：库，高级应用程序设计。特别针对浏览器差异处理。常用的有jQuery、Prototype、MooTools。
+JSON(JavaScript Object Notation):
 
-CDN (Content Delivery Network)把框架库存放在一个通用的位置供每个网页分享就变得很有意义了。
+- a lightweight data-interchange format.
+- is language independent.
+- Data is in name/value pairs
+- Data is separated by commas
+- Curly braces hold objects
+- Square brackets hold arrays
 
-### JQuery
-[src](http://www.w3school.com.cn/js/js_library_jquery.asp)
+Can convert any JavaScript object into JSON, and send JSON to the server.
 
-使用前需要引用jQuery 库。
+Convert object to string:
+
+```javascript
+var myObj = {name: "John", age: 31, city: "New York"};
+var myJSON = JSON.stringify(myObj);
+window.location = "demo_json.php?x=" + myJSON;
 ```
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js">
-</script>
+
+Parse string to object:
+
+```javascript
+var myJSON = '{"name":"John", "age":31, "city":"New York"}';
+var myObj = JSON.parse(myJSON);
+document.getElementById("demo").innerHTML = myObj.name;
+```
+
+JSON names/keys require double quotes.
+
+values must be one of the following data types:
+
+- a string
+- a number
+- an object (JSON object)
+- an array
+- a boolean: `true` or `false`
+- null
+
+JSON doesn't support date type. Can store date as a string and convert back later:
+
+```javascript
+var text = '{"name":"John", "birth":"1986-12-14", "city":"New York"}';
+var obj = JSON.parse(text);
+obj.birth = new Date(obj.birth);
+```
+
+Or define a callback function as reviver for `JSON.parse(str, reviver)`:
+
+```javascript
+var text = '{ "name":"John", "birth":"1986-12-14", "city":"New York"}';
+var obj = JSON.parse(text, function (key, value) {
+    if (key == "birth") {
+        return new Date(value);
+    } else {
+        return value;
+    }});
+```
+
+JSON doesn't support function. Can store as string and call `eval` on it to revive it. But it will lost scope so it is dangerous.
+
+```javascript
+var text = '{ "name":"John", "age":"function () {return 30;}", "city":"New York"}';
+var obj = JSON.parse(text);
+obj.age = eval("(" + obj.age + ")");
+```
+
+`JSON.stringify` can convert JS object to string. It will convert date to string, and will remove keys and values for functions.
+
+`delete` can be used to delete a property of an object or an entry of an array.
+
+The file type for JSON files is ".json".
+
+The MIME type for JSON text is "application/json".
+
+JSON vs XML:
+
+- JSON doesn't use end tag
+- JSON is shorter
+- JSON can use arrays
+- XML has to be parsed with an XML parser. JSON can be parsed by a standard JavaScript function.
+
+JSONP(JSON with Padding):
+
+- a method for sending JSON data without worrying about cross-domain issues.
+- Requesting a file from another domain can cause problems, due to cross-domain policy.
+- Requesting an external script from another domain does not have this problem.
+- Use `script` tag.
+
+The server side returns a string which call a function defined as client side:
+
+```php
+<?php
+$myJSON = '{ "name":"John", "age":30, "city":"New York" }';
+echo "myFunc(".$myJSON.");";
+?>
+```
+
+Client side, in `<script>`, requests an external script.
+
+```javascript
 <script>
-mycode
-...
+function myFunc(myObj) {
+  document.getElementById("demo").innerHTML = myObj.name;
+}
 </script>
+<script src="demo_jsonp.php"></script>
 ```
 
-测试 JavaScript 框架库
-- 主要的jQuery 函数是`$()` 函数(jQuery 函数)。
-- 如果您向该函数传递DOM 对象，它会返回jQuery 对象，带有向其添加的jQuery 功能。
-- 可以通过CSS 选择器来选取元素
-- jQuery 函数返回jQuery 对象。
+Dynamically create the `script` tag:
 
-DOM 对象$(document) 传递到jQuery。返回的jQuery对象有ready 方法。
-```
-function myFunction() {
-  $("#h01").html("Hello jQuery"); // element id "h01", innerHTML set to "Hello jQuery"
+```javascript
+<p id="demo"></p>
+
+<script>
+function clickButton() {
+    var s = document.createElement("script");
+    s.src = "demo_jsonp.php";
+    document.body.appendChild(s);
 }
 
-$(document).ready(myFunction); // onload
+function myFunc(myObj) {
+  document.getElementById("demo").innerHTML = myObj.name;
+}
+</script>
 ```
+
+## JQuery
 
 See JQuery.md
 
-# Node.js
-https://www.nczonline.net/blog/2013/10/07/node-js-and-the-new-web-front-end/
+## Node.js
 
+<https://www.nczonline.net/blog/2013/10/07/node-js-and-the-new-web-front-end/>

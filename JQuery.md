@@ -1,6 +1,47 @@
 # JQuery
 
+## Resource
+
+<https://www.w3schools.com/jquery/default.asp>
+
+## JQuery Introduction
+
+[src](http://www.w3school.com.cn/js/js_library_jquery.asp)
+
+JavaScript框架：库，高级应用程序设计。特别针对浏览器差异处理。常用的有jQuery、Prototype、MooTools。
+
+CDN (Content Delivery Network)把框架库存放在一个通用的位置供每个网页分享就变得很有意义了。
+
+使用前需要引用jQuery 库。
+
+```html
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js">
+</script>
+<script>
+mycode
+...
+</script>
+```
+
+测试 JavaScript 框架库:
+
+- 主要的jQuery 函数是`$()` 函数(jQuery 函数)。
+- 如果您向该函数传递DOM 对象，它会返回jQuery 对象，带有向其添加的jQuery 功能。
+- 可以通过CSS 选择器来选取元素
+- jQuery 函数返回jQuery 对象。
+
+DOM 对象$(document) 传递到jQuery。返回的jQuery对象有ready 方法。
+
+```javascript
+function myFunction() {
+  $("#h01").html("Hello jQuery"); // element id "h01", innerHTML set to "Hello jQuery"
+}
+
+$(document).ready(myFunction); // onload
+```
+
 ## w3school Turtorial
+
 [src](https://www.w3schools.com/jquery/)
 
 [test](https://www.w3schools.com/jquery/tryit.asp?filename=tryjquery_hide)
