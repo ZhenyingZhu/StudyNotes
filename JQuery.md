@@ -4,23 +4,74 @@
 
 <https://www.w3schools.com/jquery/default.asp>
 
-## JQuery Introduction
+## w3school Turtorial
 
-[src](http://www.w3school.com.cn/js/js_library_jquery.asp)
+[src1](https://www.w3schools.com/jquery/default.asp),
+[src2](http://www.w3school.com.cn/js/js_library_jquery.asp)
+
+jQuery:
+
+- is a lightweight, "write less, do more", JavaScript library.
+- contains the following features:
+  - HTML/DOM manipulation
+  - CSS manipulation
+  - HTML event methods
+  - Effects and animations
+  - AJAX
+  - Utilities
 
 JavaScript框架：库，高级应用程序设计。特别针对浏览器差异处理。常用的有jQuery、Prototype、MooTools。
+
+To use jQuery:
+
+- can download `jquery-3.3.1.min.js` from [jQuery.com](http://jquery.com/download/) and add to the webpage as a script.
+- or include jQuery from a CDN (Content Delivery Network). If the client already download it while read another webpage, it is in the cache.
+
+```html
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<script>
+mycode
+...
+</script>
+```
 
 CDN (Content Delivery Network)把框架库存放在一个通用的位置供每个网页分享就变得很有意义了。
 
 使用前需要引用jQuery 库。
 
-```html
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js">
-</script>
-<script>
-mycode
-...
-</script>
+Syntax: `$(selector).action()`:
+
+- tailor-made for selecting HTML elements and performing some action on the elements
+- uses CSS syntax to select elements
+- `$(this).hide()`: hides the current element.
+- `$("p").hide()`: hides all `<p>` elements.
+- `$(".test").hide()`: hides all elements with `class="test"`.
+- `$("#test").hide()`: hides the element with `id="test"`.
+
+```javascript
+function myFunction() {
+  $("#h01").html("Hello jQuery"); // element id "h01", innerHTML set to "Hello jQuery"
+}
+
+$(document).ready(myFunction); // onload
+```
+
+document ready event is to prevent any jQuery code from running before the document is finished loading
+
+```javascript
+$(document).ready(function(){
+   ...
+});
+```
+
+or a shorter form:
+
+```javascript
+$(function(){
+    ...
+});
 ```
 
 测试 JavaScript 框架库:
@@ -32,62 +83,27 @@ mycode
 
 DOM 对象$(document) 传递到jQuery。返回的jQuery对象有ready 方法。
 
-```javascript
-function myFunction() {
-  $("#h01").html("Hello jQuery"); // element id "h01", innerHTML set to "Hello jQuery"
-}
+[Selector](https://www.w3schools.com/jquery/jquery_selectors.asp):
 
-$(document).ready(myFunction); // onload
-```
-
-## w3school Turtorial
-
-[src](https://www.w3schools.com/jquery/)
-
-[test](https://www.w3schools.com/jquery/tryit.asp?filename=tryjquery_hide)
-
-Include jQuery from a CDN (Content Delivery Network)
-```
-<head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-</head>
-```
-
-Syntax: `$(selector).action()`
-- tailor-made for selecting HTML elements and performing some action on the elements
-- uses CSS syntax to select elements
-- `$(this).hide()`: hides the current element.
-- `$("p").hide()`: hides all `<p>` elements.
-- `$(".test").hide()`: hides all elements with `class="test"`.
-- `$("#test").hide()`: hides the element with `id="test"`.
-
-document ready event is to prevent any jQuery code from running before the document is finished loading
-```
-$(document).ready(function(){
-   ...
-});
-```
-or
-```
-$(function(){
-    ...
-});
-```
-
-[Selector](https://www.w3schools.com/jquery/jquery_selectors.asp)
+- `$(this)`
+- `$("#id")`: id should be unique within a page.
 - `$("*")`: all elements
 - `$("p.intro")`: Selects all `<p>` elements with `class="intro"`
-- `$("p:first")`
-- `$("ul li:first")`
-- `$("ul li:first-child")`
-- `$("[href]")`: select element with attribute
+- `$("p:first")`, `$("tr:even")`, `$("tr:odd")`
+- `$("ul li:first")`: Selects the first `<li>` element of the first `<ul>`.
+- `$("ul li:first-child")`: Selects the first `<li>` element of every `<ul>`.
+- `$("[href]")`: select element with attribute.
 - `$("a[target='_blank']")`, `$("a[target!='_blank']")`
 - `$(":button")`: Selects all `<button>` elements and `<input>` elements of `type="button"`
-- `$("tr:even")`, `$("tr:odd")`
+
+[Other selectors](https://www.w3schools.com/jquery/jquery_ref_selectors.asp) [Tester](https://www.w3schools.com/jquery/trysel.asp)
+
+# HERE https://www.w3schools.com/jquery/jquery_events.asp
 
 [Event Methods](https://www.w3schools.com/jquery/jquery_events.asp)
 
-DOM events
+DOM events:
+
 - Mouse Events
   - click
   - dblclick
@@ -110,15 +126,17 @@ DOM events
   - unload
   - ready
 
-Click a paragh element makes it hide
-```
+Click a paragh element makes it hide:
+
+```javascript
 $("p").click(function(){
     $(this).hide();
 });
 ```
 
-hover takes two functions
-```
+hover takes two functions:
+
+```javascript
 $("#p1").hover(function(){
     alert("You entered p1!");
 },
@@ -127,13 +145,16 @@ function(){
 });
 ```
 
-For elements
-```
+For elements:
+
+```javascript
 Name: <input type="text" name="fullname"><br>
 Email: <input type="text" name="email">
 ```
-Change color
-```
+
+Change color:
+
+```javascript
 $(document).ready(function(){
     $("input").focus(function(){
         $(this).css("background-color", "#cccccc");
@@ -145,21 +166,23 @@ $(document).ready(function(){
 ```
 
 Attach multiple event handlers to a `<p>` element using `on()`:
-```
+
+```javascript
 $("p").on({
     mouseenter: function(){
         $(this).css("background-color", "lightgray");
-    }, 
+    },
     mouseleave: function(){
         $(this).css("background-color", "lightblue");
-    }, 
+    },
     click: function(){
         $(this).css("background-color", "yellow");
-    } 
+    }
 });
 ```
 
-[jQuery Effects](https://www.w3schools.com/jquery/jquery_hide_show.asp)
+[jQuery Effects](https://www.w3schools.com/jquery/jquery_hide_show.asp):
+
 - Syntax `$(selector).hide(speed,callback);`, where speed can be `"slow"`, `"fast"` and milliseconds
 - `hide`, `show`, `toggle`
 - `fadeIn()`, `fadeOut()`, `fadeToggle()`, `fadeTo()`
@@ -170,7 +193,8 @@ $("p").on({
 Callback: A callback function is executed after the current effect is 100% finished.
 
 Without callback:
-```
+
+```javascript
 $("button").click(function(){
     $("p").hide(1000);
     alert("The paragraph is now hidden"); # before hide complete the alert shows
@@ -178,7 +202,8 @@ $("button").click(function(){
 ```
 
 With callback:
-```
+
+```javascript
 $("button").click(function(){
     $("p").hide("slow", function(){
         alert("The paragraph is now hidden");
@@ -186,66 +211,77 @@ $("button").click(function(){
 });
 ```
 
-Method Chaining
-```
+Method Chaining:
+
+```javascript
 $("#p1").css("color", "red").slideUp(2000).slideDown(2000);
 ```
 
-[jQuery HTML](https://www.w3schools.com/jquery/jquery_dom_get.asp)
+[jQuery HTML](https://www.w3schools.com/jquery/jquery_dom_get.asp):
+
 - `text()`: Sets or returns the text content of selected elements
 - `html()`: Sets or returns the content of selected elements (including HTML markup)
 - `val()`: Sets or returns the value of form fields
 - `attr("href")`
 
-return
-```
+return:
+
+```javascript
 $("#btn1").click(function(){
     alert("Text: " + $("#test").text());
 });
 ```
 
 set first 3:
-```
+
+```javascript
 $("#test1").text("Hello world!");
 ```
 
 `text()`, `html()`, and `val()` comes with Callback functions that has 2 args: index and old value
 
-```
+```javascript
 $("#btn1").click(function(){
     $("p").text(function(i, origText){
         return "Old text: " + origText + " New text: Hello world!
-        (index: " + i + ")"; 
+        (index: " + i + ")";
     });
 });
 ```
-Can change
-```
+
+Can change:
+
+```html
 <p>paragh 1</p>
 <p>paragh 2</p>
 ```
-to
-```
+
+to:
+
+```html
 <p>Old text: paragh 1 New text: Hello world! index: 0</p>
 <p>Old text: paragh 2 New text: Hello world! index: 1</p>
 ```
 
-set attr
-```
+set attr:
+
+```javascript
 $("#w3s").attr({
     "href" : "https://www.w3schools.com/jquery",
     "title" : "W3Schools jQuery Tutorial"
 });
 ```
 
-Add New HTML Content
+Add New HTML Content:
+
 - `append()`: Inserts content at the end of the selected elements
 - `prepend()`: Inserts content at the beginning of the selected elements
 - `after()`: Inserts content after the selected elements
 - `before()`: Inserts content before the selected elements
 
-Append can append any number of any var
-```
+Append can append any number of any var:
+
+```javascript
 function appendText() {
     var txt1 = "<p>Text.</p>";               // Create element with HTML  
     var txt2 = $("<p></p>").text("Text.");   // Create with jQuery
@@ -255,23 +291,27 @@ function appendText() {
 }
 ```
 
-Remove Elements
+Remove Elements:
+
 - `remove()`: Removes the selected element (and its child elements)
 - `empty()`: Removes the child elements from the selected element
 
-Accept filter
-```
+Accept filter:
+
+```javascript
 $("p").remove(".test, .demo");
 ```
 
-[Get and Set CSS Classes](https://www.w3schools.com/jquery/jquery_css_classes.asp)
+[Get and Set CSS Classes](https://www.w3schools.com/jquery/jquery_css_classes.asp):
+
 - `addClass()`: Adds one or more classes to the selected elements
 - `removeClass()`: Removes one or more classes from the selected elements
 - `toggleClass()`: Toggles between adding/removing classes from the selected elements
 - `css()`: Sets or returns the style attribute
 
-CSS style
-```
+CSS style:
+
+```html
 <style>
 .important {
     font-weight: bold;
@@ -282,10 +322,11 @@ CSS style
     color: blue;
 }
 </style>
+```
 
-```
-Add to elements
-```
+Add to elements:
+
+```javascript
 $(document).ready(function(){
     $("button").click(function(){
         $("h1, h2, p").addClass("blue");
@@ -294,17 +335,20 @@ $(document).ready(function(){
 });
 ```
 
-Return a CSS Property of the first matched element
-```
+Return a CSS Property of the first matched element:
+
+```javascript
 $("p").css("background-color");
 ```
 
-Set of all matched elements
-```
+Set of all matched elements:
+
+```javascript
 $("p").css({"background-color": "yellow", "font-size": "200%"});
 ```
 
-[jQuery Dimension Methods](https://www.w3schools.com/jquery/jquery_dimensions.asp)
+[jQuery Dimension Methods](https://www.w3schools.com/jquery/jquery_dimensions.asp):
+
 - `width()`
 - `height()`
 - `innerWidth()`
@@ -312,8 +356,9 @@ $("p").css({"background-color": "yellow", "font-size": "200%"});
 - `outerWidth()`
 - `outerHeight()`
 
-For css
-```
+For css:
+
+```html
 <style>
 #div1 {
     height: 100px;
@@ -328,8 +373,10 @@ For css
 <div id="div1"></div>
 <button>Display dimensions of div</button>
 ```
-Display height in the div
-```
+
+Display height in the div:
+
+```javascript
 $(document).ready(function(){
     $("button").click(function(){
         var txt = "";
@@ -338,7 +385,6 @@ $(document).ready(function(){
     });
 });
 ```
-
 
 HTML document: `$(document).width()`
 
@@ -349,29 +395,34 @@ browser viewport: `$(window).height()`
 Traversing a DOM tree. move up (ancestors), down (descendants) and sideways (siblings)
 
 Traverse Up:
+
 - `parent()`
 - `parents()`: all the way up to the document's root element `<html>`
 - `parentsUntil()`: `$("span").parentsUntil("div");`
 
 Filter
-```
+
+```javascript
 $(document).ready(function(){
     $("span").parents("ul").css({"color": "red", "border": "2px solid red"});
 });
 ```
 
 Traverse Down:
+
 - `children()`: single level down
 - `find()`: returns descendant elements of the selected element, all the way down to the last descendant. All: `$("div").find("*");`
 
-Filter
-```
+Filter:
+
+```javascript
 $(document).ready(function(){
     $("div").children("p.first");
 });
 ```
 
-Traversing Sideways
+Traversing Sideways:
+
 - `siblings()`: all sibling elements of the selected element, not include itself.
 - `next()`
 - `nextAll()`
@@ -380,7 +431,8 @@ Traversing Sideways
 - `prevAll()`
 - `prevUntil()`
 
-Filtering
+Filtering:
+
 - `first()`: `$("div").first();` the first `<div>`
 - `last()`
 - `eq()`: specify index number. `$("p").eq(1);`
@@ -393,16 +445,18 @@ With the jQuery AJAX methods, you can request text, HTML, XML, or JSON from a re
 
 Because different browsers have different syntax for AJAX implementation. This means that you will have to write extra code to test for different browsers. However, the jQuery team has taken care of this for us.
 
-AJAX `load()` Method
+AJAX `load()` Method:
+
 - Syntax: `$(selector).load(URL,data,callback);`
 - `$("#div1").load("demo_test.txt #p1");` load the element with id `p1` in this URL
-- Callback: 
+- Callback:
   - `responseTxt`: contains the resulting content if the call succeeds
   - `statusTxt`: contains the status of the call
   - `xhr`: contains the XMLHttpRequest object
 
-Get the status from load method
-```
+Get the status from load method:
+
+```javascript
 $("button").click(function(){
     $("#div1").load("demo_test.txt", function(responseTxt, statusTxt, xhr){
         if(statusTxt == "success")
@@ -413,14 +467,15 @@ $("button").click(function(){
 });
 ```
 
-GET and POST
+GET and POST:
+
 - the POST method NEVER caches data, and is often used to send data along with the request.
 - GET Syntax: `$.get(URL,callback);`
 - POST Syntax: `$.post(URL,data,callback);`
 
+GET:
 
-GET
-```
+```javascript
 $("button").click(function(){
     $.get("demo_test.asp", function(data, status){
         alert("Data: " + data + "\nStatus: " + status);
@@ -428,8 +483,9 @@ $("button").click(function(){
 });
 ```
 
-POST
-```
+POST:
+
+```javascript
 $("button").click(function(){
     $.post("demo_test_post.asp",
     {
@@ -445,4 +501,3 @@ $("button").click(function(){
 [The `noConflict()` Method](https://www.w3schools.com/jquery/jquery_noconflict.asp)
 
 If two different frameworks are using the same shortcut, one of them might stop working. The `noConflict()` method releases the hold on the $ shortcut identifier, so that other scripts can use it.
-
