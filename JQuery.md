@@ -98,18 +98,24 @@ DOM 对象$(document) 传递到jQuery。返回的jQuery对象有ready 方法。
 
 [Other selectors](https://www.w3schools.com/jquery/jquery_ref_selectors.asp) [Tester](https://www.w3schools.com/jquery/trysel.asp)
 
-# HERE https://www.w3schools.com/jquery/jquery_events.asp
-
 [Event Methods](https://www.w3schools.com/jquery/jquery_events.asp)
 
-DOM events:
+Event:
+
+- jQuery is tailor-made to respond to events in an HTML page.
+- All the different visitors' actions that a web page can respond to are called events.
+- An event represents the precise moment when something happens.
+- Most DOM events have an equivalent jQuery method.
+- Syntax: `$(<element selector>).<event>(<action>)`.
+
+JQuery event methods:
 
 - Mouse Events
   - click
   - dblclick
   - mouseenter
   - mouseleave
-  - hover: takes two functions
+  - hover: equals to `mouseenter()` and `mouseleave()`, so it can take two functions.
 - Keyboard Events
   - keypress
   - keydown
@@ -125,6 +131,8 @@ DOM events:
   - scroll
   - unload
   - ready
+
+[All events](https://www.w3schools.com/jquery/jquery_ref_events.asp)
 
 Click a paragh element makes it hide:
 
@@ -152,7 +160,7 @@ Name: <input type="text" name="fullname"><br>
 Email: <input type="text" name="email">
 ```
 
-Change color:
+Change color: Notice it is a nested jQuery action.
 
 ```javascript
 $(document).ready(function(){
@@ -180,6 +188,8 @@ $("p").on({
     }
 });
 ```
+
+# HERE https://www.w3schools.com/jquery/jquery_hide_show.asp
 
 [jQuery Effects](https://www.w3schools.com/jquery/jquery_hide_show.asp):
 
@@ -283,11 +293,11 @@ Append can append any number of any var:
 
 ```javascript
 function appendText() {
-    var txt1 = "<p>Text.</p>";               // Create element with HTML  
+    var txt1 = "<p>Text.</p>";               // Create element with HTML
     var txt2 = $("<p></p>").text("Text.");   // Create with jQuery
     var txt3 = document.createElement("p");  // Create with DOM
     txt3.innerHTML = "Text.";
-    $("body").append(txt1, txt2, txt3);      // Append the new elements 
+    $("body").append(txt1, txt2, txt3);      // Append the new elements
 }
 ```
 
