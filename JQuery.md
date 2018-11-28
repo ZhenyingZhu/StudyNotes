@@ -189,8 +189,6 @@ $("p").on({
 });
 ```
 
-# HERE https://www.w3schools.com/jquery/jquery_hide_show.asp
-
 [jQuery Effects](https://www.w3schools.com/jquery/jquery_hide_show.asp):
 
 - Syntax `$(selector).hide(speed,callback);`, where speed can be `"slow"`, `"fast"` and milliseconds
@@ -220,6 +218,10 @@ $("button").click(function(){
     });
 });
 ```
+
+[All effects](https://www.w3schools.com/jquery/jquery_ref_effects.asp)
+
+# HERE https://www.w3schools.com/jquery/jquery_fade.asp
 
 Method Chaining:
 
