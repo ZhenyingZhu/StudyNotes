@@ -221,7 +221,7 @@ $("button").click(function(){
 
 [All effects](https://www.w3schools.com/jquery/jquery_ref_effects.asp)
 
-# HERE https://www.w3schools.com/jquery/jquery_slide.asp
+# HERE https://www.w3schools.com/jquery/jquery_animate.asp
 
 Method Chaining:
 
