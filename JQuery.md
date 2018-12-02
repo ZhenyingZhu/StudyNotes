@@ -221,9 +221,10 @@ $("button").click(function(){
 
 [All effects](https://www.w3schools.com/jquery/jquery_ref_effects.asp)
 
-[Skipped](https://www.w3schools.com/jquery/jquery_animate.asp)
+[Animate Skipped](https://www.w3schools.com/jquery/jquery_animate.asp)
+[Stop Skipped](https://www.w3schools.com/jquery/jquery_stop.asp)
 
-# HERE https://www.w3schools.com/jquery/jquery_stop.asp
+# HERE https://www.w3schools.com/jquery/jquery_callback.asp
 
 Method Chaining:
 
