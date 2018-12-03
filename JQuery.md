@@ -6,7 +6,7 @@
 
 ## w3school Turtorial
 
-[src1](https://www.w3schools.com/jquery/default.asp),
+[src1](https://www.w3schools.com/jquery/default.asp); 
 [src2](http://www.w3school.com.cn/js/js_library_jquery.asp)
 
 jQuery:
@@ -221,16 +221,27 @@ $("button").click(function(){
 
 [All effects](https://www.w3schools.com/jquery/jquery_ref_effects.asp)
 
-[Animate Skipped](https://www.w3schools.com/jquery/jquery_animate.asp)
-[Stop Skipped](https://www.w3schools.com/jquery/jquery_stop.asp)
+[Animate: Skipped](https://www.w3schools.com/jquery/jquery_animate.asp)
 
-# HERE https://www.w3schools.com/jquery/jquery_callback.asp
+[Stop: Skipped](https://www.w3schools.com/jquery/jquery_stop.asp)
+
+[Callback](https://www.w3schools.com/jquery/jquery_callback.asp)
+
+Syntax: `$(selector).hide(speed,callback);` Where the callback is a function.
+
+[Chaining](https://www.w3schools.com/jquery/jquery_chaining.asp)
+
+Run multiple jQuery methods (on the same element) within a single statement, so that the same element doesn't need to be find by the brower again.
 
 Method Chaining:
 
 ```javascript
-$("#p1").css("color", "red").slideUp(2000).slideDown(2000);
+$("#p1").css("color", "red")
+    .slideUp(2000)
+    .slideDown(2000);
 ```
+
+# HERE https://www.w3schools.com/jquery/jquery_dom_get.asp
 
 [jQuery HTML](https://www.w3schools.com/jquery/jquery_dom_get.asp):
 
