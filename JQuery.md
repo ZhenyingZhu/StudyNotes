@@ -241,9 +241,9 @@ $("#p1").css("color", "red")
     .slideDown(2000);
 ```
 
-# HERE https://www.w3schools.com/jquery/jquery_dom_get.asp
-
 [jQuery HTML](https://www.w3schools.com/jquery/jquery_dom_get.asp):
+
+# HERE https://www.w3schools.com/jquery/jquery_dom_get.asp
 
 - `text()`: Sets or returns the text content of selected elements
 - `html()`: Sets or returns the content of selected elements (including HTML markup)
