@@ -1272,6 +1272,14 @@ https://www.zhihu.com/question/31285583
 # How to add ssh key to server
 https://stackoverflow.com/questions/6377009/adding-public-key-to-ssh-authorized-keys-does-not-log-me-in-automatically
 
+# Identity management system
+
+[FID vs SSO](https://security.stackexchange.com/questions/13803/what-is-the-difference-between-federated-login-and-single-sign-on
+)
+
+- SSO: user provide his creds to each service provider.
+- FID: user provide his creds to identity management system, then service provider trust identity provider.
+
 # timestamp section
 Sep 11 2016
 Nov 18 2016
