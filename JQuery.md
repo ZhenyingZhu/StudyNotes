@@ -243,8 +243,6 @@ $("#p1").css("color", "red")
 
 [jQuery HTML](https://www.w3schools.com/jquery/jquery_dom_get.asp):
 
-# HERE https://www.w3schools.com/jquery/jquery_dom_get.asp
-
 - `text()`: Sets or returns the text content of selected elements
 - `html()`: Sets or returns the content of selected elements (including HTML markup)
 - `val()`: Sets or returns the value of form fields
@@ -257,6 +255,8 @@ $("#btn1").click(function(){
     alert("Text: " + $("#test").text());
 });
 ```
+
+# HERE https://www.w3schools.com/jquery/jquery_dom_set.asp
 
 set first 3:
 
