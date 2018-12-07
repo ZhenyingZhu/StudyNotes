@@ -582,3 +582,11 @@ Then run `scrapy crawl electronics`.
 [Merge CSV files](https://stackoverflow.com/questions/2512386/how-to-merge-200-csv-files-in-python)
 
 [python move file](https://stackoverflow.com/questions/8858008/how-to-move-a-file-in-python)
+
+# Datetime
+
+strptime with microsecond can only deal with 6 decimals.
+
+```python
+datetime.strptime("2018-12-06 04:35:31.6808615"[:-1], "%Y-%m-%d %H:%M:%S.%f")
+```
