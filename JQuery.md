@@ -269,8 +269,7 @@ $("#test1").text("Hello world!");
 ```javascript
 $("#btn1").click(function(){
     $("p").text(function(i, origText){
-        return "Old text: " + origText + " New text: Hello world!
-        (index: " + i + ")";
+        return "Old text: " + origText + " New text: Hello world! (index: " + i + ")";
     });
 });
 ```
