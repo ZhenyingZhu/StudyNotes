@@ -256,15 +256,13 @@ $("#btn1").click(function(){
 });
 ```
 
-# HERE https://www.w3schools.com/jquery/jquery_dom_set.asp
-
-set first 3:
+set first text, html and val:
 
 ```javascript
 $("#test1").text("Hello world!");
 ```
 
-`text()`, `html()`, and `val()` comes with Callback functions that has 2 args: index and old value
+`text()`, `html()`, and `val()` comes with Callback functions that has 2 args: index and old value.
 
 ```javascript
 $("#btn1").click(function(){
@@ -273,6 +271,8 @@ $("#btn1").click(function(){
     });
 });
 ```
+
+Index is the index of the element in the selected element list.
 
 Can change:
 
@@ -291,11 +291,25 @@ to:
 set attr:
 
 ```javascript
+$("#w3s").attr("href", "https://www.w3schools.com/jquery");
+
 $("#w3s").attr({
     "href" : "https://www.w3schools.com/jquery",
     "title" : "W3Schools jQuery Tutorial"
 });
 ```
+
+Callback:
+
+```javascript
+$("button").click(function(){
+    $("#w3s").attr("href", function(i, origValue){
+        return origValue + "/jquery/";
+    });
+});
+```
+
+# HERE https://www.w3schools.com/jquery/jquery_dom_add.asp
 
 Add New HTML Content:
 
