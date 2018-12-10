@@ -241,7 +241,7 @@ $("#p1").css("color", "red")
     .slideDown(2000);
 ```
 
-[jQuery HTML](https://www.w3schools.com/jquery/jquery_dom_get.asp):
+[jQuery HTML Get](https://www.w3schools.com/jquery/jquery_dom_get.asp):
 
 - `text()`: Sets or returns the text content of selected elements
 - `html()`: Sets or returns the content of selected elements (including HTML markup)
@@ -255,6 +255,8 @@ $("#btn1").click(function(){
     alert("Text: " + $("#test").text());
 });
 ```
+
+[jQuery HTML Set](https://www.w3schools.com/jquery/jquery_dom_set.asp):
 
 set first text, html and val:
 
@@ -309,9 +311,7 @@ $("button").click(function(){
 });
 ```
 
-# HERE https://www.w3schools.com/jquery/jquery_dom_add.asp
-
-Add New HTML Content:
+[jQuery HTML Add](https://www.w3schools.com/jquery/jquery_dom_add.asp):
 
 - `append()`: Inserts content at the end of the selected elements
 - `prepend()`: Inserts content at the beginning of the selected elements
@@ -329,6 +329,14 @@ function appendText() {
     $("body").append(txt1, txt2, txt3);      // Append the new elements
 }
 ```
+
+JQuery create element: `$("<html element tag></tag>").text()`
+
+`after` and `before` add the text outside the selected element, while `append` and `prepend` add inside the element.
+
+# HERE https://www.w3schools.com/jquery/jquery_dom_remove.asp
+
+[jQuery HTML Remove](https://www.w3schools.com/jquery/jquery_dom_remove.asp):
 
 Remove Elements:
 
