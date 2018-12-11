@@ -334,8 +334,6 @@ JQuery create element: `$("<html element tag></tag>").text()`
 
 `after` and `before` add the text outside the selected element, while `append` and `prepend` add inside the element.
 
-# HERE https://www.w3schools.com/jquery/jquery_dom_remove.asp
-
 [jQuery HTML Remove](https://www.w3schools.com/jquery/jquery_dom_remove.asp):
 
 Remove Elements:
@@ -343,11 +341,13 @@ Remove Elements:
 - `remove()`: Removes the selected element (and its child elements)
 - `empty()`: Removes the child elements from the selected element
 
-Accept filter:
+Accept filter: it means remove all the "p" elements that has class "test" and "demo".
 
 ```javascript
 $("p").remove(".test, .demo");
 ```
+
+# HERE https://www.w3schools.com/jquery/jquery_css_classes.asp
 
 [Get and Set CSS Classes](https://www.w3schools.com/jquery/jquery_css_classes.asp):
 
