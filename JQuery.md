@@ -347,9 +347,9 @@ Accept filter: it means remove all the "p" elements that has class "test" and "d
 $("p").remove(".test, .demo");
 ```
 
-# HERE https://www.w3schools.com/jquery/jquery_css_classes.asp
-
 [Get and Set CSS Classes](https://www.w3schools.com/jquery/jquery_css_classes.asp):
+
+Classes are used to define css styles for elements.
 
 - `addClass()`: Adds one or more classes to the selected elements
 - `removeClass()`: Removes one or more classes from the selected elements
@@ -381,6 +381,8 @@ $(document).ready(function(){
     });
 });
 ```
+
+# HERE https://www.w3schools.com/jquery/jquery_css.asp
 
 Return a CSS Property of the first matched element:
 
