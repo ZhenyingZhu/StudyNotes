@@ -382,19 +382,21 @@ $(document).ready(function(){
 });
 ```
 
-# HERE https://www.w3schools.com/jquery/jquery_css.asp
+[JQuery CSS](https://www.w3schools.com/jquery/jquery_css.asp)
 
 Return a CSS Property of the first matched element:
 
 ```javascript
-$("p").css("background-color");
+$("p").css("background-color"); // not all the "p"
 ```
 
 Set of all matched elements:
 
 ```javascript
-$("p").css({"background-color": "yellow", "font-size": "200%"});
+$("p").css({"background-color": "yellow", "font-size": "200%"}); // but this sets all.
 ```
+
+# HERE https://www.w3schools.com/jquery/jquery_dimensions.asp
 
 [jQuery Dimension Methods](https://www.w3schools.com/jquery/jquery_dimensions.asp):
 
