@@ -6,7 +6,7 @@
 
 ## w3school Turtorial
 
-[src1](https://www.w3schools.com/jquery/default.asp); 
+[src1](https://www.w3schools.com/jquery/default.asp);
 [src2](http://www.w3school.com.cn/js/js_library_jquery.asp)
 
 jQuery:
@@ -396,8 +396,6 @@ Set of all matched elements:
 $("p").css({"background-color": "yellow", "font-size": "200%"}); // but this sets all.
 ```
 
-# HERE https://www.w3schools.com/jquery/jquery_dimensions.asp
-
 [jQuery Dimension Methods](https://www.w3schools.com/jquery/jquery_dimensions.asp):
 
 - `width()`
@@ -440,6 +438,8 @@ $(document).ready(function(){
 HTML document: `$(document).width()`
 
 browser viewport: `$(window).height()`
+
+# HERE https://www.w3schools.com/jquery/jquery_traversing.asp
 
 [Traversing](https://www.w3schools.com/jquery/jquery_traversing.asp)
 
