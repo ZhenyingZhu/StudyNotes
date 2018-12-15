@@ -439,11 +439,11 @@ HTML document: `$(document).width()`
 
 browser viewport: `$(window).height()`
 
-# HERE https://www.w3schools.com/jquery/jquery_traversing.asp
-
 [Traversing](https://www.w3schools.com/jquery/jquery_traversing.asp)
 
 Traversing a DOM tree. move up (ancestors), down (descendants) and sideways (siblings)
+
+# HERE https://www.w3schools.com/jquery/jquery_traversing_ancestors.asp
 
 Traverse Up:
 
