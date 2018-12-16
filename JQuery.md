@@ -443,13 +443,11 @@ browser viewport: `$(window).height()`
 
 Traversing a DOM tree. move up (ancestors), down (descendants) and sideways (siblings)
 
-# HERE https://www.w3schools.com/jquery/jquery_traversing_ancestors.asp
-
-Traverse Up:
+[Traverse Up](https://www.w3schools.com/jquery/jquery_traversing_ancestors.asp):
 
 - `parent()`
 - `parents()`: all the way up to the document's root element `<html>`
-- `parentsUntil()`: `$("span").parentsUntil("div");`
+- `parentsUntil()`: `$("span").parentsUntil("div");` not include the pass-in element.
 
 Filter
 
@@ -459,7 +457,27 @@ $(document).ready(function(){
 });
 ```
 
-Traverse Down:
+Some modification in a not very JQuery way:
+
+```javascript
+$(document).ready(function(){
+  i = 0;
+  $.each($("span").parents(),function(){ // So parents() returns an array list list, but [] index access doesn't work.
+    if (i == 0)
+    {
+      $(this).css({"color": "red", "border": "2px solid red"});
+      i = 1;
+    } else {
+      $(this).css({"color": "blue", "border": "2px solid blue"});
+      i = 0;
+    }
+  });
+});
+```
+
+# HERE
+
+[Traverse Down](https://www.w3schools.com/jquery/jquery_traversing_descendants.asp):
 
 - `children()`: single level down
 - `find()`: returns descendant elements of the selected element, all the way down to the last descendant. All: `$("div").find("*");`
