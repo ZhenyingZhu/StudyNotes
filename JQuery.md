@@ -475,8 +475,6 @@ $(document).ready(function(){
 });
 ```
 
-# HERE
-
 [Traverse Down](https://www.w3schools.com/jquery/jquery_traversing_descendants.asp):
 
 - `children()`: single level down
@@ -490,7 +488,9 @@ $(document).ready(function(){
 });
 ```
 
-Traversing Sideways:
+# HERE
+
+[Traversing Sideways](https://www.w3schools.com/jquery/jquery_traversing_siblings.asp):
 
 - `siblings()`: all sibling elements of the selected element, not include itself.
 - `next()`
