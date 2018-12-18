@@ -488,8 +488,6 @@ $(document).ready(function(){
 });
 ```
 
-# HERE
-
 [Traversing Sideways](https://www.w3schools.com/jquery/jquery_traversing_siblings.asp):
 
 - `siblings()`: all sibling elements of the selected element, not include itself.
@@ -500,7 +498,9 @@ $(document).ready(function(){
 - `prevAll()`
 - `prevUntil()`
 
-Filtering:
+# HERE
+
+[Filtering](https://www.w3schools.com/jquery/jquery_traversing_filtering.asp):
 
 - `first()`: `$("div").first();` the first `<div>`
 - `last()`
