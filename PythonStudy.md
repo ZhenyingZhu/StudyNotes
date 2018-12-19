@@ -555,6 +555,7 @@ https://medium.com/python-pandemonium/develop-your-first-web-crawler-in-python-s
 https://wiki.python.org/moin/WindowsCompilers
 - Install VS C++.
 - `pip install pypiwin32`
+- `pip install scrapy`
 
 - `scrapy startproject olx`
 - `scrapy genspider electronics www.olx.com.pk`
