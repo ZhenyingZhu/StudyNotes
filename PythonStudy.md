@@ -553,13 +553,15 @@ except FileNotFoundError:
 https://medium.com/python-pandemonium/develop-your-first-web-crawler-in-python-scrapy-6b2ee4baf954
 
 https://wiki.python.org/moin/WindowsCompilers
+- `pip install scrapy`
+
 - Install VS C++.
 - `pip install pypiwin32`
-- `pip install scrapy`
 
 - `scrapy startproject olx`
 - `scrapy genspider electronics www.olx.com.pk`
 - `scrapy crawl electronics`
+
 - update electronics.py
 - update items.py with an OlxItem model.
 - `scrapy crawl electronics -o data.csv -t csv`
