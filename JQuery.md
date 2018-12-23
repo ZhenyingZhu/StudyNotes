@@ -498,15 +498,19 @@ $(document).ready(function(){
 - `prevAll()`
 - `prevUntil()`
 
-# HERE
-
 [Filtering](https://www.w3schools.com/jquery/jquery_traversing_filtering.asp):
 
 - `first()`: `$("div").first();` the first `<div>`
 - `last()`
-- `eq()`: specify index number. `$("p").eq(1);`
+- `eq()`: specify index number. i.e. The nth element. `$("p").eq(1);`
 - `filter()`: `$("p").filter(".intro");` select all `<p class="intro">`
 - `not()`: `$("p").not(".intro");`
+
+To get the last p that is in div:
+
+```javascript
+$("div p").last().css("background-color", "yellow");
+```
 
 [jQuery AJAX](https://www.w3schools.com/jquery/jquery_ajax_intro.asp)
 
@@ -514,9 +518,9 @@ With the jQuery AJAX methods, you can request text, HTML, XML, or JSON from a re
 
 Because different browsers have different syntax for AJAX implementation. This means that you will have to write extra code to test for different browsers. However, the jQuery team has taken care of this for us.
 
-AJAX `load()` Method:
+[AJAX load() Method](https://www.w3schools.com/jquery/jquery_ajax_load.asp)
 
-- Syntax: `$(selector).load(URL,data,callback);`
+- Syntax: `$(selector).load("URL data",callback);`
 - `$("#div1").load("demo_test.txt #p1");` load the element with id `p1` in this URL
 - Callback:
   - `responseTxt`: contains the resulting content if the call succeeds
@@ -536,8 +540,9 @@ $("button").click(function(){
 });
 ```
 
-GET and POST:
+[AJAX GET and POST Method](https://www.w3schools.com/jquery/jquery_ajax_get_post.asp)
 
+- GET might return cached data.
 - the POST method NEVER caches data, and is often used to send data along with the request.
 - GET Syntax: `$.get(URL,callback);`
 - POST Syntax: `$.post(URL,data,callback);`
@@ -570,3 +575,31 @@ $("button").click(function(){
 [The `noConflict()` Method](https://www.w3schools.com/jquery/jquery_noconflict.asp)
 
 If two different frameworks are using the same shortcut, one of them might stop working. The `noConflict()` method releases the hold on the $ shortcut identifier, so that other scripts can use it.
+
+```javascript
+var jQuery = $.noConflict();
+jQuery(document).ready(function(){
+  jQuery("button").click(function(){
+    jQuery("p").text("jQuery is still working!");
+  });
+});
+```
+
+shortcut: `var jq = $.noConflict();` to replace jQuery with jq.
+
+pass `$` to the function so that the code block doesn't need to change: `jQuery(document).ready(function($)`.
+
+[Filters](https://www.w3schools.com/jquery/jquery_filters.asp)
+
+Filter can work as a foreach loop and run a callback on each element:
+
+```javascript
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+```
