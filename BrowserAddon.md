@@ -4,13 +4,15 @@ Tampermonkey for chrome and Greasemonkey for firefox.
 
 ## Resources
 
-[Tempermonkey welcome](https://tampermonkey.net/index.php?version=4.7&ext=dhdg&updated=true)
-
 [Tempermonkey document](https://tampermonkey.net/documentation.php)
 
 [DOM reference](https://devdocs.io/dom/)
 
 ## Turtorial
+
+[Tempermonkey welcome](https://tampermonkey.net/index.php?version=4.7&ext=dhdg&updated=true)
+
+Tempermonkey icon > Dashboard > Setting > Config mode: change to Advenced would show much more settings.
 
 [Applying JavaScript: User Scripts](https://medium.freecodecamp.com/applying-javascript-user-scripts-2e505643644d)
 
@@ -81,7 +83,8 @@ https://hibbard.eu/tampermonkey-tutorial/
 https://github.com/OpenUserJs/OpenUserJS.org/wiki/Userscript-Beginners-HOWTO
 
 ## Debugger
-https://www.w3schools.com/js/js_debugging.asp
+
+<https://www.w3schools.com/js/js_debugging.asp>
 
 ```
 console.log(c);
@@ -90,51 +93,60 @@ console.log(c);
 ## Example
 
 ### Steam Trading Cards Bulk Buyer
+
 [src](https://bitbucket.org/Doctor_McKay/steam-trading-card-bulk-buyer/raw/tip/badgebuy.user.js)
 
 Header contains match and require.
-```
+
+```javascript
 // ==UserScript==
-// @match			*://steamcommunity.com/*/gamecards/*
-// @require			https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js
+// @match *://steamcommunity.com/*/gamecards/*
+// @require https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js
 // ==/UserScript==
 ```
 
 [XHR](https://en.wikipedia.org/wiki/XMLHttpRequest)
 
 Send creds. More [info](https://stackoverflow.com/questions/2054316/sending-credentials-with-cross-domain-posts):
-```
+
+```javascript
 $.ajaxSetup({
-	xhrFields: {
-		withCredentials: true
-	}
+  xhrFields: {
+    withCredentials: true
+  }
 });
 
 ```
 
 To click a button:
-```
+
+```javascript
 $('.badge_craft_button').click();
 ```
 
-Where the button is
-```
+Where the button is:
+
+```html
 <div class="badge_craft_button" onclick="Profile_CraftGameBadge();" />
 ```
 
-Reload the page after 100 ms
-```
+Reload the page after 100 ms:
+
+```javascript
 setTimeout(function() {
     window.location.reload();
 }, 100);
 ```
 
 ## InfoQ Grapper
-The last page:
-http://www.infoq.com/cn/cloud-computing/news/1675
 
-Test here: https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_document_getelementsbyclassname
-```
+The last page:
+
+<http://www.infoq.com/cn/cloud-computing/news/1675>
+
+Test here: <https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_document_getelementsbyclassname>
+
+```html
 <!DOCTYPE html>
 <html>
 <body>
@@ -150,7 +162,7 @@ Test here: https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_document_
       </span>
   </span>
   <h2>
-	<a href="/cn/news/2007/07/amazon-arch-example" title="用Amazon Web Service实现视频文件转换程序">用Amazon Web Service实现视频文件转换程序</a>
+  <a href="/cn/news/2007/07/amazon-arch-example" title="用Amazon Web Service实现视频文件转换程序">用Amazon Web Service实现视频文件转换程序</a>
   </h2>
   <span class="author">作者
     <span class="authors-list">
@@ -163,7 +175,7 @@ Test here: https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_document_
     </span>
   </span>
 </div>
-                    
+
 <button onclick="myFunction()">Try it</button>
 
 <p><strong>Note:</strong> The getElementsByClassName() method is not supported in Internet Explorer 8 and earlier versions.</p>
@@ -182,4 +194,4 @@ function myFunction() {
 </html>
 ```
 
-Maybe use http://www.netinstructions.com/how-to-make-a-simple-web-crawler-in-javascript-and-node-js/
+Maybe use <http://www.netinstructions.com/how-to-make-a-simple-web-crawler-in-javascript-and-node-js/>
