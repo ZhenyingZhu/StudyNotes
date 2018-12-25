@@ -844,3 +844,23 @@ else
     Logging.Logger.LogError(stderr);
 }
 ```
+
+## Attribute
+
+[src](https://www.infoworld.com/article/3006630/application-development/how-to-work-with-attributes-in-c.html)
+
+Attribute
+
+- can add metadata information to your assemblies.
+- an object that is associated with element:
+  - Assembly
+  - Class
+  - Method
+  - Delegate
+  - Enum
+  - Event
+  - Field
+  - Interface
+  - Property
+  - Struct
+- used to associate declarative information: the info that can be retrived at runtime when using reflection.
