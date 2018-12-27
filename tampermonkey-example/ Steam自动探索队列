@@ -9,17 +9,20 @@
 // ==/UserScript==
 
 (function() {
-'use strict';
+    'use strict';
 
-// Your code here...
-})();
+    // Your code here...
+})(); // It doesn't actually needed.
 
 (function _exec() {
     var appids,
         running = true,
         queueNumber,
+        // ShowAlertDialog is defined by steam in https://steamstore-a.akamaihd.net/public/shared/javascript/shared_global.js
         progressDialog = ShowAlertDialog(
             '探索中',
+            // $J = jQuery.noConflict(); defined in https://store.steampowered.com/
+            // Create an element div. Why does it disappear?
             $J('<div/>')
                 .append( $J('<div/>', {'class': 'waiting_dialog_throbber'}) )
                 .append( $J('<div/>', {'id': 'progressContainer'}).text('获取进度...') ),
