@@ -22,7 +22,7 @@
         progressDialog = ShowAlertDialog(
             '探索中',
             // $J = jQuery.noConflict(); defined in https://store.steampowered.com/
-            // Create an element div. Why does it disappear?
+            // Create an element div. Why does the first div disappear?
             $J('<div/>')
                 .append( $J('<div/>', {'class': 'waiting_dialog_throbber'}) )
                 .append( $J('<div/>', {'id': 'progressContainer'}).text('获取进度...') ),
@@ -43,15 +43,21 @@
             return;
 
         showProgress();
-        
+
+        // shift remove and return the first item. It is defined in javascript lib.
         var appid = appids.shift();
+        // If appid is null, generateQueue.
+        // Else, send an AJAX post to get the next app.
         !appid ? generateQueue() : $J.post(
             appids.length ? '/app/' + appid : '/explore/next/',
+            // g_sessionID is defined in https://store.steampowered.com/
             {sessionid: g_sessionID, appid_to_clear_from_queue: appid}
-        ).done(clearApp).fail(retry);
+        ) // If appid is not empty, append to the AJAX URL. Else URL is /explore/next.
+        .done(clearApp).fail(retry);
     }
 
     function generateQueue() {
+        // If not running, return.
         running && $J.post(
             '/explore/generatenewdiscoveryqueue',
             {sessionid: g_sessionID, queuetype: 0}
@@ -62,7 +68,10 @@
         if(!running)
             return;
 
-        $J.get('/explore/').done(function(htmlText) {
+        $J.get('/explore/')
+        .done(function(htmlText) {
+            // \D is non-digit.
+            // So the logic here is to find if .subtext contains a number in between.
             var cardInfo = htmlText.match(/<div class="subtext">\D+(\d)\D+<\/div>/);
             
             if(!cardInfo) {
@@ -71,7 +80,11 @@
                 ShowAlertDialog('完成','已完成全部3轮探索队列');
                 return;
             }
-            
+
+            // \s is whitespace chars. Here is looking for:
+            // var DiscoveryQueue = new CDiscoveryQueue(
+            //  0,
+            //  [885640,394120,698260,961460,657010,488550,789760,987090,393190,931150],
             var matchedAppids = htmlText.match(/0,\s+(\[.*\])/);
             
             if(!matchedAppids) {
