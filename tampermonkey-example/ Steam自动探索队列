@@ -8,10 +8,18 @@
 // @grant        SteamCN
 // ==/UserScript==
 
+debugger;
+
 (function() {
     'use strict';
 
-    // Your code here...
+    // Steps:
+	// AJAX get /explore/ and parse how many rounds left.
+	// parse to get appids.
+	// AJAX post /app/appid with content appid if it is not the last one in the queue.
+	// or AJAX post /explore/next/ with the same content if it is the last one.
+	// After explore the queue, AJAX post /explore/generatenewdiscoveryqueue (which actually give the next queue)
+	// Start from beginning.
 })(); // It doesn't actually needed.
 
 (function _exec() {
@@ -72,6 +80,7 @@
         .done(function(htmlText) {
             // \D is non-digit.
             // So the logic here is to find if .subtext contains a number in between.
+			// <div class="subtext">您今日还有 3 张集换式卡牌能通过浏览探索队列的方式获得。</div>
             var cardInfo = htmlText.match(/<div class="subtext">\D+(\d)\D+<\/div>/);
             
             if(!cardInfo) {
