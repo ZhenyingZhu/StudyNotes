@@ -86,9 +86,11 @@ https://github.com/OpenUserJs/OpenUserJS.org/wiki/Userscript-Beginners-HOWTO
 
 <https://www.w3schools.com/js/js_debugging.asp>
 
-```
+```javascript
 console.log(c);
 ```
+
+Adding `debugger;` on the first line.
 
 ## Example
 
