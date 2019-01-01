@@ -12,5 +12,6 @@ debugger;
 
 (function() {
     'use strict';
-
+    
+    $J("#wishlist_items > div");
 })();
