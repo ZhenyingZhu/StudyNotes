@@ -12,6 +12,7 @@ debugger;
 
 (function() {
     'use strict';
-    
-    $J("#wishlist_items > div");
+
+    var info = $J(".wishlist_row:has(.discount_pct)");
+
 })();
