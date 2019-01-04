@@ -1280,6 +1280,11 @@ https://stackoverflow.com/questions/6377009/adding-public-key-to-ssh-authorized-
 - SSO: user provide his creds to each service provider.
 - FID: user provide his creds to identity management system, then service provider trust identity provider.
 
+# Windows uninstall
+
+Use regedit to clean keys under
+`HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\windows\CurrentVersion\Uninstall`
+
 # timestamp section
 Sep 11 2016
 Nov 18 2016
