@@ -8,6 +8,12 @@ Tampermonkey for chrome and Greasemonkey for firefox.
 
 [DOM reference](https://devdocs.io/dom/)
 
+[Coding tips](https://wiki.greasespot.net/Category:Coding_Tips)
+
+## Installation
+
+For android: <https://github.com/OpenUserJs/OpenUserJS.org/wiki/Tampermonkey-for-Android>
+
 ## Turtorial
 
 [Tempermonkey welcome](https://tampermonkey.net/index.php?version=4.7&ext=dhdg&updated=true)
