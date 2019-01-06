@@ -6,6 +6,126 @@
 
 <http://www.w3school.com.cn/js/index.asp>
 
+### Summarize
+
+- `document.getElementById("demo").innerHTML="My First JavaScript Function";`
+- `document.write()`
+- `window.alert()`
+- `console.log()`
+
+- `break` can add a label. `continue`
+- `debugger`
+- `do ... while`
+- `for`
+- `function`
+- `if ... else`
+- `return`
+- `switch`
+- `try ... catch`
+- `var`
+
+- `===`: equal value and equal type.
+- `!==`
+- `?:` tenary operator.
+
+- `typeof`: typeof "John Doe" // string.
+- `instanceof`
+
+- `in`: Property in Object.
+
+```html
+<button onclick="displayDate()">The time is?</button>
+<script>
+function displayDate() {
+    document.getElementById("demo").innerHTML = Date();
+}
+</script>
+<p id="demo"></p>
+```
+
+```javascript
+var person={
+  firstname:"Bill",
+  lastname:"Gates",
+  id:5566,
+  fuuName:function(){return this.firstName+" "+this.lastName}
+};
+var name=person.lastname;
+name=person["lastname"]; // same as above
+name=person.fuuName();
+
+// properties can be iterated.
+for (x in person) {
+  txt += person[x];
+}
+```
+
+```javascript
+// Constrctor
+function Person(firstname, lastname, age, eyecolor){
+  this.firstname=firstname;
+  this.lastname=lastname;
+  this.age=age;
+  this.eyecolor=eyecolor;
+  function changeName(name){
+    this.lastname=name;
+  }
+}
+
+// add a method
+Person.prototype.name = function() {
+    return this.firstName + " " + this.lastName;
+};
+```
+
+- `txt.indexOf(str,pos)`, `txt.lastIndexOf();`
+- `txt.search();` Can take Regular express. `txt.match(str)`查找str，如果找到返回str，不然返回Null;
+- `txt.slice(start, end);` same as `txt.substring(start, end);`
+- `txt.substr(start, length);`
+- `var str = txt.replace(/MICROSOFT/i, W3Schools");` Case sensitive. Accept Regex. Flags: /i ignore case. /g global match.
+- `toUpperCase();` and `toLowerCase();`
+- `concat();`
+- `trim();` same as `str.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, '')`
+- `charAt`, `charCodeAt`: return the UTF-16 code the char.
+- `str[0]`: It makes strings look like arrays (but they are not).
+- `txt.split(",");` or even `txt.split("");`
+
+```javascript
+var cars=["Audi","BMW","Volvo"];
+```
+
+- `arr.length`
+- `arr.concat(arr2);`
+- `arr.join(".");`
+- `slice()`
+- `arr.sort()`, `reverse()`
+- `points.sort(function(a, b){return 0.5 - Math.random()}); // random`
+- `arr.push(ele)`: same as `arr[arr.length] = ele;`, `pop()`
+- `shift()`, `unshift()`
+- `delete fruits[0];` delete and leave a hole.
+- `fruits.splice(2, 0, "Lemon", "Kiwi");` 2 is the index to insert, 0 is the number of elements to remove.
+- `var numbers2 = numbers1.map(myFunction);` return array
+- `var over18 = numbers.filter(myFunction);` return array
+- `var sum = numbers1.reduce(myFunction);`, `var sum = numbers1.reduceRight(myFunction);`.
+- `var isAllOver18 = numbers.every(myFunction);` return boolean
+- `var isSomeOver18 = numbers.some(myFunction);` return boolean
+- `indexOf()`, `lastIndexOf()`
+- `find()`, `findIndex()`
+
+- `Math.floor(Math.random()*11)`: 0 - 10.
+- `Math.max.apply(null, arr); // equals to Math.max(arr[0], arr[1] ...)`
+
+```javascript
+var patt = /pattern/i; // modifiers: i, g, m
+var boolVal = patt.test("The best things in life are free");
+var strVal = patt.exec("The best things in life are free");
+```
+
+- `var obj = JSON.parse(text);`
+- `var text = JSON.stringify(obj);`
+
+[HERE](https://github.com/ZhenyingZhu/StudyNotes/blob/master/JavaScript.md#objects)
+
 ### JS Introduction
 
 [src1](http://www.w3school.com.cn/js/js_howto.asp), [src2](http://www.w3school.com.cn/js/js_whereto.asp)
@@ -2058,6 +2178,11 @@ function myFunc(myObj) {
 }
 </script>
 ```
+
+## Yield
+
+`yield`: Pause a generator function (`function*`) and return an iterator. call `next()` method to resume. [src](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/yield)
+
 
 ## JQuery
 
