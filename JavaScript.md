@@ -8,9 +8,28 @@
 
 ### Summarize
 
-- `document.getElementById("demo").innerHTML="My First JavaScript Function";`
+- `document.getElementById("demo").innerHTML="My First JavaScript Function";`, `document.getElementsByTagName(tag)`, `document.getElementsByClassName(class)`: return HTML collections.
+- `document.getElementById(id).onclick = function(){code}`
+- `document.createElement(element)`, `document.createTextNode()`
+- `document.removeChild(element)`, `document.appendChild(element)`, `document.replaceChild(element)`
 - `document.write()`
-- `window.alert()`
+- `document.domain`, `document.baseURI`, `document.URL`
+- `document.body` `document.cookie`
+- `document.forms[form id]`, `document.images`, `document.links`, `document.scripts`, `document.title`
+- CSS selector `var x = document.querySelectorAll("p.intro");`
+
+- `element.innerHTML = html text`
+- `element.style.property = new style`. [all style](https://www.w3schools.com/jsref/dom_obj_style.asp)
+- `element.property = new value`
+- `element.parentNode` find the parent node. `element.childNodes`: return NodeList.
+- `element.insertBefore`
+- `element.addEventListener("click", displayDate);` [all events](https://www.w3schools.com/jsref/dom_obj_event.asp)
+
+DOM Nodes: document node, element node. text node. comment node.
+
+Node relations: root. 1 parent, n children. siblings: has orders.
+
+- `window.alert()`, `window.confirm()`, `window.prompt()`
 - `console.log()`
 
 - `break` can add a label. `continue`
@@ -124,7 +143,34 @@ var strVal = patt.exec("The best things in life are free");
 - `var obj = JSON.parse(text);`
 - `var text = JSON.stringify(obj);`
 
-[HERE](https://github.com/ZhenyingZhu/StudyNotes/blob/master/JavaScript.md#objects)
+- `delete myobj.property`
+
+Anonymous Self-invoking functions: `(function() {})();`. self-invoke function only run once.
+
+functions have `arguments` property. Arguments are passed by value.
+
+- `person.fullName.call(person1, "Oslo", "Norway");` calls method fullName of object person. `apply()`
+
+JavaScript closure: counter can be used as a static property.
+
+```javascript
+var add = (function() {
+    var counter = 0;
+    return function() {counter += 1; return counter}
+})();
+```
+
+```javascript
+<button onclick="myVar = setTimeout(myFunction, 3000)">Try it</button>
+<button onclick="clearTimeout(myVar)">Stop it</button>
+<script>
+function myFunction() {
+    alert("Hello");
+}
+</script>
+```
+
+[HERE](https://github.com/ZhenyingZhu/StudyNotes/blob/master/JavaScript.md#ajax)
 
 ### JS Introduction
 
@@ -1308,8 +1354,8 @@ Methods and properties:
 - `document.appendChild(element)`
 - `document.replaceChild(element)`
 - `document.write(text)`
-- `document.getElementById(id).onclick = function(){code}`: adding ebent handler.
-- `document.anchors`: `<a>` elements.
+- `document.getElementById(id).onclick = function(){code}`: adding event handler.
+- `document.anchors`: `<a>` elements. Actually they are elements with `name` propety. Don't use this API.
 - `document.baseURI`: HTML DOM Level 3.
 - `document.body`
 - `document.cookie`
@@ -1497,7 +1543,7 @@ DOM Nodes:
 - attrbute node (deprecated).
 - comment node.
 
-Note relations:
+Node relations:
 
 - root.
 - 1 parent, n children.
