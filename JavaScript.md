@@ -170,7 +170,20 @@ function myFunction() {
 </script>
 ```
 
-[HERE](https://github.com/ZhenyingZhu/StudyNotes/blob/master/JavaScript.md#ajax)
+```javascript
+function loadDoc() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("demo").innerHTML = this.responseText;
+    }
+  };
+  xhttp.open("GET", "ajax_info.txt", true);
+  xhttp.send();
+}
+```
+
+[HERE](https://github.com/ZhenyingZhu/StudyNotes/blob/master/JavaScript.md#js-json)
 
 ### JS Introduction
 
@@ -1872,8 +1885,7 @@ function loadDoc() {
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
-      document.getElementById("demo").innerHTML =
-      this.responseText;
+      document.getElementById("demo").innerHTML = this.responseText;
     }
   };
   xhttp.open("GET", "ajax_info.txt", true);
@@ -2228,7 +2240,6 @@ function myFunc(myObj) {
 ## Yield
 
 `yield`: Pause a generator function (`function*`) and return an iterator. call `next()` method to resume. [src](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/yield)
-
 
 ## JQuery
 
