@@ -183,8 +183,6 @@ function loadDoc() {
 }
 ```
 
-[HERE](https://github.com/ZhenyingZhu/StudyNotes/blob/master/JavaScript.md#js-json)
-
 ### JS Introduction
 
 [src1](http://www.w3school.com.cn/js/js_howto.asp), [src2](http://www.w3school.com.cn/js/js_whereto.asp)
