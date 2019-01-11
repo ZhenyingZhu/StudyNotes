@@ -4,6 +4,15 @@
 
 <https://www.w3schools.com/jquery/default.asp>
 
+## Summarize
+
+- `<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>`
+
+- `$(this).hide()`
+- `$(this).html()`
+
+- [JQuery selector](https://www.w3schools.com/jquery/jquery_selectors.asp)
+
 ## w3school Turtorial
 
 [src1](https://www.w3schools.com/jquery/default.asp);
