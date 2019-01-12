@@ -11,7 +11,8 @@
 - `$(this).hide()`
 - `$(this).html()`
 
-- [JQuery selector](https://www.w3schools.com/jquery/jquery_selectors.asp)
+- [JQuery selector](https://www.w3schools.com/jquery/jquery_ref_selectors.asp)
+- [CSS selector](https://www.w3schools.com/cssref/css_selectors.asp)
 
 ## w3school Turtorial
 
