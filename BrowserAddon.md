@@ -100,6 +100,39 @@ Adding `debugger;` on the first line.
 
 ## Example
 
+### The best Youtube Downloader
+
+[src](https://distillvideo.com/extension#extension)
+
+`#masthead` is the top bar of youtube.
+
+`winow.Polymer`: a lib to create elements. [offical site](https://polymer-library.polymer-project.org/3.0/docs/devguide/feature-overview)
+
+Use `setInterval()` to sleep for 100 ms. I suspect it was trying to wait until the page load?
+
+Use `window.location.href` to get the URL of current page.
+
+Add a button:
+
+```html
+<div id='distillvideo' style='display: inline-block; margin-left: 10px; vertical-align: middle;'>
+  <a href="https://distillvideo.com/?url=window.location.href" title="Download this video" target="_blank" style="display: inline-block; font-size: inherit; height: 22px; border: 1px solid rgb(0, 183, 90); border-radius: 3px; padding-left: 28px; cursor: pointer; vertical-align: middle; position: relative; line-height: 22px; text-decoration: none; z-index: 1; color: rgb(255, 255, 255);">
+  <i style="
+    position: absolute;
+    display: inline-block;
+    left: 6px; top: 3px;
+    background-image:
+      url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48c3ZnIHhtbG5zOmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyIgeG1sbnM6Y2M9Imh0dHA6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL25zIyIgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIiB4bWxuczpzdmc9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2IiB2aWV3Qm94PSIwIDAgMTYgMTYiIGlkPSJzdmcyIiB4bWw6c3BhY2U9InByZXNlcnZlIj48cGF0aCBkPSJNIDQsMCA0LDggMCw4IDgsMTYgMTYsOCAxMiw4IDEyLDAgNCwwIHoiIGZpbGw9IiNmZmZmZmYiIC8+PC9zdmc+);
+    background-size: 12px; background-repeat: no-repeat; background-position: center center; width: 16px; height: 16px;">
+  </i>
+  <span style="padding-right: 12px;">Download</span></a>
+</div>
+
+<style>#distillvideo button::-moz-focus-inner{padding:0;margin:0}#distillvideo a{background-color:#15388c}#distillvideo a:hover{background-color:#E91E63}#distillvideo a:active{background-color:rgb(0, 151, 74)}</style>
+```
+
+`i` element is a font style.
+
 ### Steam Trading Cards Bulk Buyer
 
 [src](https://bitbucket.org/Doctor_McKay/steam-trading-card-bulk-buyer/raw/tip/badgebuy.user.js)
