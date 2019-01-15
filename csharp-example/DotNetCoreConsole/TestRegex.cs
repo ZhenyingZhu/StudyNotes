@@ -11,13 +11,23 @@ namespace TestRegex
         {
             // \w is all words 0-9a-zA-Z. [^] means not match any in it.
             return Regex.Replace(str, "[^\\w_.]+", "_", RegexOptions.Compiled);
+
+            //string res = ReplaceSpecialCharacters(@"1!@#$%^&*()-_=+;:'[{]}\\|,<.>/?aA");
+        }
+
+        private static string[] GetAllJSONProperty(string str)
+        {
+            MatchCollection res = Regex.Matches(str, "\"Guid\":\"([\\w|-]+)\"", RegexOptions.Singleline);
+            return res.Select(x => x.Groups[1].Value).ToArray();
         }
 
         public static void testMain()
         {
-            string res = ReplaceSpecialCharacters(@"1!@#$%^&*()-_=+;:'[{]}\\|,<.>/?aA");
 
-            System.Console.WriteLine(res);
+            string input = "[{\"Guid\":\"b05e124f-c7cc-45a0-a6aa-8cf78c946968\"},{\"Guid\":\"b05e124f-c7cc-45a0-a6aa-8cf78c946968\"}]";
+            string[] output = GetAllJSONProperty(input);
+
+            System.Console.WriteLine(string.Join(",", output));
         }
     }
 }
