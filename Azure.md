@@ -60,3 +60,10 @@ ADAL:
 ## Template
 
 <https://github.com/Azure/azure-quickstart-templates>
+
+## Windows server add a sert
+
+1. Run mmc.exe
+2. Go to File->Add/Remove Snap-in
+3. Select Certificates in the Snap-in window and click Add.
+4. Choose ‘Computer Account’ when prompted and click Finish.
