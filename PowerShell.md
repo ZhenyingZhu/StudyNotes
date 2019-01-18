@@ -78,3 +78,6 @@ reg add "HKEY_CURRENT_USER\Software\Valve\Steam" /v AutoLoginUser /t REG_SZ /d [
 
 # Check not in
 `list -notcontains item`
+
+# Create a List
+`$list = New-Object Collections.Generic.List[System.Guid]`
