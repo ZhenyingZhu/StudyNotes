@@ -579,3 +579,5 @@ HERE:
 # RESTful
 
 <https://www.tutorialspoint.com/restful/index.htm>
+
+Service oriented: <https://docs.microsoft.com/en-us/dotnet/framework/wcf/whats-wcf>
