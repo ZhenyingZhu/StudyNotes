@@ -211,7 +211,7 @@ Types [src](https://docs.microsoft.com/en-us/dotnet/csharp/tour-of-csharp/types-
   - class
   - interface
   - array: multi-dimensional `int[,]`
-  - delegate: `delegate int D(...)`, references to methods with a particular parameter list and return type
+  - delegate: `delegate int D(...)`, references to methods with a particular parameter list and return type. It can be used to replace a static method in UTs.
 
 Boxing: `int i = 1; object o = i;`; Unboxing: `int j = (int)o;`
 
