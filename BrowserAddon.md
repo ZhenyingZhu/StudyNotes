@@ -82,11 +82,11 @@ $(document).ready(function() {
 
 ### Pending
 
-http://hayageek.com/greasemonkey-tutorial/#install-greasemonkey
+<http://hayageek.com/greasemonkey-tutorial/#install-greasemonkey>
 
-https://hibbard.eu/tampermonkey-tutorial/
+<https://hibbard.eu/tampermonkey-tutorial/>
 
-https://github.com/OpenUserJs/OpenUserJS.org/wiki/Userscript-Beginners-HOWTO
+<https://github.com/OpenUserJs/OpenUserJS.org/wiki/Userscript-Beginners-HOWTO>
 
 ## Debugger
 
