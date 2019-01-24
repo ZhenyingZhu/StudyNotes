@@ -139,6 +139,8 @@ Add a button:
 
 Header contains match and require.
 
+Looks like steam already provide the function.
+
 ```javascript
 // ==UserScript==
 // @match *://steamcommunity.com/*/gamecards/*
