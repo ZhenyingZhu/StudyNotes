@@ -158,8 +158,25 @@ $.ajaxSetup({
     withCredentials: true
   }
 });
-
 ```
+
+Replace page url:
+
+```javascript
+if(document.location.protocol != "https:") {
+  var url = window.location.href;
+  url = url.replace("http://", "https://");
+  window.location.href = url;
+}
+```
+
+[window localStorage property](https://www.w3schools.com/jsref/prop_win_localstorage.asp)
+
+- save key/value pairs in a web browser.
+- no expiration date. The data will not be deleted when the browser is closed.
+- localStorage property is read-only.
+- sessionStorage stores data for one session (data is lost when the browser tab is closed).
+
 
 To click a button:
 
