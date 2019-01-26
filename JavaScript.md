@@ -485,7 +485,7 @@ Number methods:
 Global JavaScript Methods invole numbers:
 
 - `Number(new Date("2017-09-30"))`
-- `parseInt()`
+- `parseInt()`: `parseInt(numStr, radix)`. For example `var num = parseInt("101", 2)` returns 5.
 - `parseFloat()`
 
 Number properties
