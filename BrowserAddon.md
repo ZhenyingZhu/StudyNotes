@@ -177,6 +177,13 @@ if(document.location.protocol != "https:") {
 - localStorage property is read-only.
 - sessionStorage stores data for one session (data is lost when the browser tab is closed).
 
+Refresh the page:
+
+```javascript
+setTimeout(function() {
+  window.location.reload();
+}, 100);
+```
 
 To click a button:
 
