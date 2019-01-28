@@ -864,3 +864,7 @@ Attribute
   - Property
   - Struct
 - used to associate declarative information: the info that can be retrived at runtime when using reflection.
+
+## LINQ Expression
+
+[src](https://docs.microsoft.com/en-us/dotnet/api/system.linq.expressions?view=netframework-4.7.2)
