@@ -1,5 +1,49 @@
 # Azure
 
+## Resource
+
+<https://www.tutorialspoint.com/microsoft_azure/index.htm>
+
+## tutorialspoint Microsoft Azure Tutorial
+
+[Cloud Computing - Overview](https://www.tutorialspoint.com/microsoft_azure/cloud_computing_overview.htm)
+
+Architecture of cloud computing
+
+- Front-end device
+- Back-end platform
+- Cloud-based delivery
+- Network
+
+storage options
+
+- Public
+- Private
+- Hybrid
+
+Benefits of Cloud
+
+- scalability
+- reducing capital infrastructure
+- access the application independent of their location and hardware configuration.
+- simplifies the network
+- more reliable
+
+SPI
+
+- SaaS: E-mail
+- PAAS: Microsoft Azure
+- IAAS: Amazon S3
+
+[Microsoft Azure - Windows](https://www.tutorialspoint.com/microsoft_azure/microsoft_azure_windows.htm)
+
+Azure as PaaS: The clients can focus on the application development rather than having to worry about hardware and infrastructure.
+
+Azure as IaaS: gives complete control of the operating systems and the application platform stack to the application developers.
+
+[Microsoft Azure - Components](https://www.tutorialspoint.com/microsoft_azure/microsoft_azure_components.htm)
+HERE
+
 ## Portal
 
 <https://portal.azure.com/>
@@ -61,7 +105,7 @@ ADAL:
 
 <https://github.com/Azure/azure-quickstart-templates>
 
-## Windows server add a sert
+## Windows server add a cert
 
 1. Run mmc.exe
 2. Go to File->Add/Remove Snap-in
