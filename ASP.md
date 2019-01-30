@@ -1,14 +1,23 @@
 # ASP NET Web API
 
-ASP.NET offers three frameworks
+[What is ASP.NET](https://en.wikipedia.org/wiki/ASP.NET)
 
-- Web Forms
-- MVC
-- Web Pages
+- ASP.NET is an open-source server-side web application (a client–server computer program) framework.
+- the successor to Microsoft's Active Server Pages (ASP) technology. Successor is ASP.NET Core.
+- together with other frameworks like Entity Framework.
 
-ASP.NET Web API
+ASP.NET offers programming models
 
-- building RESTful applications on the .NET Framework
+- Web Forms: building modular pages out of components, with UI events being processed server-side.
+- MVC: Model–view–controller
+- Web Pages: adding dynamic code and data access directly inside HTML markup.
+- Web API: building RESTful applications on the .NET Framework.
+- Webhooks: subscribing to and publishing events via HTTP.
+- SignalR: real-time communications framework for bi-directional communication between client and server.
+
+[ASP.NET Core vs ASP.NET](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/choose-aspnet-framework?view=aspnetcore-2.2)
+
+- ASP.NET Core is a redesign of ASP.NET 4.x.
 
 ## ASP.NET Web API
 
@@ -572,12 +581,14 @@ HERE:
 - Since functions are idempotent they can be used in $filter and $sortby system queries to provide a better fidelity in filtering and sorting queries.
 - operations parameters are handled much like querying for an entity with a compound key. The parameters are wrapped in brackets in the format “name = value” seperated by a comma.
 
-# Entity Framework(EF)
+## Entity Framework(EF)
 
 <https://docs.microsoft.com/en-us/aspnet/entity-framework>
 
-# RESTful
+## RESTful
 
 <https://www.tutorialspoint.com/restful/index.htm>
+
+## WCF
 
 Service oriented: <https://docs.microsoft.com/en-us/dotnet/framework/wcf/whats-wcf>
