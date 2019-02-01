@@ -19,6 +19,29 @@ ASP.NET offers programming models
 
 - ASP.NET Core is a redesign of ASP.NET 4.x.
 
+## Building a Web App with ASP.NET Core, MVC, Entity Framework Core, Bootstrap, and Angular
+
+<https://app.pluralsight.com/library/courses/aspnetcore-mvc-efcore-bootstrap-angular-web/table-of-contents>
+
+- ASP.NET Core 2.1
+- Entity Framework Core 2.1
+- Bootstrap 4.1
+- Angular v6
+
+### What Is ASP.NET Core
+
+ASP.NET Core is sitting on .NET Core CLR (Common Language Runtime), which can be on IIS/Self hosted (dotnet cli) on either windows or linux.
+
+Frameworks are the bootstrap and CLR. Anything above Core CLR is a package from Nuget. E.g. MVC, logging, Identity.
+
+Command line:
+
+- `dotnet --version`
+- `dotnet new --help`
+- `dotnet new console`: does a restore as well for getting nuget packages. The csproj is not same as the ones visual studio created, but work with MSBuild.
+- `dotnet run` (which include `dotnet build`)
+- `dotnet add package Newtonsoft.Json`
+
 ## ASP.NET Web API
 
 Use HTTP methods.
