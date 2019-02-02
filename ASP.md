@@ -42,6 +42,16 @@ Command line:
 - `dotnet run` (which include `dotnet build`)
 - `dotnet add package Newtonsoft.Json`
 
+### Installing Visual Studio
+
+1. ASP.NET Core Web Application
+2. MVC
+3. Change Authenticate: Individual user accounts
+
+Web Application: Use Razor web pages.
+
+HERE
+
 ## ASP.NET Web API
 
 Use HTTP methods.
