@@ -44,13 +44,22 @@ Command line:
 
 ### Installing Visual Studio
 
-1. ASP.NET Core Web Application
+1. ASP.NET Core Web Application: Big Project
 2. MVC
 3. Change Authenticate: Individual user accounts
 
 Web Application: Use Razor web pages.
 
+### Creating a project with visual studio
+
+1. ASP.NET Core Web Application: DutchTreat
+2. Choose Empty.
+3. uncheck: Configure for HTTPS
+
+
 HERE
+
+
 
 ## ASP.NET Web API
 
