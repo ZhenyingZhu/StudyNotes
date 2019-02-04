@@ -52,10 +52,15 @@ Web Application: Use Razor web pages.
 
 ### Creating a project with visual studio
 
-1. ASP.NET Core Web Application: DutchTreat
-2. Choose Empty.
-3. uncheck: Configure for HTTPS
+1. ASP.NET Core Web Application: DutchTreat.
+2. Choose Empty project.
+3. Uncheck Configure for HTTPS.
+4. Only Program.cs and Startup.cs is created. They are same as a console app, which is listening on port 80.
+5. Choose IIS Express to run it. The DutchTreat option is same as run `dotnet run`.
+6. Choose the web browser (Edge).
+7. Check project properties: Debug: App URL: find the port.
 
+WebHost.CreateDefaultBuilder
 
 HERE
 
