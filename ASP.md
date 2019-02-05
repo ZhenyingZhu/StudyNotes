@@ -60,11 +60,17 @@ Web Application: Use Razor web pages.
 6. Choose the web browser (Edge).
 7. Check project properties: Debug: App URL: find the port.
 
-WebHost.CreateDefaultBuilder
+Program.cs: `WebHost.CreateDefaultBuilder`
 
-HERE
+### Serving Your First File
 
+Startup.cs: In `Configure()`, `app.UseStaticFiles();` It serve static files in folder `wwwroot`. If it doesn't exsit, create one.
 
+The folders in `wwwroot` is actually the path needed in the URL.
+
+`app.UseDefaultFiles();` replace default html urls such as `domain/` to `domain/index.html`.
+
+They are all middlewares. Orders matter (Order is so call Pipe). `UseDefaultFiles` need come before `UseStaticFiles()`.
 
 ## ASP.NET Web API
 

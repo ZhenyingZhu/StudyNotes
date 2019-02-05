@@ -26,10 +26,14 @@ namespace DutchTreat
             //    app.UseDeveloperExceptionPage();
             //}
 
-            app.Run(async (context) =>
-            {
-                await context.Response.WriteAsync("Hello World!");
-            });
+            // zhenying Comment it out to let the index.html works.
+            //app.Run(async (context) =>
+            //{
+            //    await context.Response.WriteAsync("Hello World!");
+            //});
+
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
         }
     }
 }
