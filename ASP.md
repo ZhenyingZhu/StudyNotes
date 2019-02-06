@@ -72,6 +72,17 @@ The folders in `wwwroot` is actually the path needed in the URL.
 
 They are all middlewares. Orders matter (Order is so call Pipe). `UseDefaultFiles` need come before `UseStaticFiles()`.
 
+### What Is HTML
+
+HTML != XML
+
+- HTML is not case sensitive.
+- Some HTML elements need always use a closing tag instead of self-closing.
+
+### HTML Basics
+
+HERE
+
 ## ASP.NET Web API
 
 Use HTTP methods.
