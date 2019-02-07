@@ -81,6 +81,18 @@ HTML != XML
 
 ### HTML Basics
 
+Anchor: `<a href="https://microsoft.com">` with an attribute forms a link.
+
+Div: is a block that can be formatted.
+
+Img tag need self closing.
+
+<https://github.com/psauthor/BuildingASPNETCore2>
+
+HTML by default is drawn top-down.
+
+### HTML Forms
+
 HERE
 
 ## ASP.NET Web API
