@@ -93,6 +93,14 @@ HTML by default is drawn top-down.
 
 ### HTML Forms
 
+`form` element is to get info from the user.
+
+`input` has type. The special type is `submit`.
+
+Browser is trying its best to get what to display. It won't throw parsing error.
+
+### CSS Basics
+
 HERE
 
 ## ASP.NET Web API
