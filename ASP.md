@@ -101,6 +101,8 @@ Browser is trying its best to get what to display. It won't throw parsing error.
 
 ### CSS Basics
 
+Seperate the structure of web application from the design elements or the rules for how to draw it.
+
 HERE
 
 ## ASP.NET Web API
