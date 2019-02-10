@@ -103,6 +103,10 @@ Browser is trying its best to get what to display. It won't throw parsing error.
 
 Seperate the structure of web application from the design elements or the rules for how to draw it.
 
+CSS rule order: the more specific rule wins the more general rule. It is not based on the order of rules.
+
+### CSS Naming
+
 HERE
 
 ## ASP.NET Web API
