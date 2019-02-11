@@ -542,11 +542,13 @@ public void TestFoo() {
 ```
 
 ## Rhino mocks
+
 [src](https://hibernatingrhinos.com/oss/rhino-mocks)
 
 [wiki](http://www.ayende.com/wiki/Rhino+Mocks.ashx?AspxAutoDetectCookieSupport=1)
 
 ### Defination
+
 - Mock object
 - Interaction based testing
 - State based testing
@@ -561,18 +563,20 @@ Rhino Mocks can only mock interfaces, delegates and virtual methods of classes.
 - Partial Mock: `PartialMock()`. Not recorded methods call real implementation.
 
 Stub
+
 - `MockRepository.GenerateStub<T>`
 - Mock the thing you are testing, Stub the thing that are just involved.
 
-
 ### Examples
-https://github.com/hibernating-rhinos/rhino-mocks/tree/master/Rhino.Mocks.GettingStarted
+
+<https://github.com/hibernating-rhinos/rhino-mocks/tree/master/Rhino.Mocks.GettingStarted>
 
 - `var foo = MockRepository.GenerateStub<IFoo>();`: Create a stub instance foo of the interface IFoo.
 - `foo.Stub(x => x.ID).Return(123);`: Set a property of the stub instance.
 
 ### Mock a method
-```
+
+```C#
 class MyClass {
     public MyReturn Foo(MyArg1 arg1, MyArg2 arg2) {
         try {
@@ -594,7 +598,7 @@ Expect.Call(mc.Foo(Arg<MyArg1>.Is.Anything, Arg<MyArg2>.Is.Anything)).Throw(me);
 
 or
 
-```
+```C#
 MockRepository mocks = new MockRepository();
 MyClass mc = mocks.PartialMock<MyClass>();
 MyReturn mr = new MyReturn();
@@ -610,7 +614,8 @@ mocks.VerifyAll();
 ```
 
 or
-```
+
+```C#
 MockRepository mocks = new MockRepository();
 MyClass mc = mocks.DynamicMock<MyClass>();
 mc.Stub(x => x.property).Return(value);
@@ -625,18 +630,32 @@ If not a repeat, it only call once.
 [src](https://stackoverflow.com/questions/2764929/rhino-mocks-partial-mock)
 Partial mock needs work on virtual methods.
 
-
-
 ### Create a mock object
+
 [src](https://stackoverflow.com/questions/7831404/can-you-explain-difference-between-strictmock-and-partialmock)
 
 ### Arg Matches
+
 [src](https://stackoverflow.com/questions/3520911/rhino-mocks-using-arg-matches)
 
+### Out Parameter
+
+<https://en.wikibooks.org/wiki/How_to_Use_Rhino_Mocks/Out_and_Ref_Parameters>
+
+<https://stackoverflow.com/questions/3365237/using-rhino-mocks-to-mock-an-out-parameter-which-is-created-within-the-method-i>
+
+```C#
+obj..Stub(serv => serv.IsLoginValid(
+            Arg<LoginViewModel>.Is.Equal(a_login_viewmodel), 
+            out Arg<User>.Out(new User()).Dummy))
+.OutRef(new User())
+.Return(false);
+```
 
 # Collection
 
 ## Init a Directory
+
 ```
 Dictionary<string, List<string>> myD = new Dictionary<string, List<string>>()
 {
