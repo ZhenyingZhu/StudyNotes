@@ -7,7 +7,7 @@ namespace DotNetCoreConsole
     {
         static void Main(string[] args)
         {
-            TestRegex.TestMain.testMain();
+            TestUri.TestMain.testMain();
         }
     }
 }
