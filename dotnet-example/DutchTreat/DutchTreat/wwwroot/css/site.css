@@ -23,3 +23,11 @@ div#theForm {
     background-color: green;
     color: white;
 }
+
+.product-props {
+    font-size: small;
+}
+
+ul.product-props li {
+    list-style-type: none;
+}

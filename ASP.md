@@ -111,6 +111,12 @@ Use for CSS selector.
 
 ### CSS Classes
 
+ID is unique. Class is to group same style elements together.
+
+CSS selector: `#` for ID, `.` for class. space for child, `ele.class` get the elements that are of the class.
+
+### The Box Model
+
 HERE
 
 ## ASP.NET Web API
