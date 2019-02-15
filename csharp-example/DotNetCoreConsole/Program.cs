@@ -7,7 +7,7 @@ namespace DotNetCoreConsole
     {
         static void Main(string[] args)
         {
-            TestUri.TestMain.testMain();
+            TestJsonParseDict.TestMain.testMain();
         }
     }
 }
