@@ -887,3 +887,11 @@ Attribute
 ## LINQ Expression
 
 [src](https://docs.microsoft.com/en-us/dotnet/api/system.linq.expressions?view=netframework-4.7.2)
+
+## Set a HttpWebRequest timeout
+
+```C#
+HttpWebRequest myHttpWebRequest=(HttpWebRequest)WebRequest.Create("http://www.contoso.com");
+myHttpWebRequest.Timeout=10;
+HttpWebResponse myHttpWebResponse=(HttpWebResponse)myHttpWebRequest.GetResponse();
+```
