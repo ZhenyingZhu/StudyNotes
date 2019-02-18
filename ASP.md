@@ -117,6 +117,15 @@ CSS selector: `#` for ID, `.` for class. space for child, `ele.class` get the el
 
 ### The Box Model
 
+margin, border, padding, content
+
+- margin is between two elements.
+- padding is between border and content.
+- direction: left, right, top, bottom.
+- properties: height, width. actual-height/width: border.
+
+By default, div is displayed in a block, which take as much horizontal space and as little vertical space as possible.
+
 HERE
 
 ## ASP.NET Web API
