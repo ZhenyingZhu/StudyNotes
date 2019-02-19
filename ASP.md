@@ -126,6 +126,21 @@ margin, border, padding, content
 
 By default, div is displayed in a block, which take as much horizontal space and as little vertical space as possible.
 
+More resources
+
+- <https://app.pluralsight.com/library/courses/front-end-web-app-html5-javascript-css/table-of-contents>
+- <https://app.pluralsight.com/library/courses/css3-in-depth/table-of-contents>
+
+### What is JavaScript
+
+Object Oriented: prototypical inheritance
+
+Dynamic type: each object itself has the notion of a type.
+
+Compiled: Just-in-time compiled without an intermediate format.
+
+### Adding a JavaScript File
+
 HERE
 
 ## ASP.NET Web API
