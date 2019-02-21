@@ -141,6 +141,20 @@ Compiled: Just-in-time compiled without an intermediate format.
 
 ### Adding a JavaScript File
 
+`alert` blocks all the other page rendering.
+
+HTML is rendered line by line. JavaScript is executed as soon as it excuted. So need call JavaScript after the page is fully loaded.
+
+### JavaScript Events
+
+There could be multiple event listener for an element.
+
+JavaScript uses anonymous functions a lot.
+
+JQuery makes all browsers can use same code.
+
+### Using NPM
+
 HERE
 
 ## ASP.NET Web API
