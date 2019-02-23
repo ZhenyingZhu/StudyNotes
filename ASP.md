@@ -155,6 +155,24 @@ JQuery makes all browsers can use same code.
 
 ### Using NPM
 
+- Add package.json to the root of the project.
+- Add "dependencies" to package.json for runtime dependencies. While "devDependencies" is development dependencies.
+- A new node_modules folder would appear with jquery in it. dist folder is for distributions. See which dist you want to use.
+- Add `<script src="/node_modules/jquery/dist/jquery.min.js"></script>` to html.
+- Add a nuget package `odetocode` which introduce middle tier `app.UseNodeModules(env)` to Startup.cs.
+
+Or call command line tool: `npm install bootstrap`.
+
+### Introducing jQuery
+
+jQuery can be treat as an object in a javascript file.
+
+jQuery is good at find elements in the document.
+
+Change `this` to `$(this)` make the javascript wrapped up to a jQyery object, so it gets cross browser support.
+
+###
+
 HERE
 
 ## ASP.NET Web API

@@ -6,10 +6,19 @@ console.log("Hello world");
 var theForm = document.getElementById("theForm");
 theForm.hidden = true;
 
+$("#theForm").show(); // opposite to hide.
+
 var button = document.getElementById("buyButton");
+// same as $("#buyButton").on("click", function (){...})
 button.addEventListener("click", function () {
     console.log("Buying item");
+
+    //var productInfo = document.getElementsByClassName("product-props");
+    //var listItems = productInfo.item(0).children;
+    //console.log(listItems);
 });
 
-var productInfo = document.getElementsByClassName("product-props");
-var listItems = productInfo.item[0].children;
+var productInfo = $(".product-props li");
+productInfo.on("click", function () {
+    console.log("You cliked on " + $(this).text());
+})
