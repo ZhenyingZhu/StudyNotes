@@ -171,7 +171,25 @@ jQuery is good at find elements in the document.
 
 Change `this` to `$(this)` make the javascript wrapped up to a jQyery object, so it gets cross browser support.
 
-###
+### Practical jQuery
+
+JavaScript issue: Global scope. To make functions scoped, common to wrap all codes inside an anonymous function and let it execute at once.
+
+```JavaScript
+(function () {
+  ...
+})();
+```
+
+For jQuery: execute when document is ready.
+
+```jQuery
+$(document).ready(function() {});
+```
+
+When define a jQuery object, convention is to name it start with `$`.
+
+### Summary
 
 HERE
 

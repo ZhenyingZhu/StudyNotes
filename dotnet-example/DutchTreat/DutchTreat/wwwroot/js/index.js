@@ -6,7 +6,7 @@ console.log("Hello world");
 var theForm = document.getElementById("theForm");
 theForm.hidden = true;
 
-$("#theForm").show(); // opposite to hide.
+// $("#theForm").show(); // opposite to hide.
 
 var button = document.getElementById("buyButton");
 // same as $("#buyButton").on("click", function (){...})
@@ -22,3 +22,12 @@ var productInfo = $(".product-props li");
 productInfo.on("click", function () {
     console.log("You cliked on " + $(this).text());
 })
+
+$(document).ready(function () {
+    var $loginToggle = $("#loginToggle");
+    var $popupForm = $(".popup-form");
+
+    $loginToggle.on("click", function () {
+        $popupForm.slideToggle(500);
+    });
+});
