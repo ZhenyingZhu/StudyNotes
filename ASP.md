@@ -19,6 +19,12 @@ ASP.NET offers programming models
 
 - ASP.NET Core is a redesign of ASP.NET 4.x.
 
+## Resources
+
+- <https://app.pluralsight.com/library/courses/front-end-web-app-html5-javascript-css/table-of-contents>
+- <https://app.pluralsight.com/library/courses/css3-in-depth/table-of-contents>
+- <https://app.pluralsight.com/library/courses/js4cs/table-of-contents>
+
 ## Building a Web App with ASP.NET Core, MVC, Entity Framework Core, Bootstrap, and Angular
 
 <https://app.pluralsight.com/library/courses/aspnetcore-mvc-efcore-bootstrap-angular-web/table-of-contents>
@@ -126,11 +132,6 @@ margin, border, padding, content
 
 By default, div is displayed in a block, which take as much horizontal space and as little vertical space as possible.
 
-More resources
-
-- <https://app.pluralsight.com/library/courses/front-end-web-app-html5-javascript-css/table-of-contents>
-- <https://app.pluralsight.com/library/courses/css3-in-depth/table-of-contents>
-
 ### What is JavaScript
 
 Object Oriented: prototypical inheritance
@@ -189,7 +190,17 @@ $(document).ready(function() {});
 
 When define a jQuery object, convention is to name it start with `$`.
 
-### Summary
+### What Is MVC
+
+Model-View-Controller framework for applications.
+
+- Model: data
+- Controller: logic
+- View: markup to display
+
+Request route to a controller class, controller get some data from model, then send back to controller to do some logic, and then controller send data to view, view render and return the response.
+
+### First Controller/View
 
 HERE
 
