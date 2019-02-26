@@ -202,6 +202,20 @@ Request route to a controller class, controller get some data from model, then s
 
 ### First Controller/View
 
+Create a Controller class inherit from AspNetCore.Mvc.Controller under a folder calls controllers.
+
+Controller maps a request to an action. Action is where the real logic happens.
+
+Views can be returned from action. Convention is that AppController is controller for App, and return views in Views/App folder. View name is same as the action name.
+
+View represents Razor (A syntax for generation/modify view code in C#), which is not html (cshtml).
+
+ViewBag is a bag of properties. With `@` it can be used in html code.
+
+Path in html should start with `~/` indicates it is the root of the project.
+
+### Enabling MVC 6
+
 HERE
 
 ## ASP.NET Web API
