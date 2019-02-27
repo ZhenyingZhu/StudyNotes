@@ -216,6 +216,22 @@ Path in html should start with `~/` indicates it is the root of the project.
 
 ### Enabling MVC 6
 
+In Startup.cs add `app.UseMvc()` to set up the routes.
+
+Routes: from pattern of the URL, find out which controller to send the request.
+
+URL pattern "/{controller}/{action}/{id?}": `id?` indicates it is an optional field.
+
+`cfg.MapRoute("Default", "/{controller}/{action}/{id?}", new { controller = "App", Action = "Index" });` means if no controller or action pass in, go to AppController.Index.
+
+ASP.NET Core requires to use dependency injection.
+
+`app.UseDeveloperExceptionPage();` to show the error with call stack.
+
+Using `IHostingEnvironment env` to figure out if the env is a prod or a staging or development. In project property Debug page, can set the environment.
+
+### Creating a Layout
+
 HERE
 
 ## ASP.NET Web API

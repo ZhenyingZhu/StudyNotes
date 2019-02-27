@@ -12,5 +12,10 @@ namespace DutchTreat.Controllers
         {
             return View();
         }
+
+        public IActionResult Error()
+        {
+            throw new InvalidOperationException("Something wrong.");
+        }
     }
 }
