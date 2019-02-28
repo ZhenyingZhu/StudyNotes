@@ -3,86 +3,68 @@
     //ViewData["Title"] = "Index";
     ViewBag.Title = "Home Page";
 }
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <title>Dutch Treat: @ViewBag.Title</title>
-    <link href="~/css/site.css" rel="stylesheet" />
-    <style>
-        label {
-            font-size: 16px;
-        }
-    </style>
-</head>
-<body>
-    <h2>@ViewBag.Title</h2>
-    <p>This is <strong>going</strong> to be a site <a href="https://microsoft.com">where</a> we can buy dutch artists merchandise.</p>
-    <ol>
-        <li>One</li>
-        <li>Two</li>
-        <li>Three </li>
-    </ol>
-    <div class="product-info">
-        <img src="~/img/VanGogh.jpg" />
-        <h3>Mug</h3>
-        <ul class="product-props">
-            <li>Price: $9.99</li>
-            <li>Artist: Van Gogh</li>
-            <li>Title:</li>
-            <li>Description: Self-portrait</li>
-        </ul>
-        <button id="buyButton">Buy</button>
-    </div>
 
-    <div id="theForm">
-        <form>
-            <br />
-            <label>Username:</label>
-            <br />
-            <input stype="font-size: 18px; width: 500px;" />
-            <br />
-            <label>Password:</label>
-            <br />
+<p>This is <strong>going</strong> to be a site <a href="https://microsoft.com">where</a> we can buy dutch artists merchandise.</p>
+<ol>
+    <li>One</li>
+    <li>Two</li>
+    <li>Three </li>
+</ol>
+<div class="product-info">
+    <img src="~/img/VanGogh.jpg" />
+    <h3>Mug</h3>
+    <ul class="product-props">
+        <li>Price: $9.99</li>
+        <li>Artist: Van Gogh</li>
+        <li>Title:</li>
+        <li>Description: Self-portrait</li>
+    </ul>
+    <button id="buyButton">Buy</button>
+</div>
+
+<div id="theForm">
+    <form>
+        <br />
+        <label>Username:</label>
+        <br />
+        <input stype="font-size: 18px; width: 500px;" />
+        <br />
+        <label>Password:</label>
+        <br />
+        <input type="password" />
+        <br />
+        <label>email:</label>
+        <br />
+        <input type="email" />
+        <br />
+        <label>Subject:</label>
+        <br />
+        <input type="text" />
+        <br />
+        <label>Message:</label>
+        <br />
+        <textarea rows="4"></textarea>
+        <br />
+        <input type="submit" value="Send Message" />
+    </form>
+</div>
+<div>
+    <div id="loginToggle">Login</div>
+    <form class="popup-form">
+        <div>
+            <label>Username</label>
+            <input />
+        </div>
+        <div>
+            <label>Password</label>
             <input type="password" />
-            <br />
-            <label>email:</label>
-            <br />
-            <input type="email" />
-            <br />
-            <label>Subject:</label>
-            <br />
-            <input type="text" />
-            <br />
-            <label>Message:</label>
-            <br />
-            <textarea rows="4"></textarea>
-            <br />
-            <input type="submit" value="Send Message" />
-        </form>
-    </div>
-    <div>
-        <div id="loginToggle">Login</div>
-        <form class="popup-form">
-            <div>
-                <label>Username</label>
-                <input />
-            </div>
-            <div>
-                <label>Password</label>
-                <input type="password" />
-            </div>
-            <div>
-                <input type="checkbox" />
-                <label>Remember Me?</label>
-            </div>
-            <div>
-                <input type="submit" value="Login" />
-            </div>
-        </form>
-    </div>
-
-    <script src="~/node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="~/js/index.js"></script>
-</body>
-</html>
+        </div>
+        <div>
+            <input type="checkbox" />
+            <label>Remember Me?</label>
+        </div>
+        <div>
+            <input type="submit" value="Login" />
+        </div>
+    </form>
+</div>

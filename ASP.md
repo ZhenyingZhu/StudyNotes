@@ -232,6 +232,12 @@ Using `IHostingEnvironment env` to figure out if the env is a prod or a staging 
 
 ### Creating a Layout
 
+Layout page: the common elements on multiple pages. It is a view shares across controllers.
+
+`@RenderBody()` can put body of a cshtml to the layout.
+
+Add the Views folder, add `_ViewStart.cshtmml` (Razor View Start), which is act as a base class.
+
 HERE
 
 ## ASP.NET Web API
