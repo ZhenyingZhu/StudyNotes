@@ -238,6 +238,12 @@ Layout page: the common elements on multiple pages. It is a view shares across c
 
 Add the Views folder, add `_ViewStart.cshtmml` (Razor View Start), which is act as a base class.
 
+### Adding More Views
+
+CSS selector `ele1>ele2` can select direct children.
+
+### Using Tag Helpers
+
 HERE
 
 ## ASP.NET Web API
