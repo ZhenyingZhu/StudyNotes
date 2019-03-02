@@ -244,6 +244,14 @@ CSS selector `ele1>ele2` can select direct children.
 
 ### Using Tag Helpers
 
+ViewImports is a way to add things that are appear on every page. Like import classes to all pages.
+
+`@addTagHelper` is a decoration of adding a set of TagHelpers.
+
+`[HttpGet("contact")]` on an action can change the action link.
+
+### Razor Pages
+
 HERE
 
 ## ASP.NET Web API
