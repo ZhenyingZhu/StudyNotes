@@ -25,9 +25,13 @@ namespace DutchTreat
             {
                 app.UseDeveloperExceptionPage();
             }
+            else
+            {
+                app.UseExceptionHandler("/error");
+            }
 
 #if DEBUG
-            app.UseDeveloperExceptionPage();
+            //app.UseDeveloperExceptionPage();
 #endif
 
             // zhenying Comment it out to let the index.html works.

@@ -252,6 +252,16 @@ ViewImports is a way to add things that are appear on every page. Like import cl
 
 ### Razor Pages
 
+`app.UseExceptionHandler("/error");` can specify what the error handling path to use.
+
+Razor page start with `@page` decoration.
+
+Razor page and view are different world. If just want display some simple text, use page is enough.
+
+Need copy `_ViewStart.cshtml` to Pages folder so that the Razor pages can also use layout.
+
+### Implementing a Contact Page
+
 HERE
 
 ## ASP.NET Web API
