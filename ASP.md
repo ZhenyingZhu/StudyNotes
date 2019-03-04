@@ -262,7 +262,13 @@ Need copy `_ViewStart.cshtml` to Pages folder so that the Razor pages can also u
 
 ### Implementing a Contact Page
 
-HERE
+Add a form in the contact page with post method. Each field of the form need has a name property.
+
+In the controller, add `[HttpPost('contact')]` to the contact action. The action should accept `object model`. We need model binding to get the post result.
+
+When debug, in the Watch tab, type in `this.Request` and can find `Form` in its properties.
+
+# HERE
 
 ## ASP.NET Web API
 
