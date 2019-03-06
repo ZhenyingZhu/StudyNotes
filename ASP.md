@@ -268,6 +268,16 @@ In the controller, add `[HttpPost('contact')]` to the contact action. The action
 
 When debug, in the Watch tab, type in `this.Request` and can find `Form` in its properties.
 
+### Model Binding
+
+Create a view model to represend the data structure of the post form with same name of properties.
+
+In the Razor page, use decorate `@model`, and use tag helper `asp-for` to get the model properties.
+
+Label can also have `asp-for` so that taps the label can set the focus on the input.
+
+### Using Validation
+
 # HERE
 
 ## ASP.NET Web API
