@@ -278,6 +278,22 @@ Label can also have `asp-for` so that taps the label can set the focus on the in
 
 ### Using Validation
 
+In view model, add `[Required]` or other validation annotations from `System.ComponentModel.DataAnnotations`.
+
+In the controller, call `ModelState.IsValid` to validate. `ModelState` contains all errors.
+
+In the Razor page, add `asp-validation-summary` and `asp-validation-for` to get the error.
+
+Need add "jquery-validation" and "jquery-validation-unobtrusive" to npm.
+
+In Layout, add a `@RenderSection("scripts", false)` so that each razor page can define its own scripts.
+
+`All` vs `ModelOnly`.
+
+But both frontend and backend needs validation.
+
+### Adding a Service
+
 # HERE
 
 ## ASP.NET Web API
