@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <title>Dutch Treat: @ViewBag.Title</title>
+    <link href="~/node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/css/site.css" rel="stylesheet" />
     <style>
         label {
@@ -11,7 +12,7 @@
     </style>
 </head>
 <body>
-    <header>
+    <header class="container-fluid">
         <h1>Welcome to Dutch Treat</h1>
         <menu>
             <ul>
@@ -21,13 +22,16 @@
             </ul>
         </menu>
     </header>
-    <section>
+    <section class="container">
         <h2>@ViewBag.Title</h2>
         @RenderBody()
     </section>
-    <footer>Copyright 2019 Dutch Treat LLC</footer>
+    <footer class="container">
+        <div class=="text-center">Copyright 2019 Dutch Treat LLC</div>
+    </footer>
 
     <script src="~/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="~/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/index.js"></script>
     @RenderSection("scripts", false)
 </body>

@@ -312,6 +312,14 @@ There should be a ASP.NET Core Web Server output in Visual Stuio **?? I cannot f
 
 ### Adding Bootstrap
 
+Bootstrap is based on CSS/SASS. Uses javascript on its components.
+
+Being modular and skinnable (so that it looks more personality).
+
+Bootstrap need placed before site.css so that site.css can override settings from bootstrap.
+
+Bootstrap.bundle.min.js bundled all its dependencies. It requires jQuery so should be placed after jQuery.
+
 # HERE
 
 ## ASP.NET Web API
