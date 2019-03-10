@@ -320,6 +320,12 @@ Bootstrap need placed before site.css so that site.css can override settings fro
 
 Bootstrap.bundle.min.js bundled all its dependencies. It requires jQuery so should be placed after jQuery.
 
+Add bootstrap classes to elements. `container` is for sections.
+
+Element can belong to several CSS classes. `class="btn btn-success"` means it is a `btn`, but change color to `success`.
+
+### Nav bar
+
 # HERE
 
 ## ASP.NET Web API
