@@ -895,3 +895,9 @@ HttpWebRequest myHttpWebRequest=(HttpWebRequest)WebRequest.Create("http://www.co
 myHttpWebRequest.Timeout=10;
 HttpWebResponse myHttpWebResponse=(HttpWebResponse)myHttpWebRequest.GetResponse();
 ```
+
+## Catch and Rethrow
+
+[src](https://stackoverflow.com/questions/881473/why-catch-and-rethrow-an-exception-in-c)
+
+Catch and rethrow lose all stack trace.
