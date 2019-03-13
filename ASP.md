@@ -324,7 +324,13 @@ Add bootstrap classes to elements. `container` is for sections.
 
 Element can belong to several CSS classes. `class="btn btn-success"` means it is a `btn`, but change color to `success`.
 
-### Nav bar
+### Building a NavBar
+
+Bootstrap NavBar can show correctly on both desktop and cellphone.
+
+In HTML5 `nav` element is for navbar.
+
+### Boostrap's Grid System
 
 # HERE
 
