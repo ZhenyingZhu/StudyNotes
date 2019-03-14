@@ -332,6 +332,18 @@ In HTML5 `nav` element is for navbar.
 
 ### Boostrap's Grid System
 
+Bootstrap use 12-column grids system.
+
+`.col-8 .offset-2`: take 8 columns, and offset 2 columns from the last seen grid.
+
+If out-of-boundary, move to the next line.
+
+Size: `.col-xl-xx` > `.col-lg-xx` > `.col-md-xx` > `.col-sm-xx` > `.col-xx`
+
+`.col-lg-3 .col-md-6 .col-3`
+
+### Using the Grid System
+
 # HERE
 
 ## ASP.NET Web API
