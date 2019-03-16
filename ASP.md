@@ -350,6 +350,20 @@ Size: `.col-xl-xx` > `.col-lg-xx` > `.col-md-xx` > `.col-sm-xx` > `.col-xx`
 
 ### Bootstrap Forms
 
+Wrap each form elment related html code into `form-group` class div.
+
+button, submit and anchor tags can be classed as `btn`.
+
+6 colors in bootstrap:
+
+- danger
+- primary
+- success
+- warning
+- default
+
+### Font
+
 # HERE
 
 ## ASP.NET Web API
