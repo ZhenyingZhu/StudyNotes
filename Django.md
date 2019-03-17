@@ -102,10 +102,12 @@ Python 3.4+ with virtual env.
 
 ```bash
 curl -L https://raw.githubusercontent.com/pyenv/pyenv-installer/master/bin/pyenv-installer | bash
+
 # the following to ~/.bashrc:
 export PATH="/home/zhu91/.pyenv/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
+
 pyenv install 3.4.6
 pyenv local 3.4.6
 
