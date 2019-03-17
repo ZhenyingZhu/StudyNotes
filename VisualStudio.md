@@ -242,3 +242,6 @@ https://stackoverflow.com/questions/14254005/let-visual-studio-2012-2013-open-fi
 # Visual studio version
 - Visual studio 2013: v12
 - Visual studio 2017: v15
+
+# Visual studio intellisense
+[Bootstrap 4 Autocomplete in Visual Studio 2017](https://stackoverflow.com/questions/48629436/bootstrap-4-autocomplete-in-visual-studio-2017)

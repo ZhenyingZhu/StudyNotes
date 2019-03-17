@@ -362,9 +362,33 @@ button, submit and anchor tags can be classed as `btn`.
 - warning
 - default
 
-### Font
+### Using Font Awesome
+
+Font Awesome is the successor of glyph icons.
+
+Use NPM to install it, and put `font-awesome.min.css` before `site.css` so that `site.css` can override it, so document and graph DBs can also be used.
+
+Use `<i>` element with class to define what icon to use.
+
+### Creating Entities
+
+Entity Framework Core: compare to Entity Framework, it removes the requirement of Relational DBs.
+
+EF6 is still more mature than EF core. But to use EF6, you need .NET 4.x.
+
+Create `Data` folder for DB interfaces. Create `Data\Entities` for entites, which are shapes of the data.
+
+Every entity class has `Id` as primary key.
+
+Use `ICollection<AnotherEntity>` to create a parent-child/one-to-many relationship.
+
+Create class `DutchContext` inherit from `DbContext` for establishing connection. Create `DbSet` in it for entities that need to be queryable.
+
+### Using Entity Framework Core Tooling
 
 # HERE
+
+<https://app.pluralsight.com/library/courses/aspnetcore-mvc-efcore-bootstrap-angular-web/table-of-contents>
 
 ## ASP.NET Web API
 
