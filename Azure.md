@@ -111,3 +111,15 @@ ADAL:
 2. Go to File->Add/Remove Snap-in
 3. Select Certificates in the Snap-in window and click Add.
 4. Choose ‘Computer Account’ when prompted and click Finish.
+
+## Create a Ubuntu Dev Desktop
+
+[Install and configure Remote Desktop to connect to a Linux VM in Azure](https://docs.microsoft.com/en-us/azure/virtual-machines/linux/use-remote-desktop)
+
+Install `xfce4` which is a lightweight desktop environment.
+
+Install `xrdp`.
+
+[How To Create a Sudo User on Ubuntu](https://linuxize.com/post/how-to-create-a-sudo-user-on-ubuntu/)
+
+[Attach a data disk to a Linux VM](https://docs.microsoft.com/en-us/azure/virtual-machines/linux/attach-disk-portal)
