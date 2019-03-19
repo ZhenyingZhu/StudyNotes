@@ -121,3 +121,5 @@ Install `xfce4` which is a lightweight desktop environment.
 Install `xrdp`.
 
 [How To Create a Sudo User on Ubuntu](https://linuxize.com/post/how-to-create-a-sudo-user-on-ubuntu/)
+
+[Attach a data disk to a Linux VM](https://docs.microsoft.com/en-us/azure/virtual-machines/linux/attach-disk-portal)

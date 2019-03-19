@@ -133,6 +133,8 @@ Install pycharm
 sudo snap install pycharm-community --classic
 ```
 
+[Install VS Code](https://dzone.com/articles/install-visual-studio-code-on-ubuntu-1804)
+
 Start a new Django app
 
 ```bash
