@@ -32,7 +32,7 @@ class DetailView(generic.DetailView):
 
     def get_queryset(self):
         """
-        Excludes any questions that aren't published yet or no chice.
+        Excludes any questions that aren't published yet or no choice.
         """
         return Question.objects.filter(
             pub_date__lte=timezone.now()

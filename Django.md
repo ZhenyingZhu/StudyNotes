@@ -21,6 +21,10 @@
 
 [VSCode](http://ruddra.com/2017/08/19/vs-code-for-python-development/)
 
+[VSCode with Django](https://code.visualstudio.com/docs/python/tutorial-django)
+
+[Install VS Code on ubuntu](https://dzone.com/articles/install-visual-studio-code-on-ubuntu-1804)
+
 [workon doesn't work in powershell](https://stackoverflow.com/questions/38944525/workon-command-doesnt-work-in-windows-powershell-to-activate-virtualenv)
 
 ```bat
@@ -132,8 +136,6 @@ Install pycharm
 ```bash
 sudo snap install pycharm-community --classic
 ```
-
-[Install VS Code](https://dzone.com/articles/install-visual-studio-code-on-ubuntu-1804)
 
 Start a new Django app
 

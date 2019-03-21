@@ -123,3 +123,5 @@ Install `xrdp`.
 [How To Create a Sudo User on Ubuntu](https://linuxize.com/post/how-to-create-a-sudo-user-on-ubuntu/)
 
 [Attach a data disk to a Linux VM](https://docs.microsoft.com/en-us/azure/virtual-machines/linux/attach-disk-portal)
+
+[Resolve RDP thindrives issue](thindrive: https://github.com/neutrinolabs/xrdp/issues/720)
