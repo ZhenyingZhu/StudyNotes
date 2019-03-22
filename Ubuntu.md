@@ -48,3 +48,6 @@ https://www.howtogeek.com/howto/14912/create-a-persistent-bootable-ubuntu-usb-fl
 
 How to format a USB
 https://petejcullen.wordpress.com/2009/11/18/formatting-a-usb-drive-to-fat-32-using-ubuntu/
+
+How to install language
+https://ubuntuforums.org/showthread.php?t=2240589
