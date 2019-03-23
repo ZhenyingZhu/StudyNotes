@@ -386,6 +386,22 @@ Create class `DutchContext` inherit from `DbContext` for establishing connection
 
 ### Using Entity Framework Core Tooling
 
+Under `dotnet-example\DutchTreat\DutchTreat`, run `dotnet ef database update`.
+
+Context isn't tied to a specific database.
+
+Cosmos DB: document store.
+
+In `startup.ConfigureServices`, add `services.AddDbContext<DutchContext>();`. It is added to service collection, and they are injected into different services.
+
+EntityFrameworkCore.DBContextOptionsBuilder provides
+
+- in mem DB: for testing
+- SqlServer
+- SQLite
+
+### Using Configuration
+
 # HERE
 
 <https://app.pluralsight.com/library/courses/aspnetcore-mvc-efcore-bootstrap-angular-web/table-of-contents>
