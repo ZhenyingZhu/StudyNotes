@@ -402,9 +402,29 @@ EntityFrameworkCore.DBContextOptionsBuilder provides
 
 ### Using Configuration
 
+Startup ctor can inject interfaces that are setup in the Program.
+
+Pass in `Microsoft.Extensions.Configuration.Iconfiguration`, which has `GetConnectionString` method.
+
+In Program.cs, the `WebHost.CreateDefaultBuilder` sets up a default configuration file we can use.
+
+ASP.NET uses a WebConfig file (XML), while ASP.NET Core supports different ecosystem.
+
+```c#
+builder.AddJsonFile("config.json", false, true)
+    .AddXmlFile("config.xml", true) // not exist.
+    .AddEnvironmentVariables(); // not exist.
+```
+
+The later config override previous ones if there are conflicts.
+
+Config supports name-value pair and hirerarchy.
+
 # HERE
 
 <https://app.pluralsight.com/library/courses/aspnetcore-mvc-efcore-bootstrap-angular-web/table-of-contents>
+
+8:38
 
 ## ASP.NET Web API
 
