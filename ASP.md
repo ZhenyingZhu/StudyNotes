@@ -420,6 +420,20 @@ The later config override previous ones if there are conflicts.
 
 Config supports name-value pair and hirerarchy.
 
+DB ProjectsV13 is come by default.
+
+Connection string: `"DutchConnectionString":  "server=(localdb)\\ProjectsV13;Database=DutchTreatDb;Integrated Security=true;MultipleActiveResultSets=true;"`
+
+The integrated security should be replaced with actual creds when deploy to prod.
+
+`MultipleActiveResultSets` allows retriving multiple steams of data at the same time.
+
+In the DutchContext, add ctor `public DutchContext(DbContextOptions<DutchContext> options): base(options) {}`.
+
+Then run `dotnet ef database update` to create a DB folder, and then run `dotnet ef migrations add InitialDb` to generate some migration class. Move the `Migrations` folder under `Data` because it more belongs there. run `dotnet ef database update` again to build schemas.
+
+### Using DbContext
+
 # HERE
 
 <https://app.pluralsight.com/library/courses/aspnetcore-mvc-efcore-bootstrap-angular-web/table-of-contents>
