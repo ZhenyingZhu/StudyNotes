@@ -434,6 +434,38 @@ Then run `dotnet ef database update` to create a DB folder, and then run `dotnet
 
 ### Using DbContext
 
+In AppController, inject DutchContext into the ctor. And then create an action, which call `_context.Products.ToList()` (fluent syntax) to query the result.
+
+Or use LINQ query `var results = from p in _context.Products orderby p.Category select p;`.
+
+Create a view, and add the model `IEnumerable<Product>`. This is not necessary but it can let Intellisense works.
+
+`@Model` is the model passed in into the view.
+
+### Seeding the Database
+
+In DbContext, override `OnModelCreating`. It specifies how is the mapping between entities in the DB. For example set a string property to be at most 50 length.
+
+Create data in `modelBuilder.Entity<Order>().HasData()`. It is embedded into migration. `dotnet ef migrations add SeedData` and check `Migrations` folder.
+
+`HadData` has limitation that it can create only simple entity without relationship.
+
+Another way is to create a Seeder class.
+
+Call `dbContext.Database.EnsureCreated()` before DB operations.
+
+```c#
+dbContext.Database.EnsureCreated();
+dbContext.Products.AddRange(products);
+dbContextt.SaveChanges();
+```
+
+`host.Services.GetService<DutchSeeder>();` can get services that are set up via Startup. It create an instance and tries to fullfill all of its dependencies.
+
+`scopeFactory`: during every request this factory creates a scope of the lifetime of the request.
+
+### The Repository Pattern
+
 # HERE
 
 <https://app.pluralsight.com/library/courses/aspnetcore-mvc-efcore-bootstrap-angular-web/table-of-contents>
