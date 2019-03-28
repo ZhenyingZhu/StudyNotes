@@ -466,6 +466,16 @@ dbContextt.SaveChanges();
 
 ### The Repository Pattern
 
+Create a class `DutchRepository` and inject `DutchContext`. Create different methods to expost different calls to DB we want.
+
+Extract an interface of it so that testing can mock it.
+
+Another pattern is use generic. It makes the testing too complicate.
+
+Inject it to Startup by `services.AddScoped<IDutchRepository, DutchRepository>();`. In the same request scope the repository is not created again and again.
+
+### Showing the Products
+
 # HERE
 
 <https://app.pluralsight.com/library/courses/aspnetcore-mvc-efcore-bootstrap-angular-web/table-of-contents>

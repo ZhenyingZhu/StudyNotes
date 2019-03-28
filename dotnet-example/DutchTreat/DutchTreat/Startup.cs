@@ -36,6 +36,8 @@ namespace DutchTreat
             // TODO: support for real mail service.
             services.AddTransient<IMailService, NullMailService>();
 
+            services.AddScoped<IDutchRepository, DutchRepository>();
+
             services.AddMvc();
         }
 
