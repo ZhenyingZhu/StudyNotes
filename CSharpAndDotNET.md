@@ -910,6 +910,6 @@ Catch and rethrow lose all stack trace.
 
 Async vs Parallel: async is done by one core. Parallel is done by multiple cores.
 
-https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/async/
+If use `await` without `Task`, each step still runs sequencially. When init a `Task` instance, the task starts. When call `await myTask`, it blocks.
 
-https://stackoverflow.com/questions/14455293/how-and-when-to-use-async-and-await
+[Example](https://stackoverflow.com/questions/14455293/how-and-when-to-use-async-and-await)
