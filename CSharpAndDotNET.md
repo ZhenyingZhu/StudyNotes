@@ -901,3 +901,15 @@ HttpWebResponse myHttpWebResponse=(HttpWebResponse)myHttpWebRequest.GetResponse(
 [src](https://stackoverflow.com/questions/881473/why-catch-and-rethrow-an-exception-in-c)
 
 Catch and rethrow lose all stack trace.
+
+## Async and await
+
+[Public Doc](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/await)
+
+[Task Async Programming](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/async/index)
+
+Async vs Parallel: async is done by one core. Parallel is done by multiple cores.
+
+https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/async/
+
+https://stackoverflow.com/questions/14455293/how-and-when-to-use-async-and-await

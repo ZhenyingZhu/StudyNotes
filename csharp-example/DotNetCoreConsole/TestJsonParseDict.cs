@@ -20,6 +20,7 @@ namespace TestJsonParseDict
 
         private static Dictionary<Tuple<Guid, string>, string> Parse(string jsonStr)
         {
+            // This is not deserializable.
             var result = JsonConvert.DeserializeObject<Dictionary<Tuple<Guid, string>, string>>(jsonStr);
             return result;
         }

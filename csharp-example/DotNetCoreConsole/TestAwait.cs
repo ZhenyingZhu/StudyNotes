@@ -8,25 +8,21 @@ namespace TestAwait
 {
     public class TestMain
     {
-        public async Task MyMethodAsync()
-        {
-            Task<int> longRunningTask = LongRunningOperationAsync();
-            int result = await longRunningTask;
-
-            System.Console.WriteLine(result);
-        }
-
         private async Task<int> LongRunningOperationAsync()
         {
+            System.Console.WriteLine("LongRunningOperationAsync before");
             await Task.Delay(1000);
+            System.Console.WriteLine("LongRunningOperationAsync after");
             return 1;
         }
 
-        public static void TestMain.testMain()
+        public static void testMain()
         {
-            Task myMethod = MyMethodAsync();
+            TestMain myClass = new TestMain();
+            System.Console.WriteLine("testMain complete");
+            myClass.LongRunningOperationAsync().Wait();
 
-            System.Console.WriteLine();
+            System.Console.WriteLine("testMain complete");
         }
     }
 }

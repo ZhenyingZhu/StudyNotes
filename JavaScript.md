@@ -2246,3 +2246,18 @@ See JQuery.md
 ## Node.js
 
 <https://www.nczonline.net/blog/2013/10/07/node-js-and-the-new-web-front-end/>
+
+## Suppliments
+
+Object has 3 attributes/flags
+- isExtensible
+- Sealed: not extensible, cannot change attributes
+- Freezed: value not changeable as well.
+
+Property descriptors present in objects come in two main flavors: data descriptors and accessor descriptors. They have optional keys
+i.e. Property attributes
+- configurable
+- enumerable
+- writable
+- value
+
