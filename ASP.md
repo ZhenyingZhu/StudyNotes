@@ -476,6 +476,16 @@ Inject it to Startup by `services.AddScoped<IDutchRepository, DutchRepository>()
 
 ### Showing the Products
 
+Need put `div class=col-md-3` in a `div class=row` to make them show side by side.
+
+Need put parenthese around `img src="~/img/@(p.ArtId).jpg"` because otherwise razor would think jpg as a property.
+
+Use `class="img-fluid"` to make picture auto size.
+
+Give a border by `div class="border bg-light rounded p-1"`, p-1 gives a little padding.
+
+### Logging errors
+
 # HERE
 
 <https://app.pluralsight.com/library/courses/aspnetcore-mvc-efcore-bootstrap-angular-web/table-of-contents>
