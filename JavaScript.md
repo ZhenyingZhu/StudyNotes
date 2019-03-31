@@ -248,7 +248,7 @@ Statement
 
 JavaScript是脚本型语言，边读取代码边执行。
 
-注释：`//`, `/**/`
+注释：`//`, `/* */`
 
 Keywords
 
@@ -2261,3 +2261,9 @@ i.e. Property attributes
 - writable
 - value
 
+[How JS timer works](https://johnresig.com/blog/how-javascript-timers-work/)
+
+- JS is single-threaded. Timer delay is not guaranteed.
+- Async events queued up in a queue.
+- After execute an event complete, JS engine check what is in the event queue, and pick one to execute.
+- If no events to execute, wait until new event comes.

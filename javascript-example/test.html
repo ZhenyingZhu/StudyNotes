@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src='test_js_single_thread.js'></script>
+<script>
+function myFunction() {
+	document.getElementById("demo").innerHTML = "A Paragraph";
+	cnt = 0;
+}
+</script>
+</head>
+<body>
+
+<h1>My Web Page</h1>
+<p id="demo">A Paragraph</p>
+<button type="button" onclick="myFunction()">Try it</button>
+</body>
+</html>
