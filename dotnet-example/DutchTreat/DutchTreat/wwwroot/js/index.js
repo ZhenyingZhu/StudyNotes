@@ -20,7 +20,7 @@ button.addEventListener("click", function () {
 
 var productInfo = $(".product-props li");
 productInfo.on("click", function () {
-    console.log("You cliked on " + $(this).text());
+    console.log("You clicked on " + $(this).text());
 })
 
 $(document).ready(function () {

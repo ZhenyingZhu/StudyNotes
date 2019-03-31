@@ -24,6 +24,7 @@ ASP.NET offers programming models
 - <https://app.pluralsight.com/library/courses/front-end-web-app-html5-javascript-css/table-of-contents>
 - <https://app.pluralsight.com/library/courses/css3-in-depth/table-of-contents>
 - <https://app.pluralsight.com/library/courses/js4cs/table-of-contents>
+- <https://app.pluralsight.com/library/courses/entity-framework-core-getting-started>
 
 ## Building a Web App with ASP.NET Core, MVC, Entity Framework Core, Bootstrap, and Angular
 
@@ -485,6 +486,18 @@ Use `class="img-fluid"` to make picture auto size.
 Give a border by `div class="border bg-light rounded p-1"`, p-1 gives a little padding.
 
 ### Logging errors
+
+In cmd, run `set ASPNETCORE_ENVIRONMENT=Development`
+
+`dotnet run` already print logs.
+
+Inject `ILogger` to DutchRepository, and let logger type to be `DutchRepository`, so that logs log where are they come from.
+
+Can define different log level for defferent namespaces.
+
+Set logging level in config.json.
+
+### Create an API Controller
 
 # HERE
 
