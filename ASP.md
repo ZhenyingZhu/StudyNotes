@@ -499,6 +499,36 @@ Set logging level in config.json.
 
 ### Create an API Controller
 
+Use Postman to send request to API.
+
+Web API is a set of endpoints to expose your APIs.
+
+It expose data, which is similar to AppController, which expose data.
+
+Add attribute `Route("api/[Controller]")` to the controller class.
+
+The API has a verb, `Get`. Implement it with Repository.
+
+Run `http://localhost:10120/api/products` to call it.
+
+The Get API can return an IEnumerable. But then if exception happens, it cannot return properly.
+
+Return Json result can wrap the bad request to a Json object, but it tied the MVC to json.
+
+Return `IActionResult` is the best. Return `Ok` or `BadRequest` wrap with the results.
+
+Can use Swagger to document public APIs.
+
+To use the new document way in .NET Core 2.1, use ControllerBase instead of Controller, and remove `Ok`.
+
+ActionResult returns implicit operator, so that concrete types can be specified and converted. But interfaces cannot.
+
+Add attribute `[ApiController]` to the class.
+
+In startup, `services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);` to opt in the new feature.
+
+### Returning Data
+
 # HERE
 
 <https://app.pluralsight.com/library/courses/aspnetcore-mvc-efcore-bootstrap-angular-web/table-of-contents>
