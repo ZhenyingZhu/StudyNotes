@@ -1,18 +1,26 @@
 <!DOCTYPE html>
 <html>
-<head>
-<script src='test_js_single_thread.js'></script>
-<script>
-function myFunction() {
-	document.getElementById("demo").innerHTML = "A Paragraph";
-	cnt = 0;
-}
-</script>
-</head>
-<body>
+	<head>
+		<script>
+			function myFunction() {
+				document.getElementById("demo").innerHTML = "A Paragraph";
+				cnt = 0;
+			}
+		</script>
+		
+	</head>
 
-<h1>My Web Page</h1>
-<p id="demo">A Paragraph</p>
-<button type="button" onclick="myFunction()">Try it</button>
-</body>
+	<body>
+		<h1>My Web Page</h1>
+
+		<p id="demo">A Paragraph</p>
+
+		<div>
+			<img class="img-1" src="image2.jpg"></img>
+		</div>
+
+		<button type="button" onclick="myFunction()">Try it</button>
+
+		<script src='test_promise.js'></script>
+	</body>
 </html>

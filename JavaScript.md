@@ -2267,3 +2267,7 @@ i.e. Property attributes
 - Async events queued up in a queue.
 - After execute an event complete, JS engine check what is in the event queue, and pick one to execute.
 - If no events to execute, wait until new event comes.
+
+[Promise](https://developers.google.com/web/fundamentals/primers/promises)
+
+[Load image](https://stackoverflow.com/questions/9815762/detect-when-an-image-fails-to-load-in-javascript)
