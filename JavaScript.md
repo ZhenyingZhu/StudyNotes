@@ -2250,12 +2250,14 @@ See JQuery.md
 ## Suppliments
 
 Object has 3 attributes/flags
+
 - isExtensible
 - Sealed: not extensible, cannot change attributes
 - Freezed: value not changeable as well.
 
 Property descriptors present in objects come in two main flavors: data descriptors and accessor descriptors. They have optional keys
 i.e. Property attributes
+
 - configurable
 - enumerable
 - writable
@@ -2269,5 +2271,8 @@ i.e. Property attributes
 - If no events to execute, wait until new event comes.
 
 [Promise](https://developers.google.com/web/fundamentals/primers/promises)
+
+- A promise can only succeed or fail once.
+- No matter when the event happens, even before the event is listened, promise can always catch it's succeed or failure.
 
 [Load image](https://stackoverflow.com/questions/9815762/detect-when-an-image-fails-to-load-in-javascript)
