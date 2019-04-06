@@ -2275,4 +2275,19 @@ i.e. Property attributes
 - A promise can only succeed or fail once.
 - No matter when the event happens, even before the event is listened, promise can always catch it's succeed or failure.
 
+Promise can be:
+
+- fulfilled
+- rejected
+- pending
+- settled
+
+Thenable: an object is promise-like, which has a `then` method.
+
+```javascript
+
+```
+
+HERE: Chaining
+
 [Load image](https://stackoverflow.com/questions/9815762/detect-when-an-image-fails-to-load-in-javascript)

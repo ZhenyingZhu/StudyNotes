@@ -1,16 +1,26 @@
-var img1 = document.querySelector('.img-1');
+function get(url) {
+    return new Promise(function(resolve, reject) {
+        var req = new XMLHttpRequest();
+        req.open('GET', url);
 
-function loaded() {
-  console.log("image loaded");
+        req.onload = function() {
+            if (req.status == 200) {
+                resolve(req.response);
+            } else {
+                reject(Error(req.statusText));
+            }
+        };
+
+        req.onerror = function() {
+            reject(Error('Network Error'));
+        };
+        
+        req.send();
+    });
 }
 
-if (img1.complete) {
-  loaded();
-}
-else {
-  img1.addEventListener('load', loaded);
-}
-
-img1.addEventListener('error', function() {
-  console.log("image failed");
+get('story.json').then(function(response) {
+    console.log("Success!");
+}, function(error) {
+    console.error("Failed!", error);
 });
