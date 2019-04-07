@@ -1108,3 +1108,7 @@ HERE:
 ## WCF
 
 Service oriented: <https://docs.microsoft.com/en-us/dotnet/framework/wcf/whats-wcf>
+
+## LocalDB
+
+[MSSQLLOCALDB databases aren't listed](https://stackoverflow.com/questions/34029337/mssqllocaldb-databases-arent-listed)
