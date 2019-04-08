@@ -1,1 +1,4 @@
-JSON!
+{
+	"title":"Hello World!",
+	"content":"This is a test json."
+}

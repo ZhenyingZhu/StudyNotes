@@ -20,7 +20,9 @@ function get(url) {
 }
 
 get('story.json').then(function(response) {
-    console.log("Success!");
+    console.log("Success!", response);
+    var obj = JSON.parse(response);
+    document.getElementById("demo").innerHTML = obj.title;
 }, function(error) {
     console.error("Failed!", error);
 });
