@@ -1,28 +1,25 @@
-function get(url) {
-    return new Promise(function(resolve, reject) {
-        var req = new XMLHttpRequest();
-        req.open('GET', url);
-
-        req.onload = function() {
-            if (req.status == 200) {
-                resolve(req.response);
-            } else {
-                reject(Error(req.statusText));
-            }
-        };
-
-        req.onerror = function() {
-            reject(Error('Network Error'));
-        };
-        
-        req.send();
-    });
+function t1() {
+	return new Promise(function(resolve) {
+		setTimeout(function() {
+			console.log("Running task1.");
+			resolve("Task done.");
+		}, 1000);
+	});
 }
 
-get('story.json').then(function(response) {
-    console.log("Success!", response);
-    var obj = JSON.parse(response);
-    document.getElementById("demo").innerHTML = obj.title;
-}, function(error) {
-    console.error("Failed!", error);
+function t2() {
+	return new Promise(function(resolve) {
+		setTimeout(function() {
+			console.log("Running task2.");
+			resolve("Task done.");
+		}, 1000);
+	});
+}
+
+var promise = t1();
+promise.then(function(res) {
+	console.log(res);
+	return t2();
+}).then(function(res) {
+	console.log(res);
 });
