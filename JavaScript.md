@@ -2274,6 +2274,9 @@ i.e. Property attributes
 
 - A promise can only succeed or fail once.
 - No matter when the event happens, even before the event is listened, promise can always catch it's succeed or failure.
+- The executor promise accept runs as soon as the promise ctor is called.
+- The executor can use the resolve and reject functions to deal with when the executor success or fail in the future.
+- Then is used to pass in the resolve and reject functions.
 
 Promise can be:
 
