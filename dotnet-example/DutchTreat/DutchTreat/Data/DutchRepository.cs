@@ -19,11 +19,6 @@ namespace DutchTreat.Data
             this._logger = logger;
         }
 
-        public IEnumerable<Order> GetAllOrders()
-        {
-            return this._ctx.Orders.Include(o => o.Items).ThenInclude(i => i.Product).ToList();
-        }
-
         public IEnumerable<Product> GetAllProducts()
         {
             try
@@ -43,6 +38,16 @@ namespace DutchTreat.Data
         public IEnumerable<Product> GetProductsByCategory(string category)
         {
             return this._ctx.Products.Where(p => p.Category == category).ToList();
+        }
+
+        public IEnumerable<Order> GetAllOrders()
+        {
+            return this._ctx.Orders.Include(o => o.Items).ThenInclude(i => i.Product).ToList();
+        }
+
+        public Order GetOrderById(int id)
+        {
+            return this._ctx.Orders.Where(o => o.Id == id).Include(o => o.Items).ThenInclude(i => i.Product).FirstOrDefault();
         }
 
         public bool SaveAll()

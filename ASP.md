@@ -529,13 +529,22 @@ In startup, `services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Vers
 
 ### Returning Data
 
-Self referencing loop. Set json option to decide reference loop handling.
+Use `this._ctx.Orders.Include(o => o.Items).ThenInclude(i => i.Product).ToList()` to get both Order, and item and product.
+
+Self referencing loop
+
+- OrderItem refer back to Order.
+- Set json option to decide how to handle reference loop.
 
 ```c#
 services.AddMvc().AddJsonOptions(opt => opt.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);`
 ```
 
+Use `[HttpGet("{id:int}")]` attribute to create a Get method for getting order by id.
 
+The method body is `this._ctx.Orders.Find(id)` if only need get an order, but to get item and product as well, use fluent/LINQ syntax `Where`.
+
+### Implementing POST
 
 # HERE
 
