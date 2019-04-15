@@ -546,6 +546,16 @@ The method body is `this._ctx.Orders.Find(id)` if only need get an order, but to
 
 ### Implementing POST
 
+Post Order with query string: `http://localhost:17661/api/Orders?OrderDate=2017-5-5` can set the OrderDate.
+
+If not add `[FromBody]` attribute to the input model, the action takes property values (CLR object) from query string.
+
+Return `Created($"api/orders/{model.Id}", model)` action result for 201.
+
+When call `SaveAll`, the model has been updated with all properties.s
+
+### Validation and View Models
+
 # HERE
 
 <https://app.pluralsight.com/library/courses/aspnetcore-mvc-efcore-bootstrap-angular-web/table-of-contents>

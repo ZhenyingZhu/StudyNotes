@@ -37,7 +37,6 @@ namespace DutchTreat.Controllers
                 this._logger.LogError($"Failed to get Products: {ex}");
                 return BadRequest("Failed to get Products");
             }
-            
         }
     }
 }

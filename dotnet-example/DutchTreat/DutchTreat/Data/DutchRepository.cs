@@ -50,6 +50,11 @@ namespace DutchTreat.Data
             return this._ctx.Orders.Where(o => o.Id == id).Include(o => o.Items).ThenInclude(i => i.Product).FirstOrDefault();
         }
 
+        public void AddEntity(object model)
+        {
+            this._ctx.Add(model);
+        }
+
         public bool SaveAll()
         {
             return this._ctx.SaveChanges() > 0;
