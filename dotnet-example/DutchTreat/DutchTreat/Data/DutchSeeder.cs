@@ -39,7 +39,21 @@ namespace DutchTreat.Data
                 var filepath = Path.Combine(this._hosting.ContentRootPath, "Data/art.json");
                 var json = File.ReadAllText(filepath);
                 var products = JsonConvert.DeserializeObject<IEnumerable<Product>>(json);
-                _ctx.Products.AddRange(products);
+
+                //_ctx.Products.AddRange(products);
+                // zhenying: trying to figure out which data exceed size.
+                foreach (var product in products)
+                {
+                    _ctx.Products.Add(product);
+                    try
+                    {
+                        _ctx.SaveChanges();
+                    }
+                    catch (Exception e)
+                    {
+                        continue;
+                    }
+                }
 
                 var existOrder = _ctx.Orders.Where(o => o.Id == 1).FirstOrDefault();
                 if (existOrder != null)
