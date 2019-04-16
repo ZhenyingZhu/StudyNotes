@@ -556,6 +556,16 @@ When call `SaveAll`, the model has been updated with all properties.s
 
 ### Validation and View Models
 
+The view model can also used to validate APIs.
+
+Use DataAnnotations to add constrains.
+
+Change the Post request to use the view model instead of the real object.
+
+Use `ModelState.IsValid` and `return BadRequest(ModelState);` to do the validation and error handling.
+
+### Using AutoMapper
+
 # HERE
 
 <https://app.pluralsight.com/library/courses/aspnetcore-mvc-efcore-bootstrap-angular-web/table-of-contents>
