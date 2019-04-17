@@ -566,6 +566,18 @@ Use `ModelState.IsValid` and `return BadRequest(ModelState);` to do the validati
 
 ### Using AutoMapper
 
+Add Nuget package AutoMapper and AutoMapper.extensions.Microsoft.depdencyInjection..
+
+In `Startup.cs`, inject `services.AddAutoMapper();`
+
+In the controller, inject `IMapper`.
+
+In the controller, `return Ok(this._mapper.Map<Order, OrderViewModel>(order));`.
+
+Add a `DutchMappingProfile` to define the mapping.
+
+### Creating association controllers
+
 # HERE
 
 <https://app.pluralsight.com/library/courses/aspnetcore-mvc-efcore-bootstrap-angular-web/table-of-contents>
