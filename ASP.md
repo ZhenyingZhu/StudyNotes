@@ -25,6 +25,7 @@ ASP.NET offers programming models
 - <https://app.pluralsight.com/library/courses/css3-in-depth/table-of-contents>
 - <https://app.pluralsight.com/library/courses/js4cs/table-of-contents>
 - <https://app.pluralsight.com/library/courses/entity-framework-core-getting-started>
+- <https://app.pluralsight.com/library/courses/aspdotnetcore-implementing-securing-api>
 
 ## Building a Web App with ASP.NET Core, MVC, Entity Framework Core, Bootstrap, and Angular
 
@@ -578,11 +579,22 @@ Add a `DutchMappingProfile` to define the mapping.
 
 ### Creating association controllers
 
+The association controllers are to add collection to ViewModel.
+
+AutoMapper will trying to map the object to view model as best as it can. Don't need to define how to map each item in a collection in a class.
+i.e. Order has a collection of OrderItem as a property. If define Order to OrderViewModel map, and OrderItem to OrderItemViewModel map, then there is no need to define Order.OrderItem view model map.
+
+Assicoation controller is to deal with urls like orders/1/items.
+
+We can flatting Product into OrderItem view model using auto mapper convention. If the proudct is read-only, no need to create a single view model for it.
+
+Just add the Product as a prefix for all proerties in OrderItemViewModel.
+
+### Using Query Strings for APIs
+
 # HERE
 
 <https://app.pluralsight.com/library/courses/aspnetcore-mvc-efcore-bootstrap-angular-web/table-of-contents>
-
-8:38
 
 ## ASP.NET Web API
 
