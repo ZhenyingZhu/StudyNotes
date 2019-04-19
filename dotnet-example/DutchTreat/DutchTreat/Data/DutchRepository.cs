@@ -40,9 +40,17 @@ namespace DutchTreat.Data
             return this._ctx.Products.Where(p => p.Category == category).ToList();
         }
 
-        public IEnumerable<Order> GetAllOrders()
+        public IEnumerable<Order> GetAllOrders(bool includeItems)
         {
-            return this._ctx.Orders.Include(o => o.Items).ThenInclude(i => i.Product).ToList();
+            if (includeItems)
+            {
+                return this._ctx.Orders.Include(o => o.Items).ThenInclude(i => i.Product).ToList();
+            }
+            else
+            {
+                return this._ctx.Orders.ToList();
+            }
+            
         }
 
         public Order GetOrderById(int id)

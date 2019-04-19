@@ -592,6 +592,12 @@ Just add the Product as a prefix for all proerties in OrderItemViewModel.
 
 ### Using Query Strings for APIs
 
+URL is used to describe what of resouces are looking for. Query string can change the behavior.
+
+In the controller, get method, add a bool parameter with default value.
+
+Send the request with URL like `http://localhost:5000/api/orders?includeItems=false`.
+
 # HERE
 
 <https://app.pluralsight.com/library/courses/aspnetcore-mvc-efcore-bootstrap-angular-web/table-of-contents>
