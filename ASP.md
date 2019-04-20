@@ -598,6 +598,8 @@ In the controller, get method, add a bool parameter with default value.
 
 Send the request with URL like `http://localhost:5000/api/orders?includeItems=false`.
 
+### Authorizing Actions
+
 # HERE
 
 <https://app.pluralsight.com/library/courses/aspnetcore-mvc-efcore-bootstrap-angular-web/table-of-contents>
