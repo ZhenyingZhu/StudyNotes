@@ -26,6 +26,8 @@ ASP.NET offers programming models
 - <https://app.pluralsight.com/library/courses/js4cs/table-of-contents>
 - <https://app.pluralsight.com/library/courses/entity-framework-core-getting-started>
 - <https://app.pluralsight.com/library/courses/aspdotnetcore-implementing-securing-api>
+- <https://app.pluralsight.com/library/courses/web-api-design>
+- <https://app.pluralsight.com/library/courses/aspdotnetcore-implementing-securing-api>
 
 ## Building a Web App with ASP.NET Core, MVC, Entity Framework Core, Bootstrap, and Angular
 
