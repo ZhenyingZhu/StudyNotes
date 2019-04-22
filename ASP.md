@@ -602,6 +602,8 @@ Send the request with URL like `http://localhost:5000/api/orders?includeItems=fa
 
 ### Authorizing Actions
 
+In the controller, add the attribute `Authorize` to the view.
+
 # HERE
 
 <https://app.pluralsight.com/library/courses/aspnetcore-mvc-efcore-bootstrap-angular-web/table-of-contents>
