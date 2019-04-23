@@ -919,3 +919,7 @@ If use `await` without `Task`, each step still runs sequencially. When init a `T
 <https://en.wikipedia.org/wiki/Inversion_of_control>
 
 <http://jinnianshilongnian.iteye.com/blog/1413846>
+
+## Compare two list
+
+`UnorderedEnumerableComparer<Guid>.Default.Compare(guidList1, guidList2) != 0`
