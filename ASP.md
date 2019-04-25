@@ -604,6 +604,26 @@ Send the request with URL like `http://localhost:5000/api/orders?includeItems=fa
 
 In the controller, add the attribute `Authorize` to the view.
 
+### Storing Identities in the Database
+
+Create an entity inherit IdentityUser.
+
+Derive DutchContext from `IdentityDbContext<StoreUser>`, where `StoreUser` is the user type.
+
+Need migrate by `dotnet ef migrations add Identity`.
+
+Drop the table and rebuild it since there is too much changes.
+
+`await` vs `.Wait()`.
+
+```cmd
+dotnet ef database drop
+```
+
+In the seeder, inject UserManager, and use it to create a StoreUser. Notice it is async.
+
+### Configuring Identity
+
 # HERE
 
 <https://app.pluralsight.com/library/courses/aspnetcore-mvc-efcore-bootstrap-angular-web/table-of-contents>
