@@ -624,6 +624,8 @@ In the seeder, inject UserManager, and use it to create a StoreUser. Notice it i
 
 ### Configuring Identity
 
+In startup ConfigureServices.
+
 # HERE
 
 <https://app.pluralsight.com/library/courses/aspnetcore-mvc-efcore-bootstrap-angular-web/table-of-contents>
