@@ -624,7 +624,13 @@ In the seeder, inject UserManager, and use it to create a StoreUser. Notice it i
 
 ### Configuring Identity
 
-In startup ConfigureServices.
+In startup ConfigureServices, call `services.AddIdentity<StoreUser, IdentityRole>(cfg => {}).AddEntityFrameworkStores<DutchContext>();`.
+
+IdentityRole can used to config roles.
+
+Config can define rules.
+
+Store users info and product info into 2 DB can help reduce the risk of compromise.
 
 # HERE
 
