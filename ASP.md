@@ -612,13 +612,10 @@ Derive DutchContext from `IdentityDbContext<StoreUser>`, where `StoreUser` is th
 
 Need migrate by `dotnet ef migrations add Identity`.
 
-Drop the table and rebuild it since there is too much changes.
+Drop the table and rebuild it since there is too much changes: `dotnet ef database drop`.
 
 `await` vs `.Wait()`.
 
-```cmd
-dotnet ef database drop
-```
 
 In the seeder, inject UserManager, and use it to create a StoreUser. Notice it is async.
 

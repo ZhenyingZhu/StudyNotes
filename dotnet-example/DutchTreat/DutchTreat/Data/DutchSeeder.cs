@@ -65,6 +65,8 @@ namespace DutchTreat.Data
 
                 //_ctx.Products.AddRange(products);
                 // zhenying: trying to figure out which data exceed size.
+                // turns out the Title was set to 50 as the length. Changed it to 250.
+                int id = 0;
                 foreach (var product in products)
                 {
                     _ctx.Products.Add(product);
