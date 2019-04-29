@@ -1199,6 +1199,12 @@ HERE:
 
 <https://docs.microsoft.com/en-us/aspnet/entity-framework>
 
+`dotnet ef migrations --help` can see the options.
+
+Use `[Column(TypeName = "decimal(18,2)")]` before a property to define its restrict.
+
+`modelBuilder.Entity<Product>().Property(p => p.Price).HasPrecision(18, 2);` should work samely, but this API is not found.
+
 ## RESTful
 
 <https://www.tutorialspoint.com/restful/index.htm>

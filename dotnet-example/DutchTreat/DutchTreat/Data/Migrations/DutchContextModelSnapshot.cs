@@ -15,7 +15,7 @@ namespace DutchTreat.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.3-servicing-35854")
+                .HasAnnotation("ProductVersion", "2.2.1-servicing-10028")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -41,7 +41,7 @@ namespace DutchTreat.Migrations
                         new
                         {
                             Id = 1,
-                            OrderDate = new DateTime(2019, 4, 28, 5, 15, 42, 380, DateTimeKind.Utc).AddTicks(254),
+                            OrderDate = new DateTime(2019, 4, 29, 2, 16, 19, 389, DateTimeKind.Utc).AddTicks(686),
                             OrderNumber = "12345"
                         });
                 });
@@ -58,7 +58,8 @@ namespace DutchTreat.Migrations
 
                     b.Property<int>("Quantity");
 
-                    b.Property<decimal>("UnitPrice");
+                    b.Property<decimal>("UnitPrice")
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
 
@@ -91,12 +92,13 @@ namespace DutchTreat.Migrations
 
                     b.Property<string>("Category");
 
-                    b.Property<decimal>("Price");
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("Size");
 
                     b.Property<string>("Title")
-                        .HasMaxLength(50);
+                        .HasMaxLength(250);
 
                     b.HasKey("Id");
 

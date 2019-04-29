@@ -57,7 +57,7 @@ namespace DutchTreat.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Category = table.Column<string>(nullable: true),
                     Size = table.Column<string>(nullable: true),
-                    Price = table.Column<decimal>(nullable: false),
+                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Title = table.Column<string>(maxLength: 250, nullable: true),
                     ArtDescription = table.Column<string>(nullable: true),
                     ArtDating = table.Column<string>(nullable: true),
@@ -207,7 +207,7 @@ namespace DutchTreat.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     ProductId = table.Column<int>(nullable: true),
                     Quantity = table.Column<int>(nullable: false),
-                    UnitPrice = table.Column<decimal>(nullable: false),
+                    UnitPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     OrderId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
@@ -230,7 +230,7 @@ namespace DutchTreat.Migrations
             migrationBuilder.InsertData(
                 table: "Orders",
                 columns: new[] { "Id", "OrderDate", "OrderNumber", "UserId" },
-                values: new object[] { 1, new DateTime(2019, 4, 28, 5, 13, 19, 370, DateTimeKind.Utc).AddTicks(5343), "12345", null });
+                values: new object[] { 1, new DateTime(2019, 4, 29, 2, 15, 55, 972, DateTimeKind.Utc).AddTicks(458), "12345", null });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
