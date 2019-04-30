@@ -616,7 +616,6 @@ Drop the table and rebuild it since there is too much changes: `dotnet ef databa
 
 `await` vs `.Wait()`.
 
-
 In the seeder, inject UserManager, and use it to create a StoreUser. Notice it is async.
 
 ### Configuring Identity
@@ -627,7 +626,13 @@ IdentityRole can used to config roles.
 
 Config can define rules.
 
-Store users info and product info into 2 DB can help reduce the risk of compromise.
+Call `AddEntityFrameworkStores` to decide where to store the user. Store users info and product info into 2 DB can help reduce the risk of compromise.
+
+Call `app.UseAuthentication()` to turn the identity on. It needs to be called before `UseMvc`.
+
+Calls are redirect to `Account/Login` page.
+
+### Designing the Login View
 
 # HERE
 
