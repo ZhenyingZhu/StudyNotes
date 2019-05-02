@@ -634,6 +634,16 @@ Calls are redirect to `Account/Login` page.
 
 ### Designing the Login View
 
+Create an `AccountController`.
+
+Use `this.User.Identity.IsAuthenticated` to call into identity to check if the user is logged in.
+
+If the user is login, `return RedirectToAction("Index", "app");`.
+
+To create the View, first create a LoginViewModel with properties and validations. Then create the View cshtml.
+
+### Implementing Login and Logout
+
 # HERE
 
 <https://app.pluralsight.com/library/courses/aspnetcore-mvc-efcore-bootstrap-angular-web/table-of-contents>
