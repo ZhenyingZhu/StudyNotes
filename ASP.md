@@ -644,6 +644,14 @@ To create the View, first create a LoginViewModel with properties and validation
 
 ### Implementing Login and Logout
 
+Inject `SignInManager` to AccountController.
+
+Create a Login view with Post method. In the cshtml page, add the method post to the form.
+
+Use `signInManager.PasswordSignInAsync` to get the login result. Don't need to access the store user manually.
+
+To add `ModelState.AddModelError("", "Failed to login");`, need add `<div asp-validation-summary="ModelOnly"></div>` in the cshtml.
+
 # HERE
 
 <https://app.pluralsight.com/library/courses/aspnetcore-mvc-efcore-bootstrap-angular-web/table-of-contents>
