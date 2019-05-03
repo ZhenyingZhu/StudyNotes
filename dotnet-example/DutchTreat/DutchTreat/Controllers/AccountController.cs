@@ -43,18 +43,25 @@ namespace DutchTreat.Controllers
                 {
                     if (Request.Query.Keys.Contains("ReturnUrl"))
                     {
-                        Redirect(Request.Query["ReturnUrl"].First());
+                        return Redirect(Request.Query["ReturnUrl"].First());
                     }
                     else
                     {
-                        RedirectToAction("Shop", "App");
+                        return RedirectToAction("Shop", "App");
                     }
                 }
             }
 
             ModelState.AddModelError("", "Failed to login");
-
             return View();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Logout()
+        {
+            await this._signInManager.SignOutAsync();
+
+            return RedirectToAction("Index", "app");
         }
     }
 }

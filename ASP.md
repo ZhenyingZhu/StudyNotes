@@ -652,6 +652,12 @@ Use `signInManager.PasswordSignInAsync` to get the login result. Don't need to a
 
 To add `ModelState.AddModelError("", "Failed to login");`, need add `<div asp-validation-summary="ModelOnly"></div>` in the cshtml.
 
+Username: zhenying@dutchtreat.com, Password: P@ssw0rd!
+
+In the Layout.cshtml, add Login and Logout nav-link.
+
+### Use Identity in the API
+
 # HERE
 
 <https://app.pluralsight.com/library/courses/aspnetcore-mvc-efcore-bootstrap-angular-web/table-of-contents>
