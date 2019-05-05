@@ -658,6 +658,19 @@ In the Layout.cshtml, add Login and Logout nav-link.
 
 ### Use Identity in the API
 
+When login, calling the APIs shouldn't need to re-auth.
+
+- Using cookies are easiest, but least secure. Also it cannot resolve the issue if other clients other than browser want access APIs.
+- Open Id
+- OAuth2
+- JWT Tokens: The one that used in the course.
+
+Using Identity in ASP NET Core without setting security is by default using cookies.
+
+Inject authentication service: `services.AddAuthentication().AddCookie().AddJwtBearer();`
+
+Add `[Authorize]` to controller views.
+
 # HERE
 
 <https://app.pluralsight.com/library/courses/aspnetcore-mvc-efcore-bootstrap-angular-web/table-of-contents>
