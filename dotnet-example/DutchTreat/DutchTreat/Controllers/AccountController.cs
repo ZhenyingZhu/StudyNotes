@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using DutchTreat.Data.Entities;
 using DutchTreat.ViewModels;
@@ -14,11 +16,13 @@ namespace DutchTreat.Controllers
     {
         private readonly ILogger<AccountController> _logger;
         private readonly SignInManager<StoreUser> _signInManager;
+        private readonly UserManager<StoreUser> _userManager;
 
-        public AccountController(ILogger<AccountController> logger, SignInManager<StoreUser> signInManager)
+        public AccountController(ILogger<AccountController> logger, SignInManager<StoreUser> signInManager, UserManager<StoreUser> userManager)
         {
             this._logger = logger;
             this._signInManager = signInManager;
+            this._userManager = userManager;
         }
 
         public IActionResult Login()
@@ -62,6 +66,31 @@ namespace DutchTreat.Controllers
             await this._signInManager.SignOutAsync();
 
             return RedirectToAction("Index", "app");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateToken([FromBody] LoginViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await this._userManager.FindByNameAsync(model.Username);
+
+                if (user != null)
+                {
+                    var result = await this._signInManager.CheckPasswordSignInAsync(user, model.Password, false);
+                    if (result.Succeeded)
+                    {
+                        var claims = new[]
+                        {
+                            new Claim(JwtRegisteredClaimNames.Sub, user.Email),
+                            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                            new Claim(JwtRegisteredClaimNames.UniqueName, user.UserName)
+                        };
+                    }
+                }
+            }
+
+            return BadRequest();
         }
     }
 }

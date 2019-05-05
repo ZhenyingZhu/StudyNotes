@@ -669,7 +669,27 @@ Using Identity in ASP NET Core without setting security is by default using cook
 
 Inject authentication service: `services.AddAuthentication().AddCookie().AddJwtBearer();`
 
-Add `[Authorize]` to controller views.
+Add `[Authorize]` to controller classes. When sending a request to the API before get authed, the response returns 302 with redirect URL. It is auth with cookie.
+
+Replace it with `[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]`, so that it returns 401.
+
+Using postman, adding a header with `Authorization` key and `Bearer` value.
+
+Create a REST call (i.e. it is not resolve to a view), `CreateToken`, in Account Controller. It is a POST.
+
+SignInManager.PasswordSignInAsync is actually using a cookie.
+
+Inject UserManager to the account controller, so that we can get a user and call SignManager.CheckSignInAsync.
+
+Claims are a set of well-known keys with values.
+
+- Sub is the subject name.
+- Jti is the unique id of each token.
+- UniqueName, the user uniq Id.
+
+12:18
+
+Key: the secret to encrypt the token.
 
 # HERE
 
