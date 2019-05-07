@@ -687,9 +687,26 @@ Claims are a set of well-known keys with values.
 - Jti is the unique id of each token.
 - UniqueName, the user uniq Id.
 
-12:18
+Key: the secret to encrypt the token. Some part of the token is encrpted but not necessary to encrypt all parts.
 
-Key: the secret to encrypt the token.
+Use SymmetricSecurityKey as the key. It needs a string, which we should read it from config, so that IT can replace it with a value that is not in the src code.
+
+Inject Extension.IConfiguration to the controller to read the config.
+
+Create a creds SigningCredentials with the key and SHA256 algorithms.
+
+With the creds we can create JwtSecurityToken.
+
+- Issuer: who create the token.
+- Audience: who can use this token.
+
+Return HTTP.Created(src, token).
+
+In startup, add config for AddAuthentication to create a token based on the bearer string in the request header.
+
+In the postman, call the action CreateToken to get the token, and then add this to API call header.
+
+### 
 
 # HERE
 
