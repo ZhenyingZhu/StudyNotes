@@ -706,7 +706,13 @@ In startup, add config for AddAuthentication to create a token based on the bear
 
 In the postman, call the action CreateToken to get the token, and then add this to API call header.
 
-### 
+### Use Identity in Read Operations
+
+Since OrdersController uses auth, can get the user in all its APIs.
+
+APIs can be used by angular.
+
+### Use Identity in Write Operations
 
 # HERE
 

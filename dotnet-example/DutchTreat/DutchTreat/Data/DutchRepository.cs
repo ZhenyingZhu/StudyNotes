@@ -53,9 +53,22 @@ namespace DutchTreat.Data
             
         }
 
-        public Order GetOrderById(int id)
+        public IEnumerable<Order> GetAllOrdersByUser(string username, bool includeItems)
         {
-            return this._ctx.Orders.Where(o => o.Id == id).Include(o => o.Items).ThenInclude(i => i.Product).FirstOrDefault();
+            if (includeItems)
+            {
+                return this._ctx.Orders.Where(o => o.User.UserName == username).Include(o => o.Items).ThenInclude(i => i.Product).ToList();
+            }
+            else
+            {
+                return this._ctx.Orders.Where(o => o.User.UserName == username).ToList();
+            }
+
+        }
+
+        public Order GetOrderById(string username, int id)
+        {
+            return this._ctx.Orders.Where(o => o.Id == id && o.User.UserName == username).Include(o => o.Items).ThenInclude(i => i.Product).FirstOrDefault();
         }
 
         public void AddEntity(object model)
