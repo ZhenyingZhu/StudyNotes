@@ -8,6 +8,7 @@ using DutchTreat.Data.Entities;
 using DutchTreat.ViewModels;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -20,12 +21,18 @@ namespace DutchTreat.Controllers
         private readonly IDutchRepository _repository;
         private readonly ILogger _logger;
         private readonly IMapper _mapper;
+        private readonly UserManager<StoreUser> _userManager;
 
-        public OrdersController(IDutchRepository repository, ILogger<OrdersController> logger, IMapper mapper)
+        public OrdersController(
+            IDutchRepository repository,
+            ILogger<OrdersController> logger,
+            IMapper mapper,
+            UserManager<StoreUser> userManager)
         {
             this._repository = repository;
             this._logger = logger;
             this._mapper = mapper;
+            this._userManager = userManager;
         }
 
         [HttpGet]
@@ -63,7 +70,7 @@ namespace DutchTreat.Controllers
         }
 
         [HttpPost]
-        public ActionResult Post([FromBody]OrderViewModel model)
+        public async Task<ActionResult> Post([FromBody]OrderViewModel model)
         {
             try
             {
@@ -75,6 +82,9 @@ namespace DutchTreat.Controllers
                     {
                         newOrder.OrderDate = DateTime.Now;
                     }
+
+                    var currentUser = await this._userManager.FindByNameAsync(User.Identity.Name);
+                    newOrder.User = currentUser;
 
                     this._repository.AddEntity(newOrder);
                     if (this._repository.SaveAll())

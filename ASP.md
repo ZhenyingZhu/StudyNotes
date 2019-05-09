@@ -714,6 +714,12 @@ APIs can be used by angular.
 
 ### Use Identity in Write Operations
 
+User.Identity is just a list of claims. To get the user object, need use UserManager.
+
+In the OrdersController, add the logic to Post method.
+
+###
+
 # HERE
 
 <https://app.pluralsight.com/library/courses/aspnetcore-mvc-efcore-bootstrap-angular-web/table-of-contents>
