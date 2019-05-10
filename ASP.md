@@ -718,7 +718,11 @@ User.Identity is just a list of claims. To get the user object, need use UserMan
 
 In the OrdersController, add the logic to Post method.
 
-###
+### First TypeScript Class
+
+Angular requires TypeScript.
+
+Transpiling in visual studio 2017.
 
 # HERE
 
