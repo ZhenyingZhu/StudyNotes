@@ -1285,6 +1285,10 @@ https://stackoverflow.com/questions/6377009/adding-public-key-to-ssh-authorized-
 Use regedit to clean keys under
 `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\windows\CurrentVersion\Uninstall`
 
+# Cortana not working
+
+https://techjourney.net/disable-turn-off-cortana-in-windows-10/
+
 # timestamp section
 Sep 11 2016
 Nov 18 2016
@@ -1335,3 +1339,4 @@ Aug 9 2017
 Dec 23 2017
 Fev 5 2018
 Aug 23 2018: internet got disconnected. 
+
