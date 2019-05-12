@@ -724,6 +724,61 @@ Angular requires TypeScript.
 
 Transpiling in visual studio 2017.
 
+Create ts folder under wwwroot.
+
+In JavaScript, everything is a class.
+
+In TypeScript, properties can be specified a type, like `public visits:number = 0`. The type safety check happens when compiling. There is no running time check.
+
+A function:
+
+```typescript
+    public showName(name:string):boolean {
+        alert(name);
+    }
+```
+
+In TypeScript: `this` is required for fields.
+
+```typescript
+    private ourName: string;
+    set name(val) {
+        this.ourName = val;
+    }
+    get name() {
+        return this.ourName;
+    }
+```
+
+Constructor can have private arguments, which is auto create and wired to private properties.
+
+```typescript
+    constructor(private firstName: string, private lastName: string) {
+    }
+    // No need to define firstName and lastName but they are private properties.
+```
+
+The class need to be exported so others can use it.
+
+```typescript
+export class StoreCustomer {
+    ...
+}
+```
+
+To use it, need import the type. But TypeScript only import classes instead of namespaces.
+
+```typescript
+import { StoreCustomer, OtherThing } from "./StoreCustomer";
+
+let shopper = new StoreCustomer("Zhenying", "Zhu");
+shopper.showName();
+```
+
+Import and export works well when using a loader, such as WebPack and Browserify. But if not using a loader, then the typescript is used as a javascript. Need specify the loading order of them.
+
+### Compiling TypeScript
+
 # HERE
 
 <https://app.pluralsight.com/library/courses/aspnetcore-mvc-efcore-bootstrap-angular-web/table-of-contents>
