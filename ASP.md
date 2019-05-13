@@ -779,6 +779,20 @@ Import and export works well when using a loader, such as WebPack and Browserify
 
 ### Compiling TypeScript
 
+Compile = transpile.
+
+Add a tsconfig.json to the project root.
+
+`"include": [ "wwwroot/ts/**/*.ts" ]`. Double star means search all sub folders.
+
+Add `compilerOptions`.
+
+- Target is the ECMAScript version. Target es5 because Accessors are not available in es3.
+- sourceMap: create map file for debugging.
+
+### Debugging in the Browser
+
+
 # HERE
 
 <https://app.pluralsight.com/library/courses/aspnetcore-mvc-efcore-bootstrap-angular-web/table-of-contents>
