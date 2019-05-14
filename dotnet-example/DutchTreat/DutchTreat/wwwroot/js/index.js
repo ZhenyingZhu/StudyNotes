@@ -4,7 +4,9 @@ var s = "";
 console.log("Hello world");
 
 var theForm = document.getElementById("theForm");
-theForm.hidden = true;
+if (theForm != null) {
+    theForm.hidden = true;
+}
 
 // $("#theForm").show(); // opposite to hide.
 

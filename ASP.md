@@ -792,6 +792,11 @@ Add `compilerOptions`.
 
 ### Debugging in the Browser
 
+Add a scripts sections in Shop view, and drag the js files to it.
+
+In the browser debugger, the typescripts are showing up because the map files.
+
+###
 
 # HERE
 
