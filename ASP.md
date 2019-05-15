@@ -27,7 +27,7 @@ ASP.NET offers programming models
 - <https://app.pluralsight.com/library/courses/entity-framework-core-getting-started>
 - <https://app.pluralsight.com/library/courses/aspdotnetcore-implementing-securing-api>
 - <https://app.pluralsight.com/library/courses/web-api-design>
-- <https://app.pluralsight.com/library/courses/aspdotnetcore-implementing-securing-api>
+- <https://app.pluralsight.com/library/courses/typescript>
 
 ## Building a Web App with ASP.NET Core, MVC, Entity Framework Core, Bootstrap, and Angular
 
@@ -796,7 +796,15 @@ Add a scripts sections in Shop view, and drag the js files to it.
 
 In the browser debugger, the typescripts are showing up because the map files.
 
-###
+### What is Angular
+
+It is successor to AngularJS.
+
+It is an Open Source JavaScript Framework. It supplies basic app services. It can be used to build a Single Page Application.
+
+Angular is build with TypeScript.
+
+### Installing the Angular-CLI
 
 # HERE
 
