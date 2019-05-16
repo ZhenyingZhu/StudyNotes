@@ -806,6 +806,16 @@ Angular is build with TypeScript.
 
 ### Installing the Angular-CLI
 
+Use npm to install Angular-CLI. npm is distributed with Node.js.
+
+`npm -g` install tools globally. CLI tools are better to be installed globally, such as TypeScript, Gulp, Grunt.
+
+To install angular cli: `npm -g @angular/cli`.
+
+To check the CLI version: `ng --version`. `ng -h` list help.
+
+### Generate your first project
+
 # HERE
 
 <https://app.pluralsight.com/library/courses/aspnetcore-mvc-efcore-bootstrap-angular-web/table-of-contents>
