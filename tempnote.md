@@ -1289,6 +1289,15 @@ Use regedit to clean keys under
 
 https://techjourney.net/disable-turn-off-cortana-in-windows-10/
 
+# Install Linux on Win10
+
+https://www.wikihow.com/Enable-the-Windows-Subsystem-for-Linux
+
+- Turn windows features on or off
+- Enable .NET 3, Windows Subsystem for Linux
+- On Windows Store, download a dist such as Ubuntu
+- run the app bash
+
 # timestamp section
 Sep 11 2016
 Nov 18 2016
