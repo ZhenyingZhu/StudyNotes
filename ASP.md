@@ -816,6 +816,8 @@ To check the CLI version: `ng --version`. `ng -h` list help.
 
 ### Generate your first project
 
+`ng new dutch-app --dry-run --skip-git`
+
 # HERE
 
 <https://app.pluralsight.com/library/courses/aspnetcore-mvc-efcore-bootstrap-angular-web/table-of-contents>
