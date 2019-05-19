@@ -810,15 +810,38 @@ Use npm to install Angular-CLI. npm is distributed with Node.js.
 
 `npm -g` install tools globally. CLI tools are better to be installed globally, such as TypeScript, Gulp, Grunt.
 
-To install angular cli: `npm -g @angular/cli`.
+To install angular cli: `npm install -g @angular/cli`.
 
 To check the CLI version: `ng --version`. `ng -h` list help.
 
 ### Generate your first project
 
-`ng new dutch-app --dry-run --skip-git`
+`ng new dutch-app --dry-run --skip-git --inline-template --inline-style --skip-tests`
+
+Scaffolding: write the definition, and compiler of the framework generate code.
+
+Skip tests is actually just skip UTs. Test scaffolding files are still generated.
+
+Under dutch-app folder, run `ng build`. It uses Webpack to package files. It packs 5 files
+
+- our code is in main.js file.
+- vendor.js contains all angular stuff.
+- styples.js is css.
+- runtime.js includes some plumbing.
+- polyfills.js is for old browsers compatibility.
+
+`ng serve` start the app without running backend. It runs `src\app\app.component.ts`.
+
+- It uses `Component` decorator.
+- The class sets 3 attributes: selector, template, styles.
+- selector defines the name of the elment used in the body in index.html.
+
+
+### 
 
 # HERE
+
+Angular Inline templates?
 
 <https://app.pluralsight.com/library/courses/aspnetcore-mvc-efcore-bootstrap-angular-web/table-of-contents>
 
