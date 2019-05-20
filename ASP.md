@@ -837,7 +837,26 @@ Under dutch-app folder, run `ng build`. It uses Webpack to package files. It pac
 - selector defines the name of the elment used in the body in index.html.
 
 
-### 
+### Copying the Project
+
+We don't want the client code lives in dutch-app folder.
+
+- Move angular.json and replace tsconfig.json under the solution root.
+- Create ClientApp folder under the solution root.
+- Move all files under dutch-app/src to ClientApp folder.
+- Merge package.json from the one in the dutch-app to the one in the solution. 
+- Then the dutch-app folder can be deleted. The node_modules sub folder has a lot of files already and they should be merged to the solution by visual studio.
+- add `"exclude": ["./node_modules/"]` to tsconfig.json so that TypeScript won't compile them.
+- Replace the outDir to `"outDir": "./wwwroot/ClientApp/out-tsc",`
+- angular.json, change root and sourceRoot valut to `ClientApp`.
+- `"outputPath": "wwwroot/clientapp/dist",`. This is where JS files are created.
+- replace all `src/` with `ClientApp/`
+
+After moved and updated, under DutchTraet\DutchTreat, run `npm install` to reintall packages.
+
+### Integrating the Project
+
+
 
 # HERE
 
