@@ -12,13 +12,15 @@ if (theForm != null) {
 
 var button = document.getElementById("buyButton");
 // same as $("#buyButton").on("click", function (){...})
-button.addEventListener("click", function () {
-    console.log("Buying item");
+if (button != null) {
+    button.addEventListener("click", function () {
+        console.log("Buying item");
 
-    //var productInfo = document.getElementsByClassName("product-props");
-    //var listItems = productInfo.item(0).children;
-    //console.log(listItems);
-});
+        //var productInfo = document.getElementsByClassName("product-props");
+        //var listItems = productInfo.item(0).children;
+        //console.log(listItems);
+    });
+}
 
 var productInfo = $(".product-props li");
 productInfo.on("click", function () {

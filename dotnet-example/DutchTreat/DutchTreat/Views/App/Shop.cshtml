@@ -1,26 +1,12 @@
 ﻿@model IEnumerable<Product>
 @section Scripts {
-    <script src="~/ts/StoreCustomer.js"></script>
-    <script src="~/ts/main.js"></script>
+    <script src="~/clientapp/dist/runtime.js"></script>
+    <script src="~/clientapp/dist/es2015-polyfills.js"></script>
+    <script src="~/clientapp/dist/polyfills.js"></script>
+    <script src="~/clientapp/dist/styles.js"></script>
+    <script src="~/clientapp/dist/vendor.js"></script>
+    <script src="~/clientapp/dist/main.js"></script>
 }
 
 <h1>Shop</h1>
-<p>Count: @Model.Count()</p>
-<div class="row">
-    @foreach (var p in Model)
-    {
-        <div class="col-md-3">
-            <div class="border bg-light rounded p-1">
-                <img src="~/img/@(p.ArtId).jpg" class="img-fluid" alt="@p.Title" />
-                <h3>@p.Category - @p.Size</h3>
-                <ul>
-                    <li>Price: $@p.Price</li>
-                    <li>Artist: @p.Artist</li>
-                    <li>Title: @p.Title</li>
-                    <li>Description: @p.ArtDescription</li>
-                </ul>
-                <button id="buyButton" class="btn btn-success">Buy</button>
-            </div>
-        </div>
-    }
-</div>
+<the-shop></the-shop>
