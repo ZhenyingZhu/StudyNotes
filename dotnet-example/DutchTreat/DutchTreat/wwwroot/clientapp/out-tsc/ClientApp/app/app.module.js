@@ -1,7 +1,6 @@
 import * as tslib_1 from "tslib";
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 var AppModule = /** @class */ (function () {
     function AppModule() {
@@ -12,8 +11,7 @@ var AppModule = /** @class */ (function () {
                 AppComponent
             ],
             imports: [
-                BrowserModule,
-                AppRoutingModule
+                BrowserModule
             ],
             providers: [],
             bootstrap: [AppComponent]

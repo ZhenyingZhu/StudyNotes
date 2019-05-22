@@ -818,6 +818,8 @@ To check the CLI version: `ng --version`. `ng -h` list help.
 
 `ng new dutch-app --dry-run --skip-git --inline-template --inline-style --skip-tests`
 
+Note: NOT use route. It will generate app/app-routing.module.ts, which is different fron the tutorial.
+
 Scaffolding: write the definition, and compiler of the framework generate code.
 
 Skip tests is actually just skip UTs. Test scaffolding files are still generated.
@@ -857,6 +859,8 @@ After moved and updated, under DutchTraet\DutchTreat, run `npm install` to reint
 
 Use the client app to build shop page.
 
+`ng build` creates the dist folder.
+
 Include wwwroot/ClientApp/dist scripts in order:
 
 1. runtime.js
@@ -869,7 +873,7 @@ In the ClientApp/app/app.component.ts, rename the selector to the-shop.
 
 In Shop.cshtml, add the-shop element.
 
-!! Looks like I need to redo it with the route disabled !!
+### Using External Templates
 
 # HERE
 
