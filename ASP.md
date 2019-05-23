@@ -875,6 +875,20 @@ In Shop.cshtml, add the-shop element.
 
 ### Using External Templates
 
+Can use HTML and View as external template to replace the default template in app.component.ts.
+
+Replace `template` with `templateUrl: "./app.component.html",`
+
+Create the html under ClientApp\app.
+
+In the template, use `{{}}` to do data binding. It can bind to the property or the method of the corresponding typescript class.
+
+Need to do a build to make the change takes affect. Can run `ng build --watch` to let the build keep running with only compiling the changed part.
+
+The HTML is not retrived on the server. It is embedded in the angular app as a resource.
+
+### Your First Anuglar Component
+
 # HERE
 
 Angular Inline templates?
