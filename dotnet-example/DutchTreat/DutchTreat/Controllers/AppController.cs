@@ -66,11 +66,12 @@ namespace DutchTreat.Controllers
         [Authorize]
         public IActionResult Shop()
         {
-            var results = this._repository.GetAllProducts();
+            //var results = this._repository.GetAllProducts();
 
-            //var results = from p in _context.Products orderby p.Category select p;
+            ////var results = from p in _context.Products orderby p.Category select p;
 
-            return View(results);
+            //return View(results);
+            return View();
         }
     }
 }

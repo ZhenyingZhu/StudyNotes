@@ -2,7 +2,7 @@ import * as tslib_1 from "tslib";
 import { Component } from '@angular/core';
 var AppComponent = /** @class */ (function () {
     function AppComponent() {
-        this.title = 'Dutch Treat';
+        this.title = 'Product List';
     }
     AppComponent = tslib_1.__decorate([
         Component({

@@ -889,6 +889,28 @@ The HTML is not retrived on the server. It is embedded in the angular app as a r
 
 ### Your First Anuglar Component
 
+Getting data directly from the API instead of generate a view.
+
+Create `app\shop\productList.component.ts` under `ClientApp` for the class to represent the lists of products.
+
+Need add `import { Component } from '@angular/core';` to import the Component key word.
+
+Then we can use `@Component` as an decorator. It is like C# attribute of a class.
+
+Define templateUrl as productList.component.html.
+
+Create the html. Use directive. The directive are attributes that can be applied to elements.
+
+Use directive `*ngFor` to do a for loop. `<li *ngFor="let p of products">{{ p.title }}</li>`. `let` here is the javascript keyword,
+
+In `app.module.ts` import the new class `import { ProductList } from "./shop/productlist.component";` and add to the NgModel.declarations. It makes each part of the html a composition.
+
+The data binding can use pipe: `{{ p.price | currency:"USD":true }}` [currency](https://angular.io/api/common/CurrencyPipe) is a decorator.
+
+Pipes specify what the data type is. It is Model-View-ViewModel.
+
+### Creating a Service
+
 # HERE
 
 Angular Inline templates?
