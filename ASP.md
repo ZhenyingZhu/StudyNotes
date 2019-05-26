@@ -913,6 +913,14 @@ Pipes specify what the data type is. It is Model-View-ViewModel.
 
 ### Creating a Service
 
+Create a shared\dataService.ts file. It is used to share data.
+
+In the productList.omponent.ts, inject the data from dataService. Create a ctor of the ProductList `constructor(private data: DataService)`. This also set the private member of the class.
+
+Also include the service in the app.module. Add to providers instead of declarations.
+
+### Calling the API
+
 # HERE
 
 Angular Inline templates?
