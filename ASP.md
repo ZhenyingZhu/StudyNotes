@@ -921,6 +921,16 @@ Also include the service in the app.module. Add to providers instead of declarat
 
 ### Calling the API
 
+Inject HttpClient into dataService, and add the HttpClientModule to the app.module.ts under imports.
+
+Need decorate the DataService class to make the injection chain (Since it is inejected to the ProductList class) knows it also has its own dependencies.
+
+Add a loadProduct function. It calls http.get. The `subscribe()` method is where the request is send, and it returns the result when receives the response.
+
+To make some changes before return to the customer, need use some interceptors by putting them into method `pipe()`. Call rxjs operatior `map`.
+
+To let client (ProductList) call the loadProduct, let it implments OnInit.
+
 # HERE
 
 Angular Inline templates?

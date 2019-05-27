@@ -5788,8 +5788,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\Github\StudyNotes\dotnet-example\DutchTreat\DutchTreat\ClientApp\polyfills.ts */"./polyfills.ts");
-module.exports = __webpack_require__(/*! D:\Github\StudyNotes\dotnet-example\DutchTreat\DutchTreat\node_modules\@angular-devkit\build-angular\src\angular-cli-files\models\jit-polyfills.js */"../node_modules/@angular-devkit/build-angular/src/angular-cli-files/models/jit-polyfills.js");
+__webpack_require__(/*! C:\Users\zhenyzhu\Documents\git\StudyNotes\dotnet-example\DutchTreat\DutchTreat\ClientApp\polyfills.ts */"./polyfills.ts");
+module.exports = __webpack_require__(/*! C:\Users\zhenyzhu\Documents\git\StudyNotes\dotnet-example\DutchTreat\DutchTreat\node_modules\@angular-devkit\build-angular\src\angular-cli-files\models\jit-polyfills.js */"../node_modules/@angular-devkit/build-angular/src/angular-cli-files/models/jit-polyfills.js");
 
 
 /***/ })

@@ -78,9 +78,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/platform-browser */ "../node_modules/@angular/platform-browser/fesm5/platform-browser.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "../node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./app.component */ "./app/app.component.ts");
-/* harmony import */ var _shop_productlist_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./shop/productlist.component */ "./app/shop/productlist.component.ts");
-/* harmony import */ var _shared_dataService__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./shared/dataService */ "./app/shared/dataService.ts");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ "../node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./app.component */ "./app/app.component.ts");
+/* harmony import */ var _shop_productlist_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./shop/productlist.component */ "./app/shop/productlist.component.ts");
+/* harmony import */ var _shared_dataService__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./shared/dataService */ "./app/shared/dataService.ts");
+
 
 
 
@@ -93,16 +95,17 @@ var AppModule = /** @class */ (function () {
     AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["NgModule"])({
             declarations: [
-                _app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"],
-                _shop_productlist_component__WEBPACK_IMPORTED_MODULE_4__["ProductList"],
+                _app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"],
+                _shop_productlist_component__WEBPACK_IMPORTED_MODULE_5__["ProductList"],
             ],
             imports: [
-                _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"]
+                _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
+                _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClientModule"]
             ],
             providers: [
-                _shared_dataService__WEBPACK_IMPORTED_MODULE_5__["DataService"]
+                _shared_dataService__WEBPACK_IMPORTED_MODULE_6__["DataService"]
             ],
-            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"]]
+            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"]]
         })
     ], AppModule);
     return AppModule;
@@ -122,23 +125,46 @@ var AppModule = /** @class */ (function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DataService", function() { return DataService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "../node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "../node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ "../node_modules/rxjs/_esm5/operators/index.js");
+
+
+
+
 var DataService = /** @class */ (function () {
-    function DataService() {
-        this.products = [
-            {
-                title: "First product",
-                price: 19.99
-            },
-            {
-                title: "Second product",
-                price: 9.99
-            },
-            {
-                title: "Third product",
-                price: 14.99
-            },
-        ];
+    // Replace those example data with calling API.
+    //public products = [
+    //    {
+    //        title: "First product",
+    //        price: 19.99
+    //    },
+    //    {
+    //        title: "Second product",
+    //        price: 9.99
+    //    },
+    //    {
+    //        title: "Third product",
+    //        price: 14.99
+    //    },
+    //];
+    function DataService(http) {
+        this.http = http;
+        this.products = [];
     }
+    DataService.prototype.loadProducts = function () {
+        var _this = this;
+        return this.http.get("api/products")
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (data) {
+            _this.products = data;
+            return true;
+        }));
+    };
+    DataService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Injectable"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
+    ], DataService);
     return DataService;
 }());
 
@@ -179,6 +205,13 @@ var ProductList = /** @class */ (function () {
         this.products = [];
         this.products = data.products;
     }
+    ProductList.prototype.ngOnInit = function () {
+        var _this = this;
+        this.data.loadProducts().subscribe(function (success) {
+            if (success)
+                _this.products = _this.data.products;
+        });
+    };
     ProductList = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: "product-list",
@@ -254,7 +287,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! D:\Github\StudyNotes\dotnet-example\DutchTreat\DutchTreat\ClientApp\main.ts */"./main.ts");
+module.exports = __webpack_require__(/*! C:\Users\zhenyzhu\Documents\git\StudyNotes\dotnet-example\DutchTreat\DutchTreat\ClientApp\main.ts */"./main.ts");
 
 
 /***/ })
