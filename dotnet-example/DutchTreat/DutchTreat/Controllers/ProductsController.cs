@@ -9,7 +9,9 @@ using Microsoft.Extensions.Logging;
 
 namespace DutchTreat.Controllers
 {
-    [Route("api/[Controller]")]
+    // zhenying: the Route here with app at the begining is to make angular to work.
+    //[Route("api/[Controller]")]
+    [Route("app/api/[Controller]")]
     [ApiController]
     [Produces("application/json")]
     public class ProductsController : ControllerBase
