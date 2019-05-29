@@ -931,6 +931,8 @@ To make some changes before return to the customer, need use some interceptors b
 
 To let client (ProductList) call the loadProduct, let it implments OnInit.
 
+### Using Type Safety
+
 # HERE
 
 Angular Inline templates?
