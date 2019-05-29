@@ -933,6 +933,20 @@ To let client (ProductList) call the loadProduct, let it implments OnInit.
 
 ### Using Type Safety
 
+In shared folder, create product.ts. This is the expected data contract from the server.
+
+To create the contract, get a real product object from thhe API response, and copy to json2ts.com. Copy the generated typescript back.
+
+In the productList.component.ts, set the type for products.
+
+In dataService.ts, add `loadProducts(): Observable<boolean>`.
+
+rxjs: reactive extensions for JS.
+
+Type safety is part of compile environment.
+
+### Implementing a Template
+
 # HERE
 
 Angular Inline templates?
