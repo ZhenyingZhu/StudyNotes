@@ -947,6 +947,14 @@ Type safety is part of compile environment.
 
 ### Implementing a Template
 
+Create the template productList.component.html by copy the product view from index.html. Notice the reference folder is changed, so the image url need to change to root.
+
+When dealing with an entire attribute, can use `[alt]="p.title"`. e.g.: . It is a write only binding.
+
+We can use component css as well. Use `styleUrls` in productList.component.ts.
+
+### Creating another component
+
 # HERE
 
 Angular Inline templates?
