@@ -955,6 +955,14 @@ We can use component css as well. Use `styleUrls` in productList.component.ts.
 
 ### Creating another component
 
+Create the cart.component.ts + html.
+
+Add it to app.component.html.
+
+Add the cart to app.model.ts.
+
+### Sharing Data Across Components
+
 # HERE
 
 Angular Inline templates?

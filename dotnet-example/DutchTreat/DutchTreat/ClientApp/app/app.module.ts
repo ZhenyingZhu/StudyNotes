@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { ProductList } from "./shop/productlist.component";
+import { Cart } from "./shop/cart.component";
 import { DataService } from "./shared/dataService";
 
 
@@ -11,6 +12,7 @@ import { DataService } from "./shared/dataService";
     declarations: [
         AppComponent,
         ProductList,
+        Cart
     ],
     imports: [
         BrowserModule,
