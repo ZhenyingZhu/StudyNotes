@@ -30,7 +30,7 @@ webpackEmptyAsyncContext.id = "./$$_lazy_route_resource lazy recursive";
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n    <div class=\"col-md-9\">\r\n        <h3>{{ title }}</h3>\r\n        <product-list></product-list>\r\n    </div>\r\n    <div class=\"col-md-3\">\r\n        <div class=\"card bg-light p-2\">\r\n            <the-cart></the-cart>>\r\n        </div>\r\n    </div>\r\n</div>"
+module.exports = "<div class=\"row\">\r\n    <div class=\"col-md-9\">\r\n        <h3>{{ title }}</h3>\r\n        <product-list></product-list>\r\n    </div>\r\n    <div class=\"col-md-3\">\r\n        <div class=\"card bg-light p-2\">\r\n            <the-cart></the-cart>\r\n        </div>\r\n    </div>\r\n</div>"
 
 /***/ }),
 
@@ -132,6 +132,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "../node_modules/@angular/common/fesm5/http.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "../node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ "../node_modules/rxjs/_esm5/operators/index.js");
+/* harmony import */ var _order__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./order */ "./app/shared/order.ts");
+
 
 
 
@@ -154,6 +156,7 @@ var DataService = /** @class */ (function () {
     //];
     function DataService(http) {
         this.http = http;
+        this.order = new _order__WEBPACK_IMPORTED_MODULE_4__["Order"]();
         this.products = [];
     }
     DataService.prototype.loadProducts = function () {
@@ -164,11 +167,52 @@ var DataService = /** @class */ (function () {
             return true;
         }));
     };
+    DataService.prototype.addToOrder = function (newProduct) {
+        var item = new _order__WEBPACK_IMPORTED_MODULE_4__["OrderItem"]();
+        item.productId = newProduct.id;
+        item.productArtist = newProduct.artist;
+        item.productArtId = newProduct.artId;
+        item.productCategory = newProduct.category;
+        item.productSize = newProduct.size;
+        item.productTitle = newProduct.title;
+        item.unitPrice = newProduct.price;
+        item.quantity = 1;
+        this.order.items.push(item);
+    };
     DataService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Injectable"])(),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
     ], DataService);
     return DataService;
+}());
+
+
+
+/***/ }),
+
+/***/ "./app/shared/order.ts":
+/*!*****************************!*\
+  !*** ./app/shared/order.ts ***!
+  \*****************************/
+/*! exports provided: Order, OrderItem */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Order", function() { return Order; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OrderItem", function() { return OrderItem; });
+var Order = /** @class */ (function () {
+    function Order() {
+        this.orderDate = new Date();
+        this.items = new Array();
+    }
+    return Order;
+}());
+
+var OrderItem = /** @class */ (function () {
+    function OrderItem() {
+    }
+    return OrderItem;
 }());
 
 
@@ -182,7 +226,7 @@ var DataService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h3>Shopping Cart</h3>\r\n"
+module.exports = "<h3>Shopping Cart</h3>\r\n<div>\r\n    Count: {{ data.order.items.length }}\r\n</div>"
 
 /***/ }),
 
@@ -238,7 +282,7 @@ module.exports = ".product-info img {\r\n    max-width: 100px;\r\n    float: lef
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n    <div class=\"product-info col-md-4\" *ngFor=\"let p of products\">\r\n        <div class=\"card bg-light p-1 m-1\">\r\n            <img src=\"/img/{{ p.artId }}.jpg\" class=\"img-fluid\" [alt]=\"p.title\" />\r\n            <div class=\"product-name\">{{ p.category }} - {{ p.size }}</div>\r\n            <ul class=\"product-props\">\r\n                <li><strong>Price</strong>: {{ p.price | currency:\"USD\":true }}</li>\r\n                <li><strong>Artist</strong>: {{ p.artist }}</li>\r\n                <li><strong>Title</strong>: {{ p.title }}</li>\r\n                <li><strong>Description</strong>: {{ p.artDescription }}</li>\r\n            </ul>\r\n            <button id=\"buyButton\" class=\"btn btn-success\">Buy</button>\r\n        </div>\r\n        \r\n    </div>\r\n\r\n    <!--\r\n        <ul>\r\n            <li *ngFor=\"let p of products\">{{ p.title }}: {{ p.price | currency:\"USD\":true }}</li>\r\n        </ul>\r\n    -->\r\n</div>"
+module.exports = "<div class=\"row\">\r\n    <div class=\"product-info col-md-4\" *ngFor=\"let p of products\">\r\n        <div class=\"card bg-light p-1 m-1\">\r\n            <img src=\"/img/{{ p.artId }}.jpg\" class=\"img-fluid\" [alt]=\"p.title\" />\r\n            <div class=\"product-name\">{{ p.category }} - {{ p.size }}</div>\r\n            <ul class=\"product-props\">\r\n                <li><strong>Price</strong>: {{ p.price | currency:\"USD\":true }}</li>\r\n                <li><strong>Artist</strong>: {{ p.artist }}</li>\r\n                <li><strong>Title</strong>: {{ p.title }}</li>\r\n                <li><strong>Description</strong>: {{ p.artDescription }}</li>\r\n            </ul>\r\n            <button id=\"buyButton\" class=\"btn btn-success\" (click)=\"addProduct(p)\">Buy</button>\r\n        </div>\r\n    </div>\r\n\r\n    <!--\r\n        <ul>\r\n            <li *ngFor=\"let p of products\">{{ p.title }}: {{ p.price | currency:\"USD\":true }}</li>\r\n        </ul>\r\n    -->\r\n</div>"
 
 /***/ }),
 
@@ -270,6 +314,9 @@ var ProductList = /** @class */ (function () {
             if (success)
                 _this.products = _this.data.products;
         });
+    };
+    ProductList.prototype.addProduct = function (product) {
+        this.data.addToOrder(product);
     };
     ProductList = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({

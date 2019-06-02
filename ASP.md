@@ -963,6 +963,28 @@ Add the cart to app.model.ts.
 
 ### Sharing Data Across Components
 
+Create order.ts under shared as an interface.
+
+Get the order use postman and use the json2ts to create interfaces of Order and OrderItem.
+
+Change the interface to class. Cannot create an instance of an interface in TS.
+
+Add default value to orderDate.
+
+Convert `[]` array to use `Array.
+
+In dataService.ts, create a method `addToOrder`.
+
+Try import all the classes inside order.ts as OrderNS: `import * as OrderNS from './order';`.
+
+In productList.component.html, make the buyButton work by adding `(click)="addProduct(p)"`. The parentheses means it is a callback.
+
+`()` is readonly, and `[]` is writeonly.
+
+In productList.component.ts, create the `addProduct()` method.
+
+### Building the cart
+
 # HERE
 
 Angular Inline templates?

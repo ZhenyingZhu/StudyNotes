@@ -9,9 +9,8 @@
                 <li><strong>Title</strong>: {{ p.title }}</li>
                 <li><strong>Description</strong>: {{ p.artDescription }}</li>
             </ul>
-            <button id="buyButton" class="btn btn-success">Buy</button>
+            <button id="buyButton" class="btn btn-success" (click)="addProduct(p)">Buy</button>
         </div>
-        
     </div>
 
     <!--

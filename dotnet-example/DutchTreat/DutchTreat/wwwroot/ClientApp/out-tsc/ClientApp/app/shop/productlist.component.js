@@ -18,7 +18,7 @@ var ProductList = /** @class */ (function () {
         Component({
             selector: "product-list",
             templateUrl: "productList.component.html",
-            styleUrls: []
+            styleUrls: ["productList.component.css"]
         }),
         tslib_1.__metadata("design:paramtypes", [DataService])
     ], ProductList);
