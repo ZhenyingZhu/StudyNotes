@@ -168,16 +168,22 @@ var DataService = /** @class */ (function () {
         }));
     };
     DataService.prototype.addToOrder = function (newProduct) {
-        var item = new _order__WEBPACK_IMPORTED_MODULE_4__["OrderItem"]();
-        item.productId = newProduct.id;
-        item.productArtist = newProduct.artist;
-        item.productArtId = newProduct.artId;
-        item.productCategory = newProduct.category;
-        item.productSize = newProduct.size;
-        item.productTitle = newProduct.title;
-        item.unitPrice = newProduct.price;
-        item.quantity = 1;
-        this.order.items.push(item);
+        var item = this.order.items.find(function (i) { return i.productId == newProduct.id; });
+        if (item) {
+            item.quantity++;
+        }
+        else {
+            item = new _order__WEBPACK_IMPORTED_MODULE_4__["OrderItem"]();
+            item.productId = newProduct.id;
+            item.productArtist = newProduct.artist;
+            item.productArtId = newProduct.artId;
+            item.productCategory = newProduct.category;
+            item.productSize = newProduct.size;
+            item.productTitle = newProduct.title;
+            item.unitPrice = newProduct.price;
+            item.quantity = 1;
+            this.order.items.push(item);
+        }
     };
     DataService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Injectable"])(),
@@ -226,7 +232,7 @@ var OrderItem = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h3>Shopping Cart</h3>\r\n<div>\r\n    Count: {{ data.order.items.length }}\r\n</div>"
+module.exports = "<h3>Shopping Cart</h3>\r\n<div>\r\n    #/Items: {{ data.order.items.length }}\r\n</div>\r\n\r\n<table class=\"table table-condensed table-hover\">\r\n    <thead>\r\n        <tr>\r\n            <td>Product</td>\r\n            <td>Quantity</td>\r\n            <td>Price</td>\r\n            <td>Total</td>\r\n        </tr>\r\n    </thead>\r\n    <tbody>\r\n        <tr *ngFor=\"let o of data.order.items\">\r\n            <td>{{ o.productCategory }} - {{ o.productTitle }}</td>\r\n            <td>{{ o.quantity }}</td>\r\n            <td>{{ o.unitPrice | currency:\"USD\":\"symbol\" }}</td>\r\n            <td>{{ (o.unitPrice * o.quantity) | currency:\"USD\":\"symbol\" }}</td>\r\n        </tr>\r\n    </tbody>\r\n</table>"
 
 /***/ }),
 
@@ -282,7 +288,7 @@ module.exports = ".product-info img {\r\n    max-width: 100px;\r\n    float: lef
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n    <div class=\"product-info col-md-4\" *ngFor=\"let p of products\">\r\n        <div class=\"card bg-light p-1 m-1\">\r\n            <img src=\"/img/{{ p.artId }}.jpg\" class=\"img-fluid\" [alt]=\"p.title\" />\r\n            <div class=\"product-name\">{{ p.category }} - {{ p.size }}</div>\r\n            <ul class=\"product-props\">\r\n                <li><strong>Price</strong>: {{ p.price | currency:\"USD\":true }}</li>\r\n                <li><strong>Artist</strong>: {{ p.artist }}</li>\r\n                <li><strong>Title</strong>: {{ p.title }}</li>\r\n                <li><strong>Description</strong>: {{ p.artDescription }}</li>\r\n            </ul>\r\n            <button id=\"buyButton\" class=\"btn btn-success\" (click)=\"addProduct(p)\">Buy</button>\r\n        </div>\r\n    </div>\r\n\r\n    <!--\r\n        <ul>\r\n            <li *ngFor=\"let p of products\">{{ p.title }}: {{ p.price | currency:\"USD\":true }}</li>\r\n        </ul>\r\n    -->\r\n</div>"
+module.exports = "<div class=\"row\">\r\n    <div class=\"product-info col-md-4\" *ngFor=\"let p of products\">\r\n        <div class=\"card bg-light p-1 m-1\">\r\n            <img src=\"/img/{{ p.artId }}.jpg\" class=\"img-fluid\" [alt]=\"p.title\" />\r\n            <div class=\"product-name\">{{ p.category }} - {{ p.size }}</div>\r\n            <ul class=\"product-props\">\r\n                <li><strong>Price</strong>: {{ p.price | currency:\"USD\":\"symbol\" }}</li>\r\n                <li><strong>Artist</strong>: {{ p.artist }}</li>\r\n                <li><strong>Title</strong>: {{ p.title }}</li>\r\n                <li><strong>Description</strong>: {{ p.artDescription }}</li>\r\n            </ul>\r\n            <button id=\"buyButton\" class=\"btn btn-success\" (click)=\"addProduct(p)\">Buy</button>\r\n        </div>\r\n    </div>\r\n\r\n    <!--\r\n        <ul>\r\n            <li *ngFor=\"let p of products\">{{ p.title }}: {{ p.price | currency:\"USD\":\"symbol\" }}</li>\r\n        </ul>\r\n    -->\r\n</div>"
 
 /***/ }),
 

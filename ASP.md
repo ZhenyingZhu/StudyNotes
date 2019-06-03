@@ -985,6 +985,14 @@ In productList.component.ts, create the `addProduct()` method.
 
 ### Building the cart
 
+Add a table to cart.component.html.
+
+Table is bad for general layout. But here we use if for table.
+
+In dataService.addToOrder, add the logic to merge existing items in the cart.
+
+### Using calculated data
+
 # HERE
 
 Angular Inline templates?
