@@ -2,6 +2,9 @@
 <div>
     #/Items: {{ data.order.items.length }}
 </div>
+<div>
+    Subtotal: {{ data.order.subtotal | currency:"USD":"symbol" }}
+</div>
 
 <table class="table table-condensed table-hover">
     <thead>

@@ -993,6 +993,16 @@ In dataService.addToOrder, add the logic to merge existing items in the cart.
 
 ### Using calculated data
 
+Calculated subtotal of the cart on FE instead of BE.
+
+In order.ts, add a property `subtotal()` as a number.
+
+Add `lodash` to package.json dependencies and order.ts. It can do map reduce. It is LINQ for JS.
+
+Use `_.sum(_.map(arr, i => some logic))`.
+
+###
+
 # HERE
 
 Angular Inline templates?
