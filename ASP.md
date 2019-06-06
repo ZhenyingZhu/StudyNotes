@@ -1003,6 +1003,8 @@ Use `_.sum(_.map(arr, i => some logic))`.
 
 ### Add Routing to the Project
 
+Import routerModel in app.module.ts.
+
 # HERE
 
 Angular Inline templates?

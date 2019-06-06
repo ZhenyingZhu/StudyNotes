@@ -7,6 +7,7 @@ import { ProductList } from "./shop/productlist.component";
 import { Cart } from "./shop/cart.component";
 import { DataService } from "./shared/dataService";
 
+import { RouterModule } from "@angular/router";
 
 @NgModule({
     declarations: [
