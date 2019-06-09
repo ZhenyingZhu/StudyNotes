@@ -1003,7 +1003,28 @@ Use `_.sum(_.map(arr, i => some logic))`.
 
 ### Add Routing to the Project
 
-Import routerModel in app.module.ts.
+Import routerModel in app.module.ts. In the imports, add `RouterModule.forRoot()`.
+
+They are inter-page routes.
+
+Add routes array. Each route is a path and a component.
+
+The config for RouteModule
+
+- `forChild` allows nested routing.
+- `userHash` add a hash tag to URL. It can enhance single page?
+
+Create shop/shop.component.ts + html. Move all content from app.component.html to shop.component.html because app.component.html is just a place holder. It only needs router-outlet element, so that the content could be changed with different components.
+
+Create checkout/checkout.component.ts + css + html.
+
+Import Checkout and Shop to app.module.ts.
+
+In cart.component.html, add `a` element with `routerLink` attr.
+
+Navigate between routes won't loss state, because dataService stores them on client.
+
+### Support Login
 
 # HERE
 

@@ -11,10 +11,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\app\checkout\checkout.component.ts" />
     <None Remove="ClientApp\app\shared\dataService.ts" />
     <None Remove="ClientApp\app\shared\order.ts" />
     <None Remove="ClientApp\app\shared\product.ts" />
     <None Remove="ClientApp\app\shop\productlist.component.ts" />
+    <None Remove="ClientApp\app\shop\shop.component.ts" />
   </ItemGroup>
 
   <ItemGroup>
@@ -31,10 +33,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\app\checkout\checkout.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\shared\dataService.ts" />
     <TypeScriptCompile Include="ClientApp\app\shared\order.ts" />
     <TypeScriptCompile Include="ClientApp\app\shared\product.ts" />
     <TypeScriptCompile Include="ClientApp\app\shop\productList.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\shop\shop.component.ts" />
     <TypeScriptCompile Include="wwwroot\ts\main.ts" />
   </ItemGroup>
 
