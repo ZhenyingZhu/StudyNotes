@@ -1026,6 +1026,22 @@ Navigate between routes won't loss state, because dataService stores them on cli
 
 ### Support Login
 
+In dataService.ts, add properties token, tokenExpiration, and loginRequired.
+
+We want to make it not required to login to shop, but need login before checkout. So remove the auth of AppController.Shop.
+
+In cart.component.html, make the checkout gated, so if login, can checkout, otherwise go to login page.
+
+Angular: `{}` inject value, `[]` evaluate and put into attribute, `()` to mark it as an event handler.
+
+Make the checkout button handle click event with `onCheckout` method.
+
+Use `router.navigate` to route to login page.
+
+Create Login comonent.
+
+### Use Form Binding
+
 # HERE
 
 Angular Inline templates?

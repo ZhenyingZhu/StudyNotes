@@ -8,10 +8,12 @@ import { Cart } from "./shop/cart.component";
 import { DataService } from "./shared/dataService";
 import { Shop } from "./shop/shop.component";
 import { Checkout } from "./checkout/checkout.component";
+import { Login } from "./login/login.component";
 import { RouterModule } from "@angular/router";
 var routes = [
     { path: "", component: Shop },
-    { path: "/checkout", component: Checkout },
+    { path: "checkout", component: Checkout },
+    { path: "login", component: Login },
 ];
 var AppModule = /** @class */ (function () {
     function AppModule() {
@@ -23,7 +25,8 @@ var AppModule = /** @class */ (function () {
                 ProductList,
                 Cart,
                 Shop,
-                Checkout
+                Checkout,
+                Login
             ],
             imports: [
                 BrowserModule,

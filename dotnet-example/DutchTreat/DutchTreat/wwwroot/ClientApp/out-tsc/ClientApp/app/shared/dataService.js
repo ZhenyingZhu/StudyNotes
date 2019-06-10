@@ -21,6 +21,7 @@ var DataService = /** @class */ (function () {
     //];
     function DataService(http) {
         this.http = http;
+        this.token = "";
         this.order = new OrderNS.Order();
         this.products = [];
     }
@@ -32,6 +33,13 @@ var DataService = /** @class */ (function () {
             return true;
         }));
     };
+    Object.defineProperty(DataService.prototype, "loginRequired", {
+        get: function () {
+            return this.token.length == 0 || this.tokenExpiration > new Date();
+        },
+        enumerable: true,
+        configurable: true
+    });
     DataService.prototype.addToOrder = function (newProduct) {
         var item = this.order.items.find(function (i) { return i.productId == newProduct.id; });
         if (item) {

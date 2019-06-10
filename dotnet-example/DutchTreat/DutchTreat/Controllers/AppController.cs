@@ -63,7 +63,6 @@ namespace DutchTreat.Controllers
             throw new InvalidOperationException("Something wrong.");
         }
 
-        [Authorize]
         public IActionResult Shop()
         {
             //var results = this._repository.GetAllProducts();
