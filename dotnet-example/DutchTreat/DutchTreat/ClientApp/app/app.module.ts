@@ -11,6 +11,7 @@ import { Checkout } from "./checkout/checkout.component";
 import { Login } from "./login/login.component";
 
 import { RouterModule } from "@angular/router";
+import { FormsModule } from "@angular/forms";
 import { take } from 'rxjs/operators';
 
 let routes = [
@@ -34,7 +35,8 @@ let routes = [
         RouterModule.forRoot(routes, {
             useHash: true,
             enableTracing: false // If want debugging, change it to true.
-        })
+        }),
+        FormsModule
     ],
     providers: [
         DataService

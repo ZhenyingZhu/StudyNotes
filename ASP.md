@@ -1032,7 +1032,7 @@ We want to make it not required to login to shop, but need login before checkout
 
 In cart.component.html, make the checkout gated, so if login, can checkout, otherwise go to login page.
 
-Angular: `{}` inject value, `[]` evaluate and put into attribute, `()` to mark it as an event handler.
+Angular: `{}` inject value, `[]` evaluate and put value in the form into attribute of the class, `()` to mark it as an event handler.
 
 Make the checkout button handle click event with `onCheckout` method.
 
@@ -1041,6 +1041,18 @@ Use `router.navigate` to route to login page.
 Create Login comonent.
 
 ### Use Form Binding
+
+In the login.component.ts, use a public property `creds` to store user input.
+
+Add `FormsModel` to `app.module.ts`.
+
+In the form of login.component.html, use `ngModel`. Use both `[]` and `()` because it both push values to the form and handle event as a call back. It is two way binding.
+
+Updatet the username in the callback should affect the value in the text box.
+
+Add `submit` event to the form and handle it by `onLogin`.
+
+### Add Validation
 
 # HERE
 
