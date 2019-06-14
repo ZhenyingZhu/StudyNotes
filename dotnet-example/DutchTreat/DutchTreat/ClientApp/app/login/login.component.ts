@@ -16,7 +16,7 @@ export class Login {
     };
 
     onLogin() {
-        alert(this.creds.username);
+        //alert(this.creds.username);
         // this.creds.username += "!"; // this change should push back.
     }
 }
