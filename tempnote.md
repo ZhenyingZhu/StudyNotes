@@ -1298,6 +1298,10 @@ https://www.wikihow.com/Enable-the-Windows-Subsystem-for-Linux
 - On Windows Store, download a dist such as Ubuntu
 - run the app bash
 
+# Scalar
+
+[scalar](https://www.techopedia.com/definition/16441/scalar)
+
 # timestamp section
 Sep 11 2016
 Nov 18 2016
