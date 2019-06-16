@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { APP_BASE_HREF } from '@angular/common';
 
 import { AppComponent } from './app.component';
 import { ProductList } from "./shop/productlist.component";
@@ -32,15 +33,16 @@ let routes = [
     imports: [
         BrowserModule,
         HttpClientModule,
+        FormsModule,
         RouterModule.forRoot(routes, {
             useHash: true,
             enableTracing: false // If want debugging, change it to true.
         }),
-        FormsModule
     ],
     providers: [
         DataService
     ],
     bootstrap: [AppComponent]
 })
+
 export class AppModule { }

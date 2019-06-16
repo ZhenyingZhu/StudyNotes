@@ -10,6 +10,7 @@ import { Shop } from "./shop/shop.component";
 import { Checkout } from "./checkout/checkout.component";
 import { Login } from "./login/login.component";
 import { RouterModule } from "@angular/router";
+import { FormsModule } from "@angular/forms";
 var routes = [
     { path: "", component: Shop },
     { path: "checkout", component: Checkout },
@@ -31,10 +32,11 @@ var AppModule = /** @class */ (function () {
             imports: [
                 BrowserModule,
                 HttpClientModule,
+                FormsModule,
                 RouterModule.forRoot(routes, {
                     useHash: true,
                     enableTracing: false // If want debugging, change it to true.
-                })
+                }),
             ],
             providers: [
                 DataService

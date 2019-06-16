@@ -15,6 +15,8 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace DutchTreat.Controllers
 {
+    // zhenying: the Route here with app at the begining is to make angular to work.
+    //[Route("app/Account")]
     public class AccountController : Controller
     {
         private readonly ILogger<AccountController> _logger;

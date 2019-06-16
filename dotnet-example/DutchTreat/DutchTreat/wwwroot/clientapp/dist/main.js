@@ -122,11 +122,11 @@ var AppModule = /** @class */ (function () {
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
                 _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClientModule"],
+                _angular_forms__WEBPACK_IMPORTED_MODULE_12__["FormsModule"],
                 _angular_router__WEBPACK_IMPORTED_MODULE_11__["RouterModule"].forRoot(routes, {
                     useHash: true,
                     enableTracing: false // If want debugging, change it to true.
                 }),
-                _angular_forms__WEBPACK_IMPORTED_MODULE_12__["FormsModule"]
             ],
             providers: [
                 _shared_dataService__WEBPACK_IMPORTED_MODULE_7__["DataService"]
@@ -148,7 +148,7 @@ var AppModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".checkout-thumb {\r\n    max-width: 100px;\r\n}\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIkNsaWVudEFwcC9hcHAvY2hlY2tvdXQvY2hlY2tvdXQuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLGdCQUFnQjtBQUNwQiIsImZpbGUiOiJDbGllbnRBcHAvYXBwL2NoZWNrb3V0L2NoZWNrb3V0LmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuY2hlY2tvdXQtdGh1bWIge1xyXG4gICAgbWF4LXdpZHRoOiAxMDBweDtcclxufVxyXG4iXX0= */"
+module.exports = ".checkout-thumb {\n    max-width: 100px;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIkNsaWVudEFwcC9hcHAvY2hlY2tvdXQvY2hlY2tvdXQuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLGdCQUFnQjtBQUNwQiIsImZpbGUiOiJDbGllbnRBcHAvYXBwL2NoZWNrb3V0L2NoZWNrb3V0LmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuY2hlY2tvdXQtdGh1bWIge1xuICAgIG1heC13aWR0aDogMTAwcHg7XG59XG4iXX0= */"
 
 /***/ }),
 
@@ -209,7 +209,7 @@ var Checkout = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n    <div class=\"col-md-4 col-md-offset-4\">\r\n        <form (submit)=\"onLogin()\">\r\n            <div class=\"form-group\">\r\n                <label for=\"username\">Username</label>\r\n                <input type=\"text\" class=\"form-control\" name=\"username\" [(ngModel)]=\"creds.username\" />\r\n            </div>\r\n            <div class=\"form-group\">\r\n                <label for=\"password\">Password</label>\r\n                <input type=\"password\" class=\"form-control\" name=\"password\" [(ngModel)]=\"creds.password\" />\r\n            </div>\r\n            <div class=\"form-group\">\r\n                <input type=\"submit\" class=\"btn btn-success\" value=\"Login\" />\r\n                <a routerLink=\"/\" class=\"btn btn-default\">Cancel</a>\r\n            </div>\r\n        </form>\r\n    </div>\r\n</div>"
+module.exports = "<div class=\"row\">\r\n    <div class=\"col-md-4 col-md-offset-4\">\r\n        <div *ngIf=\"errorMessage\" class=\"alert alert-warning\">{{ errorMessage }}</div>\r\n        <form (submit)=\"onLogin()\" #theForm=\"ngForm\" novalidate>\r\n            <div class=\"form-group\">\r\n                <label for=\"username\">Username</label>\r\n                <input type=\"text\" class=\"form-control\" name=\"username\" [(ngModel)]=\"creds.username\" #username=\"ngModel\" required />\r\n                <div class=\"text-danger\" *ngIf=\"username.touched && username.invalid && username.errors.required\">Username is required!</div>\r\n            </div>\r\n            <div class=\"form-group\">\r\n                <label for=\"password\">Password</label>\r\n                <input type=\"password\" class=\"form-control\" name=\"password\" [(ngModel)]=\"creds.password\" #password=\"ngModel\" required />\r\n                <div class=\"text-danger\" *ngIf=\"password.touched && password.invalid && password.errors.required\">Password is required!</div>\r\n            </div>\r\n            <div class=\"form-group\">\r\n                <input type=\"submit\" class=\"btn btn-success\" value=\"Login\" [disabled]=\"theForm.invalid\" />\r\n                <a routerLink=\"/\" class=\"btn btn-default\">Cancel</a>\r\n            </div>\r\n        </form>\r\n    </div>\r\n</div>"
 
 /***/ }),
 
@@ -235,14 +235,27 @@ var Login = /** @class */ (function () {
     function Login(data, router) {
         this.data = data;
         this.router = router;
+        this.errorMessage = "";
         this.creds = {
             username: "",
             password: ""
         };
     }
     Login.prototype.onLogin = function () {
-        alert(this.creds.username);
+        var _this = this;
+        // alert(this.creds.username);
         // this.creds.username += "!"; // this change should push back.
+        this.data.login(this.creds)
+            .subscribe(function (success) {
+            if (success) {
+                if (_this.data.order.items.length == 0) {
+                    _this.router.navigate([""]);
+                }
+                else {
+                    _this.router.navigate(["checkout"]);
+                }
+            }
+        }, function (err) { return _this.errorMessage = "Failed to login"; });
     };
     Login = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -315,6 +328,15 @@ var DataService = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
+    DataService.prototype.login = function (creds) {
+        var _this = this;
+        return this.http.post("account/createtoken", creds)
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (data) {
+            _this.token = data.token;
+            _this.tokenExpiration = data.expriation;
+            return true;
+        }));
+    };
     DataService.prototype.addToOrder = function (newProduct) {
         var item = this.order.items.find(function (i) { return i.productId == newProduct.id; });
         if (item) {
@@ -610,7 +632,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! D:\Github\StudyNotes\dotnet-example\DutchTreat\DutchTreat\ClientApp\main.ts */"./main.ts");
+module.exports = __webpack_require__(/*! C:\Users\zhenyzhu\Documents\git\StudyNotes\dotnet-example\DutchTreat\DutchTreat\ClientApp\main.ts */"./main.ts");
 
 
 /***/ })

@@ -40,6 +40,15 @@ var DataService = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
+    DataService.prototype.login = function (creds) {
+        var _this = this;
+        return this.http.post("account/createtoken", creds)
+            .pipe(map(function (data) {
+            _this.token = data.token;
+            _this.tokenExpiration = data.expriation;
+            return true;
+        }));
+    };
     DataService.prototype.addToOrder = function (newProduct) {
         var item = this.order.items.find(function (i) { return i.productId == newProduct.id; });
         if (item) {

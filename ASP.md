@@ -1054,6 +1054,22 @@ Add `submit` event to the form and handle it by `onLogin`.
 
 ### Add Validation
 
+In login.component.html, use the `required` validation that build in in browsers.
+
+Use Angular to validate if the constrain is met. `#` can make angular bond the element to an object. Add `#username="ngModel"` to the form input, and use `*ngIf="username.invalid"` to control if a error message appears.
+
+Add `#theForm="ngForm"` with `theForm.invalid` as well.
+
+Add `novalidate` to the form, so that browser won't validate itself except the validation we specified.
+
+### Use Token Authentication
+
+In dataService.ts, add a method `login` which returns `Observable<boolean>`, to call AccountController.CreateToken.
+
+In login.component.ts, call `login` and `subscribe` to the result to do routing logic.
+
+In login.component.html, show `errorMessage` if not empty.
+
 # HERE
 
 Angular Inline templates?
