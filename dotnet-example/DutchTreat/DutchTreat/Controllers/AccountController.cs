@@ -15,8 +15,6 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace DutchTreat.Controllers
 {
-    // zhenying: the Route here with app at the begining is to make angular to work.
-    //[Route("app/Account")]
     public class AccountController : Controller
     {
         private readonly ILogger<AccountController> _logger;
@@ -79,7 +77,8 @@ namespace DutchTreat.Controllers
             return RedirectToAction("Index", "app");
         }
 
-        [HttpPost]
+        // zhenying: the Route here with app at the begining is to make angular to work.
+        [HttpPost("/app/[Controller]/CreateToken")]
         public async Task<IActionResult> CreateToken([FromBody] LoginViewModel model)
         {
             if (ModelState.IsValid)

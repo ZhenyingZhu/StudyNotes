@@ -1070,6 +1070,8 @@ In login.component.ts, call `login` and `subscribe` to the result to do routing 
 
 In login.component.html, show `errorMessage` if not empty.
 
+### Implement Server-side Checkout
+
 # HERE
 
 Angular Inline templates?
