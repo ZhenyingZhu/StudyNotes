@@ -1072,6 +1072,14 @@ In login.component.html, show `errorMessage` if not empty.
 
 ### Implement Server-side Checkout
 
+In dataService.ts, implement a `checkout()` method.
+
+In checkout.component.ts, let `onCheckoout()` call `dataService.checkout()`.
+
+Put error message to checkout.component.html.
+
+2:25
+
 # HERE
 
 Angular Inline templates?

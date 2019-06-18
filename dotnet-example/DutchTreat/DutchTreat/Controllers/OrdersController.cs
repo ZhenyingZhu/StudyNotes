@@ -14,7 +14,8 @@ using Microsoft.Extensions.Logging;
 
 namespace DutchTreat.Controllers
 {
-    [Route("api/[Controller]")]
+    // zhenying: the Route here with app at the begining is to make angular to work.
+    [Route("app/api/[Controller]")]
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class OrdersController : Controller
     {
@@ -89,7 +90,8 @@ namespace DutchTreat.Controllers
                     this._repository.AddEntity(newOrder);
                     if (this._repository.SaveAll())
                     {
-                        return Created($"api/orders/{newOrder.Id}", this._mapper.Map<Order, OrderViewModel > (newOrder));
+                        // zhenying: the Route here with app at the begining is to make angular to work.
+                        return Created($"app/api/orders/{newOrder.Id}", this._mapper.Map<Order, OrderViewModel> (newOrder));
                     }
                 }
                 else

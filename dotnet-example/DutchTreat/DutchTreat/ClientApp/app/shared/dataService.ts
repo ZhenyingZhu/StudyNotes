@@ -55,6 +55,15 @@ export class DataService {
             }));
     }
 
+    public checkout() {
+        return this.http.post("api/orders", this.order)
+            .pipe(map(response => {
+                this.order = new OrderNS.Order(); // clean up the order
+                return true;
+            }));
+    }
+
+
     public addToOrder(newProduct: Product) {
         var item: OrderNS.OrderItem = this.order.items.find(i => i.productId == newProduct.id);
 
