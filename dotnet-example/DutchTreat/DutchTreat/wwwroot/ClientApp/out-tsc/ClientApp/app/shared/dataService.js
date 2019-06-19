@@ -1,5 +1,5 @@
 import * as tslib_1 from "tslib";
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import * as OrderNS from './order';
@@ -46,6 +46,20 @@ var DataService = /** @class */ (function () {
             .pipe(map(function (data) {
             _this.token = data.token;
             _this.tokenExpiration = data.expriation;
+            return true;
+        }));
+    };
+    DataService.prototype.checkout = function () {
+        var _this = this;
+        if (!this.order.orderNumber) {
+            this.order.orderNumber =
+                this.order.orderDate.getFullYear().toString() + this.order.orderDate.getTime().toString();
+        }
+        return this.http.post("api/orders", this.order, {
+            headers: new HttpHeaders().set("Authorization", "Bearer " + this.token)
+        })
+            .pipe(map(function (response) {
+            _this.order = new OrderNS.Order(); // clean up the order
             return true;
         }));
     };

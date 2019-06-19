@@ -1,4 +1,4 @@
-﻿import { HttpClient } from '@angular/common/http';
+﻿import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -56,13 +56,19 @@ export class DataService {
     }
 
     public checkout() {
-        return this.http.post("api/orders", this.order)
+        if (!this.order.orderNumber) {
+            this.order.orderNumber =
+                this.order.orderDate.getFullYear().toString() + this.order.orderDate.getTime().toString();
+        }
+
+        return this.http.post("api/orders", this.order, {
+            headers: new HttpHeaders().set("Authorization", "Bearer " + this.token)
+        })
             .pipe(map(response => {
                 this.order = new OrderNS.Order(); // clean up the order
                 return true;
             }));
     }
-
 
     public addToOrder(newProduct: Product) {
         var item: OrderNS.OrderItem = this.order.items.find(i => i.productId == newProduct.id);

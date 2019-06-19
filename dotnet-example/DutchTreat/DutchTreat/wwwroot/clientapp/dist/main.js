@@ -148,7 +148,7 @@ var AppModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".checkout-thumb {\r\n    max-width: 100px;\r\n}\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIkNsaWVudEFwcC9hcHAvY2hlY2tvdXQvY2hlY2tvdXQuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLGdCQUFnQjtBQUNwQiIsImZpbGUiOiJDbGllbnRBcHAvYXBwL2NoZWNrb3V0L2NoZWNrb3V0LmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuY2hlY2tvdXQtdGh1bWIge1xyXG4gICAgbWF4LXdpZHRoOiAxMDBweDtcclxufVxyXG4iXX0= */"
+module.exports = ".checkout-thumb {\n    max-width: 100px;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIkNsaWVudEFwcC9hcHAvY2hlY2tvdXQvY2hlY2tvdXQuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLGdCQUFnQjtBQUNwQiIsImZpbGUiOiJDbGllbnRBcHAvYXBwL2NoZWNrb3V0L2NoZWNrb3V0LmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuY2hlY2tvdXQtdGh1bWIge1xuICAgIG1heC13aWR0aDogMTAwcHg7XG59XG4iXX0= */"
 
 /***/ }),
 
@@ -159,7 +159,7 @@ module.exports = ".checkout-thumb {\r\n    max-width: 100px;\r\n}\r\n\r\n/*# sou
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "﻿<div class=\"row\">\r\n    <h3>Confirm Order</h3>\r\n    <table class=\"table table-bordered table-hover\">\r\n        <tr *ngFor=\"let o of data.order.items\">\r\n            <td><img src=\"/img/{{ o.productArtId }}.jpg\" alt=\"o.productTitle\" class=\"img-thumbnail checkout-thumb\" /></td>\r\n            <td>{{ o.productCategory }}({{ o.productSize }}) - {{ o.productArtist }}: {{ o.productTitle }}</td>\r\n            <td>{{ o.quantity }}</td>\r\n            <td>{{ o.unitPrice|currency:'USD':'symbol' }}</td>\r\n            <td>{{ (o.unitPrice * o.quantity)|currency:'USD':'symbol' }}</td>\r\n        </tr>\r\n    </table>\r\n    <div class=\"col-md-4 col-md-offset-8 text-right\">\r\n        <table class=\"table table-condensed\">\r\n            <tr>\r\n                <td class=\"text-right\">Subtotal</td>\r\n                <td class=\"text-right\">{{ data.order.subtotal|currency:'USD':'symbol' }}</td>\r\n            </tr>\r\n            <tr>\r\n                <td class=\"text-right\">Shipping</td>\r\n                <td class=\"text-right\">$ 0.00</td>\r\n            </tr>\r\n            <tr>\r\n                <td class=\"text-right\">Total:</td>\r\n                <td class=\"text-right\">{{ data.order.subtotal|currency:'USD':'symbol' }}</td>\r\n            </tr>\r\n        </table>\r\n        <button class=\"btn btn-success\" (click)=\"onCheckout()\">Complete Purchase</button>\r\n        <a routerLink=\"/\" class=\"btn btn-info\">Cancel</a>\r\n    </div>\r\n</div>"
+module.exports = "﻿<div class=\"row\">\r\n    <div *ngIf=\"errorMessage\" class=\"alert alert-warning\">{{ errorMessage }}</div>\r\n    <h3>Confirm Order</h3>\r\n    <table class=\"table table-bordered table-hover\">\r\n        <tr *ngFor=\"let o of data.order.items\">\r\n            <td><img src=\"/img/{{ o.productArtId }}.jpg\" alt=\"o.productTitle\" class=\"img-thumbnail checkout-thumb\" /></td>\r\n            <td>{{ o.productCategory }}({{ o.productSize }}) - {{ o.productArtist }}: {{ o.productTitle }}</td>\r\n            <td>{{ o.quantity }}</td>\r\n            <td>{{ o.unitPrice|currency:'USD':'symbol' }}</td>\r\n            <td>{{ (o.unitPrice * o.quantity)|currency:'USD':'symbol' }}</td>\r\n        </tr>\r\n    </table>\r\n    <div class=\"col-md-4 col-md-offset-8 text-right\">\r\n        <table class=\"table table-condensed\">\r\n            <tr>\r\n                <td class=\"text-right\">Subtotal</td>\r\n                <td class=\"text-right\">{{ data.order.subtotal|currency:'USD':'symbol' }}</td>\r\n            </tr>\r\n            <tr>\r\n                <td class=\"text-right\">Shipping</td>\r\n                <td class=\"text-right\">$ 0.00</td>\r\n            </tr>\r\n            <tr>\r\n                <td class=\"text-right\">Total:</td>\r\n                <td class=\"text-right\">{{ data.order.subtotal|currency:'USD':'symbol' }}</td>\r\n            </tr>\r\n        </table>\r\n        <button class=\"btn btn-success\" (click)=\"onCheckout()\">Complete Purchase</button>\r\n        <a routerLink=\"/\" class=\"btn btn-info\">Cancel</a>\r\n    </div>\r\n</div>"
 
 /***/ }),
 
@@ -350,7 +350,13 @@ var DataService = /** @class */ (function () {
     };
     DataService.prototype.checkout = function () {
         var _this = this;
-        return this.http.post("api/orders", this.order)
+        if (!this.order.orderNumber) {
+            this.order.orderNumber =
+                this.order.orderDate.getFullYear().toString() + this.order.orderDate.getTime().toString();
+        }
+        return this.http.post("api/orders", this.order, {
+            headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set("Authorization", "Bearer " + this.token)
+        })
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (response) {
             _this.order = new _order__WEBPACK_IMPORTED_MODULE_4__["Order"](); // clean up the order
             return true;
@@ -651,7 +657,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! D:\Github\StudyNotes\dotnet-example\DutchTreat\DutchTreat\ClientApp\main.ts */"./main.ts");
+module.exports = __webpack_require__(/*! C:\Users\zhenyzhu\Documents\git\StudyNotes\dotnet-example\DutchTreat\DutchTreat\ClientApp\main.ts */"./main.ts");
 
 
 /***/ })

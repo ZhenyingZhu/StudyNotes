@@ -87,7 +87,7 @@ namespace DutchTreat.Controllers
                     var currentUser = await this._userManager.FindByNameAsync(User.Identity.Name);
                     newOrder.User = currentUser;
 
-                    this._repository.AddEntity(newOrder);
+                    this._repository.AddOrder(newOrder);
                     if (this._repository.SaveAll())
                     {
                         // zhenying: the Route here with app at the begining is to make angular to work.

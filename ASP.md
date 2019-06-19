@@ -1078,7 +1078,23 @@ In checkout.component.ts, let `onCheckoout()` call `dataService.checkout()`.
 
 Put error message to checkout.component.html.
 
-2:25
+In `dataService.checkout()`, need set headers of the post to include token. The third parameter of the post should be
+
+```javascript
+this.http.post("api/orders", this.order, {
+    headers: new HttpHeaders().set("Authorization", "Bearer " + this.token)
+})
+```
+
+The client side validation might pass, but the server side validation can still fail.
+
+Check Network XHR response, can see the `OrderNumber` is missing. So add it in the `checkout()`.
+
+Fail again because in server side log, Cannot update `Product` while update `Order`.
+
+In `DutchRepository`, create a method `AddOrder()`, which first look up `Product`. Let `OrdersController` call this method.
+
+### Minifying your JavaScript
 
 # HERE
 
