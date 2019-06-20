@@ -1096,6 +1096,8 @@ In `DutchRepository`, create a method `AddOrder()`, which first look up `Product
 
 ### Minifying your JavaScript
 
+Use Gulp.
+
 # HERE
 
 Angular Inline templates?
