@@ -1096,7 +1096,21 @@ In `DutchRepository`, create a method `AddOrder()`, which first look up `Product
 
 ### Minifying your JavaScript
 
-Use Gulp.
+In the package.json, add `gulp`, `gulp-uglify` and `gulp-concat` to devDependencies, which are used when build project.
+
+Gulp automate build time tooling using js. It takes javascripts, concat into a large file, uglify (minify) it.
+
+Add gulp config file `gulpfile.js` to the root of the project.
+
+Create tasks and group tasks. First task is `minify`.
+
+`gulp.src("wwwroot/js/**/*.js")` gets all the subfolders js files. `gulp.dest("wwwroot/dist")` save it.
+
+In a cmd, run `gulp`. It runs the default task. Or run `gulp minify`.
+
+In VS 2017, right click gulpfile.js, start Task Runner Explorer, and bind task to after build.
+
+### Environment Tag Helpers
 
 # HERE
 
