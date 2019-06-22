@@ -1112,6 +1112,16 @@ In VS 2017, right click gulpfile.js, start Task Runner Explorer, and bind task t
 
 ### Environment Tag Helpers
 
+In the `Views\Shared\_Layout.cshtml`, set `environment` element to define envs.
+
+Use minified js in the staging and prod envs.
+
+The `script` element can have an attr `asp-append-version`. When set it to true, each build will have different minify script name, so that client doesn't need to clear their cache to use the new script.
+
+For common lib, use `asp-fallback-src` to define my local path, and use CDN if client has already load it for other websites.
+
+For CSS: 4:00
+
 # HERE
 
 Angular Inline templates?

@@ -57,9 +57,20 @@
         <div class="text-center">Copyright 2019 Dutch Treat LLC</div>
     </footer>
 
-    <script src="~/node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="~/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/index.js"></script>
+    <environment names="Development">
+        <script src="~/node_modules/jquery/dist/jquery.js"></script>
+        <script src="~/node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+        <script src="~/js/index.js"></script>
+    </environment>
+    <environment names="Staging,Production">
+        <script src="//ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"
+                asp-fallback-src="~/node_modules/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"></script>
+        <script src="//ajax.aspnetcdn.com/ajax/bootstrap/4.3.1/bootstrap.min.js"
+                asp-fallback-src="~/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && jQuery.fn.modal"></script>
+        <script src="~/dist/dutchtreat.min.js" asp-append-version="true"></script>
+    </environment>
     @RenderSection("scripts", false)
 </body>
 </html>
