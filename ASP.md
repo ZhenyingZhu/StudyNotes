@@ -1120,7 +1120,11 @@ The `script` element can have an attr `asp-append-version`. When set it to true,
 
 For common lib, use `asp-fallback-src` to define my local path, and use CDN if client has already load it for other websites.
 
-For CSS: 4:00
+Use envs for CSS as well.
+
+In the project properties, Debug, can change `ASPNETCORE_ENVIRONMENT` to change envs.
+
+### Setting up Deployment Scripts
 
 # HERE
 
