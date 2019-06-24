@@ -1126,9 +1126,15 @@ In the project properties, Debug, can change `ASPNETCORE_ENVIRONMENT` to change 
 
 ### Setting up Deployment Scripts
 
-# HERE
+In visual studio, can publish a project onto a remote server. Since the build process will be different, need set up deployment envs.
 
-Angular Inline templates?
+In the csproj file, add `Target` element. It can let MSBuild do something during the build.
+
+`Exec` can run console commands. Notice order matters.
+
+### Publishing to a Directory
+
+# HERE
 
 <https://app.pluralsight.com/library/courses/aspnetcore-mvc-efcore-bootstrap-angular-web/table-of-contents>
 
