@@ -10,4 +10,4 @@ gulp.task("minify", function () {
         .pipe(gulp.dest("wwwroot/dist"));
 });
 
-//gulp.task('default', ["minify"]);
+gulp.task("default", gulp.series("minify"));

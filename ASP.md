@@ -1134,6 +1134,16 @@ In the csproj file, add `Target` element. It can let MSBuild do something during
 
 ### Publishing to a Directory
 
+Publish to `bin\Debug\netcoreapp2.2\publish\`.
+
+In the folder, the `DutchTreat.dll` is the starting point.
+
+Use `dotnet DutchTreat.dll` can start the server.
+
+Weirdly the `npm install` didn't run with just publish. I might missed some thing.
+
+### Publishing to Azure
+
 # HERE
 
 <https://app.pluralsight.com/library/courses/aspnetcore-mvc-efcore-bootstrap-angular-web/table-of-contents>
