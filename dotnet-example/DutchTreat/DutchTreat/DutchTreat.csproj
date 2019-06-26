@@ -4,11 +4,8 @@
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
     <TypeScriptToolsVersion>3.1</TypeScriptToolsVersion>
+    <UserSecretsId>71d5d6d3-0628-4bf8-9af8-6f4e6f4e9ff1</UserSecretsId>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Content Remove="wwwroot\ts\main.ts" />
-  </ItemGroup>
 
   <ItemGroup>
     <None Remove="ClientApp\app\checkout\checkout.component.ts" />
@@ -41,7 +38,6 @@
     <TypeScriptCompile Include="ClientApp\app\shared\product.ts" />
     <TypeScriptCompile Include="ClientApp\app\shop\productList.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\shop\shop.component.ts" />
-    <TypeScriptCompile Include="wwwroot\ts\main.ts" />
   </ItemGroup>
 
   <Target Name="MyPublishScripts" BeforeTargets="BeforePublish">

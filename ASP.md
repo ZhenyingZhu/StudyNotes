@@ -1142,7 +1142,23 @@ Use `dotnet DutchTreat.dll` can start the server.
 
 Weirdly the `npm install` didn't run with just publish. I might missed some thing.
 
+Looks like I hit this issue: https://github.com/dotnet/cli/issues/4062
+
 ### Publishing to Azure
+
+1. Publish
+2. New Profile
+3. Creating new
+4. Pick the right Azure subscription
+5. Create a Resource Group `DutchTreatSite`
+
+A App Service Plan is created.
+
+In visual studio 2017's Web Publish Activity tab, can see the details.
+
+It runs on the azurewebsites.net with HTTPS.
+
+### Publishing to IIS
 
 # HERE
 

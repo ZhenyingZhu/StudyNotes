@@ -19,4 +19,5 @@ var StoreCustomer = /** @class */ (function () {
     });
     return StoreCustomer;
 }());
+export { StoreCustomer };
 //# sourceMappingURL=StoreCustomer.js.map
