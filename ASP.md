@@ -1142,7 +1142,17 @@ Use `dotnet DutchTreat.dll` can start the server.
 
 Weirdly the `npm install` didn't run with just publish. I might missed some thing.
 
-Looks like I hit this issue: https://github.com/dotnet/cli/issues/4062
+Looks like I hit this [issue](https://github.com/dotnet/cli/issues/4062)
+
+But add this
+
+```xml
+<ItemGroup>
+  <Content Include="node_modules\foo\**" CopyToPublishDirectory="PreserveNewest" />
+</ItemGroup>
+```
+
+Can cause build failure.
 
 ### Publishing to Azure
 

@@ -40,10 +40,17 @@
     <TypeScriptCompile Include="ClientApp\app\shop\shop.component.ts" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Include="node_modules\" CopyToPublishDirectory="PreserveNewest" />
+  </ItemGroup>
+  
   <Target Name="MyPublishScripts" BeforeTargets="BeforePublish">
     <Exec Command="npm install" />
     <Exec Command="gulp" />
     <Exec Command="ng build" />
+    <Exec Command="Get-Location" />
+    <Exec Command="npm install" />
   </Target>
 
 </Project>
+
