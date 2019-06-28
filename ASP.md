@@ -1170,6 +1170,16 @@ It runs on the azurewebsites.net with HTTPS.
 
 ### Publishing to IIS
 
+In IIS, create a new Website. Change the port to 81 because Default Website take 80 already.
+
+Change the Application pool to Core, so CLR is not needed.
+
+In the `C:\inetpub`, create a new folder `dutchtreat`.
+
+Restart VS in admin mode to connect to IIS.
+
+Choose `Web Deploy`, Server is localhost, Site name is dutchtreat, URL is `http://localhost:81`.
+
 # HERE
 
 <https://app.pluralsight.com/library/courses/aspnetcore-mvc-efcore-bootstrap-angular-web/table-of-contents>
