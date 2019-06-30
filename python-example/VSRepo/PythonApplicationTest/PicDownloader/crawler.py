@@ -97,7 +97,10 @@ class Crawler:
 def main():
     # TODO start from an info page, and a list of urls
     my_url = ''
-    c = Crawler(my_url, "D:/Downloads/tmp/")
+
+    utils = Utils()
+    download_path = os.path.join(utils.get_download_path('tmp'))
+    c = Crawler(my_url, download_path)
     c.start()
 
 if __name__ == '__main__':

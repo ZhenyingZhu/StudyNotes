@@ -59,6 +59,18 @@ class Utils:
             print("Key interrupt")
             return False
 
+    def get_download_path(self, subfolder):
+        """Returns the default downloads path for linux or windows"""
+        if os.name == 'nt':
+            import winreg
+            sub_key = r'SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders'
+            downloads_guid = '{374DE290-123F-4565-9164-39C4925E467B}'
+            with winreg.OpenKey(winreg.HKEY_CURRENT_USER, sub_key) as key:
+                location = winreg.QueryValueEx(key, downloads_guid)[0]
+            return os.path.join(location, subfolder)
+        else:
+            return os.path.join(os.path.expanduser('~'), 'downloads', subfolder)
+
 
 def main():
     utils = Utils()
@@ -66,8 +78,10 @@ def main():
     # html_page = utils.get_page_from_url("https://www.google.com")
     # print(html_page)
 
-    download_path = os.path.join(Path.home(), "Downloads")
-    utils.download_pic(download_path, "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png")    
+    # Under Windows, the downloads folder could be moved.
+    # download_path = os.path.join(Path.home(), "Downloads")
+    download_path = utils.get_download_path()
+    utils.download_pic(download_path, "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png")
 
 if __name__ == "__main__":
     main()
