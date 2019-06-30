@@ -1180,6 +1180,8 @@ Restart VS in admin mode to connect to IIS.
 
 Choose `Web Deploy`, Server is localhost, Site name is dutchtreat, URL is `http://localhost:81`.
 
+### Publishing Using the CLI
+
 # HERE
 
 <https://app.pluralsight.com/library/courses/aspnetcore-mvc-efcore-bootstrap-angular-web/table-of-contents>
