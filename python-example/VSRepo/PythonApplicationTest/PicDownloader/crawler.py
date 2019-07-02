@@ -14,12 +14,47 @@ import time
 from utils import Utils
 
 class Crawler:
-    def __init__(self, first_url, save_path):
-        self.first_url = first_url
+    def __init__(self, main_url, save_path):
+        self.main_url = main_url
         self.save_path = save_path
+        self.failed_urls = []
+        self.utils = Utils()
 
-        self.last_url_id = self.get_url_pattern(first_url)
-        self.last_url = first_url
+    def get_title(self, html_page):
+        # TODO: this is not used any more.
+        try:
+            title = re.findall('<title>(.*?)</title>', html_page)[0]
+            return title
+        except IndexError:
+            print("Cannot find title")
+            return "default title"
+
+    def get_first_title(self, html_page):
+        # TODO: combine it with get_second_title.
+        try:
+            title = re.findall('<h1 id="gn">(.*?)</h1>', html_page)[0]
+            return title
+        except IndexError:
+            print("Cannot find first title")
+            return "default first title"
+
+    def get_second_title(self, html_page):
+        try:
+            title = re.findall('<h1 id="gj">(.*?)</h1>', html_page)[0]
+            return title
+        except IndexError:
+            print("Cannot find second title")
+            return ""
+
+    def get_first_page_url(self, main_html_page):
+        try:
+            gdtm_class = re.findall('div class="gdtm"(.*?)</a>', main_html_page)[0]
+            first_page_url = re.findall('<a href="(.*?)">', gdtm_class)[0]
+            return first_page_url
+        except IndexError:
+            print("Cannot find first page url")
+            print(gdtm_class)
+            raise
 
     def get_url_pattern(self, url):
         if not '-' in url:
@@ -30,27 +65,24 @@ class Crawler:
         except ValueError:
             url_id = -1
         return url_id
-			
-    def get_title(self, html_page):
-        try:
-            title = re.findall('<title>(.*?)</title>', html_page)[0]
-            return title
-        except IndexError:
-            print("Cannot find title")
-            return "default title"
 
     def get_next_page(self, html_page):
-        hrefs = re.findall('href="(.*?)">', html_page)
+        # Candidates of next page. For debugging purpose.
         candidate_hrefs = []
+
+        hrefs = re.findall('href="(.*?)">', html_page)
         for href in hrefs:
             id = self.get_url_pattern(href)
+            # Not a link for next page.
             if id == -1:
                 continue
+
             candidate_hrefs.append(href)
-            if id == self.last_url_id + 1:
-                self.last_url_id = id
-                self.last_url = href
+
+            if id == self.current_pic_id + 1:
+                self.current_pic_id = id
                 return href
+
         # So reach the end
         return ""
 
@@ -66,42 +98,62 @@ class Crawler:
             print("Cannot find right pic: " + pic_url)
             return ""
 
-    def start(self):
-        utils = Utils()
+    def iterate_all_pages(self, first_url):
+        current_url = first_url
 
-        html_page = utils.get_page_from_url(self.first_url)
-        print(self.get_title(html_page))
+        # In case if the first_url is not start from 1.
+        self.current_pic_id = self.get_url_pattern(first_url)
 
-        next_url = self.first_url
-        num = 1
-        failed_urls = []
-        while next_url != "":
-            html_page = utils.get_page_from_url(next_url)
+        cnt = 1
+        while current_url != "":
+            html_page = self.utils.get_page_from_url(current_url)
             pic_url = self.get_pic_url(html_page)
             if pic_url:
-                print(str(num) + " get " + pic_url + " from " + next_url)
-                if not utils.download_pic(self.save_path, pic_url):
-                    failed_urls.append(next_url)
-                num += 1
-            else:
-                print("didn't get pic from " + next_url)
-                failed_urls.append(next_url)
+                print(str(cnt) + " get " + pic_url + " from " + current_url)
 
-            next_url = self.get_next_page(html_page)
+                if not self.utils.download_pic(self.save_path, pic_url):
+                    self.failed_urls.append(current_url)
+
+                cnt += 1
+            else:
+                print("didn't get pic from " + current_url)
+                self.failed_urls.append(current_url)
+
+            current_url = self.get_next_page(html_page)
             #time.sleep(0.5)
 
-        # TODO auto retries
-        print(failed_urls)
+    def parse_main_page(self):
+        html_page = self.utils.get_page_from_url(self.main_url)
+
+        lines = [self.get_first_title(html_page) + '\n', self.get_second_title(html_page) + '\n', '\n', self.main_url]
+
+        note_file_path = os.path.join(self.save_path, 'note.txt')
+        with open(note_file_path, 'w', encoding='utf-8') as note_file:
+            note_file.writelines(lines)
+
+        return self.get_first_page_url(html_page)
+
+    def start(self):
+        if not os.path.isdir(self.save_path):
+            os.mkdir(self.save_path)
+
+        first_page_url = self.parse_main_page()
+
+        self.iterate_all_pages(first_page_url)
+
+        # TODO add retries.
+        print(self.failed_urls)
 
 
 def main():
-    # TODO start from an info page, and a list of urls
-    my_url = ''
+    print('Argument List:', str(argv))
+
+    url = argv[1]
+    folder = argv[2]
 
     utils = Utils()
-    download_path = os.path.join(utils.get_download_path('tmp'))
-    c = Crawler(my_url, download_path)
-    c.start()
+    crawler = Crawler(url, os.path.join(utils.get_download_path(folder)))
+    crawler.start()
 
 if __name__ == '__main__':
     main()
