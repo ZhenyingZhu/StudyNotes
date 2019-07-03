@@ -557,7 +557,7 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! D:\Github\StudyNotes\dotnet-example\DutchTreat\DutchTreat\ClientApp\styles.css */"./styles.css");
+module.exports = __webpack_require__(/*! C:\Users\zhenyzhu\Documents\git\StudyNotes\dotnet-example\DutchTreat\DutchTreat\ClientApp\styles.css */"./styles.css");
 
 
 /***/ })

@@ -1182,9 +1182,25 @@ Choose `Web Deploy`, Server is localhost, Site name is dutchtreat, URL is `http:
 
 ### Publishing Using the CLI
 
+`dotnet build`, `dotnet run`, `dotnet publish`.
+
+```cmd
+dotnet publish -o C:\Downloads\pub
+```
+
+It uses MSBuild which is a build engine.
+
+Does `node_modules` required?? The course example doesn't seem to have it. Check:
+
+<https://stackoverflow.com/questions/37935524/how-to-use-npm-with-asp-net-core>
+
+### Publishing with Runtime
+
 # HERE
 
 <https://app.pluralsight.com/library/courses/aspnetcore-mvc-efcore-bootstrap-angular-web/table-of-contents>
+
+
 
 ## ASP.NET Web API
 
