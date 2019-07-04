@@ -1196,11 +1196,15 @@ Does `node_modules` required?? The course example doesn't seem to have it. Check
 
 ### Publishing with Runtime
 
-# HERE
+ASP.NET Core has Runtime Identifiers(RID).
 
-<https://app.pluralsight.com/library/courses/aspnetcore-mvc-efcore-bootstrap-angular-web/table-of-contents>
+In DutchTreat.csproj, add `<RuntimeIdentifier>win10-x64</RuntimeIdentifier>` for TargetFramework.
 
+Use `dotnet publish -o <PATH> --self-contained`. It will generate DutchTreat.exe. Run `DutchTreat` will start the server.
 
+To support multiple platform, add `<RuntimeIdentifiers>win10-x64,OSX.10.10-x64</RuntimeIdentifiers>` instead.
+
+Use `dotnet publish -o <PATH> --runtime osx.10.10-x64`.
 
 ## ASP.NET Web API
 
