@@ -54,6 +54,25 @@ Command line:
 - `dotnet run` (which include `dotnet build`)
 - `dotnet add package Newtonsoft.Json`
 
+[dotnet cmdlet](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-new?tabs=netcore22)
+
+Dotnet can create
+
+- console app
+- class lib
+- UT
+- Razor page: A slim version of MVC. Model and Controller code is included in Razor Page itself. So it is a Model-View-ViewModel (MVVM) framework. If just simple pages with basic writes, use it.
+- MVC: If have a lot of dynamic server views, use it.
+- ASP.NET Core Web app + FE frameworks
+- Razor Class Lib
+- ASP.NET Core Web API
+
+MVC:
+
+- Model: a data structure
+- View: a web form for input + output (data 2 way binding)
+- Controller: how to get the data and represent in View.
+
 ### Installing Visual Studio
 
 1. ASP.NET Core Web Application: Big Project
