@@ -81,6 +81,26 @@ MVC:
 
 Web Application: Use Razor web pages.
 
+Visual Studio Web Application options:
+
+If choose to config HTTPS, the HTTPS url will appear in the Properties/launchSettings.json. Also HSTS service will be injected.
+
+If choose Authentication, the auth option will appear in the Properties/launchSettings.json.
+
+Dependencies are AspNetCore.App and Razor.Design.
+
+Empty
+
+- Program.cs: CreateWebHostBuilder and run.
+- Startup.cs: Config service and HTTP request pipeline.
+- appsettings.json and appsetttings.Development.json: define logging and host.
+
+API
+
+- Can choose Authentication.
+- Startup.cs: Config service inject MVC. Runtime pipeline use HttpsRedirection and use MVC.
+- ValuesController.cs
+
 ### Creating a project with visual studio
 
 1. ASP.NET Core Web Application: DutchTreat.
