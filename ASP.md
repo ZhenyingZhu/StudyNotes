@@ -83,23 +83,41 @@ Web Application: Use Razor web pages.
 
 Visual Studio Web Application options:
 
-If choose to config HTTPS, the HTTPS url will appear in the Properties/launchSettings.json. Also HSTS service will be injected.
+If choose to config HTTPS, the HTTPS url will appear in the Properties/launchSettings.json. Also HSTS service will be injected. When start, a cert will be created and installed.
 
-If choose Authentication, the auth option will appear in the Properties/launchSettings.json.
+If choose [Authentication](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/individual?view=aspnetcore-2.1#win), the auth option will appear in the Properties/launchSettings.json. The requests will contain the caller's user info. With different auth method the user info will be passed in different ways. For example Windows Auth will use AAD to encrypt username and password, so it is good for intranet websites, so that all the cx will be login as AAD user before using the website.
 
 Dependencies are AspNetCore.App and Razor.Design.
 
-Empty
+[Empty](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/?view=aspnetcore-2.2&tabs=windows)
 
-- Program.cs: CreateWebHostBuilder and run.
-- Startup.cs: Config service and HTTP request pipeline.
-- appsettings.json and appsetttings.Development.json: define logging and host.
+- Program.cs: CreateWebHostBuilder and run. It is using [Kestrel server](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/?view=aspnetcore-2.2&tabs=windows#servers).
+- Startup.cs: Config required services and HTTP request pipeline, which is a series of middleware components.
+- appsettings.json and appsetttings.Development.json: contains key-value pairs. By default it defines logging and host. Can use env vars to override them. If need manage confidential config data, can use [Secret Manager tool](https://docs.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-2.2&tabs=windows)
 
-API
+[API](https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-web-api?view=aspnetcore-2.2&tabs=visual-studio)
 
 - Can choose Authentication.
 - Startup.cs: Config service inject MVC. Runtime pipeline use HttpsRedirection and use MVC.
 - ValuesController.cs
+
+[Web Application MVC](https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-mvc-app/start-mvc?view=aspnetcore-2.2&tabs=visual-studio)
+
+- wwwroot with jquery + bootstrap.
+- Areas: Looks like it is for identity.
+- Data: for DB connection.
+- Pages: Razor pages. An index.cshtml is created. Login and cookie logics are also created.
+- In appsettings.json, a connection string is created to connect to localdb.
+- In Startup.cs, injected cookie, DB, identity.
+- HomeController: 3 default controllers: Index, Privacy and Error.
+- Models: 1 default model: Error.
+- Views: Index and Privacy.
+
+[Razor class library](https://docs.microsoft.com/en-us/aspnet/core/razor-pages/ui-class?view=aspnetcore-2.2&tabs=visual-studio)
+
+[Angular](https://github.com/aspnet/JavaScriptServices)
+
+- WebApplication7 here
 
 ### Creating a project with visual studio
 
