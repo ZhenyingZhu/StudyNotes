@@ -143,8 +143,6 @@ Project dependencies are AspNetCore.App and Razor.Design.
 
 [Angular](https://github.com/aspnet/JavaScriptServices)
 
-- WebApplication7 here
-
 ### Creating a project with visual studio
 
 1. ASP.NET Core Web Application: DutchTreat.
@@ -186,6 +184,27 @@ Img tag need self closing.
 
 HTML by default is drawn top-down.
 
+In head
+
+- `<meta charset="utf-8" />`
+- `<link rel="stylesheet" href="{css path}" />`.
+
+In body
+
+- header
+- footer
+- `<script src="~/lib/jquery/dist/jquery.js"></script>`
+
+Common Elements
+
+- a: doesn't necessary to have href attr. It might be used for ASP routing.
+- div: a section, so that 1. it can be styled with CSS, 2. can perform tasks with JS.
+- img
+- ul, li
+- button
+- br
+- form: label, textarea, input
+
 ### HTML Forms
 
 `form` element is to get info from the user.
@@ -193,6 +212,8 @@ HTML by default is drawn top-down.
 `input` has type. The special type is `submit`.
 
 Browser is trying its best to get what to display. It won't throw parsing error.
+
+# HERE
 
 ### CSS Basics
 
