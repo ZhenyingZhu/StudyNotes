@@ -213,13 +213,26 @@ Common Elements
 
 Browser is trying its best to get what to display. It won't throw parsing error.
 
-# HERE
-
 ### CSS Basics
 
 Seperate the structure of web application from the design elements or the rules for how to draw it.
 
 CSS rule order: the more specific rule wins the more general rule. It is not based on the order of rules.
+
+Styles:
+
+- font-size: 18px;
+- width: 200px;
+- max-width: 150px;
+- background-color: lightgrey;
+- color: white;
+- list-style-type: none;
+- display: inline-block;
+- float: right;
+- cursor: pointer;
+- content: ' |'; Add content. Need work with selector after.
+
+# HERE
 
 ### CSS Naming
 
@@ -241,6 +254,12 @@ margin, border, padding, content
 - properties: height, width. actual-height/width: border.
 
 By default, div is displayed in a block, which take as much horizontal space and as little vertical space as possible.
+
+- border: 1px solid grey;
+- padding: 8px 2px;
+- margin: 2px;
+- width: 450px;
+- border-radius: 5px;
 
 ### What is JavaScript
 
