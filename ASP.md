@@ -221,28 +221,47 @@ CSS rule order: the more specific rule wins the more general rule. It is not bas
 
 Styles:
 
+- font-family: cursive;
 - font-size: 18px;
+- font-weight: bold;
+- text-decoration: line-through;
+- text-shadow: 1px 1px 1px black;
+- text-align: center;
 - width: 200px;
 - max-width: 150px;
-- background-color: lightgrey;
+- background: linear-gradient(to bottom, rgba(0,0,0,0.25), rgba(0,0,0,0.1));
 - color: white;
 - list-style-type: none;
 - display: inline-block;
 - float: right;
 - cursor: pointer;
+- text-transform: uppercase;
 - content: ' |'; Add content. Need work with selector after.
-
-# HERE
 
 ### CSS Naming
 
 Use for CSS selector.
 
+`<li class="a b">` means this element belongs to both class a and b.
+
 ### CSS Classes
 
 ID is unique. Class is to group same style elements together.
 
-CSS selector: `#` for ID, `.` for class. space for child, `ele.class` get the elements that are of the class.
+[CSS selector](https://developer.mozilla.org/en-US/docs/Learn/CSS/Introduction_to_CSS/Selectors)
+
+Simple selector
+
+- `#` for ID
+- `.` for class
+- `*` for all elements
+- space for child, `ele.class` get the elements that are of the class.
+
+Attr selector
+
+# HERE
+
+https://developer.mozilla.org/en-US/docs/Learn/CSS/Introduction_to_CSS/Attribute_selectors
 
 ### The Box Model
 
