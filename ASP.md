@@ -195,6 +195,14 @@ In body
 - footer
 - `<script src="~/lib/jquery/dist/jquery.js"></script>`
 
+An element can have attributes with different values separate by spaces:
+
+`data-*` attrs are data attributes, which can be used to store custom data in HTML attr so that CSS selector can find it.
+
+```html
+<li data-quantity="700g" data-vegetable="not spicy like chili">Red pepper</li>
+```
+
 Common Elements
 
 - a: doesn't necessary to have href attr. It might be used for ASP routing.
@@ -230,6 +238,7 @@ Styles:
 - width: 200px;
 - max-width: 150px;
 - background: linear-gradient(to bottom, rgba(0,0,0,0.25), rgba(0,0,0,0.1));
+- background: url("") 5px center no-repeat;
 - color: white;
 - list-style-type: none;
 - display: inline-block;
@@ -237,6 +246,7 @@ Styles:
 - cursor: pointer;
 - text-transform: uppercase;
 - content: ' |'; Add content. Need work with selector after.
+- opacity: 0.5
 
 ### CSS Naming
 
@@ -259,9 +269,17 @@ Simple selector
 
 Attr selector
 
+- `[attr]`: all elements with `attr`.
+- `[attr=val]`: if `attr` eq val.
+- `[attr~=vall]`: if one of the attr value is val.
+- `[attr^=val]`: start with val.
+- `[attr$=val]`: end with val.
+- `[attr*=val]`: val is a substr.
+- `[attr|=val]`: used to match lang such as `en` or `en-US`.
+
 # HERE
 
-https://developer.mozilla.org/en-US/docs/Learn/CSS/Introduction_to_CSS/Attribute_selectors
+https://developer.mozilla.org/en-US/docs/Learn/CSS/Introduction_to_CSS/Pseudo-classes_and_pseudo-elements
 
 ### The Box Model
 
