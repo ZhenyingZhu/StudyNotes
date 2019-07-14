@@ -277,6 +277,50 @@ Attr selector
 - `[attr*=val]`: val is a substr.
 - `[attr|=val]`: used to match lang such as `en` or `en-US`.
 
+Pseudo selector
+
+- [:active](https://developer.mozilla.org/en-US/docs/Web/CSS/:active): an element (such as a button) that is being activated by the user.
+- [:checked](https://developer.mozilla.org/en-US/docs/Web/CSS/:checked): radio, checkbox or option element that is checked or toggled to an on state.
+- [:default](https://developer.mozilla.org/en-US/docs/Web/CSS/:default): form elements that are the default in a group of related elements.
+- [:dir()](https://developer.mozilla.org/en-US/docs/Web/CSS/:dir): matches elements based on the directionality of the text contained in them.
+- [:disabled](https://developer.mozilla.org/en-US/docs/Web/CSS/:disabled): represents any disabled element.
+- [:empty](https://developer.mozilla.org/en-US/docs/Web/CSS/:empty): represents any element that has no children, neither element nodes nor text (including whitespace).
+- [:enabled](https://developer.mozilla.org/en-US/docs/Web/CSS/:enabled): represents any enabled element.
+- [:first](https://developer.mozilla.org/en-US/docs/Web/CSS/:first): used with the `@page` at-rule, represents the first page of a printed document.
+- [:first-child](https://developer.mozilla.org/en-US/docs/Web/CSS/:first-child): represents the first element among a group of sibling elements.
+- [:first-of-type](https://developer.mozilla.org/en-US/docs/Web/CSS/:first-of-type): represents the first element of its type among a group of sibling elements.
+- [:fullscreen](https://developer.mozilla.org/en-US/docs/Web/CSS/:fullscreen): matches every element which is currently in full-screen mode.
+- [:focus](https://developer.mozilla.org/en-US/docs/Web/CSS/:focus): represents an element that has received focus.
+- [:focus-within](https://developer.mozilla.org/en-US/docs/Web/CSS/:focus-within): represents an element that has received focus or contains an element that has received focus.
+- [:hover](https://developer.mozilla.org/en-US/docs/Web/CSS/:hover): matches when the user interacts with an element with a pointing device
+- [:indeterminate](https://developer.mozilla.org/en-US/docs/Web/CSS/:indeterminate): represents any form element whose state is indeterminate.
+- [:in-range](https://developer.mozilla.org/en-US/docs/Web/CSS/:in-range): represents an `<input>` element whose current value is within the range limits specified by the min and max attributes.
+- [:invalid](https://developer.mozilla.org/en-US/docs/Web/CSS/:invalid): represents any `<input>` or other `<form>` element whose contents fail to validate.
+- [:lang()](https://developer.mozilla.org/en-US/docs/Web/CSS/:lang): matches elements based on the language they are determined to be in.
+- [:last-child](https://developer.mozilla.org/en-US/docs/Web/CSS/:last-child): represents the last element among a group of sibling elements.
+- [:last-of-type](https://developer.mozilla.org/en-US/docs/Web/CSS/:last-of-type): represents the last element of its type among a group of sibling elements.
+- [:left](https://developer.mozilla.org/en-US/docs/Web/CSS/:left): used with the `@page` at-rule, represents all left-hand pages of a printed document.
+- [:link](https://developer.mozilla.org/en-US/docs/Web/CSS/:link): It matches every unvisited `<a>`, `<area>`, or `<link>` element that has an href attribute.
+- [:is](https://developer.mozilla.org/en-US/docs/Web/CSS/:is): takes a selector list as its argument, and selects any element that can be selected by one of the selectors in that list.
+- [:not()](https://developer.mozilla.org/en-US/docs/Web/CSS/:not): elements that do not match a list of selectors.
+- [:nth-child()](https://developer.mozilla.org/en-US/docs/Web/CSS/:nth-child): matches elements based on their position in a group of siblings.
+- [:nth-last-child()](https://developer.mozilla.org/en-US/docs/Web/CSS/:nth-last-child): matches elements based on their position among a group of siblings, counting from the end.
+- [:nth-last-of-type()](https://developer.mozilla.org/en-US/docs/Web/CSS/:nth-last-of-type): matches elements of a given type, based on their position among a group of siblings, counting from the end.
+- [:nth-of-type()](https://developer.mozilla.org/en-US/docs/Web/CSS/:nth-of-type): matches elements of a given type, based on their position among a group of siblings.
+- [:only-child](https://developer.mozilla.org/en-US/docs/Web/CSS/:only-child): represents an element without any siblings.
+- [:only-of-type](https://developer.mozilla.org/en-US/docs/Web/CSS/:only-of-type): represents an element that has no siblings of the same type.
+- [:optional](https://developer.mozilla.org/en-US/docs/Web/CSS/:optional): represents any `<input>`, `<select>`, or `<textarea>` element that does not have the required attribute set on it.
+- [:out-of-range](https://developer.mozilla.org/en-US/docs/Web/CSS/:out-of-range): represents an `<input>` element whose current value is outside the range limits specified by the min and max attributes.
+- [:read-only](https://developer.mozilla.org/en-US/docs/Web/CSS/:read-only): represents an element that is not editable by the user.
+- [:read-write](https://developer.mozilla.org/en-US/docs/Web/CSS/:read-write): represents an element that is editable by the user.
+- [:required](https://developer.mozilla.org/en-US/docs/Web/CSS/:required): represents any `<input>`, `<select>` or `<textarea>` element that has the required attribute set on it.
+- [:right](https://developer.mozilla.org/en-US/docs/Web/CSS/:right): used with the `@page` at-rule, represents all right-hand pages of a printed document.
+- [:root](https://developer.mozilla.org/en-US/docs/Web/CSS/:root): matches the root element of a tree representing the document.
+- [:scope](https://developer.mozilla.org/en-US/docs/Web/CSS/:scope): represents elements that are a reference point for selectors to match against.
+- [:target](https://developer.mozilla.org/en-US/docs/Web/CSS/:target): represents the target element with an id matching the URL's fragment.
+- [:valid](https://developer.mozilla.org/en-US/docs/Web/CSS/:valid): represents any `<input>` or other `<form>` element whose contents validate successfully.
+- [:visited](https://developer.mozilla.org/en-US/docs/Web/CSS/:visited): represents links that the user has already visited. For privacy reasons, the styles that can be modified using this selector are very limited.
+
 # HERE
 
 https://developer.mozilla.org/en-US/docs/Learn/CSS/Introduction_to_CSS/Pseudo-classes_and_pseudo-elements
