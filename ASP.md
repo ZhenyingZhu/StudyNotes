@@ -277,7 +277,7 @@ Attr selector
 - `[attr*=val]`: val is a substr.
 - `[attr|=val]`: used to match lang such as `en` or `en-US`.
 
-Pseudo selector
+Pseudo classes
 
 Random access an element in a list
 
@@ -337,6 +337,44 @@ Expression
 
 - [:is](https://developer.mozilla.org/en-US/docs/Web/CSS/:is): takes a selector list as its argument, and selects any element that can be selected by one of the selectors in that list.
 - [:not()](https://developer.mozilla.org/en-US/docs/Web/CSS/:not): elements that do not match a list of selectors.
+
+Combine several selectors
+
+```css
+a:hover,
+a:active,
+a:focus {
+  color: darkred;
+  text-decoration: none;
+}
+```
+
+Find odd/even:
+
+```css
+li:nth-of-type(2n) {
+  background-color: #ccc;
+}
+
+li:nth-of-type(2n+1) {
+  background-color: #eee;
+}
+```
+
+Pseudo elements
+
+- `::after`
+- `::before`
+- `::first-letter`
+- `::first-line`
+- `::selection`
+- `::backdrop`
+
+```css
+[href^=http]::after {
+  content: '⤴';
+}
+```
 
 # HERE
 
