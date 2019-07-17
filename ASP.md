@@ -247,6 +247,8 @@ Styles:
 - text-transform: uppercase;
 - content: ' |'; Add content. Need work with selector after.
 - opacity: 0.5
+- border-collapse: collapse;
+- border-spacing: 0;
 
 ### CSS Naming
 
@@ -376,9 +378,13 @@ Pseudo elements
 }
 ```
 
-# HERE
+Combinator
 
-https://developer.mozilla.org/en-US/docs/Learn/CSS/Introduction_to_CSS/Pseudo-classes_and_pseudo-elements
+- A, B
+- A B: Matching B and is a descendant of A
+- A > B: Matching B and is direct child of A
+- A + B: matching B and is the next sibling of A
+- A ~ B: matching B and is one of the next sibling of A
 
 ### The Box Model
 
@@ -396,6 +402,8 @@ By default, div is displayed in a block, which take as much horizontal space and
 - margin: 2px;
 - width: 450px;
 - border-radius: 5px;
+
+# HERE
 
 ### What is JavaScript
 
