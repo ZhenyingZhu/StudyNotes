@@ -403,8 +403,6 @@ By default, div is displayed in a block, which take as much horizontal space and
 - width: 450px;
 - border-radius: 5px;
 
-# HERE
-
 ### What is JavaScript
 
 Object Oriented: prototypical inheritance
@@ -426,6 +424,8 @@ There could be multiple event listener for an element.
 JavaScript uses anonymous functions a lot.
 
 JQuery makes all browsers can use same code.
+
+# HERE
 
 ### Using NPM
 
