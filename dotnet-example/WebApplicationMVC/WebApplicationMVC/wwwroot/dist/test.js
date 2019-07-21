@@ -1,0 +1,1 @@
+function displayDate(){document.getElementById("my-date").innerHTML=Date()}$("#my-button2").innerHTML="wtf",$("#my-button2").on("click",function(){$("#my-date").innerHTML="The date is?"});

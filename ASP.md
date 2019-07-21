@@ -425,8 +425,6 @@ JavaScript uses anonymous functions a lot.
 
 JQuery makes all browsers can use same code.
 
-# HERE
-
 ### Using NPM
 
 - Add package.json to the root of the project.
@@ -436,6 +434,11 @@ JQuery makes all browsers can use same code.
 - Add a nuget package `odetocode` which introduce middle tier `app.UseNodeModules(env)` to Startup.cs.
 
 Or call command line tool: `npm install bootstrap`.
+
+[Correct way to setup the project](https://stackoverflow.com/questions/37935524/how-to-use-npm-with-asp-net-core)
+
+- Need copy the `node_module` folder to wwwroot using gulp.
+- But seems like the lib folder already has jQuery added.
 
 ### Introducing jQuery
 
@@ -462,6 +465,8 @@ $(document).ready(function() {});
 ```
 
 When define a jQuery object, convention is to name it start with `$`.
+
+# HERE
 
 ### What Is MVC
 
