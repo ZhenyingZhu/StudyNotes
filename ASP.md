@@ -430,10 +430,12 @@ JQuery makes all browsers can use same code.
 - Add package.json to the root of the project.
 - Add "dependencies" to package.json for runtime dependencies. While "devDependencies" is development dependencies.
 - A new node_modules folder would appear with jquery in it. dist folder is for distributions. See which dist you want to use.
-- Add `<script src="/node_modules/jquery/dist/jquery.min.js"></script>` to html.
+- Add `<script src="/node_modules/jquery/dist/jquery.min.js"></script>` to html. (Or just use `lib/jquery/dist/jquery.min.js` since the visual studio MVC project template has jquery included by default)
 - Add a nuget package `odetocode` which introduce middle tier `app.UseNodeModules(env)` to Startup.cs.
 
 Or call command line tool: `npm install bootstrap`.
+
+Note that [odetocode](https://github.com/OdeToCode/UseNodeModules) can serve files from `node_modules` directory in the project root, but when publish, if this folder is not copied, the server would fail to start. Need follow steps below to solve the issue.
 
 [Correct way to setup the project](https://stackoverflow.com/questions/37935524/how-to-use-npm-with-asp-net-core)
 
@@ -466,8 +468,6 @@ $(document).ready(function() {});
 
 When define a jQuery object, convention is to name it start with `$`.
 
-# HERE
-
 ### What Is MVC
 
 Model-View-Controller framework for applications.
@@ -477,6 +477,8 @@ Model-View-Controller framework for applications.
 - View: markup to display
 
 Request route to a controller class, controller get some data from model, then send back to controller to do some logic, and then controller send data to view, view render and return the response.
+
+# HERE
 
 ### First Controller/View
 
