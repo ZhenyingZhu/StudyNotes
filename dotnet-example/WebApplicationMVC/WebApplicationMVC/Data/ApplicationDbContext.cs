@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using WebApplicationMVC.Models;
 
 namespace WebApplicationMVC.Data
 {
@@ -12,5 +13,6 @@ namespace WebApplicationMVC.Data
             : base(options)
         {
         }
+        public DbSet<WebApplicationMVC.Models.AppTestModel> AppTestModel { get; set; }
     }
 }

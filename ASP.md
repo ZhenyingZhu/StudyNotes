@@ -440,7 +440,6 @@ Note that [odetocode](https://github.com/OdeToCode/UseNodeModules) can serve fil
 [Correct way to setup the project](https://stackoverflow.com/questions/37935524/how-to-use-npm-with-asp-net-core)
 
 - Need copy the `node_module` folder to wwwroot using gulp.
-- But seems like the lib folder already has jQuery added.
 
 ### Introducing jQuery
 
@@ -478,8 +477,6 @@ Model-View-Controller framework for applications.
 
 Request route to a controller class, controller get some data from model, then send back to controller to do some logic, and then controller send data to view, view render and return the response.
 
-# HERE
-
 ### First Controller/View
 
 Create a Controller class inherit from AspNetCore.Mvc.Controller under a folder calls controllers.
@@ -493,6 +490,14 @@ View represents Razor (A syntax for generation/modify view code in C#), which is
 ViewBag is a bag of properties. With `@` it can be used in html code.
 
 Path in html should start with `~/` indicates it is the root of the project.
+
+In visual studio, can create 2 kinds of controllers: MVC Controller, API controller.
+
+- Both require to select Model and DataContext.
+- The default Context is ApplicationDbContext.
+- The Model needs have a primary key, using `[key]` annotation.
+
+# HERE
 
 ### Enabling MVC 6
 
