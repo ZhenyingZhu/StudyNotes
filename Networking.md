@@ -515,3 +515,5 @@ Fiddler decrept HTTPS traffic:
 - Actions button on Fiddler's Tools > Fiddler Options > HTTPS
 - [Only decrept for certain hosts](http://docs.telerik.com/fiddler/Configure-Fiddler/Tasks/DecryptHTTPS)
 
+# Setting two routers
+https://www.lifewire.com/connect-routers-on-a-home-network-818060
