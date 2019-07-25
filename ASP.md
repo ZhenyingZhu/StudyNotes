@@ -497,6 +497,17 @@ In visual studio, can create 2 kinds of controllers: MVC Controller, API control
 - The default Context is ApplicationDbContext.
 - The Model needs have a primary key, using `[key]` annotation.
 
+The default controller created by visual studio has
+
+- List API
+- GET by ID API
+- Create??
+- POST Create with binding input
+- Edit by ID??
+- POST Edit by id with binding input
+- Delete
+- DeleteConfirmed
+
 # HERE
 
 ### Enabling MVC 6
