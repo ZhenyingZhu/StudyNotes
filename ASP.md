@@ -508,6 +508,18 @@ The default controller created by visual studio has
 - Delete
 - DeleteConfirmed
 
+After creating the model, need use Package Manager Console to apply pending migrations to the database:
+
+```cmd
+PM> Update-Database
+```
+
+Or use dotnet cmdlet:
+
+```cmd
+dotnet ef database update
+```
+
 # HERE
 
 ### Enabling MVC 6
