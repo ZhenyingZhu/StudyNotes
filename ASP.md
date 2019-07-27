@@ -520,8 +520,6 @@ Or use dotnet cmdlet:
 dotnet ef database update
 ```
 
-# HERE
-
 ### Enabling MVC 6
 
 In Startup.cs add `app.UseMvc()` to set up the routes.
@@ -537,6 +535,8 @@ ASP.NET Core requires to use dependency injection.
 `app.UseDeveloperExceptionPage();` to show the error with call stack.
 
 Using `IHostingEnvironment env` to figure out if the env is a prod or a staging or development. In project property Debug page, can set the environment.
+
+# HERE
 
 ### Creating a Layout
 
