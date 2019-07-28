@@ -187,13 +187,15 @@ HTML by default is drawn top-down.
 In head
 
 - `<meta charset="utf-8" />`
-- `<link rel="stylesheet" href="{css path}" />`.
+- `<title>`
+- CSS: `<link rel="stylesheet" href="{css path}" />`.
 
 In body
 
-- header
-- footer
-- `<script src="~/lib/jquery/dist/jquery.js"></script>`
+- header: can put navigation bar `<nav>`.
+- page content
+- footer: put copyright info
+- JS: `<script src="~/lib/jquery/dist/jquery.js"></script>`
 
 An element can have attributes with different values separate by spaces:
 
@@ -267,7 +269,8 @@ Simple selector
 - `#` for ID
 - `.` for class
 - `*` for all elements
-- space for child, `ele.class` get the elements that are of the class.
+- space for child,
+- `ele.class` get the elements that are of the class.
 
 Attr selector
 
@@ -538,17 +541,23 @@ Using `IHostingEnvironment env` to figure out if the env is a prod or a staging 
 
 ### Creating a Layout
 
-# HERE
-
 Layout page: the common elements on multiple pages. It is a view shares across controllers.
 
-`@RenderBody()` can put body of a cshtml to the layout.
+Put `_Layout.cshtml` under `Views\Shared` folder.
+
+-  Use`@ViewBag` to get properties
+- `@RenderBody()` can put body of a cshtml to the layout.
+- `<environment name="">` tag can write different contents for different env.
+- `@if()` can access ASP C# classes, like `User.Identity.IsAuthenticated`
+- `@RenderSection("secName")`: if child defines `@section secName`, this part will be randered differently. I think it is used for things other than body.
 
 Add the Views folder, add `_ViewStart.cshtml` (Razor View Start), which is act as a base class.
 
 ### Adding More Views
 
 CSS selector `ele1>ele2` can select direct children.
+
+# HERE
 
 ### Using Tag Helpers
 
