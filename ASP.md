@@ -536,15 +536,15 @@ ASP.NET Core requires to use dependency injection.
 
 Using `IHostingEnvironment env` to figure out if the env is a prod or a staging or development. In project property Debug page, can set the environment.
 
-# HERE
-
 ### Creating a Layout
+
+# HERE
 
 Layout page: the common elements on multiple pages. It is a view shares across controllers.
 
 `@RenderBody()` can put body of a cshtml to the layout.
 
-Add the Views folder, add `_ViewStart.cshtmml` (Razor View Start), which is act as a base class.
+Add the Views folder, add `_ViewStart.cshtml` (Razor View Start), which is act as a base class.
 
 ### Adding More Views
 
