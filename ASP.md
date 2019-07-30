@@ -557,15 +557,15 @@ Add the Views folder, add `_ViewStart.cshtml` (Razor View Start), which is act a
 
 CSS selector `ele1>ele2` can select direct children.
 
-# HERE
-
 ### Using Tag Helpers
 
-ViewImports is a way to add things that are appear on every page. Like import classes to all pages.
+`_ViewImports.cshtml` is a page that provides a way to add things that are appear on every page. Like import classes to all pages.
 
 `@addTagHelper` is a decoration of adding a set of TagHelpers.
 
 `[HttpGet("contact")]` on an action can change the action link.
+
+# HERE
 
 ### Razor Pages
 
