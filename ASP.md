@@ -565,17 +565,17 @@ CSS selector `ele1>ele2` can select direct children.
 
 `[HttpGet("contact")]` on an action can change the action link.
 
-# HERE
-
 ### Razor Pages
 
-`app.UseExceptionHandler("/error");` can specify what the error handling path to use.
+`app.UseExceptionHandler("/error");` can specify what the error handling path to use. When error happens, show this view.
 
-Razor page start with `@page` decoration.
+Razor page start with `@page` decoration. It makes the file into an MVC action, and don't go through a controller. In this case error page is a Razor page.
 
 Razor page and view are different world. If just want display some simple text, use page is enough.
 
 Need copy `_ViewStart.cshtml` to Pages folder so that the Razor pages can also use layout.
+
+# HERE
 
 ### Implementing a Contact Page
 
