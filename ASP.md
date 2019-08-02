@@ -575,15 +575,17 @@ Razor page and view are different world. If just want display some simple text, 
 
 Need copy `_ViewStart.cshtml` to Pages folder so that the Razor pages can also use layout.
 
-# HERE
-
 ### Implementing a Contact Page
 
-Add a form in the contact page with post method. Each field of the form need has a name property.
+Create a contact view page. Use `@model` to pick the model. Use `@section Scripts` to pick the js to use.
+
+Add a form in the contact page with post method. Each field of the form need has a name property. In the future can use `asp-for` and `asp-validation-for` to bind data.
 
 In the controller, add `[HttpPost('contact')]` to the contact action. The action should accept `object model`. We need model binding to get the post result.
 
-When debug, in the Watch tab, type in `this.Request` and can find `Form` in its properties.
+When debug hit a breakpoint in the controller, in the Watch tab, type in `this.Request` and can find `Form` in its properties.
+
+# HERE
 
 ### Model Binding
 
