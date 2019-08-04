@@ -593,7 +593,7 @@ In the Razor page, use decorate `@model`, and use tag helper `asp-for` to get th
 
 Label can also have `asp-for` so that taps the label can set the focus on the input.
 
-# HERE
+Each group of form elements, for example `<label>` and `<input>`, can be put in a div.
 
 ### Using Validation
 
@@ -601,15 +601,22 @@ In view model, add `[Required]` or other validation annotations from `System.Com
 
 In the controller, call `ModelState.IsValid` to validate. `ModelState` contains all errors.
 
-In the Razor page, add `asp-validation-summary` and `asp-validation-for` to get the error.
+[ModelState](https://docs.microsoft.com/en-us/dotnet/api/system.web.mvc.modelstate?view=aspnet-mvc-5.2) is used to check validation rules for data binding.
 
-Need add "jquery-validation" and "jquery-validation-unobtrusive" to npm.
+In the Razor page, add `asp-validation-summary` and `asp-validation-for` to get the model validation error. Those are [Tag helpers](https://docs.microsoft.com/en-us/aspnet/core/mvc/views/working-with-forms?view=aspnetcore-2.2).
+
+Need add "jquery-validation" and "jquery-validation-unobtrusive" to npm. But visual studio project template for MVC also contains them.
 
 In Layout, add a `@RenderSection("scripts", false)` so that each razor page can define its own scripts.
 
-`All` vs `ModelOnly`.
+`ValidationSummary`: `All` vs `ModelOnly`.
+
+- All shows all the errors including the property errors, but on the page, property errors usually show around the property.
+- ModelOnly only tells if the model is wrong.
 
 But both frontend and backend needs validation.
+
+# HERE
 
 ### Adding a Service
 
