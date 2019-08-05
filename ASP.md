@@ -616,13 +616,15 @@ In Layout, add a `@RenderSection("scripts", false)` so that each razor page can 
 
 But both frontend and backend needs validation.
 
-# HERE
-
 ### Adding a Service
 
 Use visual studio to create a `NullMailService` and an interface in `Services` folder.
 
 Add the service in `ConfigureServices` of `Startup`.
+
+```C#
+services.AddTransient<IMailService, NullMailService>();
+```
 
 3 types of services:
 
@@ -630,11 +632,17 @@ Add the service in `ConfigureServices` of `Startup`.
 - Scoped: a little expensive to create, but keep around in a connection (most common scope is a length of a request from a client).
 - Singleton: kept the lifetime of the server being up.
 
-Dependency injection: in the ctor add the dependency of an interface. In Startup add the real service implementation.
+Dependency injection: 
+
+- in the controller, add a field store the service instance.
+- in the controller ctor, add the dependency of an interface.
+- In Startup add the real service implementation. The controller can be created by the factory pattern with the dependency.
 
 After email is sent, call `ModelState.Clear();` to clear the form.
 
 There should be a ASP.NET Core Web Server output in Visual Stuio **?? I cannot find it**
+
+# HERE
 
 ### Adding Bootstrap
 
