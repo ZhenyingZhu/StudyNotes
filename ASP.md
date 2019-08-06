@@ -504,7 +504,7 @@ The default controller created by visual studio has
 
 - List API
 - GET by ID API
-- Create??
+- Create: Use ValidateAntiForgeryToken to prevent [Cross site request forgery](https://en.wikipedia.org/wiki/Cross-site_request_forgery)
 - POST Create with binding input
 - Edit by ID??
 - POST Edit by id with binding input
