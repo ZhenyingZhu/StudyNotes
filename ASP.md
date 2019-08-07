@@ -595,6 +595,8 @@ Label can also have `asp-for` so that taps the label can set the focus on the in
 
 Each group of form elements, for example `<label>` and `<input>`, can be put in a div.
 
+In the controller action, a parameter can have attribute `[Bind("propertyName")]`, to prevent cross-site request forgery. [detail](https://docs.microsoft.com/en-us/aspnet/mvc/overview/getting-started/getting-started-with-ef-using-mvc/implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application#overpost)
+
 ### Using Validation
 
 In view model, add `[Required]` or other validation annotations from `System.ComponentModel.DataAnnotations`.
