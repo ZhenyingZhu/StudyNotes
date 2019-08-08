@@ -1302,6 +1302,13 @@ https://www.wikihow.com/Enable-the-Windows-Subsystem-for-Linux
 
 [scalar](https://www.techopedia.com/definition/16441/scalar)
 
+# How to find which process is using a locked file
+
+```cmd
+openfiles /local on
+openfiles /query /fo table | find /I ""$FileOrFolderPath""
+```
+
 # timestamp section
 Sep 11 2016
 Nov 18 2016
