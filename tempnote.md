@@ -1309,6 +1309,15 @@ openfiles /local on
 openfiles /query /fo table | find /I ""$FileOrFolderPath""
 ```
 
+# How to migrate win10 system
+
+Use a tool to clone the system partition. [EaseUs Todo](https://www.groovypost.com/howto/clone-move-windows-10-data-larger-ssd-disk-drive/)
+
+Then fix the boot by start the PC in troubleshooting mode, then [run](https://answers.microsoft.com/en-us/windows/forum/windows_10-update/windows-10-bootrec-fixboot-access-is-denied/747c4180-7ff3-4bc2-b6cc-81e572d546df?auth=1)
+
+- Diskpart, assign the System Reserved drive a letter
+- `bcdboot C:\windows /s V: /f UEFI`
+
 # timestamp section
 Sep 11 2016
 Nov 18 2016
