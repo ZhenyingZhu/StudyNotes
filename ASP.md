@@ -511,6 +511,10 @@ The default controller created by visual studio has
 - Delete
 - DeleteConfirmed
 
+For Create/Update call, when successfully write, it `return RedirectToAction(nameof(Index));` to go back to index view.
+
+For update, it handles concurrency exception.
+
 After creating the model, need use Package Manager Console to apply pending migrations to the database:
 
 ```cmd
@@ -545,7 +549,7 @@ Layout page: the common elements on multiple pages. It is a view shares across c
 
 Put `_Layout.cshtml` under `Views\Shared` folder.
 
--  Use`@ViewBag` to get properties
+- Use`@ViewBag` to get properties
 - `@RenderBody()` can put body of a cshtml to the layout.
 - `<environment name="">` tag can write different contents for different env.
 - `@if()` can access ASP C# classes, like `User.Identity.IsAuthenticated`
@@ -634,7 +638,7 @@ services.AddTransient<IMailService, NullMailService>();
 - Scoped: a little expensive to create, but keep around in a connection (most common scope is a length of a request from a client).
 - Singleton: kept the lifetime of the server being up.
 
-Dependency injection: 
+Dependency injection:
 
 - in the controller, add a field store the service instance.
 - in the controller ctor, add the dependency of an interface.
