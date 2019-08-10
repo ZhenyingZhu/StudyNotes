@@ -1,4 +1,5 @@
 ﻿using DutchTreat.Data.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DutchTreat.Data
 {
-    public class DutchContext : DbContext
+    public class DutchContext : IdentityDbContext<StoreUser>
     {
         public DutchContext(DbContextOptions<DutchContext> options): base(options)
         {
@@ -22,7 +23,10 @@ namespace DutchTreat.Data
             base.OnModelCreating(modelBuilder);
 
             // The right way to use it.
-            modelBuilder.Entity<Product>().Property(p => p.Title).HasMaxLength(50);
+            modelBuilder.Entity<Product>().Property(p => p.Title).HasMaxLength(250);
+            // following https://stackoverflow.com/questions/3504660/decimal-precision-and-scale-in-ef-code-first,
+            // but doesn't have this method.
+            //modelBuilder.Entity<Product>().Property(p => p.Price).HasPrecision(18, 2);
 
             // Use it to seeding data.
             modelBuilder.Entity<Order>().HasData(new Order()

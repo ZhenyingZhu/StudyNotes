@@ -593,3 +593,11 @@ strptime with microsecond can only deal with 6 decimals.
 ```python
 datetime.strptime("2018-12-06 04:35:31.6808615"[:-1], "%Y-%m-%d %H:%M:%S.%f")
 ```
+
+# Virtual Env
+
+[src](https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/)
+
+- Install: `py -m pip install --user virtualenv`
+- Add the scripts path to `$PATH`. On windows its `%USERPROFILE%\AppData\Roaming\Python\Python37\Scripts`.
+- Avtivate: `.\env\Scripts\activate`

@@ -1285,6 +1285,39 @@ https://stackoverflow.com/questions/6377009/adding-public-key-to-ssh-authorized-
 Use regedit to clean keys under
 `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\windows\CurrentVersion\Uninstall`
 
+# Cortana not working
+
+https://techjourney.net/disable-turn-off-cortana-in-windows-10/
+
+# Install Linux on Win10
+
+https://www.wikihow.com/Enable-the-Windows-Subsystem-for-Linux
+
+- Turn windows features on or off
+- Enable .NET 3, Windows Subsystem for Linux
+- On Windows Store, download a dist such as Ubuntu
+- run the app bash
+
+# Scalar
+
+[scalar](https://www.techopedia.com/definition/16441/scalar)
+
+# How to find which process is using a locked file
+
+```cmd
+openfiles /local on
+openfiles /query /fo table | find /I ""$FileOrFolderPath""
+```
+
+# How to migrate win10 system
+
+Use a tool to clone the system partition. [EaseUs Todo](https://www.groovypost.com/howto/clone-move-windows-10-data-larger-ssd-disk-drive/)
+
+Then fix the boot by start the PC in troubleshooting mode, then [run](https://answers.microsoft.com/en-us/windows/forum/windows_10-update/windows-10-bootrec-fixboot-access-is-denied/747c4180-7ff3-4bc2-b6cc-81e572d546df?auth=1)
+
+- Diskpart, assign the System Reserved drive a letter
+- `bcdboot C:\windows /s V: /f UEFI`
+
 # timestamp section
 Sep 11 2016
 Nov 18 2016
@@ -1334,4 +1367,6 @@ Aug 5 2017
 Aug 9 2017
 Dec 23 2017
 Fev 5 2018
-Aug 23 2018: internet got disconnected. 
+Aug 23 2018: internet got disconnected.
+Jul 30 2019 
+

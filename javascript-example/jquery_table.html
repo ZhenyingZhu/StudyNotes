@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			jQuery Create Table
+		</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script>
+			function createTable(container, data) {
+				var table = $("<table/>").addClass('JQueryTable');
+				$.each(data, function(rowIndex, rowData) {
+					// console.log(rowData);
+					var row = $("<tr/>");
+					$.each(rowData, function(colIndex, cellData) { 
+						row.append($("<t"+(rowIndex == 0 ?  "h" : "d")+"/>").text(cellData));
+					});
+					table.append(row);
+				});
+				return container.append(table);
+			}
+			
+			function deleteRow() {
+				var rowIndex = $(this).parent().index();
+				console.log("delete " + rowIndex + "th row!");
+				$(this).parent().remove();
+			}
+			
+			function addColumn(table) {
+				table.find("tr:first").append($("<th/>").text("button"));
+				table.find("tr:gt(0)").append($("<button/>").text("del").click(deleteRow));
+			}
+			
+			$(document).ready(function() {
+				var data = [["first", "last"], ["olivia", "lee"], ["jimmy", "zhu"]];
+				var table = createTable($("#theTable"), data);
+				
+				addColumn(table);
+			});
+		</script>
+	</head>
+
+	<body>
+		<div id="theTable">
+		</div>
+	</body>
+</html>

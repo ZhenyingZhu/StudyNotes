@@ -260,5 +260,8 @@ https://stackoverflow.com/questions/1751130/calling-jmx-mbean-method-from-a-shel
 # Apache common cli
 [Option Group](http://www.programcreek.com/java-api-examples/index.php?api=org.apache.commons.cli.OptionGroup): Mutex options
 
+# hibernate
 
+## Secondary cache
 
+When there could be multiple session objects are created by the same session factory, using second level cache can cache across sessions.

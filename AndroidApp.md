@@ -160,3 +160,7 @@ Create a new Activity
 - Every Activity is invoked by an Intent.
 
 (Doesn't work with the newest android studio)
+
+## Install ADB driver
+
+<https://blog.csdn.net/ctcwri/article/details/14643611>

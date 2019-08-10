@@ -913,3 +913,13 @@ Async vs Parallel: async is done by one core. Parallel is done by multiple cores
 If use `await` without `Task`, each step still runs sequencially. When init a `Task` instance, the task starts. When call `await myTask`, it blocks.
 
 [Example](https://stackoverflow.com/questions/14455293/how-and-when-to-use-async-and-await)
+
+## Inversion of control
+
+<https://en.wikipedia.org/wiki/Inversion_of_control>
+
+<http://jinnianshilongnian.iteye.com/blog/1413846>
+
+## Compare two list
+
+`UnorderedEnumerableComparer<Guid>.Default.Compare(guidList1, guidList2) != 0`

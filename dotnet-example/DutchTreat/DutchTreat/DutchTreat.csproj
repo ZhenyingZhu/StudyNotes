@@ -1,11 +1,26 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+    <TypeScriptToolsVersion>3.1</TypeScriptToolsVersion>
+    <UserSecretsId>71d5d6d3-0628-4bf8-9af8-6f4e6f4e9ff1</UserSecretsId>
+    <RuntimeIdentifier>win10-x64</RuntimeIdentifier>
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\app\checkout\checkout.component.ts" />
+    <None Remove="ClientApp\app\login\login.component.ts" />
+    <None Remove="ClientApp\app\shared\dataService.ts" />
+    <None Remove="ClientApp\app\shared\order.ts" />
+    <None Remove="ClientApp\app\shared\product.ts" />
+    <None Remove="ClientApp\app\shop\productlist.component.ts" />
+    <None Remove="ClientApp\app\shop\shop.component.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="8.0.0" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="6.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.0" />
@@ -16,4 +31,22 @@
     <Folder Include="wwwroot\img\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\app\checkout\checkout.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\login\login.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\shared\dataService.ts" />
+    <TypeScriptCompile Include="ClientApp\app\shared\order.ts" />
+    <TypeScriptCompile Include="ClientApp\app\shared\product.ts" />
+    <TypeScriptCompile Include="ClientApp\app\shop\productList.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\shop\shop.component.ts" />
+  </ItemGroup>
+  
+  <Target Name="MyPublishScripts" BeforeTargets="BeforePublish">
+    <Exec Command="npm install" />
+    <Exec Command="gulp" />
+    <Exec Command="ng build" />
+    <Exec Command="dir" />
+  </Target>
+
 </Project>
+

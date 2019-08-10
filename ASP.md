@@ -24,6 +24,12 @@ ASP.NET offers programming models
 - <https://app.pluralsight.com/library/courses/front-end-web-app-html5-javascript-css/table-of-contents>
 - <https://app.pluralsight.com/library/courses/css3-in-depth/table-of-contents>
 - <https://app.pluralsight.com/library/courses/js4cs/table-of-contents>
+- <https://app.pluralsight.com/library/courses/entity-framework-core-getting-started>
+- <https://app.pluralsight.com/library/courses/aspdotnetcore-implementing-securing-api>
+- <https://app.pluralsight.com/library/courses/web-api-design>
+- <https://app.pluralsight.com/library/courses/typescript>
+- <https://app.pluralsight.com/library/courses/angular-2-getting-started-update>
+- <https://app.pluralsight.com/library/courses/angular-cli>
 
 ## Building a Web App with ASP.NET Core, MVC, Entity Framework Core, Bootstrap, and Angular
 
@@ -48,6 +54,25 @@ Command line:
 - `dotnet run` (which include `dotnet build`)
 - `dotnet add package Newtonsoft.Json`
 
+[dotnet cmdlet](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-new?tabs=netcore22)
+
+Dotnet can create
+
+- console app
+- class lib
+- UT
+- Razor page: A slim version of MVC. Model and Controller code is included in Razor Page itself. So it is a Model-View-ViewModel (MVVM) framework. If just simple pages with basic writes, use it.
+- MVC: If have a lot of dynamic server views, use it.
+- ASP.NET Core Web app + FE frameworks
+- Razor Class Lib
+- ASP.NET Core Web API
+
+MVC:
+
+- Model: a data structure
+- View: a web form for input + output (data 2 way binding)
+- Controller: how to get the data and represent in View.
+
 ### Installing Visual Studio
 
 1. ASP.NET Core Web Application: Big Project
@@ -55,6 +80,68 @@ Command line:
 3. Change Authenticate: Individual user accounts
 
 Web Application: Use Razor web pages.
+
+Visual Studio Web Application options:
+
+[HTTPS intro](https://love2dev.com/blog/how-https-works/)
+
+- Wraps an encrypted layer around HTTP.
+- HTTP: async communicate protocol.
+  1. init a connection
+  2. data passed between server and client are through TCP with multi round trips
+  3. TCP slow start: first packet size is 16kb, keep doubling on success until 4MB or the bandwidth of the client reachs
+- Use TLS to encrypt. It has replaced SSL. Its certs are free.
+  - a cert is a public key with the id of the owner.
+  - TLS cert is installed on server.
+  - public and private keys are stored on server.
+  - Based on public/private-key cryptography: public key is used for encryption, private key is for decryption.
+- HTTPS Handshake
+  1. browser connect to an HTTPS server with a SYNC
+  2. server returns a SYNC ACK
+  3. brower sends an ACK + client hello
+  4. server answers a server hello + the cert with public key
+  5. browser checks 1. the owner matches the server, 2. the cert is signed by a trusted authority
+  6. brower and server exchange a secret, which means both sides send others a public key and keep a private key??
+  7. then start communicate with app data and encrypted with public keys
+  8. only the domain is not encrypted. Even the full URL is encrypted.
+
+Config HTTPS
+
+- The HTTPS url will appear in the Properties/launchSettings.json.
+- [HSTS](https://aka.ms/aspnetcore-hsts) service will be injected. It provides an opt-in security enhancement by returning a response header client can use.
+- In develop mode, IIS Express generates [self-signed cert](https://docs.microsoft.com/en-us/aspnet/visual-studio/overview/2013/aspnet-and-web-tools-20132-preview-for-visual-studio-2013-release-notes#ssl). This is a root cert. Can find it in Cert Management under Personal/Certificates/localhost.
+
+Config Auth method: If choose [Authentication](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/individual?view=aspnetcore-2.1#win), the auth option will appear in the Properties/launchSettings.json. The requests will contain the caller's user info. With different auth method the user info will be passed in different ways. For example Windows Auth will use AAD to encrypt username and password, so it is good for intranet websites, so that all the cx will be login as AAD user before using the website.
+
+Project dependencies are AspNetCore.App and Razor.Design.
+
+[Empty](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/?view=aspnetcore-2.2&tabs=windows)
+
+- Program.cs: CreateWebHostBuilder and run. It is using [Kestrel server](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/?view=aspnetcore-2.2&tabs=windows#servers).
+- Startup.cs: Config required services and HTTP request pipeline, which is a series of middleware components.
+- appsettings.json and appsetttings.Development.json: contains key-value pairs. By default it defines logging and host. Can use env vars to override them. If need manage confidential config data, can use [Secret Manager tool](https://docs.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-2.2&tabs=windows)
+
+[API](https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-web-api?view=aspnetcore-2.2&tabs=visual-studio)
+
+- Can choose Authentication.
+- Startup.cs: Config service inject MVC. Runtime pipeline use HttpsRedirection and use MVC.
+- ValuesController.cs
+
+[Web Application MVC](https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-mvc-app/start-mvc?view=aspnetcore-2.2&tabs=visual-studio)
+
+- wwwroot with jquery + bootstrap.
+- Areas: Looks like it is for identity.
+- Data: for DB connection.
+- Pages: Razor pages. An index.cshtml is created. Login and cookie logics are also created.
+- In appsettings.json, a connection string is created to connect to localdb.
+- In Startup.cs, injected cookie, DB, identity.
+- HomeController: 3 default controllers: Index, Privacy and Error.
+- Models: 1 default model: Error.
+- Views: Index and Privacy.
+
+[Razor class library](https://docs.microsoft.com/en-us/aspnet/core/razor-pages/ui-class?view=aspnetcore-2.2&tabs=visual-studio)
+
+[Angular](https://github.com/aspnet/JavaScriptServices)
 
 ### Creating a project with visual studio
 
@@ -97,6 +184,37 @@ Img tag need self closing.
 
 HTML by default is drawn top-down.
 
+In head
+
+- `<meta charset="utf-8" />`
+- `<title>`
+- CSS: `<link rel="stylesheet" href="{css path}" />`.
+
+In body
+
+- header: can put navigation bar `<nav>`.
+- page content
+- footer: put copyright info
+- JS: `<script src="~/lib/jquery/dist/jquery.js"></script>`
+
+An element can have attributes with different values separate by spaces:
+
+`data-*` attrs are data attributes, which can be used to store custom data in HTML attr so that CSS selector can find it.
+
+```html
+<li data-quantity="700g" data-vegetable="not spicy like chili">Red pepper</li>
+```
+
+Common Elements
+
+- a: doesn't necessary to have href attr. It might be used for ASP routing.
+- div: a section, so that 1. it can be styled with CSS, 2. can perform tasks with JS.
+- img
+- ul, li
+- button
+- br
+- form: label, textarea, input
+
 ### HTML Forms
 
 `form` element is to get info from the user.
@@ -111,15 +229,165 @@ Seperate the structure of web application from the design elements or the rules 
 
 CSS rule order: the more specific rule wins the more general rule. It is not based on the order of rules.
 
+Styles:
+
+- font-family: cursive;
+- font-size: 18px;
+- font-weight: bold;
+- text-decoration: line-through;
+- text-shadow: 1px 1px 1px black;
+- text-align: center;
+- width: 200px;
+- max-width: 150px;
+- background: linear-gradient(to bottom, rgba(0,0,0,0.25), rgba(0,0,0,0.1));
+- background: url("") 5px center no-repeat;
+- color: white;
+- list-style-type: none;
+- display: inline-block;
+- float: right;
+- cursor: pointer;
+- text-transform: uppercase;
+- content: ' |'; Add content. Need work with selector after.
+- opacity: 0.5
+- border-collapse: collapse;
+- border-spacing: 0;
+
 ### CSS Naming
 
 Use for CSS selector.
+
+`<li class="a b">` means this element belongs to both class a and b.
 
 ### CSS Classes
 
 ID is unique. Class is to group same style elements together.
 
-CSS selector: `#` for ID, `.` for class. space for child, `ele.class` get the elements that are of the class.
+[CSS selector](https://developer.mozilla.org/en-US/docs/Learn/CSS/Introduction_to_CSS/Selectors)
+
+Simple selector
+
+- `#` for ID
+- `.` for class
+- `*` for all elements
+- space for child,
+- `ele.class` get the elements that are of the class.
+
+Attr selector
+
+- `[attr]`: all elements with `attr`.
+- `[attr=val]`: if `attr` eq val.
+- `[attr~=vall]`: if one of the attr value is val.
+- `[attr^=val]`: start with val.
+- `[attr$=val]`: end with val.
+- `[attr*=val]`: val is a substr.
+- `[attr|=val]`: used to match lang such as `en` or `en-US`.
+
+Pseudo classes
+
+Random access an element in a list
+
+- [:first-child](https://developer.mozilla.org/en-US/docs/Web/CSS/:first-child): represents the first element among a group of sibling elements.
+- [:first-of-type](https://developer.mozilla.org/en-US/docs/Web/CSS/:first-of-type): represents the first element of its type among a group of sibling elements.
+- [:last-child](https://developer.mozilla.org/en-US/docs/Web/CSS/:last-child): represents the last element among a group of sibling elements.
+- [:last-of-type](https://developer.mozilla.org/en-US/docs/Web/CSS/:last-of-type): represents the last element of its type among a group of sibling elements.
+- [:nth-child()](https://developer.mozilla.org/en-US/docs/Web/CSS/:nth-child): matches elements based on their position in a group of siblings.
+- [:nth-last-child()](https://developer.mozilla.org/en-US/docs/Web/CSS/:nth-last-child): matches elements based on their position among a group of siblings, counting from the end.
+- [:nth-last-of-type()](https://developer.mozilla.org/en-US/docs/Web/CSS/:nth-last-of-type): matches elements of a given type, based on their position among a group of siblings, counting from the end.
+- [:nth-of-type()](https://developer.mozilla.org/en-US/docs/Web/CSS/:nth-of-type): matches elements of a given type, based on their position among a group of siblings.
+
+Select based on user behavior
+
+- [:active](https://developer.mozilla.org/en-US/docs/Web/CSS/:active): an element (such as a button) that is being activated by the user.
+- [:enabled](https://developer.mozilla.org/en-US/docs/Web/CSS/:enabled): represents any enabled element.
+- [:disabled](https://developer.mozilla.org/en-US/docs/Web/CSS/:disabled): represents any disabled element.
+- [:checked](https://developer.mozilla.org/en-US/docs/Web/CSS/:checked): radio, checkbox or option element that is checked or toggled to an on state.
+- [:focus](https://developer.mozilla.org/en-US/docs/Web/CSS/:focus): represents an element that has received focus.
+- [:focus-within](https://developer.mozilla.org/en-US/docs/Web/CSS/:focus-within): represents an element that has received focus or contains an element that has received focus.
+- [:hover](https://developer.mozilla.org/en-US/docs/Web/CSS/:hover): matches when the user interacts with an element with a pointing device
+- [:fullscreen](https://developer.mozilla.org/en-US/docs/Web/CSS/:fullscreen): matches every element which is currently in full-screen mode.
+
+User input validation
+
+- [:in-range](https://developer.mozilla.org/en-US/docs/Web/CSS/:in-range): represents an `<input>` element whose current value is within the range limits specified by the min and max attributes.
+- [:out-of-range](https://developer.mozilla.org/en-US/docs/Web/CSS/:out-of-range): represents an `<input>` element whose current value is outside the range limits specified by the min and max attributes.
+- [:invalid](https://developer.mozilla.org/en-US/docs/Web/CSS/:invalid): represents any `<input>` or other `<form>` element whose contents fail to validate.
+- [:indeterminate](https://developer.mozilla.org/en-US/docs/Web/CSS/:indeterminate): represents any form element whose state is indeterminate.
+- [:valid](https://developer.mozilla.org/en-US/docs/Web/CSS/:valid): represents any `<input>` or other `<form>` element whose contents validate successfully.
+- [:visited](https://developer.mozilla.org/en-US/docs/Web/CSS/:visited): represents links that the user has already visited. For privacy reasons, the styles that can be modified using this selector are very limited.
+
+Based on element defination
+
+- [:default](https://developer.mozilla.org/en-US/docs/Web/CSS/:default): form elements that are the default in a group of related elements.
+- [:dir()](https://developer.mozilla.org/en-US/docs/Web/CSS/:dir): matches elements based on the directionality of the text contained in them.
+- [:empty](https://developer.mozilla.org/en-US/docs/Web/CSS/:empty): represents any element that has no children, neither element nodes nor text (including whitespace).
+- [:lang()](https://developer.mozilla.org/en-US/docs/Web/CSS/:lang): matches elements based on the language they are determined to be in.
+- [:link](https://developer.mozilla.org/en-US/docs/Web/CSS/:link): It matches every unvisited `<a>`, `<area>`, or `<link>` element that has an href attribute.
+- [:only-child](https://developer.mozilla.org/en-US/docs/Web/CSS/:only-child): represents an element without any siblings.
+- [:only-of-type](https://developer.mozilla.org/en-US/docs/Web/CSS/:only-of-type): represents an element that has no siblings of the same type.
+- [:read-only](https://developer.mozilla.org/en-US/docs/Web/CSS/:read-only): represents an element that is not editable by the user.
+- [:read-write](https://developer.mozilla.org/en-US/docs/Web/CSS/:read-write): represents an element that is editable by the user.
+- [:required](https://developer.mozilla.org/en-US/docs/Web/CSS/:required): represents any `<input>`, `<select>` or `<textarea>` element that has the required attribute set on it.
+- [:optional](https://developer.mozilla.org/en-US/docs/Web/CSS/:optional): represents any `<input>`, `<select>`, or `<textarea>` element that does not have the required attribute set on it.
+- [:root](https://developer.mozilla.org/en-US/docs/Web/CSS/:root): matches the root element of a tree representing the document.
+- [:scope](https://developer.mozilla.org/en-US/docs/Web/CSS/:scope): represents elements that are a reference point for selectors to match against.
+- [:target](https://developer.mozilla.org/en-US/docs/Web/CSS/:target): represents the target element with an id matching the URL's fragment.
+
+Print
+
+- [:first](https://developer.mozilla.org/en-US/docs/Web/CSS/:first): used with the `@page` at-rule, represents the first page of a printed document.
+- [:left](https://developer.mozilla.org/en-US/docs/Web/CSS/:left): used with the `@page` at-rule, represents all left-hand pages of a printed document.
+- [:right](https://developer.mozilla.org/en-US/docs/Web/CSS/:right): used with the `@page` at-rule, represents all right-hand pages of a printed document.
+
+Expression
+
+- [:is](https://developer.mozilla.org/en-US/docs/Web/CSS/:is): takes a selector list as its argument, and selects any element that can be selected by one of the selectors in that list.
+- [:not()](https://developer.mozilla.org/en-US/docs/Web/CSS/:not): elements that do not match a list of selectors.
+
+Combine several selectors
+
+```css
+a:hover,
+a:active,
+a:focus {
+  color: darkred;
+  text-decoration: none;
+}
+```
+
+Find odd/even:
+
+```css
+li:nth-of-type(2n) {
+  background-color: #ccc;
+}
+
+li:nth-of-type(2n+1) {
+  background-color: #eee;
+}
+```
+
+Pseudo elements
+
+- `::after`
+- `::before`
+- `::first-letter`
+- `::first-line`
+- `::selection`
+- `::backdrop`
+
+```css
+[href^=http]::after {
+  content: '⤴';
+}
+```
+
+Combinator
+
+- A, B
+- A B: Matching B and is a descendant of A
+- A > B: Matching B and is direct child of A
+- A + B: matching B and is the next sibling of A
+- A ~ B: matching B and is one of the next sibling of A
 
 ### The Box Model
 
@@ -131,6 +399,12 @@ margin, border, padding, content
 - properties: height, width. actual-height/width: border.
 
 By default, div is displayed in a block, which take as much horizontal space and as little vertical space as possible.
+
+- border: 1px solid grey;
+- padding: 8px 2px;
+- margin: 2px;
+- width: 450px;
+- border-radius: 5px;
 
 ### What is JavaScript
 
@@ -159,10 +433,16 @@ JQuery makes all browsers can use same code.
 - Add package.json to the root of the project.
 - Add "dependencies" to package.json for runtime dependencies. While "devDependencies" is development dependencies.
 - A new node_modules folder would appear with jquery in it. dist folder is for distributions. See which dist you want to use.
-- Add `<script src="/node_modules/jquery/dist/jquery.min.js"></script>` to html.
+- Add `<script src="/node_modules/jquery/dist/jquery.min.js"></script>` to html. (Or just use `lib/jquery/dist/jquery.min.js` since the visual studio MVC project template has jquery included by default)
 - Add a nuget package `odetocode` which introduce middle tier `app.UseNodeModules(env)` to Startup.cs.
 
 Or call command line tool: `npm install bootstrap`.
+
+Note that [odetocode](https://github.com/OdeToCode/UseNodeModules) can serve files from `node_modules` directory in the project root, but when publish, if this folder is not copied, the server would fail to start. Need follow steps below to solve the issue.
+
+[Correct way to setup the project](https://stackoverflow.com/questions/37935524/how-to-use-npm-with-asp-net-core)
+
+- Need copy the `node_module` folder to wwwroot using gulp.
 
 ### Introducing jQuery
 
@@ -214,6 +494,39 @@ ViewBag is a bag of properties. With `@` it can be used in html code.
 
 Path in html should start with `~/` indicates it is the root of the project.
 
+In visual studio, can create 2 kinds of controllers: MVC Controller, API controller.
+
+- Both require to select Model and DataContext.
+- The default Context is ApplicationDbContext.
+- The Model needs have a primary key, using `[key]` annotation.
+
+The default controller created by visual studio has
+
+- List API
+- GET by ID API
+- Create: Use ValidateAntiForgeryToken to prevent [Cross site request forgery](https://en.wikipedia.org/wiki/Cross-site_request_forgery)
+- POST Create with binding input
+- Edit by ID??
+- POST Edit by id with binding input
+- Delete
+- DeleteConfirmed
+
+For Create/Update call, when successfully write, it `return RedirectToAction(nameof(Index));` to go back to index view.
+
+For update, it handles concurrency exception.
+
+After creating the model, need use Package Manager Console to apply pending migrations to the database:
+
+```cmd
+PM> Update-Database
+```
+
+Or use dotnet cmdlet:
+
+```cmd
+dotnet ef database update
+```
+
 ### Enabling MVC 6
 
 In Startup.cs add `app.UseMvc()` to set up the routes.
@@ -234,9 +547,15 @@ Using `IHostingEnvironment env` to figure out if the env is a prod or a staging 
 
 Layout page: the common elements on multiple pages. It is a view shares across controllers.
 
-`@RenderBody()` can put body of a cshtml to the layout.
+Put `_Layout.cshtml` under `Views\Shared` folder.
 
-Add the Views folder, add `_ViewStart.cshtmml` (Razor View Start), which is act as a base class.
+- Use`@ViewBag` to get properties
+- `@RenderBody()` can put body of a cshtml to the layout.
+- `<environment name="">` tag can write different contents for different env.
+- `@if()` can access ASP C# classes, like `User.Identity.IsAuthenticated`
+- `@RenderSection("secName")`: if child defines `@section secName`, this part will be randered differently. I think it is used for things other than body.
+
+Add the Views folder, add `_ViewStart.cshtml` (Razor View Start), which is act as a base class.
 
 ### Adding More Views
 
@@ -244,7 +563,7 @@ CSS selector `ele1>ele2` can select direct children.
 
 ### Using Tag Helpers
 
-ViewImports is a way to add things that are appear on every page. Like import classes to all pages.
+`_ViewImports.cshtml` is a page that provides a way to add things that are appear on every page. Like import classes to all pages.
 
 `@addTagHelper` is a decoration of adding a set of TagHelpers.
 
@@ -252,9 +571,9 @@ ViewImports is a way to add things that are appear on every page. Like import cl
 
 ### Razor Pages
 
-`app.UseExceptionHandler("/error");` can specify what the error handling path to use.
+`app.UseExceptionHandler("/error");` can specify what the error handling path to use. When error happens, show this view.
 
-Razor page start with `@page` decoration.
+Razor page start with `@page` decoration. It makes the file into an MVC action, and don't go through a controller. In this case error page is a Razor page.
 
 Razor page and view are different world. If just want display some simple text, use page is enough.
 
@@ -262,11 +581,13 @@ Need copy `_ViewStart.cshtml` to Pages folder so that the Razor pages can also u
 
 ### Implementing a Contact Page
 
-Add a form in the contact page with post method. Each field of the form need has a name property.
+Create a contact view page. Use `@model` to pick the model. Use `@section Scripts` to pick the js to use.
+
+Add a form in the contact page with post method. Each field of the form need has a name property. In the future can use `asp-for` and `asp-validation-for` to bind data.
 
 In the controller, add `[HttpPost('contact')]` to the contact action. The action should accept `object model`. We need model binding to get the post result.
 
-When debug, in the Watch tab, type in `this.Request` and can find `Form` in its properties.
+When debug hit a breakpoint in the controller, in the Watch tab, type in `this.Request` and can find `Form` in its properties.
 
 ### Model Binding
 
@@ -276,19 +597,28 @@ In the Razor page, use decorate `@model`, and use tag helper `asp-for` to get th
 
 Label can also have `asp-for` so that taps the label can set the focus on the input.
 
+Each group of form elements, for example `<label>` and `<input>`, can be put in a div.
+
+In the controller action, a parameter can have attribute `[Bind("propertyName")]`, to prevent cross-site request forgery. [detail](https://docs.microsoft.com/en-us/aspnet/mvc/overview/getting-started/getting-started-with-ef-using-mvc/implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application#overpost)
+
 ### Using Validation
 
 In view model, add `[Required]` or other validation annotations from `System.ComponentModel.DataAnnotations`.
 
 In the controller, call `ModelState.IsValid` to validate. `ModelState` contains all errors.
 
-In the Razor page, add `asp-validation-summary` and `asp-validation-for` to get the error.
+[ModelState](https://docs.microsoft.com/en-us/dotnet/api/system.web.mvc.modelstate?view=aspnet-mvc-5.2) is used to check validation rules for data binding.
 
-Need add "jquery-validation" and "jquery-validation-unobtrusive" to npm.
+In the Razor page, add `asp-validation-summary` and `asp-validation-for` to get the model validation error. Those are [Tag helpers](https://docs.microsoft.com/en-us/aspnet/core/mvc/views/working-with-forms?view=aspnetcore-2.2).
+
+Need add "jquery-validation" and "jquery-validation-unobtrusive" to npm. But visual studio project template for MVC also contains them.
 
 In Layout, add a `@RenderSection("scripts", false)` so that each razor page can define its own scripts.
 
-`All` vs `ModelOnly`.
+`ValidationSummary`: `All` vs `ModelOnly`.
+
+- All shows all the errors including the property errors, but on the page, property errors usually show around the property.
+- ModelOnly only tells if the model is wrong.
 
 But both frontend and backend needs validation.
 
@@ -298,17 +628,27 @@ Use visual studio to create a `NullMailService` and an interface in `Services` f
 
 Add the service in `ConfigureServices` of `Startup`.
 
+```C#
+services.AddTransient<IMailService, NullMailService>();
+```
+
 3 types of services:
 
 - Transient: no data on the service. It is a method.
 - Scoped: a little expensive to create, but keep around in a connection (most common scope is a length of a request from a client).
 - Singleton: kept the lifetime of the server being up.
 
-Dependency injection: in the ctor add the dependency of an interface. In Startup add the real service implementation.
+Dependency injection:
+
+- in the controller, add a field store the service instance.
+- in the controller ctor, add the dependency of an interface.
+- In Startup add the real service implementation. The controller can be created by the factory pattern with the dependency.
 
 After email is sent, call `ModelState.Clear();` to clear the form.
 
 There should be a ASP.NET Core Web Server output in Visual Stuio **?? I cannot find it**
+
+# HERE
 
 ### Adding Bootstrap
 
@@ -486,11 +826,719 @@ Give a border by `div class="border bg-light rounded p-1"`, p-1 gives a little p
 
 ### Logging errors
 
-# HERE
+In cmd, run `set ASPNETCORE_ENVIRONMENT=Development`
 
-<https://app.pluralsight.com/library/courses/aspnetcore-mvc-efcore-bootstrap-angular-web/table-of-contents>
+`dotnet run` already print logs.
 
-8:38
+Inject `ILogger` to DutchRepository, and let logger type to be `DutchRepository`, so that logs log where are they come from.
+
+Can define different log level for defferent namespaces.
+
+Set logging level in config.json.
+
+### Create an API Controller
+
+Use Postman to send request to API.
+
+Web API is a set of endpoints to expose your APIs.
+
+It expose data, which is similar to AppController, which expose data.
+
+Add attribute `Route("api/[Controller]")` to the controller class.
+
+The API has a verb, `Get`. Implement it with Repository.
+
+Run `http://localhost:10120/api/products` to call it.
+
+The Get API can return an IEnumerable. But then if exception happens, it cannot return properly.
+
+Return Json result can wrap the bad request to a Json object, but it tied the MVC to json.
+
+Return `IActionResult` is the best. Return `Ok` or `BadRequest` wrap with the results.
+
+Can use Swagger to document public APIs.
+
+To use the new document way in .NET Core 2.1, use ControllerBase instead of Controller, and remove `Ok`.
+
+ActionResult returns implicit operator, so that concrete types can be specified and converted. But interfaces cannot.
+
+Add attribute `[ApiController]` to the class.
+
+In startup, `services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);` to opt in the new feature.
+
+### Returning Data
+
+Use `this._ctx.Orders.Include(o => o.Items).ThenInclude(i => i.Product).ToList()` to get both Order, and item and product.
+
+Self referencing loop
+
+- OrderItem refer back to Order.
+- Set json option to decide how to handle reference loop.
+
+```c#
+services.AddMvc().AddJsonOptions(opt => opt.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);`
+```
+
+Use `[HttpGet("{id:int}")]` attribute to create a Get method for getting order by id.
+
+The method body is `this._ctx.Orders.Find(id)` if only need get an order, but to get item and product as well, use fluent/LINQ syntax `Where`.
+
+### Implementing POST
+
+Post Order with query string: `http://localhost:17661/api/Orders?OrderDate=2017-5-5` can set the OrderDate.
+
+If not add `[FromBody]` attribute to the input model, the action takes property values (CLR object) from query string.
+
+Return `Created($"api/orders/{model.Id}", model)` action result for 201.
+
+When call `SaveAll`, the model has been updated with all properties.s
+
+### Validation and View Models
+
+The view model can also used to validate APIs.
+
+Use DataAnnotations to add constrains.
+
+Change the Post request to use the view model instead of the real object.
+
+Use `ModelState.IsValid` and `return BadRequest(ModelState);` to do the validation and error handling.
+
+### Using AutoMapper
+
+Add Nuget package AutoMapper and AutoMapper.extensions.Microsoft.depdencyInjection..
+
+In `Startup.cs`, inject `services.AddAutoMapper();`
+
+In the controller, inject `IMapper`.
+
+In the controller, `return Ok(this._mapper.Map<Order, OrderViewModel>(order));`.
+
+Add a `DutchMappingProfile` to define the mapping.
+
+### Creating association controllers
+
+The association controllers are to add collection to ViewModel.
+
+AutoMapper will trying to map the object to view model as best as it can. Don't need to define how to map each item in a collection in a class.
+i.e. Order has a collection of OrderItem as a property. If define Order to OrderViewModel map, and OrderItem to OrderItemViewModel map, then there is no need to define Order.OrderItem view model map.
+
+Assicoation controller is to deal with urls like orders/1/items.
+
+We can flatting Product into OrderItem view model using auto mapper convention. If the proudct is read-only, no need to create a single view model for it.
+
+Just add the Product as a prefix for all proerties in OrderItemViewModel.
+
+### Using Query Strings for APIs
+
+URL is used to describe what of resouces are looking for. Query string can change the behavior.
+
+In the controller, get method, add a bool parameter with default value.
+
+Send the request with URL like `http://localhost:5000/api/orders?includeItems=false`.
+
+### Authorizing Actions
+
+In the controller, add the attribute `Authorize` to the view.
+
+### Storing Identities in the Database
+
+Create an entity inherit IdentityUser.
+
+Derive DutchContext from `IdentityDbContext<StoreUser>`, where `StoreUser` is the user type.
+
+Need migrate by `dotnet ef migrations add Identity`.
+
+Drop the table and rebuild it since there is too much changes: `dotnet ef database drop`.
+
+`await` vs `.Wait()`.
+
+In the seeder, inject UserManager, and use it to create a StoreUser. Notice it is async.
+
+### Configuring Identity
+
+In startup ConfigureServices, call `services.AddIdentity<StoreUser, IdentityRole>(cfg => {}).AddEntityFrameworkStores<DutchContext>();`.
+
+IdentityRole can used to config roles.
+
+Config can define rules.
+
+Call `AddEntityFrameworkStores` to decide where to store the user. Store users info and product info into 2 DB can help reduce the risk of compromise.
+
+Call `app.UseAuthentication()` to turn the identity on. It needs to be called before `UseMvc`.
+
+Calls are redirect to `Account/Login` page.
+
+### Designing the Login View
+
+Create an `AccountController`.
+
+Use `this.User.Identity.IsAuthenticated` to call into identity to check if the user is logged in.
+
+If the user is login, `return RedirectToAction("Index", "app");`.
+
+To create the View, first create a LoginViewModel with properties and validations. Then create the View cshtml.
+
+### Implementing Login and Logout
+
+Inject `SignInManager` to AccountController.
+
+Create a Login view with Post method. In the cshtml page, add the method post to the form.
+
+Use `signInManager.PasswordSignInAsync` to get the login result. Don't need to access the store user manually.
+
+To add `ModelState.AddModelError("", "Failed to login");`, need add `<div asp-validation-summary="ModelOnly"></div>` in the cshtml.
+
+Username: zhenying@dutchtreat.com, Password: P@ssw0rd!
+
+In the Layout.cshtml, add Login and Logout nav-link.
+
+### Use Identity in the API
+
+When login, calling the APIs shouldn't need to re-auth.
+
+- Using cookies are easiest, but least secure. Also it cannot resolve the issue if other clients other than browser want access APIs.
+- Open Id
+- OAuth2
+- JWT Tokens: The one that used in the course.
+
+Using Identity in ASP NET Core without setting security is by default using cookies.
+
+Inject authentication service: `services.AddAuthentication().AddCookie().AddJwtBearer();`
+
+Add `[Authorize]` to controller classes. When sending a request to the API before get authed, the response returns 302 with redirect URL. It is auth with cookie.
+
+Replace it with `[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]`, so that it returns 401.
+
+Using postman, adding a header with `Authorization` key and `Bearer` value.
+
+Create a REST call (i.e. it is not resolve to a view), `CreateToken`, in Account Controller. It is a POST.
+
+SignInManager.PasswordSignInAsync is actually using a cookie.
+
+Inject UserManager to the account controller, so that we can get a user and call SignManager.CheckSignInAsync.
+
+Claims are a set of well-known keys with values.
+
+- Sub is the subject name.
+- Jti is the unique id of each token.
+- UniqueName, the user uniq Id.
+
+Key: the secret to encrypt the token. Some part of the token is encrpted but not necessary to encrypt all parts.
+
+Use SymmetricSecurityKey as the key. It needs a string, which we should read it from config, so that IT can replace it with a value that is not in the src code.
+
+Inject Extension.IConfiguration to the controller to read the config.
+
+Create a creds SigningCredentials with the key and SHA256 algorithms.
+
+With the creds we can create JwtSecurityToken.
+
+- Issuer: who create the token.
+- Audience: who can use this token.
+
+Return HTTP.Created(src, token).
+
+In startup, add config for AddAuthentication to create a token based on the bearer string in the request header.
+
+In the postman, call the action CreateToken to get the token, and then add this to API call header.
+
+### Use Identity in Read Operations
+
+Since OrdersController uses auth, can get the user in all its APIs.
+
+APIs can be used by angular.
+
+### Use Identity in Write Operations
+
+User.Identity is just a list of claims. To get the user object, need use UserManager.
+
+In the OrdersController, add the logic to Post method.
+
+### First TypeScript Class
+
+Angular requires TypeScript.
+
+Transpiling in visual studio 2017.
+
+Create ts folder under wwwroot.
+
+In JavaScript, everything is a class.
+
+In TypeScript, properties can be specified a type, like `public visits:number = 0`. The type safety check happens when compiling. There is no running time check.
+
+A function:
+
+```typescript
+    public showName(name:string):boolean {
+        alert(name);
+    }
+```
+
+In TypeScript: `this` is required for fields.
+
+```typescript
+    private ourName: string;
+    set name(val) {
+        this.ourName = val;
+    }
+    get name() {
+        return this.ourName;
+    }
+```
+
+Constructor can have private arguments, which is auto create and wired to private properties.
+
+```typescript
+    constructor(private firstName: string, private lastName: string) {
+    }
+    // No need to define firstName and lastName but they are private properties.
+```
+
+The class need to be exported so others can use it.
+
+```typescript
+export class StoreCustomer {
+    ...
+}
+```
+
+To use it, need import the type. But TypeScript only import classes instead of namespaces.
+
+```typescript
+import { StoreCustomer, OtherThing } from "./StoreCustomer";
+
+let shopper = new StoreCustomer("Zhenying", "Zhu");
+shopper.showName();
+```
+
+Import and export works well when using a loader, such as WebPack and Browserify. But if not using a loader, then the typescript is used as a javascript. Need specify the loading order of them.
+
+### Compiling TypeScript
+
+Compile = transpile.
+
+Add a tsconfig.json to the project root.
+
+`"include": [ "wwwroot/ts/**/*.ts" ]`. Double star means search all sub folders.
+
+Add `compilerOptions`.
+
+- Target is the ECMAScript version. Target es5 because Accessors are not available in es3.
+- sourceMap: create map file for debugging.
+
+### Debugging in the Browser
+
+Add a scripts sections in Shop view, and drag the js files to it.
+
+In the browser debugger, the typescripts are showing up because the map files.
+
+### What is Angular
+
+It is successor to AngularJS.
+
+It is an Open Source JavaScript Framework. It supplies basic app services. It can be used to build a Single Page Application.
+
+Angular is build with TypeScript.
+
+### Installing the Angular-CLI
+
+Use npm to install Angular-CLI. npm is distributed with Node.js.
+
+`npm -g` install tools globally. CLI tools are better to be installed globally, such as TypeScript, Gulp, Grunt.
+
+To install angular cli: `npm install -g @angular/cli`.
+
+To check the CLI version: `ng --version`. `ng -h` list help.
+
+### Generate your first project
+
+`ng new dutch-app --dry-run --skip-git --inline-template --inline-style --skip-tests`
+
+Note: NOT use route. It will generate app/app-routing.module.ts, which is different fron the tutorial.
+
+Scaffolding: write the definition, and compiler of the framework generate code.
+
+Skip tests is actually just skip UTs. Test scaffolding files are still generated.
+
+Under dutch-app folder, run `ng build`. It uses Webpack to package files. It packs 5 files
+
+- our code is in main.js file.
+- vendor.js contains all angular stuff.
+- styples.js is css.
+- runtime.js includes some plumbing.
+- polyfills.js is for old browsers compatibility.
+
+`ng serve` start the app without running backend. It runs `src\app\app.component.ts`.
+
+- It uses `Component` decorator.
+- The class sets 3 attributes: selector, template, styles.
+- selector defines the name of the elment used in the body in index.html.
+
+### Copying the Project
+
+We don't want the client code lives in dutch-app folder.
+
+- Move angular.json and replace tsconfig.json under the solution root.
+- Create ClientApp folder under the solution root.
+- Move all files under dutch-app/src to ClientApp folder.
+- Merge package.json from the one in the dutch-app to the one in the solution.
+- Then the dutch-app folder can be deleted. The node_modules sub folder has a lot of files already and they should be merged to the solution by visual studio.
+- add `"exclude": ["./node_modules/"]` to tsconfig.json so that TypeScript won't compile them.
+- Replace the outDir to `"outDir": "./wwwroot/ClientApp/out-tsc",`
+- angular.json, change root and sourceRoot valut to `ClientApp`.
+- `"outputPath": "wwwroot/clientapp/dist",`. This is where JS files are created.
+- replace all `src/` with `ClientApp/`
+
+After moved and updated, under DutchTraet\DutchTreat, run `npm install` to reintall packages.
+
+### Integrating the Project
+
+Use the client app to build shop page.
+
+`ng build` creates the dist folder.
+
+Include wwwroot/ClientApp/dist scripts in order:
+
+1. runtime.js
+1. polyfills.js
+1. styles.js
+1. vendor.js
+1. main.js
+
+In the ClientApp/app/app.component.ts, rename the selector to the-shop.
+
+In Shop.cshtml, add the-shop element.
+
+### Using External Templates
+
+Can use HTML and View as external template to replace the default template in app.component.ts.
+
+Replace `template` with `templateUrl: "./app.component.html",`
+
+Create the html under ClientApp\app.
+
+In the template, use `{{}}` to do data binding. It can bind to the property or the method of the corresponding typescript class.
+
+Need to do a build to make the change takes affect. Can run `ng build --watch` to let the build keep running with only compiling the changed part.
+
+The HTML is not retrived on the server. It is embedded in the angular app as a resource.
+
+### Your First Anuglar Component
+
+Getting data directly from the API instead of generate a view.
+
+Create `app\shop\productList.component.ts` under `ClientApp` for the class to represent the lists of products.
+
+Need add `import { Component } from '@angular/core';` to import the Component key word.
+
+Then we can use `@Component` as an decorator. It is like C# attribute of a class.
+
+Define templateUrl as productList.component.html.
+
+Create the html. Use directive. The directive are attributes that can be applied to elements.
+
+Use directive `*ngFor` to do a for loop. `<li *ngFor="let p of products">{{ p.title }}</li>`. `let` here is the javascript keyword,
+
+In `app.module.ts` import the new class `import { ProductList } from "./shop/productlist.component";` and add to the NgModel.declarations. It makes each part of the html a composition.
+
+The data binding can use pipe: `{{ p.price | currency:"USD":true }}` [currency](https://angular.io/api/common/CurrencyPipe) is a decorator.
+
+Pipes specify what the data type is. It is Model-View-ViewModel.
+
+### Creating a Service
+
+Create a shared\dataService.ts file. It is used to share data.
+
+In the productList.omponent.ts, inject the data from dataService. Create a ctor of the ProductList `constructor(private data: DataService)`. This also set the private member of the class.
+
+Also include the service in the app.module. Add to providers instead of declarations.
+
+### Calling the API
+
+Inject HttpClient into dataService, and add the HttpClientModule to the app.module.ts under imports.
+
+Need decorate the DataService class to make the injection chain (Since it is inejected to the ProductList class) knows it also has its own dependencies.
+
+Add a loadProduct function. It calls http.get. The `subscribe()` method is where the request is send, and it returns the result when receives the response.
+
+To make some changes before return to the customer, need use some interceptors by putting them into method `pipe()`. Call rxjs operatior `map`.
+
+To let client (ProductList) call the loadProduct, let it implments OnInit.
+
+### Using Type Safety
+
+In shared folder, create product.ts. This is the expected data contract from the server.
+
+To create the contract, get a real product object from thhe API response, and copy to json2ts.com. Copy the generated typescript back.
+
+In the productList.component.ts, set the type for products.
+
+In dataService.ts, add `loadProducts(): Observable<boolean>`.
+
+rxjs: reactive extensions for JS.
+
+Type safety is part of compile environment.
+
+### Implementing a Template
+
+Create the template productList.component.html by copy the product view from index.html. Notice the reference folder is changed, so the image url need to change to root.
+
+When dealing with an entire attribute, can use `[alt]="p.title"`. e.g.: . It is a write only binding.
+
+We can use component css as well. Use `styleUrls` in productList.component.ts.
+
+### Creating another component
+
+Create the cart.component.ts + html.
+
+Add it to app.component.html.
+
+Add the cart to app.model.ts.
+
+### Sharing Data Across Components
+
+Create order.ts under shared as an interface.
+
+Get the order use postman and use the json2ts to create interfaces of Order and OrderItem.
+
+Change the interface to class. Cannot create an instance of an interface in TS.
+
+Add default value to orderDate.
+
+Convert `[]` array to use `Array.
+
+In dataService.ts, create a method `addToOrder`.
+
+Try import all the classes inside order.ts as OrderNS: `import * as OrderNS from './order';`.
+
+In productList.component.html, make the buyButton work by adding `(click)="addProduct(p)"`. The parentheses means it is a callback.
+
+`()` is readonly, and `[]` is writeonly.
+
+In productList.component.ts, create the `addProduct()` method.
+
+### Building the cart
+
+Add a table to cart.component.html.
+
+Table is bad for general layout. But here we use if for table.
+
+In dataService.addToOrder, add the logic to merge existing items in the cart.
+
+### Using calculated data
+
+Calculated subtotal of the cart on FE instead of BE.
+
+In order.ts, add a property `subtotal()` as a number.
+
+Add `lodash` to package.json dependencies and order.ts. It can do map reduce. It is LINQ for JS.
+
+Use `_.sum(_.map(arr, i => some logic))`.
+
+### Add Routing to the Project
+
+Import routerModel in app.module.ts. In the imports, add `RouterModule.forRoot()`.
+
+They are inter-page routes.
+
+Add routes array. Each route is a path and a component.
+
+The config for RouteModule
+
+- `forChild` allows nested routing.
+- `userHash` add a hash tag to URL. It can enhance single page?
+
+Create shop/shop.component.ts + html. Move all content from app.component.html to shop.component.html because app.component.html is just a place holder. It only needs router-outlet element, so that the content could be changed with different components.
+
+Create checkout/checkout.component.ts + css + html.
+
+Import Checkout and Shop to app.module.ts.
+
+In cart.component.html, add `a` element with `routerLink` attr.
+
+Navigate between routes won't loss state, because dataService stores them on client.
+
+### Support Login
+
+In dataService.ts, add properties token, tokenExpiration, and loginRequired.
+
+We want to make it not required to login to shop, but need login before checkout. So remove the auth of AppController.Shop.
+
+In cart.component.html, make the checkout gated, so if login, can checkout, otherwise go to login page.
+
+Angular: `{}` inject value, `[]` evaluate and put value in the form into attribute of the class, `()` to mark it as an event handler.
+
+Make the checkout button handle click event with `onCheckout` method.
+
+Use `router.navigate` to route to login page.
+
+Create Login comonent.
+
+### Use Form Binding
+
+In the login.component.ts, use a public property `creds` to store user input.
+
+Add `FormsModel` to `app.module.ts`.
+
+In the form of login.component.html, use `ngModel`. Use both `[]` and `()` because it both push values to the form and handle event as a call back. It is two way binding.
+
+Updatet the username in the callback should affect the value in the text box.
+
+Add `submit` event to the form and handle it by `onLogin`.
+
+### Add Validation
+
+In login.component.html, use the `required` validation that build in in browsers.
+
+Use Angular to validate if the constrain is met. `#` can make angular bond the element to an object. Add `#username="ngModel"` to the form input, and use `*ngIf="username.invalid"` to control if a error message appears.
+
+Add `#theForm="ngForm"` with `theForm.invalid` as well.
+
+Add `novalidate` to the form, so that browser won't validate itself except the validation we specified.
+
+### Use Token Authentication
+
+In dataService.ts, add a method `login` which returns `Observable<boolean>`, to call AccountController.CreateToken.
+
+In login.component.ts, call `login` and `subscribe` to the result to do routing logic.
+
+In login.component.html, show `errorMessage` if not empty.
+
+### Implement Server-side Checkout
+
+In dataService.ts, implement a `checkout()` method.
+
+In checkout.component.ts, let `onCheckoout()` call `dataService.checkout()`.
+
+Put error message to checkout.component.html.
+
+In `dataService.checkout()`, need set headers of the post to include token. The third parameter of the post should be
+
+```javascript
+this.http.post("api/orders", this.order, {
+    headers: new HttpHeaders().set("Authorization", "Bearer " + this.token)
+})
+```
+
+The client side validation might pass, but the server side validation can still fail.
+
+Check Network XHR response, can see the `OrderNumber` is missing. So add it in the `checkout()`.
+
+Fail again because in server side log, Cannot update `Product` while update `Order`.
+
+In `DutchRepository`, create a method `AddOrder()`, which first look up `Product`. Let `OrdersController` call this method.
+
+### Minifying your JavaScript
+
+In the package.json, add `gulp`, `gulp-uglify` and `gulp-concat` to devDependencies, which are used when build project.
+
+Gulp automate build time tooling using js. It takes javascripts, concat into a large file, uglify (minify) it.
+
+Add gulp config file `gulpfile.js` to the root of the project.
+
+Create tasks and group tasks. First task is `minify`.
+
+`gulp.src("wwwroot/js/**/*.js")` gets all the subfolders js files. `gulp.dest("wwwroot/dist")` save it.
+
+In a cmd, run `gulp`. It runs the default task. Or run `gulp minify`.
+
+In VS 2017, right click gulpfile.js, start Task Runner Explorer, and bind task to after build.
+
+### Environment Tag Helpers
+
+In the `Views\Shared\_Layout.cshtml`, set `environment` element to define envs.
+
+Use minified js in the staging and prod envs.
+
+The `script` element can have an attr `asp-append-version`. When set it to true, each build will have different minify script name, so that client doesn't need to clear their cache to use the new script.
+
+For common lib, use `asp-fallback-src` to define my local path, and use CDN if client has already load it for other websites.
+
+Use envs for CSS as well.
+
+In the project properties, Debug, can change `ASPNETCORE_ENVIRONMENT` to change envs.
+
+### Setting up Deployment Scripts
+
+In visual studio, can publish a project onto a remote server. Since the build process will be different, need set up deployment envs.
+
+In the csproj file, add `Target` element. It can let MSBuild do something during the build.
+
+`Exec` can run console commands. Notice order matters.
+
+### Publishing to a Directory
+
+Publish to `bin\Debug\netcoreapp2.2\publish\`.
+
+In the folder, the `DutchTreat.dll` is the starting point.
+
+Use `dotnet DutchTreat.dll` can start the server.
+
+Weirdly the `npm install` didn't run with just publish. I might missed some thing.
+
+Looks like I hit this [issue](https://github.com/dotnet/cli/issues/4062)
+
+But add this
+
+```xml
+<ItemGroup>
+  <Content Include="node_modules\foo\**" CopyToPublishDirectory="PreserveNewest" />
+</ItemGroup>
+```
+
+Can cause build failure.
+
+### Publishing to Azure
+
+1. Publish
+2. New Profile
+3. Creating new
+4. Pick the right Azure subscription
+5. Create a Resource Group `DutchTreatSite`
+
+A App Service Plan is created.
+
+In visual studio 2017's Web Publish Activity tab, can see the details.
+
+It runs on the azurewebsites.net with HTTPS.
+
+### Publishing to IIS
+
+In IIS, create a new Website. Change the port to 81 because Default Website take 80 already.
+
+Change the Application pool to Core, so CLR is not needed.
+
+In the `C:\inetpub`, create a new folder `dutchtreat`.
+
+Restart VS in admin mode to connect to IIS.
+
+Choose `Web Deploy`, Server is localhost, Site name is dutchtreat, URL is `http://localhost:81`.
+
+### Publishing Using the CLI
+
+`dotnet build`, `dotnet run`, `dotnet publish`.
+
+```cmd
+dotnet publish -o C:\Downloads\pub
+```
+
+It uses MSBuild which is a build engine.
+
+Does `node_modules` required?? The course example doesn't seem to have it. Check:
+
+<https://stackoverflow.com/questions/37935524/how-to-use-npm-with-asp-net-core>
+
+### Publishing with Runtime
+
+ASP.NET Core has Runtime Identifiers(RID).
+
+In DutchTreat.csproj, add `<RuntimeIdentifier>win10-x64</RuntimeIdentifier>` for TargetFramework.
+
+Use `dotnet publish -o <PATH> --self-contained`. It will generate DutchTreat.exe. Run `DutchTreat` will start the server.
+
+To support multiple platform, add `<RuntimeIdentifiers>win10-x64,OSX.10.10-x64</RuntimeIdentifiers>` instead.
+
+Use `dotnet publish -o <PATH> --runtime osx.10.10-x64`.
 
 ## ASP.NET Web API
 
@@ -1058,6 +2106,12 @@ HERE:
 
 <https://docs.microsoft.com/en-us/aspnet/entity-framework>
 
+`dotnet ef migrations --help` can see the options.
+
+Use `[Column(TypeName = "decimal(18,2)")]` before a property to define its restrict.
+
+`modelBuilder.Entity<Product>().Property(p => p.Price).HasPrecision(18, 2);` should work samely, but this API is not found.
+
 ## RESTful
 
 <https://www.tutorialspoint.com/restful/index.htm>
@@ -1065,3 +2119,7 @@ HERE:
 ## WCF
 
 Service oriented: <https://docs.microsoft.com/en-us/dotnet/framework/wcf/whats-wcf>
+
+## LocalDB
+
+[MSSQLLOCALDB databases aren't listed](https://stackoverflow.com/questions/34029337/mssqllocaldb-databases-arent-listed)
