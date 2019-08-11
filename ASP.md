@@ -502,11 +502,11 @@ In visual studio, can create 2 kinds of controllers: MVC Controller, API control
 
 The default controller created by visual studio has
 
-- List API
-- GET by ID API
+- List API: used by Index.
+- GET by ID API: used by Detail.
 - Create: Use ValidateAntiForgeryToken to prevent [Cross site request forgery](https://en.wikipedia.org/wiki/Cross-site_request_forgery)
 - POST Create with binding input
-- Edit by ID??
+- Edit by ID: used by Edit.
 - POST Edit by id with binding input
 - Delete
 - DeleteConfirmed
@@ -518,6 +518,7 @@ For update, it handles concurrency exception.
 After creating the model, need use Package Manager Console to apply pending migrations to the database:
 
 ```cmd
+PM> Add-Migration <ModelName>
 PM> Update-Database
 ```
 
@@ -601,6 +602,10 @@ Each group of form elements, for example `<label>` and `<input>`, can be put in 
 
 In the controller action, a parameter can have attribute `[Bind("propertyName")]`, to prevent cross-site request forgery. [detail](https://docs.microsoft.com/en-us/aspnet/mvc/overview/getting-started/getting-started-with-ef-using-mvc/implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application#overpost)
 
+Form attr `asp-action`: the value is the action name in the controller.
+
+`<a asp-action="Create">Create New</a>` can create a link to that view.
+
 ### Using Validation
 
 In view model, add `[Required]` or other validation annotations from `System.ComponentModel.DataAnnotations`.
@@ -646,7 +651,7 @@ Dependency injection:
 
 After email is sent, call `ModelState.Clear();` to clear the form.
 
-There should be a ASP.NET Core Web Server output in Visual Stuio **?? I cannot find it**
+There should be a ASP.NET Core Web Server output in Visual Stuio. In debugging mode, those outputs are in Debug window.
 
 # HERE
 
