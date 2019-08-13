@@ -653,21 +653,23 @@ After email is sent, call `ModelState.Clear();` to clear the form.
 
 There should be a ASP.NET Core Web Server output in Visual Stuio. In debugging mode, those outputs are in Debug window.
 
-# HERE
-
 ### Adding Bootstrap
 
 Bootstrap is based on CSS/SASS. Uses javascript on its components.
 
 Being modular and skinnable (so that it looks more personality).
 
-Bootstrap need placed before site.css so that site.css can override settings from bootstrap.
+Bootstrap need be placed before site.css (the personal css) so that site.css can override settings from bootstrap.
 
 Bootstrap.bundle.min.js bundled all its dependencies. It requires jQuery so should be placed after jQuery.
 
-Add bootstrap classes to elements. `container` is for sections.
+Add bootstrap classes to elements. Class `container` is for sections. `<section class="container">`
 
 Element can belong to several CSS classes. `class="btn btn-success"` means it is a `btn`, but change color to `success`.
+
+# HERE
+
+[Official Doc](https://getbootstrap.com/docs/4.3/getting-started/introduction/)
 
 ### Building a NavBar
 
