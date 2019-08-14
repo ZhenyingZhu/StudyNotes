@@ -671,6 +671,17 @@ Element can belong to several CSS classes. `class="btn btn-success"` means it is
 
 [Official Doc](https://getbootstrap.com/docs/4.3/getting-started/introduction/)
 
+- requirements: bootstrap.min.css, jquery-3.3.1.slim.min.js, popper.min.js, bootstrap.min.js.
+- Add HTML5 viewport tag in header" `<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">`
+- Put the dochead to avoid issues.
+
+```html
+<!doctype html>
+<html lang="en">
+  ...
+</html>
+```
+
 ### Building a NavBar
 
 Bootstrap NavBar can show correctly on both desktop and cellphone.
