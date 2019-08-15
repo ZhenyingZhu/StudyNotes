@@ -682,6 +682,10 @@ Element can belong to several CSS classes. `class="btn btn-success"` means it is
 </html>
 ```
 
+Layout
+
+- Default grid system needs `<div class="container">` (resize on every breakpoint) or `<div class="container-fluid">` (always full width).
+
 ### Building a NavBar
 
 Bootstrap NavBar can show correctly on both desktop and cellphone.
