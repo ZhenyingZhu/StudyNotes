@@ -667,8 +667,6 @@ Add bootstrap classes to elements. Class `container` is for sections. `<section 
 
 Element can belong to several CSS classes. `class="btn btn-success"` means it is a `btn`, but change color to `success`.
 
-# HERE
-
 [Official Doc](https://getbootstrap.com/docs/4.3/getting-started/introduction/)
 
 - requirements: bootstrap.min.css, jquery-3.3.1.slim.min.js, popper.min.js, bootstrap.min.js.
@@ -684,7 +682,16 @@ Element can belong to several CSS classes. `class="btn btn-success"` means it is
 
 Layout
 
-- Default grid system needs `<div class="container">` (resize on every breakpoint) or `<div class="container-fluid">` (always full width).
+- Default grid system needs `<div class="container">` (resize on every responsive breakpoint) or `<div class="container-fluid">` (always full width).
+- Attributes of flex box: flex-direction, flex-wrap, flex-flow, justify-content, align-items, align-content, order, flex-grow, flex-shrink, flex-basis, align-self
+- Cols are children of Rows. Contents are in Cols.
+- `.col-4` uses 1/3 of the 12-grid system. `.col-sm` evenly seperates colmns.
+- Five grid (responsive) breakpoints: extra small, small, medium, large, and extra large.
+- `.col-sm-4` applies to sm, md, lg, and xl devices, but not xs breakpoint.
+
+# HERE
+
+https://getbootstrap.com/docs/4.3/layout/grid/#grid-options
 
 ### Building a NavBar
 
