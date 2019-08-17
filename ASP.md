@@ -691,7 +691,7 @@ Layout
 
 # HERE
 
-https://getbootstrap.com/docs/4.3/layout/grid/#grid-options
+<https://getbootstrap.com/docs/4.3/layout/grid/#grid-options>
 
 ### Building a NavBar
 
