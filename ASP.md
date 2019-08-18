@@ -682,16 +682,27 @@ Element can belong to several CSS classes. `class="btn btn-success"` means it is
 
 Layout
 
+- breakpoint: the size of the device is one of the xs, sm, md, lg and xl. They are breakpoints.
 - Default grid system needs `<div class="container">` (resize on every responsive breakpoint) or `<div class="container-fluid">` (always full width).
-- Attributes of flex box: flex-direction, flex-wrap, flex-flow, justify-content, align-items, align-content, order, flex-grow, flex-shrink, flex-basis, align-self
+- Bootstrap use flex box. Attributes of flex box: flex-direction, flex-wrap, flex-flow, justify-content, align-items, align-content, order, flex-grow, flex-shrink, flex-basis, align-self
 - Cols are children of Rows. Contents are in Cols.
 - `.col-4` uses 1/3 of the 12-grid system. `.col-sm` evenly seperates colmns.
 - Five grid (responsive) breakpoints: extra small, small, medium, large, and extra large.
 - `.col-sm-4` applies to sm, md, lg, and xl devices, but not xs breakpoint.
+- `.col-md-auto` auto adject col width based on content.
+- `.w-100` break the col follow by this to another row. There is no padding in between two rows.
+- `.px-lg-5` this is for spacing. `p` is padding/`m` is margin. `t` is top/`b` is bottom/`l` left/`r` right/`x` is left and right/`y` is top and bottom.
+- `.align-items-start/center/end` can add to container, row and col. Is for vertical alignment.
+- `.justify-content-start` is for horizontal alignment.
+- `.order-12`, `.order-first` to control when this col appears.
+- `.offset-md-4`
+- `.ml-md-auto` put margin with auto width.
+- In a col, can add a `.row` with the 12-col grid.
+
 
 # HERE
 
-<https://getbootstrap.com/docs/4.3/layout/grid/#grid-options>
+<https://getbootstrap.com/docs/4.3/content/reboot/>
 
 ### Building a NavBar
 
