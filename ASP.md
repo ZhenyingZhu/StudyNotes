@@ -699,10 +699,16 @@ Layout
 - `.ml-md-auto` put margin with auto width.
 - In a col, can add a `.row` with the 12-col grid.
 
+Content
+
+- code: `<pre><code></code></pre>` for multi-line codes.
+- image: `.img-fluid`, `.img-thumbnail`. Add attr `alt` to show message when img cannot be loaded.
+- table: `.table`. `<th>` can have attr `scope=row/col` to determine this header is the header of row/col. Use `<table class="table table-dark">` to select theme. `.table-striped` zebra. `.table-bordered`. 
+- `.bg-active/primary/secondary/success/danger/warning/info/light/dark` some predefine themes.
 
 # HERE
 
-<https://getbootstrap.com/docs/4.3/content/reboot/>
+<https://getbootstrap.com/docs/4.3/components/alerts/>
 
 ### Building a NavBar
 
