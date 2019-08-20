@@ -703,12 +703,29 @@ Content
 
 - code: `<pre><code></code></pre>` for multi-line codes.
 - image: `.img-fluid`, `.img-thumbnail`. Add attr `alt` to show message when img cannot be loaded.
-- table: `.table`. `<th>` can have attr `scope=row/col` to determine this header is the header of row/col. Use `<table class="table table-dark">` to select theme. `.table-striped` zebra. `.table-bordered`. 
+- table: `.table`. `<th>` can have attr `scope=row/col` to determine this header is the header of row/col. Use `<table class="table table-dark">` to select theme. `.table-striped` zebra. `.table-bordered`.
 - `.bg-active/primary/secondary/success/danger/warning/info/light/dark` some predefine themes.
+
+Components
+
+- `.alert`, `.alert-link`
+- `.badge`. Can be put in a `<span>` element or `<a>` element.
+- `.btn`, `.btn-lg`, `.btn-block`. Only add `.active` to force show the button as active.
+
+An example of using javascript:
+
+```html
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+```
 
 # HERE
 
-<https://getbootstrap.com/docs/4.3/components/alerts/>
+<https://getbootstrap.com/docs/4.3/components/button-group/>
 
 ### Building a NavBar
 
