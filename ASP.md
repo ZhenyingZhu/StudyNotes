@@ -711,6 +711,7 @@ Components
 - `.alert`, `.alert-link`
 - `.badge`. Can be put in a `<span>` element or `<a>` element.
 - `.btn`, `.btn-lg`, `.btn-block`. Only add `.active` to force show the button as active.
+- `.btn-group`.
 
 An example of using javascript:
 
@@ -720,6 +721,19 @@ An example of using javascript:
   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;</span>
   </button>
+</div>
+```
+
+A tool bar with button groups: Notice the `role` attr:
+
+```html
+<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+  <div class="btn-group mr-2" role="group" aria-label="First group">
+    <button type="button" class="btn btn-secondary">1</button>
+    <button type="button" class="btn btn-secondary">2</button>
+    <button type="button" class="btn btn-secondary">3</button>
+    <button type="button" class="btn btn-secondary">4</button>
+  </div>
 </div>
 ```
 
