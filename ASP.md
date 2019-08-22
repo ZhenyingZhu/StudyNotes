@@ -712,6 +712,9 @@ Components
 - `.badge`. Can be put in a `<span>` element or `<a>` element.
 - `.btn`, `.btn-lg`, `.btn-block`. Only add `.active` to force show the button as active.
 - `.btn-group`.
+- `.card-body`, `.card-title`, `.card-text`, `.card-link`, `.card-img-top`.
+- `.list-group`, `.list-group-item`.
+- 
 
 An example of using javascript:
 
@@ -739,7 +742,7 @@ A tool bar with button groups: Notice the `role` attr:
 
 # HERE
 
-<https://getbootstrap.com/docs/4.3/components/button-group/>
+<https://getbootstrap.com/docs/4.3/components/carousel/>
 
 ### Building a NavBar
 
