@@ -714,7 +714,10 @@ Components
 - `.btn-group`.
 - `.card-body`, `.card-title`, `.card-text`, `.card-link`, `.card-img-top`.
 - `.list-group`, `.list-group-item`.
-- 
+- `.carousel`, need a `.active` first.
+- `.collapse`
+- `.dropdown`
+- `.form-group`, `.form-control`, `.form-text`, `.form-check`, `.form-check-input`, `.form-check-label`
 
 An example of using javascript:
 
