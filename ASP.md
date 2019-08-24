@@ -718,6 +718,10 @@ Components
 - `.collapse`
 - `.dropdown`
 - `.form-group`, `.form-control`, `.form-text`, `.form-check`, `.form-check-input`, `.form-check-label`
+- `.input-group`
+- `.jumbotron`
+- `.list-group`
+- `.media`
 
 An example of using javascript:
 
@@ -745,7 +749,7 @@ A tool bar with button groups: Notice the `role` attr:
 
 # HERE
 
-<https://getbootstrap.com/docs/4.3/components/carousel/>
+<https://getbootstrap.com/docs/4.3/components/modal/>
 
 ### Building a NavBar
 
