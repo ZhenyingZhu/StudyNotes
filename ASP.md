@@ -722,6 +722,20 @@ Components
 - `.jumbotron`
 - `.list-group`
 - `.media`
+- `.modal`, `.modal-dialog`
+- `.nav`, `.nav-item`, `.nav-link`
+- `.navbar`, `.navbar-nav`
+- `.pagination`, `.page-item`
+- attr `data-toggle="popover"` for btn.
+- `.progress`, `.progress-bar`
+- attr `data-spy="scroll"` for a div.
+- `.spinner-border`, `.sr-only`
+- `.toast`
+- `.mr-auto`
+
+Utilities
+
+- 
 
 An example of using javascript:
 
@@ -749,7 +763,7 @@ A tool bar with button groups: Notice the `role` attr:
 
 # HERE
 
-<https://getbootstrap.com/docs/4.3/components/modal/>
+<https://getbootstrap.com/docs/4.3/utilities/borders/>
 
 ### Building a NavBar
 
