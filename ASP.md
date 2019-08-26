@@ -698,6 +698,11 @@ Layout
 - `.offset-md-4`
 - `.ml-md-auto` put margin with auto width.
 - In a col, can add a `.row` with the 12-col grid.
+- sizing: `.w-25`: 25%. `.w-auto`. `.h-100`. `.mw-100`: max width. `.vw-100`: relative to viewport.
+- spacing: `.p` and `.m` , with `t/b/l/r/x/y` define loc, and `0-5/auto` define size.
+- `.stretched-link`, the upper level elements are also clickable.
+- `.text-justify`, `.text-sm-left`, `.text-wrap`, `.text-break`, `.text-lowercase`, `.text-capitalize`, `.font-weight-bold`, `.font-weight-bolder`, `.font-italic`, `.text-monospace`
+- 
 
 Content
 
@@ -735,7 +740,19 @@ Components
 
 Utilities
 
-- 
+- `.border-top-0`, `.rounded-pill`, `.rounded-lg`
+- `.clearfix`
+- `.close`
+- Colors: `primary/secondary/success/danger/warning/info/light/dark/body/muted/white-50/black`
+- `.d-{breakpoint}-{value}`, values: `none/inline/inline-block/block/table/table-cell/table-row/flex/inline-flex`
+- `.embed-responsive` around a `<iframe>`.
+- `.d-flex`
+- `.float-left`, `.float-sm-right`, `.float-none`.
+- `.text-hide`
+- `.overflow-auto`
+- `.position-static`, `.position-relative`, `.position-absolute`, `.position-fixed`, `.position-sticky`. `.fixed-top`, `.sticky-bottom`.
+- `.sr-only`: screen reader utils.
+- `.shadow-none`, `.shadow-lg`
 
 An example of using javascript:
 
@@ -763,7 +780,7 @@ A tool bar with button groups: Notice the `role` attr:
 
 # HERE
 
-<https://getbootstrap.com/docs/4.3/utilities/borders/>
+<https://getbootstrap.com/docs/4.3/utilities/vertical-align/>
 
 ### Building a NavBar
 
