@@ -753,6 +753,8 @@ Utilities
 - `.position-static`, `.position-relative`, `.position-absolute`, `.position-fixed`, `.position-sticky`. `.fixed-top`, `.sticky-bottom`.
 - `.sr-only`: screen reader utils.
 - `.shadow-none`, `.shadow-lg`
+- `.align-baseline/top/middle/bottom/text-top/text-bottom`
+- `.visible`, `.invisible`
 
 An example of using javascript:
 
@@ -779,8 +781,6 @@ A tool bar with button groups: Notice the `role` attr:
 ```
 
 # HERE
-
-<https://getbootstrap.com/docs/4.3/utilities/vertical-align/>
 
 ### Building a NavBar
 
