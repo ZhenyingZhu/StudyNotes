@@ -780,13 +780,13 @@ A tool bar with button groups: Notice the `role` attr:
 </div>
 ```
 
-# HERE
-
 ### Building a NavBar
 
 Bootstrap NavBar can show correctly on both desktop and cellphone.
 
 In HTML5 `nav` element is for navbar.
+
+# HERE
 
 ### Boostrap's Grid System
 
