@@ -786,8 +786,6 @@ Bootstrap NavBar can show correctly on both desktop and cellphone.
 
 In HTML5 `nav` element is for navbar.
 
-# HERE
-
 ### Boostrap's Grid System
 
 Bootstrap use 12-column grids system.
@@ -799,6 +797,8 @@ If out-of-boundary, move to the next line.
 Size: `.col-xl-xx` > `.col-lg-xx` > `.col-md-xx` > `.col-sm-xx` > `.col-xx`
 
 `.col-lg-3 .col-md-6 .col-3`
+
+# HERE
 
 ### Using the Grid System
 
