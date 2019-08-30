@@ -798,13 +798,13 @@ Size: `.col-xl-xx` > `.col-lg-xx` > `.col-md-xx` > `.col-sm-xx` > `.col-xx`
 
 `.col-lg-3 .col-md-6 .col-3`
 
-# HERE
-
 ### Using the Grid System
 
 `<div class="row"><div class="col-md-6"></div></div>` to use grid.
 
 `<div class="card card-body bg-light"></div>` to wrap a content into a card.
+
+# HERE
 
 ### Bootstrap Forms
 
