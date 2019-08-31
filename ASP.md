@@ -804,8 +804,6 @@ Size: `.col-xl-xx` > `.col-lg-xx` > `.col-md-xx` > `.col-sm-xx` > `.col-xx`
 
 `<div class="card card-body bg-light"></div>` to wrap a content into a card.
 
-# HERE
-
 ### Bootstrap Forms
 
 Wrap each form elment related html code into `form-group` class div.
@@ -819,6 +817,8 @@ button, submit and anchor tags can be classed as `btn`.
 - success
 - warning
 - default
+
+# HERE
 
 ### Using Font Awesome
 
