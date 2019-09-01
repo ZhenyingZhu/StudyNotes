@@ -112,6 +112,21 @@ ADAL:
 3. Select Certificates in the Snap-in window and click Add.
 4. Choose ‘Computer Account’ when prompted and click Finish.
 
+More details about cert
+
+[Public-key cryptography](https://en.wikipedia.org/wiki/Public-key_cryptography)
+
+- public key: both the sender and the receiver have it. Used to encrypt the message.
+- private key: only the receiver has it, used to decrypt.
+
+[Root and intermediate certs](https://www.thesslstore.com/blog/root-certificates-intermediate/)
+
+- For SSL/TLS, server need install an SSL cert.
+- root cert: it is the trusted root of the certificate chain. On every device there is a root store, which contains root certs with their public keys. They are coming from either OS or browser.
+- root cert can sign other certs with their private keys. Then those certs are trusted by the browser.
+
+
+
 ## Create a Ubuntu Dev Desktop
 
 [Install and configure Remote Desktop to connect to a Linux VM in Azure](https://docs.microsoft.com/en-us/azure/virtual-machines/linux/use-remote-desktop)
