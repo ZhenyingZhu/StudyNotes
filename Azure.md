@@ -118,14 +118,22 @@ More details about cert
 
 - public key: both the sender and the receiver have it. Used to encrypt the message.
 - private key: only the receiver has it, used to decrypt.
+- Public key infrastructure (PKI)
 
 [Root and intermediate certs](https://www.thesslstore.com/blog/root-certificates-intermediate/)
 
 - For SSL/TLS, server need install an SSL cert.
-- root cert: it is the trusted root of the certificate chain. On every device there is a root store, which contains root certs with their public keys. They are coming from either OS or browser.
-- root cert can sign other certs with their private keys. Then those certs are trusted by the browser.
-
-
+- root cert: it is the trusted root of the certificate chain. It is provided by root CA. On every device there is a root store, which contains root certs with their public keys. They are coming from either OS or browser.
+- Root cert can sign other certs with its private key. In other word, root cert can issue other certs. Then those certs are trusted by the browser.
+- end user/leaf certs (or other public trusted PKI certs) expired every 2 years. Root cert expired much longer.
+- Each root CA can have different root certs for different purpose.
+- To get an SSL cert issued, generate a Certificate Signing Request(CSR) and a private key. Then send the CSR to CA. CA sign it with the private key from the root and send it back.
+- When visiting a website, browser check its cert's authenticity: validity date + digital signature + follow the cert chain + check if the cert is signed by a root cert in the root storage.
+- Certification chain: to reduce the risk of the root CA being compromised, root CAs don't sign leaf certs using its private key. CA only issues intermediate roots, then use the private keys of intermediate root certs to sign and issue leaf certs.
+-The server also install the intermidiate cert, and the browser can link the leaf cert to its root.
+- Digital sign: notarization. Root cert transfer some trust to intermediate cert by digital sign it. The signature directly come from root cert's private key.
+- Browser first get the leaf cert's public key, and then use it to verify the signature, and then use the chain to find its intermediate cert, and do the same validation until reaching root, or fail if it cannot chain to one of its trusted root.
+- Inside a corp, the root CA is internal. The root cert + its public key is called key ceremony.
 
 ## Create a Ubuntu Dev Desktop
 
