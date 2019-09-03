@@ -134,6 +134,20 @@ More details about cert
 - Digital sign: notarization. Root cert transfer some trust to intermediate cert by digital sign it. The signature directly come from root cert's private key.
 - Browser first get the leaf cert's public key, and then use it to verify the signature, and then use the chain to find its intermediate cert, and do the same validation until reaching root, or fail if it cannot chain to one of its trusted root.
 - Inside a corp, the root CA is internal. The root cert + its public key is called key ceremony.
+- SAN (subject alternate name) cert: a digital security cert which allows multiple hostnames to be protected by a single cert.
+- In the cert there is a CRL (certificate revocation list) or OCSP (Online certificate status protocol). They are used to track if a cert was signed by the CA has been revoked the trust.
+- certutil is very powerful.
+- [Cert attributes](https://docs.oracle.com/cd/E24191_01/common/tutorials/authz_cert_attributes.html):
+  - CN: CommonName
+  - OU: OrganizationalUnit
+  - O: Organization
+  - L: Locality
+  - S: StateOrProvinceName
+  - C: CountryName
+- Type of certs
+  - Domain Validation (DV)
+  - Organizational Validation (OV): the CA validate more things, such as also validate the location, then issue the cert.
+  - Extended validation (EV): even further than OV.
 
 ## Create a Ubuntu Dev Desktop
 
