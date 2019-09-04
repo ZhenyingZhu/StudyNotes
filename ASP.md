@@ -850,8 +850,6 @@ button, submit and anchor tags can be classed as `btn`.
 - warning
 - default
 
-# HERE
-
 ### Using Font Awesome
 
 Font Awesome is the successor of glyph icons.
@@ -859,6 +857,8 @@ Font Awesome is the successor of glyph icons.
 Use NPM to install it, and put `font-awesome.min.css` before `site.css` so that `site.css` can override it, so document and graph DBs can also be used.
 
 Use `<i>` element with class to define what icon to use.
+
+# HERE
 
 ### Creating Entities
 
