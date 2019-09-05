@@ -858,6 +858,8 @@ Use NPM to install it, and put `font-awesome.min.css` before `site.css` so that 
 
 Use `<i>` element with class to define what icon to use.
 
+[Font awesome](https://fontawesome.com/how-to-use/on-the-web/referencing-icons/basic-use)
+
 # HERE
 
 ### Creating Entities
