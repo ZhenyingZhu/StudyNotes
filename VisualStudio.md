@@ -201,6 +201,26 @@ https://www.cnblogs.com/yang-fei/p/4744698.html
 
 Edit Project `Settings.settings`, then include `using [Project].Properties;`.
 
+There are some predefined config sections, for example `<appsetting>`. Add key value pairs in it.
+
+[doc](https://docs.microsoft.com/en-us/dotnet/api/system.configuration.appsettingssection?view=netframework-4.8)
+
+```xml
+<configuration>
+  <appSettings>
+    <add key="Key" value="val"/>
+  </appSettings>
+```
+
+```c#
+string val = ConfigurationManager.AppSettings["Key"];
+if (string.IsNullOrEmpty(val))
+{
+    val = defaultVal;
+}
+return val;
+```
+
 ### Create a new form
 First add a form `newForm` to the project. Then add the code
 ```
