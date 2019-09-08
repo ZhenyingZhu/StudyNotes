@@ -149,6 +149,12 @@ More details about cert
   - Organizational Validation (OV): the CA validate more things, such as also validate the location, then issue the cert.
   - Extended validation (EV): even further than OV.
 
+[Get a cert use C#](https://docs.microsoft.com/en-us/dotnet/api/system.security.cryptography.x509certificates.x509store?view=netframework-4.8)
+
+- Store has a name and a location.
+- Location could be: CurrentUser, LocalMachine
+- Name could be: My, Root
+
 ## Create a Ubuntu Dev Desktop
 
 [Install and configure Remote Desktop to connect to a Linux VM in Azure](https://docs.microsoft.com/en-us/azure/virtual-machines/linux/use-remote-desktop)
