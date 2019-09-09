@@ -155,6 +155,11 @@ More details about cert
 - Location could be: CurrentUser, LocalMachine
 - Name could be: My, Root
 
+[OAuth](https://www.csoonline.com/article/3216404/what-is-oauth-how-the-open-authorization-framework-works.html)
+
+- OAuth is an authz protocol/framework, unrelated services can allow authn access to their assets, without actually share the creds.
+- seamless SSO (singal sign-on, one set of creds access multiple apps) amoung multiple computer.
+
 ## Create a Ubuntu Dev Desktop
 
 [Install and configure Remote Desktop to connect to a Linux VM in Azure](https://docs.microsoft.com/en-us/azure/virtual-machines/linux/use-remote-desktop)
