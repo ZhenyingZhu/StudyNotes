@@ -862,6 +862,8 @@ Use `<i>` element with class to define what icon to use.
 
 [w3school](https://www.w3schools.com/icons/fontawesome_icons_intro.asp)
 
+[CDN](https://www.bootstrapcdn.com/fontawesome/)
+
 # HERE
 
 ### Creating Entities
