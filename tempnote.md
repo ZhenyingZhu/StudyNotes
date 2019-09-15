@@ -1368,5 +1368,6 @@ Aug 9 2017
 Dec 23 2017
 Fev 5 2018
 Aug 23 2018: internet got disconnected.
-Jul 30 2019 
+Jul 30 2019
 Sep 5 2019
+Sep 14 2019
