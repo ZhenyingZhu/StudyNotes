@@ -864,13 +864,13 @@ Use `<i>` element with class to define what icon to use.
 
 [CDN](https://www.bootstrapcdn.com/fontawesome/)
 
-# HERE
-
 ### Creating Entities
 
 Entity Framework Core: compare to Entity Framework, it removes the requirement of Relational DBs.
 
 EF6 is still more mature than EF core. But to use EF6, you need .NET 4.x.
+
+# HERE
 
 Create `Data` folder for DB interfaces. Create `Data\Entities` for entites, which are shapes of the data.
 
