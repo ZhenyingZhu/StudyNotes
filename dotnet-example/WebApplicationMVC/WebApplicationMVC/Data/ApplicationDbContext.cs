@@ -13,6 +13,9 @@ namespace WebApplicationMVC.Data
             : base(options)
         {
         }
-        public DbSet<WebApplicationMVC.Models.AppTestModel> AppTestModel { get; set; }
+
+        public DbSet<AppTestModel> AppTestModel { get; set; }
+
+        public DbSet<AppTestChildModel> AppTestChildModels { get; set; }
     }
 }

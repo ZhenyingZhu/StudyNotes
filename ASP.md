@@ -874,13 +874,17 @@ Create `Data` folder for DB interfaces. Create `Data\Entities` for entites, whic
 
 Every entity class has `Id` as primary key.
 
-# HERE
+Or under `Models` folder create models for entites, and use [DataAnnotations](https://docs.microsoft.com/en-us/dotnet/api/system.componentmodel.dataannotations?view=netframework-4.8) to define field restricts.
 
 Use `ICollection<AnotherEntity>` to create a parent-child/one-to-many relationship.
 
 Create class `DutchContext` inherit from `DbContext` for establishing connection. Create `DbSet` in it for entities that need to be queryable.
 
 ### Using Entity Framework Core Tooling
+
+Can also use package manager. See "First Controller/View".
+
+# HERE
 
 Under `dotnet-example\DutchTreat\DutchTreat`, run `dotnet ef database update`.
 

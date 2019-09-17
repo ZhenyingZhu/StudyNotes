@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace WebApplicationMVC.Models
 {
-    public class AppTestModel
+    public class AppTestChildModel
     {
         [Key]
-        public string AppTestInput { get; set; }
+        public int Id { get; set; }
 
-        public ICollection<AppTestChildModel> Children { get; set; }
+        public string Name { get; set; }
     }
 }
