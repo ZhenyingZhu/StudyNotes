@@ -888,6 +888,8 @@ Can also use package manager. See "First Controller/View".
 
 Under `dotnet-example\DutchTreat\DutchTreat`, run `dotnet ef database update`.
 
+After add the model, call `dotnet ef migrations add <the model name>`.
+
 Context isn't tied to a specific database.
 
 Cosmos DB: document store.
