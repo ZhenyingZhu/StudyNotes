@@ -884,8 +884,6 @@ Create class `DutchContext` inherit from `DbContext` for establishing connection
 
 Can also use package manager. See "First Controller/View".
 
-# HERE
-
 Under `dotnet-example\DutchTreat\DutchTreat`, run `dotnet ef database update`.
 
 After add the model, call `dotnet ef migrations add <the model name>`.
@@ -926,7 +924,9 @@ DB ProjectsV13 is come by default.
 
 Connection string: `"DutchConnectionString":  "server=(localdb)\\ProjectsV13;Database=DutchTreatDb;Integrated Security=true;MultipleActiveResultSets=true;"`
 
-The integrated security should be replaced with actual creds when deploy to prod.
+**The integrated security should be replaced with actual creds when deploy to prod.**
+
+# HERE
 
 `MultipleActiveResultSets` allows retriving multiple steams of data at the same time.
 
