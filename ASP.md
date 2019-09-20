@@ -926,8 +926,6 @@ Connection string: `"DutchConnectionString":  "server=(localdb)\\ProjectsV13;Dat
 
 **The integrated security should be replaced with actual creds when deploy to prod.**
 
-# HERE
-
 `MultipleActiveResultSets` allows retriving multiple steams of data at the same time.
 
 In the DutchContext, add ctor `public DutchContext(DbContextOptions<DutchContext> options): base(options) {}`.
@@ -943,6 +941,8 @@ Or use LINQ query `var results = from p in _context.Products orderby p.Category 
 Create a view, and add the model `IEnumerable<Product>`. This is not necessary but it can let Intellisense works.
 
 `@Model` is the model passed in into the view.
+
+# HERE
 
 ### Seeding the Database
 
