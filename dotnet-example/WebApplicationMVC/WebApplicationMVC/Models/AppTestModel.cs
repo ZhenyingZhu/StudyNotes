@@ -9,6 +9,8 @@ namespace WebApplicationMVC.Models
     public class AppTestModel
     {
         [Key]
+        public int Id { get; set; }
+
         public string AppTestInput { get; set; }
 
         public ICollection<AppTestChildModel> Children { get; set; }

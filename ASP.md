@@ -522,6 +522,8 @@ PM> Add-Migration <ModelName>
 PM> Update-Database
 ```
 
+See all the commands [here](https://docs.microsoft.com/en-us/ef/core/managing-schemas/migrations/)
+
 Or use dotnet cmdlet:
 
 ```cmd
@@ -942,11 +944,15 @@ Create a view, and add the model `IEnumerable<Product>`. This is not necessary b
 
 `@Model` is the model passed in into the view.
 
-# HERE
-
 ### Seeding the Database
 
 In DbContext, override `OnModelCreating`. It specifies how is the mapping between entities in the DB. For example set a string property to be at most 50 length.
+
+Use [PropertyBuilder](https://docs.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.metadata.builders.propertybuilder-1?view=efcore-2.1) to define property restricts.
+
+# HERE
+
+To seed data: [Applying Seed Data To The Database](https://www.learnentityframeworkcore.com/migrations/seeding)
 
 Create data in `modelBuilder.Entity<Order>().HasData()`. It is embedded into migration. `dotnet ef migrations add SeedData` and check `Migrations` folder.
 

@@ -17,5 +17,10 @@ namespace WebApplicationMVC.Data
         public DbSet<AppTestModel> AppTestModel { get; set; }
 
         public DbSet<AppTestChildModel> AppTestChildModels { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }
