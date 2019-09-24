@@ -950,11 +950,11 @@ In DbContext, override `OnModelCreating`. It specifies how is the mapping betwee
 
 Use [PropertyBuilder](https://docs.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.metadata.builders.propertybuilder-1?view=efcore-2.1) to define property restricts.
 
-# HERE
-
 To seed data: [Applying Seed Data To The Database](https://www.learnentityframeworkcore.com/migrations/seeding)
 
 Create data in `modelBuilder.Entity<Order>().HasData()`. It is embedded into migration. `dotnet ef migrations add SeedData` and check `Migrations` folder.
+
+# HERE
 
 `HadData` has limitation that it can create only simple entity without relationship.
 

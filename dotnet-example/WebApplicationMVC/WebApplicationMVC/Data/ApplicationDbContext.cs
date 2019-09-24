@@ -21,6 +21,10 @@ namespace WebApplicationMVC.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<AppTestModel>().Property(t => t.AppTestInput).HasMaxLength(10);
+
+            modelBuilder.Entity<AppTestModel>().HasData(new Models.AppTestModel() { Id = 10, AppTestInput = "Seeding Test1" });
         }
     }
 }

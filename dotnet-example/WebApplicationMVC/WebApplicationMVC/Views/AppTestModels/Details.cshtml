@@ -1,4 +1,4 @@
-﻿@model WebApplicationMVC.Models.AppTestChildModel
+﻿@model WebApplicationMVC.Models.AppTestModel
 
 @{
     ViewData["Title"] = "Details";
@@ -8,14 +8,14 @@
 <h1>Details</h1>
 
 <div>
-    <h4>AppTestChildModel</h4>
+    <h4>AppTestModel</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.DisplayNameFor(model => model.AppTestInput)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Name)
+            @Html.DisplayFor(model => model.AppTestInput)
         </dd>
     </dl>
 </div>

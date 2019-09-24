@@ -8,24 +8,24 @@ using Microsoft.EntityFrameworkCore;
 using WebApplicationMVC.Data;
 using WebApplicationMVC.Models;
 
-namespace WebApplicationMVC.Views
+namespace WebApplicationMVC.Controllers
 {
-    public class AppTestChildModelsController : Controller
+    public class AppTestModelsController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public AppTestChildModelsController(ApplicationDbContext context)
+        public AppTestModelsController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: AppTestChildModels
+        // GET: AppTestModels
         public async Task<IActionResult> Index()
         {
-            return View(await _context.AppTestChildModels.ToListAsync());
+            return View(await _context.AppTestModel.ToListAsync());
         }
 
-        // GET: AppTestChildModels/Details/5
+        // GET: AppTestModels/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,39 +33,39 @@ namespace WebApplicationMVC.Views
                 return NotFound();
             }
 
-            var appTestChildModel = await _context.AppTestChildModels
+            var appTestModel = await _context.AppTestModel
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (appTestChildModel == null)
+            if (appTestModel == null)
             {
                 return NotFound();
             }
 
-            return View(appTestChildModel);
+            return View(appTestModel);
         }
 
-        // GET: AppTestChildModels/Create
+        // GET: AppTestModels/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: AppTestChildModels/Create
+        // POST: AppTestModels/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name")] AppTestChildModel appTestChildModel)
+        public async Task<IActionResult> Create([Bind("Id,AppTestInput")] AppTestModel appTestModel)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(appTestChildModel);
+                _context.Add(appTestModel);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(appTestChildModel);
+            return View(appTestModel);
         }
 
-        // GET: AppTestChildModels/Edit/5
+        // GET: AppTestModels/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -73,22 +73,22 @@ namespace WebApplicationMVC.Views
                 return NotFound();
             }
 
-            var appTestChildModel = await _context.AppTestChildModels.FindAsync(id);
-            if (appTestChildModel == null)
+            var appTestModel = await _context.AppTestModel.FindAsync(id);
+            if (appTestModel == null)
             {
                 return NotFound();
             }
-            return View(appTestChildModel);
+            return View(appTestModel);
         }
 
-        // POST: AppTestChildModels/Edit/5
+        // POST: AppTestModels/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name")] AppTestChildModel appTestChildModel)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,AppTestInput")] AppTestModel appTestModel)
         {
-            if (id != appTestChildModel.Id)
+            if (id != appTestModel.Id)
             {
                 return NotFound();
             }
@@ -97,12 +97,12 @@ namespace WebApplicationMVC.Views
             {
                 try
                 {
-                    _context.Update(appTestChildModel);
+                    _context.Update(appTestModel);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!AppTestChildModelExists(appTestChildModel.Id))
+                    if (!AppTestModelExists(appTestModel.Id))
                     {
                         return NotFound();
                     }
@@ -113,10 +113,10 @@ namespace WebApplicationMVC.Views
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(appTestChildModel);
+            return View(appTestModel);
         }
 
-        // GET: AppTestChildModels/Delete/5
+        // GET: AppTestModels/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -124,30 +124,30 @@ namespace WebApplicationMVC.Views
                 return NotFound();
             }
 
-            var appTestChildModel = await _context.AppTestChildModels
+            var appTestModel = await _context.AppTestModel
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (appTestChildModel == null)
+            if (appTestModel == null)
             {
                 return NotFound();
             }
 
-            return View(appTestChildModel);
+            return View(appTestModel);
         }
 
-        // POST: AppTestChildModels/Delete/5
+        // POST: AppTestModels/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var appTestChildModel = await _context.AppTestChildModels.FindAsync(id);
-            _context.AppTestChildModels.Remove(appTestChildModel);
+            var appTestModel = await _context.AppTestModel.FindAsync(id);
+            _context.AppTestModel.Remove(appTestModel);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool AppTestChildModelExists(int id)
+        private bool AppTestModelExists(int id)
         {
-            return _context.AppTestChildModels.Any(e => e.Id == id);
+            return _context.AppTestModel.Any(e => e.Id == id);
         }
     }
 }
