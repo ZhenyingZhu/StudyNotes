@@ -958,6 +958,8 @@ Create data in `modelBuilder.Entity<Order>().HasData()`. It is embedded into mig
 
 `HadData` has limitation that it can create only simple entity without relationship.
 
+Why seeding doesn't work? [Check](https://code-maze.com/migrations-and-seed-data-efcore/)
+
 Another way is to create a Seeder class.
 
 Call `dbContext.Database.EnsureCreated()` before DB operations.
