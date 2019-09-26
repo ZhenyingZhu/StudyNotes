@@ -954,11 +954,17 @@ To seed data: [Applying Seed Data To The Database](https://www.learnentityframew
 
 Create data in `modelBuilder.Entity<Order>().HasData()`. It is embedded into migration. `dotnet ef migrations add SeedData` and check `Migrations` folder.
 
-# HERE
+Note the PM cmdlet for migration `Add-Migration <Migration Name>` is not for a model, but for all the models and seeding data.
+
+Then need to run `Update-Database` to actually apply the change to DB. Notice the seeding data is also created at this time.
+
+[How to reset](https://stackoverflow.com/questions/38192450/how-to-unapply-a-migration-in-asp-net-core-with-ef-core)
 
 `HadData` has limitation that it can create only simple entity without relationship.
 
 Why seeding doesn't work? [Check](https://code-maze.com/migrations-and-seed-data-efcore/)
+
+# HERE
 
 Another way is to create a Seeder class.
 

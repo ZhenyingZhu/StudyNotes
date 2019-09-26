@@ -10,8 +10,8 @@ using WebApplicationMVC.Data;
 namespace WebApplicationMVC.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190811213102_AppTestModels")]
-    partial class AppTestModels
+    [Migration("20190926063904_AppTest")]
+    partial class AppTest
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -186,14 +186,42 @@ namespace WebApplicationMVC.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("WebApplicationMVC.Models.AppTestChildModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("AppTestModelId");
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppTestModelId");
+
+                    b.ToTable("AppTestChildModels");
+                });
+
             modelBuilder.Entity("WebApplicationMVC.Models.AppTestModel", b =>
                 {
-                    b.Property<string>("AppTestInput")
-                        .ValueGeneratedOnAdd();
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.HasKey("AppTestInput");
+                    b.Property<string>("AppTestInput")
+                        .HasMaxLength(20);
+
+                    b.HasKey("Id");
 
                     b.ToTable("AppTestModel");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 10,
+                            AppTestInput = "Seeding Test1"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -239,6 +267,13 @@ namespace WebApplicationMVC.Data.Migrations
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("WebApplicationMVC.Models.AppTestChildModel", b =>
+                {
+                    b.HasOne("WebApplicationMVC.Models.AppTestModel")
+                        .WithMany("Children")
+                        .HasForeignKey("AppTestModelId");
                 });
 #pragma warning restore 612, 618
         }

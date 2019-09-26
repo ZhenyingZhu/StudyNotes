@@ -208,7 +208,7 @@ namespace WebApplicationMVC.Data.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("AppTestInput")
-                        .HasMaxLength(10);
+                        .HasMaxLength(20);
 
                     b.HasKey("Id");
 

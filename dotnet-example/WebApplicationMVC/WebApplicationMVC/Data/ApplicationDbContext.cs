@@ -22,7 +22,7 @@ namespace WebApplicationMVC.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<AppTestModel>().Property(t => t.AppTestInput).HasMaxLength(10);
+            modelBuilder.Entity<AppTestModel>().Property(t => t.AppTestInput).HasMaxLength(20);
 
             modelBuilder.Entity<AppTestModel>().HasData(new Models.AppTestModel() { Id = 10, AppTestInput = "Seeding Test1" });
         }
