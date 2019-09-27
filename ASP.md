@@ -950,9 +950,7 @@ In DbContext, override `OnModelCreating`. It specifies how is the mapping betwee
 
 Use [PropertyBuilder](https://docs.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.metadata.builders.propertybuilder-1?view=efcore-2.1) to define property restricts.
 
-To seed data: [Applying Seed Data To The Database](https://www.learnentityframeworkcore.com/migrations/seeding)
-
-Create data in `modelBuilder.Entity<Order>().HasData()`. It is embedded into migration. `dotnet ef migrations add SeedData` and check `Migrations` folder.
+Create data in `modelBuilder.Entity<Order>().HasData()`. It is embedded into migration for seeding data. After add this line, create a new migration: `dotnet ef migrations add SeedData` and check `Migrations` folder.
 
 Note the PM cmdlet for migration `Add-Migration <Migration Name>` is not for a model, but for all the models and seeding data.
 
@@ -960,11 +958,15 @@ Then need to run `Update-Database` to actually apply the change to DB. Notice th
 
 [How to reset](https://stackoverflow.com/questions/38192450/how-to-unapply-a-migration-in-asp-net-core-with-ef-core)
 
+- If want to remove the latest migration: `remove-migration`. But it doesn't work if the migration is applied to DB.
+- Reset DB to an old version: `Update-Database <previous-migration-name>`
+- If want to reset database totally: `update-database 0`
+
 `HadData` has limitation that it can create only simple entity without relationship.
 
-Why seeding doesn't work? [Check](https://code-maze.com/migrations-and-seed-data-efcore/)
-
 # HERE
+
+Why seeding doesn't work? [Check](https://code-maze.com/migrations-and-seed-data-efcore/)
 
 Another way is to create a Seeder class.
 
