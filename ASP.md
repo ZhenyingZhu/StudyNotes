@@ -964,25 +964,27 @@ Then need to run `Update-Database` to actually apply the change to DB. Notice th
 
 `HadData` has limitation that it can create only simple entity without relationship.
 
-# HERE
+[A good blog about how to use EF](https://code-maze.com/migrations-and-seed-data-efcore/)
 
-Why seeding doesn't work? [Check](https://code-maze.com/migrations-and-seed-data-efcore/)
-
-Another way is to create a Seeder class.
+Another way is to create a Seeder class as a service, and start it in Program.
 
 Call `dbContext.Database.EnsureCreated()` before DB operations.
 
 ```c#
 dbContext.Database.EnsureCreated();
 dbContext.Products.AddRange(products);
-dbContextt.SaveChanges();
+dbContext.SaveChanges();
 ```
 
 `host.Services.GetService<DutchSeeder>();` can get services that are set up via Startup. It create an instance and tries to fullfill all of its dependencies.
 
 `scopeFactory`: during every request this factory creates a scope of the lifetime of the request.
 
+[Scopes](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection?view=aspnetcore-3.0#service-lifetimes)
+
 ### The Repository Pattern
+
+# HERE
 
 Create a class `DutchRepository` and inject `DutchContext`. Create different methods to expost different calls to DB we want.
 
