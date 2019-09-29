@@ -984,8 +984,6 @@ dbContext.SaveChanges();
 
 ### The Repository Pattern
 
-# HERE
-
 Create a class `DutchRepository` and inject `DutchContext`. Create different methods to expost different calls to DB we want.
 
 Extract an interface of it so that testing can mock it.
@@ -1015,6 +1013,8 @@ Inject `ILogger` to DutchRepository, and let logger type to be `DutchRepository`
 Can define different log level for defferent namespaces.
 
 Set logging level in config.json.
+
+# HERE
 
 ### Create an API Controller
 
