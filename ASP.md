@@ -1020,7 +1020,7 @@ Use Postman to send request to API.
 
 Web API is a set of endpoints to expose your APIs.
 
-It expose data, which is similar to AppController, which expose data.
+It expose data, which is similar to AppController, which also expose data.
 
 # HERE
 
