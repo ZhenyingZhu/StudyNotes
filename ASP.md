@@ -1022,6 +1022,8 @@ Web API is a set of endpoints to expose your APIs.
 
 It expose data, which is similar to AppController, which also expose data.
 
+Notice error "Microsoft.AspNetCore.Server.Kestrel[17] Connection id "0HLQ8IO277ERG" bad request data: Invalid request line: \x16\x03\x01\" might caused by SSL. Go to properties/launchSettings.json to confirm the application URL is with HTTPS or not.
+
 # HERE
 
 Add attribute `Route("api/[Controller]")` to the controller class.

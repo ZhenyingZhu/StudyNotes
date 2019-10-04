@@ -10,7 +10,6 @@ using WebApplicationMVC.Models;
 
 namespace WebApplicationMVC.Controllers
 {
-    [Route("api/[Controller]")]
     public class AppTestModelsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -24,22 +23,6 @@ namespace WebApplicationMVC.Controllers
         public async Task<IActionResult> Index()
         {
             return View(await _context.AppTestModel.ToListAsync());
-        }
-
-        // zhenying: add a API
-        [HttpGet]
-        public IActionResult Get()
-        {
-            try
-            {
-                var results = _context.AppTestModel.ToList();
-
-                return Ok(results);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest("Failed to get orders");
-            }
         }
 
         // GET: AppTestModels/Details/5
