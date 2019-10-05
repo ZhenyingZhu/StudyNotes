@@ -1024,8 +1024,6 @@ It expose data, which is similar to AppController, which also expose data.
 
 Notice error "Microsoft.AspNetCore.Server.Kestrel[17] Connection id "0HLQ8IO277ERG" bad request data: Invalid request line: \x16\x03\x01\" might caused by SSL. Go to properties/launchSettings.json to confirm the application URL is with HTTPS or not.
 
-# HERE
-
 Add attribute `Route("api/[Controller]")` to the controller class.
 
 The API has a verb, `Get`. Implement it with Repository.
@@ -1039,6 +1037,8 @@ Return Json result can wrap the bad request to a Json object, but it tied the MV
 Return `IActionResult` is the best. Return `Ok` or `BadRequest` wrap with the results.
 
 Can use Swagger to document public APIs.
+
+# HERE
 
 To use the new document way in .NET Core 2.1, use ControllerBase instead of Controller, and remove `Ok`.
 
