@@ -1038,9 +1038,11 @@ Return `IActionResult` is the best. Return `Ok` or `BadRequest` wrap with the re
 
 Can use Swagger to document public APIs.
 
-# HERE
-
 To use the new document way in .NET Core 2.1, use ControllerBase instead of Controller, and remove `Ok`.
+
+For VS 2017, install [ASP.NET core 2.2 109](https://dotnet.microsoft.com/download/thank-you/dotnet-sdk-2.2.109-windows-x64-installer)
+
+# HERE
 
 ActionResult returns implicit operator, so that concrete types can be specified and converted. But interfaces cannot.
 
