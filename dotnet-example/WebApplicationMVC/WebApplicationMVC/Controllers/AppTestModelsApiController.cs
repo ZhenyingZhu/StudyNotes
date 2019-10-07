@@ -32,7 +32,8 @@ namespace WebApplicationMVC.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<AppTestModel>> GetAppTestModel(int id)
         {
-            var appTestModel = await _context.AppTestModel.FindAsync(id);
+            //var appTestModel = await _context.AppTestModel.FindAsync(id);
+            var appTestModel = await _context.AppTestModel.Include(t => t.Children).FirstOrDefaultAsync(i => i.Id == id);
 
             if (appTestModel == null)
             {

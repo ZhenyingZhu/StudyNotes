@@ -1042,8 +1042,6 @@ To use the new document way in .NET Core 2.1, use ControllerBase instead of Cont
 
 For VS 2017, install [ASP.NET core 2.2 109](https://dotnet.microsoft.com/download/thank-you/dotnet-sdk-2.2.109-windows-x64-installer)
 
-# HERE
-
 ActionResult returns implicit operator, so that concrete types can be specified and converted. But interfaces cannot.
 
 Add attribute `[ApiController]` to the class.
@@ -1051,6 +1049,8 @@ Add attribute `[ApiController]` to the class.
 In startup, `services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);` to opt in the new feature.
 
 ### Returning Data
+
+# HERE
 
 Use `this._ctx.Orders.Include(o => o.Items).ThenInclude(i => i.Product).ToList()` to get both Order, and item and product.
 
