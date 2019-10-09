@@ -1054,6 +1054,8 @@ In startup, `services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Vers
 
 [Include](https://docs.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.include?view=efcore-3.0)
 
+Maybe it is because I am using a list?
+
 Use `this._ctx.Orders.Include(o => o.Items).ThenInclude(i => i.Product).ToList()` to get both Order, and item and product.
 
 Self referencing loop
