@@ -1056,6 +1056,12 @@ In startup, `services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Vers
 
 Maybe it is because I am using a list?
 
+An example:
+
+```C#
+context.Blogs.Include(blog => blog.Posts).ThenInclude(post => post.Tags);
+```
+
 Use `this._ctx.Orders.Include(o => o.Items).ThenInclude(i => i.Product).ToList()` to get both Order, and item and product.
 
 Self referencing loop

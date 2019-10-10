@@ -33,7 +33,7 @@ namespace WebApplicationMVC.Controllers
         public async Task<ActionResult<AppTestModel>> GetAppTestModel(int id)
         {
             //var appTestModel = await _context.AppTestModel.FindAsync(id);
-            var appTestModel = await _context.AppTestModel.Include(t => t.Children).FirstOrDefaultAsync(i => i.Id == id);
+            var appTestModel = await _context.AppTestModel.Include(t => t.Children).FirstOrDefaultAsync();
 
             if (appTestModel == null)
             {
