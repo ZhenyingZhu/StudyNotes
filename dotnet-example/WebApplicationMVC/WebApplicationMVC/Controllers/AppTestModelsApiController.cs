@@ -25,7 +25,7 @@ namespace WebApplicationMVC.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<AppTestModel>>> GetAppTestModel()
         {
-            return await _context.AppTestModel.ToListAsync();
+            return await _context.AppTestModel.Include(t => t.Children).ToListAsync();
         }
 
         // GET: api/AppTestModelsApi/5
@@ -33,7 +33,9 @@ namespace WebApplicationMVC.Controllers
         public async Task<ActionResult<AppTestModel>> GetAppTestModel(int id)
         {
             //var appTestModel = await _context.AppTestModel.FindAsync(id);
-            var appTestModel = await _context.AppTestModel.Include(t => t.Children).FirstOrDefaultAsync();
+            var appTestModel = await _context.AppTestModel
+                .Include(t => t.Children)
+                .SingleAsync(a => a.Id == id);
 
             if (appTestModel == null)
             {

@@ -1050,13 +1050,13 @@ In startup, `services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Vers
 
 ### Returning Data
 
-# HERE
+[How to return foreign data](https://stackoverflow.com/questions/50397105/return-collection-in-asp-net-core-api)
 
-[Include](https://docs.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.include?view=efcore-3.0)
+- To make either API or View to show the lazy loaded data, such as the foreign key refered properties stored in another table, use [Include](https://docs.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.include?view=efcore-3.0)
+- An example to return all the parents with their children: `var parents = await _context.Parents.Include(p => p.Children).ToListAsync();`
+- Notice to make View works, also need to update the Razor page (cshtml) to show the data.
 
-Maybe it is because I am using a list?
-
-An example:
+An example for multiple level foreign data:
 
 ```C#
 context.Blogs.Include(blog => blog.Posts).ThenInclude(post => post.Tags);
@@ -1068,6 +1068,15 @@ Self referencing loop
 
 - OrderItem refer back to Order.
 - Set json option to decide how to handle reference loop.
+- This is a [JSON option](https://www.newtonsoft.com/json/help/html/ReferenceLoopHandlingIgnore.htm)
+
+Without this, an exception would throw:
+
+```html
+<b>fail</b>: Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware[1]<br/>
+      An unhandled exception has occurred while executing the request.<br/>
+Newtonsoft.Json.JsonSerializationException: Self referencing loop detected for property 'parent' with type 'WebApplicationMVC.Models.AppTestModel'. Path 'children[0]'.
+```
 
 ```c#
 services.AddMvc().AddJsonOptions(opt => opt.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);`
@@ -1078,6 +1087,8 @@ Use `[HttpGet("{id:int}")]` attribute to create a Get method for getting order b
 The method body is `this._ctx.Orders.Find(id)` if only need get an order, but to get item and product as well, use fluent/LINQ syntax `Where`.
 
 ### Implementing POST
+
+# HERE
 
 Post Order with query string: `http://localhost:17661/api/Orders?OrderDate=2017-5-5` can set the OrderDate.
 

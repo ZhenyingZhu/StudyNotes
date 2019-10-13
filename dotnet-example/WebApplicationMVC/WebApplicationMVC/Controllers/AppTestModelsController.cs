@@ -34,7 +34,8 @@ namespace WebApplicationMVC.Controllers
             }
 
             var appTestModel = await _context.AppTestModel
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .Include(a => a.Children)
+                .FirstOrDefaultAsync(a => a.Id == id);
             if (appTestModel == null)
             {
                 return NotFound();
