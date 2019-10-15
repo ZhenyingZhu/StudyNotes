@@ -1050,7 +1050,7 @@ In startup, `services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Vers
 
 ### Returning Data
 
-[How to return foreign data](https://stackoverflow.com/questions/50397105/return-collection-in-asp-net-core-api)
+[How to return data that is lazy loading (foreign key)](https://stackoverflow.com/questions/50397105/return-collection-in-asp-net-core-api)
 
 - To make either API or View to show the lazy loaded data, such as the foreign key refered properties stored in another table, use [Include](https://docs.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.include?view=efcore-3.0)
 - An example to return all the parents with their children: `var parents = await _context.Parents.Include(p => p.Children).ToListAsync();`
@@ -1088,17 +1088,17 @@ The method body is `this._ctx.Orders.Find(id)` if only need get an order, but to
 
 ### Implementing POST
 
-# HERE
+Post Order with query string: `http://localhost:17661/api/Orders?OrderDate=2017-5-5` can set the OrderDate? Doesn't seem working.
 
-Post Order with query string: `http://localhost:17661/api/Orders?OrderDate=2017-5-5` can set the OrderDate.
-
-If not add `[FromBody]` attribute to the input model, the action takes property values (CLR object) from query string.
+If not add `[FromBody]` attribute to the input model, the action takes property values (CLR object) from query string? doesn't seems necessary.
 
 Return `Created($"api/orders/{model.Id}", model)` action result for 201.
 
-When call `SaveAll`, the model has been updated with all properties.s
+When call `SaveAll`, the model has been updated with all properties.
 
 ### Validation and View Models
+
+# HERE
 
 The view model can also used to validate APIs.
 
