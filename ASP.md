@@ -1102,7 +1102,24 @@ When call `SaveAll`, the model has been updated with all properties.
 
 The view model can also used to validate APIs.
 
-Use DataAnnotations to add constrains.
+Use DataAnnotations to add constrains:
+
+- AssociationAttribute, DisplayColumnAttribute
+- BindableTypeAttribute
+- ConcurrencyCheckAttribute
+- CustomValidationAttribute
+- DataTypeAttribute
+- EditableAttribute
+- EmailAddressAttribute, PhoneAttribute
+- EnumDataTypeAttribute
+- FileExtensionsAttribute
+- KeyAttribute
+- MaxLengthAttribute, MinLengthAttribute, RangeAttribute
+- RegularExpressionAttribute
+- RequiredAttribute
+- StringLengthAttribute
+- TimestampAttribute
+- UrlAttribute
 
 Change the Post request to use the view model instead of the real object.
 
