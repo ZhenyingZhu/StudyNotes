@@ -81,10 +81,18 @@ namespace WebApplicationMVC.Controllers
         [HttpPost]
         public async Task<ActionResult<AppTestChildModel>> PostAppTestChildModel(AppTestChildModel appTestChildModel)
         {
-            _context.AppTestChildModels.Add(appTestChildModel);
-            await _context.SaveChangesAsync();
+            if (ModelState.IsValid)
+            {
+                _context.AppTestChildModels.Add(appTestChildModel);
+                await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetAppTestChildModel", new { id = appTestChildModel.Id }, appTestChildModel);
+                return CreatedAtAction("GetAppTestChildModel", new { id = appTestChildModel.Id }, appTestChildModel);
+            }
+            else
+            {
+                // upper level thrown error so this part doesn't seem like would be called.
+                return BadRequest(ModelState);
+            }
         }
 
         // DELETE: api/AppTestChildModelsApi/5

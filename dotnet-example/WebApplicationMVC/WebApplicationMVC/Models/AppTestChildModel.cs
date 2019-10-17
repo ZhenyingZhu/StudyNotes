@@ -11,6 +11,7 @@ namespace WebApplicationMVC.Models
         [Key]
         public int Id { get; set; }
 
+        [MinLength(3)]
         public string Name { get; set; }
 
         public AppTestModel Parent { get; set; }

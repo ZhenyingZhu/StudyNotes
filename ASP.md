@@ -1098,8 +1098,6 @@ When call `SaveAll`, the model has been updated with all properties.
 
 ### Validation and View Models
 
-# HERE
-
 The view model can also used to validate APIs.
 
 Use DataAnnotations to add constrains:
@@ -1123,7 +1121,9 @@ Use DataAnnotations to add constrains:
 
 Change the Post request to use the view model instead of the real object.
 
-Use `ModelState.IsValid` and `return BadRequest(ModelState);` to do the validation and error handling.
+Use `ModelState.IsValid` and `return BadRequest(ModelState);` to do the validation and error handling? Looks like upper level handled it.
+
+# HERE
 
 ### Using AutoMapper
 
