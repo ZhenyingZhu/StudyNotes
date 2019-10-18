@@ -199,6 +199,8 @@ In body
 
 An element can have attributes with different values separate by spaces:
 
+# HERE Review
+
 `data-*` attrs are data attributes, which can be used to store custom data in HTML attr so that CSS selector can find it.
 
 ```html
@@ -1123,8 +1125,6 @@ Change the Post request to use the view model instead of the real object.
 
 Use `ModelState.IsValid` and `return BadRequest(ModelState);` to do the validation and error handling? Looks like upper level handled it.
 
-# HERE
-
 ### Using AutoMapper
 
 Add Nuget package AutoMapper and AutoMapper.extensions.Microsoft.depdencyInjection..
@@ -1138,6 +1138,8 @@ In the controller, `return Ok(this._mapper.Map<Order, OrderViewModel>(order));`.
 Add a `DutchMappingProfile` to define the mapping.
 
 ### Creating association controllers
+
+# HERE
 
 The association controllers are to add collection to ViewModel.
 
