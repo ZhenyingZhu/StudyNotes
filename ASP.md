@@ -199,8 +199,6 @@ In body
 
 An element can have attributes with different values separate by spaces:
 
-# HERE Review
-
 `data-*` attrs are data attributes, which can be used to store custom data in HTML attr so that CSS selector can find it.
 
 ```html
@@ -223,7 +221,7 @@ Common Elements
 
 `input` has type. The special type is `submit`.
 
-Browser is trying its best to get what to display. It won't throw parsing error.
+Browser is trying its best to get what to display. It won't throw parsing errors.
 
 ### CSS Basics
 
@@ -407,6 +405,8 @@ By default, div is displayed in a block, which take as much horizontal space and
 - margin: 2px;
 - width: 450px;
 - border-radius: 5px;
+
+# HERE Review
 
 ### What is JavaScript
 
