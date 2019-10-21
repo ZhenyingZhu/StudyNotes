@@ -406,8 +406,6 @@ By default, div is displayed in a block, which take as much horizontal space and
 - width: 450px;
 - border-radius: 5px;
 
-# HERE Review
-
 ### What is JavaScript
 
 Object Oriented: prototypical inheritance
@@ -435,7 +433,7 @@ JQuery makes all browsers can use same code.
 - Add package.json to the root of the project.
 - Add "dependencies" to package.json for runtime dependencies. While "devDependencies" is development dependencies.
 - A new node_modules folder would appear with jquery in it. dist folder is for distributions. See which dist you want to use.
-- Add `<script src="/node_modules/jquery/dist/jquery.min.js"></script>` to html. (Or just use `lib/jquery/dist/jquery.min.js` since the visual studio MVC project template has jquery included by default)
+- To use jQuery, add `<script src="/node_modules/jquery/dist/jquery.min.js"></script>` to html. (Or just use `lib/jquery/dist/jquery.min.js` since the visual studio MVC project template has jquery included by default). Another way is to use a CDN.
 - Add a nuget package `odetocode` which introduce middle tier `app.UseNodeModules(env)` to Startup.cs.
 
 Or call command line tool: `npm install bootstrap`.
@@ -531,6 +529,8 @@ Or use dotnet cmdlet:
 ```cmd
 dotnet ef database update
 ```
+
+# HERE Review
 
 ### Enabling MVC 6
 
