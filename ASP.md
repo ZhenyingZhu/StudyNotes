@@ -518,7 +518,7 @@ For update, it handles concurrency exception.
 After creating the model, need use Package Manager Console to apply pending migrations to the database:
 
 ```cmd
-PM> Add-Migration <ModelName>
+PM> Add-Migration <a note as the name>
 PM> Update-Database
 ```
 
@@ -529,8 +529,6 @@ Or use dotnet cmdlet:
 ```cmd
 dotnet ef database update
 ```
-
-# HERE Review
 
 ### Enabling MVC 6
 
@@ -568,6 +566,11 @@ CSS selector `ele1>ele2` can select direct children.
 
 ### Using Tag Helpers
 
+[TagHelper](https://docs.microsoft.com/en-us/aspnet/core/mvc/views/tag-helpers/intro?view=aspnetcore-3.0)
+
+- enable server-side code to participate in creating and rendering HTML elements in Razor files
+- `asp-for` is one
+
 `_ViewImports.cshtml` is a page that provides a way to add things that are appear on every page. Like import classes to all pages.
 
 `@addTagHelper` is a decoration of adding a set of TagHelpers.
@@ -593,6 +596,8 @@ Add a form in the contact page with post method. Each field of the form need has
 In the controller, add `[HttpPost('contact')]` to the contact action. The action should accept `object model`. We need model binding to get the post result.
 
 When debug hit a breakpoint in the controller, in the Watch tab, type in `this.Request` and can find `Form` in its properties.
+
+# HERE Review
 
 ### Model Binding
 
@@ -706,7 +711,6 @@ Layout
 - spacing: `.p` and `.m` , with `t/b/l/r/x/y` define loc, and `0-5/auto` define size.
 - `.stretched-link`, the upper level elements are also clickable.
 - `.text-justify`, `.text-sm-left`, `.text-wrap`, `.text-break`, `.text-lowercase`, `.text-capitalize`, `.font-weight-bold`, `.font-weight-bolder`, `.font-italic`, `.text-monospace`
-- 
 
 Content
 
