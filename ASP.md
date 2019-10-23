@@ -597,8 +597,6 @@ In the controller, add `[HttpPost('contact')]` to the contact action. The action
 
 When debug hit a breakpoint in the controller, in the Watch tab, type in `this.Request` and can find `Form` in its properties.
 
-# HERE Review
-
 ### Model Binding
 
 Create a view model to represend the data structure of the post form with same name of properties.
@@ -660,7 +658,7 @@ Dependency injection:
 
 After email is sent, call `ModelState.Clear();` to clear the form.
 
-There should be a ASP.NET Core Web Server output in Visual Stuio. In debugging mode, those outputs are in Debug window.
+There should be a ASP.NET Core Web Server output in Visual Studio. In debugging mode, those outputs are in Debug window.
 
 ### Adding Bootstrap
 
@@ -711,6 +709,8 @@ Layout
 - spacing: `.p` and `.m` , with `t/b/l/r/x/y` define loc, and `0-5/auto` define size.
 - `.stretched-link`, the upper level elements are also clickable.
 - `.text-justify`, `.text-sm-left`, `.text-wrap`, `.text-break`, `.text-lowercase`, `.text-capitalize`, `.font-weight-bold`, `.font-weight-bolder`, `.font-italic`, `.text-monospace`
+
+# HERE Review
 
 Content
 
