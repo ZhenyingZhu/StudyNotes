@@ -710,8 +710,6 @@ Layout
 - `.stretched-link`, the upper level elements are also clickable.
 - `.text-justify`, `.text-sm-left`, `.text-wrap`, `.text-break`, `.text-lowercase`, `.text-capitalize`, `.font-weight-bold`, `.font-weight-bolder`, `.font-italic`, `.text-monospace`
 
-# HERE Review
-
 Content
 
 - code: `<pre><code></code></pre>` for multi-line codes.
@@ -819,6 +817,8 @@ An example of form:
     </div>
 </div>
 ```
+
+# HERE Review
 
 ### Building a NavBar
 
