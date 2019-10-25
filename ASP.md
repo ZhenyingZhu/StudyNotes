@@ -818,13 +818,13 @@ An example of form:
 </div>
 ```
 
-# HERE Review
-
 ### Building a NavBar
 
 Bootstrap NavBar can show correctly on both desktop and cellphone.
 
 In HTML5 `nav` element is for navbar.
+
+# HERE Review
 
 ### Boostrap's Grid System
 
