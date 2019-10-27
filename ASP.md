@@ -836,8 +836,6 @@ Size: `.col-xl-xx` > `.col-lg-xx` > `.col-md-xx` > `.col-sm-xx` > `.col-xx`
 
 `.col-lg-3 .col-md-6 .col-3`
 
-# HERE Review
-
 ### Using the Grid System
 
 `<div class="row"><div class="col-md-6"></div></div>` to use grid.
@@ -894,7 +892,7 @@ Can also use package manager. See "First Controller/View".
 
 Under `dotnet-example\DutchTreat\DutchTreat`, run `dotnet ef database update`.
 
-After add the model, call `dotnet ef migrations add <the model name>`.
+After add the model, call `dotnet ef migrations add <a migration name>`.
 
 Context isn't tied to a specific database.
 
@@ -909,6 +907,8 @@ EntityFrameworkCore.DBContextOptionsBuilder provides
 - SQLite
 
 ### Using Configuration
+
+# HERE Review
 
 Startup ctor can inject interfaces that are setup in the Program.
 
