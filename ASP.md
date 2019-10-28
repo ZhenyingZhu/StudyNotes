@@ -908,8 +908,6 @@ EntityFrameworkCore.DBContextOptionsBuilder provides
 
 ### Using Configuration
 
-# HERE Review
-
 Startup ctor can inject interfaces that are setup in the Program.
 
 Pass in `Microsoft.Extensions.Configuration.Iconfiguration`, which has `GetConnectionString` method.
@@ -982,7 +980,7 @@ dbContext.Products.AddRange(products);
 dbContext.SaveChanges();
 ```
 
-`host.Services.GetService<DutchSeeder>();` can get services that are set up via Startup. It create an instance and tries to fullfill all of its dependencies.
+`host.Services.GetService<DutchSeeder>();` can get services that are set up via Startup. It creates an instance and tries to fullfill all of its dependencies.
 
 `scopeFactory`: during every request this factory creates a scope of the lifetime of the request.
 
@@ -1009,6 +1007,8 @@ Use `class="img-fluid"` to make picture auto size.
 Give a border by `div class="border bg-light rounded p-1"`, p-1 gives a little padding.
 
 ### Logging errors
+
+# HERE Review
 
 In cmd, run `set ASPNETCORE_ENVIRONMENT=Development`
 
