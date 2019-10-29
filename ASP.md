@@ -1008,8 +1008,6 @@ Give a border by `div class="border bg-light rounded p-1"`, p-1 gives a little p
 
 ### Logging errors
 
-# HERE Review
-
 In cmd, run `set ASPNETCORE_ENVIRONMENT=Development`
 
 `dotnet run` already print logs.
@@ -1055,6 +1053,8 @@ Add attribute `[ApiController]` to the class.
 In startup, `services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);` to opt in the new feature.
 
 ### Returning Data
+
+# HERE Review
 
 [How to return data that is lazy loading (foreign key)](https://stackoverflow.com/questions/50397105/return-collection-in-asp-net-core-api)
 
