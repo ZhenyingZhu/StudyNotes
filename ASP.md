@@ -1054,8 +1054,6 @@ In startup, `services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Vers
 
 ### Returning Data
 
-# HERE Review
-
 [How to return data that is lazy loading (foreign key)](https://stackoverflow.com/questions/50397105/return-collection-in-asp-net-core-api)
 
 - To make either API or View to show the lazy loaded data, such as the foreign key refered properties stored in another table, use [Include](https://docs.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.include?view=efcore-3.0)
