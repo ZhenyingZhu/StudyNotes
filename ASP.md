@@ -1006,6 +1006,12 @@ Use `class="img-fluid"` to make picture auto size.
 
 Give a border by `div class="border bg-light rounded p-1"`, p-1 gives a little padding.
 
+HTML tag
+
+- `dl`: description list, outer element
+- `dt`: term of a list
+- `dd`: description
+
 ### Logging errors
 
 In cmd, run `set ASPNETCORE_ENVIRONMENT=Development`
