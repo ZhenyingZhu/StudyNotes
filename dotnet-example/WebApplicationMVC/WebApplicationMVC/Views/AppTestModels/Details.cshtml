@@ -16,10 +16,12 @@
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.AppTestInput)
-            @foreach (var c in Model.Children)
-            {
-            <b>@c.Name</b>
-            }
+            <ul>
+                @foreach (var c in Model.Children)
+                {
+                    <li>@c.Name</li>
+                }
+            </ul>
         </dd>
     </dl>
 </div>
