@@ -83,6 +83,7 @@ namespace WebApplicationMVC.Controllers
         {
             if (ModelState.IsValid)
             {
+                // zhenying: how to add a parent here?
                 _context.AppTestChildModels.Add(appTestChildModel);
                 await _context.SaveChangesAsync();
 

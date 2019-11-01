@@ -1147,8 +1147,6 @@ Add a `DutchMappingProfile` to define the mapping.
 
 ### Creating association controllers
 
-# HERE
-
 The association controllers are to add collection to ViewModel.
 
 AutoMapper will trying to map the object to view model as best as it can. Don't need to define how to map each item in a collection in a class.
@@ -1159,6 +1157,14 @@ Assicoation controller is to deal with urls like orders/1/items.
 We can flatting Product into OrderItem view model using auto mapper convention. If the proudct is read-only, no need to create a single view model for it.
 
 Just add the Product as a prefix for all proerties in OrderItemViewModel.
+
+Without AutoMapper:
+
+- From the child model, to set a Parent
+
+# HERE
+
+https://stackoverflow.com/questions/57502806/entity-framework-core-update-column-with-foreign-key-reference
 
 ### Using Query Strings for APIs
 
