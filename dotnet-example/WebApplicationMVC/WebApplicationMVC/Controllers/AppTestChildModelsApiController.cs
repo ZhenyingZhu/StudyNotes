@@ -56,6 +56,14 @@ namespace WebApplicationMVC.Controllers
                 return BadRequest();
             }
 
+            if (appTestChildModel.Parent != null)
+            {
+                var parent = appTestChildModel.Parent;
+
+                var existParent = await _context.AppTestModel.FindAsync(parent.Id);
+                appTestChildModel.Parent = existParent;
+            }
+
             _context.Entry(appTestChildModel).State = EntityState.Modified;
 
             try
@@ -83,7 +91,15 @@ namespace WebApplicationMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                // zhenying: how to add a parent here?
+                // zhenying: this can add the parent to child and the parent also added with the child
+                //if (appTestChildModel.Parent != null)
+                //{
+                //    var parent = appTestChildModel.Parent;
+
+                //    var existParent = await _context.AppTestModel.FindAsync(parent.Id);
+                //    appTestChildModel.Parent = existParent;
+                //}
+
                 _context.AppTestChildModels.Add(appTestChildModel);
                 await _context.SaveChangesAsync();
 

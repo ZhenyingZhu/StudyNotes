@@ -1164,7 +1164,7 @@ Without AutoMapper:
 
 # HERE
 
-https://stackoverflow.com/questions/57502806/entity-framework-core-update-column-with-foreign-key-reference
+https://stackoverflow.com/questions/37886449/how-do-you-update-navigation-properties-in-entity-framework
 
 ### Using Query Strings for APIs
 
