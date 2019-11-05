@@ -1166,6 +1166,8 @@ Without AutoMapper:
 
 https://stackoverflow.com/questions/37886449/how-do-you-update-navigation-properties-in-entity-framework
 
+So basically use the POST method, can create a parent and children at once. But PUT cannot.
+
 ### Using Query Strings for APIs
 
 URL is used to describe what of resouces are looking for. Query string can change the behavior.
