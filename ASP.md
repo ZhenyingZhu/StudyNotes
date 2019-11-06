@@ -1166,7 +1166,7 @@ Without AutoMapper:
 
 https://stackoverflow.com/questions/37886449/how-do-you-update-navigation-properties-in-entity-framework
 
-So basically use the POST method, can create a parent and children at once. But PUT cannot.
+So basically need to first get the parent from DB in the method, can create a parent and children at once. But PUT cannot.
 
 ### Using Query Strings for APIs
 
