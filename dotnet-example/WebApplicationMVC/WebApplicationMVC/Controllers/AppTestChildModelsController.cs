@@ -34,6 +34,7 @@ namespace WebApplicationMVC.Controllers
             }
 
             var appTestChildModel = await _context.AppTestChildModels
+                .Include(a => a.Parent)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (appTestChildModel == null)
             {
@@ -73,7 +74,8 @@ namespace WebApplicationMVC.Controllers
                 return NotFound();
             }
 
-            var appTestChildModel = await _context.AppTestChildModels.FindAsync(id);
+            // var appTestChildModel = await _context.AppTestChildModels.FindAsync(id);
+            var appTestChildModel = await _context.AppTestChildModels.Include(a => a.Parent).SingleAsync(a => a.Id == id);
             if (appTestChildModel == null)
             {
                 return NotFound();
@@ -97,6 +99,9 @@ namespace WebApplicationMVC.Controllers
             {
                 try
                 {
+                    // zhenying: Pass in Parent id here as well, and use it to set up it.
+
+
                     _context.Update(appTestChildModel);
                     await _context.SaveChangesAsync();
                 }

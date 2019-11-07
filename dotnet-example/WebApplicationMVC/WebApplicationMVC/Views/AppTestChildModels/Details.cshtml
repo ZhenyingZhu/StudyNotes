@@ -14,8 +14,11 @@
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Name)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class = "col-sm-5">
             @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dd class = "col-sm-5">
+            @Html.DisplayFor(model => model.Parent.AppTestInput)
         </dd>
     </dl>
 </div>
