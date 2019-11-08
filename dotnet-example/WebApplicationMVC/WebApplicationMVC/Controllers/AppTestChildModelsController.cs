@@ -80,6 +80,9 @@ namespace WebApplicationMVC.Controllers
             {
                 return NotFound();
             }
+
+            PopulateParentsDropDownList();
+
             return View(appTestChildModel);
         }
 
@@ -88,8 +91,10 @@ namespace WebApplicationMVC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name")] AppTestChildModel appTestChildModel)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Parent")] AppTestChildModel appTestChildModel)
         {
+            PopulateParentsDropDownList();
+
             if (id != appTestChildModel.Id)
             {
                 return NotFound();
@@ -153,6 +158,13 @@ namespace WebApplicationMVC.Controllers
         private bool AppTestChildModelExists(int id)
         {
             return _context.AppTestChildModels.Any(e => e.Id == id);
+        }
+
+        private void PopulateParentsDropDownList(object selectParent = null)
+        {
+            // zhenying: add this to show all the existing parents.
+            var parentsQuery = from appTestModel in _context.AppTestModel orderby appTestModel.AppTestInput select appTestModel;
+            ViewBag.Parents = new SelectList(parentsQuery.AsNoTracking(), "AppTestModel", "AppTestInput", parentsQuery);
         }
     }
 }

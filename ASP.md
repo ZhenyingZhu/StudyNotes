@@ -1162,6 +1162,13 @@ Without AutoMapper:
 
 - From the child model, to set a Parent
 
+[With native EF and MVC](https://docs.microsoft.com/en-us/aspnet/core/data/ef-mvc/crud?view=aspnetcore-3.0)
+
+- Notice EF with Razor Pages are the new suggested way.
+- [AsNoTracking](https://docs.microsoft.com/en-us/ef/core/querying/tracking): the update would not be saved and change tracker would not be created.
+- default route specifies controller, action, and id segments. After `?` is the URL of query string.
+- 
+
 # HERE
 
 https://stackoverflow.com/questions/37886449/how-do-you-update-navigation-properties-in-entity-framework

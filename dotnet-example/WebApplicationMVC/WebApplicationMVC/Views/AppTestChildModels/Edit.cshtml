@@ -18,9 +18,13 @@
                 <label asp-for="Name" class="control-label"></label>
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="Parent" class="control-label"></label>
-                <input asp-for="Parent" class="form-control" />
-                <span asp-validation-for="Parent" class="text-danger"></span>
+                <select asp-for="Parent" class="form-control" asp-items="ViewBag.Parents">
+                    <option value="">-- Select Parent --</option>
+                </select>
+                <span asp-validation-for="Parent" class="text-danger" />
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
