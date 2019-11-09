@@ -47,6 +47,8 @@ namespace WebApplicationMVC.Controllers
         // GET: AppTestChildModels/Create
         public IActionResult Create()
         {
+            PopulateParentsDropDownList();
+
             return View();
         }
 
@@ -55,8 +57,10 @@ namespace WebApplicationMVC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name")] AppTestChildModel appTestChildModel)
+        public async Task<IActionResult> Create([Bind("Id,Name,ParentID")] AppTestChildModel appTestChildModel)
         {
+            PopulateParentsDropDownList();
+
             if (ModelState.IsValid)
             {
                 _context.Add(appTestChildModel);
@@ -91,7 +95,7 @@ namespace WebApplicationMVC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Parent")] AppTestChildModel appTestChildModel)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,ParentID")] AppTestChildModel appTestChildModel)
         {
             PopulateParentsDropDownList();
 
@@ -164,7 +168,8 @@ namespace WebApplicationMVC.Controllers
         {
             // zhenying: add this to show all the existing parents.
             var parentsQuery = from appTestModel in _context.AppTestModel orderby appTestModel.AppTestInput select appTestModel;
-            ViewBag.Parents = new SelectList(parentsQuery.AsNoTracking(), "AppTestModel", "AppTestInput", parentsQuery);
+            ViewBag.ParentID = new SelectList(parentsQuery.AsNoTracking(), "ParentID", "ParentID", selectParent);
+            ViewBag.Fuck = "Fuckkkkkkkkkkkkkkkkkkkkkk";
         }
     }
 }
