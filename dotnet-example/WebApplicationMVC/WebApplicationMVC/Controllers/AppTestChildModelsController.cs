@@ -59,14 +59,14 @@ namespace WebApplicationMVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Name,ParentID")] AppTestChildModel appTestChildModel)
         {
-            PopulateParentsDropDownList();
-
             if (ModelState.IsValid)
             {
                 _context.Add(appTestChildModel);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+
+            PopulateParentsDropDownList(appTestChildModel.ParentID);
             return View(appTestChildModel);
         }
 
@@ -168,8 +168,9 @@ namespace WebApplicationMVC.Controllers
         {
             // zhenying: add this to show all the existing parents.
             var parentsQuery = from appTestModel in _context.AppTestModel orderby appTestModel.AppTestInput select appTestModel;
-            ViewBag.ParentID = new SelectList(parentsQuery.AsNoTracking(), "ParentID", "ParentID", selectParent);
-            ViewBag.Fuck = "Fuckkkkkkkkkkkkkkkkkkkkkk";
+            // DataTextField is what the user can see. DataValueField is what you can use for identify which one is selected from DropDownList.
+            // The Id here is actually the Id of AppTestModel
+            ViewBag.ParentID = new SelectList(parentsQuery.AsNoTracking(), "Id", "AppTestInput", selectParent);
         }
     }
 }
