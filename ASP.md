@@ -575,6 +575,7 @@ CSS selector `ele1>ele2` can select direct children.
 
 - enable server-side code to participate in creating and rendering HTML elements in Razor files
 - `asp-for` is one tag helper. This attribute can extract a property name of a model. `<label asp-for="Movie.Title"></label>` becomes `<label for="Movie_Title">Title</label>`.
+- anchor tag helper: `<a asp-controller="AppTestChildModels" asp-action="Details" asp-route-id="@c.Id">@c.Name</a>`
 - [Built-in helpers](https://docs.microsoft.com/en-us/aspnet/core/mvc/views/tag-helpers/intro?view=aspnetcore-3.0#built-in-aspnet-core-tag-helpers)
 
 `_ViewImports.cshtml` is a page that provides a way to add things that are appear on every page. Like import classes to all pages.

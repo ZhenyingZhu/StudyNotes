@@ -19,7 +19,11 @@
             <ul>
                 @foreach (var c in Model.Children)
                 {
-                    <li>@c.Name</li>
+                    <li>
+                        <a asp-controller="AppTestChildModels" asp-action="Details" asp-route-id="@c.Id">
+                            @c.Name
+                        </a>
+                    </li>
                 }
             </ul>
         </dd>
