@@ -85,8 +85,7 @@ namespace WebApplicationMVC.Controllers
                 return NotFound();
             }
 
-            PopulateParentsDropDownList();
-
+            PopulateParentsDropDownList(appTestChildModel.ParentID);
             return View(appTestChildModel);
         }
 
@@ -97,8 +96,6 @@ namespace WebApplicationMVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Name,ParentID")] AppTestChildModel appTestChildModel)
         {
-            PopulateParentsDropDownList();
-
             if (id != appTestChildModel.Id)
             {
                 return NotFound();
@@ -108,9 +105,6 @@ namespace WebApplicationMVC.Controllers
             {
                 try
                 {
-                    // zhenying: Pass in Parent id here as well, and use it to set up it.
-
-
                     _context.Update(appTestChildModel);
                     await _context.SaveChangesAsync();
                 }
@@ -127,6 +121,7 @@ namespace WebApplicationMVC.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+
             return View(appTestChildModel);
         }
 
