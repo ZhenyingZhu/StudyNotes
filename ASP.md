@@ -1175,10 +1175,6 @@ Without AutoMapper:
 - From the child model, to easily set a Parent, make the foreign key ParentID explicit.
 - Then use this property to set the value. EF auto set the reference?
 
-### HERE
-
-Add a temp timestamp as I am on a sev1.
-
 ### Using Query Strings for APIs
 
 URL is used to describe what of resouces are looking for. Query string can change the behavior.
@@ -1187,7 +1183,25 @@ In the controller, get method, add a bool parameter with default value.
 
 Send the request with URL like `http://localhost:5000/api/orders?includeItems=false`.
 
+[EF Core LINQ](https://docs.microsoft.com/en-us/ef/core/querying/)
+
+EntityFrameworkCore.EntityFrameworkQueryableExtensions
+
+- ToListAsync
+- Include, ThenInclude
+- SingleAsync: if there are more than 1 in DB, throw.
+- SingleOrDefaultAsync: if couldn't find, throw.
+- FirstOrDefaultAsync: if there are more than 1, not throw.
+
+`EntityFrameworkCore.DbSet<TEntity>`
+
+- FindAsync
+
+Can also use `from` clause. [basic LINQ query ops](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/linq/basic-linq-query-operations)
+
 ### Authorizing Actions
+
+### HERE
 
 In the controller, add the attribute `Authorize` to the view.
 
