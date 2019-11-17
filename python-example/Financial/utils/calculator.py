@@ -1,12 +1,12 @@
 import math
 
-def compound(base, rate, duration):
+def calculateCompoundFutureValue(base, rate, duration):
     coumpounding = base
     for _ in range(duration):
         coumpounding *= 1.0 + rate / 100.0
     return coumpounding
 
-def discount(target, rate, duration):
+def calculateCompoundPastValue(target, rate, duration):
     discounting = 1.0
     for _ in range(duration):
         discounting *= 1.0 + rate / 100.0
@@ -14,21 +14,29 @@ def discount(target, rate, duration):
     # base
     return target / discounting
 
-def annuity(base, payment, rate, duration):
+def calculateCompoundPastValueBasedOnBenefit(benefit, rate, duration):
+    discounting = 1.0
+    for _ in range(duration):
+        discounting *= 1.0 + rate / 100.0
+
+    # base + benefit
+    return benefit / (discounting - 1)
+
+def calculateAnnuityFutureValue(base, payment, rate, duration, pay_at_begin = False):
     saving = base
     for _ in range(duration):
+        if pay_at_begin:
+            saving += payment
+
         saving *= 1.0 + rate / 100.0
-        saving += payment # add after interest because often next payment is after a period since base put in.
+
+        if not pay_at_begin:
+            # nomorally next payment is after a period since base put in.
+            saving += payment
+        
     return saving
 
-def annuityBeginOfYear(base, payment, rate, duration):
-    saving = base
-    for _ in range(duration):
-        saving += payment
-        saving *= 1.0 + rate / 100.0
-    return saving
-
-def backward_annuity(target, base, rate, duration):
+def calculateAnnuityPayment(target, base, rate, duration):
     # target = b*(1+r)^d + p*sum((1+r)^x, x=0..d-1) = b*(1+r)^d + p*((1+r)^d-1)/r
 
     # v1 = (1+r)^d
@@ -48,24 +56,34 @@ def backward_annuity(target, base, rate, duration):
     # payment
     return val3 / val4
 
-def nominalRateOfReturn(start_value, end_value, duration):
+def calculateAnnuityDuration(base, rate, payment, target, pay_at_begin = False):
+    duration = 0
+    val = base
+    while (val < target):
+        if pay_at_begin:
+            val += payment
+
+        val *= 1 + rate / 100.0
+
+        if not pay_at_begin:
+            val += payment
+
+        duration += 1
+    
+    # In the course the answer is actually - 1, maybe because pay at begin.
+    return duration
+
+def calculateNominalRateOfReturn(start_value, end_value, duration):
     # startValue*(1+r)^d=endValue
     val = end_value / start_value
     rate = pow(val, 1.0 / duration) - 1
     return rate * 100.0
 
-def realRateOfReturn(start_value, end_value, inflation, duration):
-    nominal_rate = nominalRateOfReturn(start_value, end_value, duration) / 100.0
+def calculateRealRateOfReturnFromNominalRate(nominal_rate, inflation):
     # 1+rr = (1+nr)/(1+in)
-    realRate = (1 + nominal_rate) / (1 + inflation / 100.0) - 1
+    realRate = (1 + nominal_rate / 100) / (1 + inflation / 100.0) - 1
     return realRate * 100.0
 
-def compoundDuration(base, rate, payment, target):
-    duration = 0
-    val = base
-    while (val < target):
-        val *= 1 + rate / 100.0
-        val += payment
-        duration += 1
-    
-    return duration
+def calculateRealRateOfReturn(start_value, end_value, inflation, duration):
+    nominal_rate = calculateNominalRateOfReturn(start_value, end_value, duration)
+    return calculateRealRateOfReturnFromNominalRate(nominal_rate, inflation)
