@@ -20,6 +20,8 @@ namespace WebApplicationMVC.Data
 
         public DbSet<UserSpecificItemModel> UserSpecificItemModel { get; set; }
 
+        public DbSet<StoreUserModel> StoreUserModel { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
