@@ -1201,6 +1201,28 @@ Can also use `from` clause. [basic LINQ query ops](https://docs.microsoft.com/en
 
 ### Authorizing Actions
 
+Entities: those are directly store in DB
+
+- Order: A collection of OrderItems. Bind to a StoreUser.
+- OrderItem: An instance of a Product.
+- Product
+- StoreUser: Inherit from IdentityUser.
+
+ViewModels: A layer between Controller and DB.
+
+- ContactViewModel: for contact page.
+- LoginViewModel: for login page.
+- OrderItemViewModel: for order item page.
+- OrderViewModel: for order page.
+
+Controllers
+
+- Account: Inject userManager and signInManager to interact with StoreUser.
+- App: for contact and about me page.
+- OrderItems: for API.
+- Orders: for API.
+- Products: for API.
+
 ### HERE
 
 In the controller, add the attribute `Authorize` to the view.
