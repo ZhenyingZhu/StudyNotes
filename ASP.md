@@ -1223,6 +1223,11 @@ Controllers
 - Orders: for API.
 - Products: for API.
 
+Views
+
+- Account
+- App
+
 ### HERE
 
 In the controller, add the attribute `Authorize` to the view.
