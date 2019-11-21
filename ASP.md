@@ -1225,8 +1225,15 @@ Controllers
 
 Views
 
-- Account
-- App
+- Account: not in use.
+- App: Index, About and Contact pages are in use.
+- `Shared/_Layout`: Login and Logout changes the nav-bar.
+
+ClientApp
+
+- checkout
+- login
+- shop
 
 ### HERE
 
