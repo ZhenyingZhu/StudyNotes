@@ -56,13 +56,13 @@ namespace WebApplicationMVC.Controllers
                 return BadRequest();
             }
 
-            if (appTestChildModel.Parent != null)
+            var existParent = await _context.AppTestModel.FindAsync(appTestChildModel.ParentID);
+            if (existParent == null)
             {
-                var parent = appTestChildModel.Parent;
-
-                var existParent = await _context.AppTestModel.FindAsync(parent.Id);
-                appTestChildModel.Parent = existParent;
+                return BadRequest();
             }
+
+            appTestChildModel.Parent = existParent;
 
             _context.Entry(appTestChildModel).State = EntityState.Modified;
 
@@ -91,14 +91,13 @@ namespace WebApplicationMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                // zhenying: this can add the parent to child and the parent also added with the child
-                //if (appTestChildModel.Parent != null)
-                //{
-                //    var parent = appTestChildModel.Parent;
+                var existParent = await _context.AppTestModel.FindAsync(appTestChildModel.ParentID);
+                if(existParent == null)
+                {
+                    return BadRequest();
+                }
 
-                //    var existParent = await _context.AppTestModel.FindAsync(parent.Id);
-                //    appTestChildModel.Parent = existParent;
-                //}
+                appTestChildModel.Parent = existParent;
 
                 _context.AppTestChildModels.Add(appTestChildModel);
                 await _context.SaveChangesAsync();
@@ -107,7 +106,7 @@ namespace WebApplicationMVC.Controllers
             }
             else
             {
-                // upper level thrown error so this part doesn't seem like would be called.
+                // zhenying: upper level thrown error so this part doesn't seem like would be called.
                 return BadRequest(ModelState);
             }
         }

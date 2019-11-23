@@ -16,10 +16,19 @@
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.AppTestInput)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Children)
+        </dt>
+        <dd class = "col-sm-10">
             <ul>
                 @foreach (var c in Model.Children)
                 {
-                    <li>@c.Name</li>
+                    <li>
+                        <a asp-controller="AppTestChildModels" asp-action="Details" asp-route-id="@c.Id">
+                            @c.Name
+                        </a>
+                    </li>
                 }
             </ul>
         </dd>

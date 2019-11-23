@@ -13,6 +13,7 @@
     <Compile Remove="Data\Migrations\20190924053120_SeedData.cs" />
     <Compile Remove="Data\Migrations\20190926063418_AppTestModels.cs" />
     <Compile Remove="Data\Migrations\20190926063535_AppTest.cs" />
+    <Compile Remove="Data\Migrations\20191118043935_AddUserSpecificItems.cs" />
   </ItemGroup>
 
 

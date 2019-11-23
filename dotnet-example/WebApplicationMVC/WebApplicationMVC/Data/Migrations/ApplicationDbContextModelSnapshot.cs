@@ -73,6 +73,9 @@ namespace WebApplicationMVC.Data.Migrations
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
 
+                    b.Property<string>("Discriminator")
+                        .IsRequired();
+
                     b.Property<string>("Email")
                         .HasMaxLength(256);
 
@@ -112,6 +115,8 @@ namespace WebApplicationMVC.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -192,11 +197,11 @@ namespace WebApplicationMVC.Data.Migrations
 
                     b.Property<string>("Name");
 
-                    b.Property<int?>("ParentId");
+                    b.Property<int>("ParentID");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ParentId");
+                    b.HasIndex("ParentID");
 
                     b.ToTable("AppTestChildModels");
                 });
@@ -220,6 +225,36 @@ namespace WebApplicationMVC.Data.Migrations
                             Id = 10,
                             AppTestInput = "Seeding Test1"
                         });
+                });
+
+            modelBuilder.Entity("WebApplicationMVC.Models.UserSpecificItemModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name");
+
+                    b.Property<string>("StoreUserId");
+
+                    b.Property<int>("UserID");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("StoreUserId");
+
+                    b.ToTable("UserSpecificItemModel");
+                });
+
+            modelBuilder.Entity("WebApplicationMVC.Models.StoreUserModel", b =>
+                {
+                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
+
+                    b.Property<string>("FirstName");
+
+                    b.Property<string>("LastName");
+
+                    b.HasDiscriminator().HasValue("StoreUserModel");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -271,7 +306,15 @@ namespace WebApplicationMVC.Data.Migrations
                 {
                     b.HasOne("WebApplicationMVC.Models.AppTestModel", "Parent")
                         .WithMany("Children")
-                        .HasForeignKey("ParentId");
+                        .HasForeignKey("ParentID")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("WebApplicationMVC.Models.UserSpecificItemModel", b =>
+                {
+                    b.HasOne("WebApplicationMVC.Models.StoreUserModel", "StoreUser")
+                        .WithMany()
+                        .HasForeignKey("StoreUserId");
                 });
 #pragma warning restore 612, 618
         }

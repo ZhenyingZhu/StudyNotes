@@ -34,6 +34,7 @@ namespace WebApplicationMVC.Controllers
             }
 
             var appTestChildModel = await _context.AppTestChildModels
+                .Include(a => a.Parent)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (appTestChildModel == null)
             {
@@ -46,6 +47,8 @@ namespace WebApplicationMVC.Controllers
         // GET: AppTestChildModels/Create
         public IActionResult Create()
         {
+            PopulateParentsDropDownList();
+
             return View();
         }
 
@@ -54,7 +57,7 @@ namespace WebApplicationMVC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name")] AppTestChildModel appTestChildModel)
+        public async Task<IActionResult> Create([Bind("Id,Name,ParentID")] AppTestChildModel appTestChildModel)
         {
             if (ModelState.IsValid)
             {
@@ -62,6 +65,8 @@ namespace WebApplicationMVC.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+
+            PopulateParentsDropDownList(appTestChildModel.ParentID);
             return View(appTestChildModel);
         }
 
@@ -73,11 +78,14 @@ namespace WebApplicationMVC.Controllers
                 return NotFound();
             }
 
-            var appTestChildModel = await _context.AppTestChildModels.FindAsync(id);
+            // var appTestChildModel = await _context.AppTestChildModels.FindAsync(id);
+            var appTestChildModel = await _context.AppTestChildModels.Include(a => a.Parent).SingleAsync(a => a.Id == id);
             if (appTestChildModel == null)
             {
                 return NotFound();
             }
+
+            PopulateParentsDropDownList(appTestChildModel.ParentID);
             return View(appTestChildModel);
         }
 
@@ -86,7 +94,7 @@ namespace WebApplicationMVC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name")] AppTestChildModel appTestChildModel)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,ParentID")] AppTestChildModel appTestChildModel)
         {
             if (id != appTestChildModel.Id)
             {
@@ -113,6 +121,7 @@ namespace WebApplicationMVC.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+
             return View(appTestChildModel);
         }
 
@@ -148,6 +157,15 @@ namespace WebApplicationMVC.Controllers
         private bool AppTestChildModelExists(int id)
         {
             return _context.AppTestChildModels.Any(e => e.Id == id);
+        }
+
+        private void PopulateParentsDropDownList(object selectParent = null)
+        {
+            // zhenying: add this to show all the existing parents.
+            var parentsQuery = from appTestModel in _context.AppTestModel orderby appTestModel.AppTestInput select appTestModel;
+            // DataTextField is what the user can see. DataValueField is what you can use for identify which one is selected from DropDownList.
+            // The Id here is actually the Id of AppTestModel
+            ViewBag.ParentID = new SelectList(parentsQuery.AsNoTracking(), "Id", "AppTestInput", selectParent);
         }
     }
 }

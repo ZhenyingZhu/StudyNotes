@@ -31,6 +31,8 @@ ASP.NET offers programming models
 - <https://app.pluralsight.com/library/courses/angular-2-getting-started-update>
 - <https://app.pluralsight.com/library/courses/angular-cli>
 
+- <https://docs.microsoft.com/en-us/aspnet/core/?view=aspnetcore-3.0>
+
 ## Building a Web App with ASP.NET Core, MVC, Entity Framework Core, Bootstrap, and Angular
 
 <https://app.pluralsight.com/library/courses/aspnetcore-mvc-efcore-bootstrap-angular-web/table-of-contents>
@@ -480,6 +482,7 @@ Model-View-Controller framework for applications.
 
 Request route to a controller class, controller get some data from model, then send back to controller to do some logic, and then controller send data to view, view render and return the response.
 
+
 ### First Controller/View
 
 Create a Controller class inherit from AspNetCore.Mvc.Controller under a folder calls controllers.
@@ -540,6 +543,8 @@ URL pattern "/{controller}/{action}/{id?}": `id?` indicates it is an optional fi
 
 `cfg.MapRoute("Default", "/{controller}/{action}/{id?}", new { controller = "App", Action = "Index" });` means if no controller or action pass in, go to AppController.Index.
 
+Default route specifies controller, action, and id segments. After `?` is the URL of query string.
+
 ASP.NET Core requires to use dependency injection.
 
 `app.UseDeveloperExceptionPage();` to show the error with call stack.
@@ -569,7 +574,9 @@ CSS selector `ele1>ele2` can select direct children.
 [TagHelper](https://docs.microsoft.com/en-us/aspnet/core/mvc/views/tag-helpers/intro?view=aspnetcore-3.0)
 
 - enable server-side code to participate in creating and rendering HTML elements in Razor files
-- `asp-for` is one
+- `asp-for` is one tag helper. This attribute can extract a property name of a model. `<label asp-for="Movie.Title"></label>` becomes `<label for="Movie_Title">Title</label>`.
+- anchor tag helper: `<a asp-controller="AppTestChildModels" asp-action="Details" asp-route-id="@c.Id">@c.Name</a>`
+- [Built-in helpers](https://docs.microsoft.com/en-us/aspnet/core/mvc/views/tag-helpers/intro?view=aspnetcore-3.0#built-in-aspnet-core-tag-helpers)
 
 `_ViewImports.cshtml` is a page that provides a way to add things that are appear on every page. Like import classes to all pages.
 
@@ -1012,6 +1019,11 @@ HTML tag
 - `dt`: term of a list
 - `dd`: description
 
+[With native EF and MVC](https://docs.microsoft.com/en-us/aspnet/core/data/ef-mvc/crud?view=aspnetcore-3.0)
+
+- Notice EF with Razor Pages are the new suggested way.
+- [AsNoTracking](https://docs.microsoft.com/en-us/ef/core/querying/tracking): the update would not be saved and change tracker would not be created.
+
 ### Logging errors
 
 In cmd, run `set ASPNETCORE_ENVIRONMENT=Development`
@@ -1160,13 +1172,8 @@ Just add the Product as a prefix for all proerties in OrderItemViewModel.
 
 Without AutoMapper:
 
-- From the child model, to set a Parent
-
-# HERE
-
-https://stackoverflow.com/questions/37886449/how-do-you-update-navigation-properties-in-entity-framework
-
-So basically need to first get the parent from DB in the method, can create a parent and children at once. But PUT cannot.
+- From the child model, to easily set a Parent, make the foreign key ParentID explicit.
+- Then use this property to set the value. EF auto set the reference?
 
 ### Using Query Strings for APIs
 
@@ -1176,7 +1183,59 @@ In the controller, get method, add a bool parameter with default value.
 
 Send the request with URL like `http://localhost:5000/api/orders?includeItems=false`.
 
+[EF Core LINQ](https://docs.microsoft.com/en-us/ef/core/querying/)
+
+EntityFrameworkCore.EntityFrameworkQueryableExtensions
+
+- ToListAsync
+- Include, ThenInclude
+- SingleAsync: if there are more than 1 in DB, throw.
+- SingleOrDefaultAsync: if couldn't find, throw.
+- FirstOrDefaultAsync: if there are more than 1, not throw.
+
+`EntityFrameworkCore.DbSet<TEntity>`
+
+- FindAsync
+
+Can also use `from` clause. [basic LINQ query ops](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/linq/basic-linq-query-operations)
+
 ### Authorizing Actions
+
+Entities: those are directly store in DB
+
+- Order: A collection of OrderItems. Bind to a StoreUser.
+- OrderItem: An instance of a Product.
+- Product
+- StoreUser: Inherit from IdentityUser.
+
+ViewModels: A layer between Controller and DB.
+
+- ContactViewModel: for contact page.
+- LoginViewModel: for login page.
+- OrderItemViewModel: for order item page.
+- OrderViewModel: for order page.
+
+Controllers
+
+- Account: Inject userManager and signInManager to interact with StoreUser.
+- App: for contact and about me page.
+- OrderItems: for API.
+- Orders: for API.
+- Products: for API.
+
+Views
+
+- Account: not in use.
+- App: Index, About and Contact pages are in use.
+- `Shared/_Layout`: Login and Logout changes the nav-bar.
+
+ClientApp
+
+- checkout
+- login
+- shop
+
+### HERE
 
 In the controller, add the attribute `Authorize` to the view.
 
@@ -2342,7 +2401,13 @@ HERE:
 - Since functions are idempotent they can be used in $filter and $sortby system queries to provide a better fidelity in filtering and sorting queries.
 - operations parameters are handled much like querying for an entity with a compound key. The parameters are wrapped in brackets in the format “name = value” seperated by a comma.
 
-## Entity Framework(EF)
+## ASP.NET Core 3.0
+
+<https://docs.microsoft.com/en-us/aspnet/core/?view=aspnetcore-3.0>
+
+## Other notes
+
+### Entity Framework(EF)
 
 <https://docs.microsoft.com/en-us/aspnet/entity-framework>
 
@@ -2352,14 +2417,14 @@ Use `[Column(TypeName = "decimal(18,2)")]` before a property to define its restr
 
 `modelBuilder.Entity<Product>().Property(p => p.Price).HasPrecision(18, 2);` should work samely, but this API is not found.
 
-## RESTful
+### RESTful
 
 <https://www.tutorialspoint.com/restful/index.htm>
 
-## WCF
+### WCF
 
 Service oriented: <https://docs.microsoft.com/en-us/dotnet/framework/wcf/whats-wcf>
 
-## LocalDB
+### LocalDB
 
 [MSSQLLOCALDB databases aren't listed](https://stackoverflow.com/questions/34029337/mssqllocaldb-databases-arent-listed)
