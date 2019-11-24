@@ -1235,11 +1235,13 @@ ClientApp
 - login
 - shop
 
-### HERE
+In the API controller, add the annotation `Authorize` from `Microsoft.AspNetCore.Authorization` to the controller class.
 
-In the controller, add the attribute `Authorize` to the view.
+Using Bearer token: `[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]`.
 
 ### Storing Identities in the Database
+
+### HERE
 
 Create an entity inherit IdentityUser.
 
