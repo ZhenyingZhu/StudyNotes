@@ -1241,8 +1241,6 @@ Using Bearer token: `[Authorize(AuthenticationSchemes = JwtBearerDefaults.Authen
 
 ### Storing Identities in the Database
 
-### HERE
-
 Create an entity inherit IdentityUser.
 
 Derive DutchContext from `IdentityDbContext<StoreUser>`, where `StoreUser` is the user type.
@@ -1252,6 +1250,8 @@ Need migrate by `dotnet ef migrations add Identity`.
 Drop the table and rebuild it since there is too much changes: `dotnet ef database drop`.
 
 `await` vs `.Wait()`.
+
+### HERE
 
 In the seeder, inject UserManager, and use it to create a StoreUser. Notice it is async.
 
