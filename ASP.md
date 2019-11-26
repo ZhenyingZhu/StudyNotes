@@ -1253,6 +1253,8 @@ Drop the table and rebuild it since there is too much changes: `dotnet ef databa
 
 ### HERE
 
+Create a Controller that is not using EF for the Login and Logout.
+
 In the seeder, inject UserManager, and use it to create a StoreUser. Notice it is async.
 
 ### Configuring Identity
