@@ -977,9 +977,18 @@ Then need to run `Update-Database` to actually apply the change to DB. Notice th
 
 [A good blog about how to use EF](https://code-maze.com/migrations-and-seed-data-efcore/)
 
+[Entity vs Model](https://stackoverflow.com/questions/8743995/what-is-difference-between-a-model-and-an-entity)
+
 Another way is to create a Seeder class as a service, and start it in Program.
 
-Call `dbContext.Database.EnsureCreated()` before DB operations.
+- Create a Seeder Class.
+- Inject the DBContext
+- Inject `IHostingEnvironment`, where its `ContentRootPath`  is the project root folder.
+- Inject `userManager` if want to use NET Core Identity.
+- The main method is `SeedAsync`.
+- First call `dbContext.Database.EnsureCreated()` before DB operations.
+- Then create all seeding data.
+- Then in program.cs, using `IServiceScopeFactory` to create a scope, and run the seeder service. (If I put it in the startup, what happens??)
 
 ```c#
 dbContext.Database.EnsureCreated();
@@ -992,6 +1001,10 @@ dbContext.SaveChanges();
 `scopeFactory`: during every request this factory creates a scope of the lifetime of the request.
 
 [Scopes](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection?view=aspnetcore-3.0#service-lifetimes)
+
+#### HERE
+
+[Use the NET Core way](https://stackoverflow.com/questions/50785009/how-to-seed-an-admin-user-in-ef-core-2-1-0)
 
 ### The Repository Pattern
 
