@@ -1002,8 +1002,6 @@ dbContext.SaveChanges();
 
 [Scopes](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection?view=aspnetcore-3.0#service-lifetimes)
 
-#### HERE
-
 [Use the NET Core way](https://stackoverflow.com/questions/50785009/how-to-seed-an-admin-user-in-ef-core-2-1-0)
 
 ### The Repository Pattern
@@ -1265,6 +1263,8 @@ Drop the table and rebuild it since there is too much changes: `dotnet ef databa
 `await` vs `.Wait()`.
 
 ### HERE
+
+[ASP NET Core Identity](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity?view=aspnetcore-3.0&tabs=visual-studio)
 
 Create a Controller that is not using EF for the Login and Logout.
 
