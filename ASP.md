@@ -1266,6 +1266,13 @@ Drop the table and rebuild it since there is too much changes: `dotnet ef databa
 
 [ASP NET Core Identity](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity?view=aspnetcore-3.0&tabs=visual-studio)
 
+- it is a membership system.
+- identity can be stored in a SQL Server DB with username, password and profile data. Azure Table Storage is also supported as a persistent store.
+- to secure web APIs and SPAs, use either [AAD](https://docs.microsoft.com/en-us/azure/api-management/api-management-howto-protect-backend-with-aad), AAD B2C or [IdentityServer4](https://identityserver.io/).
+- While creating the web app, select "Individual User Accounts".
+- The project creates with area identity.
+
+
 Create a Controller that is not using EF for the Login and Logout.
 
 In the seeder, inject UserManager, and use it to create a StoreUser. Notice it is async.
