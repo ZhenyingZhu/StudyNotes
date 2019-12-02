@@ -1271,7 +1271,9 @@ Drop the table and rebuild it since there is too much changes: `dotnet ef databa
 - to secure web APIs and SPAs, use either [AAD](https://docs.microsoft.com/en-us/azure/api-management/api-management-howto-protect-backend-with-aad), AAD B2C or [IdentityServer4](https://identityserver.io/).
 - While creating the web app, select "Individual User Accounts".
 - The project creates with area identity.
-
+- In `Views\Shared\` there is a `_LoginPartial.cshtml` which appears in `_Layout.cshtml` in the nav bar.
+- Username: zhenying@webapp.com
+- Password: `P@ssw0rd`
 
 Create a Controller that is not using EF for the Login and Logout.
 
