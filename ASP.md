@@ -1275,6 +1275,8 @@ Drop the table and rebuild it since there is too much changes: `dotnet ef databa
 - Username: zhenying@webapp.com, Password: `P@ssw0rd`
 - Several tables are created: AspNetUsers, AspNetRoles, AspNetUserLogins, AspNetUserRoles, AspNetUserTokens
 
+[Config Identity with Auth Token](https://developer.okta.com/blog/2018/03/23/token-authentication-aspnetcore-complete-guide)
+
 Create a Controller that is not using EF for the Login and Logout.
 
 In the seeder, inject UserManager, and use it to create a StoreUser. Notice it is async.
