@@ -1283,6 +1283,7 @@ In the seeder, inject UserManager, and use it to create a StoreUser. Notice it i
 
 - Token AuthN: client attach a token to HTTP requests for the server side to authN.
 - If token is missing or invalid, server returns 401
+- Used in the context of OAuth 2.0 or OpenID connect.
 
 ### Configuring Identity
 
