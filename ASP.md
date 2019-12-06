@@ -1262,6 +1262,10 @@ Drop the table and rebuild it since there is too much changes: `dotnet ef databa
 
 `await` vs `.Wait()`.
 
+Create a Controller that is not using EF for the Login and Logout.
+
+In the seeder, inject UserManager, and use it to create a StoreUser. Notice it is async.
+
 ### HERE
 
 [ASP NET Core Identity](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity?view=aspnetcore-3.0&tabs=visual-studio)
@@ -1277,9 +1281,8 @@ Drop the table and rebuild it since there is too much changes: `dotnet ef databa
 
 [Config Identity with Auth Token](https://developer.okta.com/blog/2018/03/23/token-authentication-aspnetcore-complete-guide)
 
-Create a Controller that is not using EF for the Login and Logout.
-
-In the seeder, inject UserManager, and use it to create a StoreUser. Notice it is async.
+- Token AuthN: client attach a token to HTTP requests for the server side to authN.
+- If token is missing or invalid, server returns 401
 
 ### Configuring Identity
 
