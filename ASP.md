@@ -1262,8 +1262,6 @@ Drop the table and rebuild it since there is too much changes: `dotnet ef databa
 
 `await` vs `.Wait()`.
 
-Create a Controller that is not using EF for the Login and Logout.
-
 In the seeder, inject UserManager, and use it to create a StoreUser. Notice it is async.
 
 ### HERE
@@ -1284,6 +1282,22 @@ In the seeder, inject UserManager, and use it to create a StoreUser. Notice it i
 - Token AuthN: client attach a token to HTTP requests for the server side to authN.
 - If token is missing or invalid, server returns 401
 - Used in the context of OAuth 2.0 or OpenID connect.
+- In the startup.cs `ConfigureServices` method, after `services.AddIdentity`, add `services.AddAuthentication`.
+- The option is `Authority`, `Audience`, `Issuer`, `IssuerSigningKey`
+- In the `configure` method, before `UseMvc`, add `app.UseAuthentication();`
+- Add the `[Authorize]` attribute on your controllers or routes
+
+
+```c#
+services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+.AddJwtBearer(options =>
+{
+    options.Authority = "{yourAuthorizationServerAddress}";
+    options.Audience = "{yourAudience}";
+});
+```
+
+https://developer.okta.com/blog/2018/03/23/token-authentication-aspnetcore-complete-guide#automatic-authorization-server-metadata
 
 ### Configuring Identity
 
@@ -1310,6 +1324,8 @@ If the user is login, `return RedirectToAction("Index", "app");`.
 To create the View, first create a LoginViewModel with properties and validations. Then create the View cshtml.
 
 ### Implementing Login and Logout
+
+Create a Controller, `AccountController`,  that is not using EF for the Login and Logout.
 
 Inject `SignInManager` to AccountController.
 
