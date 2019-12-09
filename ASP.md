@@ -1287,7 +1287,6 @@ In the seeder, inject UserManager, and use it to create a StoreUser. Notice it i
 - In the `configure` method, before `UseMvc`, add `app.UseAuthentication();`
 - Add the `[Authorize]` attribute on your controllers or routes
 
-
 ```c#
 services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 .AddJwtBearer(options =>
@@ -1297,7 +1296,11 @@ services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 });
 ```
 
-https://developer.okta.com/blog/2018/03/23/token-authentication-aspnetcore-complete-guide#automatic-authorization-server-metadata
+- When JwtBearer middleware handles a request first time, it retrieves some metadata from AuthZ server (also calls Authority or issuer)
+- In OpenID Connect terminology those metadata call discovery document.
+- They contain public key and other properties for validating the token
+
+https://developer.okta.com/blog/2018/03/23/token-authentication-aspnetcore-complete-guide#specify-token-validation-parameters
 
 ### Configuring Identity
 
