@@ -1298,9 +1298,10 @@ services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 - When JwtBearer middleware handles a request first time, it retrieves some metadata from AuthZ server (also calls Authority or issuer)
 - In OpenID Connect terminology those metadata call discovery document.
-- They contain public key and other properties for validating the token
+- They contain public key and other properties for validating the token.
+- The audience of a token is the intended recipient of the token. i.e. the Resource Servers that should accept the token, such as `https://contoso.com`.
 
-https://developer.okta.com/blog/2018/03/23/token-authentication-aspnetcore-complete-guide#specify-token-validation-parameters
+https://developer.okta.com/blog/2018/03/23/token-authentication-aspnetcore-complete-guide#understand-symmetric-and-asymmetric-signing
 
 ### Configuring Identity
 
