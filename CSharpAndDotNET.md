@@ -923,3 +923,26 @@ If use `await` without `Task`, each step still runs sequencially. When init a `T
 ## Compare two list
 
 `UnorderedEnumerableComparer<Guid>.Default.Compare(guidList1, guidList2) != 0`
+
+## Resolve conflict for same namespace in two different dlls/projects
+
+This can happen when both projects reference to a differant versions of a same lib. One easiest way to resolve it is to use alias of the project. [alias](http://csc-technicalnotes.blogspot.com/2009/07/type-exists-in-both-dlls.html)
+
+In csproj file, add
+
+```xml
+<ProjectReference Include="MyProjectCausingConflict.csproj">
+    <Project>{Guid}</Project>
+    <Name>MyProjectCausingConflict</Name>
+    <Aliases>ResolveConflict</Aliases>
+</ProjectReference>
+```
+
+```c#
+// Change from
+using MyProjectCausingConflict;
+
+// to
+extern alias ResolveConflict;
+using ResolveConflict.MyProjectCausingConflict;
+```
