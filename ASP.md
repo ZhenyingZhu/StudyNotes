@@ -1301,7 +1301,11 @@ services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 - They contain public key and other properties for validating the token.
 - The audience of a token is the intended recipient of the token. i.e. the Resource Servers that should accept the token, such as `https://contoso.com`.
 
-https://developer.okta.com/blog/2018/03/23/token-authentication-aspnetcore-complete-guide#understand-symmetric-and-asymmetric-signing
+- The generated token will be signed by authZ server, either use HS256 (symmetric key) or RS256 (asymmetric key).
+- Symmetric key, a.k.a. shared secret, is kept on both the authZ server and the application. Like a password, server signs the token, application validate it.
+- Asymmetric key is a public+private key pair. Server signs token with private key, and publish the public key to anyone that needs validate the token.
+
+https://developer.okta.com/blog/2018/03/23/token-authentication-aspnetcore-complete-guide#validate-tokens-manually-in-aspnet-core
 
 ### Configuring Identity
 
