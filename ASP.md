@@ -1305,6 +1305,9 @@ services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 - Symmetric key, a.k.a. shared secret, is kept on both the authZ server and the application. Like a password, server signs the token, application validate it.
 - Asymmetric key is a public+private key pair. Server signs token with private key, and publish the public key to anyone that needs validate the token.
 
+- To generate a token, need to get an authZ server. One server is [IdentityServer4](https://developer.okta.com/blog/2018/03/23/token-authentication-aspnetcore-complete-guide#identityserver4)
+- In this example, uses localhost as the authZ server with a key.
+
 https://developer.okta.com/blog/2018/03/23/token-authentication-aspnetcore-complete-guide#validate-tokens-manually-in-aspnet-core
 
 ### Configuring Identity
