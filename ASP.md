@@ -1306,9 +1306,9 @@ services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 - Asymmetric key is a public+private key pair. Server signs token with private key, and publish the public key to anyone that needs validate the token.
 
 - To generate a token, need to get an authZ server. One server is [IdentityServer4](https://developer.okta.com/blog/2018/03/23/token-authentication-aspnetcore-complete-guide#identityserver4)
-- In this example, uses localhost as the authZ server with a key.
-
-https://developer.okta.com/blog/2018/03/23/token-authentication-aspnetcore-complete-guide#validate-tokens-manually-in-aspnet-core
+- In this example, uses localhost as the authZ server with a random string as the key.
+- ValidIssuer is localhost, ValidAudience is users, IssuerSigningKey is a random string.
+- In the generated token, there is a claim with user email, name and a random guid. There is also a signingCredentials that is generated based on the key as a SymmetricSecurityKey.
 
 ### Configuring Identity
 
