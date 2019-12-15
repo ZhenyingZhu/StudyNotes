@@ -1264,9 +1264,18 @@ Drop the table and rebuild it since there is too much changes: `dotnet ef databa
 
 In the seeder, inject UserManager, and use it to create a StoreUser. Notice it is async.
 
+[ASP.NET Core Security](https://docs.microsoft.com/en-us/aspnet/core/security/?view=aspnetcore-3.0)
+
+Common Vulnerabilities
+
+- [Cross site scripting (XSS)](https://docs.microsoft.com/en-us/aspnet/core/security/cross-site-scripting?view=aspnetcore-3.0): an application takes user input and outputs it to a page without validating, encoding and escaping. e.g., attacker writes a blog which contains a script to steal cookie. When visitor opens the blog, the script runs.
+- [SQL injection](https://docs.microsoft.com/en-us/ef/core/querying/raw-sql): validate the user input. use parameterization which sends the values separate from the SQL text.
+- [Cross-Site Request Forgery (XSRF/CSRF)](https://docs.microsoft.com/en-us/aspnet/core/security/anti-request-forgery?view=aspnetcore-3.0): browsers auto send authN token with every request to a website. The malicious website can use a form which submits POST request in a form to the good website, if the user has already signed in to the good website.
+- [Open redirect attacks](https://docs.microsoft.com/en-us/aspnet/core/security/preventing-open-redirects?view=aspnetcore-3.0): when user redirects to login page, append the return url with a malicious website login page, that is identical to the good page.
+
 ### HERE
 
-[ASP NET Core Identity](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity?view=aspnetcore-3.0&tabs=visual-studio)
+[ASP NET Core Identity](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/?view=aspnetcore-3.0)
 
 - it is a membership system.
 - identity can be stored in a SQL Server DB with username, password and profile data. Azure Table Storage is also supported as a persistent store.
@@ -1276,6 +1285,7 @@ In the seeder, inject UserManager, and use it to create a StoreUser. Notice it i
 - In `Views\Shared\` there is a `_LoginPartial.cshtml` which appears in `_Layout.cshtml` in the nav bar.
 - Username: zhenying@webapp.com, Password: `P@ssw0rd`
 - Several tables are created: AspNetUsers, AspNetRoles, AspNetUserLogins, AspNetUserRoles, AspNetUserTokens
+
 
 [Config Identity with Auth Token](https://developer.okta.com/blog/2018/03/23/token-authentication-aspnetcore-complete-guide)
 
