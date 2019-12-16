@@ -1277,6 +1277,22 @@ Common Vulnerabilities
 
 [ASP NET Core Identity](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/?view=aspnetcore-3.0)
 
+- The middleware `IAuthenticationService` handled authN.
+- authN handlers and options are called "schemes". Write in `Startup.ConfigureServices`.
+- Then call `services.AddAuthentication` with scheme-specific extension methods like `AddJwtBearer` or `AddCookie`. Those methods call `AddScheme` to register schemes with appropriate settings.
+- In `Startup.Configure`, call `IApplicationBuilder.UseAuthentication`. It should call before any middleware that depends on users being authN. After `UseRouting`, before `UseEndpoints`.
+- When use `Identity`, `AddAuthentication` is called internally.
+
+```c#
+services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options => Configuration.Bind("JwtSettings", options))
+    .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options => Configuration.Bind("CookieSettings", options));
+```
+
+AuthN Concepts
+
+https://docs.microsoft.com/en-us/aspnet/core/security/authentication/?view=aspnetcore-3.0#authentication-concepts
+
 - it is a membership system.
 - identity can be stored in a SQL Server DB with username, password and profile data. Azure Table Storage is also supported as a persistent store.
 - to secure web APIs and SPAs, use either [AAD](https://docs.microsoft.com/en-us/azure/api-management/api-management-howto-protect-backend-with-aad), AAD B2C or [IdentityServer4](https://identityserver.io/).
@@ -1285,6 +1301,7 @@ Common Vulnerabilities
 - In `Views\Shared\` there is a `_LoginPartial.cshtml` which appears in `_Layout.cshtml` in the nav bar.
 - Username: zhenying@webapp.com, Password: `P@ssw0rd`
 - Several tables are created: AspNetUsers, AspNetRoles, AspNetUserLogins, AspNetUserRoles, AspNetUserTokens
+
 
 
 [Config Identity with Auth Token](https://developer.okta.com/blog/2018/03/23/token-authentication-aspnetcore-complete-guide)
