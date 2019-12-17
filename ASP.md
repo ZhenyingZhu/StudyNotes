@@ -1278,7 +1278,7 @@ Common Vulnerabilities
 [ASP NET Core Identity](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/?view=aspnetcore-3.0)
 
 - The middleware `IAuthenticationService` handled authN.
-- authN handlers and options are called "schemes". Write in `Startup.ConfigureServices`.
+- authN handlers and options are called "schemes", i.e., a scheme refer to an authN mechanism. Write in `Startup.ConfigureServices`.
 - Then call `services.AddAuthentication` with scheme-specific extension methods like `AddJwtBearer` or `AddCookie`. Those methods call `AddScheme` to register schemes with appropriate settings.
 - In `Startup.Configure`, call `IApplicationBuilder.UseAuthentication`. It should call before any middleware that depends on users being authN. After `UseRouting`, before `UseEndpoints`.
 - When use `Identity`, `AddAuthentication` is called internally.
@@ -1291,7 +1291,13 @@ services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 AuthN Concepts
 
-https://docs.microsoft.com/en-us/aspnet/core/security/authentication/?view=aspnetcore-3.0#authentication-concepts
+- An authZ policy can pick multiple schemes to authN the user.
+- authentication handler: implement the behavior to authN users.
+- Authenticate: construt the user's identity. From request context, it returns a scheme from either cookie or token.
+- Challenge: if the user is not authN, either redirect user to login page or return 401 with a `www-authenticate: bearer` header.
+- Forbid: an authNed user access resources not permitted, return forbidden cookie or 403 result.
+
+https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity?view=aspnetcore-3.0&tabs=visual-studio
 
 - it is a membership system.
 - identity can be stored in a SQL Server DB with username, password and profile data. Azure Table Storage is also supported as a persistent store.
