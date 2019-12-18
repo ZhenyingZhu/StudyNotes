@@ -1297,11 +1297,16 @@ AuthN Concepts
 - Challenge: if the user is not authN, either redirect user to login page or return 401 with a `www-authenticate: bearer` header.
 - Forbid: an authNed user access resources not permitted, return forbidden cookie or 403 result.
 
-https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity?view=aspnetcore-3.0&tabs=visual-studio
+[Introduction to Identity](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity?view=aspnetcore-3.0&tabs=visual-studio)
 
 - it is a membership system.
 - identity can be stored in a SQL Server DB with username, password and profile data. Azure Table Storage is also supported as a persistent store.
 - to secure web APIs and SPAs, use either [AAD](https://docs.microsoft.com/en-us/azure/api-management/api-management-howto-protect-backend-with-aad), AAD B2C or [IdentityServer4](https://identityserver.io/).
+
+https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity?view=aspnetcore-3.0&tabs=visual-studio#create-a-web-app-with-authentication
+
+[Example project](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/security/authentication/identity/sample)
+
 - While creating the web app, select "Individual User Accounts".
 - The project creates with area identity.
 - In `Views\Shared\` there is a `_LoginPartial.cshtml` which appears in `_Layout.cshtml` in the nav bar.
