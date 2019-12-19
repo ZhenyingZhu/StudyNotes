@@ -1264,57 +1264,6 @@ Drop the table and rebuild it since there is too much changes: `dotnet ef databa
 
 In the seeder, inject UserManager, and use it to create a StoreUser. Notice it is async.
 
-[ASP.NET Core Security](https://docs.microsoft.com/en-us/aspnet/core/security/?view=aspnetcore-3.0)
-
-Common Vulnerabilities
-
-- [Cross site scripting (XSS)](https://docs.microsoft.com/en-us/aspnet/core/security/cross-site-scripting?view=aspnetcore-3.0): an application takes user input and outputs it to a page without validating, encoding and escaping. e.g., attacker writes a blog which contains a script to steal cookie. When visitor opens the blog, the script runs.
-- [SQL injection](https://docs.microsoft.com/en-us/ef/core/querying/raw-sql): validate the user input. use parameterization which sends the values separate from the SQL text.
-- [Cross-Site Request Forgery (XSRF/CSRF)](https://docs.microsoft.com/en-us/aspnet/core/security/anti-request-forgery?view=aspnetcore-3.0): browsers auto send authN token with every request to a website. The malicious website can use a form which submits POST request in a form to the good website, if the user has already signed in to the good website.
-- [Open redirect attacks](https://docs.microsoft.com/en-us/aspnet/core/security/preventing-open-redirects?view=aspnetcore-3.0): when user redirects to login page, append the return url with a malicious website login page, that is identical to the good page.
-
-### HERE
-
-[ASP NET Core Identity](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/?view=aspnetcore-3.0)
-
-- The middleware `IAuthenticationService` handled authN.
-- authN handlers and options are called "schemes", i.e., a scheme refer to an authN mechanism. Write in `Startup.ConfigureServices`.
-- Then call `services.AddAuthentication` with scheme-specific extension methods like `AddJwtBearer` or `AddCookie`. Those methods call `AddScheme` to register schemes with appropriate settings.
-- In `Startup.Configure`, call `IApplicationBuilder.UseAuthentication`. It should call before any middleware that depends on users being authN. After `UseRouting`, before `UseEndpoints`.
-- When use `Identity`, `AddAuthentication` is called internally.
-
-```c#
-services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-    .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options => Configuration.Bind("JwtSettings", options))
-    .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options => Configuration.Bind("CookieSettings", options));
-```
-
-AuthN Concepts
-
-- An authZ policy can pick multiple schemes to authN the user.
-- authentication handler: implement the behavior to authN users.
-- Authenticate: construt the user's identity. From request context, it returns a scheme from either cookie or token.
-- Challenge: if the user is not authN, either redirect user to login page or return 401 with a `www-authenticate: bearer` header.
-- Forbid: an authNed user access resources not permitted, return forbidden cookie or 403 result.
-
-[Introduction to Identity](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity?view=aspnetcore-3.0&tabs=visual-studio)
-
-- it is a membership system.
-- identity can be stored in a SQL Server DB with username, password and profile data. Azure Table Storage is also supported as a persistent store.
-- to secure web APIs and SPAs, use either [AAD](https://docs.microsoft.com/en-us/azure/api-management/api-management-howto-protect-backend-with-aad), AAD B2C or [IdentityServer4](https://identityserver.io/).
-
-https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity?view=aspnetcore-3.0&tabs=visual-studio#create-a-web-app-with-authentication
-
-[Example project](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/security/authentication/identity/sample)
-
-- While creating the web app, select "Individual User Accounts".
-- The project creates with area identity.
-- In `Views\Shared\` there is a `_LoginPartial.cshtml` which appears in `_Layout.cshtml` in the nav bar.
-- Username: zhenying@webapp.com, Password: `P@ssw0rd`
-- Several tables are created: AspNetUsers, AspNetRoles, AspNetUserLogins, AspNetUserRoles, AspNetUserTokens
-
-
-
 [Config Identity with Auth Token](https://developer.okta.com/blog/2018/03/23/token-authentication-aspnetcore-complete-guide)
 
 - Token AuthN: client attach a token to HTTP requests for the server side to authN.
@@ -1347,6 +1296,57 @@ services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 - In this example, uses localhost as the authZ server with a random string as the key.
 - ValidIssuer is localhost, ValidAudience is users, IssuerSigningKey is a random string.
 - In the generated token, there is a claim with user email, name and a random guid. There is also a signingCredentials that is generated based on the key as a SymmetricSecurityKey.
+
+[ASP.NET Core Security](https://docs.microsoft.com/en-us/aspnet/core/security/?view=aspnetcore-3.0)
+
+Common Vulnerabilities
+
+- [Cross site scripting (XSS)](https://docs.microsoft.com/en-us/aspnet/core/security/cross-site-scripting?view=aspnetcore-3.0): an application takes user input and outputs it to a page without validating, encoding and escaping. e.g., attacker writes a blog which contains a script to steal cookie. When visitor opens the blog, the script runs.
+- [SQL injection](https://docs.microsoft.com/en-us/ef/core/querying/raw-sql): validate the user input. use parameterization which sends the values separate from the SQL text.
+- [Cross-Site Request Forgery (XSRF/CSRF)](https://docs.microsoft.com/en-us/aspnet/core/security/anti-request-forgery?view=aspnetcore-3.0): browsers auto send authN token with every request to a website. The malicious website can use a form which submits POST request in a form to the good website, if the user has already signed in to the good website.
+- [Open redirect attacks](https://docs.microsoft.com/en-us/aspnet/core/security/preventing-open-redirects?view=aspnetcore-3.0): when user redirects to login page, append the return url with a malicious website login page, that is identical to the good page.
+
+[ASP NET Core Identity](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/?view=aspnetcore-3.0)
+
+- The middleware `IAuthenticationService` handled authN.
+- authN handlers and options are called "schemes", i.e., a scheme refer to an authN mechanism. Write in `Startup.ConfigureServices`.
+- Then call `services.AddAuthentication` with scheme-specific extension methods like `AddJwtBearer` or `AddCookie`. Those methods call `AddScheme` to register schemes with appropriate settings.
+- In `Startup.Configure`, call `IApplicationBuilder.UseAuthentication`. It should call before any middleware that depends on users being authN. After `UseRouting`, before `UseEndpoints`.
+- When use `Identity`, `AddAuthentication` is called internally.
+
+```c#
+services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options => Configuration.Bind("JwtSettings", options))
+    .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options => Configuration.Bind("CookieSettings", options));
+```
+
+AuthN Concepts
+
+- An authZ policy can pick multiple schemes to authN the user.
+- authentication handler: implement the behavior to authN users.
+- Authenticate: construt the user's identity. From request context, it returns a scheme from either cookie or token.
+- Challenge: if the user is not authN, either redirect user to login page or return 401 with a `www-authenticate: bearer` header.
+- Forbid: an authNed user access resources not permitted, return forbidden cookie or 403 result.
+
+[Introduction to Identity](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity?view=aspnetcore-3.0&tabs=visual-studio)
+
+- it is a membership system.
+- identity can be stored in a SQL Server DB with username, password and profile data. Azure Table Storage is also supported as a persistent store.
+- to secure web APIs and SPAs, use either [AAD](https://docs.microsoft.com/en-us/azure/api-management/api-management-howto-protect-backend-with-aad), AAD B2C or [IdentityServer4](https://identityserver.io/).
+
+[Example project](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/security/authentication/identity/sample)
+
+- While creating the web app, select "Individual User Accounts".
+- The project creates with folder `Area/Identity/Account` which refers to a Razor class library.
+- Need call `Update-Database` to let it take effect.
+
+### HERE
+
+https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity?view=aspnetcore-3.0&tabs=visual-studio#configure-identity-services
+
+- In `Views\Shared\` there is a `_LoginPartial.cshtml` which appears in `_Layout.cshtml` in the nav bar.
+- Username: zhenying@webapp.com, Password: `P@ssw0rd`
+- Several tables are created: AspNetUsers, AspNetRoles, AspNetUserLogins, AspNetUserRoles, AspNetUserTokens
 
 ### Configuring Identity
 
