@@ -1339,14 +1339,19 @@ AuthN Concepts
 - While creating the web app, select "Individual User Accounts".
 - The project creates with folder `Area/Identity/Account` which refers to a Razor class library.
 - Need call `Update-Database` to let it take effect.
-
-### HERE
-
-https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity?view=aspnetcore-3.0&tabs=visual-studio#configure-identity-services
-
 - In `Views\Shared\` there is a `_LoginPartial.cshtml` which appears in `_Layout.cshtml` in the nav bar.
 - Username: zhenying@webapp.com, Password: `P@ssw0rd`
 - Several tables are created: AspNetUsers, AspNetRoles, AspNetUserLogins, AspNetUserRoles, AspNetUserTokens
+- Now users can register and be added to DB.
+- Check `services.AddDefaultIdentity()` in `ConfigureServices`, should already be there.
+- To config identity (such as password, lockout and username policy), `services.Configure<IdentityOptions>(options => ...)`
+- Same for `services.ConfigureApplicationCookie()`
+- In the `Configure`, `app.UseAuthentication();` should be after `app.UseRouting();` but before `app.UseAuthorization();`.
+
+### HERE
+
+https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity?view=aspnetcore-3.0&tabs=visual-studio#scaffold-register-login-and-logout
+
 
 ### Configuring Identity
 
