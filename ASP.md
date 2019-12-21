@@ -1350,6 +1350,10 @@ AuthN Concepts
 
 ### HERE
 
+Follow the Scaffold identity into a Razor project with authorization instructions to generate the code shown in this section.
+
+https://docs.microsoft.com/en-us/aspnet/core/security/authentication/scaffold-identity?view=aspnetcore-3.0&tabs=visual-studio#scaffold-identity-into-a-razor-project-with-authorization
+
 https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity?view=aspnetcore-3.0&tabs=visual-studio#scaffold-register-login-and-logout
 
 
