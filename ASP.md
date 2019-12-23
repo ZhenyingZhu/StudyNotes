@@ -1352,6 +1352,7 @@ AuthN Concepts
 
 Follow the Scaffold identity into a Razor project with authorization instructions to generate the code shown in this section.
 
+Note if the build doesn't pass it won't work!
 From Solution Explorer, right-click on the project > Add > New Scaffolded Item.
 From the left pane of the Add Scaffold dialog, select Identity > Add.
 In the Add Identity dialog, select the options you want. 
