@@ -35,15 +35,15 @@ namespace WebApplicationMVC
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddAuthentication().AddCookie().AddJwtBearer(cfg =>
-            {
-                cfg.TokenValidationParameters = new TokenValidationParameters()
-                {
-                    ValidIssuer = this._config["Tokens:Issuer"],
-                    ValidAudience = this._config["Tokens:Audience"],
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(this._config["Tokens:Key"]))
-                };
-            });
+            //services.AddAuthentication().AddCookie().AddJwtBearer(cfg =>
+            //{
+            //    cfg.TokenValidationParameters = new TokenValidationParameters()
+            //    {
+            //        ValidIssuer = this._config["Tokens:Issuer"],
+            //        ValidAudience = this._config["Tokens:Audience"],
+            //        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(this._config["Tokens:Key"]))
+            //    };
+            //});
 
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(

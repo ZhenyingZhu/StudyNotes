@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -15,6 +16,6 @@ namespace WebApplicationMVC.Models
 
         public int UserID { get; set; }
 
-        public StoreUserModel StoreUser { get; set; }
+        public IdentityUser StoreUser { get; set; }
     }
 }

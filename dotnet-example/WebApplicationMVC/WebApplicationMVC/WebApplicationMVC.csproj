@@ -14,6 +14,9 @@
     <Compile Remove="Data\Migrations\20190926063418_AppTestModels.cs" />
     <Compile Remove="Data\Migrations\20190926063535_AppTest.cs" />
     <Compile Remove="Data\Migrations\20191118043935_AddUserSpecificItems.cs" />
+    <Compile Remove="Data\Migrations\20191118050943_UserSpecificItem.cs" />
+    <Compile Remove="Data\Migrations\20191119073743_AddStoreUser.cs" />
+    <Compile Remove="Data\Migrations\20191129073526_SeedAdminUser.cs" />
   </ItemGroup>
 
 

@@ -20,8 +20,6 @@ namespace WebApplicationMVC.Data
 
         public DbSet<UserSpecificItemModel> UserSpecificItemModel { get; set; }
 
-        public DbSet<StoreUserModel> StoreUserModel { get; set; }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -29,8 +27,6 @@ namespace WebApplicationMVC.Data
             modelBuilder.Entity<AppTestModel>().Property(t => t.AppTestInput).HasMaxLength(20);
 
             modelBuilder.Entity<AppTestModel>().HasData(new AppTestModel() { Id = 10, AppTestInput = "Seeding Test1" });
-
-            modelBuilder.Entity<StoreUserModel>().HasData(new StoreUserModel { UserName = "Admin", FirstName = "Zhenying", LastName = "Zhu" });
         }
     }
 }

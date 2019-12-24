@@ -15,7 +15,7 @@ namespace WebApplicationMVC.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.6-servicing-10079")
+                .HasAnnotation("ProductVersion", "2.2.1-servicing-10028")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -73,9 +73,6 @@ namespace WebApplicationMVC.Data.Migrations
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
 
-                    b.Property<string>("Discriminator")
-                        .IsRequired();
-
                     b.Property<string>("Email")
                         .HasMaxLength(256);
 
@@ -115,8 +112,6 @@ namespace WebApplicationMVC.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -246,32 +241,6 @@ namespace WebApplicationMVC.Data.Migrations
                     b.ToTable("UserSpecificItemModel");
                 });
 
-            modelBuilder.Entity("WebApplicationMVC.Models.StoreUserModel", b =>
-                {
-                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
-
-                    b.Property<string>("FirstName");
-
-                    b.Property<string>("LastName");
-
-                    b.HasDiscriminator().HasValue("StoreUserModel");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "1cb9c236-49b6-4955-8468-854300d28c59",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "dbf8d844-7d73-438e-842b-c84ab23fa713",
-                            EmailConfirmed = false,
-                            LockoutEnabled = false,
-                            PhoneNumberConfirmed = false,
-                            TwoFactorEnabled = false,
-                            UserName = "Admin",
-                            FirstName = "Zhenying",
-                            LastName = "Zhu"
-                        });
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole")
@@ -327,7 +296,7 @@ namespace WebApplicationMVC.Data.Migrations
 
             modelBuilder.Entity("WebApplicationMVC.Models.UserSpecificItemModel", b =>
                 {
-                    b.HasOne("WebApplicationMVC.Models.StoreUserModel", "StoreUser")
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "StoreUser")
                         .WithMany()
                         .HasForeignKey("StoreUserId");
                 });
