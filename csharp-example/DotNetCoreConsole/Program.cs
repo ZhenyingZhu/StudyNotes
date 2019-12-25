@@ -7,7 +7,7 @@ namespace DotNetCoreConsole
     {
         static void Main(string[] args)
         {
-            TestAwait.TestMain.testMain();
+            TestBaseToString.TestMain.testMain();
         }
     }
 }
