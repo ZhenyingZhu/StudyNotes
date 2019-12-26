@@ -13,10 +13,14 @@
     <Compile Remove="Data\Migrations\20190924053120_SeedData.cs" />
     <Compile Remove="Data\Migrations\20190926063418_AppTestModels.cs" />
     <Compile Remove="Data\Migrations\20190926063535_AppTest.cs" />
+    <Compile Remove="Data\Migrations\20190926063904_AppTest.cs" />
+    <Compile Remove="Data\Migrations\20191013000358_AddParentRefToAppTestChildModel.cs" />
+    <Compile Remove="Data\Migrations\20191109065408_AddParentIdToChild.cs" />
     <Compile Remove="Data\Migrations\20191118043935_AddUserSpecificItems.cs" />
     <Compile Remove="Data\Migrations\20191118050943_UserSpecificItem.cs" />
     <Compile Remove="Data\Migrations\20191119073743_AddStoreUser.cs" />
     <Compile Remove="Data\Migrations\20191129073526_SeedAdminUser.cs" />
+    <Compile Remove="Data\Migrations\20191224064531_AddUserSpecificItem.cs" />
   </ItemGroup>
 
 
