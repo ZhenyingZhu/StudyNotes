@@ -1350,7 +1350,7 @@ AuthN Concepts
 
 - Create identity Scaffold files can change the login views. But note if the build doesn't pass it won't work!
 - `Views\Shared\_LoginPartial.cshtml` refers to `asp-area` Identity and pages under `Areas\Identity\Pages\Account\`. Those are razor pages.
-- Each of those pages has a cshtml and a cs file. The cs file defines each Input field and `OnGetAsync`, `OnPostAsync`. The bind property is an `InputModel`.
+- Each of those pages has a cshtml and a cs file. The cs file defines each Input field and `OnGetAsync`, `OnPostAsync`. The bind property is an `InputModel`, which is the model that refers to `IdentityUser` but also has `RememberMe` property.
 
 
 ### HERE
