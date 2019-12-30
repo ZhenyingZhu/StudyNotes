@@ -1350,8 +1350,13 @@ AuthN Concepts
 
 - Create identity Scaffold files can change the login views. But note if the build doesn't pass it won't work!
 - `Views\Shared\_LoginPartial.cshtml` refers to `asp-area` Identity and pages under `Areas\Identity\Pages\Account\`. Those are razor pages.
-- Each of those pages has a cshtml and a cs file. The cs file defines each Input field and `OnGetAsync`, `OnPostAsync`. The bind property is an `InputModel`, which is the model that refers to `IdentityUser` but also has `RememberMe` property.
-
+- Each of those pages has a cshtml and a cs file. The cs file defines a `InputModel` for input values validation, and `OnGetAsync`, `OnPostAsync` for render views.
+- The bind property is an `InputModel`, which is the model that defines all the allowed input values.
+- The property `IList<AuthenticationScheme> ExternalLogins` is the schemes.
+- The property `ErrorMessage` is annotated as `TempData`, so that it can be store. It is displayed in `OnGetAsync`.
+- Since most of the display contents are already written in the cshtml, `OnGetAsync` is mainly for external login contents.
+- `OnGetAsync` first clean up the cookie `HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);`, then get all schemes `_signInManager.GetExternalAuthenticationSchemesAsync()`.
+- `OnPostAsync` calls `_signInManager.PasswordSignInAsync(...)` to pass the input to sign in.
 
 ### HERE
 
