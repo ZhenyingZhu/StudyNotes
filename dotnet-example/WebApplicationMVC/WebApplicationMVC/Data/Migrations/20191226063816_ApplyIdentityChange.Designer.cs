@@ -10,8 +10,8 @@ using WebApplicationMVC.Data;
 namespace WebApplicationMVC.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20191013000358_AddParentRefToAppTestChildModel")]
-    partial class AddParentRefToAppTestChildModel
+    [Migration("20191226063816_ApplyIdentityChange")]
+    partial class ApplyIdentityChange
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -194,11 +194,11 @@ namespace WebApplicationMVC.Data.Migrations
 
                     b.Property<string>("Name");
 
-                    b.Property<int?>("ParentId");
+                    b.Property<int>("ParentID");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ParentId");
+                    b.HasIndex("ParentID");
 
                     b.ToTable("AppTestChildModels");
                 });
@@ -222,6 +222,25 @@ namespace WebApplicationMVC.Data.Migrations
                             Id = 10,
                             AppTestInput = "Seeding Test1"
                         });
+                });
+
+            modelBuilder.Entity("WebApplicationMVC.Models.UserSpecificItemModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name");
+
+                    b.Property<string>("StoreUserId");
+
+                    b.Property<int>("UserID");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("StoreUserId");
+
+                    b.ToTable("UserSpecificItemModel");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -273,7 +292,15 @@ namespace WebApplicationMVC.Data.Migrations
                 {
                     b.HasOne("WebApplicationMVC.Models.AppTestModel", "Parent")
                         .WithMany("Children")
-                        .HasForeignKey("ParentId");
+                        .HasForeignKey("ParentID")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("WebApplicationMVC.Models.UserSpecificItemModel", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "StoreUser")
+                        .WithMany()
+                        .HasForeignKey("StoreUserId");
                 });
 #pragma warning restore 612, 618
         }

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace WebApplicationMVC.Data.Migrations
 {
-    public partial class AppTest : Migration
+    public partial class ApplyIdentityChange : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -21,23 +21,44 @@ namespace WebApplicationMVC.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "UserSpecificItemModel",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Name = table.Column<string>(nullable: true),
+                    UserID = table.Column<int>(nullable: false),
+                    StoreUserId = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserSpecificItemModel", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_UserSpecificItemModel_AspNetUsers_StoreUserId",
+                        column: x => x.StoreUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AppTestChildModels",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(nullable: true),
-                    AppTestModelId = table.Column<int>(nullable: true)
+                    ParentID = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AppTestChildModels", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_AppTestChildModels_AppTestModel_AppTestModelId",
-                        column: x => x.AppTestModelId,
+                        name: "FK_AppTestChildModels_AppTestModel_ParentID",
+                        column: x => x.ParentID,
                         principalTable: "AppTestModel",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.InsertData(
@@ -46,15 +67,23 @@ namespace WebApplicationMVC.Data.Migrations
                 values: new object[] { 10, "Seeding Test1" });
 
             migrationBuilder.CreateIndex(
-                name: "IX_AppTestChildModels_AppTestModelId",
+                name: "IX_AppTestChildModels_ParentID",
                 table: "AppTestChildModels",
-                column: "AppTestModelId");
+                column: "ParentID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserSpecificItemModel_StoreUserId",
+                table: "UserSpecificItemModel",
+                column: "StoreUserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
                 name: "AppTestChildModels");
+
+            migrationBuilder.DropTable(
+                name: "UserSpecificItemModel");
 
             migrationBuilder.DropTable(
                 name: "AppTestModel");

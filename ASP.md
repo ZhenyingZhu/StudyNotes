@@ -1348,23 +1348,20 @@ AuthN Concepts
 - Same for `services.ConfigureApplicationCookie()`
 - In the `Configure`, `app.UseAuthentication();` should be after `app.UseRouting();` but before `app.UseAuthorization();`.
 
-### HERE
-
-Follow the Scaffold identity into a Razor project with authorization instructions to generate the code shown in this section.
-
-Note if the build doesn't pass it won't work!
-From Solution Explorer, right-click on the project > Add > New Scaffolded Item.
-From the left pane of the Add Scaffold dialog, select Identity > Add.
-In the Add Identity dialog, select the options you want.
-Select your existing layout page, or your layout file will be overwritten with incorrect markup. When an existing _Layout.cshtml file is selected, it is not overwritten.
-For example: ~/Pages/Shared/_Layout.cshtml for Razor Pages ~/Views/Shared/_Layout.cshtml for MVC projects
-
-https://docs.microsoft.com/en-us/aspnet/core/security/authentication/scaffold-identity?view=aspnetcore-3.0&tabs=visual-studio#scaffold-identity-into-a-razor-project-with-authorization
-
-https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity?view=aspnetcore-3.0&tabs=visual-studio#scaffold-register-login-and-logout
-
+- Create identity Scaffold files can change the login views. But note if the build doesn't pass it won't work!
+- `Views\Shared\_LoginPartial.cshtml` refers to `asp-area` Identity and pages under `Areas\Identity\Pages\Account\`. Those are razor pages.
+- Each of those pages has a cshtml and a cs file. The cs file defines a `InputModel` for input values validation, and `OnGetAsync`, `OnPostAsync` for render views.
+- The bind property is an `InputModel`, which is the model that defines all the allowed input values.
+- The property `IList<AuthenticationScheme> ExternalLogins` is the schemes.
+- The property `ErrorMessage` is annotated as `TempData`, so that it can be store. It is displayed in `OnGetAsync`.
+- Since most of the display contents are already written in the cshtml, `OnGetAsync` is mainly for external login contents.
+- `OnGetAsync` first clean up the cookie `HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);`, then get all schemes `_signInManager.GetExternalAuthenticationSchemesAsync()`.
+- `OnPostAsync` calls `_signInManager.PasswordSignInAsync(...)` to pass the input to sign in.
+- `Register` page uses email sender. Need set it up in the startup.cs
 
 ### Configuring Identity
+
+# HERE
 
 In startup ConfigureServices, call `services.AddIdentity<StoreUser, IdentityRole>(cfg => {}).AddEntityFrameworkStores<DutchContext>();`.
 
