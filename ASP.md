@@ -1357,14 +1357,11 @@ AuthN Concepts
 - Since most of the display contents are already written in the cshtml, `OnGetAsync` is mainly for external login contents.
 - `OnGetAsync` first clean up the cookie `HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);`, then get all schemes `_signInManager.GetExternalAuthenticationSchemesAsync()`.
 - `OnPostAsync` calls `_signInManager.PasswordSignInAsync(...)` to pass the input to sign in.
-
-### HERE
-
-
-https://docs.microsoft.com/en-us/aspnet/core/security/authentication/scaffold-identity?view=aspnetcore-3.0&tabs=visual-studio#scaffold-identity-into-a-razor-project-with-authorization
-
+- `Register` page uses email sender. Need set it up in the startup.cs
 
 ### Configuring Identity
+
+# HERE
 
 In startup ConfigureServices, call `services.AddIdentity<StoreUser, IdentityRole>(cfg => {}).AddEntityFrameworkStores<DutchContext>();`.
 
