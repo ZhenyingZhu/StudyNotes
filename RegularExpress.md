@@ -88,4 +88,5 @@ e.g. `This is a <EM>first</EM> test`
 [HERE](http://www.regular-expressions.info/quickstart.html)
 
 
-
+### Not condition
+https://superuser.com/questions/477463/is-it-possible-to-use-not-in-a-regular-expression-in-textmate
