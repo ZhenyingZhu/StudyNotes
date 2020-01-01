@@ -1361,8 +1361,6 @@ AuthN Concepts
 
 ### Configuring Identity
 
-# HERE
-
 In startup ConfigureServices, call `services.AddIdentity<StoreUser, IdentityRole>(cfg => {}).AddEntityFrameworkStores<DutchContext>();`.
 
 IdentityRole can used to config roles.
@@ -1387,7 +1385,9 @@ To create the View, first create a LoginViewModel with properties and validation
 
 ### Implementing Login and Logout
 
-Create a Controller, `AccountController`,  that is not using EF for the Login and Logout.
+# HERE
+
+Create a Controller, `AccountController`, that is not using EF for the Login and Logout.
 
 Inject `SignInManager` to AccountController.
 
