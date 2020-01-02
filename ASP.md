@@ -1385,8 +1385,6 @@ To create the View, first create a LoginViewModel with properties and validation
 
 ### Implementing Login and Logout
 
-# HERE
-
 Create a Controller, `AccountController`, that is not using EF for the Login and Logout.
 
 Inject `SignInManager` to AccountController.
@@ -1402,6 +1400,8 @@ Username: zhenying@dutchtreat.com, Password: P@ssw0rd!
 In the Layout.cshtml, add Login and Logout nav-link.
 
 ### Use Identity in the API
+
+# HERE
 
 When login, calling the APIs shouldn't need to re-auth.
 
