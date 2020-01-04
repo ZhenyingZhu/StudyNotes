@@ -1418,6 +1418,7 @@ Replace it with `[Authorize(AuthenticationSchemes = JwtBearerDefaults.Authentica
 
 # HERE
 So basically now I haven't use token yet. What would happen if I add authorize?
+
 https://fullstackmark.com/post/13/jwt-authentication-with-aspnet-core-2-web-api-angular-5-net-core-identity-and-facebook-login
 
 See GenerateEncodedToken
