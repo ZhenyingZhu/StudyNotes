@@ -1412,11 +1412,18 @@ Using Identity in ASP NET Core without setting security is by default using cook
 
 Inject authentication service: `services.AddAuthentication().AddCookie().AddJwtBearer();`
 
-Add `[Authorize]` to controller classes. When sending a request to the API before get authed, the response returns 302 with redirect URL. It is auth with cookie.
+Add `[Authorize]` to controller (those are API controllers) classes. When sending a request to the API before get authed, the response returns 302 with redirect URL. It is auth with cookie.
 
 # HERE
 
 Replace it with `[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]`, so that it returns 401.
+
+# HERE
+So basically now I haven't use token yet. What would happen if I add authorize?
+
+https://fullstackmark.com/post/13/jwt-authentication-with-aspnet-core-2-web-api-angular-5-net-core-identity-and-facebook-login
+
+See GenerateEncodedToken
 
 Using postman, adding a header with `Authorization` key and `Bearer` value.
 
