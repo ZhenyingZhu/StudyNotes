@@ -1401,8 +1401,6 @@ In the Layout.cshtml, add Login and Logout nav-link.
 
 ### Use Identity in the API
 
-# HERE
-
 When login, calling the APIs shouldn't need to re-auth.
 
 - Using cookies are easiest, but least secure. Also it cannot resolve the issue if other clients other than browser want access APIs.
@@ -1415,6 +1413,8 @@ Using Identity in ASP NET Core without setting security is by default using cook
 Inject authentication service: `services.AddAuthentication().AddCookie().AddJwtBearer();`
 
 Add `[Authorize]` to controller classes. When sending a request to the API before get authed, the response returns 302 with redirect URL. It is auth with cookie.
+
+# HERE
 
 Replace it with `[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]`, so that it returns 401.
 
