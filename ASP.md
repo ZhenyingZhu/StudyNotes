@@ -1414,6 +1414,9 @@ Inject authentication service: `services.AddAuthentication().AddCookie().AddJwtB
 
 Add `[Authorize]` to controller (those are API controllers) classes. When sending a request to the API before get authed, the response returns 302 with redirect URL. It is auth with cookie.
 
+- For normal MVC controllers, each action/request returns either a `ViewResult` or a `StatusCodeResult` which can be rendered to a page. If the user is not authed, then it redirect to the login page.
+- For API controllers, each action returs either a `ActionResult<T>` or a `StatusCodeResult`. But if the user is not authed, it returns a login page as well, but in html format. So the request should send with the cookie grab from the web browser.
+
 # HERE
 
 Replace it with `[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]`, so that it returns 401.
