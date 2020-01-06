@@ -33,6 +33,8 @@ ASP.NET offers programming models
 
 - <https://docs.microsoft.com/en-us/aspnet/core/?view=aspnetcore-3.0>
 
+- <https://fullstackmark.com/post/13/jwt-authentication-with-aspnet-core-2-web-api-angular-5-net-core-identity-and-facebook-login>
+
 ## Building a Web App with ASP.NET Core, MVC, Entity Framework Core, Bootstrap, and Angular
 
 <https://app.pluralsight.com/library/courses/aspnetcore-mvc-efcore-bootstrap-angular-web/table-of-contents>
@@ -1417,14 +1419,9 @@ Add `[Authorize]` to controller (those are API controllers) classes. When sendin
 - For normal MVC controllers, each action/request returns either a `ViewResult` or a `StatusCodeResult` which can be rendered to a page. If the user is not authed, then it redirect to the login page.
 - For API controllers, each action returs either a `ActionResult<T>` or a `StatusCodeResult`. But if the user is not authed, it returns a login page as well, but in html format. So the request should send with the cookie grab from the web browser.
 
-# HERE
-
-Replace it with `[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]`, so that it returns 401.
+Replace `[Authorize]` with `[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]`, so that when user is not authed, instead of returning 302, returns 401.
 
 # HERE
-So basically now I haven't use token yet. What would happen if I add authorize?
-
-https://fullstackmark.com/post/13/jwt-authentication-with-aspnet-core-2-web-api-angular-5-net-core-identity-and-facebook-login
 
 See GenerateEncodedToken
 
