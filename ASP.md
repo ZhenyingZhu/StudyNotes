@@ -484,7 +484,6 @@ Model-View-Controller framework for applications.
 
 Request route to a controller class, controller get some data from model, then send back to controller to do some logic, and then controller send data to view, view render and return the response.
 
-
 ### First Controller/View
 
 Create a Controller class inherit from AspNetCore.Mvc.Controller under a folder calls controllers.
@@ -1417,11 +1416,9 @@ Inject authentication service: `services.AddAuthentication().AddCookie().AddJwtB
 Add `[Authorize]` to controller (those are API controllers) classes. When sending a request to the API before get authed, the response returns 302 with redirect URL. It is auth with cookie.
 
 - For normal MVC controllers, each action/request returns either a `ViewResult` or a `StatusCodeResult` which can be rendered to a page. If the user is not authed, then it redirect to the login page.
-- For API controllers, each action returs either a `ActionResult<T>` or a `StatusCodeResult`. But if the user is not authed, it returns a login page as well, but in html format. So the request should send with the cookie grab from the web browser.
+- For API controllers, each action returns either a `ActionResult<T>` or a `StatusCodeResult`. But if the user is not authed, it returns a login page as well, but in html format. So the request should send with the cookie grab from the web browser.
 
 Replace `[Authorize]` with `[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]`, so that when user is not authed, instead of returning 302, returns 401.
-
-# HERE
 
 See GenerateEncodedToken
 
@@ -1429,9 +1426,9 @@ Using postman, adding a header with `Authorization` key and `Bearer` value.
 
 Create a REST call (i.e. it is not resolve to a view), `CreateToken`, in Account Controller. It is a POST.
 
-SignInManager.PasswordSignInAsync is actually using a cookie.
+`SignInManager.PasswordSignInAsync` is actually using a cookie.
 
-Inject UserManager to the account controller, so that we can get a user and call SignManager.CheckSignInAsync.
+Inject UserManager to the account controller, so that we can get a user and call `SignManager.CheckSignInAsync`.
 
 Claims are a set of well-known keys with values.
 
@@ -1471,6 +1468,8 @@ User.Identity is just a list of claims. To get the user object, need use UserMan
 In the OrdersController, add the logic to Post method.
 
 ### First TypeScript Class
+
+# HERE
 
 Angular requires TypeScript.
 
