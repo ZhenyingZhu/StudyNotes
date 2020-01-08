@@ -1469,8 +1469,6 @@ In the OrdersController, add the logic to Post method.
 
 ### First TypeScript Class
 
-# HERE
-
 Angular requires TypeScript.
 
 Transpiling in visual studio 2017.
@@ -1860,6 +1858,8 @@ In a cmd, run `gulp`. It runs the default task. Or run `gulp minify`.
 In VS 2017, right click gulpfile.js, start Task Runner Explorer, and bind task to after build.
 
 ### Environment Tag Helpers
+
+# HERE
 
 In the `Views\Shared\_Layout.cshtml`, set `environment` element to define envs.
 
