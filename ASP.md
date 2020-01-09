@@ -1859,8 +1859,6 @@ In VS 2017, right click gulpfile.js, start Task Runner Explorer, and bind task t
 
 ### Environment Tag Helpers
 
-# HERE
-
 In the `Views\Shared\_Layout.cshtml`, set `environment` element to define envs.
 
 Use minified js in the staging and prod envs.
@@ -1874,6 +1872,8 @@ Use envs for CSS as well.
 In the project properties, Debug, can change `ASPNETCORE_ENVIRONMENT` to change envs.
 
 ### Setting up Deployment Scripts
+
+# HERE
 
 In visual studio, can publish a project onto a remote server. Since the build process will be different, need set up deployment envs.
 
