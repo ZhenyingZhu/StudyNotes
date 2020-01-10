@@ -1873,11 +1873,18 @@ In the project properties, Debug, can change `ASPNETCORE_ENVIRONMENT` to change 
 
 ### Setting up Deployment Scripts
 
-# HERE
-
 In visual studio, can publish a project onto a remote server. Since the build process will be different, need set up deployment envs.
 
 In the csproj file, add `Target` element. It can let MSBuild do something during the build.
+
+```xml
+  <Target Name="MyPublishScripts" BeforeTargets="BeforePublish">
+    <Exec Command="npm install" />
+    <Exec Command="gulp" />
+    <Exec Command="ng build" />
+    <Exec Command="dir" />
+  </Target>
+```
 
 `Exec` can run console commands. Notice order matters.
 
@@ -1904,6 +1911,8 @@ But add this
 Can cause build failure.
 
 ### Publishing to Azure
+
+# HERE
 
 1. Publish
 2. New Profile
