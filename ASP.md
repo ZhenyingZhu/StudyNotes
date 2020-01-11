@@ -1912,13 +1912,13 @@ Can cause build failure.
 
 ### Publishing to Azure
 
-# HERE
-
 1. Publish
 2. New Profile
 3. Creating new
 4. Pick the right Azure subscription
 5. Create a Resource Group `DutchTreatSite`
+
+# HERE
 
 A App Service Plan is created.
 
