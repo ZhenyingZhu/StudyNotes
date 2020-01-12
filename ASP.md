@@ -1926,6 +1926,10 @@ It runs on the azurewebsites.net with HTTPS.
 
 # HERE
 
+Suspect it couldn't connect DB
+
+https://docs.microsoft.com/en-us/azure/app-service/app-service-web-tutorial-dotnetcore-sqldb
+
 ### Publishing to IIS
 
 In IIS, create a new Website. Change the port to 81 because Default Website take 80 already.
