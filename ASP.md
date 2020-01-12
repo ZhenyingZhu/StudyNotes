@@ -1918,13 +1918,13 @@ Can cause build failure.
 4. Pick the right Azure subscription
 5. Create a Resource Group `DutchTreatSite`
 
-# HERE
-
 A App Service Plan is created.
 
 In visual studio 2017's Web Publish Activity tab, can see the details.
 
 It runs on the azurewebsites.net with HTTPS.
+
+# HERE
 
 ### Publishing to IIS
 
