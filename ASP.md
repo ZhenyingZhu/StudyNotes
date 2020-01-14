@@ -1924,11 +1924,23 @@ In visual studio 2017's Web Publish Activity tab, can see the details.
 
 It runs on the azurewebsites.net with HTTPS.
 
+[Build an ASP.NET Core and SQL Database app](https://docs.microsoft.com/en-us/azure/app-service/app-service-web-tutorial-dotnetcore-sqldb)
+
+- To run an developped repo locally:
+
+```powershell
+dotnet restore
+dotnet ef database update
+dotnet run
+```
+
+- Start an [Azure powershell](https://shell.azure.com/)
+- `az group create --name myResourceGroup --location "West US"`
+- `az sql server create --name <server_name> --resource-group myResourceGroup --location "West US" --admin-user <db_username> --admin-password <db_password>`
+
 # HERE
 
-Suspect it couldn't connect DB
-
-https://docs.microsoft.com/en-us/azure/app-service/app-service-web-tutorial-dotnetcore-sqldb
+https://docs.microsoft.com/en-us/azure/app-service/app-service-web-tutorial-dotnetcore-sqldb#configure-a-server-firewall-rule
 
 ### Publishing to IIS
 
