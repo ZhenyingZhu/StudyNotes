@@ -1936,11 +1936,16 @@ dotnet run
 
 - Start an [Azure powershell](https://shell.azure.com/)
 - `az group create --name myResourceGroup --location "West US"`
-- `az sql server create --name <server_name> --resource-group myResourceGroup --location "West US" --admin-user <db_username> --admin-password <db_password>`
+- Create Server: `az sql server create --name <server_name> --resource-group myResourceGroup --location "West US" --admin-user <db_username> --admin-password <db_password>`
+- Set firewall: `az sql server firewall-rule create --resource-group myResourceGroup --server <server_name> --name AllowAllIps --start-ip-address 0.0.0.0 --end-ip-address 0.0.0.0`
+- Create a S0 DB (S0 is the low performance): `az sql db create --resource-group myResourceGroup --server <server_name> --name coreDB --service-objective S0`
+- The connection string would be: `Server=tcp:<server_name>.database.windows.net,1433;Database=coreDB;User ID=<db_username>;Password=<db_password>;Encrypt=true;Connection Timeout=30;`
+
+az sql db create --resource-group myResourceGroup --server dotnetcoresqldb --name coreDB --service-objective S0
 
 # HERE
 
-https://docs.microsoft.com/en-us/azure/app-service/app-service-web-tutorial-dotnetcore-sqldb#configure-a-server-firewall-rule
+https://docs.microsoft.com/en-us/azure/app-service/app-service-web-tutorial-dotnetcore-sqldb#deploy-app-to-azure
 
 ### Publishing to IIS
 
