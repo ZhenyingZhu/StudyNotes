@@ -1940,8 +1940,11 @@ dotnet run
 - Set firewall: `az sql server firewall-rule create --resource-group myResourceGroup --server <server_name> --name AllowAllIps --start-ip-address 0.0.0.0 --end-ip-address 0.0.0.0`
 - Create a S0 DB (S0 is the low performance): `az sql db create --resource-group myResourceGroup --server <server_name> --name coreDB --service-objective S0`
 - The connection string would be: `Server=tcp:<server_name>.database.windows.net,1433;Database=coreDB;User ID=<db_username>;Password=<db_password>;Encrypt=true;Connection Timeout=30;`
-
-az sql db create --resource-group myResourceGroup --server dotnetcoresqldb --name coreDB --service-objective S0
+- Create an app service plan: `az appservice plan create --name myAppServicePlan --resource-group myResourceGroup --sku FREE`
+- Create a web app: `az webapp create --resource-group myResourceGroup --plan myAppServicePlan --name <app-name> --deployment-local-git`
+- Set the connection string: `az webapp config connection-string set --resource-group myResourceGroup --name <app name> --settings MyDbConnection="<connection_string>" --connection-string-type SQLServer`
+- Config env var: `az webapp config appsettings set --name <app_name> --resource-group myResourceGroup --settings ASPNETCORE_ENVIRONMENT="Production"`
+- Don't forget update the code to pick the connection string.
 
 # HERE
 
