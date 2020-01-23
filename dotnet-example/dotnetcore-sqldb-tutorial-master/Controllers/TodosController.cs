@@ -2,32 +2,29 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using WebApplicationMVC.Data;
-using WebApplicationMVC.Models;
+using DotNetCoreSqlDb.Models;
 
-namespace WebApplicationMVC.Controllers
+namespace DotNetCoreSqlDb.Controllers
 {
-    [Authorize]
-    public class AppTestModelsController : Controller
+    public class TodosController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly MyDatabaseContext _context;
 
-        public AppTestModelsController(ApplicationDbContext context)
+        public TodosController(MyDatabaseContext context)
         {
             _context = context;
         }
 
-        // GET: AppTestModels
+        // GET: Todos
         public async Task<IActionResult> Index()
         {
-            return View(await _context.AppTestModel.ToListAsync());
+            return View(await _context.Todo.ToListAsync());
         }
 
-        // GET: AppTestModels/Details/5
+        // GET: Todos/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -35,40 +32,39 @@ namespace WebApplicationMVC.Controllers
                 return NotFound();
             }
 
-            var appTestModel = await _context.AppTestModel
-                .Include(a => a.Children)
-                .FirstOrDefaultAsync(a => a.Id == id);
-            if (appTestModel == null)
+            var todo = await _context.Todo
+                .FirstOrDefaultAsync(m => m.ID == id);
+            if (todo == null)
             {
                 return NotFound();
             }
 
-            return View(appTestModel);
+            return View(todo);
         }
 
-        // GET: AppTestModels/Create
+        // GET: Todos/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: AppTestModels/Create
+        // POST: Todos/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,AppTestInput")] AppTestModel appTestModel)
+        public async Task<IActionResult> Create([Bind("ID,Description,CreatedDate")] Todo todo)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(appTestModel);
+                _context.Add(todo);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(appTestModel);
+            return View(todo);
         }
 
-        // GET: AppTestModels/Edit/5
+        // GET: Todos/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -76,22 +72,22 @@ namespace WebApplicationMVC.Controllers
                 return NotFound();
             }
 
-            var appTestModel = await _context.AppTestModel.FindAsync(id);
-            if (appTestModel == null)
+            var todo = await _context.Todo.FindAsync(id);
+            if (todo == null)
             {
                 return NotFound();
             }
-            return View(appTestModel);
+            return View(todo);
         }
 
-        // POST: AppTestModels/Edit/5
+        // POST: Todos/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,AppTestInput")] AppTestModel appTestModel)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,Description,CreatedDate")] Todo todo)
         {
-            if (id != appTestModel.Id)
+            if (id != todo.ID)
             {
                 return NotFound();
             }
@@ -100,12 +96,12 @@ namespace WebApplicationMVC.Controllers
             {
                 try
                 {
-                    _context.Update(appTestModel);
+                    _context.Update(todo);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!AppTestModelExists(appTestModel.Id))
+                    if (!TodoExists(todo.ID))
                     {
                         return NotFound();
                     }
@@ -116,10 +112,10 @@ namespace WebApplicationMVC.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(appTestModel);
+            return View(todo);
         }
 
-        // GET: AppTestModels/Delete/5
+        // GET: Todos/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -127,30 +123,30 @@ namespace WebApplicationMVC.Controllers
                 return NotFound();
             }
 
-            var appTestModel = await _context.AppTestModel
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (appTestModel == null)
+            var todo = await _context.Todo
+                .FirstOrDefaultAsync(m => m.ID == id);
+            if (todo == null)
             {
                 return NotFound();
             }
 
-            return View(appTestModel);
+            return View(todo);
         }
 
-        // POST: AppTestModels/Delete/5
+        // POST: Todos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var appTestModel = await _context.AppTestModel.FindAsync(id);
-            _context.AppTestModel.Remove(appTestModel);
+            var todo = await _context.Todo.FindAsync(id);
+            _context.Todo.Remove(todo);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool AppTestModelExists(int id)
+        private bool TodoExists(int id)
         {
-            return _context.AppTestModel.Any(e => e.Id == id);
+            return _context.Todo.Any(e => e.ID == id);
         }
     }
 }

@@ -33,6 +33,8 @@ ASP.NET offers programming models
 
 - <https://docs.microsoft.com/en-us/aspnet/core/?view=aspnetcore-3.0>
 
+- <https://fullstackmark.com/post/13/jwt-authentication-with-aspnet-core-2-web-api-angular-5-net-core-identity-and-facebook-login>
+
 ## Building a Web App with ASP.NET Core, MVC, Entity Framework Core, Bootstrap, and Angular
 
 <https://app.pluralsight.com/library/courses/aspnetcore-mvc-efcore-bootstrap-angular-web/table-of-contents>
@@ -481,7 +483,6 @@ Model-View-Controller framework for applications.
 - View: markup to display
 
 Request route to a controller class, controller get some data from model, then send back to controller to do some logic, and then controller send data to view, view render and return the response.
-
 
 ### First Controller/View
 
@@ -1340,7 +1341,7 @@ AuthN Concepts
 - The project creates with folder `Area/Identity/Account` which refers to a Razor class library.
 - Need call `Update-Database` to let it take effect.
 - In `Views\Shared\` there is a `_LoginPartial.cshtml` which appears in `_Layout.cshtml` in the nav bar.
-- Username: zhenying@webapp.com, Password: `P@ssw0rd`
+- Username: zhenying@webapp.com, zhenying2@webapp.com, Password: `P@ssw0rd`
 - Several tables are created: AspNetUsers, AspNetRoles, AspNetUserLogins, AspNetUserRoles, AspNetUserTokens
 - Now users can register and be added to DB.
 - Check `services.AddDefaultIdentity()` in `ConfigureServices`, should already be there.
@@ -1360,8 +1361,6 @@ AuthN Concepts
 - `Register` page uses email sender. Need set it up in the startup.cs
 
 ### Configuring Identity
-
-# HERE
 
 In startup ConfigureServices, call `services.AddIdentity<StoreUser, IdentityRole>(cfg => {}).AddEntityFrameworkStores<DutchContext>();`.
 
@@ -1387,7 +1386,7 @@ To create the View, first create a LoginViewModel with properties and validation
 
 ### Implementing Login and Logout
 
-Create a Controller, `AccountController`,  that is not using EF for the Login and Logout.
+Create a Controller, `AccountController`, that is not using EF for the Login and Logout.
 
 Inject `SignInManager` to AccountController.
 
@@ -1414,17 +1413,22 @@ Using Identity in ASP NET Core without setting security is by default using cook
 
 Inject authentication service: `services.AddAuthentication().AddCookie().AddJwtBearer();`
 
-Add `[Authorize]` to controller classes. When sending a request to the API before get authed, the response returns 302 with redirect URL. It is auth with cookie.
+Add `[Authorize]` to controller (those are API controllers) classes. When sending a request to the API before get authed, the response returns 302 with redirect URL. It is auth with cookie.
 
-Replace it with `[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]`, so that it returns 401.
+- For normal MVC controllers, each action/request returns either a `ViewResult` or a `StatusCodeResult` which can be rendered to a page. If the user is not authed, then it redirect to the login page.
+- For API controllers, each action returns either a `ActionResult<T>` or a `StatusCodeResult`. But if the user is not authed, it returns a login page as well, but in html format. So the request should send with the cookie grab from the web browser.
+
+Replace `[Authorize]` with `[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]`, so that when user is not authed, instead of returning 302, returns 401.
+
+See GenerateEncodedToken
 
 Using postman, adding a header with `Authorization` key and `Bearer` value.
 
 Create a REST call (i.e. it is not resolve to a view), `CreateToken`, in Account Controller. It is a POST.
 
-SignInManager.PasswordSignInAsync is actually using a cookie.
+`SignInManager.PasswordSignInAsync` is actually using a cookie.
 
-Inject UserManager to the account controller, so that we can get a user and call SignManager.CheckSignInAsync.
+Inject UserManager to the account controller, so that we can get a user and call `SignManager.CheckSignInAsync`.
 
 Claims are a set of well-known keys with values.
 
@@ -1873,6 +1877,15 @@ In visual studio, can publish a project onto a remote server. Since the build pr
 
 In the csproj file, add `Target` element. It can let MSBuild do something during the build.
 
+```xml
+  <Target Name="MyPublishScripts" BeforeTargets="BeforePublish">
+    <Exec Command="npm install" />
+    <Exec Command="gulp" />
+    <Exec Command="ng build" />
+    <Exec Command="dir" />
+  </Target>
+```
+
 `Exec` can run console commands. Notice order matters.
 
 ### Publishing to a Directory
@@ -1910,6 +1923,32 @@ A App Service Plan is created.
 In visual studio 2017's Web Publish Activity tab, can see the details.
 
 It runs on the azurewebsites.net with HTTPS.
+
+[Build an ASP.NET Core and SQL Database app](https://docs.microsoft.com/en-us/azure/app-service/app-service-web-tutorial-dotnetcore-sqldb)
+
+- To run an developped repo locally:
+
+```powershell
+dotnet restore
+dotnet ef database update
+dotnet run
+```
+
+- Start an [Azure powershell](https://shell.azure.com/)
+- `az group create --name myResourceGroup --location "West US"`
+- Create Server: `az sql server create --name <server_name> --resource-group myResourceGroup --location "West US" --admin-user <db_username> --admin-password <db_password>`
+- Set firewall: `az sql server firewall-rule create --resource-group myResourceGroup --server <server_name> --name AllowAllIps --start-ip-address 0.0.0.0 --end-ip-address 0.0.0.0`
+- Create a S0 DB (S0 is the low performance): `az sql db create --resource-group myResourceGroup --server <server_name> --name coreDB --service-objective S0`
+- The connection string would be: `Server=tcp:<server_name>.database.windows.net,1433;Database=coreDB;User ID=<db_username>;Password=<db_password>;Encrypt=true;Connection Timeout=30;`
+- Create an app service plan: `az appservice plan create --name myAppServicePlan --resource-group myResourceGroup --sku FREE`
+- Create a web app: `az webapp create --resource-group myResourceGroup --plan myAppServicePlan --name <app-name> --deployment-local-git`
+- Set the connection string: `az webapp config connection-string set --resource-group myResourceGroup --name <app name> --settings MyDbConnection="<connection_string>" --connection-string-type SQLServer`
+- Config env var: `az webapp config appsettings set --name <app_name> --resource-group myResourceGroup --settings ASPNETCORE_ENVIRONMENT="Production"`
+- Don't forget update the code to pick the connection string.
+
+# HERE
+
+https://docs.microsoft.com/en-us/azure/app-service/app-service-web-tutorial-dotnetcore-sqldb#deploy-app-to-azure
 
 ### Publishing to IIS
 
