@@ -64,6 +64,10 @@ Azure AD:
 - <https://docs.microsoft.com/en-us/azure/active-directory/active-directory-whatis>
 - <https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-developers-guide>
 
+### Advancing Azure Active Directory availability
+
+<https://azure.microsoft.com/en-us/blog/advancing-azure-active-directory-availability/>
+
 ## Get start
 
 1. get Azure AD tenant
