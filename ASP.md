@@ -894,6 +894,10 @@ Use `ICollection<AnotherEntity>` to create a parent-child/one-to-many relationsh
 
 Create class `DutchContext` inherit from `DbContext` for establishing connection. Create `DbSet` in it for entities that need to be queryable.
 
+# HERE
+Create an entity with Enum and init it:
+https://medium.com/agilix/entity-framework-core-enums-ee0f8f4063f2
+
 ### Using Entity Framework Core Tooling
 
 Can also use package manager. See "First Controller/View".
