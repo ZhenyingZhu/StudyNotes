@@ -898,6 +898,11 @@ Create class `DutchContext` inherit from `DbContext` for establishing connection
 Create an entity with Enum and init it:
 https://medium.com/agilix/entity-framework-core-enums-ee0f8f4063f2
 
+EF Core 1-to-1
+
+https://www.entityframeworktutorial.net/code-first/foreignkey-dataannotations-attribute-in-code-first.aspx
+
+
 ### Using Entity Framework Core Tooling
 
 Can also use package manager. See "First Controller/View".
