@@ -34,6 +34,7 @@ ASP.NET offers programming models
 - <https://docs.microsoft.com/en-us/aspnet/core/?view=aspnetcore-3.0>
 
 - <https://fullstackmark.com/post/13/jwt-authentication-with-aspnet-core-2-web-api-angular-5-net-core-identity-and-facebook-login>
+- <https://app.pluralsight.com/library/courses/aspdotnet-core-react-building-website/table-of-contents?aid=701j0000001heIoAAI>
 
 ## Building a Web App with ASP.NET Core, MVC, Entity Framework Core, Bootstrap, and Angular
 
