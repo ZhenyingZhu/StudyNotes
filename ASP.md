@@ -1998,6 +1998,13 @@ To support multiple platform, add `<RuntimeIdentifiers>win10-x64,OSX.10.10-x64</
 
 Use `dotnet publish -o <PATH> --runtime osx.10.10-x64`.
 
+
+## Building a Website with React and ASP.NET Core
+
+<https://app.pluralsight.com/library/courses/aspdotnet-core-react-building-website/table-of-contents>
+
+# HERE
+
 ## ASP.NET Web API
 
 Use HTTP methods.
