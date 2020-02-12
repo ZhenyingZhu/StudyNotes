@@ -1998,12 +1998,30 @@ To support multiple platform, add `<RuntimeIdentifiers>win10-x64,OSX.10.10-x64</
 
 Use `dotnet publish -o <PATH> --runtime osx.10.10-x64`.
 
-
 ## Building a Website with React and ASP.NET Core
 
 <https://app.pluralsight.com/library/courses/aspdotnet-core-react-building-website/table-of-contents>
 
-# HERE
+### Course Overview
+
+Structure
+
+- React REST client
+- ASP.NET Core REST server
+
+Tech stack
+
+- WebPack: build React app
+- Create React app: a Facebook's scaffolder. Do the same thing.
+- ASP.NET Core implement REST APIs
+- React app generate server side html to increase the render speed.
+
+Prerequisites
+
+- JavaScript ES6
+- JS Arrow functions and promises
+
+### Introducing How to Build Connected React Single Page Apps
 
 ## ASP.NET Web API
 
