@@ -2023,6 +2023,16 @@ Prerequisites
 
 ### Introducing How to Build Connected React Single Page Apps
 
+React is used to build single page apps: self contained JS apps run in Browser. Also called Spark.
+
+Dev Env
+
+- Efficiently: fast iterate by able to testing locally.
+- Consistently: pattern to add new code will be same
+- Reliably
+
+# HERE
+
 ## ASP.NET Web API
 
 Use HTTP methods.
