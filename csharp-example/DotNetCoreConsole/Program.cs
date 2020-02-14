@@ -7,7 +7,7 @@ namespace DotNetCoreConsole
     {
         static void Main(string[] args)
         {
-            TestBaseToString.TestMain.testMain();
+            TestGeneratePassword.TestMain.testMain();
         }
     }
 }
