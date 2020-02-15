@@ -2031,6 +2031,16 @@ Dev Env
 - Consistently: pattern to add new code will be same
 - Reliably
 
+Ways to Build React apps
+
+- Webpack and json-server
+- ASP.NET Core SPA templates
+- Facebooks's create-react-app scaffolder
+
+### Building a custom Webpack Configuration for React and Core
+
+
+
 # HERE
 
 ## ASP.NET Web API
