@@ -1,0 +1,16 @@
+{
+  "name": "reactcustomwebpack",
+  "version": "1.0.0",
+  "description": "",
+  "main": "HelloWorld.js",
+  "dependencies": {
+    "webpack": "^4.41.6",
+    "webpack-cli": "^3.3.11"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

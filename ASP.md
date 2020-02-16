@@ -2039,9 +2039,36 @@ Ways to Build React apps
 
 ### Building a custom Webpack Configuration for React and Core
 
+Server side rendering
+
+- support return 404 page
+- Improve performance
+
+Single-page application (SPA)
+
+- Dynamically rewriting current page
+- Either all code (HTML, JS, CSS) is retrived while loading
+- Or dynamically loaded and added when response to actions.
+
+Webpack
+
+- a static module bundler.
+- Put all dependencies and bundle your JS into a single file.
+- `npm install -save-dev webpack`. `-save-dev` means save the packages so that `npm install --production` doesn't need to re-installed. Still the package is installed under `node_modules` folder under the root folder.
+- config: webpack.config.js. Defines `APP_DIR`, `BUILD_DIR` and a config which has entry and output.
+- `.\node_modules\.bin\webpack` to run it. If see Powershell blocks it, run `Set-ExecutionPolicy RemoteSigned -Scope CurrentUser`.
+
+
+npm package.json
+
+- `.gitignore`: add `node_modules`
+- `npm init` creates a `package.json` with a `dependencies` section.
+
 
 
 # HERE
+
+https://app.pluralsight.com/course-player?clipId=fe491ec5-4ade-4c22-b964-2cc98c663f48
 
 ## ASP.NET Web API
 
