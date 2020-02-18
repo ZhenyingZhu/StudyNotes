@@ -68,6 +68,25 @@ Azure AD:
 
 <https://azure.microsoft.com/en-us/blog/advancing-azure-active-directory-availability/>
 
+### Proxy Addresses
+
+<https://support.microsoft.com/en-us/help/3190357/how-the-proxyaddresses-attribute-is-populated-in-azure-ad>
+
+ProxyAddress
+
+- multi-value property contains addresses, like SMTP, X500, SIP, etc.
+- objs in AD can have them. When sync to AAD, some rules applied and make them not same.
+
+Concepts
+
+- Initial domain: This is the first provisioned domain in the tenant. For example, contoso.onmicrosoft.com.
+- Microsoft Online Email Routing Address (MOERA): The MOERA is constructed from the user's userPrincipalName attribute in Active Directory and is automatically assigned to the cloud account during the initial sync. For example, user@contoso.onmicrosoft.com. MOERA domain is init domain.
+- Primary SMTP address: This is the primary email address of an Exchange recipient object. For example, SMTP:user@contoso.com. Notice it is different than the init domain.
+- Secondary SMTP address: This is the secondary email address of an Exchange recipient object. For example, smtp:user@contoso.com.
+- User principal name (UPN): The UPN can be the sign-in name of the user.
+- mail: This is an attribute in Active Directory, the value of which represents the email address of a user.
+- mailNickName: This is an attribute in Active Directory, the value of which represents the alias of a user in an Exchange organization.
+
 ## Get start
 
 1. get Azure AD tenant
