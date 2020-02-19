@@ -100,6 +100,7 @@ Visual Studio Web Application options:
   - TLS cert is installed on server.
   - public and private keys are stored on server.
   - Based on public/private-key cryptography: public key is used for encryption, private key is for decryption.
+  - There is also a list of endpoints in SSL cert? [More details](https://docs.microsoft.com/en-us/archive/blogs/jpsanders/troubleshooting-asp-net-the-remote-certificate-is-invalid-according-to-the-validation-procedure)
 - HTTPS Handshake
   1. browser connect to an HTTPS server with a SYNC
   2. server returns a SYNC ACK
