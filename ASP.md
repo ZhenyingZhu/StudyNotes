@@ -2078,6 +2078,11 @@ Web app needs
 - A Web Server to host HTML
 - A script to launch the web server
 
+JSX format
+
+- React way to write HTML-like code
+- Need Babel compiler
+
 # HERE
 
 https://app.pluralsight.com/course-player?clipId=1a63543a-816e-4451-b694-bbdc98f75a18
