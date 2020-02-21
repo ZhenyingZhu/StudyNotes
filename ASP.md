@@ -2081,11 +2081,16 @@ Web app needs
 JSX format
 
 - React way to write HTML-like code
-- Need Babel compiler
+- Babel compiler can deal with it. `npm install babel-core babel-loader@7 babel-preset-env babel-preset-react babel-preset-stage-2 react react-dom --save`. The `babel-loader` has a new version which changes the webpack.config.js format, so install v7.
+- Add babel to the webpack.config.js in the module section and as a loader. Apply it to all js and jsx files.
+- devtool add source-map, which can help the debugger to find the line number.
+- `stage-2` JS features contains promises.
+
+The `Client.js` under ClientApp folder is the main app.
 
 # HERE
 
-https://app.pluralsight.com/course-player?clipId=1a63543a-816e-4451-b694-bbdc98f75a18
+https://app.pluralsight.com/course-player?clipId=ac4adb56-5635-45fe-85a4-e7ef94d9035f
 
 ## ASP.NET Web API
 
