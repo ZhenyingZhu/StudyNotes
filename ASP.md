@@ -2088,6 +2088,12 @@ JSX format
 
 The `Client.js` under ClientApp folder is the main app.
 
+React rounter
+
+- `npm install react-router react-router-dom --save`
+- A route: `<Route exact path="/route1" render={() => (<h1>This is Route1</h1>)} />`
+- Add `histroyApiFallback: true` to webpack.config.js devServer section. It prevents return 404 when bad routing happens.
+
 # HERE
 
 https://app.pluralsight.com/course-player?clipId=ac4adb56-5635-45fe-85a4-e7ef94d9035f
