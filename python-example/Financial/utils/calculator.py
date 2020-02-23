@@ -87,3 +87,6 @@ def calculateRealRateOfReturnFromNominalRate(nominal_rate, inflation):
 def calculateRealRateOfReturn(start_value, end_value, inflation, duration):
     nominal_rate = calculateNominalRateOfReturn(start_value, end_value, duration)
     return calculateRealRateOfReturnFromNominalRate(nominal_rate, inflation)
+
+def calculateMortgagePaymentTotal(principal, yearly_rate, term):
+    return principal * (1 + yearly_rate / 12.0 / 100.0 * 30)
