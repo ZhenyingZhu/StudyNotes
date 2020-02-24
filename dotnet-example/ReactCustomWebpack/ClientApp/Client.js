@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import FullPage from "./common/FullPage";
+import FullPage from "./Components/Common/FullPage";
 
 ReactDOM.render(
     <FullPage />,
