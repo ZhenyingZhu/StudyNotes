@@ -163,46 +163,6 @@ var FullPage = function (_Component) {
                     'h2',
                     null,
                     'Page Top'
-                ),
-                _react2.default.createElement(
-                    _reactRouterDom.BrowserRouter,
-                    null,
-                    _react2.default.createElement(
-                        'div',
-                        null,
-                        _react2.default.createElement(
-                            _reactRouterDom.Switch,
-                            null,
-                            _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', render: function render() {
-                                    return _react2.default.createElement(
-                                        'h1',
-                                        null,
-                                        'Home Page'
-                                    );
-                                } }),
-                            _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/route1', render: function render() {
-                                    return _react2.default.createElement(
-                                        'h1',
-                                        null,
-                                        'This is Route1'
-                                    );
-                                } }),
-                            _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/route2', render: function render() {
-                                    return _react2.default.createElement(
-                                        'h1',
-                                        null,
-                                        'This is Route2'
-                                    );
-                                } }),
-                            _react2.default.createElement(_reactRouterDom.Route, { render: function render() {
-                                    return _react2.default.createElement(
-                                        'h1',
-                                        null,
-                                        'Route Not Found'
-                                    );
-                                } })
-                        )
-                    )
                 )
             );
         }

@@ -2098,6 +2098,10 @@ React rounter
 
 https://app.pluralsight.com/course-player?clipId=ac4adb56-5635-45fe-85a4-e7ef94d9035f
 
+comment in JSX: https://wesbos.com/react-jsx-comments/
+
+After remove  histroyApiFallback: true from webpack.config.js it can run.
+
 ## ASP.NET Web API
 
 Use HTTP methods.

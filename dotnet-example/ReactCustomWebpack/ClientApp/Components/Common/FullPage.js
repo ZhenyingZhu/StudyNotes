@@ -8,6 +8,7 @@ class FullPage extends Component {
         return (
             <div>
                 <h2>Page Top</h2>
+                {/* zhenying: need use curly braces to wrap comment.
                 <Router>
                     <div>
                         <Switch>
@@ -18,6 +19,7 @@ class FullPage extends Component {
                         </Switch>
                     </div>
                 </Router>
+                */}
             </div>
         );
     }
