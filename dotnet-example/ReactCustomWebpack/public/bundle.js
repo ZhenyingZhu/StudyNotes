@@ -77,7 +77,7 @@
 /******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
 /******/
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "";
+/******/ 	__webpack_require__.p = "/";
 /******/
 /******/
 /******/ 	// Load entry module and return exports
@@ -136,6 +136,10 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRouterDom = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 
+var _Routes = __webpack_require__(/*! ../../Routes */ "./ClientApp/Routes.js");
+
+var _Routes2 = _interopRequireDefault(_Routes);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -163,7 +167,8 @@ var FullPage = function (_Component) {
                     'h2',
                     null,
                     'Page Top'
-                )
+                ),
+                _react2.default.createElement(_Routes2.default, null)
             );
         }
     }]);
@@ -174,6 +179,96 @@ var FullPage = function (_Component) {
 FullPage.defaultProps = {};
 
 exports.default = FullPage;
+
+/***/ }),
+
+/***/ "./ClientApp/Routes.js":
+/*!*****************************!*\
+  !*** ./ClientApp/Routes.js ***!
+  \*****************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _reactRouterDom = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Routes = function (_Component) {
+    _inherits(Routes, _Component);
+
+    function Routes() {
+        _classCallCheck(this, Routes);
+
+        return _possibleConstructorReturn(this, (Routes.__proto__ || Object.getPrototypeOf(Routes)).apply(this, arguments));
+    }
+
+    _createClass(Routes, [{
+        key: 'render',
+        value: function render() {
+            return _react2.default.createElement(
+                _reactRouterDom.BrowserRouter,
+                null,
+                _react2.default.createElement(
+                    'div',
+                    null,
+                    _react2.default.createElement(
+                        _reactRouterDom.Switch,
+                        null,
+                        _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', render: function render() {
+                                return _react2.default.createElement(
+                                    'h1',
+                                    null,
+                                    'Home Page'
+                                );
+                            } }),
+                        _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/route1', render: function render() {
+                                return _react2.default.createElement(
+                                    'h1',
+                                    null,
+                                    'This is Route1'
+                                );
+                            } }),
+                        _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/route2', render: function render() {
+                                return _react2.default.createElement(
+                                    'h1',
+                                    null,
+                                    'This is Route2'
+                                );
+                            } }),
+                        _react2.default.createElement(_reactRouterDom.Route, { render: function render() {
+                                return _react2.default.createElement(
+                                    'h1',
+                                    null,
+                                    'Route Not Found'
+                                );
+                            } })
+                    )
+                )
+            );
+        }
+    }]);
+
+    return Routes;
+}(_react.Component);
 
 /***/ }),
 

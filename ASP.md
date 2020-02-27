@@ -2091,16 +2091,14 @@ The `Client.js` under ClientApp folder is the main app.
 React rounter
 
 - `npm install react-router react-router-dom --save`
-- A route: `<Route exact path="/route1" render={() => (<h1>This is Route1</h1>)} />`
-- Add `histroyApiFallback: true` to webpack.config.js devServer section. It prevents return 404 when bad routing happens.
+- A route: `<Route exact path="/route1" render={() => (<h1>This is Route1</h1>)} />` under `<switch>`
+- Add `--histroyApiFallback` to `start:dev` command. It prevents return 404 when bad routing happens.
+
+[Add a comment in JSX](https://wesbos.com/react-jsx-comments/)
 
 # HERE
 
-https://app.pluralsight.com/course-player?clipId=ac4adb56-5635-45fe-85a4-e7ef94d9035f
-
-comment in JSX: https://wesbos.com/react-jsx-comments/
-
-After remove  histroyApiFallback: true from webpack.config.js it can run.
+https://app.pluralsight.com/course-player?clipId=51f174b0-631b-4e75-8294-fd11f6bb4f15
 
 ## ASP.NET Web API
 
