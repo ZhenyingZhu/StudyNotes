@@ -2093,12 +2093,13 @@ React rounter
 - `npm install react-router react-router-dom --save`
 - A route: `<Route exact path="/route1" render={() => (<h1>This is Route1</h1>)} />` under `<switch>`
 - Add `--histroyApiFallback` to `start:dev` command. It prevents return 404 when bad routing happens.
+- `<Router history={browserHistory}>` can record the user's history.
 
 [Add a comment in JSX](https://wesbos.com/react-jsx-comments/)
 
 # HERE
 
-https://app.pluralsight.com/course-player?clipId=51f174b0-631b-4e75-8294-fd11f6bb4f15
+https://app.pluralsight.com/course-player?clipId=6715bea0-dd19-41bf-a7fd-a7607afcd331
 
 ## ASP.NET Web API
 
