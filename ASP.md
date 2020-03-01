@@ -2061,6 +2061,8 @@ Webpack
 - a static module bundler.
 - Put all dependencies and bundle your JS into a single file.
 - `npm install -save-dev webpack`. `-save-dev` means save the packages so that `npm install --production` doesn't need to re-installed. Still the package is installed under `node_modules` folder under the root folder.
+- To make the `webpack` works as a command, use `npm i -g webpack`
+- To find where is a command runs from, in the cmd: `where <cmd>`
 - config: webpack.config.js. Defines `APP_DIR`, `BUILD_DIR` and a config which has entry and output.
 - `.\node_modules\.bin\webpack` to run it. If see Powershell blocks it, run `Set-ExecutionPolicy RemoteSigned -Scope CurrentUser`.
 - in the html, can use `<script src="build/bundle.js"></script>` to pick up the bundle.
@@ -2071,6 +2073,7 @@ Webpack dev server
 - `npm install webpack-dev-server --save-dev`
 - in the webpack.config.js, add `devServer` in the config to define port and content folder.
 - In the package.json, add `"start:dev": "webpack-dev-server --hot"` to scripts section. So `npm run start:dev` can start the app at [8080](http://localhost:8080/) by default.
+- It is started from `./node_modules/.bin/webpack-dev-server`
 
 Web app needs
 
