@@ -2078,6 +2078,10 @@ Web app needs
 - A Web Server to host HTML
 - A script to launch the web server
 
+[babel](https://github.com/babel/babel)
+
+- helps writing code in the latest version of JavaScript. If my env doesn't support some features, bablel compiles it with the dependencies.
+
 JSX format
 
 - React way to write HTML-like code
@@ -2088,6 +2092,14 @@ JSX format
 
 The `Client.js` under ClientApp folder is the main app.
 
+# HERE
+
+[React Components and Props](https://reactjs.org/docs/components-and-props.html)
+
+- Components: split UI into indipendent, reusable and isolated parts.
+- Component is similar to JS function.
+- Input: Props; Output: react elements.
+
 React rounter
 
 - `npm install react-router react-router-dom --save`
@@ -2096,6 +2108,18 @@ React rounter
 - `<Router history={browserHistory}>` can record the user's history.
 
 [Add a comment in JSX](https://wesbos.com/react-jsx-comments/)
+
+Folder Structure
+
+- root
+  - webpack.config.js: defines the webpack dev-server path and code path.
+  - NPM (JS package man) related: node_modules/, package.json and package-lock.json.
+  - ClientApp/: the folder contains src code.
+    - Components/: 
+    - Client.js: Entry. Contains a `Router` to replace index.html content.
+    - RouteNotFound.js: # HERE
+  - public/: the folder to hold the content for the web server.
+
 
 # HERE
 

@@ -3,7 +3,6 @@ const path = require('path');
 
 const APP_DIR = path.resolve(__dirname, 'ClientApp');
 const PUBLIC_DIR = path.resolve(__dirname, 'public');
-const BUILD_DIR = path.resolve(__dirname, 'build');
 
 const config = {
     entry: APP_DIR + '/Client.js',
