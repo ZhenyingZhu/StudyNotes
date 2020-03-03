@@ -2097,10 +2097,10 @@ The `Client.js` under ClientApp folder is the main app.
 
 # HERE
 
-[React Components and Props](https://reactjs.org/docs/components-and-props.html)
+[React concepts](https://reactjs.org/docs/hello-world.html)
 
 - Components: split UI into indipendent, reusable and isolated parts.
-- Component is similar to JS function.
+- Component can either be a JS function, or a ES6 class extends `React.Component`, which has a `render()` method.
 - Input: Props; Output: react elements.
 
 React rounter
