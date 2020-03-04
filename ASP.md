@@ -1957,9 +1957,7 @@ dotnet run
 - Config env var: `az webapp config appsettings set --name <app_name> --resource-group myResourceGroup --settings ASPNETCORE_ENVIRONMENT="Production"`
 - Don't forget update the code to pick the connection string.
 
-# HERE
-
-https://docs.microsoft.com/en-us/azure/app-service/app-service-web-tutorial-dotnetcore-sqldb#deploy-app-to-azure
+<https://docs.microsoft.com/en-us/azure/app-service/app-service-web-tutorial-dotnetcore-sqldb#deploy-app-to-azure>
 
 ### Publishing to IIS
 
@@ -2097,11 +2095,41 @@ The `Client.js` under ClientApp folder is the main app.
 
 # HERE
 
+[JavaScript re-introduction](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript)
+
+primitive data types: so they cannot be instancialize with new, but `Number(1)`
+
+- Number
+- String
+- Bigint
+- Boolean
+- Null
+- Undefined
+- [Symbol](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol): look like enum to me.
+
+Other types:
+
+- Object
+- Function
+- Array
+- Date
+- RegExp
+- Error
+
 [React concepts](https://reactjs.org/docs/hello-world.html)
+
+```javascript
+ReactDOM.render(
+  <h1>Hello, world!</h1>,
+  document.getElementById('root')
+);
+```
 
 - Components: split UI into indipendent, reusable and isolated parts.
 - Component can either be a JS function, or a ES6 class extends `React.Component`, which has a `render()` method.
 - Input: Props; Output: react elements.
+
+[React Hands on](https://reactjs.org/tutorial/tutorial.html)
 
 React rounter
 
@@ -2123,8 +2151,6 @@ Folder Structure
     - RouteNotFound.js: # HERE
   - public/: the folder to hold the content for the web server.
 
-
-# HERE
 
 https://app.pluralsight.com/course-player?clipId=6715bea0-dd19-41bf-a7fd-a7607afcd331
 
