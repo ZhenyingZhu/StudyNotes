@@ -2109,12 +2109,14 @@ primitive data types: so they cannot be instancialize with new, but `Number(1)`
 
 Other types:
 
-- Object
+- Object: all belows are derived from it.
 - Function
 - Array
 - Date
 - RegExp
 - Error
+- Math
+- [All other build-in objects](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects): including functions
 
 [React concepts](https://reactjs.org/docs/hello-world.html)
 
