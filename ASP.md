@@ -2093,8 +2093,6 @@ JSX format
 
 The `Client.js` under ClientApp folder is the main app.
 
-# HERE
-
 [JavaScript re-introduction](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript)
 
 primitive data types: so they cannot be instancialize with new, but `Number(1)`
@@ -2103,8 +2101,8 @@ primitive data types: so they cannot be instancialize with new, but `Number(1)`
 - String
 - Bigint
 - Boolean
-- Null
-- Undefined
+- Null: no value
+- Undefined: uninitialized. It is a const.
 - [Symbol](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol): look like enum to me.
 
 Other types:
@@ -2117,6 +2115,23 @@ Other types:
 - Error
 - Math
 - [All other build-in objects](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects): including functions
+
+New variables
+
+- let: block level
+- const: also only in the block
+- var: even available outside a block
+
+Controls
+
+- `if () {} else if {} else {}`
+- `for (let item in list) {}`
+- `var name = o && o.getName();`
+- `var name = cachedName || (cachedName = getName());`
+- `var allowed = (age > 18) ? 'yes' : 'no';`
+- `switch () { case 'val1': break; default: ; }`
+
+# HERE https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript Objects
 
 [React concepts](https://reactjs.org/docs/hello-world.html)
 
