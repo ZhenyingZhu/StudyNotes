@@ -2131,7 +2131,25 @@ Controls
 - `var allowed = (age > 18) ? 'yes' : 'no';`
 - `switch () { case 'val1': break; default: ; }`
 
-# HERE https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript Objects
+Object
+
+- a dictionary.
+- `var obj = new Object();` equals to `var obj = {};`
+
+A object prototype of Person:
+
+```javascript
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
+}
+
+var you = new Person('You', 24);
+
+you.name === you['name'];
+```
+
+# HERE https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript Arrays
 
 [React concepts](https://reactjs.org/docs/hello-world.html)
 
