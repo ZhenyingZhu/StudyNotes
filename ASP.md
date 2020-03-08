@@ -2149,7 +2149,16 @@ var you = new Person('You', 24);
 you.name === you['name'];
 ```
 
-# HERE https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript Arrays
+Array
+
+- `var a = ['a', 'b', 'c'];`
+- `a.length`
+- `for (const currentVal of a) {}`: go through each value.
+- `for .. in` go over array indices instead of elements.
+- `['a', 'b'].foreach(function(currentVal, index, array) {})`
+- `a.push(item);`
+
+# HERE https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript Functions
 
 [React concepts](https://reactjs.org/docs/hello-world.html)
 
