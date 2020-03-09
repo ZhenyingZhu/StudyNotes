@@ -2158,7 +2158,14 @@ Array
 - `['a', 'b'].foreach(function(currentVal, index, array) {})`
 - `a.push(item);`
 
-# HERE https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript Functions
+Functions
+
+- If no return statment, the function returns `undefined`.
+- An implicit parameter `arguments` is always passed to a function. `function add() { for (let v of arguments) {} }`
+- Rest parameters: `function add(firstVal, ...args) { for (let v of args) {} }` Notice firstVal is not in args.
+- 
+
+# HERE https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript  anonymous functions
 
 [React concepts](https://reactjs.org/docs/hello-world.html)
 
