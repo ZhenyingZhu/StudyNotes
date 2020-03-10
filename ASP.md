@@ -2163,9 +2163,13 @@ Functions
 - If no return statment, the function returns `undefined`.
 - An implicit parameter `arguments` is always passed to a function. `function add() { for (let v of arguments) {} }`
 - Rest parameters: `function add(firstVal, ...args) { for (let v of args) {} }` Notice firstVal is not in args.
-- 
+- `<method>.apply(null, [2,3,4,5])` equals passing in all of the array elements to the method.
+- anonymous function: `var f = function() {}` equals `function f() {}`
+- `(function() {})()` is equals to `var f = function(){}; f();`
+- `Immediately Invoked Function Expression (IIFE)`: `(function f() {})();` the function runs as soon as when it is defined.
 
-# HERE https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript  anonymous functions
+
+# HERE https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript  Custom objects
 
 [React concepts](https://reactjs.org/docs/hello-world.html)
 
