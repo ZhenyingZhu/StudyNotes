@@ -2168,8 +2168,30 @@ Functions
 - `(function() {})()` is equals to `var f = function(){}; f();`
 - `Immediately Invoked Function Expression (IIFE)`: `(function f() {})();` the function runs as soon as when it is defined.
 
+Custom objects
 
-# HERE https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript  Custom objects
+- JavaScript is a prototype-based language that contains no class statement, but uses functions as classes.
+- inside a function, `this` refers to the current object. If not in a function, then it refers to the global object.
+
+A common mistake, because `this` refers to global obj.
+
+```JavaScript
+function makePerson(first, last) {
+  return {
+    first: first,
+    last: last,
+    fullName: function() {
+      return this.first + ' ' + this.last;
+    }
+  };
+}
+
+var f = makePerson('a', 'b').fullName;
+f(); // undefined undefined
+```
+
+
+# HERE https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript We can take advantage of the this keyword to improve our makePerson function:
 
 [React concepts](https://reactjs.org/docs/hello-world.html)
 
