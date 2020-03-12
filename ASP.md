@@ -2163,15 +2163,17 @@ Functions
 - If no return statment, the function returns `undefined`.
 - An implicit parameter `arguments` is always passed to a function. `function add() { for (let v of arguments) {} }`
 - Rest parameters: `function add(firstVal, ...args) { for (let v of args) {} }` Notice firstVal is not in args.
-- `<method>.apply(null, [2,3,4,5])` equals passing in all of the array elements to the method.
+- `<method>.apply(null, [2,3,4,5])` equals passing in all of the array elements to the method. The first arg is the object that should be treated as `this`
 - anonymous function: `var f = function() {}` equals `function f() {}`
 - `(function() {})()` is equals to `var f = function(){}; f();`
 - `Immediately Invoked Function Expression (IIFE)`: `(function f() {})();` the function runs as soon as when it is defined.
+- `<method>.call(arg)`: make the arg become `this`.
 
 Custom objects
 
 - JavaScript is a prototype-based language that contains no class statement, but uses functions as classes.
 - inside a function, `this` refers to the current object. If not in a function, then it refers to the global object.
+- `new` creates an empty object, then call the Construtor function to modify `this`.
 
 A common mistake, because `this` refers to global obj.
 
@@ -2187,11 +2189,43 @@ function makePerson(first, last) {
 }
 
 var f = makePerson('a', 'b').fullName;
-f(); // undefined undefined
+f(); // undefined undefined, because this is in the global object now
 ```
 
+Use `new` to solve the issue. But note each time when call `Person` the `fullName` is actually a new function object.
 
-# HERE https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript We can take advantage of the this keyword to improve our makePerson function:
+```JavaScript
+function Person(first, last) {
+  this.first = first;
+  this.last = last;
+  this.fullName = function() {
+    return this.first + ' ' + this.last;
+  };
+}
+
+var p = new Person('a', 'b');
+p.fullName;
+```
+
+To avoid creating new function object, create the function in `prototype`, which is referenced by all the `Person` instances.
+
+```JavaScript
+function Person(first, last) {
+  this.first = first;
+  this.last = last;
+}
+
+Person.prototype.fullName = function() {
+  return this.first + ' ' + this.last;
+};
+
+var p = new Person('a', 'b');
+p.fullName();
+```
+
+Inner function: only accessable in the scope. But it can access vars in its parent function scope.
+
+# HERE https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript Closures
 
 [React concepts](https://reactjs.org/docs/hello-world.html)
 
