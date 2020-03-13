@@ -2225,7 +2225,13 @@ p.fullName();
 
 Inner function: only accessable in the scope. But it can access vars in its parent function scope.
 
-# HERE https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript Closures
+Closure
+
+- is the combination of a function and the scope object in which it was created.
+- Closures let you save state.
+- [More details](https://stackoverflow.com/questions/111102/how-do-javascript-closures-work)
+
+# HERE
 
 [React concepts](https://reactjs.org/docs/hello-world.html)
 
