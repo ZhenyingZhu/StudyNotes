@@ -2231,9 +2231,9 @@ Closure
 - Closures let you save state.
 - [More details](https://stackoverflow.com/questions/111102/how-do-javascript-closures-work)
 
-# HERE
-
 [React concepts](https://reactjs.org/docs/hello-world.html)
+
+Smallest React component:
 
 ```javascript
 ReactDOM.render(
@@ -2241,6 +2241,8 @@ ReactDOM.render(
   document.getElementById('root')
 );
 ```
+
+# HERE
 
 - Components: split UI into indipendent, reusable and isolated parts.
 - Component can either be a JS function, or a ES6 class extends `React.Component`, which has a `render()` method.
