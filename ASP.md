@@ -2242,6 +2242,8 @@ ReactDOM.render(
 );
 ```
 
+https://codepen.io/pen?&editable=true&editors=0010
+
 # HERE
 
 - Components: split UI into indipendent, reusable and isolated parts.
