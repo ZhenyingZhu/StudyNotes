@@ -2242,7 +2242,7 @@ ReactDOM.render(
 );
 ```
 
-https://codepen.io/pen?&editable=true&editors=0010
+[Tester](https://codepen.io/pen?&editable=true&editors=0010)
 
 # HERE
 
