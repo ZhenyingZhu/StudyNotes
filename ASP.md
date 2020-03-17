@@ -2244,6 +2244,8 @@ ReactDOM.render(
 
 [Tester](https://codepen.io/pen?&editable=true&editors=0010)
 
+[Practice](https://reactjs.org/tutorial/tutorial.html)
+
 # HERE
 
 - Components: split UI into indipendent, reusable and isolated parts.
