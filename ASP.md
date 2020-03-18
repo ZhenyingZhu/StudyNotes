@@ -2242,11 +2242,22 @@ ReactDOM.render(
 );
 ```
 
+[JSX](https://reactjs.org/docs/introducing-jsx.html)
+
+- React element: `const name = "a"; const element = (<h1>Hello, {name}!</h1>);`
+- In curly braces can be any JS expression.
+- Parentheses are not necessary, but if need to split JSX over multiple lines, add parentheses can avoid auto semicolon insertion.
+- JSX prevents Injection attack by letting React DOM escape any values embedded before rendering.
+- Babel is the compiler. It compiles JSX HTML syntax down to `React.createElement()`.
+
+# HERE https://reactjs.org/docs/rendering-elements.html
+
 [Tester](https://codepen.io/pen?&editable=true&editors=0010)
+
+[Babel Text editor](https://babeljs.io/docs/en/editors/)
 
 [Practice](https://reactjs.org/tutorial/tutorial.html)
 
-# HERE
 
 - Components: split UI into indipendent, reusable and isolated parts.
 - Component can either be a JS function, or a ES6 class extends `React.Component`, which has a `render()` method.
