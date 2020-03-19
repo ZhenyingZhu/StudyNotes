@@ -2250,7 +2250,13 @@ ReactDOM.render(
 - JSX prevents Injection attack by letting React DOM escape any values embedded before rendering.
 - Babel is the compiler. It compiles JSX HTML syntax down to `React.createElement()`.
 
-# HERE https://reactjs.org/docs/rendering-elements.html
+[Rendering elements](https://reactjs.org/docs/rendering-elements.html)
+
+- root DOM: `<div id="root"></div>`
+- React elements are immutable. Once you create an element, you can’t change its children or attributes.
+- it represents the UI at a certain point in time.
+
+# HERE https://reactjs.org/docs/components-and-props.html
 
 [Tester](https://codepen.io/pen?&editable=true&editors=0010)
 
