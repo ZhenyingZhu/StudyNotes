@@ -87,6 +87,47 @@ Concepts
 - mail: This is an attribute in Active Directory, the value of which represents the email address of a user.
 - mailNickName: This is an attribute in Active Directory, the value of which represents the alias of a user in an Exchange organization.
 
+### Service Principal
+
+Azure Active Directory (Azure AD) is a centralized identity provider in the cloud. This capability is referred to as Single Sign On (SSO).
+
+Azure AD authenticates users and provides access tokens. An access token is a security token that is issued by an authorization server. It contains information about the user and the app for which the token is intended. Azure AD uses JSON based tokens (JWTs) that contain claims.
+
+Claim
+
+- provides assertions about one entity, such as a client application or resource owner, to another entity, such as a resource server.
+- name/value pairs that relay facts about the token subject.
+- Applications can use claims to do AuthN and AuthZ
+- contains
+  - Security Token Server that generated the token
+  - Date when the token was generated
+  - Subject (such as the user--except for daemons)
+  - Audience, which is the app for which the token was generated
+  - App (the client) that asked for the token. In the case of web apps, this may be the same as the audience
+- The token is signed by the Security Token Server (STS) with a private key. The STS publishes the corresponding public key. To validate a token, the app verifies the signature by using the STS public key to validate that the signature was created using the private key.
+- An app can provide a refresh token to the STS, and if the user access to the app wasn't revoked, it will get back a new access token and a new refresh token.
+
+App
+
+- When you register your application with Azure AD, you are providing an identity configuration for your application that allows it to integrate with Azure AD.
+- Customize the branding of your application
+- This is a single tenant application (only users in the tenant), or a multi-tenant application (sign in using any work or school account).
+- Request scope permissions for the app (which resource can the app access).
+- Define new scopes that define access to your Web API.
+- Share a secret/public key with Azure AD that proves the app's identity to Azure AD when the app is a confidential client application.
+- Once registered, the application will be given a unique identifier. This id is used when request token from AAD.
+- App can be a multiple tenants app. Service Principal is the instance of the app in a tenant.
+
+Consent is the process of a resource owner granting authorization for a client application to access protected resources, under specific permissions, on behalf of the resource owner.
+
+service principal: At deployment time, the Microsoft identity platform uses the application object as a blueprint to create a service principal, which represents a concrete instance of an application within a directory or tenant. The service principal defines what the app can actually do in a specific target directory, who can use it, what resources it has access to, and so on. The Microsoft identity platform creates a service principal from an application object through consent.
+
+To access resources that are secured by an Azure AD tenant, the entity that requires access must be represented by a security principal. This is true for both users (user principal) and applications (service principal).
+
+The security principal defines the access policy and permissions for the user/application in the Azure AD tenant.
+
+[Terms](https://docs.microsoft.com/en-us/azure/active-directory/develop/developer-glossary)
+
 ## Get start
 
 1. get Azure AD tenant
