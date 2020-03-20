@@ -2256,7 +2256,31 @@ ReactDOM.render(
 - React elements are immutable. Once you create an element, you can’t change its children or attributes.
 - it represents the UI at a certain point in time.
 
-# HERE https://reactjs.org/docs/components-and-props.html
+[Components](https://reactjs.org/docs/components-and-props.html)
+
+- Components are like JS functions. input props (the attribute), output React elements.
+- element can represent both DOM tags (like div) and user-defined component (`const element = <Welcome name="a" />;`)
+- Component name must start with Upper case
+
+Function component
+
+```javascript
+function Welcome(props) {
+  return <h1>Hello {props.name}</h1>;
+}
+```
+
+ES6 class component, which is equivalent to the function component.
+
+```javascript
+class Welcome extends React.Component {
+  render() {
+    return <h1>Hello {this.props.name}</h1>;
+  }
+}
+```
+
+# HERE https://reactjs.org/docs/components-and-props.html#composing-components
 
 [Tester](https://codepen.io/pen?&editable=true&editors=0010)
 
