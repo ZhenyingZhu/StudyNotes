@@ -2261,6 +2261,8 @@ ReactDOM.render(
 - Components are like JS functions. input props (the attribute), output React elements.
 - element can represent both DOM tags (like div) and user-defined component (`const element = <Welcome name="a" />;`)
 - Component name must start with Upper case
+- A component can have components inside it. Typically, new React apps have a single `App` component at the very top.
+- props are read-only
 
 Function component
 
@@ -2280,7 +2282,28 @@ class Welcome extends React.Component {
 }
 ```
 
-# HERE https://reactjs.org/docs/components-and-props.html#composing-components
+How props pass down
+
+```javascript
+function Component(props) {
+  return (
+    <div className="UserInfo">
+      <Avatar user={props.author} />
+    </div>
+  );
+}
+
+function Avatar(props) {
+  return (
+    <img className="Avatar"
+      src={props.user.avatarUrl}
+      alt={props.user.name}
+    />
+  );
+}
+```
+
+# HERE https://reactjs.org/docs/state-and-lifecycle.html
 
 [Tester](https://codepen.io/pen?&editable=true&editors=0010)
 
