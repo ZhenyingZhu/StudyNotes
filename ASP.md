@@ -2303,7 +2303,58 @@ function Avatar(props) {
 }
 ```
 
-# HERE https://reactjs.org/docs/state-and-lifecycle.html
+[State](https://reactjs.org/docs/state-and-lifecycle.html)
+
+- State is similar to props, but it is private and fully controlled by the component.
+- The class that inherits `React.Component` has a method `render()`. It will be called each time an update happens.
+- In the class, properties `this.props` and `this.state` are defined.
+- it’s very important to free up resources taken by the components when they are destroyed.
+- mounting: whenever a Component is rendered to the DOM for the first time, set up a resource like a timer.
+- unmounting: clear resources when a Component is removed.
+- lifecycle methods: deal with mounting and unmounting. `componentDidMount()` and `componentWillUnmount()`
+
+
+
+```javascript
+class Clock extends React.Component {
+  constructor(props) { // this is always required, even it props is not used.
+    super(props);
+    this.state = {date: new Date();};
+  }
+
+  componentDidMount() {
+    this.timerID = setInterval(
+      () => this.tick(),
+      1000
+    );
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.TimerID);
+  }
+
+  tick() {
+    this.SetState({
+      date: new Date()
+    });
+  }
+
+  render() {
+    return (
+      <div>
+      <h2>It is {this.state.date.toLocaleTimeString()}.</h2>
+      </div>
+    );
+  }
+}
+
+React.DOM.render(
+  <Clock />,
+  document.getElementById('root')
+);
+```
+
+# HERE https://reactjs.org/docs/state-and-lifecycle.html#using-state-correctly
 
 [Tester](https://codepen.io/pen?&editable=true&editors=0010)
 
