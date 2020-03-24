@@ -2231,6 +2231,10 @@ Closure
 - Closures let you save state.
 - [More details](https://stackoverflow.com/questions/111102/how-do-javascript-closures-work)
 
+Promise
+
+# HERE https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
+
 [React concepts](https://reactjs.org/docs/hello-world.html)
 
 Smallest React component:
@@ -2312,8 +2316,11 @@ function Avatar(props) {
 - mounting: whenever a Component is rendered to the DOM for the first time, set up a resource like a timer.
 - unmounting: clear resources when a Component is removed.
 - lifecycle methods: deal with mounting and unmounting. `componentDidMount()` and `componentWillUnmount()`
-
-
+- State can only be directly updated in the construtor. Other updates should call `setState()`.
+- State updates may be asynchronous because React batch multiple `setState()` calls into a single update.
+- So use `setState(func)` to set state if the next state needs to be calculated based on the current state and props.
+- Don't need to set all the states fields at the same time.
+- Can pass down the props and lower level components won't know where does the props pass in. It is called a “top-down” or “unidirectional” data flow.
 
 ```javascript
 class Clock extends React.Component {
@@ -2354,14 +2361,21 @@ React.DOM.render(
 );
 ```
 
-# HERE https://reactjs.org/docs/state-and-lifecycle.html#using-state-correctly
+Set next state use the current state and pros
+
+```javascript
+this.setState((state, props) => ({
+  counter: this.state.counter + this.props.increment
+}));
+```
+
+# HERE https://reactjs.org/docs/handling-events.html
 
 [Tester](https://codepen.io/pen?&editable=true&editors=0010)
 
 [Babel Text editor](https://babeljs.io/docs/en/editors/)
 
 [Practice](https://reactjs.org/tutorial/tutorial.html)
-
 
 - Components: split UI into indipendent, reusable and isolated parts.
 - Component can either be a JS function, or a ES6 class extends `React.Component`, which has a `render()` method.
