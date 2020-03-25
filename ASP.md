@@ -2369,7 +2369,70 @@ this.setState((state, props) => ({
 }));
 ```
 
-# HERE https://reactjs.org/docs/handling-events.html
+[Handling Events](https://reactjs.org/docs/handling-events.html)
+
+- the events are synthetic events: cross-browser compatibility.
+- In JSX callbacks, class methods are not bound to `this` by default. To bind them, need call `this.handleClick = this.handleClick.bind(this);`
+- This is Javascript logic, `this.method` doesn't work unless bind it to `this`.
+
+Handling event: the default behavior of this link is to open a new page, but `preventDefault()` stops it.
+
+```javascript
+function ActionLink() {
+  function handleClick(e) {
+    e.preventDefault();
+    console.log('The link was clicked.');
+  }
+
+  return (
+    <a href="#" onClick={handleClick}>
+      Click me
+    </a>
+  );
+}
+```
+
+Use ES6 class:
+
+```javascript
+class Toggle extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {isToggleOn: true};
+
+    // This binding is necessary to make `this` work in the callback
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick() {
+    this.setState(state => ({
+      isToggleOn: !state.isToggleOn
+    }));
+  }
+
+  render() {
+    return (
+      <button onClick={this.handleClick}>
+        {this.state.isToggleOn ? 'ON' : 'OFF'}
+      </button>
+    );
+  }
+}
+
+ReactDOM.render(
+  <Toggle />,
+  document.getElementById('root')
+);
+```
+
+Passing arguments to the event handler (two ways with same results, but the first one generate a different callback every time)
+
+```javascript
+<button onClick={(e) => this.deleteRow(id, e)}>Delete Row</button>
+<button onClick={this.deleteRow.bind(this, id)}>Delete Row</button>
+```
+
+# HERE https://reactjs.org/docs/conditional-rendering.html
 
 [Tester](https://codepen.io/pen?&editable=true&editors=0010)
 
