@@ -2231,9 +2231,23 @@ Closure
 - Closures let you save state.
 - [More details](https://stackoverflow.com/questions/111102/how-do-javascript-closures-work)
 
-Promise
+[Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
 
-# HERE https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
+- an object representing the eventual completion or failure of an asynchronous operation.
+- is a returned object to which you attach callbacks, instead of passing callbacks into a function.
+- Callbacks will never be called before the completion of the current run of the JavaScript event loop.
+
+Promise example and its equivalent.
+
+```javascript
+// success/failureCallback are callback functions.
+const promise = createAudioFileAsync(audioSettings); 
+promise.then(successCallback, failureCallback);
+
+createAudioFileAsync(audioSettings, successCallback, failureCallback);
+```
+
+# HERE https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises
 
 [React concepts](https://reactjs.org/docs/hello-world.html)
 
