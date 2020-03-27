@@ -2236,18 +2236,20 @@ Closure
 - an object representing the eventual completion or failure of an asynchronous operation.
 - is a returned object to which you attach callbacks, instead of passing callbacks into a function.
 - Callbacks will never be called before the completion of the current run of the JavaScript event loop.
+- Promise can be chained together and return a new promise. `then(sucesscallback, failurecallback = null)` or `catch(failurecallback)`.
 
 Promise example and its equivalent.
 
 ```javascript
 // success/failureCallback are callback functions.
-const promise = createAudioFileAsync(audioSettings); 
+const promise = createAudioFileAsync(audioSettings);
 promise.then(successCallback, failureCallback);
 
 createAudioFileAsync(audioSettings, successCallback, failureCallback);
 ```
 
-# HERE https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises
+
+# HERE https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises Error propagation
 
 [React concepts](https://reactjs.org/docs/hello-world.html)
 
