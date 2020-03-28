@@ -2249,7 +2249,7 @@ createAudioFileAsync(audioSettings, successCallback, failureCallback);
 ```
 
 
-# HERE https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises Error propagation
+# HERE https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises Promise rejection events
 
 [React concepts](https://reactjs.org/docs/hello-world.html)
 
