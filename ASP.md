@@ -2237,6 +2237,9 @@ Closure
 - is a returned object to which you attach callbacks, instead of passing callbacks into a function.
 - Callbacks will never be called before the completion of the current run of the JavaScript event loop.
 - Promise can be chained together and return a new promise. `then(sucesscallback, failurecallback = null)` or `catch(failurecallback)`.
+- If a promise is rejected, one the events `rejectionhandled` and `unhandledrejection` will be sent to the global scope, normally `window`.
+- `Promise.resolve()` and `Promise.reject()` are shortcuts to manually create an already resolved or rejected promise respectively.
+- `Promise.all()` and `Promise.race()` are two composition tools for running asynchronous operations in parallel.
 
 Promise example and its equivalent.
 
@@ -2248,8 +2251,14 @@ promise.then(successCallback, failureCallback);
 createAudioFileAsync(audioSettings, successCallback, failureCallback);
 ```
 
+Handle rejection
 
-# HERE https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises Promise rejection events
+```javascript
+window.addEventListener("unhandledrejection", event => {
+  console.log(event.reason);
+  event.preventDefault();
+}, false);
+```
 
 [React concepts](https://reactjs.org/docs/hello-world.html)
 
