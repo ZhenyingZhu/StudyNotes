@@ -2457,7 +2457,23 @@ Passing arguments to the event handler (two ways with same results, but the firs
 <button onClick={this.deleteRow.bind(this, id)}>Delete Row</button>
 ```
 
-# HERE https://reactjs.org/docs/conditional-rendering.html
+Return null of a Component can make it hide from rendering.
+
+```javascript
+function WarningBanner(props) {
+  if (!props.warn) {
+    return null;
+  }
+
+  return (
+    <div className="warning">
+      Warning!
+    </div>
+  );
+}
+```
+
+# HERE https://reactjs.org/docs/lists-and-keys.html
 
 [Tester](https://codepen.io/pen?&editable=true&editors=0010)
 
