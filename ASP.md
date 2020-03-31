@@ -2473,7 +2473,35 @@ function WarningBanner(props) {
 }
 ```
 
-# HERE https://reactjs.org/docs/lists-and-keys.html
+[Lists and keys](https://reactjs.org/docs/lists-and-keys.html)
+
+- Keys help React identify which items have changed, are added, or are removed.
+- The best way to pick a key is to use a string that uniquely identifies a list item among its siblings.
+- Keys only make sense in the context of the surrounding array.
+
+Render a list of elements
+
+```javascript
+function NumberList(props) {
+  const numbers = props.numbers;
+  const listItems = numbers.map((number) =>
+    <li key={number.toString()}>
+      {number}
+    </li>
+  );
+  return (
+    <ul>{listItems}</ul>
+  );
+}
+
+const numbers = [1, 2, 3, 4, 5];
+ReactDOM.render(
+  <NumberList numbers={numbers} />,
+  document.getElementById('root')
+);
+```
+
+# HERE https://reactjs.org/docs/forms.html
 
 [Tester](https://codepen.io/pen?&editable=true&editors=0010)
 
