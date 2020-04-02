@@ -2505,6 +2505,8 @@ controlled component
 
 - the React component that renders a form also controls what happens in that form on subsequent user input.
 - the react `state` is the source of truth.
+- the controlled components `<input type="text">`, `<textarea>`, and `<select>` are reformatted in a similar way in React. [Examples](https://reactjs.org/docs/forms.html#controlled-components)
+- `<input type="file" />` is an uncontrolled component.
 
 A form
 
@@ -2512,19 +2514,27 @@ A form
 class NameForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {value: ''};
+    this.state = {textvalue: ''};
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(event) {
-    // every keystroke sends an event, and update the value.
-    this.setState({value: event.target.value});
+    const target = event.target;
+    const value = null;
+    const name = target.name;
+    // Use name to distinguish which controlled component is sending event when there are multiple inputs.
+    if (target.name === "myText") {
+      // every keystroke sends an event, and update the value.
+      value = target.value;
+    }
+    // with square brace the name is converted from a string to a property name.
+    this.setState({[name]: value});
   }
 
   handleSubmit(event) {
-    alert('A name was submitted: ' + this.state.value);
+    alert('A name was submitted: ' + this.state.textvalue);
     event.preventDefault();
   }
 
@@ -2533,7 +2543,7 @@ class NameForm extends React.Component {
       <form onSubmit={this.handleSubmit}>
         <label>
           Name:
-          <input type="text" value={this.state.value} onChange={this.handleChange} />
+          <input name="myText" type="text" value={this.state.textvalue} onChange={this.handleChange} />
         </label>
         <input type="submit" value="Submit" />
       </form>
@@ -2542,7 +2552,7 @@ class NameForm extends React.Component {
 }
 ```
 
-# HERE https://reactjs.org/docs/forms.html#the-select-tag
+# HERE https://reactjs.org/docs/lifting-state-up.html
 
 [Tester](https://codepen.io/pen?&editable=true&editors=0010)
 
