@@ -2542,7 +2542,7 @@ class NameForm extends React.Component {
 }
 ```
 
-# HERE https://reactjs.org/docs/forms.html#the-textarea-tag
+# HERE https://reactjs.org/docs/forms.html#the-select-tag
 
 [Tester](https://codepen.io/pen?&editable=true&editors=0010)
 
