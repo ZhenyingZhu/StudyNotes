@@ -2552,7 +2552,7 @@ class NameForm extends React.Component {
 }
 ```
 
-# HERE https://reactjs.org/docs/lifting-state-up.html
+# HERE https://reactjs.org/docs/lifting-state-up.html#writing-conversion-functions
 
 [Tester](https://codepen.io/pen?&editable=true&editors=0010)
 
