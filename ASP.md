@@ -2552,7 +2552,12 @@ class NameForm extends React.Component {
 }
 ```
 
-# HERE https://reactjs.org/docs/lifting-state-up.html#writing-conversion-functions test
+[Lifting State Up](https://reactjs.org/docs/lifting-state-up.html)
+
+- sharing state is accomplished by moving it up to the closest common ancestor of the components that need it.
+
+
+# HERE https://reactjs.org/docs/lifting-state-up.html Let’s recap what happens when you edit an input
 
 [Tester](https://codepen.io/pen?&editable=true&editors=0010)
 
