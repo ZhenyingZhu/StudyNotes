@@ -2557,13 +2557,15 @@ class NameForm extends React.Component {
 - sharing state is accomplished by moving it up to the closest common ancestor of the components that need it.
 
 
-# HERE https://reactjs.org/docs/lifting-state-up.html Let’s recap what happens when you edit an input
+# HERE https://reactjs.org/docs/composition-vs-inheritance.html
 
 [Tester](https://codepen.io/pen?&editable=true&editors=0010)
 
 [Babel Text editor](https://babeljs.io/docs/en/editors/)
 
 [Practice](https://reactjs.org/tutorial/tutorial.html)
+
+[Develop tool](https://github.com/facebook/react/tree/master/packages/react-devtools)
 
 - Components: split UI into indipendent, reusable and isolated parts.
 - Component can either be a JS function, or a ES6 class extends `React.Component`, which has a `render()` method.
