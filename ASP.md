@@ -2556,8 +2556,11 @@ class NameForm extends React.Component {
 
 - sharing state is accomplished by moving it up to the closest common ancestor of the components that need it.
 
+[Containment](https://reactjs.org/docs/composition-vs-inheritance.html)
 
-# HERE https://reactjs.org/docs/composition-vs-inheritance.html
+- `props.children` is the sub nodes of the component: `<MyComponent><MyChild1 /><MyChild2 /></MyComponent>`
+
+# HERE https://reactjs.org/docs/thinking-in-react.html
 
 [Tester](https://codepen.io/pen?&editable=true&editors=0010)
 
