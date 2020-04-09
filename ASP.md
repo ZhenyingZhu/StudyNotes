@@ -2560,7 +2560,7 @@ class NameForm extends React.Component {
 
 - `props.children` is the sub nodes of the component: `<MyComponent><MyChild1 /><MyChild2 /></MyComponent>`
 
-# HERE https://reactjs.org/docs/thinking-in-react.html
+# HERE https://reactjs.org/docs/thinking-in-react.html#step-3-identify-the-minimal-but-complete-representation-of-ui-state
 
 [Tester](https://codepen.io/pen?&editable=true&editors=0010)
 
