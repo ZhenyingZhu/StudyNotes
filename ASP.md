@@ -2560,7 +2560,7 @@ class NameForm extends React.Component {
 
 - `props.children` is the sub nodes of the component: `<MyComponent><MyChild1 /><MyChild2 /></MyComponent>`
 
-# HERE https://reactjs.org/docs/thinking-in-react.html#step-3-identify-the-minimal-but-complete-representation-of-ui-state
+[A good example](https://reactjs.org/docs/thinking-in-react.html)
 
 [Tester](https://codepen.io/pen?&editable=true&editors=0010)
 
@@ -2568,7 +2568,10 @@ class NameForm extends React.Component {
 
 [Practice](https://reactjs.org/tutorial/tutorial.html)
 
+# HERE
+
 [Develop tool](https://github.com/facebook/react/tree/master/packages/react-devtools)
+
 
 - Components: split UI into indipendent, reusable and isolated parts.
 - Component can either be a JS function, or a ES6 class extends `React.Component`, which has a `render()` method.
