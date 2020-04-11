@@ -2572,6 +2572,7 @@ class NameForm extends React.Component {
 
 [Develop tool](https://github.com/facebook/react/tree/master/packages/react-devtools)
 
+- `npm install -g react-devtools`
 
 - Components: split UI into indipendent, reusable and isolated parts.
 - Component can either be a JS function, or a ES6 class extends `React.Component`, which has a `render()` method.
