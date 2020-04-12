@@ -896,14 +896,11 @@ Use `ICollection<AnotherEntity>` to create a parent-child/one-to-many relationsh
 
 Create class `DutchContext` inherit from `DbContext` for establishing connection. Create `DbSet` in it for entities that need to be queryable.
 
-# HERE
-Create an entity with Enum and init it:
-https://medium.com/agilix/entity-framework-core-enums-ee0f8f4063f2
+# HERE Create an entity with Enum and init it
 
-EF Core 1-to-1
+<https://medium.com/agilix/entity-framework-core-enums-ee0f8f4063f2>
 
-https://www.entityframeworktutorial.net/code-first/foreignkey-dataannotations-attribute-in-code-first.aspx
-
+[EF Core 1-to-1](https://www.entityframeworktutorial.net/code-first/foreignkey-dataannotations-attribute-in-code-first.aspx)
 
 ### Using Entity Framework Core Tooling
 
@@ -2564,11 +2561,11 @@ class NameForm extends React.Component {
 
 [Tester](https://codepen.io/pen?&editable=true&editors=0010)
 
+# HERE React Dev Tool
+
 [Babel Text editor](https://babeljs.io/docs/en/editors/)
 
 [Practice](https://reactjs.org/tutorial/tutorial.html)
-
-# HERE
 
 [Develop tool](https://github.com/facebook/react/tree/master/packages/react-devtools)
 

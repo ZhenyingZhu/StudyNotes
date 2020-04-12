@@ -2,7 +2,52 @@
 
 ## Resource
 
-<https://www.tutorialspoint.com/microsoft_azure/index.htm>
+- <https://www.tutorialspoint.com/microsoft_azure/index.htm>
+- <https://docs.microsoft.com/en-us/azure/architecture/>
+
+## Azure Solutions Architect Expert
+
+<https://docs.microsoft.com/en-us/learn/certifications/azure-solutions-architect?wt.mc_id=learningredirect_certs-web-wwl>
+
+[Required Skills](https://query.prod.cms.rt.microsoft.com/cms/api/am/binary/RE3VJUW)
+
+### Architect great solutions in Azure
+
+<https://docs.microsoft.com/en-us/learn/paths/architect-great-solutions-in-azure/>
+
+#### Pillars of a great Azure architecture
+
+A great architecture
+
+- Security: authN, data integrity.
+- Performance and scalability: from service perspective.
+- Availability and recoverability: anticipates failure at all levels.
+- Efficiency and operations: from cost and develop perspective. Need to have a good monitoring architecture, to see failures, resources.
+
+Moving to the cloud introduces a model of shared responsibility. Responsibility stack:
+
+- Data (SaaS covers till here)
+- Apps
+- Runtime (PaaS)
+- Middleware
+- O/S
+- Virtualization (IaaS)
+- Servers
+- Storage
+- Networking (On-premises)
+
+Design for security
+
+- customer data, business data, infra and dev ids need to be secured. Defense in depth and possible attacks per layer:
+  - Data: expose encryption key
+  - Applications: SQL injection and XSS
+  - VM/compute: Malware
+  - Networking: open unnecessary ports and brute-force attacks to gain access
+  - Perimeter: DDoS
+  - Policies & access: exposing credentials
+  - Physical security: break into the office
+
+# HERE https://docs.microsoft.com/en-us/learn/modules/pillars-of-a-great-azure-architecture/4-design-for-performance-and-scalability
 
 ## tutorialspoint Microsoft Azure Tutorial
 
@@ -236,4 +281,4 @@ Install `xrdp`.
 
 [Attach a data disk to a Linux VM](https://docs.microsoft.com/en-us/azure/virtual-machines/linux/attach-disk-portal)
 
-[Resolve RDP thindrives issue](thindrive: https://github.com/neutrinolabs/xrdp/issues/720)
+[Resolve RDP thindrives issue](https://github.com/neutrinolabs/xrdp/issues/720)
