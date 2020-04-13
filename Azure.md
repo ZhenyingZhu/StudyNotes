@@ -20,7 +20,7 @@
 A great architecture
 
 - Security: authN, data integrity.
-- Performance and scalability: from service perspective.
+- Performance and scalability: from service perspective, can handle peak traffic.
 - Availability and recoverability: anticipates failure at all levels.
 - Efficiency and operations: from cost and develop perspective. Need to have a good monitoring architecture, to see failures, resources.
 
@@ -47,7 +47,41 @@ Design for security
   - Policies & access: exposing credentials
   - Physical security: break into the office
 
-# HERE https://docs.microsoft.com/en-us/learn/modules/pillars-of-a-great-azure-architecture/4-design-for-performance-and-scalability
+Design for performance and scalability
+
+- scale up (better machine) vs. scale out (more instances)
+- need a service discovery mechanism to find active servers to send traffic
+- consider network and storage
+- an application performance management tool: uncover errors, poorly performing code, and bottlenecks in dependent systems.
+- scalability and performance patterns
+  - Data partitioning
+  - Caching
+  - Autoscaling
+  - Decouple resource-intensive tasks as background jobs
+  - Use a messaging layer between services: buffer
+  - Implement scale units: a group of resources that are depend on each other. Scaling out can just add a new scale unit.
+  - Performance monitoring
+
+Design for availability and recoverability
+
+- eliminating single points of failure
+- availability == Service-Level Agreement (SLA)
+- Clustering: can fail over between clusters
+- Load balancing detect failed instances and prevent sending traffic to them
+- recovery strategies from a possible data loss
+- consider major downtime scenarios
+- recovery point objective (RPO): max duration of acceptable data loss
+- recovery time objective (RTO): the acceptable downtime duration
+
+Design for efficiency and operations
+
+- Efficiency: identifying and eliminating waste within your environment
+- operational costs: wasted time and increased error
+- PaaS services typically cost less than IaaS
+
+#### Design for security in Azure
+
+# HERE https://docs.microsoft.com/en-us/learn/modules/design-for-security-in-azure/
 
 ## tutorialspoint Microsoft Azure Tutorial
 
