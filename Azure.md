@@ -81,7 +81,27 @@ Design for efficiency and operations
 
 #### Design for security in Azure
 
-# HERE https://docs.microsoft.com/en-us/learn/modules/design-for-security-in-azure/
+Zero Trust model
+
+- you should never assume trust but instead continually validate trust.
+- Input validation, output encoding, parameterized queries
+- Key vault, DDoS protection, Threat detection by enabling logs, JIT access control, security testing and review
+- CIA: the common principles used to define a security posture
+  - Confidentiality: restrict access. least privilege. Protect passwords, certs, emails, etc.
+  - Integrity: prevention of unauthorized changes. Protected by transmit the data with a fingerprint.
+  - Availability: services are able to authZ users.
+
+Security layers
+
+- Data
+- App
+- Compute: secure access to VMs, patch system.
+- Network: access control. Segmentation. restrict inbound traffic. secure connectivity.
+- Perimeter: DDoS protection.
+- Identity & Access: SSO, MFA. Audit events.
+- Physical Security
+
+# HERE https://docs.microsoft.com/en-us/learn/modules/design-for-security-in-azure/3-identity-management
 
 ## tutorialspoint Microsoft Azure Tutorial
 
