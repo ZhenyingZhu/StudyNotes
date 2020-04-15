@@ -118,9 +118,10 @@ Identity as a layer of security
 - Securing legacy applications
   - old way: authenticate to the on-prem admin application using Windows Integrated Authentication (WIA) from domain-joined machines, behind the corporate firewall.
   - new way: Azure AD Application Proxy. It can be used to publish apps, then users can use MyApps portal to auth.
+- consumer identities
+  - Azure AD B2C: an identity management service. It provides a social identity login experience.
 
-
-# HERE https://docs.microsoft.com/en-us/learn/modules/design-for-security-in-azure/3-identity-management
+# HERE https://docs.microsoft.com/en-us/learn/modules/design-for-security-in-azure/4-infrastructure-protection
 
 ## tutorialspoint Microsoft Azure Tutorial
 
