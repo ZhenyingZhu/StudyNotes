@@ -101,6 +101,25 @@ Security layers
 - Identity & Access: SSO, MFA. Audit events.
 - Physical Security
 
+Identity as a layer of security
+
+- identity protocols used in internal network: Kerberos and LDAP
+- Azure Active Directory: a cloud-based identity service. It has built-in support for synchronizing with your existing on-premises Active Directory or can be used stand-alone.
+- SSO
+  - access modifications are tied to the single identity
+  - SSO can work with AAD.
+  - Can also combine multiple data sources into an intelligent security graph.
+  - Azure AD Connect is the tool to work with AAD.
+- MFA
+  - uses two of the something you know (password), something you possess (token generator), something you are (fingerprint)
+  - AAD has free support for Global Admin to use MFA.
+- Conditional access policies
+  - AAD provides [conditional access policies](https://docs.microsoft.com/en-us/azure/active-directory/conditional-access/overview) (CAP): access policies based on group, location, device.
+- Securing legacy applications
+  - old way: authenticate to the on-prem admin application using Windows Integrated Authentication (WIA) from domain-joined machines, behind the corporate firewall.
+  - new way: Azure AD Application Proxy. It can be used to publish apps, then users can use MyApps portal to auth.
+
+
 # HERE https://docs.microsoft.com/en-us/learn/modules/design-for-security-in-azure/3-identity-management
 
 ## tutorialspoint Microsoft Azure Tutorial
