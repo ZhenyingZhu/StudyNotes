@@ -121,7 +121,43 @@ Identity as a layer of security
 - consumer identities
   - Azure AD B2C: an identity management service. It provides a social identity login experience.
 
-# HERE https://docs.microsoft.com/en-us/learn/modules/design-for-security-in-azure/4-infrastructure-protection
+Infrastructure protection
+
+- ensure people and processes have only the rights they need
+- Role-based access control
+  - Security principals are mapped to roles directly or through group membership
+  - Roles are sets of permissions
+  - Roles can be granted at the individual service instance level, but they also flow down the Azure Resource Manager hierarchy.
+  - Management groups add the ability to group subscriptions together and apply policy at an even higher level.
+  - JIT access: flow roles through an arbitrarily defined subscription hierarchy
+- Privileged Identity Management (PIM)
+  - ongoing auditing of role members
+  - manage, control, and monitor access to important resources in your organization
+  - provide JIT access to Azure AD and Azure resources
+  - Assigning time-bound access
+  - Requiring approval to activate privileged roles
+  - Enforcing Azure Multi-Factor Authentication (MFA) to activate any role
+  - Using justification to understand why users activate
+  - Getting notifications when privileged roles are activated
+  - Conducting access reviews to ensure that users still need roles
+  - Downloading an audit history for an internal or external audit
+
+Providing identities to services
+
+- through service principals and managed identities for Azure services
+- Service principals
+  - An identity is just a thing that can be authenticated
+  - an account is data associated with an identity
+  - A principal is an identity acting with certain roles or claims
+  - a Service Principal is an identity that is used by a service or application. it can be assigned roles.
+- Managed identities for Azure resources
+  - can be instantly created for any Azure service that supports it
+  - it creates an account on the Azure AD tenant
+  - Azure infrastructure will automatically take care of authenticating the service and managing the account
+
+Encryption
+
+# HERE https://docs.microsoft.com/en-us/learn/modules/design-for-security-in-azure/5-encryption
 
 ## tutorialspoint Microsoft Azure Tutorial
 
