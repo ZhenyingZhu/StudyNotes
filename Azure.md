@@ -157,6 +157,10 @@ Providing identities to services
 
 Encryption
 
+- two top-level types of encryption: Symmetric and Asymmetric. For Asymmetric encryption, both the public and private key can encrypt but cannot decrypt its own encrypted data. Need the paired key to decrypt.
+- approached in two ways: encryption at rest and encryption in transit.
+
+
 # HERE https://docs.microsoft.com/en-us/learn/modules/design-for-security-in-azure/5-encryption
 
 ## tutorialspoint Microsoft Azure Tutorial
