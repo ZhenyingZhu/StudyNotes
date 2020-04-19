@@ -159,7 +159,16 @@ Encryption
 
 - two top-level types of encryption: Symmetric and Asymmetric. For Asymmetric encryption, both the public and private key can encrypt but cannot decrypt its own encrypted data. Need the paired key to decrypt.
 - approached in two ways: encryption at rest and encryption in transit.
+  - At rest: encrypted in the storage/physical medium.
+  - In transit: encrypt before send or set up a secure channel.
 
+Encryption on Azure
+
+- Azure Storage Service Encryption (SSE): data at rest. encrypts your data with 256-bit Advanced Encryption Standard (AES). can use Microsoft-managed encryption keys with SSE, or you can use your own encryption keys
+- Azure Disk Encryption (ADE): protect the virtual hard disks (VHD). Uses BitLocker feature of Windows and the DM-Crypt feature of Linux. integrated with Azure Key Vault
+- Transparent data encryption (TDE): protect Azure SQL Database and Azure Data Warehouse. real-time encryption and decryption.  using a symmetric key called the database encryption key. At rest and in transit.
+- Azure Key Vault: a secure secrets store. vaults are backed by hardware security modules (HSMs).  centralizing the storage of application secrets,  control and log the access, renewing Transport Layer Security (TLS) certificates. secrets could be passwords, database credentials, API keys and, certificates.
+- Azure Backup: encrypts local backups using AES256.
 
 # HERE https://docs.microsoft.com/en-us/learn/modules/design-for-security-in-azure/5-encryption
 
