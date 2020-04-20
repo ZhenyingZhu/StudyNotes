@@ -170,7 +170,39 @@ Encryption on Azure
 - Azure Key Vault: a secure secrets store. vaults are backed by hardware security modules (HSMs).  centralizing the storage of application secrets,  control and log the access, renewing Transport Layer Security (TLS) certificates. secrets could be passwords, database credentials, API keys and, certificates.
 - Azure Backup: encrypts local backups using AES256.
 
-# HERE https://docs.microsoft.com/en-us/learn/modules/design-for-security-in-azure/5-encryption
+Network security
+
+- limit exposure at the network layer across your services and systems.
+- [All 7 OSI layers](https://en.wikipedia.org/wiki/OSI_model):
+  1. Physical: Wire
+  2. DataLink: WAN/LAN
+  3. Network: IP
+  4. Transport: TCP
+  5. Session: RPC
+  6. Presentation: TLS
+  7. Application: HTTP
+- Internet protection: only allow inbound and outbound communication where necessary.
+  - Azure Security Center will identify internet-facing resources that don't have network security groups (NSG) and resources that are not secured behind a firewall.
+  - Application Gateway: a Layer 7 load balancer. also includes a web application firewall (WAF) based on rules from the OWASP 3.0 or 2.2.9 core rule sets. Can prevent cross-site scripting and SQL injection.
+  - network virtual appliances (NVA): protect non-HTTP-based services
+  - Azure DDoS: distributed denial of service. notified using Azure Monitor metrics
+- Virtual network (VNet) security: limit communication between resources to only what is required
+  - network security groups (NSG). operate at layers 3 & 4.
+  - Use VNET service endpoints can fully removing public internet access to resources. 
+- Network integration: provide improved communication between services in Azure.
+  - Virtual private network (VPN): use ExpressRoute.
+  - RDP and SSH are not permitted from internet endpoints
+
+Application security
+
+- Follow [Security Development Lifecycle](https://www.microsoft.com/en-us/securityengineering/sdl/) (SDL) which is a culture
+- Operational security assessment: using Azure Security Center which is a Security vulnerability scanning software services
+- Identity as the perimeter: use Azure AD and Azure AD B2C
+- Data protection: use TLS and TDE. client-side encryption using .NET lib.
+- Secure key and secret storage: use Azure Key Vault.
+
+# HERE https://docs.microsoft.com/en-us/learn/modules/design-for-performance-and-scalability-in-azure/
+
 
 ## tutorialspoint Microsoft Azure Tutorial
 
