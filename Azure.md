@@ -201,8 +201,7 @@ Application security
 - Data protection: use TLS and TDE. client-side encryption using .NET lib.
 - Secure key and secret storage: use Azure Key Vault.
 
-# HERE https://docs.microsoft.com/en-us/learn/modules/design-for-performance-and-scalability-in-azure/
-
+# HERE https://docs.microsoft.com/en-us/learn/modules/design-for-performance-and-scalability-in-azure/1-introduction
 
 ## tutorialspoint Microsoft Azure Tutorial
 

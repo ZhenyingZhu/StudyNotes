@@ -10,7 +10,7 @@ class MangaSpider(scrapy.Spider):
     # start_urls = ['']
 
     def start_requests(self):
-        urls = ['https://' + self.var + '.animezilla.com/manga/804']
+        urls = ['https://' + self.var + '.animezilla.com/manga/3345']
         for url in urls:
             yield scrapy.Request(url=url, callback=self.parse)
 
