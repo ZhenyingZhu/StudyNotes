@@ -188,7 +188,7 @@ Network security
   - Azure DDoS: distributed denial of service. notified using Azure Monitor metrics
 - Virtual network (VNet) security: limit communication between resources to only what is required
   - network security groups (NSG). operate at layers 3 & 4.
-  - Use VNET service endpoints can fully removing public internet access to resources. 
+  - Use VNET service endpoints can fully removing public internet access to resources.
 - Network integration: provide improved communication between services in Azure.
   - Virtual private network (VPN): use ExpressRoute.
   - RDP and SSH are not permitted from internet endpoints

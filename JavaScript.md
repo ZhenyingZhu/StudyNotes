@@ -1,12 +1,10 @@
-# JavaScript Related
+# JavaScript
 
-## JavaScript
-
-### JS Resources
+## Resources
 
 <http://www.w3school.com.cn/js/index.asp>
 
-### Summarize
+## Summarize
 
 - `document.getElementById("demo").innerHTML="My First JavaScript Function";`, `document.getElementsByTagName(tag)`, `document.getElementsByClassName(class)`: return HTML collections.
 - `document.getElementById(id).onclick = function(){code}`
@@ -2235,19 +2233,180 @@ function myFunc(myObj) {
 </script>
 ```
 
-## Yield
+## JavaScript re-introduction
 
-`yield`: Pause a generator function (`function*`) and return an iterator. call `next()` method to resume. [src](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/yield)
+[JavaScript re-introduction](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript)
 
-## JQuery
+primitive data types: so they cannot be instancialize with new, but `Number(1)`
 
-See JQuery.md
+- Number
+- String
+- Bigint
+- Boolean
+- Null: no value
+- Undefined: uninitialized. It is a const.
+- [Symbol](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol): look like enum to me.
 
-## Node.js
+Other types:
 
-<https://www.nczonline.net/blog/2013/10/07/node-js-and-the-new-web-front-end/>
+- Object: all belows are derived from it.
+- Function
+- Array
+- Date
+- RegExp
+- Error
+- Math
+- [All other build-in objects](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects): including functions
+
+New variables
+
+- let: block level
+- const: also only in the block
+- var: even available outside a block
+
+Controls
+
+- `if () {} else if {} else {}`
+- `for (let item in list) {}`
+- `var name = o && o.getName();`
+- `var name = cachedName || (cachedName = getName());`
+- `var allowed = (age > 18) ? 'yes' : 'no';`
+- `switch () { case 'val1': break; default: ; }`
+
+Object
+
+- a dictionary.
+- `var obj = new Object();` equals to `var obj = {};`
+
+A object prototype of Person:
+
+```javascript
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
+}
+
+var you = new Person('You', 24);
+
+you.name === you['name'];
+```
+
+Array
+
+- `var a = ['a', 'b', 'c'];`
+- `a.length`
+- `for (const currentVal of a) {}`: go through each value.
+- `for .. in` go over array indices instead of elements.
+- `['a', 'b'].foreach(function(currentVal, index, array) {})`
+- `a.push(item);`
+
+Functions
+
+- If no return statment, the function returns `undefined`.
+- An implicit parameter `arguments` is always passed to a function. `function add() { for (let v of arguments) {} }`
+- Rest parameters: `function add(firstVal, ...args) { for (let v of args) {} }` Notice firstVal is not in args.
+- `<method>.apply(null, [2,3,4,5])` equals passing in all of the array elements to the method. The first arg is the object that should be treated as `this`
+- anonymous function: `var f = function() {}` equals `function f() {}`
+- `(function() {})()` is equals to `var f = function(){}; f();`
+- `Immediately Invoked Function Expression (IIFE)`: `(function f() {})();` the function runs as soon as when it is defined.
+- `<method>.call(arg)`: make the arg become `this`.
+
+Custom objects
+
+- JavaScript is a prototype-based language that contains no class statement, but uses functions as classes.
+- inside a function, `this` refers to the current object. If not in a function, then it refers to the global object.
+- `new` creates an empty object, then call the Construtor function to modify `this`.
+
+A common mistake, because `this` refers to global obj.
+
+```JavaScript
+function makePerson(first, last) {
+  return {
+    first: first,
+    last: last,
+    fullName: function() {
+      return this.first + ' ' + this.last;
+    }
+  };
+}
+
+var f = makePerson('a', 'b').fullName;
+f(); // undefined undefined, because this is in the global object now
+```
+
+Use `new` to solve the issue. But note each time when call `Person` the `fullName` is actually a new function object.
+
+```JavaScript
+function Person(first, last) {
+  this.first = first;
+  this.last = last;
+  this.fullName = function() {
+    return this.first + ' ' + this.last;
+  };
+}
+
+var p = new Person('a', 'b');
+p.fullName;
+```
+
+To avoid creating new function object, create the function in `prototype`, which is referenced by all the `Person` instances.
+
+```JavaScript
+function Person(first, last) {
+  this.first = first;
+  this.last = last;
+}
+
+Person.prototype.fullName = function() {
+  return this.first + ' ' + this.last;
+};
+
+var p = new Person('a', 'b');
+p.fullName();
+```
+
+Inner function: only accessable in the scope. But it can access vars in its parent function scope.
+
+Closure
+
+- is the combination of a function and the scope object in which it was created.
+- Closures let you save state.
+- [More details](https://stackoverflow.com/questions/111102/how-do-javascript-closures-work)
+
+[Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
+
+- an object representing the eventual completion or failure of an asynchronous operation.
+- is a returned object to which you attach callbacks, instead of passing callbacks into a function.
+- Callbacks will never be called before the completion of the current run of the JavaScript event loop.
+- Promise can be chained together and return a new promise. `then(sucesscallback, failurecallback = null)` or `catch(failurecallback)`.
+- If a promise is rejected, one the events `rejectionhandled` and `unhandledrejection` will be sent to the global scope, normally `window`.
+- `Promise.resolve()` and `Promise.reject()` are shortcuts to manually create an already resolved or rejected promise respectively.
+- `Promise.all()` and `Promise.race()` are two composition tools for running asynchronous operations in parallel.
+
+Promise example and its equivalent.
+
+```javascript
+// success/failureCallback are callback functions.
+const promise = createAudioFileAsync(audioSettings);
+promise.then(successCallback, failureCallback);
+
+createAudioFileAsync(audioSettings, successCallback, failureCallback);
+```
+
+Handle rejection
+
+```javascript
+window.addEventListener("unhandledrejection", event => {
+  console.log(event.reason);
+  event.preventDefault();
+}, false);
+```
 
 ## Suppliments
+
+[JQuery](./JQuery.md)
+
+[Node.js](https://www.nczonline.net/blog/2013/10/07/node-js-and-the-new-web-front-end/)
 
 Object has 3 attributes/flags
 
@@ -2262,6 +2421,10 @@ i.e. Property attributes
 - enumerable
 - writable
 - value
+
+[yield](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/yield)
+
+- `yield`: Pause a generator function (`function*`) and return an iterator. call `next()` method to resume.
 
 [How JS timer works](https://johnresig.com/blog/how-javascript-timers-work/)
 
