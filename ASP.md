@@ -1656,7 +1656,15 @@ Define templateUrl as productList.component.html.
 
 Create the html. Use directive. The directive are attributes that can be applied to elements.
 
-Use directive `*ngFor` to do a for loop. `<li *ngFor="let p of products">{{ p.title }}</li>`. `let` here is the javascript keyword,
+Use directive `ngFor` to do a for loop.
+
+```javascript
+<li *ngFor="let p of products">
+  {{ p.title }}
+</li>
+```
+
+`let` here is the javascript keyword
 
 In `app.module.ts` import the new class `import { ProductList } from "./shop/productlist.component";` and add to the NgModel.declarations. It makes each part of the html a composition.
 
@@ -1996,6 +2004,8 @@ Use `dotnet publish -o <PATH> --runtime osx.10.10-x64`.
 
 <https://app.pluralsight.com/library/courses/aspdotnet-core-react-building-website/table-of-contents>
 
+<https://github.com/pkellner/pluralsight-course-react-aspnet-core>
+
 ### Course Overview
 
 Structure
@@ -2048,6 +2058,7 @@ npm package.json
 
 - `.gitignore`: add `node_modules`
 - `npm init` creates a `package.json` with a `dependencies` section.
+- `npm install` can restore all packages in the package.json
 
 Webpack
 
@@ -2083,7 +2094,7 @@ JSX format
 - React way to write HTML-like code
 - Babel compiler can deal with it. `npm install babel-core babel-loader@7 babel-preset-env babel-preset-react babel-preset-stage-2 react react-dom --save`. The `babel-loader` has a new version which changes the webpack.config.js format, so install v7.
 - Add babel to the webpack.config.js in the module section and as a loader. Apply it to all js and jsx files.
-- devtool add source-map, which can help the debugger to find the line number.
+- devtool adds source-map, which can help the debugger to find the line number.
 - `stage-2` JS features contains promises.
 
 The `Client.js` under ClientApp folder is the main app.
@@ -2096,7 +2107,7 @@ React rounter
 
 - `npm install react-router react-router-dom --save`
 - A route: `<Route exact path="/route1" render={() => (<h1>This is Route1</h1>)} />` under `<switch>`
-- Add `--histroyApiFallback` to `start:dev` command. It prevents return 404 when bad routing happens.
+- Add `--historyApiFallback` to `start:dev` command. It prevents return 404 when bad routing happens.
 - `<Router history={browserHistory}>` can record the user's history.
 
 [Add a comment in JSX](https://wesbos.com/react-jsx-comments/)
@@ -2107,13 +2118,12 @@ Folder Structure
   - webpack.config.js: defines the webpack dev-server path and code path.
   - NPM (JS package man) related: node_modules/, package.json and package-lock.json.
   - ClientApp/: the folder contains src code.
-    - Components/: 
+    - Components/:
     - Client.js: Entry. Contains a `Router` to replace index.html content.
     - RouteNotFound.js: # HERE
   - public/: the folder to hold the content for the web server.
 
-
-https://app.pluralsight.com/course-player?clipId=6715bea0-dd19-41bf-a7fd-a7607afcd331
+**HERE**: https://app.pluralsight.com/course-player?clipId=6ee49e3c-5f0c-4001-9b33-b506d7bd1417
 
 ## ASP.NET Web API
 
