@@ -2115,12 +2115,14 @@ React rounter
 Folder Structure
 
 - root
-  - webpack.config.js: defines the webpack dev-server path and code path.
-  - NPM (JS package man) related: node_modules/, package.json and package-lock.json.
+  - package.json: record dependencies. define npm scripts.
+  - Other NPM (JS package man) related: package-lock.json, node_modules/
+  - webpack.config.js: define webpack dev server config, include build entry path, dev server path and port, bundle file output path, devtool, module rules (seems like it is for testing)
   - ClientApp/: the folder contains src code.
-    - Components/:
-    - Client.js: Entry. Contains a `Router` to replace index.html content.
-    - RouteNotFound.js: # HERE
+    - Client.js: the entry of the app. Contains a `Router` component to be injected to `public/index.html`. It used `browserHistory` and `Components/Common/FullPage`.
+    - Routes.js: used by `FullPage`. Define routes to all the components, and `RouteNotFound`.
+    - RouteNotFound.js: define what to do when 404.
+    - Components/: **HERE**
   - public/: the folder to hold the content for the web server.
 
 **HERE**: https://app.pluralsight.com/course-player?clipId=6ee49e3c-5f0c-4001-9b33-b506d7bd1417

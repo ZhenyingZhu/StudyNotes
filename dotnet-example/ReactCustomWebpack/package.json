@@ -2,7 +2,7 @@
   "name": "reactcustomwebpack",
   "version": "1.0.0",
   "description": "",
-  "main": "HelloWorld.js",
+  "main": "ClientApp/Client.js",
   "dependencies": {
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.5",
