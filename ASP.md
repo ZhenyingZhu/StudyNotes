@@ -2122,7 +2122,9 @@ Folder Structure
     - Client.js: the entry of the app. Contains a `Router` component to be injected to `public/index.html`. It used `browserHistory` and `Components/Common/FullPage`.
     - Routes.js: used by `FullPage`. Define routes to all the components, and `RouteNotFound`.
     - RouteNotFound.js: define what to do when 404.
-    - Components/: **HERE**
+    - Components/Common:
+    - Components/home: **HERE**
+    - Components/speakers
   - public/: the folder to hold the content for the web server.
 
 **HERE**: https://app.pluralsight.com/course-player?clipId=6ee49e3c-5f0c-4001-9b33-b506d7bd1417
