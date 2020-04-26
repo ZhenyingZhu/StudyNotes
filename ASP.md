@@ -2123,7 +2123,9 @@ Folder Structure
     - Routes.js: used by `FullPage`. Define routes to all the components, and `RouteNotFound`.
     - RouteNotFound.js: define what to do when 404.
     - Components/Common:
-    - Components/home: **HERE**
+      - CodeCampMenu: the tool bar in the header. Show a website logo, UserName, Login, Menu list with routes to Home and Speakers. Uses App.css but seems like it is not loaded.
+      - Footer.js **HERE**
+    - Components/home: 
     - Components/speakers
   - public/: the folder to hold the content for the web server.
 
