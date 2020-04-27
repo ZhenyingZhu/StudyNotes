@@ -9,7 +9,7 @@ import Routes from "../../Routes";
 
 class FullPage extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
         this.handler = this.handler.bind(this);
     }
@@ -18,14 +18,13 @@ class FullPage extends Component {
         this.props.action();
     }
 
-
     render() {
         return (
             <div>
                 <PageTop>
                     <CodeCampMenu />
                 </PageTop>
-                <Routes  action={this.handler}  />
+                <Routes action={this.handler} />
                 <Footer />
             </div>
         );

@@ -2123,11 +2123,25 @@ Folder Structure
     - Routes.js: used by `FullPage`. Define routes to all the components, and `RouteNotFound`.
     - RouteNotFound.js: define what to do when 404.
     - Components/Common:
-      - CodeCampMenu: the tool bar in the header. Show a website logo, UserName, Login, Menu list with routes to Home and Speakers. Uses App.css but seems like it is not loaded.
-      - Footer.js **HERE**
-    - Components/home: 
-    - Components/speakers
+      - FullPage: Show PageTop, Routers and Footer. By default it also shows Home page.
+      - PageTop: Show a website logo and CodeCampMenu. It also defines `PropTypes` ?? What is it?
+      - CodeCampMenu: the tool bar in the header. Show UserName, Login, Menu list with routes to Home and Speakers. Uses App.css but seems like it is not loaded.
+      - Footer
+      - Login: used by `Routes`
+    - Components/home:
+      - Home: show HomeHeader and HomeContainer
+      - HomeHeader: show a page to register for an event.
+      - HomeContainer: show HomeSpeakersCarousel.
+      - HomeSpeakersCarousel: show a list of speakers.
+    - Components/speakers:
+      - Speakers: show SpeakersHeader.
+      - SpeakersHeader: a paragraph.
   - public/: the folder to hold the content for the web server.
+    - index.html: only has app div and include bundle.js
+    - assets/images
+    - sassAssets: contains fonts and images. [Sass](https://www.playframework.com/documentation/2.8.x/AssetsSass) is a dynamic stylesheet language. It uses Play to compile to CSS codes.
+    - App.css: a lot of css from different open-source projects
+    - bundle.js and bundle.js.map: compiled by webpack.
 
 **HERE**: https://app.pluralsight.com/course-player?clipId=6ee49e3c-5f0c-4001-9b33-b506d7bd1417
 
