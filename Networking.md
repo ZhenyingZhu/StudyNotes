@@ -662,6 +662,8 @@ Fiddler decrept HTTPS traffic:
   7. then start communicate with app data and encrypted with public keys
   8. only the domain is not encrypted. Even the full URL is encrypted.
 
+[Youtube]
+
 ## Other notes
 
 [No buffer space available](https://community.sophos.com/products/unified-threat-management/f/management-networking-logging-and-reporting/31186/105-no-buffer-space-available)
