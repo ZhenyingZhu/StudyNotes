@@ -1318,6 +1318,10 @@ Then fix the boot by start the PC in troubleshooting mode, then [run](https://an
 - Diskpart, assign the System Reserved drive a letter
 - `bcdboot C:\windows /s V: /f UEFI`
 
+# Teams extension
+
+https://github.com/microsoft/BotBuilder-Samples/tree/master/samples/javascript_nodejs/51.teams-messaging-extensions-action
+
 # timestamp section
 Sep 11 2016
 Nov 18 2016
