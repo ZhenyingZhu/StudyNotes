@@ -1327,7 +1327,12 @@ Then fix the boot by start the PC in troubleshooting mode, then [run](https://an
 1. `cd samples/javascript_nodejs/51.teams-messaging-extensions-action`
 1. `npm install`
 1. `C:\ngrok.exe http -host-header=rewrite 3978`
-1. 
+1. [Create a bot for Microsoft Teams](https://docs.microsoft.com/en-us/microsoftteams/platform/bots/how-to/create-a-bot-for-teams#register-your-web-service-with-the-bot-framework)
+  a. Create a web service that defines a single route, /api/messages, on which to receive all requests.
+  a. Register the web service with the [Bot Framework](https://dev.botframework.com/)
+  a. Bot handle pass in `https://<app id>.ngrok.io/api/messages`
+
+Another doc to read: [Create Bot Framework registration resource](https://docs.microsoft.com/en-us/azure/bot-service/bot-service-quickstart-registration?view=azure-bot-service-3.0)
 
 # timestamp section
 Sep 11 2016
