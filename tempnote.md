@@ -1320,7 +1320,14 @@ Then fix the boot by start the PC in troubleshooting mode, then [run](https://an
 
 # Teams extension
 
-https://github.com/microsoft/BotBuilder-Samples/tree/master/samples/javascript_nodejs/51.teams-messaging-extensions-action
+[doc](https://github.com/microsoft/BotBuilder-Samples/tree/master/samples/javascript_nodejs/51.teams-messaging-extensions-action)
+
+1. Install [ngrok](https://ngrok.com/download)
+1. `git clone https://github.com/Microsoft/botbuilder-samples.git`
+1. `cd samples/javascript_nodejs/51.teams-messaging-extensions-action`
+1. `npm install`
+1. `C:\ngrok.exe http -host-header=rewrite 3978`
+1. 
 
 # timestamp section
 Sep 11 2016
