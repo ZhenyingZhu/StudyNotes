@@ -1334,6 +1334,14 @@ Then fix the boot by start the PC in troubleshooting mode, then [run](https://an
 
 Another doc to read: [Create Bot Framework registration resource](https://docs.microsoft.com/en-us/azure/bot-service/bot-service-quickstart-registration?view=azure-bot-service-3.0)
 
+# batch file note
+
+https://superuser.com/questions/734688/how-to-read-values-in-a-particular-column-of-a-csv-file-in-batch
+https://stackoverflow.com/questions/28810194/how-to-pass-a-list-of-strings-to-a-batch-script-as-a-parameter
+https://ss64.com/nt/for.html
+https://stackoverflow.com/questions/1707058/how-to-split-a-string-by-spaces-in-a-windows-batch-file
+https://stackoverflow.com/questions/13805187/how-to-set-a-variable-inside-a-loop-for-f
+
 # timestamp section
 Sep 11 2016
 Nov 18 2016
