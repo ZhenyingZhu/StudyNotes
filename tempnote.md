@@ -1341,6 +1341,7 @@ https://stackoverflow.com/questions/28810194/how-to-pass-a-list-of-strings-to-a-
 https://ss64.com/nt/for.html
 https://stackoverflow.com/questions/1707058/how-to-split-a-string-by-spaces-in-a-windows-batch-file
 https://stackoverflow.com/questions/13805187/how-to-set-a-variable-inside-a-loop-for-f
+https://www.tutorialspoint.com/batch_script/batch_script_environment.htm
 
 # timestamp section
 Sep 11 2016
