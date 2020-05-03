@@ -1341,7 +1341,28 @@ https://stackoverflow.com/questions/28810194/how-to-pass-a-list-of-strings-to-a-
 https://ss64.com/nt/for.html
 https://stackoverflow.com/questions/1707058/how-to-split-a-string-by-spaces-in-a-windows-batch-file
 https://stackoverflow.com/questions/13805187/how-to-set-a-variable-inside-a-loop-for-f
-https://www.tutorialspoint.com/batch_script/batch_script_environment.htm
+
+[Commands](https://www.tutorialspoint.com/batch_script/batch_script_commands.htm)
+
+- `assoc | find ".doc" > C:\listsdoc.txt`
+- `copy "C:\File Contain Space.txt" c:\targetFolder`, `move`, `xcopy`
+- `pause`
+- `md`: create folder
+- `del`, `rd`: delete file or folder
+- `ren`: rename
+- `rem`: comment
+- `start notepad.exe`
+- `TYPE C:\tp\lists.txt`, `more`: print a file
+- `choice /c ABC /m "What is your option A , B or C"`: provide options
+- `COMP C:\tp\lists.txt C:\tp\listsA.txt`, `FC lists.txt listsA.txt`: compare file size or file contents
+- `FIND "Application" C:\tp\lists.txt`: display the line
+- `help [cmd]`
+- `shutdown`
+- `sort C:\tp\lists.txt`: sort the content
+- `tree`: display directory structure
+- `set`: without parameter, display all the config values
+
+https://www.tutorialspoint.com/batch_script/batch_script_syntax.htm
 
 # timestamp section
 Sep 11 2016
