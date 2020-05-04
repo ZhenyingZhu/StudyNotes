@@ -1362,7 +1362,17 @@ https://stackoverflow.com/questions/13805187/how-to-set-a-variable-inside-a-loop
 - `tree`: display directory structure
 - `set`: without parameter, display all the config values
 
-https://www.tutorialspoint.com/batch_script/batch_script_syntax.htm
+[Syntax](https://www.tutorialspoint.com/batch_script/batch_script_syntax.htm)
+
+- `@echo off`: `@`: apply the command to itself. `echo off` disable echo the command.
+
+[Variables](https://www.tutorialspoint.com/batch_script/batch_script_variables.htm)
+
+- `echo %1 %2`: print the script arguments.
+- `set /A var-name=val`, `echo %var-name%`: `/A` makes the var number. This var then can appear in `set`
+- `SETLOCAL`, `ENDLOCAL`: vars in between those two commands have lifecycle only in between. (Doesn't seem like working??)
+
+https://www.tutorialspoint.com/batch_script/batch_script_comments.htm
 
 # timestamp section
 Sep 11 2016
