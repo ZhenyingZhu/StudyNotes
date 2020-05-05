@@ -1372,7 +1372,33 @@ https://stackoverflow.com/questions/13805187/how-to-set-a-variable-inside-a-loop
 - `set /A var-name=val`, `echo %var-name%`: `/A` makes the var number. This var then can appear in `set`
 - `SETLOCAL`, `ENDLOCAL`: vars in between those two commands have lifecycle only in between. (Doesn't seem like working??)
 
-https://www.tutorialspoint.com/batch_script/batch_script_comments.htm
+[String](https://www.tutorialspoint.com/batch_script/batch_script_strings.htm)
+
+- Check if a string is empty: `SET a=`, `if [%a%]==[] echo "String A is empty"`
+- String interpolation: `SET c=%a% and %b% %d%`
+
+An example of how to count string lenth:
+
+```bat
+@echo off
+set str = Hello World
+call :strLen str strlen
+echo String is %strlen% characters long
+exit /b
+
+:strLen
+setlocal enabledelayedexpansion
+
+:strLen_Loop
+   if not "!%1:~%len%!"=="" set /A len+=1 & goto :strLen_Loop
+(endlocal & set %2=%len%)
+goto :eof
+```
+
+[Array](https://www.tutorialspoint.com/batch_script/batch_script_arrays.htm)
+
+- `set a[0]=1`, `echo %a[0]%`
+- `set list = 1 2 3 4`
 
 # timestamp section
 Sep 11 2016
