@@ -1365,23 +1365,24 @@ https://stackoverflow.com/questions/13805187/how-to-set-a-variable-inside-a-loop
 [Syntax](https://www.tutorialspoint.com/batch_script/batch_script_syntax.htm)
 
 - `@echo off`: `@`: apply the command to itself. `echo off` disable echo the command.
+- Notice space might cause unexpected errors, because `a ` is a different var than `a`.
 
 [Variables](https://www.tutorialspoint.com/batch_script/batch_script_variables.htm)
 
 - `echo %1 %2`: print the script arguments.
 - `set /A var-name=val`, `echo %var-name%`: `/A` makes the var number. This var then can appear in `set`
-- `SETLOCAL`, `ENDLOCAL`: vars in between those two commands have lifecycle only in between. (Doesn't seem like working??)
+- `SETLOCAL`, `ENDLOCAL`: vars in between those two commands have lifecycle only in between.
 
 [String](https://www.tutorialspoint.com/batch_script/batch_script_strings.htm)
 
 - Check if a string is empty: `SET a=`, `if [%a%]==[] echo "String A is empty"`
 - String interpolation: `SET c=%a% and %b% %d%`
 
-An example of how to count string lenth:
+An example of how to count string length:
 
 ```bat
 @echo off
-set str = Hello World
+set str=Hello World
 call :strLen str strlen
 echo String is %strlen% characters long
 exit /b
@@ -1390,7 +1391,7 @@ exit /b
 setlocal enabledelayedexpansion
 
 :strLen_Loop
-   if not "!%1:~%len%!"=="" set /A len+=1 & goto :strLen_Loop
+  if not "!%1:~%len%!"=="" set /A len+=1 & goto :strLen_Loop
 (endlocal & set %2=%len%)
 goto :eof
 ```
@@ -1398,7 +1399,9 @@ goto :eof
 [Array](https://www.tutorialspoint.com/batch_script/batch_script_arrays.htm)
 
 - `set a[0]=1`, `echo %a[0]%`
-- `set list = 1 2 3 4`
+- `setlocal enabledelayedexpansion` then can use `echo !topic[%%n]!`. delayedexpansion cause variables within a batch file to be expanded at execution time rather than at parse time
+- `set list = 1 2 3 4`, `for %%a in (%list%) do (echo %%a)`. Note `%%a` can only be used in batch. In cmd use `%a`
+- 
 
 # timestamp section
 Sep 11 2016
