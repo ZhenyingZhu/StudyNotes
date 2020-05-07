@@ -2114,6 +2114,7 @@ React rounter
 
 Folder Structure
 
+- refer to [git repo](https://github.com/pkellner/pluralsight-course-react-aspnet-core/tree/master/m2-custom-webpack/reactapp)
 - root
   - package.json: record dependencies. define npm scripts.
   - Other NPM (JS package man) related: package-lock.json, node_modules/
@@ -2143,7 +2144,7 @@ Folder Structure
     - App.css: a lot of css from different open-source projects
     - bundle.js and bundle.js.map: compiled by webpack.
 
-**HERE**: https://app.pluralsight.com/course-player?clipId=6ee49e3c-5f0c-4001-9b33-b506d7bd1417
+**HERE**: https://app.pluralsight.com/course-player?clipId=fe491ec5-4ade-4c22-b964-2cc98c663f48
 
 ## ASP.NET Web API
 
