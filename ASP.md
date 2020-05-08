@@ -2144,6 +2144,8 @@ Folder Structure
     - App.css: a lot of css from different open-source projects
     - bundle.js and bundle.js.map: compiled by webpack.
 
+The issue here is that the css is not rendering correct.
+
 **HERE**: https://app.pluralsight.com/course-player?clipId=fe491ec5-4ade-4c22-b964-2cc98c663f48
 
 ## ASP.NET Web API
