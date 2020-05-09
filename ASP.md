@@ -2074,7 +2074,10 @@ Webpack
 
 Webpack dev server
 
+- It is not used for bundle js files like webpack. But it is also configured in `webpack.config.js` under `devServer` key.
+- It is a dev env that can host a web app and provide debugging experience.
 - `npm install webpack-dev-server --save-dev`
+- It is not run in Prod so it should be added to `devDependencies` in npm's package.json.
 - in the webpack.config.js, add `devServer` in the config to define port and content folder.
 - In the package.json, add `"start:dev": "webpack-dev-server --hot"` to scripts section. So `npm run start:dev` can start the app at [8080](http://localhost:8080/) by default.
 - It is started from `./node_modules/.bin/webpack-dev-server`
@@ -2087,14 +2090,16 @@ Web app needs
 
 [babel](https://github.com/babel/babel)
 
+- Used to compile react JSX scripts into JS.
 - helps writing code in the latest version of JavaScript. If my env doesn't support some features, bablel compiles it with the dependencies.
+- Also configed in `webpack.config.js` under `devtool` and `module` key.
 
 JSX format
 
 - React way to write HTML-like code
 - Babel compiler can deal with it. `npm install babel-core babel-loader@7 babel-preset-env babel-preset-react babel-preset-stage-2 react react-dom --save`. The `babel-loader` has a new version which changes the webpack.config.js format, so install v7.
-- Add babel to the webpack.config.js in the module section and as a loader. Apply it to all js and jsx files.
-- devtool adds source-map, which can help the debugger to find the line number.
+- Add babel to the `webpack.config.js` in the module section and as a loader. Apply it to all js and jsx files.
+- `devtool` adds source-map, which can help the debugger to find the line number.
 - `stage-2` JS features contains promises.
 
 The `Client.js` under ClientApp folder is the main app.
@@ -2146,7 +2151,7 @@ Folder Structure
 
 The issue here is that the css is not rendering correct.
 
-**HERE**: https://app.pluralsight.com/course-player?clipId=fe491ec5-4ade-4c22-b964-2cc98c663f48
+**HERE**: https://app.pluralsight.com/course-player?clipId=6715bea0-dd19-41bf-a7fd-a7607afcd331
 
 ## ASP.NET Web API
 
