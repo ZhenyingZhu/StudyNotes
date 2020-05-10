@@ -2114,8 +2114,22 @@ React rounter
 - A route: `<Route exact path="/route1" render={() => (<h1>This is Route1</h1>)} />` under `<switch>`
 - Add `--historyApiFallback` to `start:dev` command. It prevents return 404 when bad routing happens.
 - `<Router history={browserHistory}>` can record the user's history.
+- To make sure bad route returns status code 404 to the client, even it is a dynamic part of the page, and the other parts of the page are loaded successfully, server side node.js need to validate the route before rendering the page.
 
 [Add a comment in JSX](https://wesbos.com/react-jsx-comments/)
+
+[Express](https://expressjs.com/)
+
+- A Node.js web and mobile application framework.
+- Webpack-dev-server is started by express.
+- React can also running in express. It can be used as server side rendering.
+- So basically the ClientApp is just retrieve pages, while ServerApp is rendering those pages with javascript.
+- vs. normal web app, where the html and javascript files are all retrieved to the client, then client render the html with javascript.
+
+Webpack-merge
+
+- Can create multiple webpack config files and merge them together. Like merge a webpack.base.js into the webpack.client.js.
+- `npm install webpack-merge`
 
 Folder Structure
 
@@ -2149,9 +2163,7 @@ Folder Structure
     - App.css: a lot of css from different open-source projects
     - bundle.js and bundle.js.map: compiled by webpack.
 
-The issue here is that the css is not rendering correct.
-
-**HERE**: https://app.pluralsight.com/course-player?clipId=6715bea0-dd19-41bf-a7fd-a7607afcd331
+**HERE**: https://app.pluralsight.com/course-player?clipId=ee09aad6-6fc4-409b-b8ba-ffad812b0282
 
 ## ASP.NET Web API
 
