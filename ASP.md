@@ -2122,9 +2122,12 @@ React rounter
 
 - A Node.js web and mobile application framework.
 - Webpack-dev-server is started by express.
+- `npm install express webpack-node-externals --save`
 - React can also running in express. It can be used as server side rendering.
 - So basically the ClientApp is just retrieve pages, while ServerApp is rendering those pages with javascript.
 - vs. normal web app, where the html and javascript files are all retrieved to the client, then client render the html with javascript.
+- Create a `Server.js` to start the express app.
+- It ignores `index`.html. why??
 
 Webpack-merge
 
@@ -2163,7 +2166,7 @@ Folder Structure
     - App.css: a lot of css from different open-source projects
     - bundle.js and bundle.js.map: compiled by webpack.
 
-**HERE**: https://app.pluralsight.com/course-player?clipId=ee09aad6-6fc4-409b-b8ba-ffad812b0282
+**HERE**: https://app.pluralsight.com/course-player?clipId=3b97ab46-91a5-4603-8102-dda41d3caed5
 
 ## ASP.NET Web API
 
