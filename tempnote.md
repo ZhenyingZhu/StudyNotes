@@ -1401,7 +1401,11 @@ goto :eof
 - `set a[0]=1`, `echo %a[0]%`
 - `setlocal enabledelayedexpansion` then can use `echo !topic[%%n]!`. delayedexpansion cause variables within a batch file to be expanded at execution time rather than at parse time
 - `set list = 1 2 3 4`, `for %%a in (%list%) do (echo %%a)`. Note `%%a` can only be used in batch. In cmd use `%a`
-- 
+
+# Test NetConnection in Win
+
+- `Test-Connection 10.211.25.38 -IPv4 -TcpPort 80`
+- `Test-NetConnection 10.211.25.38 -Port 80`
 
 # timestamp section
 Sep 11 2016
