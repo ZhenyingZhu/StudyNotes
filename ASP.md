@@ -2134,6 +2134,12 @@ Webpack-merge
 - Can create multiple webpack config files and merge them together. Like merge a webpack.base.js into the webpack.client.js.
 - `npm install webpack-merge`
 
+Server side app
+
+- Use `renderToString` from `react-dom/server` to generate the page.
+- Use `StaticRouter` from `react-router-dom` because the route doesn't make change to the page.
+- On the client side, change `ReactDOM.render()` to `ReactDOM.hydrate()`
+
 Folder Structure
 
 - refer to [git repo](https://github.com/pkellner/pluralsight-course-react-aspnet-core/tree/master/m2-custom-webpack/reactapp)
@@ -2166,7 +2172,7 @@ Folder Structure
     - App.css: a lot of css from different open-source projects
     - bundle.js and bundle.js.map: compiled by webpack.
 
-**HERE**: https://app.pluralsight.com/course-player?clipId=3b97ab46-91a5-4603-8102-dda41d3caed5
+**HERE**: https://app.pluralsight.com/course-player?clipId=5b2237f7-f38f-4c85-b32e-4d3f7126a28c
 
 ## ASP.NET Web API
 
