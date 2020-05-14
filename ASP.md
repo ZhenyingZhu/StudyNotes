@@ -2172,7 +2172,15 @@ Folder Structure
     - App.css: a lot of css from different open-source projects
     - bundle.js and bundle.js.map: compiled by webpack.
 
-**HERE**: https://app.pluralsight.com/course-player?clipId=5b2237f7-f38f-4c85-b32e-4d3f7126a28c
+Integrate React with ASP.NET Core
+
+- Create an empty ASP.NET Core website.
+- Use the middleware `app` in the `StartupConfiguration` to serve static index.html page.
+- Copy the whole React client-side app public folder to the `wwwroot` folder.
+- To make the react package directly build to ASP.NET Core `wwwroot` folder, install `npm-run-all` (use for creating a script to build and deploy), `rimraf` (use for clean up wwwroot folder), `cpx` (use for copy)
+- Can also minify (uglify) so that deploying ASP.NET Core doesn't need to worry about installing npm packages
+
+**HERE**: https://app.pluralsight.com/course-player?clipId=b1a9749f-2edd-4e3e-9224-dd96ee78bf66
 
 ## ASP.NET Web API
 
