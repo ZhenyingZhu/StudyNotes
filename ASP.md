@@ -944,7 +944,7 @@ DB ProjectsV13 is come by default.
 
 Connection string: `"DutchConnectionString":  "server=(localdb)\\ProjectsV13;Database=DutchTreatDb;Integrated Security=true;MultipleActiveResultSets=true;"`
 
-**The integrated security should be replaced with actual creds when deploy to prod.**
+**TODO**: The integrated security should be replaced with actual creds when deploy to prod.
 
 `MultipleActiveResultSets` allows retriving multiple steams of data at the same time.
 
@@ -2180,7 +2180,13 @@ Integrate React with ASP.NET Core
 - To make the react package directly build to ASP.NET Core `wwwroot` folder, install `npm-run-all` (use for creating a script to build and deploy), `rimraf` (use for clean up wwwroot folder), `cpx` (use for copy)
 - Can also minify (uglify) so that deploying ASP.NET Core doesn't need to worry about installing npm packages
 
-**HERE**: https://app.pluralsight.com/course-player?clipId=b1a9749f-2edd-4e3e-9224-dd96ee78bf66
+### Integrating Facebook's create-react-app with ASP.NET Core
+
+Create-react-app (CRA): [git repo](https://github.com/facebook/create-react-app)
+
+Cross Origin Resource Sharing (CORS): Allow request resources from another domain with appropriate access control headers.
+
+**TODO**: <https://app.pluralsight.com/course-player?clipId=01bd3c28-83b1-494d-98de-841c7205c0b2>
 
 ## ASP.NET Web API
 
@@ -2746,11 +2752,9 @@ HERE:
 
 ## ASP.NET Core 3.0
 
-<https://docs.microsoft.com/en-us/aspnet/core/?view=aspnetcore-3.0>
+**HERE**: <https://docs.microsoft.com/en-us/aspnet/core/?view=aspnetcore-3.0>
 
-## Other notes
-
-### Entity Framework(EF)
+## Entity Framework(EF)
 
 <https://docs.microsoft.com/en-us/aspnet/entity-framework>
 
@@ -2760,14 +2764,18 @@ Use `[Column(TypeName = "decimal(18,2)")]` before a property to define its restr
 
 `modelBuilder.Entity<Product>().Property(p => p.Price).HasPrecision(18, 2);` should work samely, but this API is not found.
 
-### RESTful
+## RESTful
 
 <https://www.tutorialspoint.com/restful/index.htm>
 
-### WCF
+## WCF
 
 Service oriented: <https://docs.microsoft.com/en-us/dotnet/framework/wcf/whats-wcf>
 
-### LocalDB
+## LocalDB
 
 [MSSQLLOCALDB databases aren't listed](https://stackoverflow.com/questions/34029337/mssqllocaldb-databases-arent-listed)
+
+## ReactJS.NET
+
+**TODO**: <https://reactjs.net/tutorials/aspnetcore>
