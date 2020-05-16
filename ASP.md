@@ -2750,7 +2750,11 @@ HERE:
 - Since functions are idempotent they can be used in $filter and $sortby system queries to provide a better fidelity in filtering and sorting queries.
 - operations parameters are handled much like querying for an entity with a compound key. The parameters are wrapped in brackets in the format “name = value” seperated by a comma.
 
-## ASP.NET Core 3.0
+## Razor Pages with Entity Framework Core in ASP.NET Core
+
+[Doc](https://docs.microsoft.com/en-us/aspnet/core/data/ef-rp/intro?view=aspnetcore-3.0&tabs=visual-studio)
+
+[Code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/cu30)
 
 **HERE**: <https://docs.microsoft.com/en-us/aspnet/core/?view=aspnetcore-3.0>
 
