@@ -2756,7 +2756,7 @@ HERE:
 
 [Code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/cu30)
 
-**HERE**: <https://docs.microsoft.com/en-us/aspnet/core/?view=aspnetcore-3.0>
+**HERE**: <https://docs.microsoft.com/en-us/aspnet/core/data/ef-rp/intro?view=aspnetcore-3.0&tabs=visual-studio#scaffold-student-pages>
 
 ## Entity Framework(EF)
 
