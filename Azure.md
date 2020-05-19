@@ -4,6 +4,7 @@
 
 - <https://www.tutorialspoint.com/microsoft_azure/index.htm>
 - <https://docs.microsoft.com/en-us/azure/architecture/>
+- <https://developer.microsoft.com/en-us/graph/blogs/30daysmsgraph-day-9-azure-ad-applications-on-v2-endpoint/>
 
 ## Azure Solutions Architect Expert
 
