@@ -52,4 +52,22 @@ Server Roles and Technologies
 - Directory services are optimized for read processing, while relational databases are optimized for transaction processing.
 - directory services also provide such benefits as distributed architecture (multimaster design, replication, and geographical scalability); storage of identity data that is common to applications and platforms throughout an enterprise; flexible data schema; and fine-grained access policies.
 
-**HERE**: <https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc731687(v=ws.11)>
+A replica of an existing AD LDS instance contains replicated copies of the configuration and schema directory partitions, including any schema extensions.
+
+LDAP Data Interchange Format (LDIF) files: importing schema definitions into an instance. transfer objects between Active Directory Domain Services (AD DS) and AD LDS partitions.
+
+AD LDS server stores its database file and the associated log files in an instance-specific directory.
+
+[Instance](https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc753742(v=ws.11))
+
+- service instance: a single running copy of AD LDS.
+- each instance has a separate directory data store, a unique service name, and a unique service description.
+- an instance can be part of a configuration set that provides replication of instance data to instances that run on separate servers.
+- AD LDS provides
+  - a hierarchical data store: adamntds.dit
+  - a directory service component: dsmain.exe, adamdsa.dll
+  - an client interfaces: LDAP, replication
+- AD LDS does not require a domain controller or a Domain Name System (DNS) server.
+- multimaster replication: grouping AD LDS instances into configuration sets.
+
+**HERE**: <https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc753882(v=ws.11)>
