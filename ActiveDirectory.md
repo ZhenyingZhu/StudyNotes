@@ -4,6 +4,8 @@
 
 - [Windows Server 2012 Doc](https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/hh831669(v=ws.11))
 - <https://www.varonis.com/blog/active-directory-domain-services/>
+- [AD Doc](https://docs.microsoft.com/en-us/windows/win32/ad/active-directory-schema)
+- [AD LDS Old Doc](https://docs.microsoft.com/en-us/previous-versions/windows/desktop/adam/active-directory-lightweight-directory-services)
 
 ## [Windows Server 2012 Doc](https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/hh831669(v=ws.11))
 
@@ -79,11 +81,13 @@ AD LDS server stores its database file and the associated log files in an instan
 - Both single-valued and multivalued attributes can be indexed. classes cannot be indexed.
 - wildcards search string can only used on indexed attributes
 
-**HERE**: <https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc753882(v=ws.11)>
-
-**HERE**: <https://docs.microsoft.com/en-us/windows/win32/adschema/active-directory-schema>
+[AD Schema](https://docs.microsoft.com/en-us/windows/win32/adschema/active-directory-schema)
 
 - My understanding of some fields:
   - objectClass: can be classSchema, attributeSchema
   - cn: the schame name
   - Dn == distinguishedName, a chain of cns.
+
+**HERE**: <https://docs.microsoft.com/en-us/windows/win32/adschema/active-directory-schema-site>
+
+**TODO**: <https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc753882(v=ws.11)>
