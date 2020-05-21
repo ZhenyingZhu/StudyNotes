@@ -70,4 +70,20 @@ AD LDS server stores its database file and the associated log files in an instan
 - AD LDS does not require a domain controller or a Domain Name System (DNS) server.
 - multimaster replication: grouping AD LDS instances into configuration sets.
 
+[AD LDS Schema](https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc753882(v=ws.11))
+
+- Each AD LDS configuration set has its own independently manageable schema, which is stored in the schema directory partition.
+- the base (or default) AD LDS schema contains only the classes and attributes that are needed to start an AD LDS instance.
+- The schema can be extended with new classes and attributes, either by administrators or by the applications themselves.
+- Can define either Object classes or Attributes
+- Both single-valued and multivalued attributes can be indexed. classes cannot be indexed.
+- wildcards search string can only used on indexed attributes
+
 **HERE**: <https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc753882(v=ws.11)>
+
+**HERE**: <https://docs.microsoft.com/en-us/windows/win32/adschema/active-directory-schema>
+
+- My understanding of some fields:
+  - objectClass: can be classSchema, attributeSchema
+  - cn: the schame name
+  - Dn == distinguishedName, a chain of cns.
