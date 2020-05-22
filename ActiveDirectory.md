@@ -2,9 +2,7 @@
 
 ## Resource
 
-- [Windows Server 2012 Doc](https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/hh831669(v=ws.11))
 - <https://www.varonis.com/blog/active-directory-domain-services/>
-- [AD Doc](https://docs.microsoft.com/en-us/windows/win32/ad/active-directory-schema)
 - [AD LDS Old Doc](https://docs.microsoft.com/en-us/previous-versions/windows/desktop/adam/active-directory-lightweight-directory-services)
 
 ## [Windows Server 2012 Doc](https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/hh831669(v=ws.11))
@@ -81,19 +79,32 @@ AD LDS server stores its database file and the associated log files in an instan
 - Both single-valued and multivalued attributes can be indexed. classes cannot be indexed.
 - wildcards search string can only used on indexed attributes
 
-[AD Schema](https://docs.microsoft.com/en-us/windows/win32/adschema/active-directory-schema)
+[AD Schema and all pre-defined](https://docs.microsoft.com/en-us/windows/win32/adschema/active-directory-schema)
 
 - property == attribute.
 - 3 distinct categories of classes: Structural Classes, Abstract Classes, and Auxiliary Classes.
-- content rules are completely expressed by the Must-Contain and May-Contain attributes of the schema definitions for each class.
+- Content rules: expressed by the Must-Contain and May-Contain attributes of the schema definitions for each class.
 - Directory Information Tree (DIT): the class instances stored in a tree structure
 - Lightweight Directory Access Protocol (LDAP): Internet communications protocol.
-- object: a Class-Schema object and a group of Attribute-Schema
-- Object Identifier ((OIDs)): 
+- Object: a Class-Schema object and a group of Attribute-Schema
+- Object Identifier ((OIDs)): uniquely identify data elements, syntaxes, and various other parts of distributed applications. a dotted string of numbers, like "1.2.840.113556.1.5.4
+- Schema: defines the Poss-Superiors (defines what classes can be parents), Must-Contain, and May-Contain attributes.
+- Security Descriptor: ownership of an object and the permissions
+- Structure Rules: expressed by the Poss-superiors
+- X.500: specify the naming, data representation, and communications protocols for a directory service.
+
 - objectClass: can be classSchema, attributeSchema
 - cn: the schame name
 - Dn == distinguishedName, a chain of cns.
 
-**HERE**: <https://docs.microsoft.com/en-us/windows/win32/adschema/active-directory-schema-site>
+[Schema related info in AD Doc](https://docs.microsoft.com/en-us/windows/win32/ad/active-directory-schema)
 
-**TODO**: <https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc753882(v=ws.11)>
+- Each attribute is described by an attributeSchema
+- definition: includes a variety of data, i.e. what object types that the attribute applies to; the syntax type of the attribute.
+- Domain-replicated, stored attributes: some attributes are stored in the directory and eplicated to all domain controllers in a domain, like [cn](https://docs.microsoft.com/en-us/windows/win32/adschema/a-cn), [objectGUID](https://docs.microsoft.com/en-us/windows/win32/adschema/a-objectguid). A subset of these attributes is also replicated to the global catalog.
+- Non-replicated, locally stored attributes, such as badPwdCount, Last-Logon, and Last-Logoff are stored on each domain controller, but are not replicated. to obtain the last time that a user logged on to the domain, retrieve the Last-Logon attribute for the user from every domain controller in the domain and find that latest date and time.
+- Non-stored, constructed attributes: calculated by the domain controller
+
+**HERE**: <https://docs.microsoft.com/en-us/windows/win32/ad/containers-and-leaves>
+
+**TODO**: <https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc770465(v=ws.11)>
