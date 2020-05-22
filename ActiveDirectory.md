@@ -83,10 +83,16 @@ AD LDS server stores its database file and the associated log files in an instan
 
 [AD Schema](https://docs.microsoft.com/en-us/windows/win32/adschema/active-directory-schema)
 
-- My understanding of some fields:
-  - objectClass: can be classSchema, attributeSchema
-  - cn: the schame name
-  - Dn == distinguishedName, a chain of cns.
+- property == attribute.
+- 3 distinct categories of classes: Structural Classes, Abstract Classes, and Auxiliary Classes.
+- content rules are completely expressed by the Must-Contain and May-Contain attributes of the schema definitions for each class.
+- Directory Information Tree (DIT): the class instances stored in a tree structure
+- Lightweight Directory Access Protocol (LDAP): Internet communications protocol.
+- object: a Class-Schema object and a group of Attribute-Schema
+- Object Identifier ((OIDs)): 
+- objectClass: can be classSchema, attributeSchema
+- cn: the schame name
+- Dn == distinguishedName, a chain of cns.
 
 **HERE**: <https://docs.microsoft.com/en-us/windows/win32/adschema/active-directory-schema-site>
 
