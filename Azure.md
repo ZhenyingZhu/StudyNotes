@@ -163,6 +163,7 @@ Encryption
   - At rest: encrypted in the storage/physical medium.
   - In transit: encrypt before send or set up a secure channel.
 
+[HTTPS](./Networking.md#HTTPS)
 
 **HERE**: continue review
 
