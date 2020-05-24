@@ -101,10 +101,21 @@ AD LDS server stores its database file and the associated log files in an instan
 
 - Each attribute is described by an attributeSchema
 - definition: includes a variety of data, i.e. what object types that the attribute applies to; the syntax type of the attribute.
-- Domain-replicated, stored attributes: some attributes are stored in the directory and eplicated to all domain controllers in a domain, like [cn](https://docs.microsoft.com/en-us/windows/win32/adschema/a-cn), [objectGUID](https://docs.microsoft.com/en-us/windows/win32/adschema/a-objectguid). A subset of these attributes is also replicated to the global catalog.
+- Domain-replicated, stored attributes: some attributes are stored in the directory and replicated to all domain controllers in a domain, like [cn](https://docs.microsoft.com/en-us/windows/win32/adschema/a-cn), [objectGUID](https://docs.microsoft.com/en-us/windows/win32/adschema/a-objectguid). A subset of these attributes is also replicated to the global catalog.
 - Non-replicated, locally stored attributes, such as badPwdCount, Last-Logon, and Last-Logoff are stored on each domain controller, but are not replicated. to obtain the last time that a user logged on to the domain, retrieve the Last-Logon attribute for the user from every domain controller in the domain and find that latest date and time.
 - Non-stored, constructed attributes: calculated by the domain controller
 
-**HERE**: <https://docs.microsoft.com/en-us/windows/win32/ad/containers-and-leaves>
+Hierarchy
+
+- every object instance except the root is contained by other object.
+- except classSchema or attributeSchema, any object can be a container. possSuperiors attribute defines the container of the object class.
+
+Object Identities
+
+- Relative Distinguished Name: rDnAttID. Normally use  cn (Common-Name) as the naming. The value should be unique in a container, but not accross containers.
+- Distinguished Name: distinguishedName. a string that includes the location of the object. relative distinguished name + each of its ancestors. unique within a forest.
+- Object GUID: objectGUID. a globally unique identifier. Object GUIDs never change even moved.
+
+**HERE**: <https://docs.microsoft.com/en-us/windows/win32/ad/naming-contexts-and-partitions>
 
 **TODO**: <https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc770465(v=ws.11)>
