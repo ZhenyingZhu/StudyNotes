@@ -163,6 +163,9 @@ Encryption
   - At rest: encrypted in the storage/physical medium.
   - In transit: encrypt before send or set up a secure channel.
 
+
+**HERE**: continue review
+
 Encryption on Azure
 
 - Azure Storage Service Encryption (SSE): data at rest. encrypts your data with 256-bit Advanced Encryption Standard (AES). can use Microsoft-managed encryption keys with SSE, or you can use your own encryption keys
@@ -202,7 +205,7 @@ Application security
 - Data protection: use TLS and TDE. client-side encryption using .NET lib.
 - Secure key and secret storage: use Azure Key Vault.
 
-# HERE https://docs.microsoft.com/en-us/learn/modules/design-for-performance-and-scalability-in-azure/2-scaling-up-and-scaling-out
+**HERE**: <https://docs.microsoft.com/en-us/learn/modules/design-for-performance-and-scalability-in-azure/2-scaling-up-and-scaling-out>
 
 Next to look <https://docs.microsoft.com/en-us/azure/architecture/>
 

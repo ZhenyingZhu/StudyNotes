@@ -88,30 +88,7 @@ Web Application: Use Razor web pages.
 
 Visual Studio Web Application options:
 
-[HTTPS intro](https://love2dev.com/blog/how-https-works/)
-
-- Wraps an encrypted layer around HTTP.
-- HTTP: async communicate protocol.
-  1. init a connection
-  2. data passed between server and client are through TCP with multi round trips
-  3. TCP slow start: first packet size is 16kb, keep doubling on success until 4MB or the bandwidth of the client reachs
-- Use TLS to encrypt. It has replaced SSL. Its certs are free.
-  - a cert is a public key with the id of the owner.
-  - TLS cert is installed on server.
-  - public and private keys are stored on server.
-  - Based on public/private-key cryptography: public key is used for encryption, private key is for decryption.
-  - There is also a list of endpoints in SSL cert? [More details](https://docs.microsoft.com/en-us/archive/blogs/jpsanders/troubleshooting-asp-net-the-remote-certificate-is-invalid-according-to-the-validation-procedure). To fix: `ServicePointManager.ServerCertificateValidationCallback += (sender, cert, chain, policyErrors) => true;`
-- HTTPS Handshake
-  1. browser connect to an HTTPS server with a SYNC
-  2. server returns a SYNC ACK
-  3. brower sends an ACK + client hello
-  4. server answers a server hello + the cert with public key
-  5. browser checks 1. the owner matches the server, 2. the cert is signed by a trusted authority
-  6. brower and server exchange a secret, which means both sides send others a public key and keep a private key??
-  7. then start communicate with app data and encrypted with public keys
-  8. only the domain is not encrypted. Even the full URL is encrypted.
-
-Config HTTPS
+Config [HTTPS](./Networking.md#HTTPS)
 
 - The HTTPS url will appear in the Properties/launchSettings.json.
 - [HSTS](https://aka.ms/aspnetcore-hsts) service will be injected. It provides an opt-in security enhancement by returning a response header client can use.
