@@ -664,6 +664,41 @@ Fiddler decrept HTTPS traffic:
 
 [Youtube: How SSL certificate works?](https://youtu.be/33VYnE7Bzpk)
 
+- SSL cert: used by web servers, issued and signed by by 3rd-party (CA). It can be used to verify the identity of the web server and its public key.
+- flow:
+  1. brower sends the HTTPS request
+  2. server sends its public key and its SSL cert
+  3. browser verifies the cert's signature by requesting the CA: the signature is created by CA's private key. CA's public key is pre-installed by the browser
+  4. browser creates a symmetric key/a shared secret
+  5. brower uses the server's public key to encrypt one symmetric key and send to server
+  6. server uses its private key to decrypt the browser's symmetric key
+  7. all the traffic then are encrypted and decrypted with the symmetric key
+
+[Youtube: What is digital signature?](https://www.youtube.com/watch?v=TmA2QWSLSPg&list=PLSNNzog5eydtwsdT__t5WtRgvpfMzpTc7)
+
+- Can be used to 1. AuthN the sender, 2. non-repudiation: sender cannot deny that the message has sent, 3. integrity: the message was not altered in transit
+- Sender generates public key and private key pair
+- Sender sends the private key to receiver
+- Sender encrypts the digest of the content (a hash value of the content) with private key, which generates a digital signature
+- Sender sends both the content (note it is not encrypted) and the signature to the receiver
+- Receiver decrypts the signature with the public key, and compare with the digest
+
+[Youtube: Private Key Encryption (Symmetric Key Encryption)](https://www.youtube.com/watch?v=vk3py9M2IfE&list=PLSNNzog5eyduN6o4e6AKFHekbH5-37BdV)
+
+- both sender and receiver have the private key
+- sender encrypt the message using the key and output scrambled data
+- receiver decrypt the scrambled data with the same key and output the original message
+- 2 encryption methods
+  - Stream cypher: bit by bit encryption on the fly. One implementation: RC4
+  - Block cypher: encrypt data in certain length. Implementations: DES, RC5, AES
+
+[Youtube: Public Key Encryption (Asymmetric Key Encryption)](https://www.youtube.com/watch?v=8I7BNgD2Yag)
+
+- public key and private key are mathematically related
+- only the creator has the private key
+- receiver creates a pair of keys
+- cannot verify the sender's identity, so need use digital signature
+
 **HERE**
 
 ## Other notes
