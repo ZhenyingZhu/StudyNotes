@@ -662,7 +662,9 @@ Fiddler decrept HTTPS traffic:
   7. then start communicate with app data and encrypted with public keys
   8. only the domain is not encrypted. Even the full URL is encrypted.
 
-[Youtube]
+[Youtube: How SSL certificate works?](https://youtu.be/33VYnE7Bzpk)
+
+**HERE**
 
 ## Other notes
 
