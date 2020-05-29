@@ -701,7 +701,13 @@ Fiddler decrept HTTPS traffic:
 
 [Youtube: Why digital certificate?](https://www.youtube.com/watch?v=UbMlPIgzTxc)
 
-**HERE**
+- Digital signature cannot prevent hacker (man-in-the-middle-attack) to read the message because the public key is stored in a public place.
+- Hacker can also replace the file using his private key and change the public key to pretent he is the sender.
+- Digital cert is issued by a trusted 3rd-party. It can verify the identity of the owner and the owner owns the public key.
+- Sender sends the public key with the cert to the receiver.
+- Cert contains 1. owner's name, 2. owner's public key and its expiration date, 3. issuer's name, 4. issuer's signature.
+
+**HERE**: https://morgansimonsen.com/2013/04/16/understanding-x-509-digital-certificate-thumbprints/
 
 ## Other notes
 
