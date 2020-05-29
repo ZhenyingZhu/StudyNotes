@@ -699,6 +699,8 @@ Fiddler decrept HTTPS traffic:
 - receiver creates a pair of keys
 - cannot verify the sender's identity, so need use digital signature
 
+[Youtube: Why digital certificate?](https://www.youtube.com/watch?v=UbMlPIgzTxc)
+
 **HERE**
 
 ## Other notes
