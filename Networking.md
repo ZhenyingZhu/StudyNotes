@@ -674,15 +674,6 @@ Fiddler decrept HTTPS traffic:
   6. server uses its private key to decrypt the browser's symmetric key
   7. all the traffic then are encrypted and decrypted with the symmetric key
 
-[Youtube: What is digital signature?](https://www.youtube.com/watch?v=TmA2QWSLSPg&list=PLSNNzog5eydtwsdT__t5WtRgvpfMzpTc7)
-
-- Can be used to 1. AuthN the sender, 2. non-repudiation: sender cannot deny that the message has sent, 3. integrity: the message was not altered in transit
-- Sender generates public key and private key pair
-- Sender sends the private key to receiver
-- Sender encrypts the digest of the content (a hash value of the content) with private key, which generates a digital signature
-- Sender sends both the content (note it is not encrypted) and the signature to the receiver
-- Receiver decrypts the signature with the public key, and compare with the digest
-
 [Youtube: Private Key Encryption (Symmetric Key Encryption)](https://www.youtube.com/watch?v=vk3py9M2IfE&list=PLSNNzog5eyduN6o4e6AKFHekbH5-37BdV)
 
 - both sender and receiver have the private key
@@ -699,6 +690,15 @@ Fiddler decrept HTTPS traffic:
 - receiver creates a pair of keys
 - cannot verify the sender's identity, so need use digital signature
 
+[Youtube: What is digital signature?](https://www.youtube.com/watch?v=TmA2QWSLSPg&list=PLSNNzog5eydtwsdT__t5WtRgvpfMzpTc7)
+
+- Can be used to 1. AuthN the sender, 2. non-repudiation: sender cannot deny that the message has sent, 3. integrity: the message was not altered in transit
+- Sender generates public key and private key pair
+- Sender sends the public key to receiver (or store in a public place and tell the receiver where)
+- Sender encrypts the digest of the content (a hash value of the content) with private key, which generates a digital signature
+- Sender sends both the content (note it is not encrypted) and the signature to the receiver
+- Receiver decrypts the signature with the public key, and compare with the digest
+
 [Youtube: Why digital certificate?](https://www.youtube.com/watch?v=UbMlPIgzTxc)
 
 - Digital signature cannot prevent hacker (man-in-the-middle-attack) to read the message because the public key is stored in a public place.
@@ -707,7 +707,13 @@ Fiddler decrept HTTPS traffic:
 - Sender sends the public key with the cert to the receiver.
 - Cert contains 1. owner's name, 2. owner's public key and its expiration date, 3. issuer's name, 4. issuer's signature.
 
-**HERE**: https://morgansimonsen.com/2013/04/16/understanding-x-509-digital-certificate-thumbprints/
+**HERE**:
+
+[Public Key Certificate](https://en.wikipedia.org/wiki/Public_key_certificate)
+
+[X.509 Certificate](https://en.wikipedia.org/wiki/X.509)
+
+https://morgansimonsen.com/2013/04/16/understanding-x-509-digital-certificate-thumbprints/
 
 ## Other notes
 
