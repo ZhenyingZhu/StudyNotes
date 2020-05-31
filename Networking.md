@@ -707,11 +707,26 @@ Fiddler decrept HTTPS traffic:
 - Sender sends the public key with the cert to the receiver.
 - Cert contains 1. owner's name, 2. owner's public key and its expiration date, 3. issuer's name, 4. issuer's signature.
 
-**HERE**:
-
 [Public Key Certificate](https://en.wikipedia.org/wiki/Public_key_certificate)
 
-[X.509 Certificate](https://en.wikipedia.org/wiki/X.509)
+- used to prove the ownership of a public key
+- subject: identity of the owner
+- cert contains a public key, the subject and the issuer's digital signature
+- In a typical Public-key Infrastructure (PKI) schema, issuer is a CA.
+- Most common cert is defined by X.509
+- For SSL Server cert, the cert path validation algorithm does: 1. validate the primary host name (listed as Common Name) in the subject matches the host name, 2. the cert is signed by a trusted CA
+- Chain of trust: End-entity cert is referenced by an intermediate cert, which is referenced by a root cert. The root cert's signature is self-signed by root CA.
+- Common field:
+  - Serial Number: uniq id of a cert
+  - Subject
+  - Issuer
+  - Not Before, Not After
+  - Key Usage, Extended Key Usage
+  - Public Key
+  - Signature Algorithm: the algorithm used to sign the cert
+  - Signature
+
+**HERE**: Certificate authorities
 
 https://morgansimonsen.com/2013/04/16/understanding-x-509-digital-certificate-thumbprints/
 
