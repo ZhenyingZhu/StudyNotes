@@ -444,27 +444,31 @@ double res = f(3.0);
 [sample](https://github.com/dotnet/docs/tree/master/samples)
 
 namespace
+
 - System
 
 class
+
 - System.Console
 
 `System.Threading.Tasks.Task(seconds).Wait()`
 
-## Others
-resx
-- https://docs.microsoft.com/en-us/dotnet/framework/resources/working-with-resx-files-programmatically
+### Others
 
-## Question
+[resx](https://docs.microsoft.com/en-us/dotnet/framework/resources/working-with-resx-files-programmatically)
+
+### Question
+
 `public int DelayInMilliseconds { get; private set; } = 200;` // what is get and private set?
-```
+
+```C#
    public int Pages
    { get { return totalPages; }
-     set 
+     set
      {
          if (value <= 0)
             throw new ArgumentOutOfRangeException("The number of pages cannot be zero or negative.");
-         totalPages = value;   
+         totalPages = value;
      }
    }
 ```
@@ -473,21 +477,23 @@ resx
 
 instantiate the class by using reflection
 
-attribute and reflection https://docs.microsoft.com/en-us/dotnet/csharp/tour-of-csharp/attributes
+[attribute and reflection](https://docs.microsoft.com/en-us/dotnet/csharp/tour-of-csharp/attributes)
 
 mechanisms
 
-^((.|[\r\n])+\:(.|[\r\n])+)$
+## C# Regex
 
-
-
-# C# Regex
 [Rule](https://docs.microsoft.com/en-us/dotnet/standard/base-types/regular-expression-language-quick-reference)
 
-E.g.:
-A pattern:
-'^(([^sS](.|[\r\n])*)|([sS][^mM](.|[\r\n])*)|([sS][mM][^tT](.|[\r\n])*)|([sS][mM][tT][^pP](.|[\r\n])*)|([sS][mM][tT][pP][^\:](.|[\r\n])*)|([sS][mM][tT][pP]\:((([\u0021-\u007E-[<>\(\)\[\]\\\.,;:@"]]|(\\[\u0000-\u007F]))+(\.([\u0021-\u007E-[<>\(\)\[\]\\\.,;:@"]]|(\\[\u0000-\u007F]))+)*)|("((\\[\u0000-\u007F])|[\u0000-\u007F-[\r\n"\\]])+"))@[^@]*))$'
+E.g.: `^((.|[\r\n])+\:(.|[\r\n])+)$`
 
+A pattern:
+
+```C#
+'^(([^sS](.|[\r\n])*)|([sS][^mM](.|[\r\n])*)|([sS][mM][^tT](.|[\r\n])*)|([sS][mM][tT][^pP](.|[\r\n])*)|([sS][mM][tT][pP][^\:](.|[\r\n])*)|([sS][mM][tT][pP]\:((([\u0021-\u007E-[<>\(\)\[\]\\\.,;:@"]]|(\\[\u0000-\u007F]))+(\.([\u0021-\u007E-[<>\(\)\[\]\\\.,;:@"]]|(\\[\u0000-\u007F]))+)*)|("((\\[\u0000-\u007F])|[\u0000-\u007F-[\r\n"\\]])+"))@[^@]*))$'
+```
+
+```C#
 ^ // line start with
 ( // group a subexpression
  ([^sS] // not in this character group, here means not s or S
@@ -539,20 +545,21 @@ A pattern:
  )
 )
 $ // line end with
+```
 
+## LINQ
 
+### query
 
-# LINQ
+<https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/query-keywords>
 
-## query
-https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/query-keywords
+### LINQ Examples
 
-## Examples
 [src](https://code.msdn.microsoft.com/101-LINQ-Samples-3fb9811b)
 
 group: return an IGroup
 
-_NOT DONE_
+**TODO**: not complete
 
 ```C#
 List<int> list1 = {1, 2, 3};
@@ -561,26 +568,28 @@ int sameNumCnt = list2.Select(x => x).Intersect(list1).Count;
 ```
 
 ## Function / Action / Predicate
+
 [src](https://stackoverflow.com/questions/4317479/func-vs-action-vs-predicate)
 
-_NOT DONE_
+**TODO**: not complete
 
-## Delegate
+### Delegate
+
 [src](https://stackoverflow.com/questions/8694921/delegates-vs-interfaces-in-c-sharp)
 
 [use delegate as a callback](https://stackoverflow.com/questions/667742/callbacks-in-c-sharp)
 
+## Unit Test
 
+### Visual studio UT framework
 
-# Unit Test
-
-## Visual studio UT framework
 [src](https://docs.microsoft.com/en-us/visualstudio/test/unit-test-basics)
 
 Add a test project to the solution and add reference.
 
 A test case:
-```
+
+```C#
 [TestMethod]
 [ExpectedException(typeof(ArgumentException))]
 [Timeout(2000)]  // Milliseconds
@@ -590,13 +599,13 @@ public void TestFoo() {
 }
 ```
 
-## Rhino mocks
+### Rhino mocks
 
 [src](https://hibernatingrhinos.com/oss/rhino-mocks)
 
 [wiki](http://www.ayende.com/wiki/Rhino+Mocks.ashx?AspxAutoDetectCookieSupport=1)
 
-### Defination
+#### Defination
 
 - Mock object
 - Interaction based testing
@@ -616,14 +625,14 @@ Stub
 - `MockRepository.GenerateStub<T>`
 - Mock the thing you are testing, Stub the thing that are just involved.
 
-### Examples
+#### Rhino Mock Examples
 
 <https://github.com/hibernating-rhinos/rhino-mocks/tree/master/Rhino.Mocks.GettingStarted>
 
 - `var foo = MockRepository.GenerateStub<IFoo>();`: Create a stub instance foo of the interface IFoo.
 - `foo.Stub(x => x.ID).Return(123);`: Set a property of the stub instance.
 
-### Mock a method
+#### Mock a method
 
 ```C#
 class MyClass {
@@ -679,15 +688,15 @@ If not a repeat, it only call once.
 [src](https://stackoverflow.com/questions/2764929/rhino-mocks-partial-mock)
 Partial mock needs work on virtual methods.
 
-### Create a mock object
+#### Create a mock object
 
 [src](https://stackoverflow.com/questions/7831404/can-you-explain-difference-between-strictmock-and-partialmock)
 
-### Arg Matches
+#### Arg Matches
 
 [src](https://stackoverflow.com/questions/3520911/rhino-mocks-using-arg-matches)
 
-### Out Parameter
+#### Out Parameter
 
 <https://en.wikibooks.org/wiki/How_to_Use_Rhino_Mocks/Out_and_Ref_Parameters>
 
@@ -695,61 +704,63 @@ Partial mock needs work on virtual methods.
 
 ```C#
 obj..Stub(serv => serv.IsLoginValid(
-            Arg<LoginViewModel>.Is.Equal(a_login_viewmodel), 
+            Arg<LoginViewModel>.Is.Equal(a_login_viewmodel),
             out Arg<User>.Out(new User()).Dummy))
 .OutRef(new User())
 .Return(false);
 ```
 
-# Collection
+## Collection
 
-## Init a Directory
+### Init a Directory
 
-```
+```C#
 Dictionary<string, List<string>> myD = new Dictionary<string, List<string>>()
 {
   {"tab1", MyList }
 };
 ```
 
-## Dictionary
+### Dictionary
+
 TryGetValue can test if key exist or not.
 
-## Enumerable.Intersect
-https://msdn.microsoft.com/en-us/library/bb460136(v=vs.110).aspx
+### Enumerable.Intersect
 
+<https://msdn.microsoft.com/en-us/library/bb460136(v=vs.110).aspx>
 
+## NuGet
 
-# NuGet
-https://stackoverflow.com/questions/7015149/multiperson-team-using-nuget-and-source-control
+<https://stackoverflow.com/questions/7015149/multiperson-team-using-nuget-and-source-control>
 
-https://stackoverflow.com/questions/7018913/where-does-nuget-put-the-dll
+<https://stackoverflow.com/questions/7018913/where-does-nuget-put-the-dll>
 
-## CxCache
-It is folder to hold dependency packages. Maybe is related to https://www.nuget.org/packages/xCache/ ?
+### CxCache
 
+It is folder to hold dependency packages. Maybe is related to <https://www.nuget.org/packages/xCache/> ?
 
+## Multi-thread
 
-# Multi-thread
+### Dispose
 
-## Dispose
 If an object is disposed, you cannot access it's field any more.
+
 [example in DB](https://stackoverflow.com/questions/5350109/cannot-access-a-disposed-object)
 
+## MySQL
 
-
-# MySQL
 [MySQL connect](https://stackoverflow.com/questions/21618015/how-to-connect-to-mysql-database)
 
+## SQLite
 
+<https://stackoverflow.com/questions/19665370/missing-sqlite-data-provider-in-vs-2013>
 
-# SQLite
-https://stackoverflow.com/questions/19665370/missing-sqlite-data-provider-in-vs-2013
 - My solution: find `SQLite.Interop.dll` and put under the run path. For example:
 - Build setting: Debug x64
 
 Folder
-```
+
+```C#
 Project
   bin
     x64
@@ -757,61 +768,71 @@ Project
         put x64\SQLite.Interop.dll here
 ```
 
-http://blog.tigrangasparian.com/2012/02/09/getting-started-with-sqlite-in-c-part-one/
+<http://blog.tigrangasparian.com/2012/02/09/getting-started-with-sqlite-in-c-part-one/>
 
-# UI
+## UI
+
 See VisualStudio.md
 
 Choose Windows Application.
 
 FlowLayoutPanel: arranges its contents in a horizontal or vertical flow direction. You can wrap the control's contents from one row to the next, or from one column to the next.
 
+## Miscellaneous
 
+### Compare two lists
 
-# Miscellaneous
+<https://msdn.microsoft.com/en-us/library/bb348567(v=vs.110).aspx>
 
-## Compare two lists
-https://msdn.microsoft.com/en-us/library/bb348567(v=vs.110).aspx
+### Write to a file
 
-## Write to a file
-https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/file-system/how-to-write-to-a-text-file
+<https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/file-system/how-to-write-to-a-text-file>
 
-## Action
-https://msdn.microsoft.com/en-us/library/018hxwa8(v=vs.110).aspx
+### Action
 
-## sleep
-Thread.sleep
+<https://msdn.microsoft.com/en-us/library/018hxwa8(v=vs.110).aspx>
 
-## GUID never conflict
-https://www.guidgen.com/
+### sleep
 
-## [Traverse an Enum](https://stackoverflow.com/questions/972307/can-you-loop-through-all-enum-values)
-var values = Enum.GetValues(typeof(Foos));
+`Thread.sleep`
 
-## [foreach skip one](https://stackoverflow.com/questions/7942389/how-to-skip-a-specific-position-within-a-for-each-loop-in-c-sharp)
+### GUID never conflict
+
+<https://www.guidgen.com/>
+
+### [Traverse an Enum](https://stackoverflow.com/questions/972307/can-you-loop-through-all-enum-values)
+
+`var values = Enum.GetValues(typeof(Foos));`
+
+### [foreach skip one](https://stackoverflow.com/questions/7942389/how-to-skip-a-specific-position-within-a-for-each-loop-in-c-sharp)
+
 Can also use if == continue.
 
-## [ReadOnlyDictionary](http://www.dotnetcurry.com/dotnet/973/read-only-dictionary-dotnet-45)
+### [ReadOnlyDictionary](http://www.dotnetcurry.com/dotnet/973/read-only-dictionary-dotnet-45)
+
 Need create by a dictionary and convert to readonly.
 
-## [obj folder struct](https://social.msdn.microsoft.com/Forums/en-US/456ebb0e-6fa3-4a77-a723-6984c5208562/what-is-with-all-of-the-files-for-a-simple-program?forum=csharpide)
+### [obj folder struct](https://social.msdn.microsoft.com/Forums/en-US/456ebb0e-6fa3-4a77-a723-6984c5208562/what-is-with-all-of-the-files-for-a-simple-program?forum=csharpide)
 
-## [Tuple as key](https://stackoverflow.com/questions/955982/tuples-or-arrays-as-dictionary-keys-in-c-sharp)
+### [Tuple as key](https://stackoverflow.com/questions/955982/tuples-or-arrays-as-dictionary-keys-in-c-sharp)
 
-## [print object id](https://stackoverflow.com/questions/5703993/how-to-print-object-id)
+### [print object id](https://stackoverflow.com/questions/5703993/how-to-print-object-id)
 
-## [using for unmanaged resources](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/using-statement)
+### [using for unmanaged resources](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/using-statement)
 
-## Cannot use out in linq
+### Cannot use out in linq
+
 Cannot:
-```
+
+```C#
 void foo(out int i) {
     ()=>(i);
 }
 ```
 
 Can:
-```
+
+```C#
 void foo(out int i) {
     int j;
     ()=>(j);
@@ -819,8 +840,9 @@ void foo(out int i) {
 }
 ```
 
-## Check if a base object is a derive class
-```
+### Check if a base object is a derive class
+
+```C#
 MyBase myDerive = new MyDerive();
 MyDerive res = myDerive as MyDerive;
 
@@ -830,20 +852,25 @@ if (res == null)
 }
 ```
 
-## Public attribute
+### Public attribute
+
 Don't forget to add `[DataMember]`
 
-## sealed class
+### sealed class
+
 Cannot inherit from it.
 
-## string with @
-https://stackoverflow.com/questions/6134547/what-does-the-prefix-do-on-string-literals-in-c
+### string with @
+
+<https://stackoverflow.com/questions/6134547/what-does-the-prefix-do-on-string-literals-in-c>
 
 Means no need to escape.
 
-## Customize set accessor
-https://stackoverflow.com/questions/1227205/why-can-i-not-add-a-set-accessor-to-an-overriden-property
-```
+### Customize set accessor
+
+<https://stackoverflow.com/questions/1227205/why-can-i-not-add-a-set-accessor-to-an-overriden-property>
+
+```C#
 class MyClass
 {
     private int myPropertyCpy;
@@ -856,40 +883,48 @@ class MyClass
 }
 ```
 
-## Entity Data Model
+### Entity Data Model
+
 [Entity type](https://msdn.microsoft.com/en-us/library/ee382837(v=vs.100).aspx) vs. [Complex Type](https://msdn.microsoft.com/en-us/library/ee382831(v=vs.100).aspx)
 
 Entity type
+
 - Entity name
 - Key
 - Properties: are also entities.
 
 Complex types
+
 - It is used as value of entites or other complex types.
 - do not have identities and therefore cannot exist independently.
 
-https://msdn.microsoft.com/en-us/library/jj652004(v=vs.113).aspx
+<https://msdn.microsoft.com/en-us/library/jj652004(v=vs.113).aspx>
 
-## Make internal visiable in other class
+### Make internal visiable in other class
+
 In the class that define as internal, update the AssemblyInfo.cs
-```
+
+```C#
 [assembly: InternalsVisibleTo("<namespace>")]
 ```
 
-## Resolve duplicate reference
+### Resolve duplicate reference
+
 Add the line at the top
-```
+
+```C#
 using dup = rightnamespace.dup;
 ```
 
-## DataView
+### DataView
+
 System.Data.DataView.
 
 `foreach(var dataRow in dataView)` to traverse.
 
-## Process
+### Process
 
-```c#
+```C#
 ProcessStartInfo startInfo = new ProcessStartInfo("ProcessName");
 startInfo.UseShellExecute = false;
 startInfo.RedirectStandardOutput = true;
@@ -913,7 +948,7 @@ else
 }
 ```
 
-## Attribute
+### Attribute
 
 [src](https://www.infoworld.com/article/3006630/application-development/how-to-work-with-attributes-in-c.html)
 
@@ -933,11 +968,11 @@ Attribute
   - Struct
 - used to associate declarative information: the info that can be retrived at runtime when using reflection.
 
-## LINQ Expression
+### LINQ Expression
 
 [src](https://docs.microsoft.com/en-us/dotnet/api/system.linq.expressions?view=netframework-4.7.2)
 
-## Set a HttpWebRequest timeout
+### Set a HttpWebRequest timeout
 
 ```C#
 HttpWebRequest myHttpWebRequest=(HttpWebRequest)WebRequest.Create("http://www.contoso.com");
@@ -945,13 +980,13 @@ myHttpWebRequest.Timeout=10;
 HttpWebResponse myHttpWebResponse=(HttpWebResponse)myHttpWebRequest.GetResponse();
 ```
 
-## Catch and Rethrow
+### Catch and Rethrow
 
 [src](https://stackoverflow.com/questions/881473/why-catch-and-rethrow-an-exception-in-c)
 
 Catch and rethrow lose all stack trace.
 
-## Async and await
+### Async and await
 
 [Public Doc](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/await)
 
@@ -963,17 +998,17 @@ If use `await` without `Task`, each step still runs sequencially. When init a `T
 
 [Example](https://stackoverflow.com/questions/14455293/how-and-when-to-use-async-and-await)
 
-## Inversion of control
+### Inversion of control
 
 <https://en.wikipedia.org/wiki/Inversion_of_control>
 
 <http://jinnianshilongnian.iteye.com/blog/1413846>
 
-## Compare two list
+### Compare two list
 
 `UnorderedEnumerableComparer<Guid>.Default.Compare(guidList1, guidList2) != 0`
 
-## Resolve conflict for same namespace in two different dlls/projects
+### Resolve conflict for same namespace in two different dlls/projects
 
 This can happen when both projects reference to a differant versions of a same lib. One easiest way to resolve it is to use alias of the project. [alias](http://csc-technicalnotes.blogspot.com/2009/07/type-exists-in-both-dlls.html)
 
