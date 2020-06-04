@@ -1,6 +1,7 @@
 import math
 
 def calculateCompoundFutureValue(base, rate, duration):
+    """From the PV (base), calculate the FV with compound interest."""
     coumpounding = base
     for _ in range(duration):
         coumpounding *= 1.0 + rate / 100.0

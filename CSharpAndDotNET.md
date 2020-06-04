@@ -167,14 +167,53 @@ type categories
 - inspect a type's metadata to get information about that type
 - `Type t = typeof(SimpleClass);`
 
-**TODO**: <https://stackify.com/what-is-c-reflection/>
+[How C# Reflection Works](https://stackify.com/what-is-c-reflection/)
 
+- can dynamically create an instance of a type and bind that type to an existing object
+- also can get the type from an existing object and access its properties.
 - Assemblies contain modules
 - Modules contain types
 - Types contain members
 - relection can inspect the contents of an assembly
-- Most simple case: `System.Type type = i.GetType();`
+- C# uses Common Type System (CTS). There is a metadata table.
+- GetType: `int i; System.Type type = i.GetType();`
+- CreateInstance: `DateTime dateTime = (DateTime)Activator.CreateInstance(typeof(DateTime));`
 - `Reflect.SetPropertyValue()`
+
+Access a class from a dll assembly:
+
+The Test dll:
+
+```C#
+namespace Test
+{
+    public class Calculator
+    {
+        public Calculator() { ... }
+        private double _number;
+        public double Number { get { ... } set { ... } }
+        public void Clear() { ... }
+        private void DoClear() { ... }
+        public double Add(double number) { ... }
+        public static double Pi { ... }
+        public static double GetPi() { ... }
+    }
+}
+```
+
+Create the Calculator class:
+
+```C#
+Assembly testAssembly = Assembly.LoadFile(@"c:\Test.dll");
+Type calcType = testAssembly.GetType("Test.Calculator");
+object calcInstance = Activator.CreateInstance(calcType);
+
+PropertyInfo numberPropertyInfo = calcType.GetProperty("Number");
+double value = (double)numberPropertyInfo.GetValue(calcInstance, null);
+numberPropertyInfo.SetValue(calcInstance, 10.0, null);
+```
+
+
 
 inheritance
 
