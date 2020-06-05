@@ -1069,3 +1069,15 @@ using MyProjectCausingConflict;
 extern alias ResolveConflict;
 using ResolveConflict.MyProjectCausingConflict;
 ```
+
+### XML serialize an object
+
+[src](https://stackoverflow.com/questions/2434534/serialize-an-object-to-string)
+
+```C#
+using (StringWriter textWriter = new StringWriter())
+{
+  XmlSerializer.Serialize(textWriter, objectToSerialize);
+  string result = textWriter.ToString();
+}
+```
