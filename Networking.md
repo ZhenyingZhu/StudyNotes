@@ -725,10 +725,12 @@ Fiddler decrept HTTPS traffic:
   - Public Key
   - Signature Algorithm: the algorithm used to sign the cert
   - Signature
+- Certificate authorities: 1. serve cert signing request by vailidate info and provide certs, 2. maintain certs' revation info
 
-**HERE**: Certificate authorities
+[X.509 Cert thumbprint](https://morgansimonsen.com/2013/04/16/understanding-x-509-digital-certificate-thumbprints/)
 
-https://morgansimonsen.com/2013/04/16/understanding-x-509-digital-certificate-thumbprints/
+- thumbprint is a computed field, i.e. not a part of the certificate data itself.
+- Windows always uses SHA1 to calculate the thumbprint hash apon the whole certificate.
 
 ## Other notes
 
