@@ -26,7 +26,7 @@ Extend the `Thread` class
 
 - In the resource class, define a property: `private Lock lock;`
 - In the ctor, init the lock: `lock = new ReentrantLock();`
-- In the method, at the begining, `lock.lock(); try { ... }`, at the end, `finally { lock.unlock(); }`
+- In the method, at the begining, `lock.lock(); try { ... }`, at the end, `finally { lock.unlock(); }`. Also `lock.tryLock()`
 
 Deadlock conditions
 
@@ -42,6 +42,17 @@ Measure context switch time
 - [wait and notify and notifyAll](https://www.baeldung.com/java-wait-notify)
   - Need to be used in a method with `synchronized` keyword, so they are also based on monitor lock, so they also locked on the same object.
   - The example here can be used to solve the context switch question.
+
+Solve Deadlock for Dining Philosophers
+
+- Release resource if cannot lock.
+- break the cycle by letting the last philosopher pick up chopsticks in a reverse order
+
+Detect deadlock
+
+- Need processes declare upfront their lock resources orders
+- In a process, between each two resources, draw a vector from the prev to next resource, so that we can draw a graph
+- check if there is a cycle
 
 **HERE**: P190
 
