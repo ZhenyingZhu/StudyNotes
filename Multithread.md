@@ -21,6 +21,7 @@ Extend the `Thread` class
 - a keyword that can be applied to methods and code blocks
 - restricts multiple threads from executing the code simultaneously on the same object
 - static methods are synchronize on the class lock, i.e. no two static synchronized methods on the same class can be called simultaneously
+- note all the synchronized methods in the same instance are locked at the same
 
 `Lock`
 
@@ -53,6 +54,12 @@ Detect deadlock
 - Need processes declare upfront their lock resources orders
 - In a process, between each two resources, draw a vector from the prev to next resource, so that we can draw a graph
 - check if there is a cycle
+
+Use Semaphore to gurantee calls in order
+
+- a lock with multiple accesses
+- semaphore can be accquired and released by different threads
+- but a lock can only be locked and unlocked by the same thread
 
 **HERE**: P190
 
