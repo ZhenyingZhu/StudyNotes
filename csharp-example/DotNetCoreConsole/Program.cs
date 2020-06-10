@@ -7,7 +7,7 @@ namespace DotNetCoreConsole
     {
         static void Main(string[] args)
         {
-            TestFlagBitOperation.TestMain.testMain();
+            TestMethodAugRef.TestMain.testMain();
         }
     }
 }

@@ -42,3 +42,7 @@ Uncommit a local change
 - If need the history: `git revert <commit id>`
 - If need files in the last commit: `git reset --soft HEAD~1`
 - If don't need files: `git reset --hard HEAD~1`
+
+To sync a remote branch:
+
+`git update-ref -d refs/remotes/origin/<branch>`
