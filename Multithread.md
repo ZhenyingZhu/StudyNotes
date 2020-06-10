@@ -61,7 +61,20 @@ Use Semaphore to gurantee calls in order
 - semaphore can be accquired and released by different threads
 - but a lock can only be locked and unlocked by the same thread
 
-**HERE**: P190
+Multi-threaded
+
+- Extends Thread class
+- declare a lock `private static Object lock = new Object();`
+- In the `run()`, add a code block: `synchronized (lock) { ... }`
+
+[Wait() vs. Yield()](https://stackoverflow.com/questions/26798073/difference-between-wait-and-yield/26803040)
+
+- yield: the thread can be put back to the runnable state to let other threads run
+- wait: the thread needs to be blocked until a notify comes in
+
+## EPI
+
+P405
 
 ## Old Notes
 
