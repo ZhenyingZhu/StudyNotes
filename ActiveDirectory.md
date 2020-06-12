@@ -116,6 +116,85 @@ Object Identities
 - Distinguished Name: distinguishedName. a string that includes the location of the object. relative distinguished name + each of its ancestors. unique within a forest.
 - Object GUID: objectGUID. a globally unique identifier. Object GUIDs never change even moved.
 
-**HERE**: <https://docs.microsoft.com/en-us/windows/win32/ad/naming-contexts-and-partitions>
+**TODO**: <https://docs.microsoft.com/en-us/windows/win32/ad/naming-contexts-and-partitions>
 
 **TODO**: <https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc770465(v=ws.11)>
+
+## Active Directory, 5th Edition
+
+[Oreilly book](https://learning.oreilly.com/library/view/active-directory-5th/9781449361211/pr02.html)
+
+### Chapter 1. A Brief Introduction
+
+network operating system (NOS): a networked environment, many resources, managed by admin, accessed by end users.
+
+Lightweight Directory Access Protocol (LDAP): X.500, define the standards for how a true directory service is implemented and accessed.
+
+domain: group resources based on administrative and security boundaries
+
+domain controllers: servers providing the NOS services to end users
+
+directory service: a repository of network, application, or NOS information that is useful to multiple applications or users.
+
+### Chapter 2. Active Directory Fundamentals
+
+#### 2.1. How Objects Are Stored and Identified
+
+Type of objects at structural level
+
+- Container
+- non-container, a.k.a, leaf node
+
+The data is still sotred in a flat database. The directory information tree (DIT) file is an Extensible Storage Engine (ESE) database file.
+
+organizational unit (OU). It is also a prefix, and is most commonly used as a container. `cn=Keith Cooper,ou=Northlight IT Ltd,dc=mycorp,dc=com`
+
+Each object has a globally unique identifier (GUID). It is a 128-bit number. It is not changed even the object is moved or renamed within the DIT, until the obj is deleted and the GUID is released
+
+Microsoft Active Directory Migration Tool (ADMT): cross-forest move of a security principal. Not perserve GUID.
+
+Each obj also has a distinguished name (DN), same as Hierarchical path, and is uniq. domain mydomain.mycorp.com represents as DN: `dc=mydomain,dc=mycorp,dc=com`. dc stands for domain component
+
+A relative distinguished name (RDN): reference an object within its parent container. DN: `cn=Administrator,cn=Users,dc=mycorp,dc=com`, RDN: `cn=Administrator`
+
+[Attribute types from RFC 2253](https://learning.oreilly.com/library/view/active-directory-5th/9781449361211/ch02.html#attribute_types_from_rfc2253). [RFC 2253](https://www.ietf.org/rfc/rfc2253.txt)
+
+#### 2.2. Building Blocks
+
+An Active Directory domain is made up of the following components:
+
+- X.500-based hierarchical structure
+- A DNS domain name as a unique identifier
+- A security service do authZ and authN in the domain
+- Policies do ACL for users or machines within the domain
+
+A domain controller (DC) can be authoritative for one and only one domain. 
+
+a domain tree: root domain connected with sub domains.
+
+- all the domains in a domain tree trust one another implicitly with transitive trusts.
+- Trust relationship just setup potential to allow access. Admin still need grant access.
+
+Forest
+
+- a collection of one or more domain trees.
+- trees share a common Schema and Configuration container
+- trees connected together through transitive trusts
+- named as the forest root domain
+- Seems like the domains under forest cannot be islodated from each other, so be careful to use forest
+
+OU
+
+- The primary type of container to house objects
+- other than another type of container, which is called `container`, OU can have group policies
+- some default containers and organizational units: Users, Computers containers, the Domain Controllers OU.
+- Can use Active Directory Users and Computers (ADUC) MMC snap-in to manage
+
+Global Catalog (GC)
+
+- perform forest-wide searches.
+- contains a subset of attributes for each object to search for. partial attribute set (PAS). Use Active Directory Schema snap-in to manage. Or modifying the `attributeSchema` object.
+- be accessed via LDAP over port 3268 or LDAP/SSL over port 3269.
+- in multidomain forest, first query against GC to find the domain, then query against the domain controller
+
+**HERE**: <https://learning.oreilly.com/library/view/active-directory-5th/9781449361211/ch02.html> FLEXIBLE SINGLE MASTER OPERATOR (FSMO) ROLES
