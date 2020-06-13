@@ -197,4 +197,36 @@ Global Catalog (GC)
 - be accessed via LDAP over port 3268 or LDAP/SSL over port 3269.
 - in multidomain forest, first query against GC to find the domain, then query against the domain controller
 
-**HERE**: <https://learning.oreilly.com/library/view/active-directory-5th/9781449361211/ch02.html> FLEXIBLE SINGLE MASTER OPERATOR (FSMO) ROLES
+Flexible Single Master Operator (FSMO) Roles
+
+- Active Directory is a multimaster directory
+- Active Directory nominates one server to act as the master for 5 functions which can only perform on a single domain controller
+- The master server is FSMO role owner
+  - Schema master (forest wide): can update the schema. in `cn=Schema,cn=Configuration,dc=mycorp,dc=com`
+  - Domain naming master (forest): controls changes to the namespace, add/remove/rename domains, create app partitions and replicas. in `cn=Partitions,cn=Configuration,dc=mycorp,dc=com`
+  - primary domain controller (PDC) emulator (domain): maintain the latest password for any account. In `dc=mycorp,dc=com`
+  - Relative identifier (RID) master (domain): security principal has a security identifier (SID), comprised by RID. in `cn=RID Manager$,cn=System,dc=mycorp,dc=com`
+  - Infrastructure master (domain): maintain references to objects in other domains, a.k.a phantoms. performing updates to the domain. in `cn=Infrastructure,dc=mycorp,dc=com`
+- If the domain controller cannot perform FSMO, then a referal will be returned
+- FSMO roles can be transferred between domain controllers
+
+Time Synchronization in Active Directory
+
+- Kerberos, authentication protocol for Active Directory clientsm uses system clocks to verify the authenticity of Kerberos packets.
+- AD uses a time synchronization system based on the Network Time Protocol (NTP)
+
+Domain and Forest Functional Levels
+
+- expanded on the domain mode concept. apply to both forests and domains.
+- dictate what types of operating systems can assume the role of a domain controller in a domain or forest. i.e., This windows OS supports what domain controller OS.
+
+Groups
+
+- three group scopes: domain local, domain global, and universal
+- each group scope can have two types: distribution and security.
+- Distribution groups are generally used as a messaging list/email list
+- Security groups can be leveraged as distribution lists
+
+### Chapter 3. Active Directory Management Tools
+
+**HERE**: <https://learning.oreilly.com/library/view/active-directory-5th/9781449361211/ch03.html>
