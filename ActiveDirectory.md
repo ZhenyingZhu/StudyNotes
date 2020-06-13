@@ -229,4 +229,68 @@ Groups
 
 ### Chapter 3. Active Directory Management Tools
 
-**HERE**: <https://learning.oreilly.com/library/view/active-directory-5th/9781449361211/ch03.html>
+#### 3.1. Management Tools
+
+Microsoft Management Console (MMC) snap-ins
+
+Active Directory Administrative Center (ADAC)
+
+- Runs PowerShell cmdlets, connect to the Active Directory Web Service (ADWS)
+- `New-ADOrganizationalUnit`, `Set-ADObject`, `Move-ADObject`
+
+Active Directory Users and Computers (ADUC)
+
+- Can pass in LDAP filters to search
+
+ADSI Endit
+
+- a Resource Kit tool
+- browse all of the attributes of an object
+- Backlink attributes are constructed and not changeable.
+
+LDP
+
+- connect to any LDAP server (even non-Microsoft platforms), perform searches, view data, and make modifications.
+- View data in a raw format
+- start in command prompt
+- bind means connect to the LDAP server with creds.
+- Can issue an LDAP query in the Search dialog
+- Can specify all attributes to return, or just pass in `*` to return all
+- Can modify an object
+  - Replace: update a normal attribute
+  - Add: append a value to a multivalued attributed
+  - Delete: clear an attribute or remove a specific value from a multivalued attribute
+- Can create, delete, rename, and view replication metadata, view the ACL/security descriptor
+
+#### 3.2. Customizing the Active Directory Administrative Snap-ins
+
+Mostly talking about how to update the view of ADUC.
+
+#### 3.3. Active Directory PowerShell Module
+
+[Powershell Cookbook](http://oreil.ly/Win_PowerShell_CB2)
+
+#### 3.4. Best Practices Analyzer
+
+dcdiag tool can check the health of a domain controller, domain or forest and troubleshooting.
+
+Best Practices Analyzer (BPA) is the future of dcdiag.
+
+```powershell
+Invoke-BpaModel "Microsoft/Windows/DirectoryServices"
+Get-BpaResult "Microsoft/Windows/DirectoryServices"
+
+Get-BpaModel | ft Id,Name
+```
+
+#### 3.5. Active Directory-Based Machine Activation
+
+key management server (KMS): active windows
+
+Volume Activation Management Tool 3.0 (VAMT)
+
+Windows Automated Deployment Kit (ADK)
+
+### Chapter 4. Naming Contexts and Application Partitions
+
+**HERE**: <https://learning.oreilly.com/library/view/active-directory-5th/9781449361211/ch04.html>
