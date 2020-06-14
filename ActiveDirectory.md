@@ -293,4 +293,61 @@ Windows Automated Deployment Kit (ADK)
 
 ### Chapter 4. Naming Contexts and Application Partitions
 
-**HERE**: <https://learning.oreilly.com/library/view/active-directory-5th/9781449361211/ch04.html>
+naming context (NC): a domain as a big data partition. Only domain controllers that are authoritative for a domain need to replicate all of the information within that domain.
+
+predefined naming contexts
+
+- Domain naming context, scope to domain: e.g., users, groups, computers
+- Configuration naming context, forest: e.g., LDAP policies, sites, subnets
+- Schema naming context, forest
+
+application partitions: user-defined partitions
+
+- can contain any type of object except for security principals
+- can define which domain controllers replicate the data contained within these partitions
+- not restricted by domain boundaries
+- can view naming contexts and application partitions by querying its `RootDSE` entry
+
+#### 4.1. Domain Naming Context
+
+DN of the root of this NC: `dc=mycorp,dc=com`. a.k.a, NC head.
+
+Has a container `cn=LostAndFound`. contains Orphaned objects, they were created in a container that was deleted from another domain controller within the same replication period.
+
+#### 4.2. Configuration Naming Context
+
+every writable domain controller in the forest holds a writable copy of the Configuration NC.
+
+#### 4.3. Schema Naming Context
+
+schema is defined on a forest-wide basis. the Schema NC is writable only on the domain controller holding the schema master FSMO role.
+
+Schema modifications need to be processed prior to any updates that utilize the schema.
+
+it is a single container that has `classSchema`, `attributeSchema`, and `subSchema` objects.
+
+#### 4.4. Application Partitions
+
+Can  create areas in Active Directory to store data on specific domain controllers.
+
+replica: a domain controller hold a copy of an application partition
+
+site topology: can be used to automatically create the necessary connection objects to replicate among the servers that hold replicas of an application partition.
+
+Domain controllers register Service Location (SRV) records to let clients use the DC locator.
+
+DN of an application partition: if the partition calls `apps`, then DN is `dc=apps,dc=mycorp,dc=com`
+
+Use `ntdsutil` to create an app partition.
+
+```powershell
+create nc "dc=MyAppPart,dc=cohovines,dc=com" dc01.cohovines.com
+```
+
+Application partitions tend to store dynamic data, which has a limited lifespan, i.e, has a time-to-live (TTL) value, e.g., DNS, DHCP
+
+Create a dynamic object: add `dynamicObject` to the `objectClass` when create the object. Also can add `entryTTL`.
+
+Dynamic objects do not get tombstoned like normal objects when they are deleted.
+
+**HERE**: <https://learning.oreilly.com/library/view/active-directory-5th/9781449361211/ch05.html>
