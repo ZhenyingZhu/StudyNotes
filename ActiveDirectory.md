@@ -350,4 +350,20 @@ Create a dynamic object: add `dynamicObject` to the `objectClass` when create th
 
 Dynamic objects do not get tombstoned like normal objects when they are deleted.
 
+### Chapter 5. Active Directory Schema
+
+- class
+- attribute
+- syntax: define the type of data that can be placed into an attribute.
+
+To check the `schemaVersion`: `adfind -schema -s base objectVersion`. This is the version of AD default schema.
+
+#### 5.1. Structure of the Schema
+
+Schema container: `cn=schema,cn=Configuration,dc=contoso,dc=com`
+
+Schema is made up of: classes `classSchema` and attributes `attributeSchema`
+
+X.500 and the OID Namespace
+
 **HERE**: <https://learning.oreilly.com/library/view/active-directory-5th/9781449361211/ch05.html>
