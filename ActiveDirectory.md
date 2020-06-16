@@ -366,4 +366,34 @@ Schema is made up of: classes `classSchema` and attributes `attributeSchema`
 
 X.500 and the OID Namespace
 
+- individual object classes in an organization can be uniquely defined using a special identifying process
+- classes can inherit from one another
+- need to define and export a class
+- object identifier (OID): identify every schema object. e.g., `1.3.6.1.4.1.3385.12.497`. Those numbers are branchs
+- Internet Assigned Numbers Authority (IANA) maintains the main set of root branches
+
+#### 5.2. Attributes (attributeSchema Objects)
+
+`attributeSchema` class inherits attributes from the class called `top`
+
+Dissecting an example active directory attribute
+
+- `userPrincipalName` (UPN): identifying each user across a forest. Can be used to login.
+- When write, AD doesn't prevent dup UPN. domain controllers will log an event from source Key Distribution Center (KDC) when detect dup UPN
+- each attribute in an `attributeSchema` has
+  - lDAPDisplayName
+  - syntax: e.g., `CASE_IGNORE_STRING`, `DN_STRING`
+  - value: the diff from ldapDisplayName is that multiple attributes can have same values but different names
+- if `searchFlags` has value 1, means it is indexed.
+
+#### 5.3. Attribute Properties
+
+Attribute Syntax
+
+- any new attributes you create in the schema must use one of the predefined syntaxes.
+- when create a new attribute, need specify 1. OM syntax, 2. the OID of the syntax
+- MSFT added 22 expanded syntaxes: [Syntax definitions](https://learning.oreilly.com/library/view/active-directory-5th/9781449361211/ch05.html#syntax_definitions)
+
+Systemflags
+
 **HERE**: <https://learning.oreilly.com/library/view/active-directory-5th/9781449361211/ch05.html>
