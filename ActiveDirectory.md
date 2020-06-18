@@ -396,4 +396,6 @@ Attribute Syntax
 
 Systemflags
 
+- a bit mask that represents how the attribute should be handled.
+
 **HERE**: <https://learning.oreilly.com/library/view/active-directory-5th/9781449361211/ch05.html>
