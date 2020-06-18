@@ -394,8 +394,53 @@ Attribute Syntax
 - when create a new attribute, need specify 1. OM syntax, 2. the OID of the syntax
 - MSFT added 22 expanded syntaxes: [Syntax definitions](https://learning.oreilly.com/library/view/active-directory-5th/9781449361211/ch05.html#syntax_definitions)
 
-Systemflags
+`systemflags`
 
 - a bit mask that represents how the attribute should be handled.
+- can be configured on both schema and object
+- flag (0x02000000): The object is not moved to the Deleted Objects container. The tombstone remains in the original container.
+- Constructed attributes are not stored. e.g., `msDS-Approx-Immed-Subordinates` tells how many objects under a container.
+- Category 1 objects: a subset of the attributes and classes that come with AD LDS or Active Directory.
+
+`schemaFlagsEx`
+
+- hold flags that further define the properties of an attribute.
+
+`searchFlags`
+
+- control indexing
+- only set on schema attribute definitions
+- [Search Flag values](https://learning.oreilly.com/library/view/Active+Directory,+5th+Edition/9781449361211/ch05.html#search_flag_bits)
+- (0x0001): enable creating index
+- (0x0002): create index of the attr within each container
+- (0x0004): add the attr to ambiguous name resolution (ANR) set
+- bitwise query, NOT query will still enumerate all objects even the attr is indexed
+- Linked attributes, such as group membership, are implicitly indexed.
+- multi-value attr or non-uniq attr can also be indexed
+- `objectClass` is indexed by default
+- indexes consume disk space of the DB file `ntds.dit`. domain controller performance will also be impacted. Index data is not replicated
+- can enable deferred indexing. Need to update forest's `dsHeuristics` first.
+- Can set attr to be remained on tombstoned object. The attr doesn't need restore when the object is restored. Need first enable Active Directory Recycle Bin. Linked attr cannot be perserved
+- The subtree index: allows virtual list view (VLV)
+- The tuple index: normal index supports direct lookups and trailing wildcard. This index allow wildcards anywhere.
+- Confidentiality: attr needs two permissions in order to be viewed by a trustee
+- access control entries (ACEs)
+- Attribute change auditing
+- The filtered attribute set: new read-only domain controller (RODC) functionality
+
+Property sets and attributeSecurityGuid
+
+- property sets are defined in the `cn=extended-rights` subcontainer as `controlAccessRight` objects.
+
+linked attributes
+
+- consist of a forward link and a back link, e.g., member and memberOf.
+- Attributes are linked by setting the `linkID` attributes of two `attributeSchema` objects to valid link values.
+
+MAPI IDS
+
+- attr displays in Exchange global address list (GAL) must have a MAPI ID
+
+#### 5.4. Classes (classSchema Objects)
 
 **HERE**: <https://learning.oreilly.com/library/view/active-directory-5th/9781449361211/ch05.html>
