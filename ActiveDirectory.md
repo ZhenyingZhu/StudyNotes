@@ -458,13 +458,23 @@ Object class category and inheritance
 - attribute `subClassOf`
 - `top`: base class of all objects
 - objectClassCategory
-  - Structural: directly create objects of its type
-  - Abstract: can inherit from other classes and can have attributes defined on them. can inherit only from another abstract class.
-  - Auxiliary: store sets of attributes that other classes can inherit. cannot inherit from a structural class.
-  - 88-Class: deprecated category
-- atrribute `auxiliaryClass`, it is a string lists auxiliary classes on this class.
-- 
+  1. Structural: directly create objects of its type
+  2. Abstract: can inherit from other classes and can have attributes defined on them. can inherit only from another abstract class.
+  3. Auxiliary: store sets of attributes that other classes can inherit. cannot inherit from a structural class.
+  4. 88-Class: deprecated category
 
 Dissecting an example active directory class
 
-**HERE**: <https://learning.oreilly.com/library/view/active-directory-5th/9781449361211/ch05.html>
+- atrribute `auxiliaryClass`, it is a string lists auxiliary classes on this class.
+- attribute `objectClass` shows what the inherit chain looks like of this class. All class schema classes are inherit from `top` and `classSchema`.
+- `rDNAttID`: defines what prefix to use when connecting to instances of the class via LDAP. Normally it should be `cn`.
+- `systemPossSuperiors`: what parents can the class to be created under.
+- `mustContain`, `mayContain`, `possSuperiors`, and `auxiliaryClass`: inheritance affects them.
+
+Dynamically linked auxiliary classes
+
+- can dynamically assign auxiliary classes to individual objects without update the class schema of the objects
+
+### Chapter 6. Site Topology and Active Directory Replication
+
+**HERE**: <https://learning.oreilly.com/library/view/active-directory-5th/9781449361211/ch06.html>
