@@ -168,7 +168,7 @@ An Active Directory domain is made up of the following components:
 - A security service do authZ and authN in the domain
 - Policies do ACL for users or machines within the domain
 
-A domain controller (DC) can be authoritative for one and only one domain. 
+A domain controller (DC) can be authoritative for one and only one domain.
 
 a domain tree: root domain connected with sub domains.
 
@@ -454,6 +454,8 @@ Object class category and inheritance
   - Abstract: can inherit from other classes and can have attributes defined on them. can inherit only from another abstract class.
   - Auxiliary: store sets of attributes that other classes can inherit. cannot inherit from a structural class.
   - 88-Class: deprecated category
+- atrribute `auxiliaryClass`, it is a string lists auxiliary classes on this class.
+- 
 
 Dissecting an example active directory class
 
