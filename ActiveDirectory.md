@@ -116,6 +116,14 @@ Object Identities
 - Distinguished Name: distinguishedName. a string that includes the location of the object. relative distinguished name + each of its ancestors. unique within a forest.
 - Object GUID: objectGUID. a globally unique identifier. Object GUIDs never change even moved.
 
+[Naming Contexts and Directory Partitions](https://docs.microsoft.com/en-us/windows/win32/ad/naming-contexts-and-partitions)
+
+- Directory partitions are also known as naming contexts.
+- Schema Partition
+- Configuration Partition
+- Domain Partition
+- Application Directory Partition
+
 **TODO**: <https://docs.microsoft.com/en-us/windows/win32/ad/naming-contexts-and-partitions>
 
 **TODO**: <https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc770465(v=ws.11)>
