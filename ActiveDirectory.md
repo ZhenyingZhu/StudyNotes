@@ -477,4 +477,66 @@ Dynamically linked auxiliary classes
 
 ### Chapter 6. Site Topology and Active Directory Replication
 
+multimaster replication: need create a site topology that describes the network and helps define how domain controllers should replicate with each other. Complicate topology require a significant amount of work.
+
+single-master replication scheme problems
+
+- the single point of failure for updates
+- geographic distance from the master to clients performing the updates
+- less efficient replication due to updates having a single originating location
+
+Knowledge Consistency Checker (KCC)
+
+#### 6.1. Site Topology
+
+major components: sites, subnets, site links, site link bridges, and connection objects.
+
+Site and replication management tools
+
+- Sites container: holds all the site topology objects and connection objects. directly under the Configuration container
+
+Subnets
+
+- a portion of the IP space of a network
+- determining relative locations of the machines.
+- associated with sites. determine what distributed resources it should try to use.
+- Supernet: a single subnet that encompasses one or more smaller subnets. used as a "catchall" subnet.
+
+Sites
+
+- group subnets together into logical collections to help define replication flow and resource location boundaries.
+- The client’s IP address is used to determine which Active Directory subnet the client belongs to, and then look up the AD site.
+- There is a Default-First-Site-Name site.
+
+Site links
+
+- what sites are connected to each other and the relative cost of the connection.
+- can come in two replication flavors: IP and SMTP.
+  - IP: represents a remote procedure calls (RPC)-style replication connection.
+  - Simple Mail Transfer Protocol (SMTP): use when have very poor or unreliable network connections
+- Active Directory will automatically register the necessary covering DNS records for sites that do not have the target domain controllers, based on the site link topology.
+
+Site link bridges
+
+- by default the network paths between all of the sites are transitive
+- when network is not being fully routed, need to define site link bridges
+- A site link bridge contains a set of site links that can be considered transitive.
+
+Connection objects
+
+- specifies which domain controllers replicate with which other domain controllers, how often, and which naming contexts are involved.
+- Before, need to use Active Directory Load Balancing (ADLB) tool
+- Now, automatically load balance replication connection to read-only domain controllers (RODCs).
+- Define connection objects to override.
+
+Knowledge consistency checker (KCC)
+
+- site topology: maps closely to the physical network
+- after set up sites, subnets, and site link objects, KCC generates connection objects
+- two separate algorithms: intrasite and intersite.
+  - intrasite: create a minimal latency ring topology for each naming context. guarantees no more than three hops between any two domain controllers in a site
+  - intersite: keep the sites connected via a spanning-tree algorithm so that replication can occur, and then simply follows the site link metrics for making those connections.
+
+#### 6.2. How Replication Works
+
 **HERE**: <https://learning.oreilly.com/library/view/active-directory-5th/9781449361211/ch06.html>
