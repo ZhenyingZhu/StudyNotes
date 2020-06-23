@@ -544,6 +544,11 @@ A background to metadata
 - Replication metadata: enables data transfer between naming contexts on different domain controllers
 - Authentication between domain controllers for replication is Kerberos-based, and Kerberos has a maximum time-skew requirement between hosts.
 - Update sequence numbers (USNs) and highestCommittedUSN: each domain controller maintains its own USN. Only meaningful on the domain controller perform the update. each domain controller stores `highestCommittedUSN` value of the `RootDSE`.
-- Originating updates versus replicated updates
+- Originating updates versus replicated updates: both increase the same amount of times
+- Directory Service Agent (DSA) GUID: used to uniquely identify a domain controller.
+- invocation ID is used to identify the server’s Active Directory database in replication. is changed any time Active Directory is restored on that DC or any time the DSA GUID is changed.
+- High-watermark vector (HWMV/direct up-to-dateness vector): a table maintained independently by every domain controller to assist in efficient replication of a naming context, stores the highest USN of the updates the domain controller has received from each direct partner it replicates with for the given naming context.
+- Up-to-dateness vector: used for replication dampening to reduce needless replication traffic and endless replication loops.
+- 
 
 **HERE**: <https://learning.oreilly.com/library/view/active-directory-5th/9781449361211/ch06.html>
