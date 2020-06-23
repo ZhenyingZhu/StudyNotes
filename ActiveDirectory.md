@@ -548,7 +548,8 @@ A background to metadata
 - Directory Service Agent (DSA) GUID: used to uniquely identify a domain controller.
 - invocation ID is used to identify the server’s Active Directory database in replication. is changed any time Active Directory is restored on that DC or any time the DSA GUID is changed.
 - High-watermark vector (HWMV/direct up-to-dateness vector): a table maintained independently by every domain controller to assist in efficient replication of a naming context, stores the highest USN of the updates the domain controller has received from each direct partner it replicates with for the given naming context.
-- Up-to-dateness vector: used for replication dampening to reduce needless replication traffic and endless replication loops.
-- 
+- Up-to-dateness vector: used for replication dampening to reduce needless replication traffic and endless replication loops. so called propagation dampening.
+
+How an object’s metadata is modified during replication
 
 **HERE**: <https://learning.oreilly.com/library/view/active-directory-5th/9781449361211/ch06.html>
