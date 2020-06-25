@@ -552,4 +552,12 @@ A background to metadata
 
 How an object’s metadata is modified during replication
 
+- The originating DC USN records the USN for a change on the target DC.
+- The same USN is replicated to other DCs
+- The USN is recorded on the changed attribute.
+- Attribute also has a version number and a timestamp
+- those data are not attributes, but metadata. All stored in `replPropertyMetaData`
+
+The replication of a naming context between two servers
+
 **HERE**: <https://learning.oreilly.com/library/view/active-directory-5th/9781449361211/ch06.html>
