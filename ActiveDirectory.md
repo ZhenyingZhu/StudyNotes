@@ -560,4 +560,11 @@ How an object’s metadata is modified during replication
 
 The replication of a naming context between two servers
 
+- Replication is a five-step process:
+  1. Replication with a partner is initiated.
+  2. The partner works out what updates to send.
+  3. The partner sends the updates to the initiating server.
+  4. The initiating server processes the updates.
+  5. The initiating server checks whether it is up to date.
+
 **HERE**: <https://learning.oreilly.com/library/view/active-directory-5th/9781449361211/ch06.html>
