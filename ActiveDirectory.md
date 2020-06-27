@@ -119,7 +119,7 @@ Object Identities
 [Naming Contexts and Directory Partitions](https://docs.microsoft.com/en-us/windows/win32/ad/naming-contexts-and-partitions)
 
 - Directory partitions are also known as naming contexts.
-- Schema Partition
+- Schema Partition: contains classSchema and attributeSchema objects
 - Configuration Partition
 - Domain Partition
 - Application Directory Partition
