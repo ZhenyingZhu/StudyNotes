@@ -560,11 +560,14 @@ How an object’s metadata is modified during replication
 
 The replication of a naming context between two servers
 
+- Not necessary to replica between each two servers, because one server can replicate to another server and that server can replicate to more servers
 - Replication is a five-step process:
-  1. Replication with a partner is initiated.
-  2. The partner works out what updates to send.
+  1. Replication with a partner is initiated. The init server wants the updates, while the partner sends the updates.
+  2. The partner works out what updates to send. Comparing USN with HWMV. The partner also keeps a copy of UTDV from init server.
   3. The partner sends the updates to the initiating server.
   4. The initiating server processes the updates.
   5. The initiating server checks whether it is up to date.
+
+How replication conflicts are reconciled
 
 **HERE**: <https://learning.oreilly.com/library/view/active-directory-5th/9781449361211/ch06.html>
