@@ -570,4 +570,23 @@ The replication of a naming context between two servers
 
 How replication conflicts are reconciled
 
-**HERE**: <https://learning.oreilly.com/library/view/active-directory-5th/9781449361211/ch06.html>
+- Conflict due to identical attribute change: attr has higher version number + earlier timestamp + higher server Guid wins the conflict
+- Conflict due to a move or creation of an object under a now-deleted parent: move the obj to Lost and Found container.
+- Conflict due to creation of objects with names that conflict: similar to the id conflict, but after find out the winner, change the name of the other one.
+- Replicating the conflict resolution: two servers first solve the conflict, then replicate to others
+
+6.3. Common Replication Problems
+
+Lingering objects
+
+- happens when a domain controller that has been offline for longer than the tombstone lifetime
+- demote the domain controller and then re-promote it can solve the issue
+
+USN rollback
+
+- rolling back virtual machine snapshots and the use of image-based disk backup programs can cause the issue
+- Before making changes to the restored machine, first demote it and re-promote it.
+
+### Chapter 7. Searching Active Directory
+
+**HERE**: <https://learning.oreilly.com/library/view/active-directory-5th/9781449361211/ch07.html>
