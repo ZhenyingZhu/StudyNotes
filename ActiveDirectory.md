@@ -589,4 +589,20 @@ USN rollback
 
 ### Chapter 7. Searching Active Directory
 
+#### 7.1. The Directory Information Tree
+
+directory information tree (DIT): Database on each domain controller stored in the ntds.dit file.
+
+Database structure
+
+- key tables
+  - data table: all the data regardless of its class. The Extensible Storage Engine (ESE) is very efficient at storing null values so leave attr as null value is fine.
+    - Each row represents an object and has an identifier distinguished name tag (DNT). It keeps increasing in the same domain controller but not replicate to other controllers.
+    - PDNT: the parent's DNT of this object.
+    - NCDNT: contains the DNT of the naming context head matching the NC in which the object resides.
+    - Ancestors: listing of all of the DNTs between the root of the database and that object
+    - RDNType: stores the DNT of the RDN attribute in the schema for the object
+  - link table: #HERE
+  - hidden table: to find configuration-related information, i.e., NTDS Settings object.
+
 **HERE**: <https://learning.oreilly.com/library/view/active-directory-5th/9781449361211/ch07.html>
