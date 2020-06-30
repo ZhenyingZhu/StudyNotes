@@ -604,5 +604,12 @@ Database structure
     - RDNType: stores the DNT of the RDN attribute in the schema for the object
   - link table: #HERE
   - hidden table: to find configuration-related information, i.e., NTDS Settings object.
+- link tables
+  - store linked attr like group membership
+  - stores link DNT and the backlink DNT. LinkBase is the link attribute.
+- Security descriptor table
+  - stores access control lists (ACLs)
+
+#### 7.2. Searching the Database
 
 **HERE**: <https://learning.oreilly.com/library/view/active-directory-5th/9781449361211/ch07.html>
