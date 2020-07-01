@@ -612,4 +612,18 @@ Database structure
 
 #### 7.2. Searching the Database
 
+Query processor transform LDAP filter into commands to retrieve data from DIT.
+
+Filter operators
+
+- Return all the objects have an attr of a special value: `attrname=value`
+- Operators
+  - `=`
+  - `<=`
+  - `>=`
+  - `!`: `(!(department=Accounting))`, so find all the objects where the `department` attr is not `Accounting`
+- `*`: any value. `(!(description=*))`, all objects that don't have `description` attr. Support wild card as well.
+
+Connecting filter components
+
 **HERE**: <https://learning.oreilly.com/library/view/active-directory-5th/9781449361211/ch07.html>
