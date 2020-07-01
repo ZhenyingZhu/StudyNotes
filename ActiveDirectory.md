@@ -617,7 +617,7 @@ Query processor transform LDAP filter into commands to retrieve data from DIT.
 Filter operators
 
 - Return all the objects have an attr of a special value: `attrname=value`
-- Operators
+- Filter operators
   - `=`
   - `<=`
   - `>=`
@@ -626,4 +626,58 @@ Filter operators
 
 Connecting filter components
 
-**HERE**: <https://learning.oreilly.com/library/view/active-directory-5th/9781449361211/ch07.html>
+- Boolean operators
+  - `&`
+  - `|`
+- `(&(objectClass=user)(department=Accounting))`
+
+Search bases
+
+- Subtree search: `adfind -f "(objectClass=user)" -b "OU=People,DC=cohovines,DC=com"`
+- One-level search: add `-s onelevel`
+- base-level search
+
+Modifying behavior with ldap controls
+
+- session options that are sent as part of the query via the LDAP protocol
+- `LDAP_PAGED_RESULT_OID_STRING`: page size
+- `LDAP_SERVER_DIRSYNC_OID`: find all objs that have been changed since last search. Changes are tracked with a cookie that is returned by the server.
+- `LDAP_SERVER_RANGE_OPTION_OID`: retrieve values in a multivalued attribute in excess of the maximum number of values
+- `LDAP_SERVER_SEARCH_OPTIONS_OID`: Search across all domains. phantom root: perform a search across all of the NCs hosted on a global catalog.
+- `LDAP_SERVER_SHOW_DELETED_OID`, `LDAP_SERVER_SHOW_RECYCLED_OID`, `LDAP_SERVER_SHOW_DEACTIVATED_LINK_OID`: include deleted objects and tombstones in the result set.
+- `LDAP_SERVER_SORT_OID`: if the attr is not indexed, AD will use a temporary table
+- `LDAP_CONTROL_VLVREQUEST`: Virtual list view (VLV) searches are useful for large searches that will be paged through
+- `LDAP_SERVER_ASQ_OID`: Attribute scoped queries (ASQs) are useful when you want to perform a query based on a linked attribute’s value(s).
+
+#### 7.3. Attribute Data Types
+
+Dates and times
+
+- NT FILETIME: an 64-bit int. In powershell, uses `[DateTime]::Parse("10/01/2012")` to convert.
+- Format: `YYMMDDHHMMSS.fffZ`
+
+Bit masks
+
+- `(userAccountControl:AND:=2)`: Find when the 2nd bit of the `userAccountControl` is set.
+
+The in-chain matching rule
+
+- walk a group’s membership chain forward or backward
+- `(memberof:INCHAIN:=(cn=Important People,OU=Groups,DC=cohovines,DC=com))`
+- `(member:INCHAIN:=(cn=Brian,OU=People,DC=cohovines,DC=com))`
+
+#### 7.4. Optimizing Searches
+
+Efficient searching
+
+- Build index
+- Using the stats control: show Elapsed Time, Returned X entries of Y visited, Used Indices, Pages Referenced, etc.
+
+objectClass versus objectCategory
+
+- `objectClass` was not indexed so add `objectCategory` to index
+- now it is not the case
+
+### Chapter 8. Active Directory and DNS
+
+**HERE**: <https://learning.oreilly.com/library/view/active-directory-5th/9781449361211/ch08.html>
