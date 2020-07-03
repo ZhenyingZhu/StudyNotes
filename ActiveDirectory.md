@@ -680,4 +680,48 @@ objectClass versus objectCategory
 
 ### Chapter 8. Active Directory and DNS
 
+#### 8.1. DNS Fundamentals
+
+DNS is a hierarchical name-resolution system: hostname to IP address, IP address to hostname, and hostname to alternate hostname (aliases)
+
+It is the largest public directory service deployed.
+
+3 most important DNS concepts
+
+- Zones are delegated portions of the DNS namespace.
+- Resource records contain name-resolution information.
+- Dynamic DNS allows clients to add and delete resource records dynamically.
+
+Zones
+
+- a collection of hierarchical domain names
+- root has been delegated to name servers: mycorp.com namespace was delegated to the name server ns1.mycorp.com. mycorp.com is a zone.
+- subdomain1.mycorp.com could be delegated to another name server ns2.mycorp.com. subdomain1.mycorp.com become a new zone.
+
+Resource records
+
+- the unit of information in DNS.
+- A zone is essentially a collection of resource records.
+- types
+  - Address record: `A` for IPv4 and `AAAA` for IPv6.
+  - Alias record: `CNAME`
+  - Name server record: `NS`
+  - Service record: `SRV`, Maps a particular service (e.g., LDAP) to hostnames and ports. It points to a fully qualified names of the A records as well.
+
+Client lookup process
+
+- A caching DNS server is used. The caching then reaches to root, .com and lower level name servers
+- the linkage between root and .com name server is called a delegation, which contains NS records
+
+Dynamic DNS
+
+- client can send a DNS server requests to add/delete resource records in a zone
+- Need have ACL in place
+
+Global names zones
+
+- can configure to support short name resolution via DNS without the DNS-suffix search-list requirements on clients
+
+#### 8.2. DNSSEC
+
 **HERE**: <https://learning.oreilly.com/library/view/active-directory-5th/9781449361211/ch08.html>
