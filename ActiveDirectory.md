@@ -724,4 +724,29 @@ Global names zones
 
 #### 8.2. DNSSEC
 
+In between the client machine and the authoritative DNS server hosting a given zone, there are often one or more nonauthoritative caching DNS servers involved.
+
+How does DNSSEC work?
+
+- a trust chain that begins with the root DNS servers
+- the publication of digital signatures in DNS for individual records and the zone as a whole.
+- the ISP need to support DNSSEC on its DNS servers, then the client can can enable DNSSEC.
+- Powershell command `Resolve-DnsName` can used to check if DNSSEC is enabled
+
+Configuring DNSSEC for active directory DNS
+
+#### 8.3. DC Locator
+
+How a client can find the most optimal domain controller (DC) to authenticate against: use DNS to locate domain controllers via the DC locator process
+
+#### 8.4. Resource Records Used by Active Directory
+
+%SystemRoot%\System32\Config\netlogon.dns: contains the necessary resource records for a domain controller.
+
+Overriding SRV record registration
+
+- do not want domain controllers or global catalogs publishing some or all of their records outside of the site they are in
+
+#### 8.5. Delegation Options
+
 **HERE**: <https://learning.oreilly.com/library/view/active-directory-5th/9781449361211/ch08.html>
