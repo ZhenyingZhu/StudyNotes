@@ -749,4 +749,46 @@ Overriding SRV record registration
 
 #### 8.5. Delegation Options
 
-**HERE**: <https://learning.oreilly.com/library/view/active-directory-5th/9781449361211/ch08.html>
+Set up who is authoritative for the Active Directory-related zones
+
+Not delegating the AD DNS zones
+
+- Not good if think about 1. Political factors, 2. Initial setup and configuration, 3. Support and maintenance, 4. Integration issues
+
+Delegating the AD DNS zones
+
+#### 8.6. Active Directory-Integrated DNS
+
+Host AD DNS zones on domain controllers
+
+Conditional forwarding: set up one or more IP addresses to forward all requests
+
+Replication impact
+
+Background zone loading
+
+#### 8.7. Using Application Partitions for DNS
+
+Store options
+- `cn=System,<DomainDN>`
+- `dc=DomainDnsZones, <DomainDN>`
+- `dc=ForestDnsZones, <ForestDN>`
+- `AppPartitionDN`
+
+#### 8.8. Aging and Scavenging
+
+Scavenging is a background process that you configure on a per-DNS-server basis to scan all of the records in a zone and remove the records that have not been refreshed in a certain time period.
+
+Configuring scavenging
+
+- Setting zone-specific options
+- Enabling scavenging on the DNS server
+
+#### 8.9. Managing DNS with Windows PowerShell
+
+```powershell
+Import-Module DnsServer
+Get-Command -Module DnsServer
+```
+
+**HERE**: <https://learning.oreilly.com/library/view/active-directory-5th/9781449361211/ch09.html>
