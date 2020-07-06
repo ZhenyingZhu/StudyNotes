@@ -770,6 +770,7 @@ Background zone loading
 #### 8.7. Using Application Partitions for DNS
 
 Store options
+
 - `cn=System,<DomainDN>`
 - `dc=DomainDnsZones, <DomainDN>`
 - `dc=ForestDnsZones, <ForestDN>`
@@ -790,5 +791,29 @@ Configuring scavenging
 Import-Module DnsServer
 Get-Command -Module DnsServer
 ```
+
+### Chapter 9. Domain Controllers
+
+read-only domain controller (RODC): Ensuring the physical security of Active Directory domain controllers
+
+#### 9.1. Building Domain Controllers
+
+Install from Media (IFM)
+
+promotion: converting a member server to a domain controller.
+
+Deploying with server manager
+
+- install the Active Directory binaries
+- Promote this server to a domain controller
+
+Using dcpromo on earlier versions of windows
+
+Automating the DC build process
+
+- `Add-WindowsFeature -Name AD-Domain-Services -IncludeManagementTools`
+- `Install-ADDSDomainController`
+
+#### 9.2. Virtualization
 
 **HERE**: <https://learning.oreilly.com/library/view/active-directory-5th/9781449361211/ch09.html>
