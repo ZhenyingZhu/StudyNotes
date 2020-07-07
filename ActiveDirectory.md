@@ -602,7 +602,7 @@ Database structure
     - NCDNT: contains the DNT of the naming context head matching the NC in which the object resides.
     - Ancestors: listing of all of the DNTs between the root of the database and that object
     - RDNType: stores the DNT of the RDN attribute in the schema for the object
-  - link table: #HERE
+  - link table: store links
   - hidden table: to find configuration-related information, i.e., NTDS Settings object.
 - link tables
   - store linked attr like group membership
@@ -815,5 +815,27 @@ Automating the DC build process
 - `Install-ADDSDomainController`
 
 #### 9.2. Virtualization
+
+relative identifier (RID)
+
+USN rollback
+
+When to virtualize
+
+- security issue: anyone who has access to the hypervisor storage where the virtual hard disks (VHDs) are stored effectively has physical access to the domain controller.
+- antiaffinity: level of redundancy. Where are the virtual machine locates such that they are hosted across multiple physical hosts and data storage devices
+
+Impact of virtualization
+
+- USN rollback
+- RID pool reuse or duplication: RIDs are unique numbers that are used to construct a unique SID for each security principal
+- System clock changes
+
+Virtualization safe restore
+
+- virtual machine generation identifier (VM Gen ID)
+
+Cloning domain controllers
+
 
 **HERE**: <https://learning.oreilly.com/library/view/active-directory-5th/9781449361211/ch09.html>
