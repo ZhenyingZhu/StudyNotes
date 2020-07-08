@@ -837,5 +837,12 @@ Virtualization safe restore
 
 Cloning domain controllers
 
+- need to create a cloning configuration file
+- a cloning allow list
+- The DC cloning process: after completed the prerequisite steps, duplicated the virtual hard disk file, created the configuration files, and started the cloned virtual machine for the first time, Active Directory’s cloning process will begin
+- Directory Services Restore Mode (DSRM)
+- Cloning a domain controller
+
+#### 9.3. Read-Only Domain Controllers
 
 **HERE**: <https://learning.oreilly.com/library/view/active-directory-5th/9781449361211/ch09.html>
