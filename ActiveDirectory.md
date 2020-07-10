@@ -845,4 +845,38 @@ Cloning domain controllers
 
 #### 9.3. Read-Only Domain Controllers
 
-**HERE**: <https://learning.oreilly.com/library/view/active-directory-5th/9781449361211/ch09.html>
+RODCs do not store any passwords locally in their database. If a user authenticates to an RODC, the RODC will need to contact a writable domain controller (sometimes called an RWDC) upstream in order to validate that user’s password.
+
+perimeter network: a section of a network that is considered untrusted relative to the rest of the network. Internet-facing servers are placed in this network.
+
+Prerequisites
+
+- should have RWDC
+- should investigate deploying the RODC compatibility pack to your clients
+
+Password replication policies
+
+- RODC needs to make a call to an RWDC, usually over the WAN, to authenticate a client.
+- use password replication policies (PRPs) to reduce the impact when WAN is down
+
+The client logon process
+
+RODCs and write requests
+
+- password change request
+- dynamic DNS registrations
+- updates to logon timestamp information
+
+The w32time service
+
+Application compatibility
+
+RODC placement considerations
+
+Administrator role separation
+
+Promoting an RODC
+
+### Chapter 10. Authentication and Security Protocols
+
+**HERE**: <https://learning.oreilly.com/library/view/active-directory-5th/9781449361211/ch10.html>
