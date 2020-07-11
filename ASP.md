@@ -15,6 +15,8 @@ ASP.NET offers programming models
 - Webhooks: subscribing to and publishing events via HTTP.
 - SignalR: real-time communications framework for bi-directional communication between client and server.
 
+**HERE**
+
 [ASP.NET Core vs ASP.NET](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/choose-aspnet-framework?view=aspnetcore-2.2)
 
 - ASP.NET Core is a redesign of ASP.NET 4.x.
