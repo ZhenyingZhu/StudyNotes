@@ -1081,3 +1081,30 @@ using (StringWriter textWriter = new StringWriter())
   string result = textWriter.ToString();
 }
 ```
+
+### System.CodeDom
+
+Used to generate C# code
+
+- `CodeTypeDeclaration`: the class name
+- `CodeAttributeDeclaration`: the attribute name and its value
+
+See [ref](https://docs.microsoft.com/en-us/dotnet/api/system.codedom.codeattributedeclaration?view=dotnet-plat-ext-3.1)
+
+```C#
+[attrName(attr_value)]
+public class ClassName {
+}
+```
+
+### System.Xml.Serialization
+
+[Serialize a class to an xml example](https://docs.microsoft.com/en-us/dotnet/api/system.xml.serialization.xmlschemaproviderattribute?view=netcore-3.1#examples)
+
+- Define a stream class inherits `IXmlSerializable`, with an `XmlSchemaProvider` attribute, which has a value to a `XmlSchemaProviderAttribute`. The xmlSchema is the xsd file.
+- Define a method with the name of the XmlSchemaProviderAttribute value. It accepts an `XmlSchemaSet`, and returns a `XmlQualifiedName`.
+  - This method is called by the framework to get the schema of this type.
+  - First use a `XmlSerializer` to deserialize the xsd file to a `XmlSchema` object.
+  - Then add the schema to `XmlSchemaSet`.
+  - Retuen a new `XmlQualifiedName` with the stream name and the namespace.
+- Implement `IXmlSerializable.WriteXml(XmlWriter)`. Seems like this auto applied the schema.
