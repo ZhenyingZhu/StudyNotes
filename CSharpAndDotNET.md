@@ -1108,3 +1108,12 @@ public class ClassName {
   - Then add the schema to `XmlSchemaSet`.
   - Retuen a new `XmlQualifiedName` with the stream name and the namespace.
 - Implement `IXmlSerializable.WriteXml(XmlWriter)`. Seems like this auto applied the schema.
+
+Schema terms: see examples in [XmlSchemaEnumerationFacet](https://docs.microsoft.com/en-us/dotnet/api/system.xml.schema.xmlschemaenumerationfacet?view=netcore-3.1#examples)
+
+- XmlSchemaSimpleType: xs:simpleType
+- XmlSchemaSimpleTypeRestriction: xs:restriction. Accpected values. Restrictions on XML elements are facets.
+- XmlSchemaEnumerationFacet: xs:enumeration. The restriction on a set of values. i.e., the values could appear in a value
+- XmlSchemaElement: xs:element.
+- XmlSchemaComplexType: xs:complexType. contains other elements and/or attributes.
+- XmlSchemaAttribute: xs:attribute.
