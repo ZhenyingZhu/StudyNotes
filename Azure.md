@@ -443,3 +443,7 @@ Install `xrdp`.
 [Attach a data disk to a Linux VM](https://docs.microsoft.com/en-us/azure/virtual-machines/linux/attach-disk-portal)
 
 [Resolve RDP thindrives issue](https://github.com/neutrinolabs/xrdp/issues/720)
+
+## Enable TLS 1.2
+
+[doc](https://docs.microsoft.com/en-us/mem/configmgr/core/plan-design/security/enable-tls-1-2)
