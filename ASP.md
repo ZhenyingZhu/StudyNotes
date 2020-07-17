@@ -8,14 +8,17 @@
 
 ASP.NET offers programming models
 
-- Web Forms: building modular pages out of components, with UI events being processed server-side.
+- Web Forms (.aspx): building modular pages out of components, with UI events being processed server-side.
 - MVC: Model–view–controller
-- Web Pages: adding dynamic code and data access directly inside HTML markup.
+- Web Pages (Razor/.cshtml): adding dynamic code and data access directly inside HTML markup.
 - Web API: building RESTful applications on the .NET Framework.
 - Webhooks: subscribing to and publishing events via HTTP.
 - SignalR: real-time communications framework for bi-directional communication between client and server.
 
-**HERE**
+[Razor vs. React/Angular](https://www.quora.com/As-a-C-developer-what-should-I-learn-this-2018-Razor-or-React)
+
+- Razor is markup, so the rendering happens on server side
+- React/Angular are node.js scripts, so the rendering happens in the browser
 
 [ASP.NET Core vs ASP.NET](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/choose-aspnet-framework?view=aspnetcore-2.2)
 
@@ -71,13 +74,13 @@ Dotnet can create
 - Razor page: A slim version of MVC. Model and Controller code is included in Razor Page itself. So it is a Model-View-ViewModel (MVVM) framework. If just simple pages with basic writes, use it.
 - MVC: If have a lot of dynamic server views, use it.
 - ASP.NET Core Web app + FE frameworks
-- Razor Class Lib
+- Razor Class Lib (RCL): Razor pages to be reused.
 - ASP.NET Core Web API
 
 MVC:
 
 - Model: a data structure
-- View: a web form for input + output (data 2 way binding)
+- View: a web form for input + output. data [2 way binding](https://stackoverflow.com/questions/13504906/what-is-two-way-binding)
 - Controller: how to get the data and represent in View.
 
 ### Installing Visual Studio
@@ -100,9 +103,9 @@ Config Auth method: If choose [Authentication](https://docs.microsoft.com/en-us/
 
 Project dependencies are AspNetCore.App and Razor.Design.
 
-[Empty](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/?view=aspnetcore-2.2&tabs=windows)
+[Empty Web App project](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/?view=aspnetcore-2.2&tabs=windows)
 
-- Program.cs: CreateWebHostBuilder and run. It is using [Kestrel server](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/?view=aspnetcore-2.2&tabs=windows#servers).
+- Program.cs: CreateWebHostBuilder and run the server. It is using [Kestrel server](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/?view=aspnetcore-2.2&tabs=windows#servers). The Default WebHostBuilder sets ContentRootPath, loads appsetting.json, based on env var `ASPNETCORE_ENVIRONMENT` value loads different configs, etc.
 - Startup.cs: Config required services and HTTP request pipeline, which is a series of middleware components.
 - appsettings.json and appsetttings.Development.json: contains key-value pairs. By default it defines logging and host. Can use env vars to override them. If need manage confidential config data, can use [Secret Manager tool](https://docs.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-2.2&tabs=windows)
 
@@ -129,6 +132,8 @@ Project dependencies are AspNetCore.App and Razor.Design.
 [Angular](https://github.com/aspnet/JavaScriptServices)
 
 ### Creating a project with visual studio
+
+**HERE**
 
 1. ASP.NET Core Web Application: DutchTreat.
 2. Choose Empty project.
@@ -516,6 +521,8 @@ dotnet ef database update
 ```
 
 ### Enabling MVC 6
+
+Follow [Secret Manager tool](https://docs.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-2.2&tabs=windows) to set up devlopment env.
 
 In Startup.cs add `app.UseMvc()` to set up the routes.
 
