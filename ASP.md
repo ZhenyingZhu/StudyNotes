@@ -133,8 +133,6 @@ Project dependencies are AspNetCore.App and Razor.Design.
 
 ### Creating a project with visual studio
 
-**HERE**
-
 1. ASP.NET Core Web Application: DutchTreat.
 2. Choose Empty project.
 3. Uncheck Configure for HTTPS.
@@ -143,11 +141,27 @@ Project dependencies are AspNetCore.App and Razor.Design.
 6. Choose the web browser (Edge).
 7. Check project properties: Debug: App URL: find the port.
 
+[IIS vs. Kestrel](https://dotnetcoretutorials.com/2019/12/25/kestrel-vs-iis/)
+
+- IIS is runs on windows only. It can host the web app. IIS Express is a lightweight version.
+- Kestrel is cross platform. But it is less mature. It is a reverse proxy server.
+
+[Reverse Proxy](https://www.nginx.com/resources/glossary/reverse-proxy-server/)
+
+- Proxy server: forwards requests from clients to servers
+- Reverse Proxy server is still a proxy server. It sits behind the firewall in a private network.
+- It supports
+  - Load balancing
+  - Web acceleration with compress transform data, cache, handles SSL encryption so server doesn't need to
+  - Security and anonymity
+
 Program.cs: `WebHost.CreateDefaultBuilder`
 
 ### Serving Your First File
 
 Startup.cs: In `Configure()`, `app.UseStaticFiles();` It serve static files in folder `wwwroot`. If it doesn't exsit, create one.
+
+**HERE**
 
 The folders in `wwwroot` is actually the path needed in the URL.
 
