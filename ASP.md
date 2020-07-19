@@ -8,12 +8,17 @@
 
 ASP.NET offers programming models
 
-- Web Forms: building modular pages out of components, with UI events being processed server-side.
+- Web Forms (.aspx): building modular pages out of components, with UI events being processed server-side.
 - MVC: Model–view–controller
-- Web Pages: adding dynamic code and data access directly inside HTML markup.
+- Web Pages (Razor/.cshtml): adding dynamic code and data access directly inside HTML markup.
 - Web API: building RESTful applications on the .NET Framework.
 - Webhooks: subscribing to and publishing events via HTTP.
 - SignalR: real-time communications framework for bi-directional communication between client and server.
+
+[Razor vs. React/Angular](https://www.quora.com/As-a-C-developer-what-should-I-learn-this-2018-Razor-or-React)
+
+- Razor is markup, so the rendering happens on server side
+- React/Angular are node.js scripts, so the rendering happens in the browser
 
 [ASP.NET Core vs ASP.NET](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/choose-aspnet-framework?view=aspnetcore-2.2)
 
@@ -69,13 +74,13 @@ Dotnet can create
 - Razor page: A slim version of MVC. Model and Controller code is included in Razor Page itself. So it is a Model-View-ViewModel (MVVM) framework. If just simple pages with basic writes, use it.
 - MVC: If have a lot of dynamic server views, use it.
 - ASP.NET Core Web app + FE frameworks
-- Razor Class Lib
+- Razor Class Lib (RCL): Razor pages to be reused.
 - ASP.NET Core Web API
 
 MVC:
 
 - Model: a data structure
-- View: a web form for input + output (data 2 way binding)
+- View: a web form for input + output. data [2 way binding](https://stackoverflow.com/questions/13504906/what-is-two-way-binding)
 - Controller: how to get the data and represent in View.
 
 ### Installing Visual Studio
@@ -98,10 +103,10 @@ Config Auth method: If choose [Authentication](https://docs.microsoft.com/en-us/
 
 Project dependencies are AspNetCore.App and Razor.Design.
 
-[Empty Project](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/?view=aspnetcore-2.2&tabs=windows)
+[Empty Web App project](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/?view=aspnetcore-2.2&tabs=windows)
 
-- Program.cs: CreateWebHostBuilder and run. It is using [Kestrel server](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/?view=aspnetcore-2.2&tabs=windows#servers).
-- Startup.cs: add Dependency Inject (DI), config required services and HTTP request pipeline, which is a series of middleware components.
+- Program.cs: CreateWebHostBuilder and run the server. It is using [Kestrel server](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/?view=aspnetcore-2.2&tabs=windows#servers). The Default WebHostBuilder sets ContentRootPath, loads appsetting.json, based on env var `ASPNETCORE_ENVIRONMENT` value loads different configs, etc.
+- Startup.cs: Config required services and HTTP request pipeline, which is a series of middleware components.
 - appsettings.json and appsetttings.Development.json: contains key-value pairs. By default it defines logging and host. Can use env vars to override them. If need manage confidential config data, can use [Secret Manager tool](https://docs.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-2.2&tabs=windows)
 
 [API](https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-web-api?view=aspnetcore-2.2&tabs=visual-studio)
@@ -135,6 +140,20 @@ Project dependencies are AspNetCore.App and Razor.Design.
 5. Choose IIS Express to run it. The DutchTreat option is same as run `dotnet run`.
 6. Choose the web browser (Edge).
 7. Check project properties: Debug: App URL: find the port.
+
+[IIS vs. Kestrel](https://dotnetcoretutorials.com/2019/12/25/kestrel-vs-iis/)
+
+- IIS is runs on windows only. It can host the web app. IIS Express is a lightweight version.
+- Kestrel is cross platform. But it is less mature. It is a reverse proxy server.
+
+[Reverse Proxy](https://www.nginx.com/resources/glossary/reverse-proxy-server/)
+
+- Proxy server: forwards requests from clients to servers
+- Reverse Proxy server is still a proxy server. It sits behind the firewall in a private network.
+- It supports
+  - Load balancing
+  - Web acceleration with compress transform data, cache, handles SSL encryption so server doesn't need to
+  - Security and anonymity
 
 Program.cs: `WebHost.CreateDefaultBuilder`
 
@@ -182,7 +201,7 @@ In body
 
 An element can have attributes with different values separate by spaces:
 
-`data-*` attrs are data attributes, which can be used to store custom data in HTML attr so that CSS selector can find it.
+- `data-*` attrs are data attributes, which can be used to store custom data in HTML attr so that CSS selector can find it.
 
 ```html
 <li data-quantity="700g" data-vegetable="not spicy like chili">Red pepper</li>
@@ -195,6 +214,9 @@ Common Elements
 - img
 - ul, li
 - button
+  - submit type: submits form data to server
+  - reset type: resets all controls to init values
+  - button type: no default behavior. Use a client side script to listen to the element events.
 - br
 - form: label, textarea, input
 
@@ -202,7 +224,7 @@ Common Elements
 
 `form` element is to get info from the user.
 
-`input` has type. The special type is `submit`.
+The sub element for form, `input` can have different types. The special type is `submit`.
 
 Browser is trying its best to get what to display. It won't throw parsing errors.
 
@@ -230,9 +252,9 @@ Styles:
 - float: right;
 - cursor: pointer;
 - text-transform: uppercase;
-- content: ' |'; Add content. Need work with selector after.
+- content: ' |'; Add content around the selected element. Need work with selector before or after.
 - opacity: 0.5
-- border-collapse: collapse;
+- border-collapse: collapse; so two elements' borders are overlapping.
 - border-spacing: 0;
 
 ### CSS Naming
@@ -266,6 +288,8 @@ Attr selector
 - `[attr|=val]`: used to match lang such as `en` or `en-US`.
 
 Pseudo classes
+
+**HERE**
 
 Random access an element in a list
 
@@ -514,6 +538,8 @@ dotnet ef database update
 ```
 
 ### Enabling MVC 6
+
+Follow [Secret Manager tool](https://docs.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-2.2&tabs=windows) to set up devlopment env.
 
 In Startup.cs add `app.UseMvc()` to set up the routes.
 
