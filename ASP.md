@@ -15,8 +15,6 @@ ASP.NET offers programming models
 - Webhooks: subscribing to and publishing events via HTTP.
 - SignalR: real-time communications framework for bi-directional communication between client and server.
 
-**HERE**
-
 [ASP.NET Core vs ASP.NET](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/choose-aspnet-framework?view=aspnetcore-2.2)
 
 - ASP.NET Core is a redesign of ASP.NET 4.x.
@@ -100,10 +98,10 @@ Config Auth method: If choose [Authentication](https://docs.microsoft.com/en-us/
 
 Project dependencies are AspNetCore.App and Razor.Design.
 
-[Empty](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/?view=aspnetcore-2.2&tabs=windows)
+[Empty Project](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/?view=aspnetcore-2.2&tabs=windows)
 
 - Program.cs: CreateWebHostBuilder and run. It is using [Kestrel server](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/?view=aspnetcore-2.2&tabs=windows#servers).
-- Startup.cs: Config required services and HTTP request pipeline, which is a series of middleware components.
+- Startup.cs: add Dependency Inject (DI), config required services and HTTP request pipeline, which is a series of middleware components.
 - appsettings.json and appsetttings.Development.json: contains key-value pairs. By default it defines logging and host. Can use env vars to override them. If need manage confidential config data, can use [Secret Manager tool](https://docs.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-2.2&tabs=windows)
 
 [API](https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-web-api?view=aspnetcore-2.2&tabs=visual-studio)
