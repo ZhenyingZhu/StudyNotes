@@ -161,8 +161,6 @@ Program.cs: `WebHost.CreateDefaultBuilder`
 
 Startup.cs: In `Configure()`, `app.UseStaticFiles();` It serve static files in folder `wwwroot`. If it doesn't exsit, create one.
 
-**HERE**
-
 The folders in `wwwroot` is actually the path needed in the URL.
 
 `app.UseDefaultFiles();` replace default html urls such as `domain/` to `domain/index.html`.
@@ -203,7 +201,7 @@ In body
 
 An element can have attributes with different values separate by spaces:
 
-`data-*` attrs are data attributes, which can be used to store custom data in HTML attr so that CSS selector can find it.
+- `data-*` attrs are data attributes, which can be used to store custom data in HTML attr so that CSS selector can find it.
 
 ```html
 <li data-quantity="700g" data-vegetable="not spicy like chili">Red pepper</li>
@@ -216,6 +214,9 @@ Common Elements
 - img
 - ul, li
 - button
+  - submit type: submits form data to server
+  - reset type: resets all controls to init values
+  - button type: no default behavior. Use a client side script to listen to the element events.
 - br
 - form: label, textarea, input
 
@@ -223,7 +224,7 @@ Common Elements
 
 `form` element is to get info from the user.
 
-`input` has type. The special type is `submit`.
+The sub element for form, `input` can have different types. The special type is `submit`.
 
 Browser is trying its best to get what to display. It won't throw parsing errors.
 
@@ -251,9 +252,9 @@ Styles:
 - float: right;
 - cursor: pointer;
 - text-transform: uppercase;
-- content: ' |'; Add content. Need work with selector after.
+- content: ' |'; Add content around the selected element. Need work with selector before or after.
 - opacity: 0.5
-- border-collapse: collapse;
+- border-collapse: collapse; so two elements' borders are overlapping.
 - border-spacing: 0;
 
 ### CSS Naming
@@ -287,6 +288,8 @@ Attr selector
 - `[attr|=val]`: used to match lang such as `en` or `en-US`.
 
 Pseudo classes
+
+**HERE**
 
 Random access an element in a list
 
