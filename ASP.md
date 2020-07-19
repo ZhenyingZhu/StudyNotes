@@ -252,10 +252,29 @@ Styles:
 - float: right;
 - cursor: pointer;
 - text-transform: uppercase;
-- content: ' |'; Add content around the selected element. Need work with selector before or after.
+- content: ' |'; Add content around the selected element. Need work with psudo elements `::before` or `::after`.
 - opacity: 0.5
 - border-collapse: collapse; so two elements' borders are overlapping.
 - border-spacing: 0;
+
+[At-rule](https://developer.mozilla.org/en-US/docs/Web/CSS/At-rule)
+
+- `@charset`
+- `@import`
+- `@namespace`
+- nested at-rules
+  - `@media`: device size meets criteria
+  - `@supports`: browser
+
+```css
+@media (min-width: 576px) {
+  .container {
+    max-width: 540px;
+  }
+}
+```
+
+To force browser refresh css cache and pick up latest changes, in `Views\Shared\_Layout.cshtml`, change `<link rel="stylesheet" href="~/css/site.css" />` to `src="~/css/site.css?v={random number/string}"`. [More details](https://stackoverflow.com/questions/15562384/how-to-force-chrome-browser-to-reload-css-file-while-debugging-in-visual-studio)
 
 ### CSS Naming
 
@@ -288,8 +307,6 @@ Attr selector
 - `[attr|=val]`: used to match lang such as `en` or `en-US`.
 
 Pseudo classes
-
-**HERE**
 
 Random access an element in a list
 
@@ -324,7 +341,7 @@ User input validation
 
 Based on element defination
 
-- [:default](https://developer.mozilla.org/en-US/docs/Web/CSS/:default): form elements that are the default in a group of related elements.
+- [:default](https://developer.mozilla.org/en-US/docs/Web/CSS/:default): form elements that are the default selection in a group of related elements.
 - [:dir()](https://developer.mozilla.org/en-US/docs/Web/CSS/:dir): matches elements based on the directionality of the text contained in them.
 - [:empty](https://developer.mozilla.org/en-US/docs/Web/CSS/:empty): represents any element that has no children, neither element nodes nor text (including whitespace).
 - [:lang()](https://developer.mozilla.org/en-US/docs/Web/CSS/:lang): matches elements based on the language they are determined to be in.
@@ -452,6 +469,8 @@ Note that [odetocode](https://github.com/OdeToCode/UseNodeModules) can serve fil
 - Need copy the `node_module` folder to wwwroot using gulp.
 
 ### Introducing jQuery
+
+**HERE**
 
 jQuery can be treat as an object in a javascript file.
 
