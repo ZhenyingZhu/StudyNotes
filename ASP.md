@@ -396,8 +396,8 @@ Pseudo elements
 - `::before`
 - `::first-letter`
 - `::first-line`
-- `::selection`
-- `::backdrop`
+- `::selection`: highlighted by user. [doc](https://developer.mozilla.org/en-US/docs/Web/CSS/::selection)
+- `::backdrop`: the box. [doc](https://developer.mozilla.org/en-US/docs/Web/CSS/::backdrop)
 
 ```css
 [href^=http]::after {
@@ -470,8 +470,6 @@ Note that [odetocode](https://github.com/OdeToCode/UseNodeModules) can serve fil
 
 ### Introducing jQuery
 
-**HERE**
-
 jQuery can be treat as an object in a javascript file.
 
 jQuery is good at find elements in the document.
@@ -504,7 +502,9 @@ Model-View-Controller framework for applications.
 - Controller: logic
 - View: markup to display
 
-Request route to a controller class, controller get some data from model, then send back to controller to do some logic, and then controller send data to view, view render and return the response.
+**HERE**
+
+Request is routed to a controller class, controller get some data from model, then send back to controller to do some logic, and then controller send data to view, view render and return the response.
 
 ### First Controller/View
 
