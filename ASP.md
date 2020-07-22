@@ -518,6 +518,17 @@ View represents Razor (A syntax for generation/modify view code in C#), which is
 
 ViewBag is a bag of properties. With `@` it can be used in html code.
 
+At the begining of a razor page, import lib and defines ViewBag
+
+```cs
+@using MyWebApp
+@using MyWebApp.Models
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "Home Page";
+}
+```
+
 Path in html should start with `~/` indicates it is the root of the project.
 
 In visual studio, can create 2 kinds of controllers: MVC Controller, API controller.
@@ -525,6 +536,8 @@ In visual studio, can create 2 kinds of controllers: MVC Controller, API control
 - Both require to select Model and DataContext.
 - The default Context is ApplicationDbContext.
 - The Model needs have a primary key, using `[key]` annotation.
+
+See [WebApplicationMVC](.\dotnet-example\WebApplicationMVC) as an example.
 
 The default controller created by visual studio has
 
@@ -556,9 +569,18 @@ Or use dotnet cmdlet:
 dotnet ef database update
 ```
 
-### Enabling MVC 6
+Classes used in Controller:
 
-Follow [Secret Manager tool](https://docs.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-2.2&tabs=windows) to set up devlopment env.
+- [Mvc.Controller](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.controller?view=aspnetcore-3.1): the base class of controllers. Inherit `ControllerBase`.
+  - has properties `ControllerContext` and `HttpContext` for metadata.
+  - Property `ModelState` records model validation errors.
+  - Properties `RouteData` and `Url`
+  - Property `User` can be used for identity.
+  - Property `ViewBag`
+  - Method `View()`, `BadRequest(obj)`, `NotFound()`
+- [Mvc.IActionResult](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.iactionresult?view=aspnetcore-3.1): views are inherit from this interface.
+
+### Enabling MVC 6
 
 In Startup.cs add `app.UseMvc()` to set up the routes.
 
@@ -577,6 +599,8 @@ ASP.NET Core requires to use dependency injection.
 Using `IHostingEnvironment env` to figure out if the env is a prod or a staging or development. In project property Debug page, can set the environment.
 
 ### Creating a Layout
+
+**HERE**
 
 Layout page: the common elements on multiple pages. It is a view shares across controllers.
 
@@ -965,6 +989,8 @@ Config supports name-value pair and hirerarchy.
 DB ProjectsV13 is come by default.
 
 Connection string: `"DutchConnectionString":  "server=(localdb)\\ProjectsV13;Database=DutchTreatDb;Integrated Security=true;MultipleActiveResultSets=true;"`
+
+Follow [Secret Manager tool](https://docs.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-2.2&tabs=windows) to set up devlopment env.
 
 **TODO**: The integrated security should be replaced with actual creds when deploy to prod.
 
