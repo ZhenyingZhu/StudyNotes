@@ -502,8 +502,6 @@ Model-View-Controller framework for applications.
 - Controller: logic
 - View: markup to display
 
-**HERE**
-
 Request is routed to a controller class, controller get some data from model, then send back to controller to do some logic, and then controller send data to view, view render and return the response.
 
 ### First Controller/View
@@ -526,6 +524,11 @@ At the begining of a razor page, import lib and defines ViewBag
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
     ViewData["Title"] = "Home Page";
+    var consentFeature = Context.Features.Get<ITrackingConsentFeature>();
+}
+@if (consentFeature)
+{
+    ...
 }
 ```
 
@@ -600,8 +603,6 @@ Using `IHostingEnvironment env` to figure out if the env is a prod or a staging 
 
 ### Creating a Layout
 
-**HERE**
-
 Layout page: the common elements on multiple pages. It is a view shares across controllers.
 
 Put `_Layout.cshtml` under `Views\Shared` folder.
@@ -613,6 +614,21 @@ Put `_Layout.cshtml` under `Views\Shared` folder.
 - `@RenderSection("secName")`: if child defines `@section secName`, this part will be randered differently. I think it is used for things other than body.
 
 Add the Views folder, add `_ViewStart.cshtml` (Razor View Start), which is act as a base class.
+
+[Layout](https://docs.microsoft.com/en-us/aspnet/core/mvc/views/layout?view=aspnetcore-3.1)
+
+**HERE**
+
+[Partial View](https://docs.microsoft.com/en-us/aspnet/core/mvc/views/partial?view=aspnetcore-3.1)
+
+- Don't use a partial view where complex rendering logic or code execution is required to render the markup.
+- MVC controller uses `ViewResult`. Razor page PageModel uses `PartialViewResult`.
+- Partial view file names start with `_`.
+- In the view, need `@await Html.PartialAsync("_AuthorPartial", Model.AuthorName)`
+- In the view, need use tagHelper `<partial name="_PartialName" />`
+- 
+
+[View](https://docs.microsoft.com/en-us/aspnet/core/mvc/views/view-components?view=aspnetcore-3.1)
 
 ### Adding More Views
 
