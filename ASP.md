@@ -502,8 +502,6 @@ Model-View-Controller framework for applications.
 - Controller: logic
 - View: markup to display
 
-**HERE**
-
 Request is routed to a controller class, controller get some data from model, then send back to controller to do some logic, and then controller send data to view, view render and return the response.
 
 ### First Controller/View
@@ -518,6 +516,22 @@ View represents Razor (A syntax for generation/modify view code in C#), which is
 
 ViewBag is a bag of properties. With `@` it can be used in html code.
 
+At the begining of a razor page, import lib and defines ViewBag
+
+```cs
+@using MyWebApp
+@using MyWebApp.Models
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "Home Page";
+    var consentFeature = Context.Features.Get<ITrackingConsentFeature>();
+}
+@if (consentFeature)
+{
+    ...
+}
+```
+
 Path in html should start with `~/` indicates it is the root of the project.
 
 In visual studio, can create 2 kinds of controllers: MVC Controller, API controller.
@@ -525,6 +539,8 @@ In visual studio, can create 2 kinds of controllers: MVC Controller, API control
 - Both require to select Model and DataContext.
 - The default Context is ApplicationDbContext.
 - The Model needs have a primary key, using `[key]` annotation.
+
+See [WebApplicationMVC](.\dotnet-example\WebApplicationMVC) as an example.
 
 The default controller created by visual studio has
 
@@ -556,9 +572,18 @@ Or use dotnet cmdlet:
 dotnet ef database update
 ```
 
-### Enabling MVC 6
+Classes used in Controller:
 
-Follow [Secret Manager tool](https://docs.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-2.2&tabs=windows) to set up devlopment env.
+- [Mvc.Controller](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.controller?view=aspnetcore-3.1): the base class of controllers. Inherit `ControllerBase`.
+  - has properties `ControllerContext` and `HttpContext` for metadata.
+  - Property `ModelState` records model validation errors.
+  - Properties `RouteData` and `Url`
+  - Property `User` can be used for identity.
+  - Property `ViewBag`
+  - Method `View()`, `BadRequest(obj)`, `NotFound()`
+- [Mvc.IActionResult](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.iactionresult?view=aspnetcore-3.1): views are inherit from this interface.
+
+### Enabling MVC 6
 
 In Startup.cs add `app.UseMvc()` to set up the routes.
 
@@ -589,6 +614,21 @@ Put `_Layout.cshtml` under `Views\Shared` folder.
 - `@RenderSection("secName")`: if child defines `@section secName`, this part will be randered differently. I think it is used for things other than body.
 
 Add the Views folder, add `_ViewStart.cshtml` (Razor View Start), which is act as a base class.
+
+[Layout](https://docs.microsoft.com/en-us/aspnet/core/mvc/views/layout?view=aspnetcore-3.1)
+
+**HERE**
+
+[Partial View](https://docs.microsoft.com/en-us/aspnet/core/mvc/views/partial?view=aspnetcore-3.1)
+
+- Don't use a partial view where complex rendering logic or code execution is required to render the markup.
+- MVC controller uses `ViewResult`. Razor page PageModel uses `PartialViewResult`.
+- Partial view file names start with `_`.
+- In the view, need `@await Html.PartialAsync("_AuthorPartial", Model.AuthorName)`
+- In the view, need use tagHelper `<partial name="_PartialName" />`
+- 
+
+[View](https://docs.microsoft.com/en-us/aspnet/core/mvc/views/view-components?view=aspnetcore-3.1)
 
 ### Adding More Views
 
@@ -965,6 +1005,8 @@ Config supports name-value pair and hirerarchy.
 DB ProjectsV13 is come by default.
 
 Connection string: `"DutchConnectionString":  "server=(localdb)\\ProjectsV13;Database=DutchTreatDb;Integrated Security=true;MultipleActiveResultSets=true;"`
+
+Follow [Secret Manager tool](https://docs.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-2.2&tabs=windows) to set up devlopment env.
 
 **TODO**: The integrated security should be replaced with actual creds when deploy to prod.
 
