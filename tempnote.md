@@ -1407,6 +1407,14 @@ goto :eof
 - `Test-Connection 10.211.25.38 -IPv4 -TcpPort 80`
 - `Test-NetConnection 10.211.25.38 -Port 80`
 
+# C# code samples
+
+- <https://stackoverflow.com/questions/25052293/deserialize-json-to-c-sharp-classes>
+- <https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/serialization/how-to-write-object-data-to-an-xml-file>
+- <https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/linq/creating-xml-trees-linq-to-xml-2>
+- <https://stackoverflow.com/questions/9188574/append-to-xml-file-using-xmlwriter>
+- <https://stackoverflow.com/questions/2369119/error-in-process-start-the-system-cannot-find-the-file-specified>
+
 # timestamp section
 Sep 11 2016
 Nov 18 2016
