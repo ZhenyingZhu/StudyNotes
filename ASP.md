@@ -617,7 +617,7 @@ Add the Views folder, add `_ViewStart.cshtml` (Razor View Start), which is act a
 
 [Layout](https://docs.microsoft.com/en-us/aspnet/core/mvc/views/layout?view=aspnetcore-3.1)
 
-**HERE**
+**TODO**
 
 [Partial View](https://docs.microsoft.com/en-us/aspnet/core/mvc/views/partial?view=aspnetcore-3.1)
 
@@ -943,6 +943,8 @@ Use `<i>` element with class to define what icon to use.
 [CDN](https://www.bootstrapcdn.com/fontawesome/)
 
 ### Creating Entities
+
+**HERE**: https://docs.microsoft.com/en-us/ef/core/modeling/
 
 Entity Framework Core: compare to Entity Framework, it removes the requirement of Relational DBs.
 
