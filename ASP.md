@@ -946,6 +946,8 @@ Use `<i>` element with class to define what icon to use.
 
 **HERE**: https://docs.microsoft.com/en-us/ef/core/modeling/
 
+- You can override the OnModelCreating method in your derived context and use the ModelBuilder API to configure your model.
+
 Entity Framework Core: compare to Entity Framework, it removes the requirement of Relational DBs.
 
 EF6 is still more mature than EF core. But to use EF6, you need .NET 4.x.
