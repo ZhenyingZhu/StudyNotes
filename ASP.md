@@ -617,16 +617,13 @@ Add the Views folder, add `_ViewStart.cshtml` (Razor View Start), which is act a
 
 [Layout](https://docs.microsoft.com/en-us/aspnet/core/mvc/views/layout?view=aspnetcore-3.1)
 
-**TODO**
-
-[Partial View](https://docs.microsoft.com/en-us/aspnet/core/mvc/views/partial?view=aspnetcore-3.1)
+**TODO** [Partial View](https://docs.microsoft.com/en-us/aspnet/core/mvc/views/partial?view=aspnetcore-3.1)
 
 - Don't use a partial view where complex rendering logic or code execution is required to render the markup.
 - MVC controller uses `ViewResult`. Razor page PageModel uses `PartialViewResult`.
 - Partial view file names start with `_`.
 - In the view, need `@await Html.PartialAsync("_AuthorPartial", Model.AuthorName)`
 - In the view, need use tagHelper `<partial name="_PartialName" />`
-- 
 
 [View](https://docs.microsoft.com/en-us/aspnet/core/mvc/views/view-components?view=aspnetcore-3.1)
 
@@ -2820,7 +2817,7 @@ HERE:
 
 [Code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/cu30)
 
-**HERE**: <https://docs.microsoft.com/en-us/aspnet/core/data/ef-rp/intro?view=aspnetcore-3.0&tabs=visual-studio#scaffold-student-pages>
+**TODO**: <https://docs.microsoft.com/en-us/aspnet/core/data/ef-rp/intro?view=aspnetcore-3.0&tabs=visual-studio#scaffold-student-pages>
 
 ## Entity Framework(EF)
 
@@ -2832,15 +2829,21 @@ Use `[Column(TypeName = "decimal(18,2)")]` before a property to define its restr
 
 `modelBuilder.Entity<Product>().Property(p => p.Price).HasPrecision(18, 2);` should work samely, but this API is not found.
 
-[Entity Framework Core](https://docs.microsoft.com/en-us/ef/core/modeling/)
+[Entity Framework Core](https://docs.microsoft.com/en-us/ef/core/)
 
+- object-relational mapper (O/RM)
 
+- A model is made up of entity classes and a context object that represents a session with the database, allowing you to query and save data.
+- In the DbContext class, add `public DbSet<MyModel> MyModel { get; set; }`
+- `using (var db = new DbContext()) {...}`
+- `db.MyModel.Add(new MyModel()); db.SaveChanges();`
 
-**HERE**
+- Create DB: `Add-Migration InitialCreate`
+- `Update-Database`
 
-- 
 - You can override the OnModelCreating method in your derived context and use the ModelBuilder API to configure your model.
 
+**HERE**: <https://docs.microsoft.com/en-us/ef/core/miscellaneous/connection-strings>
 
 ## RESTful
 
