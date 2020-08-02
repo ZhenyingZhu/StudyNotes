@@ -2841,9 +2841,21 @@ Use `[Column(TypeName = "decimal(18,2)")]` before a property to define its restr
 - Create DB: `Add-Migration InitialCreate`
 - `Update-Database`
 
-- You can override the OnModelCreating method in your derived context and use the ModelBuilder API to configure your model.
+- Local test connection string: `Server=(localdb)\\mssqllocaldb;Database=EFGetStarted.ConsoleApp.NewDb;Trusted_Connection=True;`
+- On the prod machine, can use env var to replace the `DefaultConnection`. But it is stored in plain text so if the machine is compromised then it is leaked. See **Publish to Azure** session.
+- [SecretManager](https://docs.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-3.1&tabs=windows#secret-manager)
+  - secrets should be made available in the production environment through a controlled means like environment variables, Azure Key Vault, etc.
+  - App secrets are stored in a separate location from the project tree.
+  - The Secret Manager tool doesn't encrypt the stored secrets and shouldn't be treated as a trusted store.
+  - `dotnet user-secrets init`
+  - The values are stored in a JSON configuration file in a system-protected user profile folder on the local machine: `%APPDATA%\Microsoft\UserSecrets\<user_secrets_id>\secrets.json`
+  - UserSecretsId is specified in `csproj` file, like this: `<UserSecretsId>79a3edd0-2092-40a2-a04d-dcb46d5ca9ed</UserSecretsId>`
 
-**HERE**: <https://docs.microsoft.com/en-us/ef/core/miscellaneous/connection-strings>
+https://stackoverflow.com/questions/43722030/how-to-get-connection-string-out-of-azure-keyvault
+
+**HERE**: <https://docs.microsoft.com/en-us/ef/core/miscellaneous/logging?tabs=v3>
+
+- You can override the OnModelCreating method in your derived context and use the ModelBuilder API to configure your model.
 
 ## RESTful
 
