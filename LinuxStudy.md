@@ -2329,3 +2329,12 @@ sudo ubuntu-drivers autoinstall
 
 [Fix source games cannot show chinese char](https://www.zhihu.com/question/27527239)
 `sudo apt-get install fonts-wqy-zenhei`
+
+ASF running in the background:
+
+```bash
+vim asf-start.sh
+chmod +x asf-start.sh
+./asf-start.sh
+pgrep -x "ArchiSteamFarm"
+```
