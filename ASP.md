@@ -617,16 +617,13 @@ Add the Views folder, add `_ViewStart.cshtml` (Razor View Start), which is act a
 
 [Layout](https://docs.microsoft.com/en-us/aspnet/core/mvc/views/layout?view=aspnetcore-3.1)
 
-**TODO**
-
-[Partial View](https://docs.microsoft.com/en-us/aspnet/core/mvc/views/partial?view=aspnetcore-3.1)
+**TODO** [Partial View](https://docs.microsoft.com/en-us/aspnet/core/mvc/views/partial?view=aspnetcore-3.1)
 
 - Don't use a partial view where complex rendering logic or code execution is required to render the markup.
 - MVC controller uses `ViewResult`. Razor page PageModel uses `PartialViewResult`.
 - Partial view file names start with `_`.
 - In the view, need `@await Html.PartialAsync("_AuthorPartial", Model.AuthorName)`
 - In the view, need use tagHelper `<partial name="_PartialName" />`
-- 
 
 [View](https://docs.microsoft.com/en-us/aspnet/core/mvc/views/view-components?view=aspnetcore-3.1)
 
@@ -2820,7 +2817,7 @@ HERE:
 
 [Code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/cu30)
 
-**HERE**: <https://docs.microsoft.com/en-us/aspnet/core/data/ef-rp/intro?view=aspnetcore-3.0&tabs=visual-studio#scaffold-student-pages>
+**TODO**: <https://docs.microsoft.com/en-us/aspnet/core/data/ef-rp/intro?view=aspnetcore-3.0&tabs=visual-studio#scaffold-student-pages>
 
 ## Entity Framework(EF)
 
@@ -2832,15 +2829,33 @@ Use `[Column(TypeName = "decimal(18,2)")]` before a property to define its restr
 
 `modelBuilder.Entity<Product>().Property(p => p.Price).HasPrecision(18, 2);` should work samely, but this API is not found.
 
-[Entity Framework Core](https://docs.microsoft.com/en-us/ef/core/modeling/)
+[Entity Framework Core](https://docs.microsoft.com/en-us/ef/core/)
 
+- object-relational mapper (O/RM)
 
+- A model is made up of entity classes and a context object that represents a session with the database, allowing you to query and save data.
+- In the DbContext class, add `public DbSet<MyModel> MyModel { get; set; }`
+- `using (var db = new DbContext()) {...}`
+- `db.MyModel.Add(new MyModel()); db.SaveChanges();`
 
-**HERE**
+- Create DB: `Add-Migration InitialCreate`
+- `Update-Database`
 
-- 
+- Local test connection string: `Server=(localdb)\\mssqllocaldb;Database=EFGetStarted.ConsoleApp.NewDb;Trusted_Connection=True;`
+- On the prod machine, can use env var to replace the `DefaultConnection`. But it is stored in plain text so if the machine is compromised then it is leaked. See **Publish to Azure** session.
+- [SecretManager](https://docs.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-3.1&tabs=windows#secret-manager)
+  - secrets should be made available in the production environment through a controlled means like environment variables, Azure Key Vault, etc.
+  - App secrets are stored in a separate location from the project tree.
+  - The Secret Manager tool doesn't encrypt the stored secrets and shouldn't be treated as a trusted store.
+  - `dotnet user-secrets init`
+  - The values are stored in a JSON configuration file in a system-protected user profile folder on the local machine: `%APPDATA%\Microsoft\UserSecrets\<user_secrets_id>\secrets.json`
+  - UserSecretsId is specified in `csproj` file, like this: `<UserSecretsId>79a3edd0-2092-40a2-a04d-dcb46d5ca9ed</UserSecretsId>`
+
+https://stackoverflow.com/questions/43722030/how-to-get-connection-string-out-of-azure-keyvault
+
+**HERE**: <https://docs.microsoft.com/en-us/ef/core/miscellaneous/logging?tabs=v3>
+
 - You can override the OnModelCreating method in your derived context and use the ModelBuilder API to configure your model.
-
 
 ## RESTful
 
