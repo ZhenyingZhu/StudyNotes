@@ -91,3 +91,24 @@ def calculateRealRateOfReturn(start_value, end_value, inflation, duration):
 
 def calculateMortgagePaymentTotal(principal, yearly_rate, term):
     return principal * (1 + yearly_rate / 12.0 / 100.0 * 30)
+
+def calculateCompoundFutureValueWithTax(base, rate, tax_rate, duration):
+    """From the PV (base), calculate the FV with compound interest."""
+    coumpounding = base
+    for _ in range(duration):
+        gross_earning = coumpounding * rate / 100.0
+        net_earning = gross_earning * (1.0 - tax_rate / 100.0)
+        coumpounding += net_earning
+    return coumpounding
+
+def calculateAnnuityFutureValueWithTax(base, payment, rate, tax_rate, duration):
+    saving = base
+    for _ in range(duration):
+        saving += payment
+
+        gross_earning = saving * rate / 100.0
+        net_earning = gross_earning * (1.0 - tax_rate / 100.0)
+
+        saving += net_earning
+
+    return saving
