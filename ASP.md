@@ -2841,6 +2841,8 @@ Use `[Column(TypeName = "decimal(18,2)")]` before a property to define its restr
 - Create DB: `Add-Migration InitialCreate`
 - `Update-Database`
 
+[Connection String](https://docs.microsoft.com/en-us/ef/core/miscellaneous/connection-strings)
+
 - Local test connection string: `Server=(localdb)\\mssqllocaldb;Database=EFGetStarted.ConsoleApp.NewDb;Trusted_Connection=True;`
 - On the prod machine, can use env var to replace the `DefaultConnection`. But it is stored in plain text so if the machine is compromised then it is leaked. See **Publish to Azure** session.
 - [SecretManager](https://docs.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-3.1&tabs=windows#secret-manager)
@@ -2850,10 +2852,60 @@ Use `[Column(TypeName = "decimal(18,2)")]` before a property to define its restr
   - `dotnet user-secrets init`
   - The values are stored in a JSON configuration file in a system-protected user profile folder on the local machine: `%APPDATA%\Microsoft\UserSecrets\<user_secrets_id>\secrets.json`
   - UserSecretsId is specified in `csproj` file, like this: `<UserSecretsId>79a3edd0-2092-40a2-a04d-dcb46d5ca9ed</UserSecretsId>`
+  - To set a secret: `dotnet user-secrets set "Movies:ServiceApiKey" "12345" --project "C:\apps\WebApp1\src\WebApp1"`
+  - Visual studio "Manage User Secrets" opens `secrets.json`
+  - In the program, `builder.AddUserSecrets<Program>();` to get the config and `_moviesApiKey = Configuration["Movies:ServiceApiKey"];` to get the secret.
 
-https://stackoverflow.com/questions/43722030/how-to-get-connection-string-out-of-azure-keyvault
+Can also use [Azure key vault](https://stackoverflow.com/questions/43722030/how-to-get-connection-string-out-of-azure-keyvault)
 
-**HERE**: <https://docs.microsoft.com/en-us/ef/core/miscellaneous/logging?tabs=v3>
+[Logging](https://docs.microsoft.com/en-us/ef/core/miscellaneous/logging?tabs=v3)
+
+- `Microsoft.Extensions.Logging.AzureAppServices` can log to Azure 'Diagnostics logs' and 'Log stream'.
+- `Microsoft.Extensions.Logging.Console`: logs to console.
+
+Use logging:
+
+```C#
+public static readonly ILoggerFactory MyLoggerFactory =
+    LoggerFactory.Create(builder => { builder.AddConsole(); });
+
+protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    => optionsBuilder
+        .UseLoggerFactory(MyLoggerFactory) // Warning: Do not create a new ILoggerFactory instance each time
+        .UseSqlServer(
+            @"Server=(localdb)\mssqllocaldb;Database=EFLogging;Trusted_Connection=True;ConnectRetryCount=0");
+```
+
+[Connection Resiliency](https://docs.microsoft.com/en-us/ef/core/miscellaneous/connection-resiliency)
+
+- In the `optionsBuilder`, after `UseSqlServer()`, add `options => options.EnableRetryOnFailure()`
+- By default the retry is on operation level. Every `SaveChanges()` will be retired
+- user defined transaction between `var transaction = context.Database.BeginTransaction()` and `transaction.Commit();` cannot be retried by default retry policy.
+- Need to define a execution strategy using `CreateExecutionStrategy`
+
+[Testing](https://docs.microsoft.com/en-us/ef/core/miscellaneous/testing/)
+
+- localDB: SQL server developer edition
+
+[DbContextOptions](https://docs.microsoft.com/en-us/ef/core/miscellaneous/configuring-dbcontext)
+
+- design time tool: `migrations`. Cannot 100% mimic run time.
+- Options provided:
+  - `UseSqlServer` or other DB providers
+  - connection string
+  - provider-level optional behavior selectors
+  - general EF Core behavior selectors
+- Entity Framework Core does not support multiple parallel operations being run on the same DbContext instance. This includes both parallel execution of async queries and any explicit concurrent use from multiple threads. Therefore, always await async calls immediately, or use separate DbContext instances for operations that execute in parallel.
+- there is only one thread executing each client request at a given time for most ASP.NET Core applications
+- `DbContext` dependency injected with a scoped lifetime by default.
+
+```C#
+optionsBuilder
+    .UseSqlServer(connectionString, providerOptions=>providerOptions.CommandTimeout(60))
+    .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+```
+
+**HERE**: <https://docs.microsoft.com/en-us/ef/core/miscellaneous/nullable-reference-types>
 
 - You can override the OnModelCreating method in your derived context and use the ModelBuilder API to configure your model.
 
