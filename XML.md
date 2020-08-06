@@ -5,7 +5,7 @@
 - [XML Wiki](https://en.wikipedia.org/wiki/XML)
 - [XSD Wiki](https://en.wikipedia.org/wiki/XML_Schema_(W3C))
 
-## XML
+## XML Intro
 
 [wikipedia](https://en.wikipedia.org/wiki/XML)
 
@@ -67,6 +67,8 @@ Rhe XML Schema data model includes:
 - The vocabulary (element and attribute names)
 - The content model (relationships and structure)
 - The data types
+
+`XmlSchemaFacet`: the xml element restrictions. See those facet: [XmlSchemaLengthFacet](https://docs.microsoft.com/en-us/dotnet/api/system.xml.schema.xmlschemalengthfacet?view=netcore-3.1), [XmlSchemaMaxExclusiveFacet](https://docs.microsoft.com/en-us/dotnet/api/system.xml.schema.xmlschemamaxexclusivefacet?view=netcore-3.1), etc.
 
 ## WSDL
 
