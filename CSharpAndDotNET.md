@@ -1117,3 +1117,9 @@ Schema terms: see examples in [XmlSchemaEnumerationFacet](https://docs.microsoft
 - XmlSchemaElement: xs:element.
 - XmlSchemaComplexType: xs:complexType. contains other elements and/or attributes.
 - XmlSchemaAttribute: xs:attribute.
+
+### Predicate
+
+[Doc](https://docs.microsoft.com/en-us/dotnet/api/system.predicate-1?view=netcore-3.1)
+
+Define a rule to search.
