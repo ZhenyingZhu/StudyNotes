@@ -2879,7 +2879,7 @@ protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 [Connection Resiliency](https://docs.microsoft.com/en-us/ef/core/miscellaneous/connection-resiliency)
 
 - In the `optionsBuilder`, after `UseSqlServer()`, add `options => options.EnableRetryOnFailure()`
-- By default the retry is on operation level. Every `SaveChanges()` will be retired
+- By default the retry is on operation level. Every `SaveChanges()` will be retried
 - user defined transaction between `var transaction = context.Database.BeginTransaction()` and `transaction.Commit();` cannot be retried by default retry policy.
 - Need to define a execution strategy using `CreateExecutionStrategy`
 
@@ -2905,7 +2905,36 @@ optionsBuilder
     .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
 ```
 
-**HERE**: <https://docs.microsoft.com/en-us/ef/core/miscellaneous/nullable-reference-types>
+[nullable reference types](https://docs.microsoft.com/en-us/ef/core/miscellaneous/nullable-reference-types)
+
+- For a property that might be null, the compiler warns. To solve it, set it to be nullable or set it to null.
+- When dealing with optional relationships, EF Core guarantees that if an optional related entity does not exist, any navigation to it will simply be ignored, but to make compiler happy, use the null-forgiving operator (!).
+
+```C#
+private Address? _shippingAddress;
+
+public Address ShippingAddress
+{
+    set => _shippingAddress = value;
+    get => _shippingAddress
+           ?? throw new InvalidOperationException("Uninitialized property: " + nameof(ShippingAddress));
+}
+
+// or
+
+public Product Product { get; set; } = null!;
+```
+
+```C#
+Console.WriteLine(order.OptionalInfo!.ExtraAdditionalInfo!.SomeExtraAdditionalInfo);
+
+var order = context.Orders
+    .Include(o => o.OptionalInfo!)
+        .ThenInclude(op => op.ExtraAdditionalInfo)
+    .Single();
+```
+
+**HERE**: <https://docs.microsoft.com/en-us/ef/core/miscellaneous/collations-and-case-sensitivity>
 
 - You can override the OnModelCreating method in your derived context and use the ModelBuilder API to configure your model.
 
