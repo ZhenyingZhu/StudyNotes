@@ -2934,7 +2934,12 @@ var order = context.Orders
     .Single();
 ```
 
-**HERE**: <https://docs.microsoft.com/en-us/ef/core/miscellaneous/collations-and-case-sensitivity>
+[Collations and Case Sensitivity](https://docs.microsoft.com/en-us/ef/core/miscellaneous/collations-and-case-sensitivity)
+
+- collation: a set of rules determining how text values are ordered and compared for equality.
+- `modelBuilder.UseCollation("SQL_Latin1_General_CP1_CS_AS");`
+
+**HERE**: <https://docs.microsoft.com/en-us/ef/core/modeling/>
 
 - You can override the OnModelCreating method in your derived context and use the ModelBuilder API to configure your model.
 
