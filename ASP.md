@@ -2939,9 +2939,21 @@ var order = context.Orders
 - collation: a set of rules determining how text values are ordered and compared for equality.
 - `modelBuilder.UseCollation("SQL_Latin1_General_CP1_CS_AS");`
 
-**HERE**: <https://docs.microsoft.com/en-us/ef/core/modeling/>
+[Create a model](https://docs.microsoft.com/en-us/ef/core/modeling/)
 
-- You can override the OnModelCreating method in your derived context and use the ModelBuilder API to configure your model.
+- Use fluent API to configure a model: You can override the `OnModelCreating` method in your derived context and use the `ModelBuilder` API to configure your model. It overrides conventions and data annotations.
+  - `modelBuilder.Entity<Blog>().Property(b => b.Url).IsRequired();`
+- Use data annotations to configure a model: override conventions
+  - `[Required]`
+- Including types in the model: in DbSet, or as navigation properties, or in the `OnModelCreating` method
+  - `public DbSet<Blog> Blogs { get; set; }`
+  - `modelBuilder.Entity<AuditEntry>();`
+  - table name would be the DbSet property name.
+  - If don't want to use the default schema, can `[Table("blogs", Schema = "blogging")]`
+
+**HERE**: <https://docs.microsoft.com/en-us/ef/core/modeling/entity-properties?tabs=data-annotations%2Cwithout-nrt>
+
+
 
 ## RESTful
 
