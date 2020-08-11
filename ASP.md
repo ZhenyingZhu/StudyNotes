@@ -2950,10 +2950,18 @@ var order = context.Orders
   - `modelBuilder.Entity<AuditEntry>();`
   - table name would be the DbSet property name.
   - If don't want to use the default schema, can `[Table("blogs", Schema = "blogging")]`
+- all public properties with a getter and a setter will be included in the model.
+- table columns have the same name as the property.
+- the database provider selects a data type based on the .NET type of the property.
+- Use annotation to set data type restriction: `[MaxLength(500)]`
+- `[Required]`: this property cannot be null. Only when the nullable reference type is NOT enabled. If enabled, the `int?` indicates its optional and `int` indicates it is required.
+- a property named `Id` or `<type name>Id` will be configured as the primary key of an entity. Or use `[Key]`
+- composite key: `modelBuilder.Entity<Car>().HasKey(c => new { c.State, c.LicensePlate });`
+- Primary keys are created as `PK_<type name>`
+- When create a new entity, before call `SaveChange()`, the primary key is a temp value and will be changed when actually saves into DB.
+- Alternate Keys: can be used as a target of a relationship.
 
-**HERE**: <https://docs.microsoft.com/en-us/ef/core/modeling/entity-properties?tabs=data-annotations%2Cwithout-nrt>
-
-
+**HERE**: <https://docs.microsoft.com/en-us/ef/core/modeling/generated-properties?tabs=data-annotations>
 
 ## RESTful
 
