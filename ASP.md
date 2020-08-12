@@ -2961,7 +2961,64 @@ var order = context.Orders
 - When create a new entity, before call `SaveChange()`, the primary key is a temp value and will be changed when actually saves into DB.
 - Alternate Keys: can be used as a target of a relationship.
 
-**HERE**: <https://docs.microsoft.com/en-us/ef/core/modeling/generated-properties?tabs=data-annotations>
+[Generated Values](https://docs.microsoft.com/en-us/ef/core/modeling/generated-properties?tabs=data-annotations)
+
+- generated when add or update: EF or database generate the value when `SaveChanges()` is called
+- computed column: when a column refer to another column
+
+Create a Trigger in SQL:
+
+```SQL
+CREATE TRIGGER [dbo].[Blogs_UPDATE] ON [dbo].[Blogs]
+    AFTER UPDATE
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    IF ((SELECT TRIGGER_NESTLEVEL()) > 1) RETURN;
+    DECLARE @Id INT
+
+    SELECT @Id = INSERTED.BlogId
+    FROM INSERTED
+
+    UPDATE dbo.Blogs
+    SET LastUpdated = GETDATE()
+    WHERE BlogId = @Id
+END
+```
+
+In C#
+
+```C#
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    public DateTime Inserted { get; set; }
+
+// or
+protected override void OnModelCreating(ModelBuilder modelBuilder)
+{
+    modelBuilder.Entity<Blog>()
+        .Property(b => b.Created)
+        .HasDefaultValueSql("getdate()");
+}
+```
+
+Computed column:
+
+```C#
+protected override void OnModelCreating(ModelBuilder modelBuilder)
+{
+    modelBuilder.Entity<Person>()
+        .Property(p => p.DisplayName)
+        .HasComputedColumnSql("[LastName] + ', ' + [FirstName]");
+}
+```
+
+[Concurrency Tokens](https://docs.microsoft.com/en-us/ef/core/modeling/concurrency?tabs=data-annotations)
+
+- `[ConcurrencyCheck]` on a property implement optimistic concurrency control.
+- `[Timestamp]`: make this property auto updated when inserted or updated
+
+**HERE**: <https://docs.microsoft.com/en-us/ef/core/modeling/shadow-properties>
 
 ## RESTful
 
