@@ -3018,7 +3018,24 @@ protected override void OnModelCreating(ModelBuilder modelBuilder)
 - `[ConcurrencyCheck]` on a property implement optimistic concurrency control.
 - `[Timestamp]`: make this property auto updated when inserted or updated
 
-**HERE**: <https://docs.microsoft.com/en-us/ef/core/modeling/shadow-properties>
+[Shadow Properties](https://docs.microsoft.com/en-us/ef/core/modeling/shadow-properties)
+
+- Shadow properties are properties that are not defined in your .NET entity class but are defined for that entity type in the EF Core model. The value and state of these properties is maintained purely in the Change Tracker.
+- most often used for foreign key properties
+
+[Relationships](https://docs.microsoft.com/en-us/ef/core/modeling/relationships?tabs=fluent-api%2Cfluent-api-simple-key%2Csimple-key)
+
+- Dependent entity: child of the relation
+- Principal entity: parent
+- Principal key: uid of the principal entity
+- Foreign key: a property in the dependent entity to store the principal entity id.
+- Navigation property
+  - Collection navigation property: 1 to many
+  - Reference navigation property: 1 to 1
+  - Inverse navigation property: the navigation from the other end
+- Self-referencing relationship
+
+**HERE**: <https://docs.microsoft.com/en-us/ef/core/modeling/relationships?tabs=fluent-api%2Cfluent-api-simple-key%2Csimple-key#conventions>
 
 ## RESTful
 
