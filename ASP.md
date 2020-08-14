@@ -3034,8 +3034,109 @@ protected override void OnModelCreating(ModelBuilder modelBuilder)
   - Reference navigation property: 1 to 1
   - Inverse navigation property: the navigation from the other end
 - Self-referencing relationship
+- When a property is not a scalar type, then it is a navigation property and a relationship will be created
+- [Cascade delete](https://docs.microsoft.com/en-us/ef/core/saving/cascade-delete): by default when the principal entity is deleted, dependent entities also deleted.
+- Many-to-Many relationship cannot be created automatically. Need to use an entity class to store the relation.
 
-**HERE**: <https://docs.microsoft.com/en-us/ef/core/modeling/relationships?tabs=fluent-api%2Cfluent-api-simple-key%2Csimple-key#conventions>
+
+scalar type: a type that can have a single value.
+
+One-to-many relation: `Blog.Posts`, `Post.BlogId` and `Post.Blog` are used as foreign key. If the `Post.BlogId` doesn't exist, a shadow foreign key will be created.
+
+```C#
+public class Blog
+{
+    public int BlogId { get; set; }
+    public string Url { get; set; }
+
+    public List<Post> Posts { get; set; }
+}
+
+public class Post
+{
+    public int PostId { get; set; }
+    public string Title { get; set; }
+    public string Content { get; set; }
+
+    public int BlogId { get; set; }
+    public Blog Blog { get; set; }
+}
+```
+
+One-to-one relation:
+
+```C#
+public class Blog
+{
+    public int BlogId { get; set; }
+    public string Url { get; set; }
+
+    public BlogImage BlogImage { get; set; }
+}
+
+public class BlogImage
+{
+    public int BlogImageId { get; set; }
+    public byte[] Image { get; set; }
+    public string Caption { get; set; }
+
+    public int BlogId { get; set; }
+    public Blog Blog { get; set; }
+}
+```
+
+Many-to-many relation:
+
+```C#
+class MyContext : DbContext
+{
+    public DbSet<Post> Posts { get; set; }
+    public DbSet<Tag> Tags { get; set; }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<PostTag>()
+            .HasKey(t => new { t.PostId, t.TagId });
+
+        modelBuilder.Entity<PostTag>()
+            .HasOne(pt => pt.Post)
+            .WithMany(p => p.PostTags)
+            .HasForeignKey(pt => pt.PostId);
+
+        modelBuilder.Entity<PostTag>()
+            .HasOne(pt => pt.Tag)
+            .WithMany(t => t.PostTags)
+            .HasForeignKey(pt => pt.TagId);
+    }
+}
+
+public class Post
+{
+    public int PostId { get; set; }
+    public string Title { get; set; }
+    public string Content { get; set; }
+
+    public List<PostTag> PostTags { get; set; }
+}
+
+public class Tag
+{
+    public string TagId { get; set; }
+
+    public List<PostTag> PostTags { get; set; }
+}
+
+public class PostTag
+{
+    public int PostId { get; set; }
+    public Post Post { get; set; }
+
+    public string TagId { get; set; }
+    public Tag Tag { get; set; }
+}
+```
+
+**HERE**: <https://docs.microsoft.com/en-us/ef/core/modeling/indexes>
 
 ## RESTful
 
