@@ -3136,6 +3136,13 @@ public class PostTag
 }
 ```
 
+[Indexes](https://docs.microsoft.com/en-us/ef/core/modeling/indexes)
+
+- `modelBuilder.Entity<Blog>().HasIndex(b => b.Url).IsUnique();`
+- `modelBuilder.Entity<Person>().HasIndex(p => new { p.FirstName, p.LastName });`
+- EF Core only supports one index per distinct set of properties.
+- Index filter/partial index: allows to index only a subset of a column's values: `modelBuilder.Entity<Blog>().HasIndex(b => b.Url).HasFilter("[Url] IS NOT NULL");`
+
 **HERE**: <https://docs.microsoft.com/en-us/ef/core/modeling/indexes>
 
 ## RESTful
