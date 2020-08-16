@@ -3142,8 +3142,36 @@ public class PostTag
 - `modelBuilder.Entity<Person>().HasIndex(p => new { p.FirstName, p.LastName });`
 - EF Core only supports one index per distinct set of properties.
 - Index filter/partial index: allows to index only a subset of a column's values: `modelBuilder.Entity<Blog>().HasIndex(b => b.Url).HasFilter("[Url] IS NOT NULL");`
+- index properties that are not key: `modelBuilder.Entity<Post>().HasIndex(p => p.Url).IncludeProperties(p => new { p.Title, p.PublishedOn});`
 
-**HERE**: <https://docs.microsoft.com/en-us/ef/core/modeling/indexes>
+[Inheritance](https://docs.microsoft.com/en-us/ef/core/modeling/inheritance)
+
+- only supports the table-per-hierarchy (TPH) pattern
+- Create an entity that inherits another one
+
+[Sequences](https://docs.microsoft.com/en-us/ef/core/modeling/sequences)
+
+- generates unique, sequential numeric values in the database.
+- First create a seq, then assign it to a column
+
+```C#
+protected override void OnModelCreating(ModelBuilder modelBuilder)
+{
+    // default
+    modelBuilder.HasSequence<int>("OrderNumbers");
+
+    // self config
+    modelBuilder.HasSequence<int>("OrderNumbers", schema: "shared")
+        .StartsAt(1000)
+        .IncrementsBy(5);
+
+    modelBuilder.Entity<Order>()
+        .Property(o => o.OrderNo)
+        .HasDefaultValueSql("NEXT VALUE FOR shared.OrderNumbers");
+}
+```
+
+**HERE**: <https://docs.microsoft.com/en-us/ef/core/modeling/backing-field?tabs=data-annotations>
 
 ## RESTful
 
