@@ -3171,7 +3171,25 @@ protected override void OnModelCreating(ModelBuilder modelBuilder)
 }
 ```
 
-**HERE**: <https://docs.microsoft.com/en-us/ef/core/modeling/backing-field?tabs=data-annotations>
+[Backing Fields](https://docs.microsoft.com/en-us/ef/core/modeling/backing-field?tabs=data-annotations)
+
+- allow EF to read and/or write to a field rather than a property.
+- can put some validation around the field before writing the value to DS.
+
+[Value Conversions](https://docs.microsoft.com/en-us/ef/core/modeling/value-conversions)
+
+- allow property values to be converted when reading from or writing to the database.
+- For example: enum is Read as an enum, but write as a string
+
+[Value Comparers](https://docs.microsoft.com/en-us/ef/core/modeling/value-comparers)
+
+- compare property values when: 1. whether a property has been changed, 2. whether two key values are the same when resolving relationships
+- For primitive type it is auto.
+- For complex type, can compare by either 1. use reference comparation, 2. use deep compare
+- By default EF uses reference
+- To use deep compare, EF creates snapshots for the property values. Need to override `bool Equals(object obj)` and `int GetHashCode()`
+
+**HERE**: <https://docs.microsoft.com/en-us/ef/core/modeling/data-seeding>
 
 ## RESTful
 
