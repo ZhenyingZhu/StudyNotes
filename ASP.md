@@ -3189,6 +3189,25 @@ protected override void OnModelCreating(ModelBuilder modelBuilder)
 - By default EF uses reference
 - To use deep compare, EF creates snapshots for the property values. Need to override `bool Equals(object obj)` and `int GetHashCode()`
 
+[Data Seeding](https://docs.microsoft.com/en-us/ef/core/modeling/data-seeding)
+
+- EF Core migrations can automatically compute what insert, update or delete operations need to be applied when upgrading the database to a new version of the model.
+- Or use Custom initialization logic, use DbContext.SaveChanges() before the main application logic begins execution.
+
+```C#
+modelBuilder.Entity<Blog>().HasData(new Blog {BlogId = 1, Url = "http://sample.com"});
+
+// A relation between Blog and Post
+modelBuilder.Entity<Post>().HasData(
+    new Post() { BlogId = 1, PostId = 1, Title = "First post", Content = "Test 1" });
+```
+
+[Entity types with constructors](https://docs.microsoft.com/en-us/ef/core/modeling/table-splitting)
+
+- Can create the object with ctor.
+- Can inject a service support lazy loading.
+- Can inject `DbContext` to check the count of an object before inserting, etc.
+
 **HERE**: <https://docs.microsoft.com/en-us/ef/core/modeling/data-seeding>
 
 ## RESTful
