@@ -3208,7 +3208,34 @@ modelBuilder.Entity<Post>().HasData(
 - Can inject a service support lazy loading.
 - Can inject `DbContext` to check the count of an object before inserting, etc.
 
-**HERE**: <https://docs.microsoft.com/en-us/ef/core/modeling/data-seeding>
+[Table Splitting](https://docs.microsoft.com/en-us/ef/core/modeling/table-splitting)
+
+- map two or more entities to a single row.
+- the entity types need to be mapped to the same table, have the primary keys mapped to the same columns and at least one relationship configured between the primary key of one entity type and another in the same table.
+
+[Owned Entity Types](https://docs.microsoft.com/en-us/ef/core/modeling/owned-entities)
+
+- model entity types that can only ever appear on navigation properties of other entity types.
+- The entity containing an owned entity type is its owner.
+- Owned entity types are never included by EF Core in the model by convention.
+- always have a one-to-one relationship with the owner, therefore they don't need their own key values as the foreign key values are unique.
+
+```C#
+[Owned]
+public class StreetAddress
+{
+    public string Street { get; set; }
+    public string City { get; set; }
+}
+
+public class Order
+{
+    public int Id { get; set; }
+    public StreetAddress ShippingAddress { get; set; }
+}
+```
+
+**HERE**: <https://docs.microsoft.com/en-us/ef/core/modeling/keyless-entity-types?tabs=data-annotations>
 
 ## RESTful
 
