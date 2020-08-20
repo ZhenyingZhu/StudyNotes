@@ -3235,7 +3235,23 @@ public class Order
 }
 ```
 
-**HERE**: <https://docs.microsoft.com/en-us/ef/core/modeling/keyless-entity-types?tabs=data-annotations>
+[Keyless Entity Types](https://docs.microsoft.com/en-us/ef/core/modeling/keyless-entity-types?tabs=data-annotations)
+
+- can be used to carry out database queries against data that doesn't contain key values.
+- `[Keyless]`
+- never inserted, updated or deleted on the database.
+
+[Alternating between multiple models with the same DbContext type](https://docs.microsoft.com/en-us/ef/core/modeling/dynamic-model)
+
+- Replace `IModelCacheKeyFactory`.
+
+[Spatial Data](https://docs.microsoft.com/en-us/ef/core/modeling/spatial)
+
+- Spatial data represents the physical location and the shape of objects.
+- Common scenarios include querying for objects within a given distance from a location, or selecting the object whose border contains a given location.
+- using the NetTopologySuite spatial library.
+
+**HERE**: <https://docs.microsoft.com/en-us/ef/core/managing-schemas/>
 
 ## RESTful
 
