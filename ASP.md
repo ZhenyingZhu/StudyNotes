@@ -3251,7 +3251,21 @@ public class Order
 - Common scenarios include querying for objects within a given distance from a location, or selecting the object whose border contains a given location.
 - using the NetTopologySuite spatial library.
 
-**HERE**: <https://docs.microsoft.com/en-us/ef/core/managing-schemas/>
+[Managing Database Schemas](https://docs.microsoft.com/en-us/ef/core/managing-schemas/)
+
+- EF Core model to be the source of truth, use Migrations.
+- Use Reverse Engineering if you want your database schema to be the source of truth.
+
+[Migrations Overview](https://docs.microsoft.com/en-us/ef/core/managing-schemas/migrations/?tabs=dotnet-core-cli)
+
+- EF Core compares the current model against a snapshot of the old model to determine the differences, and generates migration source files
+- EF Core records all applied migrations in a special history table
+- `Add-Migration InitialCreate`: `Migrations` folder is created.
+- `Add-Migration AddBlogCreatedTimestamp`: add another migration.
+- `Update-Database`: apply migrations. It is only recommended to be used in local env.
+- `Remove-Migration`
+
+**HERE**: <https://docs.microsoft.com/en-us/ef/core/managing-schemas/migrations/applying?tabs=vs>
 
 ## RESTful
 
