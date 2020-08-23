@@ -3265,7 +3265,22 @@ public class Order
 - `Update-Database`: apply migrations. It is only recommended to be used in local env.
 - `Remove-Migration`
 
-**HERE**: <https://docs.microsoft.com/en-us/ef/core/managing-schemas/migrations/applying?tabs=vs>
+[Applying Migrations](https://docs.microsoft.com/en-us/ef/core/managing-schemas/migrations/applying?tabs=vs)
+
+Several solutions
+
+- Generate SQL scripts:
+  - `Script-Migration`: generate changes for all the migrations
+  - `Script-Migration AddNewTables AddAuditTable`: only migrations from AddNewTables to AddAuditTable. AddNewTables should already being applied to the DB last time.
+  - Then need to apply the script appropriately
+  - If don't know the last state, use `Script-Migration -Idempotent`
+- Command-line tools:  this approach isn't ideal for managing production databases
+  - `Update-Database AddNewTables`
+  - Data might loss
+- Apply migrations at runtime: during startup.inappropriate for managing production databases because concurrent issues.
+  - `db.Database.Migrate();`
+
+**HERE**: <https://docs.microsoft.com/en-us/ef/core/managing-schemas/migrations/operations>
 
 ## RESTful
 
