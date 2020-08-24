@@ -3280,7 +3280,12 @@ Several solutions
 - Apply migrations at runtime: during startup.inappropriate for managing production databases because concurrent issues.
   - `db.Database.Migrate();`
 
-**HERE**: <https://docs.microsoft.com/en-us/ef/core/managing-schemas/migrations/operations>
+[Custom Migrations Operations](https://docs.microsoft.com/en-us/ef/core/managing-schemas/migrations/operations)
+
+- `migrationBuilder.Sql($"CREATE USER {name} WITH PASSWORD '{password}';");`
+- `class CreateUserOperation : MigrationOperation`, then `migrationBuilder.Operations.Add(new CreateUserOperation { Name = name, Password = password});`
+
+**HERE**: <https://docs.microsoft.com/en-us/ef/core/managing-schemas/migrations/projects?tabs=vs>
 
 ## RESTful
 
