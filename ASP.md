@@ -3285,7 +3285,31 @@ Several solutions
 - `migrationBuilder.Sql($"CREATE USER {name} WITH PASSWORD '{password}';");`
 - `class CreateUserOperation : MigrationOperation`, then `migrationBuilder.Operations.Add(new CreateUserOperation { Name = name, Password = password});`
 
-**HERE**: <https://docs.microsoft.com/en-us/ef/core/managing-schemas/migrations/projects?tabs=vs>
+[Using a Separate Migrations Project](https://docs.microsoft.com/en-us/ef/core/managing-schemas/migrations/projects?tabs=vs)
+
+- store your migrations in a different assembly than the one containing your DbContext.
+- `options.UseSqlServer(connectionString, x => x.MigrationsAssembly("MyApp.Migrations"));`
+- `Add-Migration NewMigration -Project MyApp.Migrations`
+
+[Migrations with Multiple Providers](https://docs.microsoft.com/en-us/ef/core/managing-schemas/migrations/providers?tabs=vs)
+
+- use more than one provider (for example Microsoft SQL Server and SQLite) with your DbContext.
+
+[Custom Migrations History Table](https://docs.microsoft.com/en-us/ef/core/managing-schemas/migrations/history-table)
+
+- EF Core keeps track of which migrations have been applied to the database by recording them in a table named `__EFMigrationsHistory`.
+- This can be changed.
+
+[Create and Drop APIs](https://docs.microsoft.com/en-us/ef/core/managing-schemas/ensure-created)
+
+- `EnsureCreated`, `EnsureDeleted` can manage the database schema.
+- when the data is transient and can be dropped when the schema changes
+
+[Reverse Engineering](https://docs.microsoft.com/en-us/ef/core/managing-schemas/scaffolding?tabs=vs)
+
+- scaffolding entity type classes and a DbContext class based on a database schema.
+
+**HERE**: <https://docs.microsoft.com/en-us/ef/core/querying/>
 
 ## RESTful
 
