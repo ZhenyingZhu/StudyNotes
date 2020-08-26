@@ -3309,7 +3309,16 @@ Several solutions
 
 - scaffolding entity type classes and a DbContext class based on a database schema.
 
-**HERE**: <https://docs.microsoft.com/en-us/ef/core/querying/>
+[Querying Data](https://docs.microsoft.com/en-us/ef/core/querying/)
+
+- uses Language Integrated Query (LINQ)
+
+[Enumerable Class](https://docs.microsoft.com/en-us/dotnet/api/system.linq.enumerable?view=netcore-3.1)
+
+- `var blog = context.Blogs.Single(b => b.BlogId == 1);` [Single](https://docs.microsoft.com/en-us/dotnet/api/system.linq.enumerable.single?view=netcore-3.1)
+- `var blogs = context.Blogs.Where(b => b.Url.Contains("dotnet")).ToList();` [Where](https://docs.microsoft.com/en-us/dotnet/api/system.linq.queryable.where?view=netcore-3.1)
+
+**HERE**: <https://docs.microsoft.com/en-us/ef/core/querying/client-eval>
 
 ## RESTful
 
