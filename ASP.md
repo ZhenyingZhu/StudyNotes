@@ -3325,7 +3325,15 @@ Several solutions
 - Since query translation and compilation are expensive, EF Core caches the compiled query plan.
 - Potential memory leak in client evaluation
 
-**HERE**: <https://docs.microsoft.com/en-us/ef/core/querying/tracking>
+[Tracking vs. No-Tracking Queries](https://docs.microsoft.com/en-us/ef/core/querying/tracking)
+
+- If an entity is tracked, any changes detected in the entity will be persisted to the database during `SaveChanges()`.
+- fix up navigation properties between the entities in a tracking query result and the entities that are in the change tracker.
+- Keyless entity types are never tracked.
+- No tracking queries are useful when the results are used in a read-only scenario.
+- `var blogs = context.Blogs.AsNoTracking().ToList();`
+
+**HERE**: <https://docs.microsoft.com/en-us/ef/core/querying/complex-query-operators>
 
 ## RESTful
 
