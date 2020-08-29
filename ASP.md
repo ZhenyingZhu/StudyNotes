@@ -3333,6 +3333,10 @@ Several solutions
 - No tracking queries are useful when the results are used in a read-only scenario.
 - `var blogs = context.Blogs.AsNoTracking().ToList();`
 
+[Complex Query Operators](https://docs.microsoft.com/en-us/ef/core/querying/complex-query-operators)
+
+- Join
+
 **HERE**: <https://docs.microsoft.com/en-us/ef/core/querying/complex-query-operators>
 
 ## RESTful
