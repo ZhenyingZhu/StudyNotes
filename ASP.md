@@ -3335,9 +3335,26 @@ Several solutions
 
 [Complex Query Operators](https://docs.microsoft.com/en-us/ef/core/querying/complex-query-operators)
 
-- Join
+- [Join](https://docs.microsoft.com/en-us/dotnet/api/system.linq.enumerable.join?view=netcore-3.1)
+  - Inner join
+  - `var query = people.Join(pets, person => person, pet => pet.Owner, (person, pet) => new { OwnerName = person.Name, Pet = pet.Name });`
+- [GroupJoin](https://docs.microsoft.com/en-us/dotnet/api/system.linq.enumerable.groupjoin?view=netcore-3.1)
+  - The result is a key-to-list
+- [SelectMany](https://docs.microsoft.com/en-us/dotnet/api/system.linq.enumerable.selectmany?view=netcore-3.1)
+  - Search the elements whose multi-value property has a specific value
+- [GroupBy](https://docs.microsoft.com/en-us/dotnet/api/system.linq.enumerable.groupby?view=netcore-3.1)
+  - group elements by their properties with same property values
+  - The aggregate operators EF Core supports:
+    - Average
+    - Count
+    - LongCount
+    - Max
+    - Min
+    - Sum
+- Left Join: no LINQ supports, but has EF supports
+  - `var query = from b in context.Set<Blog>() join p in context.Set<Post>() on b.BlogId equals p.BlogId into grouping from p in grouping.DefaultIfEmpty() select new { b, p };`
 
-**HERE**: <https://docs.microsoft.com/en-us/ef/core/querying/complex-query-operators>
+**HERE**: <https://docs.microsoft.com/en-us/ef/core/querying/related-data>
 
 ## RESTful
 
