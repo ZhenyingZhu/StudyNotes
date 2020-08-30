@@ -7,7 +7,7 @@ namespace DotNetCoreConsole
     {
         static void Main(string[] args)
         {
-            TestJson.TestMain.testMain();
+            TestMemoryBytes.TestMain.testMain();
         }
     }
 }
