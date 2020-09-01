@@ -7,7 +7,7 @@ namespace DotNetCoreConsole
     {
         static void Main(string[] args)
         {
-            TestMemoryBytes.TestMain.testMain();
+            TestReadWriteXMLSchema.TestMain.testMain();
         }
     }
 }
