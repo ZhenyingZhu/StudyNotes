@@ -3354,7 +3354,20 @@ Several solutions
 - Left Join: no LINQ supports, but has EF supports
   - `var query = from b in context.Set<Blog>() join p in context.Set<Post>() on b.BlogId equals p.BlogId into grouping from p in grouping.DefaultIfEmpty() select new { b, p };`
 
-**HERE**: <https://docs.microsoft.com/en-us/ef/core/querying/related-data>
+[Loading Related Data](https://docs.microsoft.com/en-us/ef/core/querying/related-data)
+
+- Eager loading: the related data is loaded from the database as part of the initial query.
+  - Same level of data: `context.Blogs.Include(blog => blog.Posts).Include(blog => blog.Owner).ToList();`
+  - Multiple levels: `context.Blogs.Include(blog => blog.Posts).ThenInclude(post => post.Author).ToList();`
+  - Solve "cartesian explosion" problem: `.AsSplitQuery()`
+  - Filtered include: `Where`, `OrderBy`, `OrderByDescending`, `ThenBy`(secondary order), `ThenByDescending`, `Skip`, and `Take`
+    - `context.Blogs.Include(blog => blog.Posts.Where(post => post.BlogId == 1).OrderBy(post => post.Title).Take(5)).ToList();`
+    - If `Student` is derived from `Person`: `context.People.Include(person => ((Student)person).School).ToList()`
+- Explicit loading: the related data is explicitly loaded from the database at a later time.
+
+- Lazy loading: the related data is transparently loaded from the database when the navigation property is accessed.
+
+**HERE**: <https://docs.microsoft.com/en-us/ef/core/querying/related-data#explicit-loading>
 
 ## RESTful
 
