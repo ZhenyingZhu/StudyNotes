@@ -3364,10 +3364,14 @@ Several solutions
     - `context.Blogs.Include(blog => blog.Posts.Where(post => post.BlogId == 1).OrderBy(post => post.Title).Take(5)).ToList();`
     - If `Student` is derived from `Person`: `context.People.Include(person => ((Student)person).School).ToList()`
 - Explicit loading: the related data is explicitly loaded from the database at a later time.
-
+  - `context.Entry(blog).Collection(b => b.Posts).Load();`
+  - `context.Entry(blog).Reference(b => b.Owner).Load();`
+  - Use `Query` to do aggregation: `context.Entry(blog).Collection(b => b.Posts).Query().Where(p => p.Rating > 3).Count();`
 - Lazy loading: the related data is transparently loaded from the database when the navigation property is accessed.
+  - `.AddDbContext<BloggingContext>(b => b.UseLazyLoadingProxies().UseSqlServer(myConnectionString));`
+- avoid reference cycles: `services.AddMvc().AddJsonOptions(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);`
 
-**HERE**: <https://docs.microsoft.com/en-us/ef/core/querying/related-data#explicit-loading>
+**HERE**: <https://docs.microsoft.com/en-us/ef/core/querying/async>
 
 ## RESTful
 
