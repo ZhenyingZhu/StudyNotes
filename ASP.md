@@ -3038,7 +3038,6 @@ protected override void OnModelCreating(ModelBuilder modelBuilder)
 - [Cascade delete](https://docs.microsoft.com/en-us/ef/core/saving/cascade-delete): by default when the principal entity is deleted, dependent entities also deleted.
 - Many-to-Many relationship cannot be created automatically. Need to use an entity class to store the relation.
 
-
 scalar type: a type that can have a single value.
 
 One-to-many relation: `Blog.Posts`, `Post.BlogId` and `Post.Blog` are used as foreign key. If the `Post.BlogId` doesn't exist, a shadow foreign key will be created.
@@ -3371,7 +3370,24 @@ Several solutions
   - `.AddDbContext<BloggingContext>(b => b.UseLazyLoadingProxies().UseSqlServer(myConnectionString));`
 - avoid reference cycles: `services.AddMvc().AddJsonOptions(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);`
 
-**HERE**: <https://docs.microsoft.com/en-us/ef/core/querying/async>
+[Asynchronous Queries](https://docs.microsoft.com/en-us/ef/core/querying/async)
+
+- avoid blocking a thread while the query is executed in the database.
+- provides a set of async extension methods similar to the LINQ methods, `ToListAsync()`, `ToArrayAsync()`, `SingleAsync()`
+- `Where()` or `OrderBy()` don't have async implementation because these methods only build up the LINQ expression tree and don't cause the query to be executed in the database.
+- using the await keyword on each async operation.
+
+```C#
+public async Task<List<Blog>> GetBlogsAsync()
+{
+    using (var context = new BloggingContext())
+    {
+        return await context.Blogs.ToListAsync();
+    }
+}
+```
+
+**HERE**: <https://docs.microsoft.com/en-us/ef/core/querying/raw-sql>
 
 ## RESTful
 
