@@ -3387,7 +3387,11 @@ public async Task<List<Blog>> GetBlogsAsync()
 }
 ```
 
-**HERE**: <https://docs.microsoft.com/en-us/ef/core/querying/raw-sql>
+[Raw SQL Queries](https://docs.microsoft.com/en-us/ef/core/querying/raw-sql)
+
+- `context.Blogs.FromSqlRaw("SELECT * FROM dbo.Blogs").ToList();`
+
+**HERE**: <https://docs.microsoft.com/en-us/ef/core/querying/filters>
 
 ## RESTful
 
