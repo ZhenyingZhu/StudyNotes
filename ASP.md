@@ -3391,7 +3391,14 @@ public async Task<List<Blog>> GetBlogsAsync()
 
 - `context.Blogs.FromSqlRaw("SELECT * FROM dbo.Blogs").ToList();`
 
-**HERE**: <https://docs.microsoft.com/en-us/ef/core/querying/filters>
+[Global Query Filters](https://docs.microsoft.com/en-us/ef/core/querying/filters)
+
+- Global query filters are LINQ query predicates (a boolean expression typically passed to the LINQ Where query operator) applied to Entity Types in the metadata model.
+- common applications: Soft delete, Multi-tenancy.
+- In `OnModelCreating()`, `modelBuilder.Entity<Blog>().Property<string>("_tenantId").HasColumnName("TenantId");`, then `modelBuilder.Entity<Blog>().HasQueryFilter(b => EF.Property<string>(b, "_tenantId") == _tenantId);`.
+- Also supports required navigation, i.e., a navigation property that always returns.
+
+**HERE**: <https://docs.microsoft.com/en-us/ef/core/querying/tags>
 
 ## RESTful
 
