@@ -3398,7 +3398,16 @@ public async Task<List<Blog>> GetBlogsAsync()
 - In `OnModelCreating()`, `modelBuilder.Entity<Blog>().Property<string>("_tenantId").HasColumnName("TenantId");`, then `modelBuilder.Entity<Blog>().HasQueryFilter(b => EF.Property<string>(b, "_tenantId") == _tenantId);`.
 - Also supports required navigation, i.e., a navigation property that always returns.
 
-**HERE**: <https://docs.microsoft.com/en-us/ef/core/querying/tags>
+[Query tags](https://docs.microsoft.com/en-us/ef/core/querying/tags)
+
+- Can annotate a LINQ query by calling `TagWith()`. Query tags are cumulative.
+
+[How Queries Work](https://docs.microsoft.com/en-us/ef/core/querying/how-query-works)
+
+- The LINQ query is processed by Entity Framework Core to build a representation that is ready to be processed by the database provider.
+- When you call LINQ operators, you are simply building up an in-memory representation of the query. The query is only sent to the database when the results are consumed.
+
+**HERE**: <https://docs.microsoft.com/en-us/ef/core/saving/>
 
 ## RESTful
 
