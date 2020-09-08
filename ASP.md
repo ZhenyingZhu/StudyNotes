@@ -3407,7 +3407,22 @@ public async Task<List<Blog>> GetBlogsAsync()
 - The LINQ query is processed by Entity Framework Core to build a representation that is ready to be processed by the database provider.
 - When you call LINQ operators, you are simply building up an in-memory representation of the query. The query is only sent to the database when the results are consumed.
 
-**HERE**: <https://docs.microsoft.com/en-us/ef/core/saving/>
+[Basic Save](https://docs.microsoft.com/en-us/ef/core/saving/basic)
+
+- `context.Blogs.Add(blog);`
+- `context.Blogs.Remove(blog);`
+- A `changeTracker` records all the changes of entities.
+- `context.SaveChanges();`: all the changes before calling this method are in a single transaction.
+
+[Saving Related Data](https://docs.microsoft.com/en-us/ef/core/saving/related-data)
+
+- adding one of the related entities to the context will cause the others to be added too.
+- remove a relationship by setting a reference navigation to `null`
+- if the cascade deletion is set, when an entity doesn't have a reference to it, it is deleted.
+
+
+
+**HERE**: <https://docs.microsoft.com/en-us/ef/core/saving/cascade-delete>
 
 ## RESTful
 
