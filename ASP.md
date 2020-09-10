@@ -3420,9 +3420,16 @@ public async Task<List<Blog>> GetBlogsAsync()
 - remove a relationship by setting a reference navigation to `null`
 - if the cascade deletion is set, when an entity doesn't have a reference to it, it is deleted.
 
+[Cascade Delete](https://docs.microsoft.com/en-us/ef/core/saving/cascade-delete)
 
+- allows the deletion of a row to automatically trigger the deletion of related rows.
+- DeleteBehavior
+  - Cascade: deletes the entity and its dependents
+  - ClientSetNull: set the foreign key to null but dependents are not deleted
+  - SetNull
+  - Restrict
 
-**HERE**: <https://docs.microsoft.com/en-us/ef/core/saving/cascade-delete>
+**HERE**: <https://docs.microsoft.com/en-us/ef/core/saving/concurrency>
 
 ## RESTful
 
