@@ -3429,7 +3429,19 @@ public async Task<List<Blog>> GetBlogsAsync()
   - SetNull
   - Restrict
 
-**HERE**: <https://docs.microsoft.com/en-us/ef/core/saving/concurrency>
+[Handling Concurrency Conflicts](https://docs.microsoft.com/en-us/ef/core/saving/concurrency)
+
+- optimistic concurrency control: multiple processes or users make changes independently
+- concurrency tokens: when `SaveChanges()`, the value of the concurrency token on the database is compared against the original value read by EF Core.
+- `DbUpdateConcurrencyException`: has a field `Entries` to solve the conflict in the DB vs. the write value.
+
+[Using Transactions](https://docs.microsoft.com/en-us/ef/core/saving/transactions)
+
+- atomic manner.
+- By default, `SaveChanges()`
+- to gain more control: `using (var transaction = context.Database.BeginTransaction())`
+
+**HERE**: <https://docs.microsoft.com/en-us/ef/core/saving/disconnected-entities>
 
 ## RESTful
 
