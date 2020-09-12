@@ -3441,6 +3441,10 @@ public async Task<List<Blog>> GetBlogsAsync()
 - By default, `SaveChanges()`
 - to gain more control: `using (var transaction = context.Database.BeginTransaction())`
 
+[Disconnected entities](https://docs.microsoft.com/en-us/ef/core/saving/disconnected-entities)
+
+- entities are queried using one context instance and then saved using a different instance. Happened in a disconnect scenario.
+
 **HERE**: <https://docs.microsoft.com/en-us/ef/core/saving/disconnected-entities>
 
 ## RESTful
