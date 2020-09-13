@@ -3444,8 +3444,13 @@ public async Task<List<Blog>> GetBlogsAsync()
 [Disconnected entities](https://docs.microsoft.com/en-us/ef/core/saving/disconnected-entities)
 
 - entities are queried using one context instance and then saved using a different instance. Happened in a disconnect scenario.
+- it is necessary to determine in some other way whether to insert or update.
+- The value of an automatically generated key can often be used to determine whether an entity needs to be inserted or updated. `!context.Entry(entity).IsKeySet;`
 
-**HERE**: <https://docs.microsoft.com/en-us/ef/core/saving/disconnected-entities>
+[Setting Explicit Values for Generated Properties](https://docs.microsoft.com/en-us/ef/core/saving/explicit-values-generated-properties)
+
+- Auto generate: `modelBuilder.Entity<Employee>().Property(b => b.LastPayRaise).ValueGeneratedOnAddOrUpdate();`
+- write SQL to override the behavior `context.Database.ExecuteSqlRaw("SET IDENTITY_INSERT dbo.Employees ON");`
 
 ## RESTful
 
