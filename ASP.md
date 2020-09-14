@@ -454,6 +454,8 @@ JQuery makes all browsers can use same code.
 
 ### Using NPM
 
+**HERE**
+
 - Add package.json to the root of the project.
 - Add "dependencies" to package.json for runtime dependencies. While "devDependencies" is development dependencies.
 - A new node_modules folder would appear with jquery in it. dist folder is for distributions. See which dist you want to use.
