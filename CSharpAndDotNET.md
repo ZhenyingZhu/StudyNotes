@@ -213,8 +213,6 @@ double value = (double)numberPropertyInfo.GetValue(calcInstance, null);
 numberPropertyInfo.SetValue(calcInstance, 10.0, null);
 ```
 
-
-
 inheritance
 
 - base class vs derived class
@@ -816,6 +814,10 @@ See VisualStudio.md
 Choose Windows Application.
 
 FlowLayoutPanel: arranges its contents in a horizontal or vertical flow direction. You can wrap the control's contents from one row to the next, or from one column to the next.
+
+## Json Schema
+
+[source](https://www.thecodebuzz.com/csharp-class-json-schema/)
 
 ## Miscellaneous
 
