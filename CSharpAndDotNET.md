@@ -817,7 +817,7 @@ FlowLayoutPanel: arranges its contents in a horizontal or vertical flow directio
 
 ## Json Schema
 
-[source](https://www.thecodebuzz.com/csharp-class-json-schema/)
+[Newtonsoft.Json.Schema](https://www.newtonsoft.com/jsonschema/help/html/LoadingSchemas.htm)
 
 ## Miscellaneous
 
