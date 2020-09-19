@@ -470,8 +470,6 @@ Note that [odetocode](https://github.com/OdeToCode/UseNodeModules) can serve fil
 
 ### Introducing jQuery
 
-**HERE**
-
 jQuery can be treat as an object in a javascript file.
 
 jQuery is good at find elements in the document.
@@ -497,6 +495,8 @@ $(document).ready(function() {});
 When define a jQuery object, convention is to name it start with `$`.
 
 ### What Is MVC
+
+**HERE**: 
 
 Model-View-Controller framework for applications.
 
