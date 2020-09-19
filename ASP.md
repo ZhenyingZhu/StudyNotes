@@ -454,8 +454,6 @@ JQuery makes all browsers can use same code.
 
 ### Using NPM
 
-**HERE**
-
 - Add package.json to the root of the project.
 - Add "dependencies" to package.json for runtime dependencies. While "devDependencies" is development dependencies.
 - A new node_modules folder would appear with jquery in it. dist folder is for distributions. See which dist you want to use.
@@ -471,6 +469,8 @@ Note that [odetocode](https://github.com/OdeToCode/UseNodeModules) can serve fil
 - Need copy the `node_module` folder to wwwroot using gulp.
 
 ### Introducing jQuery
+
+**HERE**
 
 jQuery can be treat as an object in a javascript file.
 
