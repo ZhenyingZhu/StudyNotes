@@ -7,7 +7,7 @@ namespace DotNetCoreConsole
     {
         static void Main(string[] args)
         {
-            TestValuePassing.TestMain.testMain();
+            TestBytesArrayConvert.TestMain.testMain();
         }
     }
 }
