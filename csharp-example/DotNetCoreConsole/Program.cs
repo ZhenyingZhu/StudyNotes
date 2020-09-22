@@ -7,7 +7,7 @@ namespace DotNetCoreConsole
     {
         static void Main(string[] args)
         {
-            TestBytesArrayConvert.TestMain.testMain();
+            TestExceptLinkOnStruct.TestMain.testMain();
         }
     }
 }
