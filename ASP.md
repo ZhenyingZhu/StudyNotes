@@ -496,8 +496,6 @@ When define a jQuery object, convention is to name it start with `$`.
 
 ### What Is MVC
 
-**HERE**: 
-
 Model-View-Controller framework for applications.
 
 - Model: data
@@ -507,6 +505,8 @@ Model-View-Controller framework for applications.
 Request is routed to a controller class, controller get some data from model, then send back to controller to do some logic, and then controller send data to view, view render and return the response.
 
 ### First Controller/View
+
+**HERE**
 
 Create a Controller class inherit from AspNetCore.Mvc.Controller under a folder calls controllers.
 
