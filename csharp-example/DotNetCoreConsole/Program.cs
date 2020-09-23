@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace DotNetCoreConsole
 {
@@ -7,7 +9,7 @@ namespace DotNetCoreConsole
     {
         static void Main(string[] args)
         {
-            TestExceptLinkOnStruct.TestMain.testMain();
+            TestAsyncTasks.TestMain.testMain();
         }
     }
 }
