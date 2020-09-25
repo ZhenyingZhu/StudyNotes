@@ -506,8 +506,6 @@ Request is routed to a controller class, controller get some data from model, th
 
 ### First Controller/View
 
-**HERE**
-
 Create a Controller class inherit from AspNetCore.Mvc.Controller under a folder calls controllers.
 
 Controller maps a request to an action. Action is where the real logic happens.
@@ -586,6 +584,8 @@ Classes used in Controller:
 - [Mvc.IActionResult](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.iactionresult?view=aspnetcore-3.1): views are inherit from this interface.
 
 ### Enabling MVC 6
+
+**HERE**
 
 In Startup.cs add `app.UseMvc()` to set up the routes.
 
