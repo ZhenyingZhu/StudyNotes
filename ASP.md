@@ -585,8 +585,6 @@ Classes used in Controller:
 
 ### Enabling MVC 6
 
-**HERE**
-
 In Startup.cs add `app.UseMvc()` to set up the routes.
 
 Routes: from pattern of the URL, find out which controller to send the request.
@@ -604,6 +602,8 @@ ASP.NET Core requires to use dependency injection.
 Using `IHostingEnvironment env` to figure out if the env is a prod or a staging or development. In project property Debug page, can set the environment.
 
 ### Creating a Layout
+
+**HERE**
 
 Layout page: the common elements on multiple pages. It is a view shares across controllers.
 
