@@ -504,6 +504,10 @@ Model-View-Controller framework for applications.
 
 Request is routed to a controller class, controller get some data from model, then send back to controller to do some logic, and then controller send data to view, view render and return the response.
 
+[Package Manager commands](https://docs.microsoft.com/en-us/nuget/consume-packages/install-use-packages-powershell)
+
+- Nuget package management can all be done in the nuget package UI. Notice if the visual studio version doesn't support the .net core version, then the dependencies would fail to be loaded.
+
 ### First Controller/View
 
 Create a Controller class inherit from AspNetCore.Mvc.Controller under a folder calls controllers.
@@ -2822,6 +2826,12 @@ HERE:
 **TODO**: <https://docs.microsoft.com/en-us/aspnet/core/data/ef-rp/intro?view=aspnetcore-3.0&tabs=visual-studio#scaffold-student-pages>
 
 ## Entity Framework(EF)
+
+[Tutorial: Create a complex data model - ASP.NET MVC with EF Core](https://docs.microsoft.com/en-us/aspnet/core/data/ef-mvc/complex-data-model?view=aspnetcore-3.1)
+
+- The DataType attribute can enable the application to automatically provide type-specific features
+
+**HERE**:
 
 <https://docs.microsoft.com/en-us/aspnet/entity-framework>
 
