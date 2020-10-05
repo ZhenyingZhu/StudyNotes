@@ -2800,7 +2800,7 @@ The Gravatar helper.
 
 The @ character tells ASP.NET that what follows is Razor code, not HTML. ASP.NET will treat everything after the @ character as code until it runs into some HTML again.
 
-HERE:
+**HERE**:
 <https://docs.microsoft.com/en-us/aspnet/web-pages/overview/getting-started/introducing-aspnet-web-pages-2/layouts>
 
 [Filter with any](https://stackoverflow.com/questions/15475593/webapi-odata-filter-any-or-all-query-not-working)
@@ -2830,8 +2830,17 @@ HERE:
 [Tutorial: Create a complex data model - ASP.NET MVC with EF Core](https://docs.microsoft.com/en-us/aspnet/core/data/ef-mvc/complex-data-model?view=aspnetcore-3.1)
 
 - The DataType attribute can enable the application to automatically provide type-specific features
+- `[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]`
+- `[StringLength(50, MinimumLength=2)]`
+- `[RegularExpression(@"^[A-Z]+[a-zA-Z]*$")]`
+- `[Column("FirstName")]`
+- The `Required` attribute isn't needed for non-nullable types such as value types (DateTime, int, double, float, etc.).
+- If you specify `ICollection<T>`, EF creates a `HashSet<T>` collection by default.
+- For a One-to-Many navagation property, in the child, the ParentId is non-nullable because it is an int. So Parent doesn't really need to be marked as `Required`.
+- If there is no property names `Id` or `ClassNameId`, then `[Key]` is needed on a property.
+- The property (like ParentId) for the foreign key is not needed, because a shadow property will be created. But with it the updates can be easier.
 
-**HERE**:
+**HERE**: https://docs.microsoft.com/en-us/aspnet/core/data/ef-mvc/complex-data-model?view=aspnetcore-3.1#foreign-key-and-navigation-properties-1
 
 <https://docs.microsoft.com/en-us/aspnet/entity-framework>
 
