@@ -2839,8 +2839,12 @@ The @ character tells ASP.NET that what follows is Razor code, not HTML. ASP.NET
 - For a One-to-Many navagation property, in the child, the ParentId is non-nullable because it is an int. So Parent doesn't really need to be marked as `Required`.
 - If there is no property names `Id` or `ClassNameId`, then `[Key]` is needed on a property.
 - The property (like ParentId) for the foreign key is not needed, because a shadow property will be created. But with it the updates can be easier.
+- If in a One-to-One relationship the navigation property is not required, use int? as the foreign key instead of int.
+- Enum type can not be null. To make it null, use MyEnum?. Can annotate it with `[DisplayFormat(NullDisplayText = "No value")]`
+- Can use [Entity Framework Power Tools](https://marketplace.visualstudio.com/items?itemName=ErikEJ.EntityFramework6PowerToolsCommunityEdition) to view the data gram.
+- Many-to-Many relationship with payload
 
-**HERE**: https://docs.microsoft.com/en-us/aspnet/core/data/ef-mvc/complex-data-model?view=aspnetcore-3.1#foreign-key-and-navigation-properties-1
+**HERE**: https://docs.microsoft.com/en-us/aspnet/core/data/ef-mvc/complex-data-model?view=aspnetcore-3.1#join-entity-names
 
 <https://docs.microsoft.com/en-us/aspnet/entity-framework>
 
