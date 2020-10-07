@@ -2842,9 +2842,11 @@ The @ character tells ASP.NET that what follows is Razor code, not HTML. ASP.NET
 - If in a One-to-One relationship the navigation property is not required, use int? as the foreign key instead of int.
 - Enum type can not be null. To make it null, use MyEnum?. Can annotate it with `[DisplayFormat(NullDisplayText = "No value")]`
 - Can use [Entity Framework Power Tools](https://marketplace.visualstudio.com/items?itemName=ErikEJ.EntityFramework6PowerToolsCommunityEdition) to view the data gram.
-- Many-to-Many relationship with payload
+- Many-to-Many relationship with payload: better name the relationship with a meaningful name, instead of Entity1Entity2, so that in the future if there are needs to add payload to the relation, the name doesn't need to change
+- Composite key: the two foreign keys are not null and can used to generate composite key in the `OnModelCreating` method.
+- In the `DbContext` class, add the method `void OnModelCreating(ModelBuilder modelBuilder)` and use the fluent API to config EF behavior.
 
-**HERE**: https://docs.microsoft.com/en-us/aspnet/core/data/ef-mvc/complex-data-model?view=aspnetcore-3.1#join-entity-names
+**HERE**: https://docs.microsoft.com/en-us/aspnet/core/data/ef-mvc/complex-data-model?view=aspnetcore-3.1#entity-diagram-showing-relationships
 
 <https://docs.microsoft.com/en-us/aspnet/entity-framework>
 
