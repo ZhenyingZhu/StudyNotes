@@ -2847,6 +2847,7 @@ The @ character tells ASP.NET that what follows is Razor code, not HTML. ASP.NET
 - In the `DbContext` class, add the method `void OnModelCreating(ModelBuilder modelBuilder)` and use the fluent API to config EF behavior.
 
 **HERE**: https://docs.microsoft.com/en-us/aspnet/core/data/ef-mvc/complex-data-model?view=aspnetcore-3.1#entity-diagram-showing-relationships
+**TODO**: Add the UserId to all those entities!!!
 
 <https://docs.microsoft.com/en-us/aspnet/entity-framework>
 
