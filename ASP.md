@@ -1286,6 +1286,14 @@ Can also use `from` clause. [basic LINQ query ops](https://docs.microsoft.com/en
 
 ### Authorizing Actions
 
+[ASP.NET Core authentication](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/?view=aspnetcore-3.1)
+
+- use `IAuthenticationService` middle ware.
+- The registered authentication handlers and their configuration options are called "schemes".
+- In `Startup.ConfigureServices`,
+
+**HERE**: https://docs.microsoft.com/en-us/aspnet/core/security/authentication/?view=aspnetcore-3.1
+
 Entities: those are directly store in DB
 
 - Order: A collection of OrderItems. Bind to a StoreUser.
@@ -2800,7 +2808,7 @@ The Gravatar helper.
 
 The @ character tells ASP.NET that what follows is Razor code, not HTML. ASP.NET will treat everything after the @ character as code until it runs into some HTML again.
 
-**HERE**:
+**TODO**:
 <https://docs.microsoft.com/en-us/aspnet/web-pages/overview/getting-started/introducing-aspnet-web-pages-2/layouts>
 
 [Filter with any](https://stackoverflow.com/questions/15475593/webapi-odata-filter-any-or-all-query-not-working)
@@ -2845,9 +2853,8 @@ The @ character tells ASP.NET that what follows is Razor code, not HTML. ASP.NET
 - Many-to-Many relationship with payload: better name the relationship with a meaningful name, instead of Entity1Entity2, so that in the future if there are needs to add payload to the relation, the name doesn't need to change
 - Composite key: the two foreign keys are not null and can used to generate composite key in the `OnModelCreating` method.
 - In the `DbContext` class, add the method `void OnModelCreating(ModelBuilder modelBuilder)` and use the fluent API to config EF behavior.
-
-**HERE**: https://docs.microsoft.com/en-us/aspnet/core/data/ef-mvc/complex-data-model?view=aspnetcore-3.1#entity-diagram-showing-relationships
-**TODO**: Add the UserId to all those entities!!!
+- Finally, `dotnet ef migrations add ComplexDataModel`, then `database update`
+- If there are already existing data, do [create a stub](https://docs.microsoft.com/en-us/aspnet/core/data/ef-mvc/complex-data-model?view=aspnetcore-3.1#add-a-migration) to fill in the non-null able values.
 
 <https://docs.microsoft.com/en-us/aspnet/entity-framework>
 
