@@ -1290,7 +1290,7 @@ Can also use `from` clause. [basic LINQ query ops](https://docs.microsoft.com/en
 
 - use `IAuthenticationService` middle ware.
 - The registered authentication handlers and their configuration options are called "schemes".
-- In `Startup.ConfigureServices`,
+- In `Startup.ConfigureServices`, call `services.AddAuthentication` with JWT token or cookie or both.
 
 **HERE**: https://docs.microsoft.com/en-us/aspnet/core/security/authentication/?view=aspnetcore-3.1
 
