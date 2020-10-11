@@ -607,8 +607,6 @@ Using `IHostingEnvironment env` to figure out if the env is a prod or a staging 
 
 ### Creating a Layout
 
-**HERE**
-
 Layout page: the common elements on multiple pages. It is a view shares across controllers.
 
 Put `_Layout.cshtml` under `Views\Shared` folder.
@@ -1285,14 +1283,6 @@ EntityFrameworkCore.EntityFrameworkQueryableExtensions
 Can also use `from` clause. [basic LINQ query ops](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/linq/basic-linq-query-operations)
 
 ### Authorizing Actions
-
-[ASP.NET Core authentication](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/?view=aspnetcore-3.1)
-
-- use `IAuthenticationService` middle ware.
-- The registered authentication handlers and their configuration options are called "schemes".
-- In `Startup.ConfigureServices`, call `services.AddAuthentication` with JWT token or cookie or both.
-
-**HERE**: https://docs.microsoft.com/en-us/aspnet/core/security/authentication/?view=aspnetcore-3.1
 
 Entities: those are directly store in DB
 
@@ -3486,6 +3476,30 @@ public async Task<List<Blog>> GetBlogsAsync()
 
 - Auto generate: `modelBuilder.Entity<Employee>().Property(b => b.LastPayRaise).ValueGeneratedOnAddOrUpdate();`
 - write SQL to override the behavior `context.Database.ExecuteSqlRaw("SET IDENTITY_INSERT dbo.Employees ON");`
+
+## Security and Identity
+
+[Overview of ASP.NET Core Security](https://docs.microsoft.com/en-us/aspnet/core/security/?view=aspnetcore-3.1)
+
+Common Vulnerabilities in software"
+
+- Cross-Site Scripting (XSS) attacks
+- SQL injection attacks
+- Cross-Site Request Forgery (XSRF/CSRF) attacks
+- Open redirect attacks
+
+[Overview of ASP.NET Core authentication](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/?view=aspnetcore-3.1)
+
+- use `IAuthenticationService` middleware.
+- The registered authentication handlers and their configuration options are called "schemes".
+- In `Startup.ConfigureServices`, call `services.AddAuthentication(scheme)` to add JwtBearer or cookie schemes. This is the default authentication scheme to use.
+- In `Startup.Configure()`, call `app.UseAuthentication()` to add the middleware. It should be after `UseRouting` but before `UseEndpoints`, so the route info is available and before accesing the endpoint the user is authN.
+- Challenge: when user is not AuthN; Forbid: when user is not AuthZ.
+- With Cookie schemes, when challenge or forbid, redirect to the home page.
+- With Jwt schemes, return 401 or 403.
+
+**HERE**: https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity?view=aspnetcore-3.1&tabs=visual-studio
+
 
 ## RESTful
 
