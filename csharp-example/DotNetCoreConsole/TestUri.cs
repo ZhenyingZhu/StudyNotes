@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace TestUri
+namespace DotNetCoreConsole
 {
-    public class TestMain
+    public class TestUri
     {
         public static void testMain()
         {

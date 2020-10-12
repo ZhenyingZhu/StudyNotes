@@ -6,10 +6,20 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Schema;
 
-namespace TestJsonSchema
+namespace DotNetCoreConsole
 {
-    public class TestMain
+    public class TestJsonSchema
     {
+        public static void testMain()
+        {
+            string jsonStr =
+@"{
+  'name': 'James',
+  'hobbies': ['.NET', 'Blogging', 'Reading', 'Xbox', 'LOLCATS']
+}";
+            System.Console.WriteLine(JsonSchemaValidate(jsonStr));
+        }
+
         private static bool JsonSchemaValidate(string jsonStr)
         {
             string schemaJson =
@@ -28,16 +38,6 @@ namespace TestJsonSchema
 
             JObject person = JObject.Parse(jsonStr);
             return person.IsValid(schema);
-        }
-
-        public static void testMain()
-        {
-            string jsonStr =
-@"{
-  'name': 'James',
-  'hobbies': ['.NET', 'Blogging', 'Reading', 'Xbox', 'LOLCATS']
-}";
-            System.Console.WriteLine(JsonSchemaValidate(jsonStr));
         }
     }
 }

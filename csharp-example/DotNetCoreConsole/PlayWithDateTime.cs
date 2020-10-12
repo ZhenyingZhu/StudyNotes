@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace PlayWithDateTime
+namespace DotNetCoreConsole
 {
-    public class TestMain
+    public class PlayWithDateTime
     {
         public static void testMain()
         {

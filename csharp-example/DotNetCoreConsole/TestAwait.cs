@@ -4,10 +4,16 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace TestAwait
+namespace DotNetCoreConsole
 {
-    public class TestMain
+    public class TestAwait
     {
+        public static void testMain()
+        {
+            TestAwait myClass = new TestAwait();
+            myClass.Runner().Wait();
+        }
+
         private async Task<int> LongRunningOperationAsync(int seconds)
         {
             System.Console.WriteLine(string.Format("LongRunningOperationAsync {0}s before", seconds));
@@ -30,12 +36,6 @@ namespace TestAwait
             await t3;
 
             System.Console.WriteLine("Runner complete");
-        }
-
-        public static void testMain()
-        {
-            TestMain myClass = new TestMain();
-            myClass.Runner().Wait();
         }
     }
 }

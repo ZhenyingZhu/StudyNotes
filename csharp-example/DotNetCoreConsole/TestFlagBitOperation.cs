@@ -4,18 +4,10 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text.RegularExpressions;
 
-namespace TestFlagBitOperation
+namespace DotNetCoreConsole
 {
-    public class TestMain
+    public class TestFlagBitOperation
     {
-        [Flags]
-        public enum FlagEnum
-        {
-            None = 1,
-            Enabled = 2,
-            Disabled = 4
-        }
-
         public static void testMain()
         {
             FlagEnum? value = null;
@@ -24,6 +16,14 @@ namespace TestFlagBitOperation
             {
                 System.Console.WriteLine("Correct");
             }
+        }
+
+        [Flags]
+        private enum FlagEnum
+        {
+            None = 1,
+            Enabled = 2,
+            Disabled = 4
         }
     }
 }

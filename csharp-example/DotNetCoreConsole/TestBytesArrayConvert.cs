@@ -6,9 +6,9 @@ using System.Text;
 using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 
-namespace TestBytesArrayConvert
+namespace DotNetCoreConsole
 {
-    public class TestMain
+    public class TestBytesArrayConvert
     {
         public static void testMain()
         {

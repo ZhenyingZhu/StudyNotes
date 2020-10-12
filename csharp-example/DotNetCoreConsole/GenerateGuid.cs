@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace GenerateGuid
+namespace DotNetCoreConsole
 {
-    public class TestMain
+    public class GenerateGuid
     {
         public static void testMain()
         {

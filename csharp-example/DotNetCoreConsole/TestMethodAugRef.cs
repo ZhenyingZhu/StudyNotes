@@ -4,15 +4,15 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text.RegularExpressions;
 
-namespace TestMethodAugRef
+namespace DotNetCoreConsole
 {
-    public class TestMain
+    public class TestMethodAugRef
     {
         public static void testMain()
         {
             int[] arr = new int[10];
             arr[0] = 1;
-            TestMain cur = new TestMain();
+            TestMethodAugRef cur = new TestMethodAugRef();
             cur.TestArgRef(arr);
 
             System.Console.WriteLine("Start print");

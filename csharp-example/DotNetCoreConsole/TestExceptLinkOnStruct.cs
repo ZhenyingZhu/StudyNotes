@@ -6,10 +6,18 @@ using System.Text;
 using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 
-namespace TestExceptLinkOnStruct
+namespace DotNetCoreConsole
 {
-    public class TestMain
+    public class TestExceptLinkOnStruct
     {
+        public static void testMain()
+        {
+            // testSimpleType();
+            // testEquals();
+            testComplexType();
+        }
+
+
         private static void testSimpleType()
         {
             List<string> list1 = new List<string>{"a", "b"};
@@ -50,11 +58,6 @@ namespace TestExceptLinkOnStruct
 
             IEnumerable<MetaData> list2MinusList1 = list2.Except(list1);
             System.Console.WriteLine(string.Join(",", list2MinusList1));
-        }
-
-        public static void testMain()
-        {
-            testComplexType();
         }
 
         private class MetaData

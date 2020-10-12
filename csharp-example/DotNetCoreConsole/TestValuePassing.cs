@@ -5,9 +5,9 @@ using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
 
-namespace TestValuePassing
+namespace DotNetCoreConsole
 {
-    public class TestMain
+    public class TestValuePassing
     {
         public static void testMain()
         {

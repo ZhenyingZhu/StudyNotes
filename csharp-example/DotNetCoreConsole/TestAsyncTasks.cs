@@ -7,13 +7,13 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace TestAsyncTasks
+namespace DotNetCoreConsole
 {
-    public class TestMain
+    public class TestAsyncTasks
     {
         public static void testMain()
         {
-            var m = new TestMain();
+            var m = new TestAsyncTasks();
 
             try
             {
@@ -25,7 +25,7 @@ namespace TestAsyncTasks
             }
         }
 
-        public async Task WaitAllProcess()
+        private async Task WaitAllProcess()
         {
             CancellationTokenSource source = new CancellationTokenSource();
             CancellationToken token = source.Token;
@@ -37,7 +37,7 @@ namespace TestAsyncTasks
             await t2;
         }
 
-        public async Task ManagerProcess(CancellationToken token, CancellationTokenSource source)
+        private async Task ManagerProcess(CancellationToken token, CancellationTokenSource source)
         {
             int count = 0;
             while (count < 3)
@@ -52,7 +52,7 @@ namespace TestAsyncTasks
             source.Cancel();
         }
 
-        public async Task ChildProcess(CancellationToken token)
+        private async Task ChildProcess(CancellationToken token)
         {
             int count = 0;
             while (!token.IsCancellationRequested && count < 10)

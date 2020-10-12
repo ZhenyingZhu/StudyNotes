@@ -2,20 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace IEnumerablePrint
+namespace DotNetCoreConsole
 {
-    public class MyClass
-    {
-        private const string StringTemplate = "Id={0}";
-        public int id { get; set; }
-
-        public override string ToString()
-        {
-            return string.Format(StringTemplate, this.id);
-        }
-    }
-
-    public class TestMain
+    public class IEnumerablePrint
     {
         public static void testMain()
         {
@@ -28,6 +17,17 @@ namespace IEnumerablePrint
 
             List<int> idList = mcList.Select(x => x.id).ToList();
             System.Console.WriteLine("[" + String.Join(", ", idList) + "]");
+        }
+        
+        private class MyClass
+        {
+            private const string StringTemplate = "Id={0}";
+            public int id { get; set; }
+
+            public override string ToString()
+            {
+                return string.Format(StringTemplate, this.id);
+            }
         }
     }
 }

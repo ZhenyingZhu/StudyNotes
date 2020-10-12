@@ -6,9 +6,9 @@ using System.Text;
 using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 
-namespace TestNullCheck
+namespace DotNetCoreConsole
 {
-    public class TestMain
+    public class TestNullCheck
     {
         public static void testMain()
         {

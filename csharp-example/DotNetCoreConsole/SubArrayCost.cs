@@ -1,21 +1,21 @@
 using System;
 using System.Collections.Generic;
 
-namespace SubArrayCost
+namespace DotNetCoreConsole
 {
-    public class TestMain
+    public class SubArrayCost
     {
         public static void testMain()
         {
             List<int> values = new List<int>() { 1, 3, 2 };
 
-            System.Console.WriteLine(Solution(values, 2));
+            System.Console.WriteLine(solution(values, 2));
         }
 
         // Divide the values array into k sub arrays. And make the sum
         // of the cost of each array (which is the max num in the array)
         // minimum.
-        public static int Solution(List<int> values, int k)
+        private static int solution(List<int> values, int k)
         {
             int n = values.Count;
             if (n == 0)

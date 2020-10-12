@@ -2,16 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace TestEqualsForStringAndEnum
+namespace DotNetCoreConsole
 {
-    public enum MyEnum
-    {
-        StateOne = 1,
-
-        StateTwo = 2
-    }
-
-    public class TestMain
+    public class TestEqualsForStringAndEnum
     {
         public static void testMain()
         {
@@ -39,7 +32,13 @@ namespace TestEqualsForStringAndEnum
             {
                 System.Console.WriteLine("== not works.");
             }
+        }
 
+        private enum MyEnum
+        {
+            StateOne = 1,
+
+            StateTwo = 2
         }
     }
 }

@@ -6,9 +6,9 @@ using System.Text;
 using System.Xml;
 using System.Xml.Schema;
 
-namespace TestReadWriteXMLSchema
+namespace DotNetCoreConsole
 {
-    public class TestMain
+    public class TestReadWriteXMLSchema
     {
         public static void testMain()
         {
@@ -38,7 +38,7 @@ namespace TestReadWriteXMLSchema
             }
         }
 
-        static void ValidationCallback(object sender, ValidationEventArgs args)
+        private static void ValidationCallback(object sender, ValidationEventArgs args)
         {
             if (args.Severity == XmlSeverityType.Warning)
                 Console.Write("WARNING: ");

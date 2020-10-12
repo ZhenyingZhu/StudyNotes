@@ -4,11 +4,16 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 
-namespace TestJson
+namespace DotNetCoreConsole
 {
-    public class TestMain
+    public class TestJson
     {
         // Still in progress.
+        public static void testMain()
+        {
+            Parse();
+        }
+
         private static string GetJsonProperty(string jsonStr)
         {
             return Regex.Replace(jsonStr, "[^\\w_.]+", "_", RegexOptions.Compiled);
@@ -24,11 +29,6 @@ namespace TestJson
                 Console.WriteLine(Guid.Parse(m.Groups[1].Value));
                 Console.WriteLine(m.Groups[2].Value);
             }
-        }
-
-        public static void testMain()
-        {
-            Parse();
         }
     }
 }

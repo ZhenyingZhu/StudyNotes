@@ -1,14 +1,9 @@
 using System;
 using System.Collections.Generic;
 
-namespace ICollectionClassInit
+namespace DotNetCoreConsole
 {
-    public class MyClass
-    {
-        public ICollection<Guid> IdList { get; set; }
-    }
-
-    public class TestMain
+    public class ICollectionClassInit
     {
         public static void testMain()
         {
@@ -18,6 +13,11 @@ namespace ICollectionClassInit
             };
 
             System.Console.WriteLine(String.Join(", ", mc.IdList));
+        }
+
+        private class MyClass
+        {
+            public ICollection<Guid> IdList { get; set; }
         }
     }
 }

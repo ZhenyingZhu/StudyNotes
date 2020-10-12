@@ -2,24 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace ReturnRepeatEntries
+namespace DotNetCoreConsole
 {
-    public class MyClass
-    {
-        public int num
-        {
-            set;
-            get;
-        }
-
-        public bool shouldBeSelected
-        {
-            set;
-            get;
-        }
-    }
-
-    public class TestMain
+    public class ReturnRepeatEntries
     {
         public static void testMain()
         {
@@ -43,6 +28,21 @@ namespace ReturnRepeatEntries
 
             var res = myList.Where(x => x.shouldBeSelected).Select(x => x.num); //.ToList();
             System.Console.WriteLine("[" + String.Join(", ", res) + "]");
+        }
+
+        private class MyClass
+        {
+            public int num
+            {
+                set;
+                get;
+            }
+
+            public bool shouldBeSelected
+            {
+                set;
+                get;
+            }
         }
     }
 }

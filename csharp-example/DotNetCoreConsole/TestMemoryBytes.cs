@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 
-namespace TestMemoryBytes
+namespace DotNetCoreConsole
 {
-    public class TestMain
+    public class TestMemoryBytes
     {
         public static void testMain()
         {

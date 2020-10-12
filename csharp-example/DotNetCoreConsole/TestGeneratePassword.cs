@@ -4,20 +4,20 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text.RegularExpressions;
 
-namespace TestGeneratePassword
+namespace DotNetCoreConsole
 {
-    public class TestMain
+    public class TestGeneratePassword
     {
         // Still in progress.
-        private static string GetJsonProperty(string jsonStr)
-        {
-            return Regex.Replace(jsonStr, "[^\\w_.]+", "_", RegexOptions.Compiled);
-        }
-
         public static void testMain()
         {
             string password = GenerateStrongUserPassword();
             System.Console.WriteLine(password);
+        }
+
+        private static string GetJsonProperty(string jsonStr)
+        {
+            return Regex.Replace(jsonStr, "[^\\w_.]+", "_", RegexOptions.Compiled);
         }
 
         /// <summary>
