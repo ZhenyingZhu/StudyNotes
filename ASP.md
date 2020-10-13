@@ -3498,8 +3498,14 @@ Common Vulnerabilities in software"
 - With Cookie schemes, when challenge or forbid, redirect to the home page.
 - With Jwt schemes, return 401 or 403.
 
-**HERE**: https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity?view=aspnetcore-3.1&tabs=visual-studio
+[Introduction to Identity on ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity?view=aspnetcore-3.1&tabs=visual-studio)
 
+- In the `Startup.congifureServices`, add `services.AddDefaultIdentity<IdentityUser>`. The option `SignIn.RequireConfirmedAccount` ask the user to confirm its account before it can sign in.
+- `services.Configure<IdentityOptions>` and `services.ConfigureApplicationCookie` to config account related and cookie related settings.
+- In the `Startup.Config`, add `app.UseAuthentication();` and `app.UseAuthorization();`
+- Right click the project, click "Add Scaffold" and then "Identity", so `Area/Identity/Account/` folder with a bunch of Razor pages are created.
+
+**HERE**: <https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity?view=aspnetcore-3.1&tabs=visual-studio#scaffold-register-login-logout-and-registerconfirmation>
 
 ## RESTful
 
