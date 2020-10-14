@@ -3504,8 +3504,11 @@ Common Vulnerabilities in software"
 - `services.Configure<IdentityOptions>` and `services.ConfigureApplicationCookie` to config account related and cookie related settings.
 - In the `Startup.Config`, add `app.UseAuthentication();` and `app.UseAuthorization();`
 - Right click the project, click "Add Scaffold" and then "Identity", so `Area/Identity/Account/` folder with a bunch of Razor pages are created.
+- `~/Pages/Shared/_Layout.cshtml` is for Razor Pages, `~/Views/Shared/_Layout.cshtml` is for MVC projects
+- The default RegisterConfirmation is only used for testing, need to set up email sender and disable it.
+- Add `[Authorize]` to the model that needs login to review.
 
-**HERE**: <https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity?view=aspnetcore-3.1&tabs=visual-studio#scaffold-register-login-logout-and-registerconfirmation>
+**HERE**: <https://docs.microsoft.com/en-us/aspnet/core/security/authentication/scaffold-identity?view=aspnetcore-3.1&tabs=visual-studio#pass-an-xsrf-token-to-the-app>
 
 ## RESTful
 
