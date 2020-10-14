@@ -1125,3 +1125,17 @@ Schema terms: see examples in [XmlSchemaEnumerationFacet](https://docs.microsoft
 [Doc](https://docs.microsoft.com/en-us/dotnet/api/system.predicate-1?view=netcore-3.1)
 
 Define a rule to search.
+
+### volatile
+
+[Doc](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/volatile)
+
+- put before a field might be modified by multiple threads that are executing at the same time.
+- if without `volatile` key word, then in the multi-thread program the sequence updating to this field is unpredictable. CPU might rearange the read-write orders of sequences.
+
+### EventHandler
+
+- [EventHandler Doc](https://docs.microsoft.com/en-us/dotnet/api/system.eventhandler?view=netcore-3.1)
+- It is a delegate which accepts a sender and an Arg instance.
+- [event Doc](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/event)
+- `event` are a special kind of multicast delegate that can only be invoked from within the class or struct where they are declared (the publisher class). If other classes or structs subscribe to the event, their event handler methods will be called when the publisher class raises the event.
