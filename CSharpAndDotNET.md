@@ -1137,5 +1137,13 @@ Define a rule to search.
 
 - [EventHandler Doc](https://docs.microsoft.com/en-us/dotnet/api/system.eventhandler?view=netcore-3.1)
 - It is a delegate which accepts a sender and an Arg instance.
+- The Arg instance can be used by the registered listener to do some precondition check and act on it.
 - [event Doc](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/event)
 - `event` are a special kind of multicast delegate that can only be invoked from within the class or struct where they are declared (the publisher class). If other classes or structs subscribe to the event, their event handler methods will be called when the publisher class raises the event.
+
+### Reflection
+
+- Get type: `Type t = myInstance.GetType();` or `Type t = typeof(MyClass);`
+- Get properties: `IEnumerable<PropertyInfo> properties = myType.GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);`
+- Create an instance for a special type not using `new`: `Activator.CreateInstance()`. [Doc](https://docs.microsoft.com/en-us/dotnet/api/system.activator.createinstance?view=netcore-3.1)
+- To get more info of the type: `myType.IsConstructedGenericType` and `myType.GetGenericTypeDefinition()`
