@@ -3508,6 +3508,10 @@ Common Vulnerabilities in software"
 - The default RegisterConfirmation is only used for testing, need to set up email sender and disable it.
 - Add `[Authorize]` to the model that needs login to review.
 
+[Scaffold Identity in ASP.NET Core projects](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/scaffold-identity?view=aspnetcore-3.1&tabs=visual-studio)
+
+
+
 **HERE**: <https://docs.microsoft.com/en-us/aspnet/core/security/authentication/scaffold-identity?view=aspnetcore-3.1&tabs=visual-studio#pass-an-xsrf-token-to-the-app>
 
 ## RESTful
