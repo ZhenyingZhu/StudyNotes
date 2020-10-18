@@ -3504,15 +3504,17 @@ Common Vulnerabilities in software"
 - `services.Configure<IdentityOptions>` and `services.ConfigureApplicationCookie` to config account related and cookie related settings.
 - In the `Startup.Config`, add `app.UseAuthentication();` and `app.UseAuthorization();`
 - Right click the project, click "Add Scaffold" and then "Identity", so `Area/Identity/Account/` folder with a bunch of Razor pages are created.
-- `~/Pages/Shared/_Layout.cshtml` is for Razor Pages, `~/Views/Shared/_Layout.cshtml` is for MVC projects
-- The default RegisterConfirmation is only used for testing, need to set up email sender and disable it.
+- The default RegisterConfirmation is only used for testing, need to set up email sender and disable it. **TODO**: Follow [Doc](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/accconfirm?view=aspnetcore-3.1&tabs=visual-studio#require-email-confirmation)
 - Add `[Authorize]` to the model that needs login to review.
 
 [Scaffold Identity in ASP.NET Core projects](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/scaffold-identity?view=aspnetcore-3.1&tabs=visual-studio)
 
+- Identity Razor Class Library (RCL)
+- `AddDbContext` and `AddDefaultIdentity` is not needed any more because `Areas/Identity/IdentityHostingStartup.cs` does them.
+- `~/Pages/Shared/_Layout.cshtml` is for Razor Pages, `~/Views/Shared/_Layout.cshtml` is for MVC projects
+- `AddDefaultIdentity` does 5 things: 1. `AddAuthentication`, 2. `AddIdentityCookies`, 3. `AddIdentityCore`, 4. `AddDefaultUI`, 5. `AddDefaultTokenProviders`.
 
-
-**HERE**: <https://docs.microsoft.com/en-us/aspnet/core/security/authentication/scaffold-identity?view=aspnetcore-3.1&tabs=visual-studio#pass-an-xsrf-token-to-the-app>
+**HERE**: <https://docs.microsoft.com/en-us/aspnet/core/security/authentication/add-user-data?view=aspnetcore-3.1&tabs=visual-studio>
 
 ## RESTful
 
