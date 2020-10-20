@@ -3514,7 +3514,26 @@ Common Vulnerabilities in software"
 - `~/Pages/Shared/_Layout.cshtml` is for Razor Pages, `~/Views/Shared/_Layout.cshtml` is for MVC projects
 - `AddDefaultIdentity` does 5 things: 1. `AddAuthentication`, 2. `AddIdentityCookies`, 3. `AddIdentityCore`, 4. `AddDefaultUI`, 5. `AddDefaultTokenProviders`.
 
-**HERE**: <https://docs.microsoft.com/en-us/aspnet/core/security/authentication/add-user-data?view=aspnetcore-3.1&tabs=visual-studio>
+[Add, download, and delete custom user data to Identity in an ASP.NET Core project](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/add-user-data?view=aspnetcore-3.1&tabs=visual-studio)
+
+- In the user class that inherits the `IdentityUser`, properties marked with `[PersonalData]`
+- [Claim](https://en.wikipedia.org/wiki/Claims-based_identity#:~:text=Identity%20and%20claims.%20A%20claim%20is%20a%20statement,making%20the%20claim%20or%20claims%20is%20the%20provider.): app acquires the identity info from another org.
+
+[Authentication samples for ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/samples?view=aspnetcore-3.1)
+
+- Claims transformation
+- Cookie authentication
+- Custom policy provider - IAuthorizationPolicyProvider
+- Dynamic authentication schemes and options
+- External claims
+- Selecting between cookie and another authentication scheme based on the request
+- Restricts access to static files
+
+[Identity model customization in ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/customize-identity-model?view=aspnetcore-3.1)
+
+- `IdentityUser` is a base class. It should be used with `IdentityDbContext`.
+
+**HERE**: <https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity-configuration?view=aspnetcore-3.1>
 
 ## RESTful
 
