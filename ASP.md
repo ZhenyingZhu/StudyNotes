@@ -3533,7 +3533,26 @@ Common Vulnerabilities in software"
 
 - `IdentityUser` is a base class. It should be used with `IdentityDbContext`.
 
-**HERE**: <https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity-configuration?view=aspnetcore-3.1>
+[Configure ASP.NET Core Identity](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity-configuration?view=aspnetcore-3.1)
+
+- Claims Identity
+- Lockout
+- Password
+- Sign-in
+- Tokens
+- User
+- Cookie settings
+- Password Hasher options
+
+[Configure Windows Authentication in ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/windowsauth?view=aspnetcore-3.1&tabs=visual-studio)
+
+- Windows Authentication (also known as Negotiate, Kerberos, or NTLM authentication) can be configured for ASP.NET Core apps hosted with IIS, Kestrel, or HTTP.sys.
+
+[Custom storage providers for ASP.NET Core Identity](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity-custom-storage-providers?view=aspnetcore-3.1)
+
+- The layer of ASP.NET Core Identity.
+
+**HERE**: [Create an ASP.NET Core web app with user data protected by authorization](https://docs.microsoft.com/en-us/aspnet/core/security/authorization/secure-data?view=aspnetcore-3.1)
 
 ## RESTful
 
