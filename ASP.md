@@ -3552,7 +3552,16 @@ Common Vulnerabilities in software"
 
 - The layer of ASP.NET Core Identity.
 
-**HERE**: [Create an ASP.NET Core web app with user data protected by authorization](https://docs.microsoft.com/en-us/aspnet/core/security/authorization/secure-data?view=aspnetcore-3.1)
+[Create an ASP.NET Core web app with user data protected by authorization](https://docs.microsoft.com/en-us/aspnet/core/security/authorization/secure-data?view=aspnetcore-3.1)
+
+- Can have different handlers for differ scenario apond the same entity.
+- `public string OwnerID { get; set; }` which is the user ID from AspNetUser table.
+- In the `AddDefaultIdentity`, chain `.AddRoles<IdentityRole>()` to use roles.
+- To require all the users to sign in before visit any pages, add `services.AddAuthorization`.
+- Set the option `FallbackPolicy`. It requires all the actions to be done with user signed in, except Razor Pages, controllers, or action methods with `[AllowAnonymous]` or `[Authorize(PolicyName="MyPolicy")]`.
+- But notice if not mark `Index` with `[AllowAnonymous]`, then the home page will keep redirecting.
+
+**HERE**: <https://docs.microsoft.com/en-us/aspnet/core/security/authorization/secure-data?view=aspnetcore-3.1#configure-the-test-account>
 
 ## RESTful
 
