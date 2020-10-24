@@ -3481,7 +3481,7 @@ public async Task<List<Blog>> GetBlogsAsync()
 
 [Overview of ASP.NET Core Security](https://docs.microsoft.com/en-us/aspnet/core/security/?view=aspnetcore-3.1)
 
-Common Vulnerabilities in software"
+Common Vulnerabilities in software
 
 - Cross-Site Scripting (XSS) attacks
 - SQL injection attacks
