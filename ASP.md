@@ -3558,15 +3558,22 @@ Common Vulnerabilities in software"
 - `public string OwnerID { get; set; }` which is the user ID from AspNetUser table.
 - In the `AddDefaultIdentity`, chain `.AddRoles<IdentityRole>()` to use roles.
 - To require all the users to sign in before visit any pages, add `services.AddAuthorization`.
-- Set the option `FallbackPolicy`. It requires all the actions to be done with user signed in, except Razor Pages, controllers, or action methods with `[AllowAnonymous]` or `[Authorize(PolicyName="MyPolicy")]`.
+- Set the option `FallbackPolicy`. It requires all the actions to be done with user signed in, except Razor Pages, controllers, or action methods with `[AllowAnonymous]` or `[Authorize(PolicyName="MyPolicy")]`. This is to protect newly created Razor pages/controllers if they forget to put the authorization.
 - But notice if not mark `Index` with `[AllowAnonymous]`, then the home page will keep redirecting.
 - Use [Secret management tool](https://docs.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-3.1&tabs=windows) to create a user with password.
 - Use `var userManager = serviceProvider.GetService<UserManager<IdentityUser>>();` to get the `userManager`.
 - Use `var user = await userManager.FindByNameAsync(UserName);` to find a user.
 - Create user `var user = new IdentityUser { UserName = UserName, EmailConfirmed = true }; await userManager.CreateAsync(user, testUserPw); return user.Id;`
-- Create an AuthorizationHandler class that inherits `AuthorizationHandler` for each scenario under the folder `Authorization`. They should return `context.Succeed` if authZ succeed, or `Task.CompletedTask` to show nothing.
+- Create an AuthorizationHandler class that inherits `AuthorizationHandler` for each scenario under the folder `Authorization`. Use the `OperationAuthorizationRequirement.Name` to distinguish the scenario. They should return `context.Succeed` if authZ succeed, or `Task.CompletedTask` to show nothing.
+- In the `ConfigureServices()`, reg those handlers in the scope, so in the controller they can be injected.
+- `services.AddScoped<IAuthorizationHandler, ContactIsOwnerAuthorizationHandler>();`.
+- If the handler doesn't use `UserManager`, but the `Context.User` (so the user object has been retrieved already), then it can be added in Singleton scope.
+- Then in the Razor Model (Why there is no MVC example?), inject `IAuthorizationService`, and call `AuthorizationService.AuthorizeAsync` with the `OperationAuthorizationRequirement` to see if this action can be done.
+- Also needs to add the same logic in the view/cshtml page.
 
-**HERE**: <https://docs.microsoft.com/en-us/aspnet/core/security/authorization/secure-data?view=aspnetcore-3.1#register-the-authorization-handlers>
+- [Code Sample](AspNetCore.Docs-master\aspnetcore\security\authorization\secure-data\samples\final3)
+
+**HERE**: <https://docs.microsoft.com/en-us/aspnet/core/security/authorization/simple?view=aspnetcore-3.1>
 
 ## RESTful
 
