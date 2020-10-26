@@ -3573,8 +3573,6 @@ Common Vulnerabilities in software
 
 [Simple authorization in ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/security/authorization/simple?view=aspnetcore-3.1)
 
-- 
-
 - [Code Sample](AspNetCore.Docs-master\aspnetcore\security\authorization\secure-data\samples\final3)
 
 **HERE**: <https://docs.microsoft.com/en-us/aspnet/core/security/authorization/simple?view=aspnetcore-3.1>
