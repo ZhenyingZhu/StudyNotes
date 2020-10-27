@@ -3571,6 +3571,10 @@ Common Vulnerabilities in software
 - Then in the Razor Model (Why there is no MVC example?), inject `IAuthorizationService`, and call `AuthorizationService.AuthorizeAsync` with the `OperationAuthorizationRequirement` to see if this action can be done.
 - Also needs to add the same logic in the view/cshtml page.
 
+[Simple authorization in ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/security/authorization/simple?view=aspnetcore-3.1)
+
+- 
+
 - [Code Sample](AspNetCore.Docs-master\aspnetcore\security\authorization\secure-data\samples\final3)
 
 **HERE**: <https://docs.microsoft.com/en-us/aspnet/core/security/authorization/simple?view=aspnetcore-3.1>
