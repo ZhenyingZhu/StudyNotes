@@ -9,7 +9,7 @@ namespace DotNetCoreConsole
     {
         static void Main(string[] args)
         {
-            TestHashSetToString.testMain();
+            TestAggregationExceptionHandle.testMain();
         }
     }
 }
