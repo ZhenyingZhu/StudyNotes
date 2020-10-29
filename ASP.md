@@ -3556,6 +3556,7 @@ Common Vulnerabilities in software
 
 [Create an ASP.NET Core web app with user data protected by authorization](https://docs.microsoft.com/en-us/aspnet/core/security/authorization/secure-data?view=aspnetcore-3.1)
 
+- [Code Sample](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/authorization/secure-data/samples/final3)
 - Can have different handlers for differ scenario apond the same entity.
 - `public string OwnerID { get; set; }` which is the user ID from AspNetUser table.
 - In the `AddDefaultIdentity`, chain `.AddRoles<IdentityRole>()` to use roles.
