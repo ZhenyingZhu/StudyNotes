@@ -510,6 +510,8 @@ Request is routed to a controller class, controller get some data from model, th
 
 ### First Controller/View
 
+**HERE**: [Code Sample](AspNetCore.Docs-master\aspnetcore\security\authorization\secure-data\samples\final3)
+
 Create a Controller class inherit from AspNetCore.Mvc.Controller under a folder calls controllers.
 
 Controller maps a request to an action. Action is where the real logic happens.
@@ -3573,11 +3575,9 @@ Common Vulnerabilities in software
 
 [Simple authorization in ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/security/authorization/simple?view=aspnetcore-3.1)
 
-- 
-
-- [Code Sample](AspNetCore.Docs-master\aspnetcore\security\authorization\secure-data\samples\final3)
-
-**HERE**: <https://docs.microsoft.com/en-us/aspnet/core/security/authorization/simple?view=aspnetcore-3.1>
+- Can add `[Authorize]` to Controller, Razor page, action.
+- `[AllowAnonymous]` can be added to Controller, Razor page, action.
+- They cannot be applied to Razor page handlers.
 
 ## RESTful
 
