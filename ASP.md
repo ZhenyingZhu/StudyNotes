@@ -510,8 +510,6 @@ Request is routed to a controller class, controller get some data from model, th
 
 ### First Controller/View
 
-**HERE**: [Code Sample](AspNetCore.Docs-master\aspnetcore\security\authorization\secure-data\samples\final3)
-
 Create a Controller class inherit from AspNetCore.Mvc.Controller under a folder calls controllers.
 
 Controller maps a request to an action. Action is where the real logic happens.
@@ -523,6 +521,8 @@ View represents Razor (A syntax for generation/modify view code in C#), which is
 ViewBag is a bag of properties. With `@` it can be used in html code.
 
 At the begining of a razor page, import lib and defines ViewBag
+
+**HERE**
 
 ```cs
 @using MyWebApp
@@ -1057,7 +1057,7 @@ Another way is to create a Seeder class as a service, and start it in Program.
 
 - Create a Seeder Class.
 - Inject the DBContext
-- Inject `IHostingEnvironment`, where its `ContentRootPath`  is the project root folder.
+- Inject `IHostingEnvironment`, where its `ContentRootPath` is the project root folder.
 - Inject `userManager` if want to use NET Core Identity.
 - The main method is `SeedAsync`.
 - First call `dbContext.Database.EnsureCreated()` before DB operations.
