@@ -522,8 +522,6 @@ ViewBag is a bag of properties. With `@` it can be used in html code.
 
 At the begining of a razor page, import lib and defines ViewBag
 
-**HERE**
-
 ```cs
 @using MyWebApp
 @using MyWebApp.Models
@@ -608,6 +606,8 @@ ASP.NET Core requires to use dependency injection.
 Using `IHostingEnvironment env` to figure out if the env is a prod or a staging or development. In project property Debug page, can set the environment.
 
 ### Creating a Layout
+
+**HERE**
 
 Layout page: the common elements on multiple pages. It is a view shares across controllers.
 
