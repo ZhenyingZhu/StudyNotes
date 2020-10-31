@@ -607,8 +607,6 @@ Using `IHostingEnvironment env` to figure out if the env is a prod or a staging 
 
 ### Creating a Layout
 
-**HERE**
-
 Layout page: the common elements on multiple pages. It is a view shares across controllers.
 
 Put `_Layout.cshtml` under `Views\Shared` folder.
@@ -623,7 +621,7 @@ Add the Views folder, add `_ViewStart.cshtml` (Razor View Start), which is act a
 
 [Layout](https://docs.microsoft.com/en-us/aspnet/core/mvc/views/layout?view=aspnetcore-3.1)
 
-**TODO** [Partial View](https://docs.microsoft.com/en-us/aspnet/core/mvc/views/partial?view=aspnetcore-3.1)
+**HERE** [Partial View](https://docs.microsoft.com/en-us/aspnet/core/mvc/views/partial?view=aspnetcore-3.1)
 
 - Don't use a partial view where complex rendering logic or code execution is required to render the markup.
 - MVC controller uses `ViewResult`. Razor page PageModel uses `PartialViewResult`.
