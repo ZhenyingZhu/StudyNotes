@@ -621,7 +621,7 @@ Add the Views folder, add `_ViewStart.cshtml` (Razor View Start), which is act a
 
 [Layout](https://docs.microsoft.com/en-us/aspnet/core/mvc/views/layout?view=aspnetcore-3.1)
 
-**HERE** [Partial View](https://docs.microsoft.com/en-us/aspnet/core/mvc/views/partial?view=aspnetcore-3.1)
+**TODO** [Partial View](https://docs.microsoft.com/en-us/aspnet/core/mvc/views/partial?view=aspnetcore-3.1)
 
 - Don't use a partial view where complex rendering logic or code execution is required to render the markup.
 - MVC controller uses `ViewResult`. Razor page PageModel uses `PartialViewResult`.
@@ -2823,6 +2823,27 @@ The @ character tells ASP.NET that what follows is Razor code, not HTML. ASP.NET
 
 **TODO**: <https://docs.microsoft.com/en-us/aspnet/core/data/ef-rp/intro?view=aspnetcore-3.0&tabs=visual-studio#scaffold-student-pages>
 
+## MVC
+
+[Doc](https://docs.microsoft.com/en-us/aspnet/core/mvc/overview?view=aspnetcore-3.1)
+
+- MVC pattern helps to achieve separation of concerns.
+- Model responsibilities: represents the state of the application and any business logic or operations that should be performed by it.
+- View Responsibilities: should be minimal logic within views.
+- Controller Responsibilities: the controller handles and responds to user input and interaction. Push Complex business logic out of the controller and into the domain model. move these common actions into filters.
+- Routing:
+  - URL patterns work well with search engine optimization (SEO) and for link generation
+  - `routes.MapRoute(name: "Default", template: "{controller=Home}/{action=Index}/{id?}");`
+  - decorate `[Route("api/[controller]")]` on controller, or `[HttpGet("{id}")]` on action
+- Model binding:
+  - converts client request data (form values, route data, query string parameters, HTTP headers) into objects that the controller can handle.
+- Model validation:
+  - annotations in `System.ComponentModel.DataAnnotation` like `[Required]`, `[EmailAddress]`, etc.
+  - `if (ModelState.IsValid) { ... }`
+- 
+
+**HERE**: https://docs.microsoft.com/en-us/aspnet/core/mvc/overview?view=aspnetcore-3.1#dependency-injection
+
 ## Entity Framework(EF)
 
 [Tutorial: Create a complex data model - ASP.NET MVC with EF Core](https://docs.microsoft.com/en-us/aspnet/core/data/ef-mvc/complex-data-model?view=aspnetcore-3.1)
@@ -3505,7 +3526,7 @@ Common Vulnerabilities in software
 - In the `Startup.Config`, add `app.UseAuthentication();` and `app.UseAuthorization();`
 - Right click the project, click "Add Scaffold" and then "Identity", so `Area/Identity/Account/` folder with a bunch of Razor pages are created.
 - The default RegisterConfirmation is only used for testing, need to set up email sender and disable it. **TODO**: Follow [Doc](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/accconfirm?view=aspnetcore-3.1&tabs=visual-studio#require-email-confirmation)
-- Add `[Authorize]` to the model that needs login to review.
+- Add `[Authorize]` to the ViewModel that needs login to review. (This is for Razor pages. For MVC, this should be added to controllers.)
 
 [Scaffold Identity in ASP.NET Core projects](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/scaffold-identity?view=aspnetcore-3.1&tabs=visual-studio)
 
@@ -3513,6 +3534,7 @@ Common Vulnerabilities in software
 - `AddDbContext` and `AddDefaultIdentity` is not needed any more because `Areas/Identity/IdentityHostingStartup.cs` does them.
 - `~/Pages/Shared/_Layout.cshtml` is for Razor Pages, `~/Views/Shared/_Layout.cshtml` is for MVC projects
 - `AddDefaultIdentity` does 5 things: 1. `AddAuthentication`, 2. `AddIdentityCookies`, 3. `AddIdentityCore`, 4. `AddDefaultUI`, 5. `AddDefaultTokenProviders`.
+- if mix use with MVC, then the login path is changed to `Identity/Account/Login`, but the `[Authorize]` redirect to `Account/Login` when challenge. See [resolution](https://stackoverflow.com/questions/64061876/adding-authorize-to-controller-failing-to-redirect-to-identity-login-route-as). Also need to remove `AddDefaultIdentity`
 
 [Add, download, and delete custom user data to Identity in an ASP.NET Core project](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/add-user-data?view=aspnetcore-3.1&tabs=visual-studio)
 
