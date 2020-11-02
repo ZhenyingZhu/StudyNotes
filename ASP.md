@@ -2840,9 +2840,40 @@ The @ character tells ASP.NET that what follows is Razor code, not HTML. ASP.NET
 - Model validation:
   - annotations in `System.ComponentModel.DataAnnotation` like `[Required]`, `[EmailAddress]`, etc.
   - `if (ModelState.IsValid) { ... }`
-- 
+- Dependency injection:
+  - In controllers, use DI to inject services.
+  - In views, use `@inject SomeService ServiceName`.
+- Filters:
+  - custom pre- and post-processing logic for action methods.
+  - can be configured to run at certain points within the execution pipeline for a given request.
+  - can be applied to controllers or actions as attributes. An example is `[Authorize]`
+- Areas:
+  - partition a large ASP.NET Core MVC Web app into smaller functional groupings.
+  - An area is an MVC structure inside an application.
+- Web APIs:
+  - can be used for mobile and browers.
+  - support for HTTP content-negotiation with built-in support to format data as JSON or XML.
+  - Write custom formatters to add support for your own formats.
+  - Use link generation to enable support for hypermedia. Easily enable support for cross-origin resource sharing (CORS) so that your Web APIs can be shared across multiple Web applications.
+- Testability:
+  - support TestHost and InMemory provider for Entity Framework
+- Razor view engine:
+  - Razor is a compact, expressive and fluid template markup language for defining views using embedded C# code.
+  - used to dynamically generate web content on the server.
+- Strongly typed views:
+  - Controllers can pass a strongly typed model to views enabling your views to have type checking and IntelliSense support.
+- Tag Helpers:
+  - enable server side code to participate in creating and rendering HTML elements in Razor files.
+  - define customer tag: `<environment>`.
+  - existing tag: `<label>`.
+  - tags are work with `TagHelper` classes. They can create forms, links, load assets, etc.
+  - For example, `LinkTagHelper` is targeted `<a>` element, so `<a asp-controller="Account" asp-action="Login" />` works.
+- View Components:
+  - package rendering logic and reuse it throughout the application.
+- Compatibility version:
+  - `SetCompatibilityVersion` method allows an app to opt-in or opt-out of potentially breaking behavior changes introduced in ASP.NET Core MVC 2.1 or later.
 
-**HERE**: https://docs.microsoft.com/en-us/aspnet/core/mvc/overview?view=aspnetcore-3.1#dependency-injection
+**HERE**: https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-mvc-app/start-mvc?view=aspnetcore-3.1&tabs=visual-studio
 
 ## Entity Framework(EF)
 
