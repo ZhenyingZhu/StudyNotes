@@ -2873,7 +2873,13 @@ The @ character tells ASP.NET that what follows is Razor code, not HTML. ASP.NET
 - Compatibility version:
   - `SetCompatibilityVersion` method allows an app to opt-in or opt-out of potentially breaking behavior changes introduced in ASP.NET Core MVC 2.1 or later.
 
-**HERE**: https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-mvc-app/start-mvc?view=aspnetcore-3.1&tabs=visual-studio
+[MVC](https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-mvc-app/?view=aspnetcore-3.1)
+
+- Every public method in a controller is callable as an HTTP endpoint. The URL pattern is `https://{domain}:{the port in launchSettings.json}/{controller}/{action}/{parameters}`
+- Uses `HtmlEncoder.Default.Encode` to protect the app from malicious input (namely JavaScript).
+- Query string is different from parameters: `?x=1&y=2`. The model binding also works with query string.
+
+**HERE**: https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-mvc-app/adding-view?view=aspnetcore-3.1&tabs=visual-studio
 
 ## Entity Framework(EF)
 
