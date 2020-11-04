@@ -327,3 +327,23 @@ Reshapper plugin: for stycop tool
 
 ## MSBuild
 
+[Doc](https://docs.microsoft.com/en-us/visualstudio/msbuild/msbuild-concepts?view=vs-2019)
+
+- Property: key/value pairs to config build
+- Item: inputs to the build system. Usually files
+- Task: atomic build op.
+- Target: group tasks together.
+
+[Item vs. Property](https://docs.microsoft.com/en-us/visualstudio/msbuild/comparing-properties-and-items?view=vs-2019)
+
+- Property is attribute
+- Item is object with metadata.
+
+```xml
+<ItemGroup>
+    <OutputDir Include="KeyFiles\;Certificates\" />
+</ItemGroup>
+<PropertyGroup>
+    <OutputDirList>@(OutputDir)</OutputDirList>
+</PropertyGroup>
+```
