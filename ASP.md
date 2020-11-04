@@ -2849,7 +2849,7 @@ The @ character tells ASP.NET that what follows is Razor code, not HTML. ASP.NET
   - can be applied to controllers or actions as attributes. An example is `[Authorize]`
 - Areas:
   - partition a large ASP.NET Core MVC Web app into smaller functional groupings.
-  - An area is an MVC structure inside an application.
+  - An area is an MVC structure inside an application. Can use the tag helper `asp-area=""` to pick the area.
 - Web APIs:
   - can be used for mobile and browers.
   - support for HTTP content-negotiation with built-in support to format data as JSON or XML.
@@ -2878,8 +2878,9 @@ The @ character tells ASP.NET that what follows is Razor code, not HTML. ASP.NET
 - Every public method in a controller is callable as an HTTP endpoint. The URL pattern is `https://{domain}:{the port in launchSettings.json}/{controller}/{action}/{parameters}`
 - Uses `HtmlEncoder.Default.Encode` to protect the app from malicious input (namely JavaScript).
 - Query string is different from parameters: `?x=1&y=2`. The model binding also works with query string.
+- `ViewData` dictionary is a dynamic object. It can be used to pass data from the controller to the view that is not in the model.
 
-**HERE**: https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-mvc-app/adding-view?view=aspnetcore-3.1&tabs=visual-studio
+**HERE**: https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-mvc-app/adding-model?view=aspnetcore-3.1&tabs=visual-studio
 
 ## Entity Framework(EF)
 
