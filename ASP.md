@@ -2879,8 +2879,15 @@ The @ character tells ASP.NET that what follows is Razor code, not HTML. ASP.NET
 - Uses `HtmlEncoder.Default.Encode` to protect the app from malicious input (namely JavaScript).
 - Query string is different from parameters: `?x=1&y=2`. The model binding also works with query string.
 - `ViewData` dictionary is a dynamic object. It can be used to pass data from the controller to the view that is not in the model.
+- In the packageManagerConsole, run `Install-Package Microsoft.EntityFrameworkCore.SqlServer`
+- an entity set corresponds to a database table. An entity corresponds to a row in the table.
+- Services (such as the EF Core DB context) must be registered with DI during application startup.
+- In `ConfigureServices`, `services.AddControllersWithViews();`
+- `Update-Database` runs the `Up` method in `Migrations/{time-stamp}_{migration name}.cs`
+- HTML helpers `Html.DisplayNameFor` and `Html.DisplayFor` accepts the strongly typed `Model` object.
+- IF the view accepts a list, add `@model IEnumerable<MvcMovie.Models.Movie>`
 
-**HERE**: https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-mvc-app/adding-model?view=aspnetcore-3.1&tabs=visual-studio
+**HERE**: https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-mvc-app/working-with-sql?view=aspnetcore-3.1&tabs=visual-studio
 
 ## Entity Framework(EF)
 
