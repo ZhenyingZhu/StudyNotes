@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="CopyFiles" ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+
+  <PropertyGroup>
+  <!--  Condition=" '$(Configuration)|$(Platform)' == 'Latest|AnyCPU' " -->
+    <AssemblyName>binplace.test</AssemblyName>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Latest\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Contents Include="**\*.*" Exclude="*.proj"/>
+  </ItemGroup>
+
+  <Target Name="CopyFiles">
+    <Message Text="OutputPath: $(OutputPath)"/>
+    <Message Text="MSBuildExtensionsPath: $(MSBuildExtensionsPath)" />
+    <Message Text="Configuration: $(Configuration)" />
+    <Message Text="Platform: $(Platform)" />
+    <Copy
+      SourceFiles="@(Contents)"
+      DestinationFolder="$(OutputPath)\$(AssemblyName)\%(RecursiveDir)"
+    />
+  </Target>
+
+  <Target Name="Clean">
+    <RemoveDir Directories="$(OutputPath)" />
+  </Target>
+
+</Project>

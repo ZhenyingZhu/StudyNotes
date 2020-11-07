@@ -347,3 +347,5 @@ Reshapper plugin: for stycop tool
     <OutputDirList>@(OutputDir)</OutputDirList>
 </PropertyGroup>
 ```
+
+MSBuild bin path is under: `C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin`
