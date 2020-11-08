@@ -349,3 +349,12 @@ Reshapper plugin: for stycop tool
 ```
 
 MSBuild bin path is under: `C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin`
+
+[XmlUpdate](https://stackoverflow.com/questions/4526847/msbuild-xmlupdate-delete-node-in-web-config)
+
+[XmlUpdate](https://stackoverflow.com/questions/1271840/how-do-i-update-an-xml-attribute-from-an-msbuild-script)
+
+[XmlUpdate](http://geekswithblogs.net/paulwhitblog/archive/2006/04/11/74844.aspx)
+
+Need to install the [MSBuildTasks](https://github.com/loresoft/msbuildtasks) nuget first: `Install-Package MSBuildTasks`
+
