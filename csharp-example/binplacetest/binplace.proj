@@ -20,7 +20,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Contents Include="**\*.*" Exclude="*.proj"/>
+    <Contents Include="*.config" Exclude="*.proj"/>
   </ItemGroup>
 
   <Target Name="CopyFiles">
@@ -37,11 +37,23 @@
       Prefix="n"
       Namespace="http://schemas.microsoft.com/developer/msbuild/2003"
       -->
-    <XmlUpdate
-      Namespace="http://schemas.microsoft.com/.NetConfiguration/v2.0"
-      XmlFileName="$(OutputPath)\$(AssemblyName)\app.config"
-      XPath="/configuration/appSettings/add[@key='Key1']/@Value"
-      Value="1"/>
+    <XmlPeek
+      XmlInputPath="$(OutputPath)\$(AssemblyName)\app.config"
+      Query="/configuration/appSettings/add" >
+      <Output TaskParameter="Result" ItemName="appSettingsNodes" />
+    </XmlPeek>
+    <Message Text="appSettingsNodes: @(appSettingsNodes)" />
+    <PropertyGroup>
+      <newAppSettingsNodes>@(appSettingsNodes)%0A&lt;add key='Key1' value='add' /&gt;</newAppSettingsNodes>
+    </PropertyGroup>
+    <XmlPoke
+      XmlInputPath="$(OutputPath)\$(AssemblyName)\app.config"
+      Query="/configuration/appSettings"
+      Value="$(newAppSettingsNodes)" />
+    <XmlPoke
+      XmlInputPath="$(OutputPath)\$(AssemblyName)\app.config"
+      Query="/configuration/appSettings/add[@key='Key0']/@value"
+      Value="replace"/>
   </Target>
 
   <Target Name="Clean">

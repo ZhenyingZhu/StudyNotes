@@ -358,3 +358,8 @@ MSBuild bin path is under: `C:\Program Files (x86)\Microsoft Visual Studio\2019\
 
 Need to install the [MSBuildTasks](https://github.com/loresoft/msbuildtasks) nuget first: `Install-Package MSBuildTasks`
 
+[XmlPoke](https://docs.microsoft.com/en-us/visualstudio/msbuild/xmlpoke-task?view=vs-2019)
+
+- Usage: <https://stackoverflow.com/questions/56758367/xmlpoke-to-add-multiple-appsettings-key-doesnt-work>
+- It is case sensitive.
+- Add a key: <https://stackoverflow.com/questions/1366233/how-to-append-xml-nodes-using-existing-nant-or-nant-contrib-tasks>
