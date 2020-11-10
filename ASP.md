@@ -2886,8 +2886,9 @@ The @ character tells ASP.NET that what follows is Razor code, not HTML. ASP.NET
 - `Update-Database` runs the `Up` method in `Migrations/{time-stamp}_{migration name}.cs`
 - HTML helpers `Html.DisplayNameFor` and `Html.DisplayFor` accepts the strongly typed `Model` object.
 - IF the view accepts a list, add `@model IEnumerable<MvcMovie.Models.Movie>`
+- LocalDB is a lightweight version of the SQL Server Express Database Engine. LocalDB database creates .mdf files in the `C:/Users/{user}` directory.
 
-**HERE**: https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-mvc-app/working-with-sql?view=aspnetcore-3.1&tabs=visual-studio
+**HERE**: https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-mvc-app/controller-methods-views?view=aspnetcore-3.1
 
 ## Entity Framework(EF)
 
