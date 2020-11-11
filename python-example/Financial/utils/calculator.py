@@ -112,3 +112,28 @@ def calculateAnnuityFutureValueWithTax(base, payment, rate, tax_rate, duration):
         saving += net_earning
 
     return saving
+
+def compoundTaxInfluence(payment, interest, fee, tax, duration):
+    """With fee and tax based on earning, what is the final amount."""
+    total = 0
+    for _ in range(duration):
+        total += payment
+        earning = total * interest / 100.0
+        total += earning - earning * fee / 100.0
+
+        # If pay the tax every year for the earning
+        # total -= earning * tax / 100.0
+
+    # if pay the tax at the end
+    total -= (total - payment * duration) * tax / 100.0
+
+    return total
+
+def compoundFeeInfluence(payment, interest, fee, duration):
+    """With fee based on payment, what is the final amount."""
+    total = 0
+    for _ in range(duration):
+        total += payment - payment * fee / 100.0
+        total += total * interest / 100.0
+
+    return total
