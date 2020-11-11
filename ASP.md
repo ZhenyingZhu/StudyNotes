@@ -2887,8 +2887,14 @@ The @ character tells ASP.NET that what follows is Razor code, not HTML. ASP.NET
 - HTML helpers `Html.DisplayNameFor` and `Html.DisplayFor` accepts the strongly typed `Model` object.
 - IF the view accepts a list, add `@model IEnumerable<MvcMovie.Models.Movie>`
 - LocalDB is a lightweight version of the SQL Server Express Database Engine. LocalDB database creates .mdf files in the `C:/Users/{user}` directory.
+- The route pattern "{controller=Home}/{action=Index}/{id?}" can be accessed by `AnchorTagHelper`: `asp-action` and `asp-route-id`.
+- The `[Bind]` attribute is one way to protect against over-posting. You should only include properties in the [Bind] attribute that you want to change.
+- `[HttpGet]` is the default.
+- The Form Tag Helper generates a hidden anti-forgery token that must match the `[ValidateAntiForgeryToken]`
+- Label Tag Helper and the Input Tag Helper generate form elements.
+- The Validation Tag Helper in the view template takes care of displaying appropriate error messages. If JS is disabled, server-side validation will kick in.
 
-**HERE**: https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-mvc-app/controller-methods-views?view=aspnetcore-3.1
+**HERE**: https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-mvc-app/search?view=aspnetcore-3.1
 
 ## Entity Framework(EF)
 
