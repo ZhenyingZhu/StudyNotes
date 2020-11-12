@@ -2893,6 +2893,12 @@ The @ character tells ASP.NET that what follows is Razor code, not HTML. ASP.NET
 - The Form Tag Helper generates a hidden anti-forgery token that must match the `[ValidateAntiForgeryToken]`
 - Label Tag Helper and the Input Tag Helper generate form elements.
 - The Validation Tag Helper in the view template takes care of displaying appropriate error messages. If JS is disabled, server-side validation will kick in.
+- Add a new parameter to an action:
+  - Action method signature: `public async Task<IActionResult> Index(string searchString)`
+  - Filter: `if (!String.IsNullOrEmpty(searchString)) movies = movies.Where(s => s.Title.Contains(searchString));` This LINQ is actually run on Database.
+  - To pass in the parameter, one way is in URL, add `?searchString=Ghost`
+  - Or update the route template: `template: "{controller=Home}/{action=Index}/{searchString?}");` so that the URL `/Ghost` also works.
+  - But the best way is to add a form element in the html: `<form asp-controller="Movies" asp-action="Index" method="get"><input type="submit" value="Filter" /></form>`
 
 **HERE**: https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-mvc-app/search?view=aspnetcore-3.1
 
