@@ -2898,9 +2898,20 @@ The @ character tells ASP.NET that what follows is Razor code, not HTML. ASP.NET
   - Filter: `if (!String.IsNullOrEmpty(searchString)) movies = movies.Where(s => s.Title.Contains(searchString));` This LINQ is actually run on Database.
   - To pass in the parameter, one way is in URL, add `?searchString=Ghost`
   - Or update the route template: `template: "{controller=Home}/{action=Index}/{searchString?}");` so that the URL `/Ghost` also works.
-  - But the best way is to add a form element in the html: `<form asp-controller="Movies" asp-action="Index" method="get"><input type="submit" value="Filter" /></form>`
+  - But the best way is to add a form element in the html that submit to a GET action. This submit a HTTPGet so the search string is in the URL. The form body can have multiple inputs.
+  - If needed, can create a special `ViewModel`, which is not stored in the DB, but contains all the data to pass into the view.
 
-**HERE**: https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-mvc-app/search?view=aspnetcore-3.1
+```html
+`<form asp-controller="Movies" asp-action="Index" method="get">
+  <select asp-for="MovieGenre" asp-items="Model.Genres">
+    <option value="">All</option>
+  </select>
+  <input type="text" asp-for="SearchString" />
+  <input type="submit" value="Filter" />
+</form>`
+```
+
+**HERE**: https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-mvc-app/new-field?view=aspnetcore-3.1&tabs=visual-studio
 
 ## Entity Framework(EF)
 
