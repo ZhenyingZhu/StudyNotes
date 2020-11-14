@@ -2911,7 +2911,11 @@ The @ character tells ASP.NET that what follows is Razor code, not HTML. ASP.NET
 </form>`
 ```
 
-**HERE**: https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-mvc-app/new-field?view=aspnetcore-3.1&tabs=visual-studio
+- If need to add a new property when the database is already created:
+  - don't forget to build and update all the places need to use this property including `[bind]`
+  - creating a database change script for prod.
+
+**HERE**: https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-mvc-app/validation?view=aspnetcore-3.1
 
 ## Entity Framework(EF)
 
