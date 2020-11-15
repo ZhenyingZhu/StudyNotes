@@ -2928,7 +2928,9 @@ The @ character tells ASP.NET that what follows is Razor code, not HTML. ASP.NET
 - `[DataType]` is better than `[DisplayFormat]` if the datatype you want is already defined in the DataType enum. It has html5 support.
 - This doesn't work on client side: `[Range(typeof(DateTime), "1/1/1966", "1/1/2020")]`. So discourage use it.
 
-**HERE**: https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-mvc-app/details?view=aspnetcore-3.1
+- To make two action have different method signature but route same, use `[HttpPost, ActionName("Delete")]`. This can make the `DeleteConfirm` action shows in the `Delete` route, but have different behavior then `Delete` action. Another solution is to make the parameters of the two actions different.
+
+**HERE**: https://docs.microsoft.com/en-us/aspnet/core/mvc/overview?view=aspnetcore-3.1
 
 ## Entity Framework(EF)
 
