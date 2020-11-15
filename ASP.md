@@ -2881,6 +2881,7 @@ The @ character tells ASP.NET that what follows is Razor code, not HTML. ASP.NET
 - `ViewData` dictionary is a dynamic object. It can be used to pass data from the controller to the view that is not in the model.
 - In the packageManagerConsole, run `Install-Package Microsoft.EntityFrameworkCore.SqlServer`
 - an entity set corresponds to a database table. An entity corresponds to a row in the table.
+- `[Column(TypeName = "decimal(18, 2)")]` to specify the type store in DB.
 - Services (such as the EF Core DB context) must be registered with DI during application startup.
 - In `ConfigureServices`, `services.AddControllersWithViews();`
 - `Update-Database` runs the `Up` method in `Migrations/{time-stamp}_{migration name}.cs`
@@ -2915,7 +2916,19 @@ The @ character tells ASP.NET that what follows is Razor code, not HTML. ASP.NET
   - don't forget to build and update all the places need to use this property including `[bind]`
   - creating a database change script for prod.
 
-**HERE**: https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-mvc-app/validation?view=aspnetcore-3.1
+- Data model validation rules
+  - `[StringLength(60, MinimumLength = 3)]`
+  - `[RegularExpression(@"^[A-Z]+[a-zA-Z]*$")]`
+  - `[Range(1, 100), DataType(DataType.Currency)]`
+- On client side the validation uses JS and JQuery. If JS is disabled on the client side, then server side also validates.
+- On server side, call `ModelState.IsValid` evaluates any validation attributes.
+- On client side, the Input Tag Helper gets the validation rules, and the Validation Tag Helper `asp-validation-for` display the error.
+- `[DataType(DataType.Currency)]` is not validation rule, but decide how the data is stored.
+- `[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]` is for display.
+- `[DataType]` is better than `[DisplayFormat]` if the datatype you want is already defined in the DataType enum. It has html5 support.
+- This doesn't work on client side: `[Range(typeof(DateTime), "1/1/1966", "1/1/2020")]`. So discourage use it.
+
+**HERE**: https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-mvc-app/details?view=aspnetcore-3.1
 
 ## Entity Framework(EF)
 
