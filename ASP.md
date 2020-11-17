@@ -2930,7 +2930,7 @@ The @ character tells ASP.NET that what follows is Razor code, not HTML. ASP.NET
 
 - To make two action have different method signature but route same, use `[HttpPost, ActionName("Delete")]`. This can make the `DeleteConfirm` action shows in the `Delete` route, but have different behavior then `Delete` action. Another solution is to make the parameters of the two actions different.
 
-**HERE**: https://docs.microsoft.com/en-us/aspnet/core/mvc/overview?view=aspnetcore-3.1
+**HERE**: https://docs.microsoft.com/en-us/aspnet/core/mvc/overview?view=aspnetcore-3.1#features
 
 ## Entity Framework(EF)
 
