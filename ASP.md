@@ -2930,7 +2930,20 @@ The @ character tells ASP.NET that what follows is Razor code, not HTML. ASP.NET
 
 - To make two action have different method signature but route same, use `[HttpPost, ActionName("Delete")]`. This can make the `DeleteConfirm` action shows in the `Delete` route, but have different behavior then `Delete` action. Another solution is to make the parameters of the two actions different.
 
-**HERE**: https://docs.microsoft.com/en-us/aspnet/core/mvc/overview?view=aspnetcore-3.1#features
+[MVC](https://docs.microsoft.com/en-us/aspnet/core/mvc/overview?view=aspnetcore-3.1)
+
+- Routing
+  - Convention-based routing: `routes.MapRoute(name: "Default", template: "{controller=Home}/{action=Index}/{id?}");`. Defines global routing
+  - Attribute routing: `[Route("api/[controller]")]` and `[HttpGet("{id}")]`
+- Filters
+  - encapsulate cross-cutting concerns.
+  - custom pre- and post-processing logic for action methods
+  - run at certain points within the execution pipeline for a given request.
+  - An example: `[Authorize]`
+- View Components
+  - allow you to package rendering logic and reuse it throughout the application. They're similar to partial views, but with associated logic.
+
+**HERE**: https://docs.microsoft.com/en-us/aspnet/core/mvc/views/overview?view=aspnetcore-3.1
 
 ## Entity Framework(EF)
 
