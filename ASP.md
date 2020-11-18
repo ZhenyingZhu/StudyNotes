@@ -2943,7 +2943,20 @@ The @ character tells ASP.NET that what follows is Razor code, not HTML. ASP.NET
 - View Components
   - allow you to package rendering logic and reuse it throughout the application. They're similar to partial views, but with associated logic.
 
-**HERE**: https://docs.microsoft.com/en-us/aspnet/core/mvc/views/overview?view=aspnetcore-3.1
+[Views](https://docs.microsoft.com/en-us/aspnet/core/mvc/views/overview?view=aspnetcore-3.1)
+
+- Partial view vs. View component
+  - Partial view: doesn't require code to execute. Support model bind alone.
+  - View component: requires code to run on the server in order to render the webpage. Not limit to model binding.
+- Razor code block: `@{}`
+- Can return both a view and a model: `return View("Orders", Orders);`
+- View discovery: find out which view to use. Search for `Views/[ControllerName]/[ViewName].cshtml`, `Views/Shared/[ViewName].cshtml`
+- To pass in a view's absolute path: `return View("~/Views/Home/About.cshtml");`
+- relative path: `return View("../Manage/Index");`
+
+**HERE**: https://docs.microsoft.com/en-us/aspnet/core/mvc/views/overview?view=aspnetcore-3.1#passing-data-to-views
+https://docs.microsoft.com/en-us/aspnet/core/mvc/views/layout?view=aspnetcore-3.1
+https://docs.microsoft.com/en-us/aspnet/core/mvc/views/view-components?view=aspnetcore-3.1
 
 ## Entity Framework(EF)
 
