@@ -12,7 +12,7 @@ namespace DotNetCoreConsole
             TestAggregationExceptionHandle myClass = new TestAggregationExceptionHandle();
             try
             {
-                myClass.ThrowAggreationException(false);
+                myClass.ThrowAggreationException(true);
             }
             catch (AggregateException ae)
             {

@@ -1147,3 +1147,12 @@ Define a rule to search.
 - Get properties: `IEnumerable<PropertyInfo> properties = myType.GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);`
 - Create an instance for a special type not using `new`: `Activator.CreateInstance()`. [Doc](https://docs.microsoft.com/en-us/dotnet/api/system.activator.createinstance?view=netcore-3.1)
 - To get more info of the type: `myType.IsConstructedGenericType` and `myType.GetGenericTypeDefinition()`
+
+### Listen to File change
+
+<https://docs.microsoft.com/en-us/dotnet/api/system.io.filesystemwatcher?view=net-5.0>
+
+File used by another process:
+
+- <https://stackoverflow.com/questions/26741191/ioexception-the-process-cannot-access-the-file-file-path-because-it-is-being>
+- <https://stackoverflow.com/questions/876473/is-there-a-way-to-check-if-a-file-is-in-use>
