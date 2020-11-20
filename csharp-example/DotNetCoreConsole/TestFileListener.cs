@@ -17,7 +17,8 @@ namespace DotNetCoreConsole
             {
                 // Watch for changes in LastAccess and LastWrite times, and
                 // the renaming of files or directories.
-                watcher.NotifyFilter = NotifyFilters.LastWrite;
+                // The CreationTime can monitor file replacement. See File.Replace(st, st, null)
+                watcher.NotifyFilter = NotifyFilters.LastWrite | NotifyFilters.CreationTime;
 
                 // Add event handlers.
                 watcher.Changed += OnChanged;
