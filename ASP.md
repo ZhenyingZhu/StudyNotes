@@ -2953,8 +2953,11 @@ The @ character tells ASP.NET that what follows is Razor code, not HTML. ASP.NET
 - View discovery: find out which view to use. Search for `Views/[ControllerName]/[ViewName].cshtml`, `Views/Shared/[ViewName].cshtml`
 - To pass in a view's absolute path: `return View("~/Views/Home/About.cshtml");`
 - relative path: `return View("../Manage/Index");`
+- Pass data to views using several approaches:
+  - Strongly typed data: viewmodel: Specify a model using the `@model ViewModel` directive. Use the model with `@Model`. Pass it in the view in the controller: `ViewModel m; return View(m);`
+  - Weakly typed data: `ViewData` (ViewDataAttribute) or `ViewBag`, which is a wrapper around `ViewData`. Key lookup is insensitive. Set in the controller: `ViewData["Address"]  = new Address();`; use in the view: `@{ var address = ViewData["Address"] as Address; }`. Or use the attribute `[ViewData]` to mark a property.
 
-**HERE**: https://docs.microsoft.com/en-us/aspnet/core/mvc/views/overview?view=aspnetcore-3.1#passing-data-to-views
+**HERE**: https://docs.microsoft.com/en-us/aspnet/core/mvc/views/partial?view=aspnetcore-3.1
 https://docs.microsoft.com/en-us/aspnet/core/mvc/views/layout?view=aspnetcore-3.1
 https://docs.microsoft.com/en-us/aspnet/core/mvc/views/view-components?view=aspnetcore-3.1
 
