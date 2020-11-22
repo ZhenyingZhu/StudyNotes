@@ -2957,7 +2957,14 @@ The @ character tells ASP.NET that what follows is Razor code, not HTML. ASP.NET
   - Strongly typed data: viewmodel: Specify a model using the `@model ViewModel` directive. Use the model with `@Model`. Pass it in the view in the controller: `ViewModel m; return View(m);`
   - Weakly typed data: `ViewData` (ViewDataAttribute) or `ViewBag`, which is a wrapper around `ViewData`. Key lookup is insensitive. Set in the controller: `ViewData["Address"]  = new Address();`; use in the view: `@{ var address = ViewData["Address"] as Address; }`. Or use the attribute `[ViewData]` to mark a property.
 
-**HERE**: https://docs.microsoft.com/en-us/aspnet/core/mvc/views/partial?view=aspnetcore-3.1
+[Partial View](https://docs.microsoft.com/en-us/aspnet/core/mvc/views/partial?view=aspnetcore-3.1)
+
+- A partial view is a Razor markup file (.cshtml) without an `@page` directive that renders HTML output within another markup file's rendered output.
+- MVC app: markup files are called views; Razor Pages app: markup files are called pages.
+- Partial views shouldn't be used to maintain common layout elements. Common layout elements should be specified in _Layout.cshtml files.
+- Don't use a partial view where complex rendering logic or code execution is required to render the markup. Instead of a partial view, use a view component.
+
+**HERE**: 
 https://docs.microsoft.com/en-us/aspnet/core/mvc/views/layout?view=aspnetcore-3.1
 https://docs.microsoft.com/en-us/aspnet/core/mvc/views/view-components?view=aspnetcore-3.1
 
