@@ -2963,10 +2963,44 @@ The @ character tells ASP.NET that what follows is Razor code, not HTML. ASP.NET
 - MVC app: markup files are called views; Razor Pages app: markup files are called pages.
 - Partial views shouldn't be used to maintain common layout elements. Common layout elements should be specified in _Layout.cshtml files.
 - Don't use a partial view where complex rendering logic or code execution is required to render the markup. Instead of a partial view, use a view component.
+- MVC, a controller's ViewResult is capable of returning either a view or a partial view.
+- a partial view doesn't run _ViewStart.cshtml
+- Partial view file names often begin with an underscore (_).
+- In Razor Page's PageModel: `public IActionResult OnGetPartial() => Partial("_AuthorPartialRP");`
+- In markup file:
+  - Partial Tag Helper: `<partial name="_PartialName" />`
+  - Asynchronous HTML Helper: `@await Html.PartialAsync("_PartialName")` that returns the HTML, or `@{ await Html.RenderPartialAsync("_AuthorPartial"); }` that streams the HTML to the response. The later one has better perfromance.
+- Partial views can be chained.
+- When a partial view is instantiated, it receives a copy of the parent's `ViewData` dictionary so update in it won't update parent's.
+- To pass around parameters: `@await Html.PartialAsync("_PartialName", customViewData)` or `@await Html.PartialAsync("_PartialName", model)`
 
-**HERE**: 
+```C#
+// Pass in the PartialViewsSample.ViewModels.ArticleSection and a ViewData[index] to the partial view in the parent view
+@await Html.PartialAsync("_AuthorPartial", Model.AuthorName)
+
+@{
+  await Html.PartialAsync("_ArticleSection", section, new ViewDataDictionary(ViewData)
+  {
+    { "index", index }
+  });
+}
+```
+
+```C#
+// Read the data
+@using PartialViewsSample.ViewModels
+@model ArticleSection
+
+<h3>@Model.Title Index: @ViewData["index"]</h3>
+<div>
+    @Model.Content
+</div>
+```
+
+**HERE**: https://docs.microsoft.com/en-us/aspnet/core/mvc/controllers/actions?view=aspnetcore-3.1
 https://docs.microsoft.com/en-us/aspnet/core/mvc/views/layout?view=aspnetcore-3.1
 https://docs.microsoft.com/en-us/aspnet/core/mvc/views/view-components?view=aspnetcore-3.1
+https://stackoverflow.com/questions/52513554/mvc-net-core-sidebar-navigation-menu-placing-in-layout-cshtml
 
 ## Entity Framework(EF)
 
