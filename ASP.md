@@ -2997,7 +2997,21 @@ The @ character tells ASP.NET that what follows is Razor code, not HTML. ASP.NET
 </div>
 ```
 
-**HERE**: https://docs.microsoft.com/en-us/aspnet/core/mvc/controllers/actions?view=aspnetcore-3.1
+[Controller](https://docs.microsoft.com/en-us/aspnet/core/mvc/controllers/actions?view=aspnetcore-3.1)
+
+- Either inherit from `Controller` class or annotate with `[Controller]`
+- should follow the Explicit Dependencies Principle. Could use either constructor injection or Action Injection.
+- a controller is responsible for the initial processing of the request and instantiation of the model. Generally, business decisions should be performed within the model.
+- The controller is a UI-level abstraction. Its responsibilities are to ensure request data is valid and to choose which view (or result for an API) should be returned. In well-factored apps, it doesn't directly include data access or business logic. Instead, the controller delegates to services handling these responsibilities. (I.e., should create a service to contain all the business logic and inject here. How about use Providers or ViewModels?)
+- All public methods that are not annotated with `[NonAction]` in the controller are actions.
+- Parameters on actions are bound to request data and are validated using model binding.
+- Helper methods in `Controller` class
+  - No content in the HTTP body to return: return a status code: `BadRequest`, `NotFound`, and `Ok`, or a redirect location in header: `Redirect`, `LocalRedirect`, `RedirectToAction`, or `RedirectToRoute`
+  - Content in predefined content-type:`View` or Formatted Response like `Json(customer)`, `File` and `PhysicalFile`
+  - Content Negotiation with client: return an `ObjectResult` that not implement `IActionResult`, like `BadRequest(modelState)`.
+- Cross-Cutting Concerns: some same operations across workflows, use filters or custom middleware to implement them. For example error handling and Response caching.
+
+**HERE**: https://docs.microsoft.com/en-us/aspnet/core/mvc/controllers/routing?view=aspnetcore-3.1
 https://docs.microsoft.com/en-us/aspnet/core/mvc/views/layout?view=aspnetcore-3.1
 https://docs.microsoft.com/en-us/aspnet/core/mvc/views/view-components?view=aspnetcore-3.1
 https://stackoverflow.com/questions/52513554/mvc-net-core-sidebar-navigation-menu-placing-in-layout-cshtml
