@@ -3011,10 +3011,20 @@ The @ character tells ASP.NET that what follows is Razor code, not HTML. ASP.NET
   - Content Negotiation with client: return an `ObjectResult` that not implement `IActionResult`, like `BadRequest(modelState)`.
 - Cross-Cutting Concerns: some same operations across workflows, use filters or custom middleware to implement them. For example error handling and Response caching.
 
-**HERE**: https://docs.microsoft.com/en-us/aspnet/core/mvc/controllers/routing?view=aspnetcore-3.1
+[Routing](https://docs.microsoft.com/en-us/aspnet/core/mvc/controllers/routing?view=aspnetcore-3.1)
+
+- Routing middleware: match the URLs of incoming requests and map them to actions.
+- Actions are either conventionally-routed (controllers + views) or attribute-routed (REST APIs).
+- model binds the input in the URL to the paramaters.
+- Routing is configured using the `UseRouting` and `UseEndpoints` middleware. Call `MapControllers` inside `UseEndpoints` to map attribute routed controllers. Call `MapControllerRoute` or `MapAreaControllerRoute`, to map both conventionally routed controllers and attribute routed controllers.
+- If id is not in the URL, then id is set to 0 by model binding.
+- 
+
+**HERE**: https://docs.microsoft.com/en-us/aspnet/core/mvc/controllers/routing?view=aspnetcore-3.1#multiple-conventional-routes
 https://docs.microsoft.com/en-us/aspnet/core/mvc/views/layout?view=aspnetcore-3.1
 https://docs.microsoft.com/en-us/aspnet/core/mvc/views/view-components?view=aspnetcore-3.1
 https://stackoverflow.com/questions/52513554/mvc-net-core-sidebar-navigation-menu-placing-in-layout-cshtml
+https://www.yogihosting.com/jquery-ajax-aspnet-core/
 
 ## Entity Framework(EF)
 
