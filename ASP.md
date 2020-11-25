@@ -3018,10 +3018,22 @@ The @ character tells ASP.NET that what follows is Razor code, not HTML. ASP.NET
 - model binds the input in the URL to the paramaters.
 - Routing is configured using the `UseRouting` and `UseEndpoints` middleware. Call `MapControllers` inside `UseEndpoints` to map attribute routed controllers. Call `MapControllerRoute` or `MapAreaControllerRoute`, to map both conventionally routed controllers and attribute routed controllers.
 - If id is not in the URL, then id is set to 0 by model binding.
-- 
+- Can add multile convention routes. The route add fist has higher priority. In the example below, blog/, blog/Article, and blog/{any-string} match to the `Blog.Article` action.
 
-**HERE**: https://docs.microsoft.com/en-us/aspnet/core/mvc/controllers/routing?view=aspnetcore-3.1#multiple-conventional-routes
-https://docs.microsoft.com/en-us/aspnet/core/mvc/views/layout?view=aspnetcore-3.1
+```C#
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllerRoute(name: "blog",
+                pattern: "blog/{*article}",
+                defaults: new { controller = "Blog", action = "Article" });
+    endpoints.MapControllerRoute(name: "default",
+                pattern: "{controller=Home}/{action=Index}/{id?}");
+});
+```
+
+- In general, routes with areas should be placed earlier as they're more specific than routes without an area. Dedicated conventional routes with catch-all route parameters like `{*article}` can make a route too greedy. Should put it at the end.
+
+**HERE**: https://docs.microsoft.com/en-us/aspnet/core/mvc/controllers/routing?view=aspnetcore-3.1#resolving-ambiguous-actions
 https://docs.microsoft.com/en-us/aspnet/core/mvc/views/view-components?view=aspnetcore-3.1
 https://stackoverflow.com/questions/52513554/mvc-net-core-sidebar-navigation-menu-placing-in-layout-cshtml
 https://www.yogihosting.com/jquery-ajax-aspnet-core/
