@@ -6,7 +6,7 @@ namespace DotNetCoreConsole
 {
     public class GenerateGuid
     {
-        public static void testMain()
+        public static void TestMain()
         {
             System.Console.WriteLine(Guid.NewGuid());
         }

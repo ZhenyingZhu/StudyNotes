@@ -6,7 +6,7 @@ namespace DotNetCoreConsole
 {
     public class TestUri
     {
-        public static void testMain()
+        public static void TestMain()
         {
             Uri apiUri = new Uri("https://myhost.com?api-version=1.0");
             string resourcePath = "MyResource";

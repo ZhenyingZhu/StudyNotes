@@ -10,7 +10,7 @@ namespace DotNetCoreConsole
 {
     public class TestReadWriteXMLSchema
     {
-        public static void testMain()
+        public static void TestMain()
         {
             try
             {

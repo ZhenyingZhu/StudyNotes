@@ -9,7 +9,7 @@ namespace DotNetCoreConsole
 {
     public class TestBaseToString
     {
-        public static void testMain()
+        public static void TestMain()
         {
             MyChild c = new MyChild("child", 1);
             System.Console.WriteLine("child value:" + c);

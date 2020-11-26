@@ -6,7 +6,7 @@ namespace DotNetCoreConsole
 {
     public class PlayWithDateTime
     {
-        public static void testMain()
+        public static void TestMain()
         {
             DateTime date = DateTime.UtcNow;
 

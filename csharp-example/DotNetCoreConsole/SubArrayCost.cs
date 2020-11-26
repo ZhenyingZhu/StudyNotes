@@ -5,7 +5,7 @@ namespace DotNetCoreConsole
 {
     public class SubArrayCost
     {
-        public static void testMain()
+        public static void TestMain()
         {
             List<int> values = new List<int>() { 1, 3, 2 };
 

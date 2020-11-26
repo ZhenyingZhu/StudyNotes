@@ -8,7 +8,7 @@ namespace DotNetCoreConsole
 {
     public class TestAwait
     {
-        public static void testMain()
+        public static void TestMain()
         {
             TestAwait myClass = new TestAwait();
             myClass.Runner().Wait();

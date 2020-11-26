@@ -9,7 +9,7 @@ namespace DotNetCoreConsole
     public class TestJson
     {
         // Still in progress.
-        public static void testMain()
+        public static void TestMain()
         {
             Parse();
         }

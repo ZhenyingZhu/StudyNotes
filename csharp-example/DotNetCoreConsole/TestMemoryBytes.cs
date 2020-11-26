@@ -9,7 +9,7 @@ namespace DotNetCoreConsole
 {
     public class TestMemoryBytes
     {
-        public static void testMain()
+        public static void TestMain()
         {
             var stream = new MemoryStream();
             using (BinaryWriter writer = new BinaryWriter(stream))

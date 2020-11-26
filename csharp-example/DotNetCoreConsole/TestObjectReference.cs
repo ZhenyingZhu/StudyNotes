@@ -6,7 +6,7 @@ namespace DotNetCoreConsole
 {
     public class TestObjectReference
     {
-        public static void testMain()
+        public static void TestMain()
         {
             MyClass mc1 = new MyClass(1);
             MyClass mc2 = mc1;

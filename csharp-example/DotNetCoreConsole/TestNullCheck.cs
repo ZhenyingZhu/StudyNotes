@@ -10,7 +10,7 @@ namespace DotNetCoreConsole
 {
     public class TestNullCheck
     {
-        public static void testMain()
+        public static void TestMain()
         {
             CouldBeNullClass a = new CouldBeNullClass() { name = "A",  valid = true };
             // So a?.IsValid could return null

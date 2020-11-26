@@ -11,7 +11,7 @@ namespace DotNetCoreConsole
 {
     public class TestAsyncTasks
     {
-        public static void testMain()
+        public static void TestMain()
         {
             var m = new TestAsyncTasks();
 

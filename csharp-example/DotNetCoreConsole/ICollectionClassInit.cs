@@ -5,7 +5,7 @@ namespace DotNetCoreConsole
 {
     public class ICollectionClassInit
     {
-        public static void testMain()
+        public static void TestMain()
         {
             MyClass mc = new MyClass
             {

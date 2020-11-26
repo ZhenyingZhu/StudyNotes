@@ -12,7 +12,7 @@ namespace DotNetCoreConsole
 {
     public class TestTypeConverterBehavior
     {
-        public static void testMain()
+        public static void TestMain()
         {
             Type myClassType = typeof(MyClass);
             TypeConverter converter = TypeDescriptor.GetConverter(myClassType);

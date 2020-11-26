@@ -7,7 +7,7 @@ namespace DotNetCoreConsole
 {
     public class TestAggregationExceptionHandle
     {
-        public static void testMain()
+        public static void TestMain()
         {
             TestAggregationExceptionHandle myClass = new TestAggregationExceptionHandle();
             try

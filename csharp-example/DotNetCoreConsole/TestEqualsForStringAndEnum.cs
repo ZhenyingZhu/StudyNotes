@@ -6,7 +6,7 @@ namespace DotNetCoreConsole
 {
     public class TestEqualsForStringAndEnum
     {
-        public static void testMain()
+        public static void TestMain()
         {
             string a = "test";
             string b = "test";

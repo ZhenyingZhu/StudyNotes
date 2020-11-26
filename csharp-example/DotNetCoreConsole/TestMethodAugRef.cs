@@ -8,7 +8,7 @@ namespace DotNetCoreConsole
 {
     public class TestMethodAugRef
     {
-        public static void testMain()
+        public static void TestMain()
         {
             int[] arr = new int[10];
             arr[0] = 1;

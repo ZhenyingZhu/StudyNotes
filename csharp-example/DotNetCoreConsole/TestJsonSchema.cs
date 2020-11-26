@@ -10,7 +10,7 @@ namespace DotNetCoreConsole
 {
     public class TestJsonSchema
     {
-        public static void testMain()
+        public static void TestMain()
         {
             string jsonStr =
 @"{

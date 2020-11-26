@@ -9,7 +9,7 @@ namespace DotNetCoreConsole
 {
     public class TestValuePassing
     {
-        public static void testMain()
+        public static void TestMain()
         {
             Guid val;
             Guid newVal = Guid.NewGuid();

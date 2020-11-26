@@ -6,7 +6,7 @@ namespace DotNetCoreConsole
 {
     public class ReturnRepeatEntries
     {
-        public static void testMain()
+        public static void TestMain()
         {
             List<MyClass> myList = new List<MyClass>();
             for (int i = 0; i < 3; i++)

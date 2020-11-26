@@ -7,7 +7,7 @@ namespace DotNetCoreConsole
 {
     public class TestRegex
     {
-        public static void testMain()
+        public static void TestMain()
         {
 
             string input = "[{\"Guid\":\"b05e124f-c7cc-45a0-a6aa-8cf78c946968\"},{\"Guid\":\"b05e124f-c7cc-45a0-a6aa-8cf78c946968\"}]";

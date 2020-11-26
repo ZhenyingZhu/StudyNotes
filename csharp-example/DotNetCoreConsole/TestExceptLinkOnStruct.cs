@@ -10,7 +10,7 @@ namespace DotNetCoreConsole
 {
     public class TestExceptLinkOnStruct
     {
-        public static void testMain()
+        public static void TestMain()
         {
             // testSimpleType();
             // testEquals();

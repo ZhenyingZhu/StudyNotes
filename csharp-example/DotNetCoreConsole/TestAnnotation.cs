@@ -11,7 +11,7 @@ namespace DotNetCoreConsole
 {
     public class TestAnnotation
     {
-        public static void testMain()
+        public static void TestMain()
         {
             Type myClassType = typeof(MyClass);
             IEnumerable<PropertyInfo> props = myClassType.GetProperties();

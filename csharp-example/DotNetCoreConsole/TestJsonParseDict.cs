@@ -8,7 +8,7 @@ namespace DotNetCoreConsole
 {
     public class TestJsonParseDict
     {
-        public static void testMain()
+        public static void TestMain()
         {
             Guid gid = Guid.Parse("61bdb951-bda3-42d0-a7bd-7b2f91ef1bd3");
             var dict = new Dictionary<Tuple<Guid, string>, string>

@@ -10,7 +10,7 @@ namespace DotNetCoreConsole
 {
     public class TestBytesArrayConvert
     {
-        public static void testMain()
+        public static void TestMain()
         {
             string str = "apple";
             byte[] byteArray = Encoding.UTF8.GetBytes(str);

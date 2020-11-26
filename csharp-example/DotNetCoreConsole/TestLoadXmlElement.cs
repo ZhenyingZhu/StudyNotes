@@ -9,7 +9,7 @@ namespace DotNetCoreConsole
 {
     public class TestLoadXmlElement
     {
-        public static void testMain()
+        public static void TestMain()
         {
             XElement localDiskXml = XElement.Load(@"example.xml");
             XElement firstNode = XElement.Parse(localDiskXml.FirstNode.ToString());

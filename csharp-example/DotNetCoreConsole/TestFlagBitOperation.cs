@@ -8,7 +8,7 @@ namespace DotNetCoreConsole
 {
     public class TestFlagBitOperation
     {
-        public static void testMain()
+        public static void TestMain()
         {
             FlagEnum? value = null;
             FlagEnum? flag = FlagEnum.None | FlagEnum.Enabled;

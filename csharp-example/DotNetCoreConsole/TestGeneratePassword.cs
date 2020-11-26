@@ -9,7 +9,7 @@ namespace DotNetCoreConsole
     public class TestGeneratePassword
     {
         // Still in progress.
-        public static void testMain()
+        public static void TestMain()
         {
             string password = GenerateStrongUserPassword();
             System.Console.WriteLine(password);

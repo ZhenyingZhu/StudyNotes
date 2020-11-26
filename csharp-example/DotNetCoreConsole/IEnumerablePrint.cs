@@ -6,7 +6,7 @@ namespace DotNetCoreConsole
 {
     public class IEnumerablePrint
     {
-        public static void testMain()
+        public static void TestMain()
         {
             MyClass mc1 = new MyClass{id = 1};
             MyClass mc2 = new MyClass{id = 2};
