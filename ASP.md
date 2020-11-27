@@ -3033,7 +3033,96 @@ app.UseEndpoints(endpoints =>
 
 - In general, routes with areas should be placed earlier as they're more specific than routes without an area. Dedicated conventional routes with catch-all route parameters like `{*article}` can make a route too greedy. Should put it at the end.
 
-**HERE**: https://docs.microsoft.com/en-us/aspnet/core/mvc/controllers/routing?view=aspnetcore-3.1#resolving-ambiguous-actions
+- For REST APIs, should use attribute routing. In the `Startup.Configure`, add `app.UseRouting();` and `app.UseEndpoints(endpoints => { endpoints.MapControllers(); });`. In the controller:
+
+```C#
+public class HomeController : Controller
+{
+    [Route("")]
+    [Route("Home")]
+    [Route("Home/Index")]
+    [Route("Home/Index/{id?}")]
+    public IActionResult Index(int? id)
+    {
+        return ControllerContext.MyDisplayRouteInfo(id);
+    }
+
+    [Route("Home/About")]
+    [Route("Home/About/{id?}")]
+    public IActionResult About(int? id)
+    {
+        return ControllerContext.MyDisplayRouteInfo(id);
+    }
+}
+```
+
+Or
+
+```C#
+[Route("[controller]/[action]")]
+public class HomeController : Controller
+{
+    [Route("~/")] // to avoid combine with the route template defined on the controller
+    [Route("/Home")]
+    [Route("~/Home/Index")]
+    public IActionResult Index()
+    {
+        return ControllerContext.MyDisplayRouteInfo();
+    }
+
+    public IActionResult About()
+    {
+        return ControllerContext.MyDisplayRouteInfo();
+    }
+}
+```
+
+- For attribute routing, even the controller and action name are not in the endpoint/route, the token replacement still uses them.
+
+- Http verbs:
+  - `[HttpGet]`
+  - `[HttpPost]`
+  - `[HttpPut]`
+  - `[HttpDelete]`
+  - `[HttpHead]`
+  - `[HttpPatch]`
+
+- `id:int`: map to strings that can convert to int and pass them as `id`. Otherwise return 404
+
+```C#
+[Route("api/[controller]")]
+[ApiController]
+public class Test2Controller : ControllerBase
+{
+    [HttpGet]   // GET /api/test2
+    public IActionResult ListProducts()
+    {
+        return ControllerContext.MyDisplayRouteInfo();
+    }
+
+    [HttpGet("{id}"), Name = "get id"]   // GET /api/test2/xyz
+    public IActionResult GetProduct(string id)
+    {
+       return ControllerContext.MyDisplayRouteInfo(id);
+    }
+
+    [HttpGet("int/{id:int}")] // GET /api/test2/int/3.
+    public IActionResult GetIntProduct(int id)
+    {
+        return ControllerContext.MyDisplayRouteInfo(id);
+    }
+
+    [HttpGet("int2/{id}")]  // GET /api/test2/int2/3
+    public IActionResult GetInt2Product(int id)
+    {
+        return ControllerContext.MyDisplayRouteInfo(id);
+    }
+}
+```
+
+- The `[Consumes]` attribute allows an action to limit the supported request content types.
+
+**HERE**: https://docs.microsoft.com/en-us/aspnet/core/mvc/controllers/routing?view=aspnetcore-3.1#route-name
 https://docs.microsoft.com/en-us/aspnet/core/mvc/views/view-components?view=aspnetcore-3.1
 https://stackoverflow.com/questions/52513554/mvc-net-core-sidebar-navigation-menu-placing-in-layout-cshtml
 https://www.yogihosting.com/jquery-ajax-aspnet-core/
