@@ -3121,8 +3121,15 @@ public class Test2Controller : ControllerBase
 ```
 
 - The `[Consumes]` attribute allows an action to limit the supported request content types.
+- `[Route]` attribute has an `Order` property. Default value is 0. If set the order of a route to be -1, then it runs first. Set to be 1, then runs after all default routes. Should not depends on it. Just use it to resolve ambiguous.
 
-**HERE**: https://docs.microsoft.com/en-us/aspnet/core/mvc/controllers/routing?view=aspnetcore-3.1#route-name
+- Token replacement in route templates
+  - `[controller]`, `[action]`, `[area]`
+  - `{}` the parameter.
+- work with inheritance.
+- to escape `[]`, put double `[[]]`
+
+**HERE**: https://docs.microsoft.com/en-us/aspnet/core/mvc/controllers/routing?view=aspnetcore-3.1#use-a-parameter-transformer-to-customize-token-replacement
 https://docs.microsoft.com/en-us/aspnet/core/mvc/views/view-components?view=aspnetcore-3.1
 https://stackoverflow.com/questions/52513554/mvc-net-core-sidebar-navigation-menu-placing-in-layout-cshtml
 https://www.yogihosting.com/jquery-ajax-aspnet-core/
