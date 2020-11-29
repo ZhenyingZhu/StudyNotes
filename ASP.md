@@ -3128,8 +3128,24 @@ public class Test2Controller : ControllerBase
   - `{}` the parameter.
 - work with inheritance.
 - to escape `[]`, put double `[[]]`
+- Implement `IOutboundParameterTransformer` to define a parameter transformer.
+- When use regular express in web app, give it a timeout like this: `Regex.Replace(value.ToString(), "([a-z])([A-Z])", "$1-$2", RegexOptions.CultureInvariant, TimeSpan.FromMilliseconds(100)).ToLowerInvariant();`. A malicious user can provide input to cause a DOS, so the timeout could help here.
+- Implement `IRouteTemplateProvider` to define a new route attribute.
+- The application model is created at startup and contains all of the metadata used by ASP.NET Core to route and execute the actions in an app.
+- Actions are either conventionally routed or attribute routed. Cannot use both at the same time.
+- `Url.RouteUrl` can generates a URL. It is also used by the `HtmlHelper`.
+  - The most common usage in a controller is to generate a URL as part of an action result. `return RedirectToAction("Index");`
 
-**HERE**: https://docs.microsoft.com/en-us/aspnet/core/mvc/controllers/routing?view=aspnetcore-3.1#use-a-parameter-transformer-to-customize-token-replacement
+- Using areas allows an app to have multiple controllers with the same name, as long as they have different areas.
+  - `endpoints.MapAreaControllerRoute("blog_route", "Blog", "Manage/{controller}/{action}/{id?}");`
+  - `endpoints.MapControllerRoute("default_route", "{controller}/{action}/{id?}");`
+  - On the controller, add `[Area("Blog")]`.
+- Get metadata from application model
+  - `var area = ControllerContext.ActionDescriptor.RouteValues["area"];`
+  - `var actionName = ControllerContext.ActionDescriptor.ActionName;`
+  - `var controllerName = ControllerContext.ActionDescriptor.ControllerName;`
+
+**HERE**: https://docs.microsoft.com/en-us/aspnet/core/mvc/controllers/dependency-injection?view=aspnetcore-3.1
 https://docs.microsoft.com/en-us/aspnet/core/mvc/views/view-components?view=aspnetcore-3.1
 https://stackoverflow.com/questions/52513554/mvc-net-core-sidebar-navigation-menu-placing-in-layout-cshtml
 https://www.yogihosting.com/jquery-ajax-aspnet-core/
