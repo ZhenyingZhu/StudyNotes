@@ -3145,7 +3145,23 @@ public class Test2Controller : ControllerBase
   - `var actionName = ControllerContext.ActionDescriptor.ActionName;`
   - `var controllerName = ControllerContext.ActionDescriptor.ControllerName;`
 
-**HERE**: https://docs.microsoft.com/en-us/aspnet/core/mvc/controllers/dependency-injection?view=aspnetcore-3.1
+[Dependency Injection - Controller](https://docs.microsoft.com/en-us/aspnet/core/mvc/controllers/dependency-injection?view=aspnetcore-3.1)
+
+- Services are defined using interfaces. For example: `public class SystemDateTime : IDateTime` defines a `SystemDateTime` service.
+- In `Startup.ConfigureServices(services)`, add the service to the service container: `services.AddSingleton<IDateTime, SystemDateTime>();`. Singleton is one of the DI service lifetime scope.
+- Constructor Injection: In the controller, add the interface to the ctor: `public HomeController(IDateTime dateTime)`, and maintain it in a property" `private readonly IDateTime _dateTime;`.
+- Action injection: no need to inject into ctor. In an action, use the `FromServicesAttribute`: `public IActionResult About([FromServices] IDateTime dateTime)`
+- To management setting within a controller: create a class represents the options `SampleWebSettings`. Add it to the service containers: `services.Configure<SampleWebSettings>(Configuration);`. In the `CreateHostBuilder`, read a json file for this setting. Then in the controller, inject the setting class `public SettingsController(IOptions<SampleWebSettings> settingsOptions)` and manage it there.
+
+[Dependency injection - views](https://docs.microsoft.com/en-us/aspnet/core/mvc/views/dependency-injection?view=aspnetcore-3.1)
+
+- `@inject: @inject <type> <name>`
+- for config appsettings, can directly inject the `@inject IConfiguration Configuration` into views. But it is not recommended for controllers.
+- If the service is not inherit an interface: `services.AddTransient<StatisticsService>();`
+- View injection can be useful to populate options in UI elements, such as dropdown lists. Create a service `ProfileOptionsService` and create several methods like `public List<string> ListGenders()` to list all the possible values.
+- Can override a DI service by override its name: `@inject MyHtmlHelper Html` changes the default Html tag helper.
+
+**HERE**: https://docs.microsoft.com/en-us/aspnet/core/mvc/views/layout?view=aspnetcore-3.1
 https://docs.microsoft.com/en-us/aspnet/core/mvc/views/view-components?view=aspnetcore-3.1
 https://stackoverflow.com/questions/52513554/mvc-net-core-sidebar-navigation-menu-placing-in-layout-cshtml
 https://www.yogihosting.com/jquery-ajax-aspnet-core/
