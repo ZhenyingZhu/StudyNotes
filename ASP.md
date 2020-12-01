@@ -3161,6 +3161,8 @@ public class Test2Controller : ControllerBase
 - View injection can be useful to populate options in UI elements, such as dropdown lists. Create a service `ProfileOptionsService` and create several methods like `public List<string> ListGenders()` to list all the possible values.
 - Can override a DI service by override its name: `@inject MyHtmlHelper Html` changes the default Html tag helper.
 
+[Layout](https://docs.microsoft.com/en-us/aspnet/core/mvc/views/layout?view=aspnetcore-3.1)
+
 **HERE**: https://docs.microsoft.com/en-us/aspnet/core/mvc/views/layout?view=aspnetcore-3.1
 https://docs.microsoft.com/en-us/aspnet/core/mvc/views/view-components?view=aspnetcore-3.1
 https://stackoverflow.com/questions/52513554/mvc-net-core-sidebar-navigation-menu-placing-in-layout-cshtml
