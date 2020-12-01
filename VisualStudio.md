@@ -363,3 +363,9 @@ Need to install the [MSBuildTasks](https://github.com/loresoft/msbuildtasks) nug
 - Usage: <https://stackoverflow.com/questions/56758367/xmlpoke-to-add-multiple-appsettings-key-doesnt-work>
 - It is case sensitive.
 - Add a key: <https://stackoverflow.com/questions/1366233/how-to-append-xml-nodes-using-existing-nant-or-nant-contrib-tasks>
+
+## NuGet
+
+[Doc](https://docs.microsoft.com/en-us/nuget/what-is-nuget)
+
+- 
