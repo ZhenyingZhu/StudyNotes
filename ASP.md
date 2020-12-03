@@ -3938,4 +3938,5 @@ Service oriented: <https://docs.microsoft.com/en-us/dotnet/framework/wcf/whats-w
 
 ## ReactJS.NET
 
-**TODO**: <https://reactjs.net/tutorials/aspnetcore>
+**TODO**:
+<https://reactjs.net/tutorials/aspnetcore>
