@@ -81,3 +81,10 @@ reg add "HKEY_CURRENT_USER\Software\Valve\Steam" /v AutoLoginUser /t REG_SZ /d [
 
 # Create a List
 `$list = New-Object Collections.Generic.List[System.Guid]`
+
+# Powershell Promote
+with just this:
+`Remove-Item $test`
+If there are files in the folder, then the error: "Remove-item : No PromptForChoice Handler set on the Powershell UI"
+
+`Remove-Item $test -Confirm:$false -Force -Recurse`
