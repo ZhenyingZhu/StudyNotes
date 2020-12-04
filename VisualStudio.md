@@ -373,6 +373,12 @@ Need to install the [MSBuildTasks](https://github.com/loresoft/msbuildtasks) nug
 - `PackageReference`: in the csproj; or `packages.config` under the project root folder.
 - MSBuild CLI has the ability to restore packages, but it is mainly used for build server.
 - the package needs to support the same target framework as the project.
-- HERE: https://docs.microsoft.com/en-us/nuget/quickstart/install-and-use-a-package-in-visual-studio
+- To create a nuget package:
+  - In the csproj, add `PackageId`, `Version`, `Authors` and `Company`. Those values will be in the `.nuspec`.
+  - run `dotnet pack`, which will create a nuget package locally.
+  - If add `<GeneratePackageOnBuild>true</GeneratePackageOnBuild>` in the csproj, the package will be generated on build.
+  - `dotnet nuget push` to publish. Need to reg on nuget.org and get a API key.
+
+HERE: https://docs.microsoft.com/en-us/nuget/quickstart/install-and-use-a-package-in-visual-studio
 
 [NuProj doc](http://nuproj.net/documentation/)
