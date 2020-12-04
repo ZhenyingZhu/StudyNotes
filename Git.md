@@ -46,3 +46,9 @@ Uncommit a local change
 To sync a remote branch:
 
 `git update-ref -d refs/remotes/origin/<branch>`
+
+[Git Submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules)
+
+- `git submodule add <sub repo url>`
+- After clone a project with submodule, run `git submodule init`
+- `git push command takes the --recurse-submodules=check` to push changes in submodules as well.

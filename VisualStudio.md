@@ -363,3 +363,16 @@ Need to install the [MSBuildTasks](https://github.com/loresoft/msbuildtasks) nug
 - Usage: <https://stackoverflow.com/questions/56758367/xmlpoke-to-add-multiple-appsettings-key-doesnt-work>
 - It is case sensitive.
 - Add a key: <https://stackoverflow.com/questions/1366233/how-to-append-xml-nodes-using-existing-nant-or-nant-contrib-tasks>
+
+## NuGet
+
+[NuGet intro](https://docs.microsoft.com/en-us/nuget/what-is-nuget)
+
+- a NuGet package is a single ZIP file with the .nupkg extension that contains compiled code (DLLs), other files related to that code, and a descriptive manifest that includes information like the package's version number.
+- `nuget restore` or `dotnet restore` or `Install-Package`
+- `PackageReference`: in the csproj; or `packages.config` under the project root folder.
+- MSBuild CLI has the ability to restore packages, but it is mainly used for build server.
+- the package needs to support the same target framework as the project.
+- HERE: https://docs.microsoft.com/en-us/nuget/quickstart/install-and-use-a-package-in-visual-studio
+
+[NuProj doc](http://nuproj.net/documentation/)
