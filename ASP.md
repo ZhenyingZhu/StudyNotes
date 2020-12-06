@@ -3163,7 +3163,22 @@ public class Test2Controller : ControllerBase
 
 [Layout](https://docs.microsoft.com/en-us/aspnet/core/mvc/views/layout?view=aspnetcore-3.1)
 
-**HERE**: https://docs.microsoft.com/en-us/aspnet/core/mvc/views/layout?view=aspnetcore-3.1
+- common suer interface elements: app header, navigation, menu elements, footer
+- scripts and stylesheets are also defined in layout.
+- Can have multiple layouts and views choose which to use by `@{ Layout = "_Layout"; }`
+- Every layout should have `RenderBody`
+- Can have some `RenderSection`. The section is only available in its immediate layout.
+- Directives shared by many views may be specified in a common `_ViewImports.cshtml` file. It supports
+  - `@addTagHelper`
+  - `@removeTagHelper`
+  - `@tagHelperPrefix`
+  - `@using`
+  - `@model`
+  - `@inherits`
+  - `@inject`
+- Code that needs to run before each view or page should be placed in the `_ViewStart.cshtml` file.
+
+**HERE**: https://docs.microsoft.com/en-us/aspnet/core/mvc/views/razor?view=aspnetcore-3.1
 https://docs.microsoft.com/en-us/aspnet/core/mvc/views/view-components?view=aspnetcore-3.1
 https://stackoverflow.com/questions/52513554/mvc-net-core-sidebar-navigation-menu-placing-in-layout-cshtml
 https://www.yogihosting.com/jquery-ajax-aspnet-core/
