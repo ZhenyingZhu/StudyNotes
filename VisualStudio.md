@@ -364,6 +364,10 @@ Need to install the [MSBuildTasks](https://github.com/loresoft/msbuildtasks) nug
 - It is case sensitive.
 - Add a key: <https://stackoverflow.com/questions/1366233/how-to-append-xml-nodes-using-existing-nant-or-nant-contrib-tasks>
 
+[Copy and Rename](https://stackoverflow.com/questions/58561928/how-to-copy-and-rename-file-to-output-folder-as-part-of-build)
+
+- `<Copy SourceFiles="@(Something)" DestinationFolder="$(OutputPath)\$(ArtifactName)\%(RecursiveDir)"/>`
+
 ## NuGet
 
 [NuGet intro](https://docs.microsoft.com/en-us/nuget/what-is-nuget)

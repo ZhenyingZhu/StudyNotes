@@ -9,7 +9,7 @@ namespace DotNetCoreConsole
     {
         static void Main(string[] args)
         {
-            TestFileListener.TestMain();
+            TestRetry.TestMain();
         }
     }
 }
