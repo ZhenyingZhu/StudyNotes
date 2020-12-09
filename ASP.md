@@ -3951,6 +3951,18 @@ Service oriented: <https://docs.microsoft.com/en-us/dotnet/framework/wcf/whats-w
 
 [MSSQLLOCALDB databases aren't listed](https://stackoverflow.com/questions/34029337/mssqllocaldb-databases-arent-listed)
 
+## IIS Preload
+
+[IProcessHostPreloadClient](https://docs.microsoft.com/en-us/dotnet/api/system.web.hosting.iprocesshostpreloadclient?view=netframework-4.8)
+
+- should be used by WCF.
+- [Blog](https://weblogs.asp.net/scottgu/auto-start-asp-net-applications-vs-2010-and-net-4-0-series)
+- Before: use `Application_Start` event handler within the Global.asax file of an application (which fires the first time a request executes). Periodically send request to trigger this method to load cache.
+- Now: use the `auto-start` to preload the service when start and then accept requests.
+- adding a startMode=`AlwaysRunning` attribute to the appropriate `<applicationPools>` entry in IIS config.
+
+https://docs.microsoft.com/en-us/iis/get-started/whats-new-in-iis-8/iis-80-application-initialization
+
 ## ReactJS.NET
 
 **TODO**:
