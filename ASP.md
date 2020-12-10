@@ -3963,6 +3963,8 @@ Service oriented: <https://docs.microsoft.com/en-us/dotnet/framework/wcf/whats-w
 
 https://docs.microsoft.com/en-us/iis/get-started/whats-new-in-iis-8/iis-80-application-initialization
 
+https://stackoverflow.com/questions/13386471/fixing-slow-initial-load-for-iis
+
 ## ReactJS.NET
 
 **TODO**:
