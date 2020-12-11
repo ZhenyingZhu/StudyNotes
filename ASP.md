@@ -3178,7 +3178,35 @@ public class Test2Controller : ControllerBase
   - `@inject`
 - Code that needs to run before each view or page should be placed in the `_ViewStart.cshtml` file.
 
-**HERE**: https://docs.microsoft.com/en-us/aspnet/core/mvc/views/razor?view=aspnetcore-3.1
+[Razor syntax](https://docs.microsoft.com/en-us/aspnet/core/mvc/views/razor?view=aspnetcore-3.1)
+
+- Used in `.cshtml` and `.razor`.
+- `@` trainsition from HTML to C#.
+- If `@<keyword>`, then it transitions intoRazor-specific markup. Otherwise transitions into plain C#.
+- Razor keywords are
+  - `page` (Requires ASP.NET Core 2.1 or later)
+  - `namespace`
+  - `functions`
+  - `inherits`
+  - `model`
+  - `section`
+- C# Razor keywords
+  - `case`
+  - `do`
+  - `default`
+  - `for`
+  - `foreach`
+  - `if`
+  - `else`
+  - `lock`
+  - `switch`
+  - `try`
+  - `catch`
+  - `finally`
+  - `using`
+  - `while`
+
+**HERE**: https://docs.microsoft.com/en-us/aspnet/core/mvc/views/razor?view=aspnetcore-3.1#implicit-razor-expressions
 https://docs.microsoft.com/en-us/aspnet/core/mvc/views/view-components?view=aspnetcore-3.1
 https://stackoverflow.com/questions/52513554/mvc-net-core-sidebar-navigation-menu-placing-in-layout-cshtml
 https://www.yogihosting.com/jquery-ajax-aspnet-core/
