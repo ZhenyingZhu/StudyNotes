@@ -367,6 +367,15 @@ Need to install the [MSBuildTasks](https://github.com/loresoft/msbuildtasks) nug
 [Copy and Rename](https://stackoverflow.com/questions/58561928/how-to-copy-and-rename-file-to-output-folder-as-part-of-build)
 
 - `<Copy SourceFiles="@(Something)" DestinationFolder="$(OutputPath)\$(ArtifactName)\%(RecursiveDir)"/>`
+- [Copy Task](https://docs.microsoft.com/en-us/visualstudio/msbuild/copy-task?view=vs-2019)
+
+[well-known item metadata](https://docs.microsoft.com/en-us/visualstudio/msbuild/msbuild-well-known-item-metadata?view=vs-2019)
+
+- `%(RecursiveDir)`
+
+[Write my own task](https://docs.microsoft.com/en-us/visualstudio/msbuild/task-writing?view=vs-2019)
+
+- 
 
 ## NuGet
 
@@ -383,6 +392,6 @@ Need to install the [MSBuildTasks](https://github.com/loresoft/msbuildtasks) nug
   - If add `<GeneratePackageOnBuild>true</GeneratePackageOnBuild>` in the csproj, the package will be generated on build.
   - `dotnet nuget push` to publish. Need to reg on nuget.org and get a API key.
 
-HERE: https://docs.microsoft.com/en-us/nuget/quickstart/install-and-use-a-package-in-visual-studio
+**HERE**: <https://docs.microsoft.com/en-us/nuget/quickstart/install-and-use-a-package-in-visual-studio>
 
 [NuProj doc](http://nuproj.net/documentation/)

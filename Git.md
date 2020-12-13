@@ -52,3 +52,4 @@ To sync a remote branch:
 - `git submodule add <sub repo url>`
 - After clone a project with submodule, run `git submodule init`
 - `git push command takes the --recurse-submodules=check` to push changes in submodules as well.
+- [Specify Branch](https://stackoverflow.com/questions/1777854/how-can-i-specify-a-branch-tag-when-adding-a-git-submodule#:~:text=git%20submodule%20add%20-b%20is%20not%20some%20magically,commit%20of%20a%20specified%20branch%20before%20populating%20it.)
