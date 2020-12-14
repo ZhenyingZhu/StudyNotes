@@ -11,7 +11,9 @@
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="Newtonsoft.Json.Schema" Version="3.0.13" />
   </ItemGroup>
-  
+
+  <!-- use: msbuild -target:MyTarget -->
+  <UsingTask TaskName="SimpleTask" AssemblyName="DotNetCoreConsole" />
   <Target Name="MyTarget">
     <SimpleTask />
   </Target>
