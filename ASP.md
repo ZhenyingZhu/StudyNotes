@@ -3293,6 +3293,10 @@ else
 }
 ```
 
+- Directives
+  - `@attribute [Authorize]`: add the given attribute to the class (Here add authorize)
+
+
 **HERE**: <https://docs.microsoft.com/en-us/aspnet/core/mvc/views/razor?view=aspnetcore-3.1#directives>
 <https://docs.microsoft.com/en-us/aspnet/core/mvc/views/view-components?view=aspnetcore-3.1>
 <https://stackoverflow.com/questions/52513554/mvc-net-core-sidebar-navigation-menu-placing-in-layout-cshtml>
