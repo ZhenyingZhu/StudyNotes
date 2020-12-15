@@ -3205,13 +3205,98 @@ public class Test2Controller : ControllerBase
   - `finally`
   - `using`
   - `while`
+- Implicit Razor expression: `@` follow C# code.
+  - except `await`: `<p>@await DoSomething("hello", "world")</p>`, cannot have space
+  - cannot use with generic, as `<>` is interpreted as html.
+- Explicit Razor expression: `@` follow parenthesis
+  - `@(DateTime.Now - TimeSpan.FromDays(7))`
+  - `@{ ... }`
+- C# expressions that evaluate to a string are HTML encoded. So any special chars in a string would be converted to HTML chars.
+- Use `@Html.Raw("<span>Hello World</span>")` to prevent HTML encoding. But this should not be done for the user input.
+- Razor code blocks: `@{ ... }`. Code blocks and expressions in a view share the same scope
 
-timestamp
+Write a method and use it to generate HTML code:
 
-**HERE**: https://docs.microsoft.com/en-us/aspnet/core/mvc/views/razor?view=aspnetcore-3.1#implicit-razor-expressions
-https://docs.microsoft.com/en-us/aspnet/core/mvc/views/view-components?view=aspnetcore-3.1
-https://stackoverflow.com/questions/52513554/mvc-net-core-sidebar-navigation-menu-placing-in-layout-cshtml
-https://www.yogihosting.com/jquery-ajax-aspnet-core/
+```C#
+@{
+    void RenderName(string name)
+    {
+        <p>Name: <strong>@name</strong></p>
+    }
+
+    RenderName("Mahatma Gandhi");
+    RenderName("Martin Luther King, Jr.");
+
+    var inCSharp = true;
+    <p>Now in HTML, was in C# @inCSharp</p>
+}
+```
+
+- text element: `<text>Name: @person.Name</text>` No whitespace before or after the `<text>` tag appears in the HTML output.
+- `@:` to render the rest of an entire line as HTML inside a code block
+
+- `@if, else if, else, and @switch`
+
+```C#
+@if (value % 2 == 0)
+{
+    <p>The value was even.</p>
+}
+else if (value >= 1337)
+{
+    <p>The value is large.</p>
+}
+else
+{
+    <p>The value is odd and small.</p>
+}
+```
+
+```C#
+@switch (value)
+{
+    case 1:
+        <p>The value is 1!</p>
+        break;
+    case 1337:
+        <p>Your number is 1337!</p>
+        break;
+    default:
+        <p>Your number wasn't 1 or 1337.</p>
+        break;
+}
+```
+
+- `@for, @foreach, @while, and @do while`
+
+```C#
+@{ var i = 0; }
+@do
+{
+    var person = people[i];
+    <p>Name: @person.Name</p>
+    <p>Age: @person.Age</p>
+
+    i++;
+} while (i < people.Length);
+```
+
+- `@using`, `@try, catch, finally`, `@lock`
+
+```C#
+@using (Html.BeginForm())
+{
+    <div>
+        Email: <input type="email" id="Email" value="">
+        <button>Register</button>
+    </div>
+}
+```
+
+**HERE**: <https://docs.microsoft.com/en-us/aspnet/core/mvc/views/razor?view=aspnetcore-3.1#directives>
+<https://docs.microsoft.com/en-us/aspnet/core/mvc/views/view-components?view=aspnetcore-3.1>
+<https://stackoverflow.com/questions/52513554/mvc-net-core-sidebar-navigation-menu-placing-in-layout-cshtml>
+<https://www.yogihosting.com/jquery-ajax-aspnet-core/>
 
 ## Entity Framework(EF)
 
@@ -3991,9 +4076,9 @@ Service oriented: <https://docs.microsoft.com/en-us/dotnet/framework/wcf/whats-w
 - Now: use the `auto-start` to preload the service when start and then accept requests.
 - adding a startMode=`AlwaysRunning` attribute to the appropriate `<applicationPools>` entry in IIS config.
 
-https://docs.microsoft.com/en-us/iis/get-started/whats-new-in-iis-8/iis-80-application-initialization
+<https://docs.microsoft.com/en-us/iis/get-started/whats-new-in-iis-8/iis-80-application-initialization>
 
-https://stackoverflow.com/questions/13386471/fixing-slow-initial-load-for-iis
+<https://stackoverflow.com/questions/13386471/fixing-slow-initial-load-for-iis>
 
 ## ReactJS.NET
 
