@@ -3295,8 +3295,19 @@ else
 
 - Directives
   - `@attribute [Authorize]`: add the given attribute to the class (Here add authorize)
+  - `@code` block enables a Razor component to add C# members (fields, properties, and methods) to a component
+  - `@functions` directive enables adding C# members (fields, properties, and methods) to the generated class
+  - `@implements` directive implements an interface for the generated class.
+  - `@inherits` directive provides full control of the class the view inherits
+  - `@inject` directive enables the Razor Page to inject a service from the service container into a view.
+  - `@layout` directive specifies a layout for a Razor component.
+  - `@model` directive specifies the type of the model passed to a view or page. For example `LoginViewModel`
+  - `@namespace`: 1. Sets the namespace of the class of the generated Razor page, MVC view, or Razor component. 2. Sets the root derived namespaces of a pages, views, or components classes from the closest imports file in the directory tree, `_ViewImports.cshtml` (views or pages) or `_Imports.razor` (Razor components).
+  - `@page`: In a .cshtml file indicates that the file is a Razor Page; In a component, specifies that a Razor component should handle requests directly.
+  - `@section` directive is used in conjunction with MVC and Razor Pages layouts to enable views or pages to render content in different parts of the HTML page.
+  - `@using` directive adds the C# using directive to the generated view
 
-**HERE**: <https://docs.microsoft.com/en-us/aspnet/core/mvc/views/razor?view=aspnetcore-3.1#directives>
+**HERE**: <https://docs.microsoft.com/en-us/aspnet/core/mvc/views/razor?view=aspnetcore-3.1#directive-attributes>
 <https://docs.microsoft.com/en-us/aspnet/core/mvc/views/view-components?view=aspnetcore-3.1>
 <https://stackoverflow.com/questions/52513554/mvc-net-core-sidebar-navigation-menu-placing-in-layout-cshtml>
 <https://www.yogihosting.com/jquery-ajax-aspnet-core/>
