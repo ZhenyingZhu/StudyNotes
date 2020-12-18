@@ -3306,8 +3306,15 @@ else
   - `@page`: In a .cshtml file indicates that the file is a Razor Page; In a component, specifies that a Razor component should handle requests directly.
   - `@section` directive is used in conjunction with MVC and Razor Pages layouts to enable views or pages to render content in different parts of the HTML page.
   - `@using` directive adds the C# using directive to the generated view
+- Directive attributes
+  - `@attributes` allows a component to render non-declared attributes.
+  - `@bind` Data binding in components is accomplished with the @bind attribute.
+  - `@on{EVENT}` event handling features for components.
+  - `@key` directive attribute causes the components diffing algorithm to guarantee preservation of elements or components based on the key's value.
+  - `@ref` provide a way to reference a component instance so that you can issue commands to that instance.
+  - `@typeparam` directive declares a generic type parameter for the generated component class.
 
-**HERE**: <https://docs.microsoft.com/en-us/aspnet/core/mvc/views/razor?view=aspnetcore-3.1#directive-attributes>
+**HERE**: <https://docs.microsoft.com/en-us/aspnet/core/mvc/views/razor?view=aspnetcore-3.1#templated-razor-delegates>
 <https://docs.microsoft.com/en-us/aspnet/core/mvc/views/view-components?view=aspnetcore-3.1>
 <https://stackoverflow.com/questions/52513554/mvc-net-core-sidebar-navigation-menu-placing-in-layout-cshtml>
 <https://www.yogihosting.com/jquery-ajax-aspnet-core/>
