@@ -3314,6 +3314,8 @@ else
   - `@ref` provide a way to reference a component instance so that you can issue commands to that instance.
   - `@typeparam` directive declares a generic type parameter for the generated component class.
 
+timestamp
+
 **HERE**: <https://docs.microsoft.com/en-us/aspnet/core/mvc/views/razor?view=aspnetcore-3.1#templated-razor-delegates>
 <https://docs.microsoft.com/en-us/aspnet/core/mvc/views/view-components?view=aspnetcore-3.1>
 <https://stackoverflow.com/questions/52513554/mvc-net-core-sidebar-navigation-menu-placing-in-layout-cshtml>
