@@ -3190,7 +3190,7 @@ public class Test2Controller : ControllerBase
   - `inherits`
   - `model`
   - `section`
-- C# Razor keywords
+- C# Razor keywords. must be double-escaped with `@(@C# Razor Keyword)`
   - `case`
   - `do`
   - `default`
@@ -3314,9 +3314,63 @@ else
   - `@ref` provide a way to reference a component instance so that you can issue commands to that instance.
   - `@typeparam` directive declares a generic type parameter for the generated component class.
 
-timestamp
+- Templated Razor delegates
 
-**HERE**: <https://docs.microsoft.com/en-us/aspnet/core/mvc/views/razor?view=aspnetcore-3.1#templated-razor-delegates>
+```C#
+@{
+    Func<dynamic, object> petTemplate = @<p>You have a pet named <strong>@item.Name</strong>.</p>;
+
+    var pets = new List<Pet>
+    {
+        new Pet { Name = "Rin Tin Tin" },
+        new Pet { Name = "Mr. Bigglesworth" },
+        new Pet { Name = "K-9" }
+    };
+}
+
+@foreach (var pet in pets)
+{
+    @petTemplate(pet)
+}
+```
+
+Or inline
+
+```C#
+@using Microsoft.AspNetCore.Html
+
+@functions {
+    public static IHtmlContent Repeat(IEnumerable<dynamic> items, int times, Func<dynamic, IHtmlContent> template)
+    {
+        var html = new HtmlContentBuilder();
+
+        foreach (var item in items)
+        {
+            for (var i = 0; i < times; i++)
+            {
+                html.AppendHtml(template(item));
+            }
+        }
+
+        return html;
+    }
+}
+
+<ul>
+    @Repeat(pets, 3, @<li>@item.Name</li>)
+</ul>
+```
+
+- Tag Helpers
+  - `@addTagHelper`: Makes Tag Helpers available to a view.
+  - `@removeTagHelper`: Removes Tag Helpers previously added from a view.
+  - `@tagHelperPrefix`: Specifies a tag prefix to enable Tag Helper support and to make Tag Helper usage explicit.
+
+[Razor class library](https://docs.microsoft.com/en-us/aspnet/core/razor-pages/ui-class?view=aspnetcore-3.1&tabs=visual-studio)
+
+- Razor class library (RCL)
+
+**HERE**: <https://docs.microsoft.com/en-us/aspnet/core/mvc/views/tag-helpers/built-in/?view=aspnetcore-3.1>
 <https://docs.microsoft.com/en-us/aspnet/core/mvc/views/view-components?view=aspnetcore-3.1>
 <https://stackoverflow.com/questions/52513554/mvc-net-core-sidebar-navigation-menu-placing-in-layout-cshtml>
 <https://www.yogihosting.com/jquery-ajax-aspnet-core/>
