@@ -3370,7 +3370,16 @@ Or inline
 
 - Razor class library (RCL)
 
-**HERE**: <https://docs.microsoft.com/en-us/aspnet/core/mvc/views/tag-helpers/built-in/?view=aspnetcore-3.1>
+[Tag Helpers](https://docs.microsoft.com/en-us/aspnet/core/mvc/views/tag-helpers/intro?view=aspnetcore-3.1)
+
+- Tag Helpers enable server-side code to participate in creating and rendering HTML elements in Razor files.
+- They target HTML elements based on element name, attribute name, or parent tag.
+- `<label asp-for="Movie.Title"></label>` transferred to `<label for="Movie_Title">Title</label>` by the `LabelTagHelper`
+- The `@addTagHelper` directive makes Tag Helpers available to the view: `@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers`
+- add common tag helpers to the view `Pages/_ViewImports.cshtml` is by default inherited by all files in the Pages folder and subfolders
+- fully qualified name (FQN): `@addTagHelper AuthoringTagHelpers.TagHelpers.EmailTagHelper, AuthoringTagHelpers`
+
+**HERE**: <https://docs.microsoft.com/en-us/aspnet/core/mvc/views/tag-helpers/intro?view=aspnetcore-3.1#controlling-tag-helper-scope-with-the-_viewimportscshtml-file>
 <https://docs.microsoft.com/en-us/aspnet/core/mvc/views/view-components?view=aspnetcore-3.1>
 <https://stackoverflow.com/questions/52513554/mvc-net-core-sidebar-navigation-menu-placing-in-layout-cshtml>
 <https://www.yogihosting.com/jquery-ajax-aspnet-core/>
