@@ -3378,8 +3378,9 @@ Or inline
 - The `@addTagHelper` directive makes Tag Helpers available to the view: `@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers`
 - add common tag helpers to the view `Pages/_ViewImports.cshtml` is by default inherited by all files in the Pages folder and subfolders
 - fully qualified name (FQN): `@addTagHelper AuthoringTagHelpers.TagHelpers.EmailTagHelper, AuthoringTagHelpers`
+- to opt out a tag helper for only an element: `<!span asp-validation-for="Email" class="text-danger"></!span>`
 
-**HERE**: <https://docs.microsoft.com/en-us/aspnet/core/mvc/views/tag-helpers/intro?view=aspnetcore-3.1#controlling-tag-helper-scope-with-the-_viewimportscshtml-file>
+**HERE**: <https://docs.microsoft.com/en-us/aspnet/core/mvc/views/tag-helpers/intro?view=aspnetcore-3.1#self-closing-tag-helpers>
 <https://docs.microsoft.com/en-us/aspnet/core/mvc/views/view-components?view=aspnetcore-3.1>
 <https://stackoverflow.com/questions/52513554/mvc-net-core-sidebar-navigation-menu-placing-in-layout-cshtml>
 <https://www.yogihosting.com/jquery-ajax-aspnet-core/>
