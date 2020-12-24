@@ -3379,9 +3379,11 @@ Or inline
 - add common tag helpers to the view `Pages/_ViewImports.cshtml` is by default inherited by all files in the Pages folder and subfolders
 - fully qualified name (FQN): `@addTagHelper AuthoringTagHelpers.TagHelpers.EmailTagHelper, AuthoringTagHelpers`
 - to opt out a tag helper for only an element: `<!span asp-validation-for="Email" class="text-danger"></!span>`
+- tag Helpers do not allow C# in the element's attribute or tag declaration area.
+  - This is invalid: `<input asp-for="LastName" @(Model?.LicenseId == null ? "disabled" : string.Empty) />`
+  - This is valid: `<input asp-for="LastName" disabled="@(Model?.LicenseId == null)" />`
 
-**HERE**: <https://docs.microsoft.com/en-us/aspnet/core/mvc/views/tag-helpers/intro?view=aspnetcore-3.1#self-closing-tag-helpers>
-<https://docs.microsoft.com/en-us/aspnet/core/mvc/views/view-components?view=aspnetcore-3.1>
+**HERE**: <https://docs.microsoft.com/en-us/aspnet/core/mvc/views/tag-helpers/authoring?view=aspnetcore-3.1>
 <https://stackoverflow.com/questions/52513554/mvc-net-core-sidebar-navigation-menu-placing-in-layout-cshtml>
 <https://www.yogihosting.com/jquery-ajax-aspnet-core/>
 
