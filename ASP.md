@@ -3383,6 +3383,8 @@ Or inline
   - This is invalid: `<input asp-for="LastName" @(Model?.LicenseId == null ? "disabled" : string.Empty) />`
   - This is valid: `<input asp-for="LastName" disabled="@(Model?.LicenseId == null)" />`
 
+a timestamp
+
 **HERE**: <https://docs.microsoft.com/en-us/aspnet/core/mvc/views/tag-helpers/authoring?view=aspnetcore-3.1>
 <https://stackoverflow.com/questions/52513554/mvc-net-core-sidebar-navigation-menu-placing-in-layout-cshtml>
 <https://www.yogihosting.com/jquery-ajax-aspnet-core/>
