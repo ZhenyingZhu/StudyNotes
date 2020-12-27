@@ -3383,9 +3383,15 @@ Or inline
   - This is invalid: `<input asp-for="LastName" @(Model?.LicenseId == null ? "disabled" : string.Empty) />`
   - This is valid: `<input asp-for="LastName" disabled="@(Model?.LicenseId == null)" />`
 
-a timestamp
+[Create Tag Helpers](https://docs.microsoft.com/en-us/aspnet/core/mvc/views/tag-helpers/authoring?view=aspnetcore-3.1)
 
-**HERE**: <https://docs.microsoft.com/en-us/aspnet/core/mvc/views/tag-helpers/authoring?view=aspnetcore-3.1>
+- implements the `ITagHelper` interface/derive from `TagHelper` with `Process` method.
+- `<email>Support</email>` to `<a href="mailto:Support@contoso.com">Support@contoso.com</a>`
+- `void Process(TagHelperContext Context, TagHelperOutput output)`
+  - context contains information associated with the execution of the current HTML tag.
+  - output contains a stateful HTML element representative of the original source used to generate an HTML tag and content. Has `Attributes` and `Content`. Use `SetAttribute` and `SetContent` to update.
+
+**HERE**: <https://docs.microsoft.com/en-us/aspnet/core/mvc/views/working-with-forms?view=aspnetcore-3.1>
 <https://stackoverflow.com/questions/52513554/mvc-net-core-sidebar-navigation-menu-placing-in-layout-cshtml>
 <https://www.yogihosting.com/jquery-ajax-aspnet-core/>
 
