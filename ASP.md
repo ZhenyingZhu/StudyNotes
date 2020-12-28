@@ -3391,7 +3391,16 @@ Or inline
   - context contains information associated with the execution of the current HTML tag.
   - output contains a stateful HTML element representative of the original source used to generate an HTML tag and content. Has `Attributes` and `Content`. Use `SetAttribute` and `SetContent` to update.
 
-**HERE**: <https://docs.microsoft.com/en-us/aspnet/core/mvc/views/working-with-forms?view=aspnetcore-3.1>
+[Use Tag Helpers in forms](https://docs.microsoft.com/en-us/aspnet/core/mvc/views/working-with-forms?view=aspnetcore-3.1)
+
+- `<form>`
+- generate hidden `[ValidateAntiForgeryToken]`
+- provide `asp-route-<Parameter Name>`:
+  - `<form asp-controller="Demo" asp-action="Register" method="post"></form>`
+  - translate to `<form method="post" action="/Demo/Register"><input name="__RequestVerificationToken" type="hidden" value="<removed for brevity>"></form>`
+- 
+
+**HERE**: <https://docs.microsoft.com/en-us/aspnet/core/mvc/views/working-with-forms?view=aspnetcore-3.1#using-a-named-route>
 <https://stackoverflow.com/questions/52513554/mvc-net-core-sidebar-navigation-menu-placing-in-layout-cshtml>
 <https://www.yogihosting.com/jquery-ajax-aspnet-core/>
 
