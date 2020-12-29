@@ -3393,14 +3393,30 @@ Or inline
 
 [Use Tag Helpers in forms](https://docs.microsoft.com/en-us/aspnet/core/mvc/views/working-with-forms?view=aspnetcore-3.1)
 
-- `<form>`
-- generate hidden `[ValidateAntiForgeryToken]`
+- Form tag helper: `<form>`
+- it generate hidden `[ValidateAntiForgeryToken]`
 - provide `asp-route-<Parameter Name>`:
   - `<form asp-controller="Demo" asp-action="Register" method="post"></form>`
   - translate to `<form method="post" action="/Demo/Register"><input name="__RequestVerificationToken" type="hidden" value="<removed for brevity>"></form>`
-- 
+- Or use a named route
+  - `<form asp-route="register" method="post"></form>`
+- With return url
+  - `<form asp-controller="Account" asp-action="Login" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal" role="form">`
+- AnchorTagHelpers
+  - `asp-controller`: The name of the controller.
+  - `asp-action`: The name of the action method.
+  - `asp-area`: The name of the area.
+  - `asp-page`: The name of the Razor page.
+  - `asp-page-handler`: The name of the Razor page handler.
+  - `asp-route`: The name of the route.
+  - `asp-route-{value}`: A single URL route value. For example, asp-route-id="1234".
+  - `asp-all-route-data`: All route values.
+  - `asp-fragment`: The URL fragment.
+- Form Action Tag Helper: generates the formaction attribute on the generated `<button ...>` or `<input type="image" ...>` tag.
+  - `<button asp-controller="Home" asp-action="Index">Click Me</button>`
+  - `<input type="image" src="..." alt="Or Click Me" asp-controller="Home" asp-action="Index">`
 
-**HERE**: <https://docs.microsoft.com/en-us/aspnet/core/mvc/views/working-with-forms?view=aspnetcore-3.1#using-a-named-route>
+**HERE**: <https://docs.microsoft.com/en-us/aspnet/core/mvc/views/working-with-forms?view=aspnetcore-3.1#the-input-tag-helper>
 <https://stackoverflow.com/questions/52513554/mvc-net-core-sidebar-navigation-menu-placing-in-layout-cshtml>
 <https://www.yogihosting.com/jquery-ajax-aspnet-core/>
 
