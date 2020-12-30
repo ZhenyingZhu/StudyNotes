@@ -3415,8 +3415,12 @@ Or inline
 - Form Action Tag Helper: generates the formaction attribute on the generated `<button ...>` or `<input type="image" ...>` tag.
   - `<button asp-controller="Home" asp-action="Index">Click Me</button>`
   - `<input type="image" src="..." alt="Or Click Me" asp-controller="Home" asp-action="Index">`
+- Input Tag Helper
+  - The Input Tag Helper binds an HTML `<input>` element to a model expression in your razor view: `<input asp-for="<Expression Name>">`
+  - The Input Tag Helper sets the HTML type attribute based on the .NET type. For example bool in .NET is translate to `type="checkbox"`
+  - data annotations in the models also translate to types: `[EmailAddress]` => `type="email"`
 
-**HERE**: <https://docs.microsoft.com/en-us/aspnet/core/mvc/views/working-with-forms?view=aspnetcore-3.1#the-input-tag-helper>
+**HERE**: <https://docs.microsoft.com/en-us/aspnet/core/mvc/views/working-with-forms?view=aspnetcore-3.1#html-helper-alternatives-to-input-tag-helper>
 <https://stackoverflow.com/questions/52513554/mvc-net-core-sidebar-navigation-menu-placing-in-layout-cshtml>
 <https://www.yogihosting.com/jquery-ajax-aspnet-core/>
 
