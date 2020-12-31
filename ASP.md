@@ -3419,8 +3419,10 @@ Or inline
   - The Input Tag Helper binds an HTML `<input>` element to a model expression in your razor view: `<input asp-for="<Expression Name>">`
   - The Input Tag Helper sets the HTML type attribute based on the .NET type. For example bool in .NET is translate to `type="checkbox"`
   - data annotations in the models also translate to types: `[EmailAddress]` => `type="email"`
+- Navigate to children properties:
+  - `Address: <input asp-for="Address.AddressLine1" /><br />` points to the `AddressLine1` property of the `model.Address` property.
 
-**HERE**: <https://docs.microsoft.com/en-us/aspnet/core/mvc/views/working-with-forms?view=aspnetcore-3.1#html-helper-alternatives-to-input-tag-helper>
+**HERE**: <https://docs.microsoft.com/en-us/aspnet/core/mvc/views/working-with-forms?view=aspnetcore-3.1#expression-names-and-collections>
 <https://stackoverflow.com/questions/52513554/mvc-net-core-sidebar-navigation-menu-placing-in-layout-cshtml>
 <https://www.yogihosting.com/jquery-ajax-aspnet-core/>
 
