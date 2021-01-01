@@ -375,12 +375,19 @@ ADAL:
 
 <https://github.com/Azure/azure-quickstart-templates>
 
-## Windows server add a cert
+## Windows server manage certs
+
+Add a cert:
 
 1. Run mmc.exe
 2. Go to File->Add/Remove Snap-in
 3. Select Certificates in the Snap-in window and click Add.
 4. Choose ‘Computer Account’ when prompted and click Finish.
+
+[Disable a Root Certificate in Windows MMC](https://www.ssl.com/how-to/disable-a-root-certificate-in-windows-mmc/)
+
+- Right click the cert in MMC
+- Select "Disable all purposes for this certificate"
 
 More details about cert
 

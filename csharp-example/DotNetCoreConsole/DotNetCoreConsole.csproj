@@ -18,4 +18,10 @@
     <SimpleTask />
   </Target>
 
+  <ItemGroup>
+    <TestExcludeFiles Include="**\*" Exclude="SimpleTask.*" />
+  </ItemGroup>
+
+  <Message Text="TestExcludeFiles = @(TestExcludeFiles)" Importance="High" />
+
 </Project>
