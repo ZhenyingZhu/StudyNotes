@@ -3422,7 +3422,7 @@ Or inline
 - Navigate to children properties:
   - `Address: <input asp-for="Address.AddressLine1" /><br />` points to the `AddressLine1` property of the `model.Address` property.
 
-**HERE**: <https://docs.microsoft.com/en-us/aspnet/core/mvc/views/working-with-forms?view=aspnetcore-3.1#expression-names-and-collections>
+**HERE**: <https://docs.microsoft.com/en-us/aspnet/core/mvc/views/working-with-forms?view=aspnetcore-3.1#the-textarea-tag-helper>
 <https://stackoverflow.com/questions/52513554/mvc-net-core-sidebar-navigation-menu-placing-in-layout-cshtml>
 <https://www.yogihosting.com/jquery-ajax-aspnet-core/>
 
