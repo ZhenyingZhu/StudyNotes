@@ -3421,8 +3421,11 @@ Or inline
   - data annotations in the models also translate to types: `[EmailAddress]` => `type="email"`
 - Navigate to children properties:
   - `Address: <input asp-for="Address.AddressLine1" /><br />` points to the `AddressLine1` property of the `model.Address` property.
+- HTML helper have overlapping features with Input Tag Helper.
+  - `Html.TextBox`, `Html.TextBoxFor`, `Html.Editor` and `Html.EditorFor`. Used for select/check boxes.
+- The Textarea Tag Helper: `<textarea asp-for="Description"></textarea>`
 
-**HERE**: <https://docs.microsoft.com/en-us/aspnet/core/mvc/views/working-with-forms?view=aspnetcore-3.1#the-textarea-tag-helper>
+**HERE**: <https://docs.microsoft.com/en-us/aspnet/core/mvc/views/working-with-forms?view=aspnetcore-3.1#the-label-tag-helper>
 <https://stackoverflow.com/questions/52513554/mvc-net-core-sidebar-navigation-menu-placing-in-layout-cshtml>
 <https://www.yogihosting.com/jquery-ajax-aspnet-core/>
 
