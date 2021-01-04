@@ -3423,9 +3423,13 @@ Or inline
   - `Address: <input asp-for="Address.AddressLine1" /><br />` points to the `AddressLine1` property of the `model.Address` property.
 - HTML helper have overlapping features with Input Tag Helper.
   - `Html.TextBox`, `Html.TextBoxFor`, `Html.Editor` and `Html.EditorFor`. Used for select/check boxes.
-- The Textarea Tag Helper: `<textarea asp-for="Description"></textarea>`
+- Textarea Tag Helper: `<textarea asp-for="Description"></textarea>`
+- Label Tag Helper: `<label asp-for="Email"></label>`
+- Validation Tag Helpers:
+  - Validation Message Tag Helper: `<span asp-validation-for="Email"></span>` generates HTML5 `data-valmsg-for="property"`
+  - Validation Summary Tag Helper: `<div asp-validation-summary="ModelOnly"></div>`. Can be `All` (model + properties), `ModelOnly` or `None`
 
-**HERE**: <https://docs.microsoft.com/en-us/aspnet/core/mvc/views/working-with-forms?view=aspnetcore-3.1#the-label-tag-helper>
+**HERE**: <https://docs.microsoft.com/en-us/aspnet/core/mvc/views/working-with-forms?view=aspnetcore-3.1#the-select-tag-helper>
 <https://stackoverflow.com/questions/52513554/mvc-net-core-sidebar-navigation-menu-placing-in-layout-cshtml>
 <https://www.yogihosting.com/jquery-ajax-aspnet-core/>
 
