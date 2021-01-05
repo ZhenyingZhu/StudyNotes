@@ -3428,8 +3428,47 @@ Or inline
 - Validation Tag Helpers:
   - Validation Message Tag Helper: `<span asp-validation-for="Email"></span>` generates HTML5 `data-valmsg-for="property"`
   - Validation Summary Tag Helper: `<div asp-validation-summary="ModelOnly"></div>`. Can be `All` (model + properties), `ModelOnly` or `None`
+- Select Tag Helper
+  - `<select asp-for="Country" asp-items="Model.Countries"></select>`
+  - It is not recommended to use `ViewBag` or `ViewData` with the Select Tag Helper. A view model is more robust at providing MVC metadata and generally less problematic.
+  - `<select asp-for="EnumCountry" asp-items="Html.GetEnumSelectList<CountryEnum>()"></select>` Where the `CountryEnum` is an enum class.
+  - [Option group](https://docs.microsoft.com/en-us/aspnet/core/mvc/views/working-with-forms?view=aspnetcore-3.1#option-group)
+  - [Multiple select](https://docs.microsoft.com/en-us/aspnet/core/mvc/views/working-with-forms?view=aspnetcore-3.1#multiple-select)
+  - [No selection](https://docs.microsoft.com/en-us/aspnet/core/mvc/views/working-with-forms?view=aspnetcore-3.1#multiple-select)
 
-**HERE**: <https://docs.microsoft.com/en-us/aspnet/core/mvc/views/working-with-forms?view=aspnetcore-3.1#the-select-tag-helper>
+The action uses the ViewModel class instead of Model class
+
+```C#
+# ViewModel class. Seems like it doesn't bind to any model.
+public class CountryViewModel
+{
+    public string Country { get; set; }
+    public List<SelectListItem> Countries { get; } = new List<SelectListItem>
+    {
+        new SelectListItem { Value = "MX", Text = "Mexico" },
+        new SelectListItem { Value = "CA", Text = "Canada" },
+        new SelectListItem { Value = "US", Text = "USA"  },
+    };
+}
+
+# Action
+public IActionResult Index()
+{
+    var model = new CountryViewModel();
+    model.Country = "CA";
+    return View(model);
+}
+
+# View
+@model CountryViewModel
+
+<form asp-controller="Home" asp-action="Index" method="post">
+    <select asp-for="Country" asp-items="Model.Countries"></select> 
+    <br /><button type="submit">Register</button>
+</form>
+```
+
+**HERE**: <https://docs.microsoft.com/en-us/aspnet/core/mvc/views/tag-helpers/th-components?view=aspnetcore-3.1>
 <https://stackoverflow.com/questions/52513554/mvc-net-core-sidebar-navigation-menu-placing-in-layout-cshtml>
 <https://www.yogihosting.com/jquery-ajax-aspnet-core/>
 
