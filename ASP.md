@@ -3468,7 +3468,15 @@ public IActionResult Index()
 </form>
 ```
 
-**HERE**: <https://docs.microsoft.com/en-us/aspnet/core/mvc/views/tag-helpers/th-components?view=aspnetcore-3.1>
+[Tag Helper Components](https://docs.microsoft.com/en-us/aspnet/core/mvc/views/tag-helpers/th-components?view=aspnetcore-3.1)
+
+- add HTML elements from server-side code
+- Can used to
+  - Injecting a `<link>` into the `<head>`.
+  - Injecting a `<script>` into the `<body>`.
+- `public class AddressStyleTagHelperComponent : TagHelperComponent`
+
+**HERE**: <https://docs.microsoft.com/en-us/aspnet/core/mvc/advanced/app-parts?view=aspnetcore-3.1>
 <https://stackoverflow.com/questions/52513554/mvc-net-core-sidebar-navigation-menu-placing-in-layout-cshtml>
 <https://www.yogihosting.com/jquery-ajax-aspnet-core/>
 
