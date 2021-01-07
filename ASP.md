@@ -3476,7 +3476,12 @@ public IActionResult Index()
   - Injecting a `<script>` into the `<body>`.
 - `public class AddressStyleTagHelperComponent : TagHelperComponent`
 
-**HERE**: <https://docs.microsoft.com/en-us/aspnet/core/mvc/advanced/app-parts?view=aspnetcore-3.1>
+[Application Parts](https://docs.microsoft.com/en-us/aspnet/core/mvc/advanced/app-parts?view=aspnetcore-3.1)
+
+- an abstraction over the resources of an app.
+- allow ASP.NET Core to discover controllers, view components, tag helpers, Razor Pages, razor compilation sources, and more.
+
+**HERE**: <https://docs.microsoft.com/en-us/aspnet/core/mvc/controllers/application-model?view=aspnetcore-3.1>
 <https://stackoverflow.com/questions/52513554/mvc-net-core-sidebar-navigation-menu-placing-in-layout-cshtml>
 <https://www.yogihosting.com/jquery-ajax-aspnet-core/>
 
