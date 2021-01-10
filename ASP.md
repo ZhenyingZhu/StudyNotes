@@ -3161,9 +3161,11 @@ public class Test2Controller : ControllerBase
 - View injection can be useful to populate options in UI elements, such as dropdown lists. Create a service `ProfileOptionsService` and create several methods like `public List<string> ListGenders()` to list all the possible values.
 - Can override a DI service by override its name: `@inject MyHtmlHelper Html` changes the default Html tag helper.
 
+## Razor
+
 [Layout](https://docs.microsoft.com/en-us/aspnet/core/mvc/views/layout?view=aspnetcore-3.1)
 
-- common suer interface elements: app header, navigation, menu elements, footer
+- common user interface elements: app header, navigation, menu elements, footer
 - scripts and stylesheets are also defined in layout.
 - Can have multiple layouts and views choose which to use by `@{ Layout = "_Layout"; }`
 - Every layout should have `RenderBody`
@@ -3486,7 +3488,18 @@ public IActionResult Index()
 - representing the components of an MVC app.
 - determine which classes are considered to be controllers, which methods on those classes are actions, and how parameters and routing behave.
 
-**HERE**: <https://docs.microsoft.com/en-us/aspnet/core/mvc/controllers/areas?view=aspnetcore-3.1>
+[Areas](https://docs.microsoft.com/en-us/aspnet/core/mvc/controllers/areas?view=aspnetcore-3.1)
+
+- Areas provide a way to partition an ASP.NET Core Web app into smaller functional groups, each with its own set of Razor Pages, controllers, views, and models.
+
+[Filters](https://docs.microsoft.com/en-us/aspnet/core/mvc/controllers/filters?view=aspnetcore-3.1)
+
+- Filters in ASP.NET Core allow code to be run before or after specific stages in the request processing pipeline.
+- Built-in filters handle tasks:
+  - Authorization
+  - Response caching
+
+**HERE**: <https://docs.microsoft.com/en-us/aspnet/core/mvc/views/view-components?view=aspnetcore-3.1>
 <https://stackoverflow.com/questions/52513554/mvc-net-core-sidebar-navigation-menu-placing-in-layout-cshtml>
 <https://www.yogihosting.com/jquery-ajax-aspnet-core/>
 
