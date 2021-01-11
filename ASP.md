@@ -3499,7 +3499,25 @@ public IActionResult Index()
   - Authorization
   - Response caching
 
-**HERE**: <https://docs.microsoft.com/en-us/aspnet/core/mvc/views/view-components?view=aspnetcore-3.1>
+[View components](https://docs.microsoft.com/en-us/aspnet/core/mvc/views/view-components?view=aspnetcore-3.1)
+
+- View components don't use model binding, and only depend on the data provided when calling into it.
+- Renders a chunk rather than a whole response.
+- Includes the same separation-of-concerns and testability benefits found between a controller and view.
+- Can have parameters and business logic.
+- Is typically invoked from a layout page.
+- View components are intended to use for reusable rendering logic, such as:
+  - Dynamic navigation menus
+  - Tag cloud (where it queries the database)
+  - Login panel
+  - Shopping cart
+  - Recently published articles
+  - Sidebar content on a typical blog
+  - A login panel that would be rendered on every page and show either the links to log out or log in, depending on the log in state of the user
+- derive from `ViewComponent`. Define an `InvokeAsync` method that returns a `Task<IViewComponentResult>`.
+- Parameters come from the calling method, not HTTP. There's no model binding. Are not reachable directly as an HTTP endpoint. They're invoked from your code (usually in a view).
+
+**HERE**: <https://docs.microsoft.com/en-us/aspnet/core/mvc/views/view-components?view=aspnetcore-3.1#view-search-path>
 <https://stackoverflow.com/questions/52513554/mvc-net-core-sidebar-navigation-menu-placing-in-layout-cshtml>
 <https://www.yogihosting.com/jquery-ajax-aspnet-core/>
 
