@@ -53,6 +53,7 @@ To sync a remote branch:
 - After clone a project with submodule, run `git submodule init`
 - `git push command takes the --recurse-submodules=check` to push changes in submodules as well.
 - [Specify Branch](https://stackoverflow.com/questions/1777854/how-can-i-specify-a-branch-tag-when-adding-a-git-submodule#:~:text=git%20submodule%20add%20-b%20is%20not%20some%20magically,commit%20of%20a%20specified%20branch%20before%20populating%20it.)
+- to keep the folder update to date: `git submodule update --remote`. This actually check in the commit id.
 
 Under `.git\hooks` folder, can write a pre-commit and a post-commit sh script.
 
