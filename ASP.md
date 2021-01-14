@@ -3517,7 +3517,7 @@ public IActionResult Index()
 - derive from `ViewComponent`. Define an `InvokeAsync` method that returns a `Task<IViewComponentResult>`.
 - Parameters come from the calling method, not HTTP. There's no model binding. Are not reachable directly as an HTTP endpoint. They're invoked from your code (usually in a view).
 
-**HERE**: <https://docs.microsoft.com/en-us/aspnet/core/mvc/views/view-components?view=aspnetcore-3.1#view-search-path>
+**HERE**: <https://docs.microsoft.com/en-us/aspnet/core/mvc/views/view-components?view=aspnetcore-3.1#invoking-a-view-component>
 <https://stackoverflow.com/questions/52513554/mvc-net-core-sidebar-navigation-menu-placing-in-layout-cshtml>
 <https://www.yogihosting.com/jquery-ajax-aspnet-core/>
 
