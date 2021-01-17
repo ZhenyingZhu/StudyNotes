@@ -48,6 +48,7 @@ class Crawler:
 
     def get_first_page_url(self, main_html_page):
         try:
+            # Doesn't work when there is a warning message. In this case pass in "/?nw=always" to the end of the url
             gdtm_class = re.findall('div class="gdtm"(.*?)</a>', main_html_page)[0]
             first_page_url = re.findall('<a href="(.*?)">', gdtm_class)[0]
             return first_page_url
