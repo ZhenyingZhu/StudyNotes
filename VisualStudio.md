@@ -395,3 +395,19 @@ Need to install the [MSBuildTasks](https://github.com/loresoft/msbuildtasks) nug
 **HERE**: <https://docs.microsoft.com/en-us/nuget/quickstart/install-and-use-a-package-in-visual-studio>
 
 [NuProj doc](http://nuproj.net/documentation/)
+
+## Unit test
+
+MSTest vs. NUnit
+
+Solving UT not found issue
+
+```text
+Warning: No test is available in UnitTest.dll. Make sure that installed test discoverers & executors, platform & framework version settings are appropriate and try again.
+```
+
+[vstest.console.exe not discovering any of the tests](https://social.msdn.microsoft.com/Forums/vstudio/en-US/f44db2d5-61ae-428b-8412-5a3fc739daf7/vstestconsoleexe-not-discovering-any-of-the-tests?forum=vstest)
+
+[No test found. Make sure that installed test discoverers & executors, platform & framework version settings are appropriate and try again](https://stackoverflow.com/questions/34790339/no-test-found-make-sure-that-installed-test-discoverers-executors-platform)
+
+- [unit test doc](https://docs.microsoft.com/en-us/visualstudio/test/run-a-unit-test-as-a-64-bit-process?view=vs-2019) `<TargetPlatform>x64</TargetPlatform>`.
