@@ -411,3 +411,7 @@ Warning: No test is available in UnitTest.dll. Make sure that installed test dis
 [No test found. Make sure that installed test discoverers & executors, platform & framework version settings are appropriate and try again](https://stackoverflow.com/questions/34790339/no-test-found-make-sure-that-installed-test-discoverers-executors-platform)
 
 - [unit test doc](https://docs.microsoft.com/en-us/visualstudio/test/run-a-unit-test-as-a-64-bit-process?view=vs-2019) `<TargetPlatform>x64</TargetPlatform>`.
+
+MSBuild has so many weird errors!
+
+In the UT, if use Console.WriteLine, it logs in the trx.
