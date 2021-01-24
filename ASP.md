@@ -3522,8 +3522,6 @@ public IActionResult Index()
 - Invoking a view component as a Tag Helper: reg with `@addTagHelper *, MyWebApp`, then use the tag helper `<vc></vc>`.
 - In the controller: `return ViewComponent("PriorityList", new { maxPriority = 3, isDone = false });`
 
-(Downloaded and ran the project)
-
 **HERE**: <https://docs.microsoft.com/en-us/aspnet/core/mvc/views/view-components?view=aspnetcore-3.1#walkthrough-creating-a-simple-view-component>
 <https://stackoverflow.com/questions/52513554/mvc-net-core-sidebar-navigation-menu-placing-in-layout-cshtml>
 <https://www.yogihosting.com/jquery-ajax-aspnet-core/>
