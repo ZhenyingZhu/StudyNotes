@@ -39,4 +39,9 @@ Field start with no quote. But if there is a space, then need to put a quote.
 
 ### Computed Field Names
 
+- self or object locals cannot be accessed when field names are being computed, since the object is not yet constructed.
+- If a field name evaluates to null during object construction, the field is omitted. This works nicely with the default false branch of a conditional
+
+### Array and Object Comprehension
+
 **HERE**
