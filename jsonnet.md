@@ -44,4 +44,9 @@ Field start with no quote. But if there is a space, then need to put a quote.
 
 ### Array and Object Comprehension
 
+- `local arr = std.range(5, 8);`
+- `higher: [x + 3 for x in arr],`
+
+### Imports
+
 **HERE**
