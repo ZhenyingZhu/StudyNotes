@@ -375,8 +375,6 @@ Need to install the [MSBuildTasks](https://github.com/loresoft/msbuildtasks) nug
 
 [Write my own task](https://docs.microsoft.com/en-us/visualstudio/msbuild/task-writing?view=vs-2019)
 
-- 
-
 ## NuGet
 
 [NuGet intro](https://docs.microsoft.com/en-us/nuget/what-is-nuget)

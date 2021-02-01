@@ -1161,3 +1161,15 @@ File used by another process:
 
 - <https://stackoverflow.com/questions/26741191/ioexception-the-process-cannot-access-the-file-file-path-because-it-is-being>
 - <https://stackoverflow.com/questions/876473/is-there-a-way-to-check-if-a-file-is-in-use>
+
+### Numeric Suffixes
+
+```C#
+1;    // int
+1.0;  // double
+1.0f; // float
+1.0m; // decimal
+1u;   // uint
+1L;   // long
+1UL;  // ulong
+```
