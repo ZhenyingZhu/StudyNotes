@@ -24,4 +24,4 @@
 
 [Create .NET application](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-quickstart-dotnet)
 
-- 
+- Deploy local cluster: `Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Force -Scope CurrentUser`
