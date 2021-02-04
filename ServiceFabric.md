@@ -24,4 +24,6 @@
 
 [Create .NET application](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-quickstart-dotnet)
 
+- Visual studio install `Azure development` and `ASP.NET and web development`
+- Install the [Microsoft Azure Service Fabric SDK](https://www.microsoft.com/web/handlers/webpi.ashx?command=getinstallerredirect&appid=MicrosoftAzure-ServiceFabric-CoreSDK)
 - Deploy local cluster: `Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Force -Scope CurrentUser`
