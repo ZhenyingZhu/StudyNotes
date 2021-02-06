@@ -33,4 +33,5 @@
 - Start Service Fabric Manager: `C:\Program Files\Microsoft SDKs\Service Fabric\Tools\ServiceFabricLocalClusterManager\ServiceFabricLocalClusterManager.exe`
 - [Code example](https://github.com/Azure-Samples/service-fabric-dotnet-quickstart)
 - VotingWeb is an stateless app serves as the front end. It is also a service fabric app.
-- VotingData is a stateful app serves as the back end.
+- VotingData is a stateful app serves as the back end. The data is stoled in the reliable dict so no database is needed.
+- The VotingWeb is a MVC app. It uses ServiceRuntime to run as an service fabric app.
