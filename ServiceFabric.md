@@ -35,3 +35,30 @@
 - VotingWeb is an stateless app serves as the front end. It is also a service fabric app.
 - VotingData is a stateful app serves as the back end. The data is stoled in the reliable dict so no database is needed.
 - The VotingWeb is a MVC app. It uses ServiceRuntime to run as an service fabric app.
+
+### Concepts
+
+[Understand microservices](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-overview-microservices)
+
+- back-end store, middle-tier business logic, and a front-end user interface (UI).
+- old way monolithic application: The interfaces tended to be between the tiers, and a more tightly coupled design was used between components within each tier. Calls are over interprocess communication (IPC)
+- Microservices: each one service typically encapsulates simpler business functionality, which you can scale out or in, test, deploy, and manage independently.
+
+[Big Picture](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-content-roadmap)
+
+- service type: name/version assigned to a service's code packages. Defined in `ServiceManifest.xml`. e.g.: `VotingWebType`, `VotingDataType`
+- service package and manifest: disk directory containing the service type's ServiceManifest.xml file, which references the code, static data, and configuration packages for the service type.
+- application type: name/version assigned to a collection of service types. Defined in `ApplicationManifest.xml`. e.g.: `VotingType`.
+- application package and manifest.
+- The files in the application package directory are copied to the Service Fabric cluster's image store.
+- can then create a named application within the cluster
+- After creating a named application, you can create a named service from one of the application type's service types.
+
+- Service Fabric cluster: a network-connected set of virtual or physical machines
+- Node: A machine or VM that is part of a cluster. Each node runs `FabricHost.exe` which starts `Fabric.exe` and `FabricGateway.exe`
+- Application instance: a version of the application. Each application type instance is assigned a URI name that looks like fabric:/MyNamedApp.
+- Service instance url looks like: `fabric:/MyNamedApp/MyDatabase`
+- Stateless services can store persistent state in an external storage
+- A stateful service stores state within the service and uses Reliable Collections or Reliable Actors programming models to manage state.
+- partition scheme: Each partition is responsible for a portion of the complete state of the service, which is spread across the cluster's nodes. Within a partition there could be multiple replicas (for stateful) or instances (for stateless)
+- Replicas: Read and write operations are performed at one replica (called the Primary). Changes to state from write operations are replicated to multiple other replicas (called Active Secondaries).
