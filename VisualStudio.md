@@ -394,6 +394,10 @@ Need to install the [MSBuildTasks](https://github.com/loresoft/msbuildtasks) nug
 
 [NuProj doc](http://nuproj.net/documentation/)
 
+The file `nuget.config` is actually in the parent folder of the sln. If see any nuget not accessiable, check if the source defined in this config is wrong.
+
+If dotnet restore failed with 401, install `https://github.com/Microsoft/artifacts-credprovider`
+
 ## Unit test
 
 MSTest vs. NUnit
