@@ -417,3 +417,18 @@ Warning: No test is available in UnitTest.dll. Make sure that installed test dis
 MSBuild has so many weird errors!
 
 In the UT, if use Console.WriteLine, it logs in the trx.
+
+## Some Really Weird Build Issue
+
+<https://stackoverflow.com/questions/42867434/could-not-load-file-or-assembly-system-valuetuple>
+
+```C#
+  <dependentAssembly>
+    <assemblyIdentity name="System.ValueTuple" publicKeyToken="cc7b13ffcd2ddd51" culture="neutral" />
+    <bindingRedirect oldVersion="0.0.0.0-4.0.3.0" newVersion="4.0.3.0" />
+  </dependentAssembly>
+```
+
+How to check a DLL version: <https://stackoverflow.com/questions/29772065/how-to-check-the-version-of-an-assembly-dll#:~:text=%20There%20is%20a%20couple%20of%20ways%20to,it%20in%20code:Assembly%20assembly%20=%20Assembly.LoadFrom...%20More>
+
+Use `C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.6.2 Tools\ildasm.exe`
