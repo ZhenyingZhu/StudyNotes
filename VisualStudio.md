@@ -432,3 +432,5 @@ In the UT, if use Console.WriteLine, it logs in the trx.
 How to check a DLL version: <https://stackoverflow.com/questions/29772065/how-to-check-the-version-of-an-assembly-dll#:~:text=%20There%20is%20a%20couple%20of%20ways%20to,it%20in%20code:Assembly%20assembly%20=%20Assembly.LoadFrom...%20More>
 
 Use `C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.6.2 Tools\ildasm.exe`
+
+`[Reflection.AssemblyName]::GetAssemblyName( (Get-Item .\System.ValueTuple.dll).FullName).Version`
