@@ -458,3 +458,7 @@ Install `xrdp`.
 ## repo security
 
 Should not check in pfx.
+
+## Azure template
+
+<https://azure.microsoft.com/en-us/resources/templates/minecraft-on-ubuntu/>
