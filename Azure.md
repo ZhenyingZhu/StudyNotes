@@ -462,3 +462,5 @@ Should not check in pfx.
 ## Azure template
 
 <https://azure.microsoft.com/en-us/resources/templates/minecraft-on-ubuntu/>
+
+- Notice the oracle java install is failing.
