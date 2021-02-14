@@ -2338,3 +2338,5 @@ chmod +x asf-start.sh
 ./asf-start.sh
 pgrep -x "ArchiSteamFarm"
 ```
+
+[Systemctl](https://www.digitalocean.com/community/tutorials/how-to-use-systemctl-to-manage-systemd-services-and-units#:~:text=To%20tell%20systemd%20to%20start,service)
