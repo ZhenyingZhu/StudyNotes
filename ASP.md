@@ -3521,8 +3521,9 @@ public IActionResult Index()
   - an [example](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/mvc/views/view-components/sample/ViewCompFinal/Views/ToDo/IndexFinal.cshtml): `@await Component.InvokeAsync("PriorityList", new { maxPriority = 4, isDone = true })`
 - Invoking a view component as a Tag Helper: reg with `@addTagHelper *, MyWebApp`, then use the tag helper `<vc></vc>`.
 - In the controller: `return ViewComponent("PriorityList", new { maxPriority = 3, isDone = false });`
-- [StarterViewComp code sample](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/views/view-components/sample/StarterViewComp)
-
+- [code sample](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/views/view-components/sample/)
+  - `StarterViewComp` is the begining.
+  - Create a `ViewComponent` folder to contain view components.
 
 **HERE**: <https://docs.microsoft.com/en-us/aspnet/core/mvc/views/view-components?view=aspnetcore-3.1#walkthrough-creating-a-simple-view-component>
 <https://stackoverflow.com/questions/52513554/mvc-net-core-sidebar-navigation-menu-placing-in-layout-cshtml>
