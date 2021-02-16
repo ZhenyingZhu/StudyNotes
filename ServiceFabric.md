@@ -62,3 +62,7 @@
 - A stateful service stores state within the service and uses Reliable Collections or Reliable Actors programming models to manage state.
 - partition scheme: Each partition is responsible for a portion of the complete state of the service, which is spread across the cluster's nodes. Within a partition there could be multiple replicas (for stateful) or instances (for stateless)
 - Replicas: Read and write operations are performed at one replica (called the Primary). Changes to state from write operations are replicated to multiple other replicas (called Active Secondaries).
+
+[Volumes](https://docs.microsoft.com/en-us/azure/service-fabric-mesh/service-fabric-mesh-storing-state#volumes)
+
+- Volumes are directories that get mounted inside your container instances that you can use to persist state.
