@@ -72,3 +72,7 @@
 [Naming Service](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-reliable-services-communication)
 
 - The Naming Service is a registrar for services and their addresses that each instance or replica of the service is listening on.
+
+[Management Client](https://docs.microsoft.com/en-us/python/api/azure-mgmt-servicefabric/azure.mgmt.servicefabric.ServiceFabricManagementClient?view=azure-python)
+
+- `ServiceFabricManagementClient` can be used to connect to cluster.
