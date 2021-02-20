@@ -76,3 +76,9 @@
 [Management Client](https://docs.microsoft.com/en-us/python/api/azure-mgmt-servicefabric/azure.mgmt.servicefabric.ServiceFabricManagementClient?view=azure-python)
 
 - `ServiceFabricManagementClient` can be used to connect to cluster.
+
+[Service Fabric temp folder](https://docs.microsoft.com/en-us/dotnet/api/system.fabric.codepackageactivationcontext.tempdirectory?view=azure-dotnet)
+
+- A temp folder that can be used for SF. But how the lifecycle does it have?
+
+[SF work folder](https://social.msdn.microsoft.com/Forums/sqlserver/en-US/3d7b0d30-b084-4253-9a3e-49f9f1b9c1b2/how-do-i-get-files-into-the-work-directory-of-a-stateless-service?forum=AzureServiceFabric)
