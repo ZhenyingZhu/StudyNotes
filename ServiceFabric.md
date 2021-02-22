@@ -82,3 +82,5 @@
 - A temp folder that can be used for SF. But how the lifecycle does it have?
 
 [SF work folder](https://social.msdn.microsoft.com/Forums/sqlserver/en-US/3d7b0d30-b084-4253-9a3e-49f9f1b9c1b2/how-do-i-get-files-into-the-work-directory-of-a-stateless-service?forum=AzureServiceFabric)
+
+[SF App manifast](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-application-and-service-manifests)
