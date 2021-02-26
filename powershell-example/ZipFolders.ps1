@@ -6,4 +6,10 @@
         Test Compress.
 #>
 
-Compress-Archive -Force -Path .\FoldersToZip -DestinationPath .\Draft.zip
+# https://stackoverflow.com/questions/18847145/loop-through-files-in-a-directory-using-powershell
+
+Get-ChildItem -Path "FoldersToZip" |
+ForEach-Object {
+    $folderName = $_.FullName
+    Compress-Archive -Force -Path $folderName -DestinationPath "$folderName.zip"
+}
