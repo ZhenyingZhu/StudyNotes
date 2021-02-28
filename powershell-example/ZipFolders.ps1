@@ -8,13 +8,17 @@
 
 # https://stackoverflow.com/questions/18847145/loop-through-files-in-a-directory-using-powershell
 
-Get-ChildItem -Path "FoldersToZip" -Recurse
-#|
-#ForEach-Object {
-    # $folderName = $_.FullName
-    # Compress-Archive -Force -Path $folderName -DestinationPath "$folderName.zip"
-    # Write-Host $_
-#}
+Get-ChildItem -Path "FoldersToZip" -Recurse |
+ForEach-Object {
+    $itemName = $_.FullName
+    $isFolder = Test-Path -Path $itemName -PathType Container # Leaf is file
+    if ($isFolder)
+    {
+        Write-Host "zipping $itemName..."
+        Compress-Archive -Force -Path $itemName -DestinationPath "$itemName.zip"
+    }
+    
+}
 
 
 
