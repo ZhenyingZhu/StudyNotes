@@ -20,5 +20,4 @@ ForEach-Object {
     
 }
 
-
-
+# Powershell.exe -command "& { Compress-Archive -Force -path "xyz" -DestinationPath xyz.zip }"
