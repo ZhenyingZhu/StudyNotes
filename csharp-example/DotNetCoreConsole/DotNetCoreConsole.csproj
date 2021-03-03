@@ -14,7 +14,7 @@
 
   <!-- use: msbuild -target:MyTarget -->
   <UsingTask TaskName="SimpleTask" AssemblyName="DotNetCoreConsole" />
-  <Target Name="MyTarget">
+  <Target Name="MyTarget" BeforeTargets="Build">
     <SimpleTask />
   </Target>
 
