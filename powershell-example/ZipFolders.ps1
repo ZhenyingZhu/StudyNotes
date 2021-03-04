@@ -28,6 +28,10 @@ ForEach-Object {
         Write-Host "zipping $itemName..."
         Compress-Archive -Force -Path $itemName -DestinationPath "$itemName.zip"
     }
+    elseif (-Not $isFolder)
+    {
+
+    }
 }
 
 # Powershell.exe -command "& { Compress-Archive -Force -path "xyz" -DestinationPath xyz.zip }"
