@@ -30,7 +30,9 @@ ForEach-Object {
     }
     elseif (-Not $isFolder)
     {
-
+        
+        # print a string with parameters and underscore:
+        Write-Host "${itemName}_ is not a folder."
     }
 }
 
