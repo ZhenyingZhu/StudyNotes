@@ -100,3 +100,7 @@ string workFolder = this.Context.CodePackageActivationContext.WorkDirectory;
 - Config package is the contents of the Config directory under PackageRoot that contains an independently-updateable and versioned set of custom configuration settings for your service.
 
 <https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-application-lifecycle>
+
+<https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-how-to-parameterize-configuration-files>
+
+<https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-application-upgrade-parameters>
