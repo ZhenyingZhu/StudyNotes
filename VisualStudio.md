@@ -434,3 +434,16 @@ How to check a DLL version: <https://stackoverflow.com/questions/29772065/how-to
 Use `C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.6.2 Tools\ildasm.exe`
 
 `[Reflection.AssemblyName]::GetAssemblyName( (Get-Item .\System.ValueTuple.dll).FullName).Version`
+
+## Sign files
+
+Can use [LocalSigning](https://github.com/microsoft/service-fabric/blob/master/src/packages.ossbuild.config)
+
+- `<package id="LocalSigning" version="2.0.9.3" allowedVersions="[2,3)" autoUpgrade="true" />`
+- This is a nuget that sign the file with a cert so others can use it to know that the content has not been changed by someone not the author
+- To use it: `<Import Project="$(PkgLocalSigning)\LocalSigning.targets" />`
+- Need to define an item group: `<FilesToSign Include="**\*.zip" />`
+
+[Does not work with zip](https://superuser.com/questions/426337/is-it-possible-to-sign-archives)
+
+- zip should use a checksum instead
