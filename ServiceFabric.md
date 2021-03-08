@@ -104,3 +104,5 @@ string workFolder = this.Context.CodePackageActivationContext.WorkDirectory;
 <https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-how-to-parameterize-configuration-files>
 
 <https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-application-upgrade-parameters>
+
+<https://stackoverflow.com/questions/33928204/where-do-you-set-and-access-run-time-configuration-parameters-per-environment-fo/45998366>
