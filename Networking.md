@@ -732,6 +732,8 @@ Fiddler decrept HTTPS traffic:
 - thumbprint is a computed field, i.e. not a part of the certificate data itself.
 - Windows always uses SHA1 to calculate the thumbprint hash apon the whole certificate.
 
+[server certificate is not configured properly with HTTP.SYS in the HTTPS case](https://stackoverflow.com/questions/2013880/wcf-error-this-could-be-due-to-the-fact-that-the-server-certificate-is-not-conf)
+
 ## Other notes
 
 [No buffer space available](https://community.sophos.com/products/unified-threat-management/f/management-networking-logging-and-reporting/31186/105-no-buffer-space-available)
