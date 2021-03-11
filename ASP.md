@@ -4312,6 +4312,10 @@ Service oriented: <https://docs.microsoft.com/en-us/dotnet/framework/wcf/whats-w
 
 <https://stackoverflow.com/questions/13386471/fixing-slow-initial-load-for-iis>
 
+## HTTP SYS
+
+[Error logging in HTTP APIs](https://docs.microsoft.com/en-us/troubleshoot/aspnet/error-logging-http-apis)
+
 ## ReactJS.NET
 
 **TODO**:
