@@ -3525,6 +3525,7 @@ public IActionResult Index()
   - `StarterViewComp` is the begining.
   - Create a `ViewComponent` folder to contain view components.
   - The `XYZViewComponent` auto mapped to XYZ class.
+  - Finally completed version: [ViewCompFinal](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/views/view-components/sample/ViewCompFinal)
 
 **HERE**: <https://docs.microsoft.com/en-us/aspnet/core/mvc/views/view-components?view=aspnetcore-3.1#walkthrough-creating-a-simple-view-component>
 <https://stackoverflow.com/questions/52513554/mvc-net-core-sidebar-navigation-menu-placing-in-layout-cshtml>
