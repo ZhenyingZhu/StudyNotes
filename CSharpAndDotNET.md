@@ -1173,3 +1173,7 @@ File used by another process:
 1L;   // long
 1UL;  // ulong
 ```
+
+### OutOfMemory
+
+<https://docs.microsoft.com/en-us/dotnet/api/system.outofmemoryexception?view=net-5.0>
