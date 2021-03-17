@@ -1178,6 +1178,6 @@ File used by another process:
 
 <https://docs.microsoft.com/en-us/dotnet/api/system.outofmemoryexception?view=net-5.0>
 
-### Enbedded resources
+### Embedded resources
 
 <https://stackoverflow.com/questions/3314140/how-to-read-embedded-resource-text-file>

@@ -680,3 +680,15 @@ Calendar
 - Google Reader(RSS Reader): <b>?</b>
 
 
+# Cache
+
+cache:
+- what: a mem
+- why: reduce read time
+- how: read: write: 
+- TTL: 
+- modes:
+  - through: write: cache -> DB write num is less
+  - back: 
+  - aside: server write to DB/cache separately. memcached+mysql
+- hit rate:
