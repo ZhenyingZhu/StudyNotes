@@ -12,16 +12,17 @@
     <PackageReference Include="Newtonsoft.Json.Schema" Version="3.0.13" />
   </ItemGroup>
 
-  <!-- use: msbuild -target:MyTarget -->
-  <UsingTask TaskName="SimpleTask" AssemblyName="DotNetCoreConsole" />
-  <Target Name="MyTarget" BeforeTargets="Build">
-    <SimpleTask />
-  </Target>
-
   <ItemGroup>
     <TestExcludeFiles Include="**\*" Exclude="SimpleTask.*" />
   </ItemGroup>
 
-  <!-- Message Text="TestExcludeFiles = @(TestExcludeFiles)" Importance="High" / -->
+  <!-- use: msbuild -target:MyTarget -->
+  <!-- it doesn't work: https://stackoverflow.com/questions/57036435/msbuild-usingtask-declaration-with-assemblyfile-pointing-to-dll-of-current-proje -->
+  <!--UsingTask TaskName="SimpleTask" AssemblyFile="$(OutputPath)DotNetCoreConsole.dll" /-->
+  <Target Name="MyTarget"> <!--AfterTargets="Build"-->
+    <Message Text="$(OutputPath),$(TargetFramework)" Importance="High" />
+    <Message Text="TestExcludeFiles = @(TestExcludeFiles)" Importance="High" />
+    <SimpleTask />
+  </Target>
 
 </Project>

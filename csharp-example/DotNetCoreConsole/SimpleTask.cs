@@ -9,6 +9,7 @@ namespace DotNetCoreConsole
         // Seems like MSBuild work differently then the dotnet core projects.
         public override bool Execute()
         {
+            Console.WriteLine("Hello World");
             return true;
         }
     }
