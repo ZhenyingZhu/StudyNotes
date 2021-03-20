@@ -3524,7 +3524,7 @@ public IActionResult Index()
 - [code sample](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/views/view-components/sample/)
   - `StarterViewComp` is the begining.
   - Create a `ViewComponent` folder to contain view components.
-  - The `XYZViewComponent` auto mapped to XYZ class.
+  - The `XYZViewComponent` auto mapped to XYZ class. Create a `PriorityListViewComponent`
   - Finally completed version: [ViewCompFinal](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/views/view-components/sample/ViewCompFinal). Changes in [View Components](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/views/view-components/sample/ViewCompFinal/ViewComponents)
 
 
