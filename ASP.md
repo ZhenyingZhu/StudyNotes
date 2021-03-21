@@ -3524,7 +3524,11 @@ public IActionResult Index()
 - [code sample](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/views/view-components/sample/)
   - `StarterViewComp` is the begining.
   - Create a `ViewComponent` folder to contain view components.
-  - The `XYZViewComponent` auto mapped to XYZ class. Create a `PriorityListViewComponent`
+  - The `XYZViewComponent` auto mapped to XYZ class. Create a `PriorityListViewComponent`. It can be in any folders.
+  - The XYZ is same as the view name. It is also the name of the class component when refered in a view.
+  - Create a razor view: `Views/Shared/Components/PriorityList/Default.cshtml`. If this is binded to a controller, then replace the `Shared` with the controller name. The folder name must match the view component name.
+  - Because `InvokeAsync()` doesn't pass in a view name, it uses the `Default` view.
+  - 
   - Finally completed version: [ViewCompFinal](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/views/view-components/sample/ViewCompFinal). Changes in [View Components](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/views/view-components/sample/ViewCompFinal/ViewComponents)
 
 
