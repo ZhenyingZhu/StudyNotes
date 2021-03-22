@@ -796,3 +796,20 @@ Session:
   - transaction
   - update schema is hard
   - query is hard
+
+Sharding/partition
+
+- what: separate data
+- why: distributed
+- how: hash
+- questions:
+  - single point of failure
+  - virtial sharing: waste space, query on two machines need more time
+
+replica
+
+- what: copy
+- why: prevent single machine failure cause system failure
+- how: primary - secondary
+- questions:
+  - how to write
