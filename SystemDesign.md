@@ -813,3 +813,10 @@ replica
 - how: primary - secondary
 - questions:
   - how to write
+
+News feed
+
+- tables:
+  - feed: author, time, article
+  - user: user id, user name
+  - friendship: from, to. single direction, double direction.
