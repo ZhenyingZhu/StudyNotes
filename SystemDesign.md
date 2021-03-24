@@ -820,3 +820,11 @@ News feed
   - feed: author, time, article
   - user: user id, user name
   - friendship: from, to. single direction, double direction.
+
+Distributed file system
+
+- what: big file
+- why: cheap
+- how:
+  - main: metadata (position), worker: chunk
+  - read: if the worker is not available, client go to backup.
