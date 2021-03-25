@@ -828,3 +828,11 @@ Distributed file system
 - how:
   - main: metadata (position), worker: chunk
   - read: if the worker is not available, client go to backup.
+
+Collab file editor
+
+- what: editor, remote, real time, save
+- why: remote work
+- how:
+  - session:
+  - message queue:
