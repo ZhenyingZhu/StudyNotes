@@ -834,5 +834,7 @@ Collab file editor
 - what: editor, remote, real time, save
 - why: remote work
 - how:
-  - session:
-  - message queue:
+  - session: store the current content.
+  - send request: the diff metadata: the offset, the op (add, delete, replace).
+  - receive request: updates as well
+  - message queue: to prevent too many changes cannot be processed.
