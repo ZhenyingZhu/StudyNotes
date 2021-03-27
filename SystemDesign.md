@@ -838,3 +838,4 @@ Collab file editor
   - send request: the diff metadata: the offset, the op (add, delete, replace).
   - receive request: updates as well
   - message queue: to prevent too many changes cannot be processed.
+  - also need to deal with failure case.
