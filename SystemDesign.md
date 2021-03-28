@@ -831,10 +831,18 @@ Distributed file system
 
 Collab file editor
 
-- what: editor, remote, real time, save
+- what:
+  - create
+  - editor, remote, real time, save
 - why: remote work
 - how:
+  - store: distributed file system. every 3 mins merge and store
+  - connection: use WebSocket.
+  - redis: store the temp change
   - session: store the current content.
+  - Use [Operational Transformation](https://zhuanlan.zhihu.com/p/30890457)
+  - each line is a linked list node
+  - a hash table to store node pointers
   - send request: the diff metadata: the offset, the op (add, delete, replace).
   - receive request: updates as well
   - message queue: to prevent too many changes cannot be processed.
