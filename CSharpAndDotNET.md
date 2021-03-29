@@ -1148,6 +1148,8 @@ Define a rule to search.
 - Create an instance for a special type not using `new`: `Activator.CreateInstance()`. [Doc](https://docs.microsoft.com/en-us/dotnet/api/system.activator.createinstance?view=netcore-3.1)
 - To get more info of the type: `myType.IsConstructedGenericType` and `myType.GetGenericTypeDefinition()`
 
+- To make a method that bind to a value type to accept the run time value type: `MakeGenericMethod(valueType)`
+
 Traserve Assembly
 
 - <https://stackoverflow.com/questions/20528291/loop-through-all-classes-in-a-given-namespace-and-create-an-object-for-each>
