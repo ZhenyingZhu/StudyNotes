@@ -806,7 +806,7 @@ Sharding/partition
   - single point of failure
   - virtial sharing: waste space, query on two machines need more time
 
-replica
+Replica
 
 - what: copy
 - why: prevent single machine failure cause system failure
@@ -847,3 +847,10 @@ Collab file editor
   - receive request: updates as well
   - message queue: to prevent too many changes cannot be processed.
   - also need to deal with failure case.
+
+Spring boot
+
+- M: Java bean
+- V: use FE tech
+- C: java
+- cache: <https://spring.io/guides/gs/caching/>
