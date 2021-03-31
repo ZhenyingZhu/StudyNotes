@@ -854,3 +854,11 @@ Spring boot
 - V: use FE tech
 - C: java
 - cache: <https://spring.io/guides/gs/caching/>
+
+Big table
+
+- what: a huge table. support query, update (add, update, delete).
+- why:
+- how:
+  - a machine with index, record the machine id.
+  - store in the mem first, when mem is full, start writting to disk.
