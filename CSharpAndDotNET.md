@@ -1183,3 +1183,9 @@ File used by another process:
 ### Embedded resources
 
 <https://stackoverflow.com/questions/3314140/how-to-read-embedded-resource-text-file>
+
+### Singleton
+
+<https://stackoverflow.com/questions/12316406/thread-safe-c-sharp-singleton-pattern>
+
+<https://csharpindepth.com/Articles/Singleton#dcl>
