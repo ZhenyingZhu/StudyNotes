@@ -861,4 +861,5 @@ Big table
 - why:
 - how:
   - a machine with index, record the machine id.
-  - store in the mem first, when mem is full, start writting to disk.
+  - store in the mem first, when mem is full, start writting to disk. The chunk is written that is sorted.
+  - Sharding: ring.
