@@ -863,3 +863,15 @@ Big table
   - a machine with index, record the machine id.
   - store in the mem first, when mem is full, start writting to disk. The chunk is written that is sorted.
   - Sharding: ring.
+
+Online chat
+
+- what: real time, with or without notification, multiple (>2) people, always with same thread
+- why:
+- chanllege: real time.
+- how:
+  - cookie, session
+  - message queue
+  - serialization
+  - operation:
+    - create chat
