@@ -62,3 +62,8 @@ Under `.git\hooks` folder, can write a pre-commit and a post-commit sh script.
 `git -am "msg"` can add and commit together (Hum? Seems like not working, maybe add an [alias](https://stackoverflow.com/questions/2419249/how-can-i-stage-and-commit-all-files-including-newly-added-files-using-a-singl)).
 
 `git submodule` delete the folder to resolve un-commited changes.
+
+git stuck at auto packing the repository for optimum performance
+
+- <https://stackoverflow.com/questions/28633956/why-does-git-keep-telling-me-its-auto-packing-the-repository-in-background-for>
+- <https://gist.github.com/xiaoda/2d1ae0417d48dcbd972aafcdc098b4b6>
