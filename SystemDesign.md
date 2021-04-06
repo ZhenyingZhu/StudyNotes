@@ -875,3 +875,12 @@ Online chat
   - serialization
   - operation:
     - create chat
+- **HERE**
+
+Stream
+
+- what: upload, view, share, thumbnail, progress bar, up/down vote, subscription, watchlist, recommandation, report, search, comments, notification.
+- why: encoding to give the same experise
+- chanllege: upload, encoding, video, thumbnail.
+- how: first upload with resume and break point, then on server side encoding
+  - worker server: give a video id, distributed lock.
