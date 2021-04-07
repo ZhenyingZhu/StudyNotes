@@ -41,6 +41,11 @@ namespace VotingWeb.Controllers
             Uri serviceName = VotingWeb.GetVotingDataServiceName(this.serviceContext);
             Uri proxyAddress = this.GetProxyAddress(serviceName);
 
+            // reading the config in the settings.xml
+            var config = this.serviceContext.CodePackageActivationContext.GetConfigurationPackageObject("Config");
+            var settings = config.Settings.Sections["MyConfigSection"];
+            string val = settings.Parameters["MyParameter"].Value;
+
             ServicePartitionList partitions = await this.fabricClient.QueryManager.GetPartitionListAsync(serviceName);
 
             List<KeyValuePair<string, int>> result = new List<KeyValuePair<string, int>>();
@@ -57,7 +62,13 @@ namespace VotingWeb.Controllers
                         continue;
                     }
 
-                    result.AddRange(JsonConvert.DeserializeObject<List<KeyValuePair<string, int>>>(await response.Content.ReadAsStringAsync()));
+                    var voteDatas = JsonConvert.DeserializeObject<List<KeyValuePair<string, int>>>(await response.Content.ReadAsStringAsync());
+                    foreach (KeyValuePair<string, int> voteData in voteDatas)
+                    {
+                        KeyValuePair<string, int> newData = new KeyValuePair<string, int>(val + voteData.Key, voteData.Value);
+                        result.Add(newData);
+                    }
+
                 }
             }
 

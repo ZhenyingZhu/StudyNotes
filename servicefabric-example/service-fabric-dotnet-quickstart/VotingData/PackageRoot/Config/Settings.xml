@@ -7,6 +7,6 @@
   </Section>
   -->
   <Section Name="MyConfigSection">
-    <Parameter Name="MyParameter" Value="Value1" />
+    <Parameter Name="MyParameter" Value="Prefix: " />
   </Section>
 </Settings>
