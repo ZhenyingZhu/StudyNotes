@@ -44,6 +44,7 @@ namespace VotingWeb.Controllers
             // reading the config in the settings.xml
             var config = this.serviceContext.CodePackageActivationContext.GetConfigurationPackageObject("Config");
             var settings = config.Settings.Sections["MyConfigSection"];
+            string name = settings.Parameters["MyParameter"].Name;
             string val = settings.Parameters["MyParameter"].Value;
 
             ServicePartitionList partitions = await this.fabricClient.QueryManager.GetPartitionListAsync(serviceName);

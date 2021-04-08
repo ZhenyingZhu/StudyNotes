@@ -884,3 +884,7 @@ Stream
 - chanllege: upload, encoding, video, thumbnail.
 - how: first upload with resume and break point, then on server side encoding
   - worker server: give a video id, distributed lock.
+  - cache store the resume and break point.
+  - video table: name, video id as the key, hash of the video content, so that users can have multiple video id, resolution, size, duration, language
+  - trunk table: video id, trunk id, start/end time, folder+machine
+  - preload
