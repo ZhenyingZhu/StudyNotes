@@ -108,3 +108,5 @@ string workFolder = this.Context.CodePackageActivationContext.WorkDirectory;
 <https://stackoverflow.com/questions/33928204/where-do-you-set-and-access-run-time-configuration-parameters-per-environment-fo/45998366>
 
 <https://stackoverflow.com/questions/58932068/how-do-i-update-service-fabric-application-parameter-using-powershell>
+
+<https://docs.microsoft.com/en-us/dotnet/api/system.fabric.fabricclient?view=azure-dotnet>
