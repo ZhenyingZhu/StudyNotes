@@ -881,10 +881,20 @@ Stream
 
 - what: upload, view, share, thumbnail, progress bar, up/down vote, subscription, watchlist, recommandation, report, search, comments, notification.
 - why: encoding to give the same experise
-- chanllege: upload, encoding, video, thumbnail.
+- challenge: upload, encoding, video, thumbnail.
 - how: first upload with resume and break point, then on server side encoding
   - worker server: give a video id, distributed lock.
   - cache store the resume and break point.
   - video table: name, video id as the key, hash of the video content, so that users can have multiple video id, resolution, size, duration, language
   - trunk table: video id, trunk id, start/end time, folder+machine
   - preload
+
+Map Reduce
+
+- what: programming model, processing and generating big data sets, parallel, distributed algorithm
+- why: cost
+- challenge: data size, time bond
+- how:
+  - where is the input come from: web crawler. sharding using content hash/shuffle/message queue
+  - process: get cutom map algorithm
+  - map output: stream, dispatcher, reducer input
