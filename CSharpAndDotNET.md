@@ -1189,3 +1189,7 @@ File used by another process:
 <https://stackoverflow.com/questions/12316406/thread-safe-c-sharp-singleton-pattern>
 
 <https://csharpindepth.com/Articles/Singleton#dcl>
+
+### Stream
+
+<https://docs.microsoft.com/en-us/dotnet/api/system.io.file.openread?view=net-5.0>
