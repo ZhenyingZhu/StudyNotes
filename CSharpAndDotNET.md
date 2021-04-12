@@ -1039,6 +1039,10 @@ If use `await` without `Task`, each step still runs sequencially. When init a `T
 
 [Example](https://stackoverflow.com/questions/14455293/how-and-when-to-use-async-and-await)
 
+[Result vs. await](https://stackoverflow.com/questions/36594857/tasktresult-result-vs-await-a-task)
+
+- `Task.Result` blocks the current thread until it returns.
+
 ### Inversion of control
 
 <https://en.wikipedia.org/wiki/Inversion_of_control>
