@@ -898,3 +898,4 @@ Map Reduce
   - where is the input come from: web crawler. sharding using content hash/shuffle/message queue
   - process: get cutom map algorithm
   - map output: stream, dispatcher, reducer input
+  - main: maintain queue for mapper, reducer. mapper should store the output.
