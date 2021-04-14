@@ -899,3 +899,26 @@ Map Reduce
   - process: get cutom map algorithm
   - map output: stream, dispatcher, reducer input
   - main: maintain queue for mapper, reducer. mapper should store the output.
+
+Twitter
+
+- what: weibo
+- why: news feed
+- challenges:
+  - R/W QPS: retweet
+  - hot spot
+  - reverse index: big size
+  - big storage: media content
+  - Ranking
+- Components
+  - Index
+  - Search
+  - Ranking
+- Redis: cache
+- File store: blob store
+- Hadoop: anal user info
+- MySQL: strutured data
+- hot cold data isolation
+- read, write isolation
+- early bird: search engine
+- HDFS store the index
