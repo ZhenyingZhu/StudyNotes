@@ -27,16 +27,18 @@ namespace DotNetCoreConsole
                         Console.WriteLine(entry.FullName);
                         string unzipFilePath = Path.Combine(unzipPath, entry.FullName);
                         FileInfo unzipFile = new FileInfo(unzipFilePath);
+                        if (unzipFile.Extension != ".ini")
+                        {
+                            continue;
+                        }
+
                         // https://stackoverflow.com/questions/2955402/how-do-i-create-directory-if-it-doesnt-exist-to-create-a-file
                         unzipFile.Directory.Create();
 
                         using (StreamReader sr = new StreamReader(entry.Open()))
+                        using (StreamWriter sw = new StreamWriter(unzipFilePath, false))
                         {
-                            using(FileStream fileStream = new FileStream(unzipFilePath, FileMode.OpenOrCreate, FileAccess.Write))
-                            {
-                                
-                            }
-
+                            sw.Write(sr.ReadToEnd());
                         }
                     }
                 }
