@@ -24,8 +24,8 @@ namespace DotNetCoreConsole
                 {
                     foreach (ZipArchiveEntry entry in zip.Entries)
                     {
-                        Console.WriteLine(entry.FullName);
                         string unzipFilePath = Path.Combine(unzipPath, entry.FullName);
+                        Console.WriteLine(unzipFilePath);
                         FileInfo unzipFile = new FileInfo(unzipFilePath);
                         if (unzipFile.Extension != ".ini")
                         {
@@ -41,6 +41,12 @@ namespace DotNetCoreConsole
                             sw.Write(sr.ReadToEnd());
                         }
                     }
+                }
+
+                DirectoryInfo unzipFolder = new DirectoryInfo(Path.Combine(unzipPath, "xyz"));
+                foreach (FileInfo existingIniFile in unzipFolder.GetFiles("*.ini"))
+                {
+                    Console.WriteLine(existingIniFile.FullName);
                 }
             }
             catch (Exception e)
