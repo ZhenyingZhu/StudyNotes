@@ -909,7 +909,8 @@ Twitter
   - hot spot
   - reverse index: big size
   - big storage: media content
-  - Ranking
+  - Ranking: hot, whether subscription, Timeliness
+  - tokenizer: parsing the message.
 - Components
   - Index
   - Search
