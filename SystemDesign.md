@@ -905,6 +905,7 @@ Twitter
 - what: weibo
 - why: news feed
 - challenges:
+  - distributed id: [snow flake](https://zhuanlan.zhihu.com/p/85837641)
   - R/W QPS: retweet
   - hot spot
   - reverse index: big size
