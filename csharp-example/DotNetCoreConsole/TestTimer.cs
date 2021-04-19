@@ -4,38 +4,44 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Timers;
+using System.Threading;
+using System.Threading.Tasks;
+using Timer = System.Timers.Timer;
+
 
 namespace DotNetCoreConsole
 {
     public class TestTimer
     {
-        private static Timer timer;
-        internal static TimeSpan? TimerInterval { get; set; }
+        private Timer timer;
+        private readonly TimeSpan timerInterval = TimeSpan.FromSeconds(3);
+
+        private int counter = 0;
 
         public static void TestMain()
         {
-            SetupRefresh();
-
+            TestTimer t = new TestTimer();
+            t.SetupRefresh();
 
             Console.WriteLine("Type anything to end.");
-            Console.ReadLine();
+            var str = Console.ReadLine();
+
+            // t.timer.Enabled = false;
+            Console.WriteLine($"exit {str}");
         }
 
-        private static void SetupRefresh()
+        private void SetupRefresh()
         {
-            if (TimerInterval == null)
-            {
-                TimerInterval = TimeSpan.FromSeconds(3);
-            }
-
-            timer = new Timer(TimerInterval.Value.TotalMilliseconds);
-            timer.Elapsed += (sender, args) => DoSomething();
+            timer = new Timer(this.timerInterval.TotalMilliseconds);
+            timer.Elapsed += (sender, args) => this.DoSomething().Wait();
             timer.Enabled = true;
         }
 
-        private static void DoSomething()
+        private async Task DoSomething()
         {
-            Console.WriteLine("Doing someting");
+            Console.WriteLine($"Start do someting {this.counter++}. {DateTime.Now}");
+            await Task.Delay(2000);
+            Console.WriteLine($"Done someting {this.counter}. {DateTime.Now}");
         }
     }
 }
