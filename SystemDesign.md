@@ -875,7 +875,7 @@ Online chat
   - serialization
   - operation:
     - create chat
-- **HERE**
+- **TODO**
 
 Stream
 
@@ -924,3 +924,15 @@ Twitter
 - read, write isolation
 - early bird: search engine
 - HDFS store the index
+
+B+ Tree
+
+- what: each node points to a pointer
+- why: make the search
+- how: **TODO**
+
+Index
+
+- what: a data struture to help with search
+- MyISAM, InnoDB: storage engine.
+- **TODO**
