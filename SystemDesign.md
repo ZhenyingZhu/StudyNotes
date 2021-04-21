@@ -935,4 +935,11 @@ Index
 
 - what: a data struture to help with search
 - MyISAM, InnoDB: storage engine.
-- **TODO**
+- MyISAM:
+  - secondary key: store data address
+- InnoDB:
+  - secondary key: store primary key
+
+Transaction
+
+- how: **TODO**
