@@ -110,3 +110,5 @@ string workFolder = this.Context.CodePackageActivationContext.WorkDirectory;
 <https://stackoverflow.com/questions/58932068/how-do-i-update-service-fabric-application-parameter-using-powershell>
 
 <https://docs.microsoft.com/en-us/dotnet/api/system.fabric.fabricclient?view=azure-dotnet>
+
+Service type, Service Name, Application type, application name, application instance.
