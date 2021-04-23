@@ -942,4 +942,7 @@ Index
 
 Transaction
 
-- how: **TODO**
+- what: a set of operation
+- why: consistency, atomic, isolation, durability.
+- how:
+  - isolation: **TODO**
