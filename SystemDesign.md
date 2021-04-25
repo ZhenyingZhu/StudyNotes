@@ -945,4 +945,4 @@ Transaction
 - what: a set of operation
 - why: consistency, atomic, isolation, durability.
 - how:
-  - isolation: multi-threading design.
+  - isolation: can reuse multi-threading design.
