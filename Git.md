@@ -67,3 +67,7 @@ git stuck at auto packing the repository for optimum performance
 
 - <https://stackoverflow.com/questions/28633956/why-does-git-keep-telling-me-its-auto-packing-the-repository-in-background-for>
 - <https://gist.github.com/xiaoda/2d1ae0417d48dcbd972aafcdc098b4b6>
+
+[git rev-list](https://git-scm.com/docs/git-rev-list)
+
+- find the commits since a commit reversely.
