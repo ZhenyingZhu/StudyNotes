@@ -946,7 +946,7 @@ Transaction
 - why: consistency, atomic, isolation, durability.
 - how:
   - isolation: can reuse multi-threading design.
-    - level1: read uncommit
+    - level1: read uncommit: a transaction can see another transaction's uncommitted change.
     - level2: read commit
     - level3: repeat read
     - level4: serialzible
