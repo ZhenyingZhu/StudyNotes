@@ -930,6 +930,9 @@ B+ Tree
 - what: each node points to a pointer
 - why: make the search
 - how: **TODO**
+  - add
+  - search
+  - rebalance
 
 Index
 
