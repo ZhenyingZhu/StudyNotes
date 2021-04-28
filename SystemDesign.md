@@ -951,3 +951,16 @@ Transaction
     - level3: repeat read
     - level4: serialzible
   - Concurrency: dirty write.
+
+Search engine
+
+- what: given a string, return the sorted result.
+- why: find resources.
+- how:
+  - bubble sort.
+  - top k.
+  - key value store.
+  - reverse index.
+  - web crawler
+  - index
+  - query engine.
