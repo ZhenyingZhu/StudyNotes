@@ -961,6 +961,9 @@ Search engine
   - top k.
   - key value store.
   - reverse index.
-  - web crawler
+  - web crawler:
+    - 1. grab page, 2. save, 3. find more link.
+    - speed, storage, robot, circular
   - index
+    - tokenize
   - query engine.
