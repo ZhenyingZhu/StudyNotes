@@ -965,5 +965,5 @@ Search engine
     - 1. grab page, 2. save, 3. find more link.
     - speed, storage, robot, circular
   - index
-    - tokenize
+    - tokenize: where to break the sentencite
   - query engine.
