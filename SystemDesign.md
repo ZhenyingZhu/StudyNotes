@@ -964,6 +964,8 @@ Search engine
   - web crawler:
     - 1. grab page, 2. save, 3. find more link.
     - speed, storage, robot, circular
+    - timestamp: if the page get updated. exponantial backoff when page changes.
+    - scheduler.
   - index
     - tokenize: where to break the sentencite
   - query engine.
