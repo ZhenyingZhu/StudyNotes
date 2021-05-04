@@ -71,3 +71,5 @@ git stuck at auto packing the repository for optimum performance
 [git rev-list](https://git-scm.com/docs/git-rev-list)
 
 - find the commits since a commit reversely.
+
+`git clean -f -d` to stop pulling the packages.
