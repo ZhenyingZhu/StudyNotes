@@ -9,7 +9,7 @@ namespace DotNetCoreConsole
     {
         static void Main(string[] args)
         {
-            TestTimer.TestMain();
+            TestRegexScrubber.TestMain();
         }
     }
 }
