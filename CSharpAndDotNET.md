@@ -1201,3 +1201,9 @@ File used by another process:
 ### GC
 
 <https://stackoverflow.com/questions/151051/when-should-i-use-gc-suppressfinalize#:~:text=5%20Answers&text=SuppressFinalize%20should%20only%20be%20called,object%20was%20cleaned%20up%20fully.&text=Normally%2C%20the%20CLR%20keeps%20tabs,them%20more%20expensive%20to%20create).>
+
+### File System Operations
+
+<https://stackoverflow.com/questions/674479/how-do-i-get-the-directory-from-a-files-full-path>
+
+<https://docs.microsoft.com/en-us/dotnet/api/system.io.directory.getfiles?view=net-5.0>
