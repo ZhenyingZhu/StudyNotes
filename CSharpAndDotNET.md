@@ -1207,3 +1207,11 @@ File used by another process:
 <https://stackoverflow.com/questions/674479/how-do-i-get-the-directory-from-a-files-full-path>
 
 <https://docs.microsoft.com/en-us/dotnet/api/system.io.directory.getfiles?view=net-5.0>
+
+### Mobile App Development
+
+<https://docs.microsoft.com/en-us/visualstudio/cross-platform/cross-platform-mobile-development-in-visual-studio?view=vs-2019>
+
+<https://www.toptal.com/android/developing-mobile-web-apps-when-why-and-how>
+
+<https://www.freecodecamp.org/news/how-to-turn-your-website-into-a-mobile-app-with-7-lines-of-json-631c9c9895f5/>
