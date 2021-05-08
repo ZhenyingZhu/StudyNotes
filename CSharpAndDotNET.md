@@ -1215,3 +1215,7 @@ File used by another process:
 <https://www.toptal.com/android/developing-mobile-web-apps-when-why-and-how>
 
 <https://www.freecodecamp.org/news/how-to-turn-your-website-into-a-mobile-app-with-7-lines-of-json-631c9c9895f5/>
+
+### Check DLL info
+
+`ildasm.exe *.dll`
