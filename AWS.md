@@ -87,11 +87,13 @@ Amazon Elastic Compute Cloud (Amazon EC2): The instance is an Amazon EBS-backed 
 8. Log in at: <https://123456789012.signin.aws.amazon.com/console/> Can Create Account Alias to change id part.
 
 - Create a key pair: key pairs are specific to the region. A Linux instance has no password; you use a key pair to log in to your instance securely. You specify the name of the key pair when you launch your instance, then provide the private key when you log in using SSH.
+
 1. Under EC2 console, Key pairs. Name is key-pair-uswest2. Private key file is *.pem. Need to provide the name of your key pair when you launch an instance and the corresponding private key each time you connect to the instance.
 2. chmod 400 key-pair-uswest2.pem
 3. Configue SSH.
 
 - Create a Virtual Private Cloud (VPC): Amazon VPC enables you to launch AWS resources into a virtual network that you've defined.
+
 1. <https://console.aws.amazon.com/vpc/>.
 2. Select a region.
 3. Start VPC Wizard.
@@ -99,6 +101,7 @@ Amazon Elastic Compute Cloud (Amazon EC2): The instance is an Amazon EBS-backed 
 5. Give a name. MyVPC.
 
 - Create a Security Group: act as a firewall for associated instances, controlling both inbound and outbound traffic at the instance level. you'll need to create a security group in each region.
+
 1. Get the IP of local PC: 160.39.200.62.
 2. Choose a region.
 3. Security Groups: Create Security Group, name: zhenying_SG_uswest2. Description and select VPC.
@@ -106,6 +109,7 @@ Amazon Elastic Compute Cloud (Amazon EC2): The instance is an Amazon EBS-backed 
 5. SSH: local IP/32 to specify an individual IP address in CIDR notation.
 
 - Amazon Machine Images (AMIs): serve as templates for your instance.
+
 1. EC2 Console: Launch Instance.
 2. Choose an AMI.
 3. Choose hardware configuration. Then Next: Configure Instance Details.
@@ -117,18 +121,21 @@ Amazon Elastic Compute Cloud (Amazon EC2): The instance is an Amazon EBS-backed 
 9. Wait until initialize.
 
 - If you're using a public AMI from a third party, you can use the command line tools to verify the fingerprint by installing the AWS CLI or Amazon EC2 CLI.
+
 1. chmod 400 key-pair-uswest2.pem
 2. Get public IP.
 3. `ssh -i key-pair-uswest2.pem ec2-user@54.148.111.222`
 4. yes to check fingerprint.
 
 - Transfer file:
+
 1. install SCP if not come with ssh.
 2. `scp -i key-pair-uswest2.pem SampleFile.txt ec2-user@ec2-54-148-111-22.us-west-2.compute.amazonaws.com:~`
 
 - Actions: Terminate means delete the instance. Stop can restart. Volume can delete.
 
 - Works on the default VPC
+
 1. Connect to Amazon Linux instance.
 2. `sudo yum update -y`   y means don't show processing
 3. `sudo yum groupinstall -y “Web Server” “MySQL Database” “PHP Support”`
@@ -206,3 +213,11 @@ Get metadata from instance
 ```bash
 curl -f http://169.254.169.254/latest/meta-data/public-keys/0/openssh-key  > /root/.ssh/authorized_keys
 ```
+
+## Pricing
+
+- EC2
+  - Network performance
+  - Memory
+  - vCPUs
+  - Storage
