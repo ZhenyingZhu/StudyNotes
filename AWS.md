@@ -200,7 +200,7 @@ s3cmd --configure
     Access Key and Secret Key: In credentials.csv.
     Encryption password: A password for encrypt. S+Z1
     GPG: just press Enter.
-    HTTPs and other setting: Don't need ssh.
+    HTTPs and other setting: Do not need ssh.
     After setting, a s3cfg file will be saved.
 ```
 
