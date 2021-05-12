@@ -221,3 +221,7 @@ curl -f http://169.254.169.254/latest/meta-data/public-keys/0/openssh-key  > /ro
   - Memory
   - vCPUs
   - Storage
+
+## Spring boot on AWS
+
+<https://aws.amazon.com/blogs/opensource/getting-started-with-spring-boot-on-aws-part-1/>
