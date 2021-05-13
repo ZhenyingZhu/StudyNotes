@@ -464,3 +464,7 @@ Should not check in pfx.
 <https://azure.microsoft.com/en-us/resources/templates/minecraft-on-ubuntu/>
 
 - Notice the oracle java install is failing.
+
+## Spring boot on Azure
+
+<https://azure.microsoft.com/en-us/services/spring-cloud/#security>
