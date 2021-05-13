@@ -1,12 +1,17 @@
-## Source
-https://spring.io/guides/gs/rest-service/
+# Spring
 
-http://www.tutorialspoint.com/spring/
+## Source
+
+<https://spring.io/guides/gs/rest-service/>
+
+<http://www.tutorialspoint.com/spring/>
 
 ## Concepts
-[Java bean vs POJO vs Spring bean]( http://www.shaunabram.com/beans-vs-pojos/)
+
+[Java bean vs POJO vs Spring bean](http://www.shaunabram.com/beans-vs-pojos/)
 
 ## Prerequist
+
 1. [SDKMAN!](http://sdkman.io/install.html)
 `curl -s "https://get.sdkman.io" | bash`
 
@@ -19,20 +24,25 @@ http://www.tutorialspoint.com/spring/
 `gradle wrapper --gradle-version 3.4.1`
 
 ## RESTful Web Service
+
 [src](https://spring.io/guides/gs/rest-service/)
 
 Service interactions:
+
 - response to `GET` for `/greeting`
 - return 200 OK, and a JSON
 
 Steps
+
 - Resource class
 - resource controller: get a request, return an resource instance
 - An executable
 - A get request looks like `http://localhost:8080/greeting?name=User`
 
 ## Beans autowired
+
 [Bean](https://en.wikipedia.org/wiki/JavaBeans)
+
 - encapsulate many objects into a single object (the bean)
 - serializable
 - a zero-argument constructor
@@ -43,10 +53,12 @@ Steps
 [src2](https://www.mkyong.com/spring/spring-auto-wiring-beans-with-autowired-annotation/)
 
 [autowired vs import](https://www.quora.com/What-is-difference-between-Autowired-and-Importa-in-Spring)
+
 - It is about dependency injection not only import the class.
 - With autowired, no need to explicitly add constructor-arg or property for each field in a bean. Spring server will find and inject by type.
 
 ## Notations
+
 - `@RequestParam`
 - `@RestController`=`@Controller`+`@ResponseBody`
 - `@SpringBootApplication`=`@Configuration`+`@EnableAutoConfiguration`+`@EnableWebMvc`+`@ComponentScan`
@@ -54,6 +66,7 @@ Steps
 ## Tutorialspoint
 
 ### Concept
+
 Dependency Injection (DI): one of concrete example of Inversion of Control (IoC)
 
 Aspect Oriented Programming (AOP)
@@ -61,6 +74,7 @@ Aspect Oriented Programming (AOP)
 cross-cutting concerns are conceptually separate from the application's business logic
 
 ### Module
+
 Core(IoC, DI), Bean(factory), Context, SpEL
 
 JDBC, ORM(object-relational mapping), OXM(object/XML mapping), JMS(consuming messages), Transaction
@@ -70,6 +84,7 @@ Web(Servlet listeners), Web-MVC(Model-View-Controller), Web-Socket, Web-Portlet
 AOP(method-interceptors and pointcuts), Aspects(AspectJ), Instrumentation, Messaging(STOMP), Test(JUnit or TestNG frameworks)
 
 ### Environment setup
+
 JDK: upadte `PATH` and `JAVA_HOME`
 
 [Apache common logging](https://commons.apache.org/proper/commons-logging/download_logging.cgi): put under "/usr/local/lib/java/commons-logging-1.1.1" and set `CLASSPATH`
@@ -79,29 +94,34 @@ JDK: upadte `PATH` and `JAVA_HOME`
 Eclipse: "Properties, Java Build Path, Libraries, Add External JARs" add all jars for spring and commons-logging
 
 ### Beans and Configs
+
 Create a beans xml config under `src`. The config glues the beans. It assign ID to beans and control the creation of objects
 
 Use `ClassPathXmlApplicationContext` to create an `ApplicationContext` from this config
 
 Get a bean object from the Context
 
-
 ### Spring Container
+
 Container creates objects(Spring Beans) and wire them together use DI.
 
 The container gets its instructions on what objects to instantiate, configure, and assemble by reading the configuration metadata provided. The configuration metadata can be represented either by XML, Java annotations, or Java code.
 
 Two types:
+
 - Spring BeanFactory Container
 - Spring ApplicationContext Container
 
 ### Spring Bean
+
 Bean definition contains configuration metadata defines
+
 - How to create a bean
 - Bean's lifecycle details
 - Bean's dependencies
 
 Properties
+
 - class
 - name/id
 - scope: singleton, prototype, request, session, global-session
@@ -112,17 +132,20 @@ Properties
 - initialization method: A callback when all necessary properties have been set by the container. The bean can implement `InitializingBean` or use xml "init-method" property
 - destruction method: Same, implement `DisposableBean` or set "destroy-method"
 
-
 ### Lifecycle
+
 JVM grace shutdown: `AbstractApplicationContext::registerShutdownHook()`
 
 Can define attribute `default-init-method` and `default-destroy-method` for beans node
 
 ### Post Processors/Callback
+
 Create a bean that implement `BeanPostProcessor`, then it will be called before and after each other bean init.
 
 ### Bean definition inheritance
+
 Bean definition contains
+
 - constructor arguments
 - property values
 - container-specific information such as initialization method, static factory method name
@@ -130,6 +153,7 @@ Bean definition contains
 A child bean definition inherits configuration data from a parent definition. The child definition can override some values, or add others. Set `parent` attribute
 
 A bean template
+
 ```xml
    <bean id = "beanTeamplate" abstract = "true">
       <property name = "message1" value = "Hello World!"/>
@@ -139,16 +163,19 @@ A bean template
 ```
 
 ### Dependency injection
+
 Application classes should be as independent as possible of other Java classes to increase the possibility to reuse these classes and to test them independently of other classes while unit testing. Dependency Injection (or sometime called wiring) helps in gluing these classes together and at the same time keeping them independent.
 
 In IoC, instead of init an object in another object, init objects in the container and inject objects to the objects that depend on them
+
 - Constructor-based dependency injection: Use `<constructor-arg>`, for mandatory dependencies
 - Setter-based dependency injection: Use `<property>` for optional dependencies.
 
 If two beans are defined in the same container(xml file), `@Autowired` makes a method can access other beans.
 
 ### Inner beans
-```
+
+```xml
    <bean id = "outerBean" class = "...">
       <property name = "target">
          <bean id = "innerBean" class = "..."/>
@@ -156,9 +183,10 @@ If two beans are defined in the same container(xml file), `@Autowired` makes a m
    </bean>
 ```
 
-
 ### Injecting collection
+
 the property of bean can be
+
 - value: primitive data
 - ref: object reference
 - list
@@ -167,7 +195,8 @@ the property of bean can be
 - props: name-value pairs(just like hashmap) where name and values are both strings. Short for properties
 
 Primitive data xml setting
-```
+
+```xml
 <bean id = "..." class = "exampleBean">
    <property name = "email" value = ""/>
    <property name = "email"><null/></property>
@@ -175,7 +204,8 @@ Primitive data xml setting
 ```
 
 List xml setting
-```
+
+```xml
 <property name = "addressList">
    <list>
       <ref bean = "address1"/>
@@ -185,7 +215,8 @@ List xml setting
 ```
 
 Map xml setting
-```
+
+```xml
 <property name = "addressMap">
    <map>
       <entry key = "1" value = "INDIA"/>
@@ -195,6 +226,7 @@ Map xml setting
 ```
 
 Prop xml setting
+
 ```xml
 <property name = "addressProp">
    <props>
@@ -204,9 +236,11 @@ Prop xml setting
 ```
 
 ### Auto-Wiring
+
 The Spring container can autowire relationships between collaborating beans without using `<constructor-arg>` and `<property>` elements
 
 autowire mode
+
 - no: need config DI in beans config xml manually
 - byName
 - byType
@@ -214,14 +248,17 @@ autowire mode
 - autodetect
 
 Limitation
+
 - if still use `constructor-arg` and `property` setting at the same time, there chould be overriding
 - cannot autowired primitives, Strings and Classes
 - confusing than explicit wiring
 
 ### Annotation based config
+
 Annotation injection is performed before XML injection, so latter one override the former one
 
 Enable annotation:
+
 ```xml
 <beans xmlns = "http://www.springframework.org/schema/beans"
    xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
@@ -238,6 +275,7 @@ Enable annotation:
 ```
 
 Annotations
+
 - `@Required`: setter
 - `@Autowired`: setter methods, non-setter methods, constructor and properties
 - `@Qualifier`: along with `@Autowired` can be used to remove the confusion by specifiying which exact bean will be wired.
@@ -245,6 +283,7 @@ Annotations
   - `@resource(&beanId)`: get the instance of the bean
 
 ### Java Based Configuration
+
 `@Configuration` before a configuration class and `@Bean` before methods in this configuration class that return classes(create beans where ids are the method names) is same as define a bean in xml
 
 `@import` before config class but after `@configuration`, then the import bean is not needed for instantiating the context.
@@ -253,9 +292,9 @@ Define init and destroy method: `@Bean(initMethod = "init", destroyMethod = "cle
 
 `@Scope("prototype")` make the bean not singleton
 
-
 ### Event handling
-`ApplicationContext` manages the complete life cycle of beans. It publishes certain types of events when loading the beans
+
+- `ApplicationContext` manages the complete life cycle of beans. It publishes certain types of events when loading the beans
 - `ContextStartedEvent`: also be raised when call `ConfigurableApplicationContext::start()`
 - `ContextStoppedEvent`: the context can restart if it is stopped
 - `ContextRefreshedEvent`: also be raised when call `ConfigurableApplicationContext::refresh()`
@@ -264,16 +303,18 @@ Define init and destroy method: `@Bean(initMethod = "init", destroyMethod = "cle
 
 If a bean implements the `ApplicationListener`, then every time an `ApplicationEvent` gets published to the `ApplicationContext`, that bean is notified.
 
-Spring's event handling is single-threaded so if an event is published, until and unless all the receivers get the message, the processes are blocked and the flow will not continue. 
+Spring's event handling is single-threaded so if an event is published, until and unless all the receivers get the message, the processes are blocked and the flow will not continue.
 
 ### Custom Events
-Create 
+
+Create
+
 - a class, `CustomEvent`, that inherit `ApplicationEvent`: init from an object
 - a class, `CustomEventPublisher`, implement `ApplicationEventPublisherAware`: has a `ApplicationEventPublisher` memeber and can publish a `CustomEvent`
 - a class implement `ApplicationListener<CustomEvent>`: response to event and do something
 
-
 ### Aspect oriented programming 
+
 [AOP](https://en.wikipedia.org/wiki/Aspect-oriented_programming)
 
 crosscut: if two concerns have some same methods, they are corosscut
@@ -283,10 +324,11 @@ cross-cutting concerns: Functions that span multiple points of an app, and are c
 Spring AOP module provides interceptors to intercept an application. For example, when a method is executed, you can add extra functionality before or after the method execution.
 
 ### Spring beans instanize order
+
 [src](http://stackoverflow.com/questions/13770225/spring-3-bean-instantiation-sequence) If a bean has DI another bean, it will instanize later. Otherwise use `depends-on`
 
-
 ## Factory bean
+
 [src](http://www.baeldung.com/spring-factorybean)
 
 Implement `FactoryBean` or inherit from `AbstractFactoryBean`
@@ -300,10 +342,15 @@ Use factory method [src](https://docs.spring.io/spring/docs/current/spring-frame
 Static factory method can create a singleton bean which is itself. Instance factory method can create beans based on `factory-method`
 
 ## Profiles
+
 [src](https://dzone.com/articles/using-spring-profiles-xml)
 
-
 ## JMX
+
 [src](http://docs.spring.io/autorepo/docs/spring-framework/3.0.0.M3/reference/html/ch24s02.html)
 
+## Spring Boot
 
+<https://spring.io/projects/spring-boot>
+
+**HERE**: <https://spring.io/guides/gs/rest-service/>
