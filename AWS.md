@@ -225,3 +225,5 @@ curl -f http://169.254.169.254/latest/meta-data/public-keys/0/openssh-key  > /ro
 ## Spring boot on AWS
 
 <https://aws.amazon.com/blogs/opensource/getting-started-with-spring-boot-on-aws-part-1/>
+
+- integrates with the core services Amazon Simple Storage Service (Amazon S3) and Amazon Simple Queue Service (Amazon SQS).
