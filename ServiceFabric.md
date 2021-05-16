@@ -8,6 +8,10 @@
 - services should be fine-grained and the protocols should be lightweight.
 - decomposing an application into different smaller services.
 
+draw backs
+
+- too many services increase the service loads.
+
 ## Azure Service Fabric
 
 [doc](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-overview)
