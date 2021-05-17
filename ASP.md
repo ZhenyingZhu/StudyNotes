@@ -3501,7 +3501,6 @@ public IActionResult Index()
 
 [View components](https://docs.microsoft.com/en-us/aspnet/core/mvc/views/view-components?view=aspnetcore-3.1)
 
-(start from here)
 - View components don't use model binding, and only depend on the data provided when calling into it.
 - Renders a chunk rather than a whole response.
 - Includes the same separation-of-concerns and testability benefits found between a controller and view.
@@ -3532,6 +3531,13 @@ public IActionResult Index()
   - in a view needs this component, add `@await Component.InvokeAsync("PriorityList", new { maxPriority = 2, isDone = false })` in a div.
   - or in a controller, call `return ViewComponent("PriorityList", new { maxPriority = 3, isDone = false });`
   - Finally completed version: [ViewCompFinal](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/views/view-components/sample/ViewCompFinal). Changes in [View Components](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/views/view-components/sample/ViewCompFinal/ViewComponents)
+
+StarterViewComp
+
+- to move to .netcore 3.1, need to change:
+  - csproj: TargetFramework = netcoreapp3.1, PackageReference removes Microsoft.AspNetCore.App and Microsoft.AspNetCore.Razor.Design but add Microsoft.EntityFrameworkCore and Microsoft.EntityFrameworkCore.InMemory (use dotnet cli).
+  - startup.cs set MVC options `services.AddMvc(options => options.EnableEndpointRouting = false);`
+  - if use visual studio code, change the debug config to target to bin folder netcore3.1 instead of 2.2.
 
 ViewCompFinal
 
