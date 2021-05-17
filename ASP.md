@@ -3501,6 +3501,7 @@ public IActionResult Index()
 
 [View components](https://docs.microsoft.com/en-us/aspnet/core/mvc/views/view-components?view=aspnetcore-3.1)
 
+(start from here)
 - View components don't use model binding, and only depend on the data provided when calling into it.
 - Renders a chunk rather than a whole response.
 - Includes the same separation-of-concerns and testability benefits found between a controller and view.
