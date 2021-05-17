@@ -3542,7 +3542,6 @@ ViewCompFinal
   - ToDoItem: a bool field `IsDone`
 - Controller
   - IndexVC(): return a ViewComponent
-  
 
 **HERE**: <https://docs.microsoft.com/en-us/aspnet/core/mvc/views/view-components?view=aspnetcore-3.1#specifying-a-view-name>
 <https://stackoverflow.com/questions/52513554/mvc-net-core-sidebar-navigation-menu-placing-in-layout-cshtml>
