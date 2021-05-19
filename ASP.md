@@ -3531,6 +3531,7 @@ StarterViewComp
   - csproj: TargetFramework = netcoreapp3.1, PackageReference removes Microsoft.AspNetCore.App and Microsoft.AspNetCore.Razor.Design but add Microsoft.EntityFrameworkCore and Microsoft.EntityFrameworkCore.InMemory (use dotnet cli).
   - startup.cs set MVC options `services.AddMvc(options => options.EnableEndpointRouting = false);`
   - if use visual studio code, change the debug config to target to bin folder netcore3.1 instead of 2.2.
+- Use ViewComponent
   - Create a `ViewComponent` folder to contain view components.
   - The `XYZViewComponent` auto mapped to XYZ class. Create a `PriorityListViewComponent`. It can be in any folders.
   - The XYZ is same as the view name. It is also the name of the class component when refered in a view.
@@ -3538,6 +3539,7 @@ StarterViewComp
   - Because `InvokeAsync()` doesn't pass in a view name, it uses the `Default` view.
   - in a view needs this component, add `@await Component.InvokeAsync("PriorityList", new { maxPriority = 2, isDone = false })` in a div.
   - or in a controller, call `return ViewComponent("PriorityList", new { maxPriority = 3, isDone = false });`
+  - The return of the InvokaAsync can specify a view `string MyView = "MyView"; return View(MyView, items);`
 
 ViewCompFinal
 
@@ -3549,8 +3551,7 @@ ViewCompFinal
 - Controller
   - IndexVC(): return a ViewComponent
 
-**HERE**: <https://docs.microsoft.com/en-us/aspnet/core/mvc/views/view-components?view=aspnetcore-3.1#specifying-a-view-name>
-<https://stackoverflow.com/questions/52513554/mvc-net-core-sidebar-navigation-menu-placing-in-layout-cshtml>
+**TODO**: <https://stackoverflow.com/questions/52513554/mvc-net-core-sidebar-navigation-menu-placing-in-layout-cshtml>
 <https://www.yogihosting.com/jquery-ajax-aspnet-core/>
 
 ## Entity Framework(EF)
@@ -3595,6 +3596,10 @@ Use `[Column(TypeName = "decimal(18,2)")]` before a property to define its restr
 
 - Create DB: `Add-Migration InitialCreate`
 - `Update-Database`
+
+**HERE**: <https://github.com/dbcli/mssql-cli/blob/master/doc/installation/windows.md#windows-installation>
+<https://stackoverflow.com/questions/27547691/connect-to-localdb-with-sql-cli>
+<https://stackoverflow.com/questions/24169140/there-is-already-an-object-named-aspnetroles-in-the-database>
 
 [Connection String](https://docs.microsoft.com/en-us/ef/core/miscellaneous/connection-strings)
 
