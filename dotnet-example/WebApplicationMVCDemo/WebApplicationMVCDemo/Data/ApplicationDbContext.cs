@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+using WebApplicationMVCDemo.Models;
+
 namespace WebApplicationMVCDemo.Data
 {
     public class ApplicationDbContext : IdentityDbContext
@@ -12,5 +14,7 @@ namespace WebApplicationMVCDemo.Data
             : base(options)
         {
         }
+
+        public DbSet<ToDoItem> ToDoItems { get; set; }
     }
 }

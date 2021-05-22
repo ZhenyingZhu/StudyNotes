@@ -3600,6 +3600,7 @@ Use `[Column(TypeName = "decimal(18,2)")]` before a property to define its restr
 **HERE**: <https://github.com/dbcli/mssql-cli/blob/master/doc/installation/windows.md#windows-installation>
 <https://stackoverflow.com/questions/27547691/connect-to-localdb-with-sql-cli>
 <https://stackoverflow.com/questions/24169140/there-is-already-an-object-named-aspnetroles-in-the-database>
+<https://stackoverflow.com/questions/30701006/how-to-get-the-current-logged-in-user-id-in-asp-net-core>
 
 [Connection String](https://docs.microsoft.com/en-us/ef/core/miscellaneous/connection-strings)
 
