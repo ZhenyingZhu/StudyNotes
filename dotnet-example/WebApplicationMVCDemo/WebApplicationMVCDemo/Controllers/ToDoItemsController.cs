@@ -62,7 +62,7 @@ namespace WebApplicationMVCDemo.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Title,State")] ToDoItem toDoItem)
+        public async Task<IActionResult> Create([Bind("Id,OwnerId,Title,State")] ToDoItem toDoItem)
         {
             if (ModelState.IsValid)
             {
@@ -97,16 +97,15 @@ namespace WebApplicationMVCDemo.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,State")] ToDoItem toDoItem)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,OwnerId,Title,State")] ToDoItem toDoItem)
         {
             if (id != toDoItem.Id)
             {
                 return NotFound();
             }
 
-            var curToDoItem = await _context.ToDoItems.FindAsync(id);
             IdentityUser user = await _userManager.GetUserAsync(User);
-            if (curToDoItem == null || curToDoItem.OwnerId != user.Id)
+            if (toDoItem.OwnerId != user.Id)
             {
                 return NotFound();
             }
@@ -115,7 +114,6 @@ namespace WebApplicationMVCDemo.Controllers
             {
                 try
                 {
-                    toDoItem.OwnerId = user.Id;
                     _context.Update(toDoItem);
                     await _context.SaveChangesAsync();
                 }

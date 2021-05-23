@@ -3607,6 +3607,8 @@ Use `[Column(TypeName = "decimal(18,2)")]` before a property to define its restr
 <https://docs.microsoft.com/en-us/aspnet/core/security/authorization/secure-data?view=aspnetcore-5.0>
 <https://docs.microsoft.com/en-us/aspnet/core/tutorials/publish-to-azure-webapp-using-vs?view=aspnetcore-5.0#:~:text=Publish%20an%20ASP.NET%20Core%20app%20to%20Azure%20with,Azure.%20Select%20Next.%20Select%20Azure%20App%20Service%20%28Linux%29.>
 <https://docs.microsoft.com/en-us/aspnet/mvc/overview/getting-started/getting-started-with-ef-using-mvc/migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application>
+<https://docs.microsoft.com/en-us/ef/ef6/modeling/code-first/migrations/>
+<https://docs.microsoft.com/en-us/ef/core/managing-schemas/migrations/applying?tabs=vs>
 
 [Connection String](https://docs.microsoft.com/en-us/ef/core/miscellaneous/connection-strings)
 
