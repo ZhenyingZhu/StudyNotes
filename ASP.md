@@ -3601,6 +3601,12 @@ Use `[Column(TypeName = "decimal(18,2)")]` before a property to define its restr
 <https://stackoverflow.com/questions/27547691/connect-to-localdb-with-sql-cli>
 <https://stackoverflow.com/questions/24169140/there-is-already-an-object-named-aspnetroles-in-the-database>
 <https://stackoverflow.com/questions/30701006/how-to-get-the-current-logged-in-user-id-in-asp-net-core>
+<https://stackoverflow.com/questions/40217623/redirect-to-login-when-unauthorized-in-asp-net-core>
+<https://gunnarpeipman.com/aspnet-core-enum-to-select-list/>
+<https://stackoverflow.com/questions/36445780/how-to-implement-permission-based-access-control-with-asp-net-core/36447358>
+<https://docs.microsoft.com/en-us/aspnet/core/security/authorization/secure-data?view=aspnetcore-5.0>
+<https://docs.microsoft.com/en-us/aspnet/core/tutorials/publish-to-azure-webapp-using-vs?view=aspnetcore-5.0#:~:text=Publish%20an%20ASP.NET%20Core%20app%20to%20Azure%20with,Azure.%20Select%20Next.%20Select%20Azure%20App%20Service%20%28Linux%29.>
+<https://docs.microsoft.com/en-us/aspnet/mvc/overview/getting-started/getting-started-with-ef-using-mvc/migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application>
 
 [Connection String](https://docs.microsoft.com/en-us/ef/core/miscellaneous/connection-strings)
 

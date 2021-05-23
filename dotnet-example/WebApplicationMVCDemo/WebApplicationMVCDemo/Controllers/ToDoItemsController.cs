@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -11,6 +12,7 @@ using WebApplicationMVCDemo.Models;
 
 namespace WebApplicationMVCDemo.Controllers
 {
+    [Authorize]
     public class ToDoItemsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -27,7 +29,7 @@ namespace WebApplicationMVCDemo.Controllers
         public async Task<IActionResult> Index()
         {
             IdentityUser user = await _userManager.GetUserAsync(User);
-            return View(await _context.ToDoItems.Select(t => t.OwnerId == user.Id).ToListAsync());
+            return View(await _context.ToDoItems.Where(t => t.OwnerId == user.Id).ToListAsync());
         }
 
         // GET: ToDoItems/Details/5
@@ -97,8 +99,14 @@ namespace WebApplicationMVCDemo.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Title,State")] ToDoItem toDoItem)
         {
+            if (id != toDoItem.Id)
+            {
+                return NotFound();
+            }
+
+            var curToDoItem = await _context.ToDoItems.FindAsync(id);
             IdentityUser user = await _userManager.GetUserAsync(User);
-            if (id != toDoItem.Id || toDoItem.OwnerId != user.Id)
+            if (curToDoItem == null || curToDoItem.OwnerId != user.Id)
             {
                 return NotFound();
             }
@@ -107,6 +115,7 @@ namespace WebApplicationMVCDemo.Controllers
             {
                 try
                 {
+                    toDoItem.OwnerId = user.Id;
                     _context.Update(toDoItem);
                     await _context.SaveChangesAsync();
                 }
