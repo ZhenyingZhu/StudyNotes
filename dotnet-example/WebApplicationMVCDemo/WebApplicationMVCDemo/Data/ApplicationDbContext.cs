@@ -16,5 +16,7 @@ namespace WebApplicationMVCDemo.Data
         }
 
         public DbSet<ToDoItem> ToDoItems { get; set; }
+
+        public DbSet<Project> Project { get; set; }
     }
 }

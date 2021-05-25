@@ -3609,6 +3609,7 @@ Use `[Column(TypeName = "decimal(18,2)")]` before a property to define its restr
 <https://docs.microsoft.com/en-us/aspnet/mvc/overview/getting-started/getting-started-with-ef-using-mvc/migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application>
 <https://docs.microsoft.com/en-us/ef/ef6/modeling/code-first/migrations/>
 <https://docs.microsoft.com/en-us/ef/core/managing-schemas/migrations/applying?tabs=vs>
+<https://ej2.syncfusion.com/aspnetcore/documentation/sidebar/getting-started/>
 
 [Connection String](https://docs.microsoft.com/en-us/ef/core/miscellaneous/connection-strings)
 
