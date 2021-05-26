@@ -354,3 +354,11 @@ Static factory method can create a singleton bean which is itself. Instance fact
 <https://spring.io/projects/spring-boot>
 
 **HERE**: <https://spring.io/guides/gs/rest-service/>
+
+## Spring JPA
+
+<https://zetcode.com/springboot/postgresql/#:~:text=The%20spring-boot-starter-data-jpa%20is%20a%20starter%20for%20using%20Spring,Its%20spring-boot%3Arun%20goal%20runs%20the%20Spring%20Boot%20application.>
+
+<https://spring.io/guides/gs/accessing-data-mysql/>
+
+<https://www.enterprisedb.com/postgresql-tutorial-resources-training?cid=437>
