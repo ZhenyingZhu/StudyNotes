@@ -362,3 +362,11 @@ Static factory method can create a singleton bean which is itself. Instance fact
 <https://spring.io/guides/gs/accessing-data-mysql/>
 
 <https://www.enterprisedb.com/postgresql-tutorial-resources-training?cid=437>
+
+```xml
+<dependency>
+    <groupId>org.postgresql</groupId>
+    <artifactId>postgresql</artifactId>
+    <scope>runtime</scope>
+</dependency>
+```
