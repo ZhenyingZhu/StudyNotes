@@ -47,7 +47,8 @@ namespace WebApplicationMVCDemo.Controllers
                 return NotFound();
             }
 
-            ViewBag.ToDoItems = project.ToDos;
+            // show other projects as well.
+            ViewBag.Projects = await _context.Project.Where(p => p.OwnerId == user.Id).ToListAsync();
 
             return View(project);
         }
