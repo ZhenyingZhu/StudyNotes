@@ -47,6 +47,8 @@ namespace WebApplicationMVCDemo.Controllers
                 return NotFound();
             }
 
+            ViewBag.ToDoItems = project.ToDos;
+
             return View(project);
         }
 

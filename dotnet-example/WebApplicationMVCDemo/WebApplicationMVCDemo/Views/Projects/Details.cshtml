@@ -25,6 +25,13 @@
             @Html.DisplayFor(model => model.Title)
         </dd>
     </dl>
+    <tr>
+    @foreach (var toDo in ViewBag.ToDoItems) {
+        <td>
+            @Html.DisplayFor(toDo => toDo.Title)
+        </td>
+    }
+    </tr>
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
