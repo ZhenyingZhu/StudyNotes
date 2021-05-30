@@ -18,5 +18,6 @@ namespace WebApplicationMVCDemo.Models
         public string OwnerId { get; set; }
         public string Title { get; set; }
         public TaskState State { get; set; }
+        public DateTime DueDate { get; set; }
     }
 }
