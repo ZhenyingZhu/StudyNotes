@@ -3,15 +3,14 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace WebApplicationMVCDemo.Data.Migrations
 {
-    public partial class AddToDoDueDat : Migration
+    public partial class AddDueDateForToDoItem : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<DateTime>(
                 name: "DueDate",
                 table: "ToDoItems",
-                nullable: false,
-                defaultValue: new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified));
+                nullable: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

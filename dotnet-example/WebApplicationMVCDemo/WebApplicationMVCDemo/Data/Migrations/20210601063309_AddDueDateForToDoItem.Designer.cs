@@ -10,8 +10,8 @@ using WebApplicationMVCDemo.Data;
 namespace WebApplicationMVCDemo.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210530050101_AddToDoDueDat")]
-    partial class AddToDoDueDat
+    [Migration("20210601063309_AddDueDateForToDoItem")]
+    partial class AddDueDateForToDoItem
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -246,7 +246,7 @@ namespace WebApplicationMVCDemo.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("DueDate")
+                    b.Property<DateTime?>("DueDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("OwnerId")
