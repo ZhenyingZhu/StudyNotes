@@ -3610,6 +3610,8 @@ Use `[Column(TypeName = "decimal(18,2)")]` before a property to define its restr
 <https://docs.microsoft.com/en-us/ef/ef6/modeling/code-first/migrations/>
 <https://docs.microsoft.com/en-us/ef/core/managing-schemas/migrations/applying?tabs=vs>
 <https://ej2.syncfusion.com/aspnetcore/documentation/sidebar/getting-started/>
+<https://demos.telerik.com/aspnet-core/grid/foreignkeycolumnbinding>
+<https://docs.microsoft.com/en-us/aspnet/core/data/ef-mvc/read-related-data?view=aspnetcore-5.0>
 
 [Connection String](https://docs.microsoft.com/en-us/ef/core/miscellaneous/connection-strings)
 

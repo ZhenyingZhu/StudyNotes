@@ -8,6 +8,8 @@
   <ItemGroup>
     <Compile Remove="Data\Migrations\20210530050101_AddToDoDueDat.cs" />
     <Compile Remove="Data\Migrations\20210530050101_AddToDoDueDat.Designer.cs" />
+    <Compile Remove="Data\Migrations\20210602063419_LinkToDoItemBackToProject.cs" />
+    <Compile Remove="Data\Migrations\20210602063419_LinkToDoItemBackToProject.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

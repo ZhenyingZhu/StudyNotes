@@ -89,6 +89,10 @@ namespace WebApplicationMVCDemo.Controllers
             {
                 return NotFound();
             }
+
+            var projects = await _context.Project.ToListAsync();
+            ViewBag.Projects = projects;
+
             return View(toDoItem);
         }
 
@@ -97,7 +101,7 @@ namespace WebApplicationMVCDemo.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,OwnerId,Title,State,DueDate")] ToDoItem toDoItem)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,OwnerId,Title,State,DueDate,ProjectId")] ToDoItem toDoItem)
         {
             if (id != toDoItem.Id)
             {
