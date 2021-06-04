@@ -179,5 +179,11 @@ namespace WebApplicationMVCDemo.Controllers
             IdentityUser user = _userManager.GetUserAsync(User).Result;
             return _context.ToDoItems.Any(e => e.Id == id && e.OwnerId == user.Id);
         }
+
+        private void PopulateProjectsDropDownList(object selectedProject = null)
+        {
+            var projectsQuery = from p in _context.Project orderby p.Title select p;
+            ViewBag.ProjectId = new SelectList(projectsQuery.AsNoTracking(), "ProjectId", "Title", selectedProject);
+        }
     }
 }
