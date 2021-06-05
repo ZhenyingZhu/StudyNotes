@@ -182,8 +182,9 @@ namespace WebApplicationMVCDemo.Controllers
 
         private void PopulateProjectsDropDownList(object selectedProject = null)
         {
-            var projectsQuery = from p in _context.Project orderby p.Title select p;
-            ViewBag.ProjectId = new SelectList(projectsQuery.AsNoTracking(), "ProjectId", "Title", selectedProject);
-        }
+            //var projectsQuery = from p in _context.Project orderby p.Title select p;
+            var projectsQuery = _context.Project.OrderBy(p => p.Title);
+
+            ViewBag.ProjectId = new SelectList(projectsQuery.AsNoTracking(), "ProjectId", "Title", selectedProject);        }
     }
 }
