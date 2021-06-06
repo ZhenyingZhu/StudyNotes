@@ -29,7 +29,7 @@ namespace WebApplicationMVCDemo.Controllers
         public async Task<IActionResult> Index()
         {
             IdentityUser user = await _userManager.GetUserAsync(User);
-            return View(await _context.ToDoItems.Where(t => t.OwnerId == user.Id).ToListAsync());
+            return View(await _context.ToDoItems.Where(t => t.OwnerId == user.Id).Include(t => t.Project).ToListAsync());
         }
 
         // GET: ToDoItems/Details/5
@@ -41,7 +41,7 @@ namespace WebApplicationMVCDemo.Controllers
             }
             IdentityUser user = await _userManager.GetUserAsync(User);
 
-            var toDoItem = await _context.ToDoItems
+            var toDoItem = await _context.ToDoItems.Include(t => t.Project)
                 .FirstOrDefaultAsync(m => m.Id == id && m.OwnerId == user.Id);
             if (toDoItem == null)
             {
@@ -84,12 +84,12 @@ namespace WebApplicationMVCDemo.Controllers
             }
 
             IdentityUser user = await _userManager.GetUserAsync(User);
-            var toDoItem = await _context.ToDoItems.FindAsync(id);
+            var toDoItem = await _context.ToDoItems.Include(t => t.Project).FirstOrDefaultAsync(t => t.Id == id);
             if (toDoItem == null || toDoItem.OwnerId != user.Id)
             {
                 return NotFound();
             }
-
+            
             var projects = await _context.Project.ToListAsync();
             ViewBag.Projects = projects;
 
@@ -146,7 +146,7 @@ namespace WebApplicationMVCDemo.Controllers
             }
 
             IdentityUser user = await _userManager.GetUserAsync(User);
-            var toDoItem = await _context.ToDoItems
+            var toDoItem = await _context.ToDoItems.Include(t => t.Project)
                 .FirstOrDefaultAsync(m => m.Id == id && m.OwnerId == user.Id);
             if (toDoItem == null)
             {
@@ -161,7 +161,7 @@ namespace WebApplicationMVCDemo.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var toDoItem = await _context.ToDoItems.FindAsync(id);
+            var toDoItem = await _context.ToDoItems.Include(t => t.Project).FirstOrDefaultAsync(t => t.Id == id);
 
             IdentityUser user = await _userManager.GetUserAsync(User);
             if (toDoItem == null || toDoItem.OwnerId != user.Id)
@@ -185,6 +185,7 @@ namespace WebApplicationMVCDemo.Controllers
             //var projectsQuery = from p in _context.Project orderby p.Title select p;
             var projectsQuery = _context.Project.OrderBy(p => p.Title);
 
-            ViewBag.ProjectId = new SelectList(projectsQuery.AsNoTracking(), "ProjectId", "Title", selectedProject);        }
+            ViewBag.ProjectId = new SelectList(projectsQuery.AsNoTracking(), "ProjectId", "Title", selectedProject);
+        }
     }
 }
