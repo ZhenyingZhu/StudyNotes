@@ -41,7 +41,7 @@ namespace WebApplicationMVCDemo.Controllers
             }
             IdentityUser user = await _userManager.GetUserAsync(User);
 
-            var toDoItem = await _context.ToDoItems.Include(t => t.Project)
+            var toDoItem = await _context.ToDoItems.Include(t => t.Project).AsNoTracking()
                 .FirstOrDefaultAsync(m => m.Id == id && m.OwnerId == user.Id);
             if (toDoItem == null)
             {
@@ -54,6 +54,7 @@ namespace WebApplicationMVCDemo.Controllers
         // GET: ToDoItems/Create
         public IActionResult Create()
         {
+            this.PopulateProjectsDropDownList();
             return View();
         }
 
@@ -62,7 +63,7 @@ namespace WebApplicationMVCDemo.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,OwnerId,Title,State,DueDate")] ToDoItem toDoItem)
+        public async Task<IActionResult> Create([Bind("Id,OwnerId,Title,State,DueDate,ProjectId")] ToDoItem toDoItem)
         {
             if (ModelState.IsValid)
             {
@@ -72,6 +73,7 @@ namespace WebApplicationMVCDemo.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            this.PopulateProjectsDropDownList(toDoItem.ProjectId);
             return View(toDoItem);
         }
 
@@ -84,14 +86,13 @@ namespace WebApplicationMVCDemo.Controllers
             }
 
             IdentityUser user = await _userManager.GetUserAsync(User);
-            var toDoItem = await _context.ToDoItems.Include(t => t.Project).FirstOrDefaultAsync(t => t.Id == id);
+            var toDoItem = await _context.ToDoItems.AsNoTracking().FirstOrDefaultAsync(t => t.Id == id);
             if (toDoItem == null || toDoItem.OwnerId != user.Id)
             {
                 return NotFound();
             }
-            
-            var projects = await _context.Project.ToListAsync();
-            ViewBag.Projects = projects;
+
+            this.PopulateProjectsDropDownList(toDoItem.ProjectId);
 
             return View(toDoItem);
         }
@@ -134,6 +135,9 @@ namespace WebApplicationMVCDemo.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+
+            this.PopulateProjectsDropDownList(toDoItem.ProjectId);
+
             return View(toDoItem);
         }
 
@@ -146,7 +150,7 @@ namespace WebApplicationMVCDemo.Controllers
             }
 
             IdentityUser user = await _userManager.GetUserAsync(User);
-            var toDoItem = await _context.ToDoItems.Include(t => t.Project)
+            var toDoItem = await _context.ToDoItems.Include(t => t.Project).AsNoTracking()
                 .FirstOrDefaultAsync(m => m.Id == id && m.OwnerId == user.Id);
             if (toDoItem == null)
             {
@@ -161,7 +165,8 @@ namespace WebApplicationMVCDemo.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var toDoItem = await _context.ToDoItems.Include(t => t.Project).FirstOrDefaultAsync(t => t.Id == id);
+            var toDoItem = await _context.ToDoItems.Include(t => t.Project).AsNoTracking()
+                .FirstOrDefaultAsync(t => t.Id == id);
 
             IdentityUser user = await _userManager.GetUserAsync(User);
             if (toDoItem == null || toDoItem.OwnerId != user.Id)
@@ -185,7 +190,7 @@ namespace WebApplicationMVCDemo.Controllers
             //var projectsQuery = from p in _context.Project orderby p.Title select p;
             var projectsQuery = _context.Project.OrderBy(p => p.Title);
 
-            ViewBag.ProjectId = new SelectList(projectsQuery.AsNoTracking(), "ProjectId", "Title", selectedProject);
+            ViewBag.ProjectId = new SelectList(projectsQuery.AsNoTracking(), "Id", "Title", selectedProject);
         }
     }
 }
