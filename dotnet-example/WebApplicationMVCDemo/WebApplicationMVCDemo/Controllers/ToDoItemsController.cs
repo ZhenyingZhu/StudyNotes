@@ -29,7 +29,9 @@ namespace WebApplicationMVCDemo.Controllers
         public async Task<IActionResult> Index()
         {
             IdentityUser user = await _userManager.GetUserAsync(User);
-            return View(await _context.ToDoItems.Where(t => t.OwnerId == user.Id).Include(t => t.Project).ToListAsync());
+            return View(await _context.ToDoItems
+                .Where(t => t.OwnerId == user.Id).AsNoTracking()
+                .Include(t => t.Project).ToListAsync());
         }
 
         // GET: ToDoItems/Details/5
@@ -41,7 +43,8 @@ namespace WebApplicationMVCDemo.Controllers
             }
             IdentityUser user = await _userManager.GetUserAsync(User);
 
-            var toDoItem = await _context.ToDoItems.Include(t => t.Project).AsNoTracking()
+            var toDoItem = await _context.ToDoItems
+                .Include(t => t.Project).AsNoTracking()
                 .FirstOrDefaultAsync(m => m.Id == id && m.OwnerId == user.Id);
             if (toDoItem == null)
             {
@@ -86,14 +89,14 @@ namespace WebApplicationMVCDemo.Controllers
             }
 
             IdentityUser user = await _userManager.GetUserAsync(User);
-            var toDoItem = await _context.ToDoItems.AsNoTracking().FirstOrDefaultAsync(t => t.Id == id);
+            var toDoItem = await _context.ToDoItems.AsNoTracking()
+                .FirstOrDefaultAsync(t => t.Id == id);
             if (toDoItem == null || toDoItem.OwnerId != user.Id)
             {
                 return NotFound();
             }
 
             this.PopulateProjectsDropDownList(toDoItem.ProjectId);
-
             return View(toDoItem);
         }
 
@@ -187,8 +190,9 @@ namespace WebApplicationMVCDemo.Controllers
 
         private void PopulateProjectsDropDownList(object selectedProject = null)
         {
-            //var projectsQuery = from p in _context.Project orderby p.Title select p;
-            var projectsQuery = _context.Project.OrderBy(p => p.Title);
+            // var projectsQuery = from p in _context.Project orderby p.Title select p;
+            IdentityUser user = _userManager.GetUserAsync(User).Result;
+            var projectsQuery = _context.Project.Where(p => p.OwnerId == user.Id).OrderBy(p => p.Title);
 
             ViewBag.ProjectId = new SelectList(projectsQuery.AsNoTracking(), "Id", "Title", selectedProject);
         }

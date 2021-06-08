@@ -15,6 +15,13 @@
             <input type="hidden" asp-for="Id" />
             <input type="hidden" asp-for="OwnerId" />
             <div class="form-group">
+                <label asp-for="Project" class="control-label"></label>
+                <select asp-for="ProjectId" class="control-label" asp-items="ViewBag.ProjectId">
+                    <option>Select Project ...</option>
+                </select>
+                <span asp-validation-for="ProjectId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="Title" class="control-label"></label>
                 <input asp-for="Title" class="form-control" />
                 <span asp-validation-for="Title" class="text-danger"></span>
