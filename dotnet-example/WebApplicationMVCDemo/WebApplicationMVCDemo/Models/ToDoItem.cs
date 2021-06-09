@@ -23,7 +23,7 @@ namespace WebApplicationMVCDemo.Models
 
         public TaskState State { get; set; }
 
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy HH:MM}")]
+        // [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{yyyy-MM-ddTHH:mm}")]
         public DateTime? DueDate { get; set; }
 
         // Project 1-to-many ToDoItem
