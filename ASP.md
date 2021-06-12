@@ -3613,6 +3613,8 @@ Use `[Column(TypeName = "decimal(18,2)")]` before a property to define its restr
 <https://demos.telerik.com/aspnet-core/grid/foreignkeycolumnbinding>
 <https://docs.microsoft.com/en-us/aspnet/core/data/ef-mvc/read-related-data?view=aspnetcore-5.0>
 
+- How to read/write navigation property.
+
 [Connection String](https://docs.microsoft.com/en-us/ef/core/miscellaneous/connection-strings)
 
 - Local test connection string: `Server=(localdb)\\mssqllocaldb;Database=EFGetStarted.ConsoleApp.NewDb;Trusted_Connection=True;`
