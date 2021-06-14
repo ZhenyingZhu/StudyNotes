@@ -164,3 +164,5 @@ Create a new Activity
 ## Install ADB driver
 
 <https://blog.csdn.net/ctcwri/article/details/14643611>
+
+<https://www.xda-developers.com/quickly-install-adb/>
