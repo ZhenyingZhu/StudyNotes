@@ -2457,3 +2457,9 @@ Thenable: an object is promise-like, which has a `then` method.
 HERE: Chaining
 
 [Load image](https://stackoverflow.com/questions/9815762/detect-when-an-image-fails-to-load-in-javascript)
+
+## Other
+
+<https://www.freecodecamp.org/news/var-let-and-const-whats-the-difference/>
+
+- var is global scope. So should use let. If a value/function shouldn't change. use const.
