@@ -1,12 +1,14 @@
-# System Design Course
+# System Design
+
+## NineChapter
 
 <http://www.jiuzhang.com/course/2/>
 
-## Chapter 1
+### Chapter 1 Notes
 
 SRE: 运维
 
-### Normal needs
+#### Normal needs
 
 Design System:
 
@@ -27,7 +29,7 @@ Trouble Shooting:
 - What happened if a webserver is too slow: `<b>?</b>`
 - What should we do for increasing traffic: `<b>?</b>`
 
-### Design standard
+#### Design standard
 
 Start from simple case, for example only two users. Don't over-optimize at the begining.
 
@@ -53,9 +55,9 @@ Tradeoff example: local storage or remote storage
 - can explaining each component
 - can expend the design with new requirements by modify the design cleanly, or if necessary, re-design components
 
-### 4S Analysis
+#### 4S Analysis
 
-#### Scenario
+##### Scenario
 
 Features/Interfaces.
 
@@ -87,7 +89,7 @@ Server type:
 
 Need consider Single Point Failure, and how to maintainance.
 
-#### Service
+##### Service
 
 Split design into different applications/modules
 
@@ -105,7 +107,7 @@ Split design by objects. E.g. Twetter `<b>Draw a Graph?</b>`
 
 Replay all requirements and merge same requirements(by logic) into a single service.
 
-#### Storage
+##### Storage
 
 How to access data(SQL, NoSQL, File System only, In Memory)
 
@@ -130,7 +132,7 @@ Not like algorithms, the time complexity is computing DB read times, because DB 
 
 [Asynchronous](https://en.wikipedia.org/wiki/Asynchrony_(computer_programming)): not block user quest.
 
-##### Design rules
+###### Design rules
 
 While system design, don't ambivalent. Change plan is very expansive, since if the system is online, changing DB tables needs a lot of work.
 
@@ -140,7 +142,7 @@ The design should be able to, or can be extend to deal with special case.
 
 Draw schema, draw graphs to show storage blocks and data flow.
 
-##### Pull Model
+###### Pull Model
 
 - Friendship table
 - Tweet table
@@ -156,7 +158,7 @@ Time complexity: if N following users
 - news feed: O(N) DB reads and O(NlogN) merge K sorted arrays time(which can be neglect). Users wait while this is procceeding.
 - post a tweet: O(1) DB write
 
-##### Push Model
+###### Push Model
 
 - News feed table: each user has a copy of tweet in its news feed. Fields: user id, tweet(which include the tweet author info), tweet create time
 - Friendship table
@@ -181,7 +183,7 @@ Disadvantage:
 - Redundancy
 - The user with a lot of followers has very slow experience when post tweets
 
-#### Scale
+##### Scale
 
 - Optimize
   - Special ways to deal with Special Cases: users with lot of followers, inactive users
@@ -231,7 +233,7 @@ Guide lines for solve scaling issues:
 - Adding machines is always a solution
 - Estimate with numbers
 
-### Details
+#### Details
 
 [Mutual friend](http://www.jiuzhang.com/qa/954/)
 
@@ -244,9 +246,9 @@ Guide lines for solve scaling issues:
 - Can only be done by pull
 - Use the timestamp of 100th tweet, query 101 tweets from all friends after it, then merge
 
-## Points
+### Points
 
-### Points Chapter 1
+#### Chapter 1
 
 Design System
 
@@ -268,7 +270,7 @@ Time complexity of DB
 
 write through(slow but I/O safe), write back(fast but not I/O safe)
 
-### Chapter 2
+#### Chapter 2
 
 User system:
 
@@ -299,7 +301,7 @@ Horizontal Sharing:
 
 Master - Slave for SQL replica: write ahead log
 
-### Chapter 3
+#### Chapter 3
 
 [web crawler](https://github.com/ZhenyingZhu/StudyNotes/blob/master/java-example/WebpageCrawlerSolution.java)
 
@@ -328,7 +330,7 @@ Probabilistic logging
 
 KB, MB, GB, TB, PB
 
-### Chapter 4
+#### Chapter 4
 
 1. Distributed File System: metadata + chunk
 2. Map Reduce
@@ -347,7 +349,7 @@ Three Backup location
 
 [Heartbeat](https://github.com/ZhenyingZhu/CppAlgorithms/blob/master/src/lintcode/HeartBeat.cpp)
 
-### Chapter 5
+#### Chapter 5
 
 web system
 
@@ -377,7 +379,7 @@ Increase read speed:
 
 [Rate Limiter](https://github.com/ZhenyingZhu/CppAlgorithms/blob/master/src/lintcode/RateLimiter.cpp)
 
-### Chapter 6
+#### Chapter 6
 
 Map reduce:
 
@@ -409,7 +411,7 @@ Lookup service
   - GFS + binary search on file(on disk) directly
 - Cache: before GFS
 
-### Chapter 7
+#### Chapter 7
 
 Uber
 
@@ -443,7 +445,7 @@ Check if a point is in polygon: from this point emit a line. If the line interse
 
 [Yelp](https://github.com/ZhenyingZhu/CppAlgorithms/blob/master/src/lintcode/MiniYelp.cpp)
 
-### Chapter 8
+#### Chapter 8
 
 Bigtable
 
@@ -463,7 +465,7 @@ Bloom filter: quickly check if a string is inside a SStable
 
 Lock: Chubby, Zookeeper
 
-### Chapter 9
+#### Chapter 9
 
 WhatsApp
 
@@ -504,7 +506,7 @@ Datadog
 - Aggregate counts in memory, and write to NoSQL DB every 15 seconds, to reduce the QPS to 1/15
 - Aggregate Retention
 
-### OOD
+#### OOD
 
 Singleton
 
@@ -514,7 +516,7 @@ OOD is to design the message flow
 
 Manager controls how objects interact with each other
 
-### Summary
+#### Summary
 
 Twitter
 
@@ -758,7 +760,7 @@ Calendar
 - Instagram: `<b>?</b>`
 - Google Reader(RSS Reader): `<b>?</b>`
 
-## NineChapter
+### Review
 
 cache:
 
@@ -973,3 +975,27 @@ Search engine
     - tokenize: where to break the sentencite
   - query engine.
   - type-ahead
+
+## Designing Data-Intensive Applications
+
+<https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/copyright-page01.html>
+
+### Preface
+
+- NoSQL
+- Big Data
+- Web-scale
+- Sharding
+- Eventual consistency
+- ACID: atomicity, consistency, isolation, and durability.
+- CAP theorem: impossible to provide all 3: Consistency, Availability, Partition tolerance
+- Cloud services
+- MapReduce
+- Real-time
+
+- message queues
+- caches
+- search indexes
+- batch and stream processing
+
+HERE: Who Should Read This Book?
