@@ -978,7 +978,7 @@ Search engine
 
 ## Designing Data-Intensive Applications
 
-<https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/copyright-page01.html>
+<https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/preface01.html>
 
 ### Preface
 
@@ -998,4 +998,4 @@ Search engine
 - search indexes
 - batch and stream processing
 
-HERE: Who Should Read This Book?
+HERE: Scope of This Book
