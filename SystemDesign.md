@@ -998,4 +998,4 @@ Search engine
 - search indexes
 - batch and stream processing
 
-HERE: Scope of This Book
+HERE: Outline of This Book
