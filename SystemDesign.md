@@ -998,4 +998,8 @@ Search engine
 - search indexes
 - batch and stream processing
 
-HERE: Outline of This Book
+distributed system: consistency and consensus.
+
+heterogeneous system
+
+HERE: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/part01.html>
