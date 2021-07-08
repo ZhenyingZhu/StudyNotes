@@ -1002,4 +1002,8 @@ distributed system: consistency and consensus.
 
 heterogeneous system
 
-HERE: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/part01.html>
+### Part 1. Foundations of Data Systems
+
+#### Chapter 1. Reliable, Scalable, and Maintainable Applications
+
+HERE: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch01.html>
