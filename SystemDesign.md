@@ -1006,4 +1006,12 @@ heterogeneous system
 
 #### Chapter 1. Reliable, Scalable, and Maintainable Applications
 
+- databases: multiple apps can read and write
+- caches
+- search indexes
+- stream processing: anpther process handle message async
+- batch processing: periodically crunch large amount of data.
+
 HERE: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch01.html>
+
+Thinking About Data Systems
