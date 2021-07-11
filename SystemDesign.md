@@ -1012,14 +1012,19 @@ heterogeneous system
 - stream processing: anpther process handle message async
 - batch processing: periodically crunch large amount of data.
 
-Redis: datastores that are also used as message queues.
+Common services:
 
-Apache Kafka: message queues with database-like durability guarantees.
+- Redis: datastores that are also used as message queues.
+- Apache Kafka: message queues with database-like durability guarantees.
+- Memcached: application-managed caching layer
+- Elasticsearch/Solr: full-text search server
 
-Memcached: application-managed caching layer
+3 concerns:
 
-Elasticsearch/Solr: full-text search server
+- Reliability
+- Scalability
+- Maintainability
 
 HERE: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch01.html>
 
-Figure 1-1. One possible architecture for a data system that combines several components.
+The things that can go wrong are called faults
