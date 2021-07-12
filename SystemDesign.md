@@ -1025,6 +1025,27 @@ Common services:
 - Scalability
 - Maintainability
 
+Netflix Chaos Monkey:  trigger fault deliberately
+
+Common faults:
+
+MTTF: mean time to fail
+
+- Hardware: hard disk, RAM, power, network
+  - add redundency: RAID, dual power supplies, hot swappable CPU, backup generators. Good for single machine. Downtime could be long.
+  - software fault tolerance: for system prioritize flexibility and elasticityi over single-machine reliability. No downtime for the whole system.
+- Software: bug, too much resource consumption, dependency failure, cascading failures (a fault triggers another fault)
+  - check the assumptions are still true
+  - process isolation
+  - watchdog
+- Human error
+  - well designed API, UI
+  - sandbox
+  - auto tests: UT, intergration test, manual test
+  - easy recovery: rollback, gradually rollout, data integrity check.
+  - detailed and clear monitor/telemetry: performance metrics and error rates.
+  - training people
+
 HERE: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch01.html>
 
-The things that can go wrong are called faults
+Scalability
