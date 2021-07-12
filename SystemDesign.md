@@ -1027,6 +1027,8 @@ Common services:
 
 Netflix Chaos Monkey:  trigger fault deliberately
 
+##### Reliability
+
 Common faults:
 
 MTTF: mean time to fail
@@ -1046,6 +1048,28 @@ MTTF: mean time to fail
   - detailed and clear monitor/telemetry: performance metrics and error rates.
   - training people
 
+##### Scalability
+
+Cannot make a system generically scale. Need to discuss a particular way.
+
+load parameters:
+
+- QPS
+- R/W ratio
+- simultaneously active user
+- cache hit rate
+- hot spot
+
+fan out: 1 write leads to k writes.
+
+twitter:
+
+- tweet write: 4.6k/s, timeline read: 300k/s
+- first approach: timeline query reads the database. Cannot stand with timeline query requests.
+- second approach: when post a tweet, insert it to each user's timeline cache. Because timeline read request is two order (100x) higher than post a tweet. But write a tweet averagely fan out to 345k/s.
+- the distribution of followers per user is important, because most of the users only have ~75 followers, while some has 30M followers.
+- final approach: hybrid both approach 1 and 2.
+
 HERE: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch01.html>
 
-Scalability
+Describing Performance
