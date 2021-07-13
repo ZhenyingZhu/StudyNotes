@@ -1070,6 +1070,20 @@ twitter:
 - the distribution of followers per user is important, because most of the users only have ~75 followers, while some has 30M followers.
 - final approach: hybrid both approach 1 and 2.
 
+Measure performace:
+
+- throughput: the number of records we can process per second, or the total time it takes to run a job on a dataset of a certain size.
+  - Critical for batch processing system (e.g., Hadoop)
+- response time: what client see.
+  - vs. latency, which is when the request is awaiting in the system.
+  - could be vary from time to time because it includes other facts like background process context switch, network package loss, TCP retransmission, garbage collection pause, page fault cause re-read from disk, mechanical vibrations in the server rack
+  - Need to measure the distribution of value: average, P50, P95, P99, P99.9 percentiles. tail latencies: high percentile of response time.
+  - service level objectives (SLOs) and service level agreements (SLAs) use percentiles
+- Queueing delays: normally affect high percentile. head-of-line blocking effect: it only takes a small number of slow requests to hold up the processing of subsequent requests.
+- to measure performance under high load, the load generation client should send requests in parallel not one by one.
+- tail latency amplification: a slow call increases when client needs multiple backend calls for a single request, a higher proportion of the whole request requests end up being slow.
+- use a rolling window to calculate percentile in the last 10 mins for the monitor. To calculate that efficiently, can use algorithm: forward decay, t-digest, or HdrHistogram.
+
 HERE: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch01.html>
 
-Describing Performance
+Approaches for Coping with Load
