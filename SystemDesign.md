@@ -1084,6 +1084,14 @@ Measure performace:
 - tail latency amplification: a slow call increases when client needs multiple backend calls for a single request, a higher proportion of the whole request requests end up being slow.
 - use a rolling window to calculate percentile in the last 10 mins for the monitor. To calculate that efficiently, can use algorithm: forward decay, t-digest, or HdrHistogram.
 
+Handle load increase
+
+- scaling up (vertical scaling, moving to a more powerful machine)
+- scaling out (horizontal scaling, distributing the load across multiple smaller machines)
+- elastic:  automatically add computing resources when they detect a load increase
+- distribute stateless system is easy, but stateful data system could be hard.
+- Early-stage should iterate quickly on product features than it is to scale to some hypothetical future load.
+
 HERE: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch01.html>
 
-Approaches for Coping with Load
+Maintainability
