@@ -1092,6 +1092,24 @@ Handle load increase
 - distribute stateless system is easy, but stateful data system could be hard.
 - Early-stage should iterate quickly on product features than it is to scale to some hypothetical future load.
 
+Maintainability
+
+- Operability
+  - monitor health, visible to the runtime behavior and internal of the system. restore service
+  - track down system failures or degraded performance
+  - keep software and platform up to date
+  - keep check how different services affect each other, to avoid one service completely break another one
+  - anticipate future problem and solve them (e.g., cap planning)
+  - establish good practice and tools  for deploy, config
+  - perform maintenance tasks, e.g., migrate platform
+  - maintain - security
+  - define process to make ops predictable
+  - share knowledge
+  - provide good default behavior for tooling, but also provide the flexibility
+  - self-healing, but also allow admin control
+- Simplicity
+- Evolvability: equals to extensibility, modifiability, or plasticity
+
 HERE: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch01.html>
 
-Maintainability
+Simplicity: Managing Complexity
