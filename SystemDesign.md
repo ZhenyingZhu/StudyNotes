@@ -1110,6 +1110,17 @@ Maintainability
 - Simplicity
 - Evolvability: equals to extensibility, modifiability, or plasticity
 
+big ball of mud: A software project mired in complexity
+
+- explosion of the state space
+- tight coupling of modules
+- tangled dependencies
+- inconsistent naming and terminology
+- hacks aimed at solving performance problems
+- special-casing to work around issues
+
+Use abstraction to hide the complexitity.
+
 HERE: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch01.html>
 
-Simplicity: Managing Complexity
+Evolvability: Making Change Easy
