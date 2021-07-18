@@ -1130,4 +1130,21 @@ skew: data not being spread evenly across worker processes
 
 #### Chapter 2. Data Models and Query Languages
 
+Data models: how we think about the problem that we are solving
+
+Layers:
+
+- application: real world to data strutures, and APIs to manipulate them
+- store: general-purpose data model, e.g., JSON, XML, tables, graph model
+- database: bytes in RAM, disk, network.
+- hardware
+
+data models:
+
+- relational model
+- document model
+- graph-based data models
+
 HERE: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch02.html>
+
+Relational Model Versus Document Model
