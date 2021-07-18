@@ -987,7 +987,7 @@ Search engine
 - Web-scale
 - Sharding
 - Eventual consistency
-- ACID: atomicity, consistency, isolation, and durability.
+- database ACID: atomicity, consistency, isolation, and durability.
 - CAP theorem: impossible to provide all 3: Consistency, Availability, Partition tolerance
 - Cloud services
 - MapReduce
@@ -1009,7 +1009,7 @@ heterogeneous system
 - databases: multiple apps can read and write
 - caches
 - search indexes
-- stream processing: anpther process handle message async
+- stream processing: another process handle message async
 - batch processing: periodically crunch large amount of data.
 
 Common services:
@@ -1035,7 +1035,7 @@ MTTF: mean time to fail
 
 - Hardware: hard disk, RAM, power, network
   - add redundency: RAID, dual power supplies, hot swappable CPU, backup generators. Good for single machine. Downtime could be long.
-  - software fault tolerance: for system prioritize flexibility and elasticityi over single-machine reliability. No downtime for the whole system.
+  - software fault tolerance: for system prioritize flexibility and elasticity over single-machine reliability. No downtime for the whole system.
 - Software: bug, too much resource consumption, dependency failure, cascading failures (a fault triggers another fault)
   - check the assumptions are still true
   - process isolation
@@ -1100,9 +1100,9 @@ Maintainability
   - keep software and platform up to date
   - keep check how different services affect each other, to avoid one service completely break another one
   - anticipate future problem and solve them (e.g., cap planning)
-  - establish good practice and tools  for deploy, config
+  - establish good practice and tools for deploy, config
   - perform maintenance tasks, e.g., migrate platform
-  - maintain - security
+  - maintain security
   - define process to make ops predictable
   - share knowledge
   - provide good default behavior for tooling, but also provide the flexibility
@@ -1121,6 +1121,13 @@ big ball of mud: A software project mired in complexity
 
 Use abstraction to hide the complexitity.
 
-HERE: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch01.html>
+Agile:
 
-Evolvability: Making Change Easy
+- TDD
+- Refactoring
+
+skew: data not being spread evenly across worker processes
+
+#### Chapter 2. Data Models and Query Languages
+
+HERE: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch02.html>
