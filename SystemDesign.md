@@ -1145,6 +1145,30 @@ data models:
 - document model
 - graph-based data models
 
+Relational Model:
+
+- relational database management system: (RDBMS)
+- transaction processing
+- batch processing
+- competitor: network model, hierarchical model
+
+NoSQL:
+
+- open source, distributed, nonrelational databases
+- greater scalability: very large datasets or very high write throughput
+- Specialized query operations
+- a more dynamic and expressive data model
+
+Object-Relational Mismatch:
+
+- between SQL and OOD need to have a translation layer
+- Object-relational mapping (ORM) frameworks, e.g., ActiveRecord and Hibernate
+- SQL supports structured datatypes and XML data now. This allowed multi-valued data to be stored within a single row, with support for querying and indexing inside those documents.
+- Document-oriented databases: e.g., MongoDB, RethinkDB, CouchDB, and Espresso support document model (JSON), which is native to OOD.
+- Lack of schema is good in some cases.
+- Require less queries for document model.
+- Easy to represent tree struture = one-to-many with document model
+
 HERE: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch02.html>
 
-Relational Model Versus Document Model
+Many-to-One and Many-to-Many Relationships
