@@ -1169,6 +1169,23 @@ Object-Relational Mismatch:
 - Require less queries for document model.
 - Easy to represent tree struture = one-to-many with document model
 
+normalization: use id to store object while give the human interept info easy changeable.
+
+Many to many:
+
+- document model couldn't support well
+- the join logic needs to be shifted to application
+
+Information Management System (IMS):
+
+- hierarchical model
+- to support join: whether to duplicate (denormalize) data or to manually resolve references from one record to another.
+
+Network model:
+
+- a.k.a, CODASYL model
+- a record could have multiple parents
+
 HERE: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch02.html>
 
-Many-to-One and Many-to-Many Relationships
+THE RELATIONAL MODEL
