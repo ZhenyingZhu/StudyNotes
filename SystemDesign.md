@@ -1186,6 +1186,26 @@ Network model:
 - a.k.a, CODASYL model
 - a record could have multiple parents
 
+Relational model:
+
+- open data: a table is simply a collection of tuples
+- access path: query optimizer decides which part to query, in which order.
+- the query won't change even adding a new index, access path will change automatically
+- general purpose optimizer is very complicate
+
+Document databases:
+
+- hierarchical model: store nested records
+- use document reference (similar to foreign key) to represent many-to-one and many-to-many
+- reference identifier is resolved at read time, using join or follow up queries
+
+Relational vs. Document databases:
+
+- fault tolerance
+- concurrency handling
+- schema flexibility
+- performance
+
 HERE: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch02.html>
 
-THE RELATIONAL MODEL
+WHICH DATA MODEL LEADS TO SIMPLER APPLICATION CODE?
