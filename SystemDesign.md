@@ -1206,6 +1206,11 @@ Relational vs. Document databases:
 - schema flexibility
 - performance
 
+Doc model limitation:
+
+- cannot directly refer to a nested document. Need to first find its parent node. But unless it is deeply nested, it normally don't cause an issue.
+- join is not good supported. If really needed, would need to denormalize data consistent. Graph model is more nature for such case
+
 HERE: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch02.html>
 
-WHICH DATA MODEL LEADS TO SIMPLER APPLICATION CODE?
+SCHEMA FLEXIBILITY IN THE DOCUMENT MODEL
