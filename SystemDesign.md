@@ -1211,6 +1211,8 @@ Doc model limitation:
 - cannot directly refer to a nested document. Need to first find its parent node. But unless it is deeply nested, it normally don't cause an issue.
 - join is not good supported. If really needed, would need to denormalize data consistent. Graph model is more nature for such case
 
+XML supports in relational database comes with optional schema validation.
+
 HERE: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch02.html>
 
 SCHEMA FLEXIBILITY IN THE DOCUMENT MODEL
