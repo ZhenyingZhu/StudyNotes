@@ -1213,6 +1213,16 @@ Doc model limitation:
 
 XML supports in relational database comes with optional schema validation.
 
+document databases are schema-in-read: the structure of the data is implicit, and only interpreted when the data is read.
+
+When need to update the schema:
+
+- Document database: start writing new data and let application deal with both old and new data
+  - So if the data in a table could be different types, or structure is determined by external system, use schemaless DB is better
+- relational database: perform a migration.
+  - most DBs can handle ALTER TABLE (to add a new field) quickly, but MySQL would copy the whole table so it is slow
+  - UPDATE to change the values of each row is slow
+
 HERE: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch02.html>
 
-SCHEMA FLEXIBILITY IN THE DOCUMENT MODEL
+DATA LOCALITY FOR QUERIES
