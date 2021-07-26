@@ -1240,6 +1240,15 @@ Query lang:
   - can parallel excute
 - IMS, CODASYL: imperative code. Define what steps to do.
 
+MapReduce: programming model
+
+- MongoDB and CouchDB also use it to perform RO queries
+- map: collect. Emit a key to group and a value.
+- reduce: fold/inject. Called once for each key.
+- map and reduce must be pure functions: can only use pass-in data as RO, not do DB queries. So it can be used anywhere.
+- SQL can also use this framework.
+- aggregation pipeline: MongoDB uses it to do declarative queries over MapReduce rather than JS.
+
 HERE: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch02.html>
 
-MapReduce Querying
+Graph-Like Data Models
