@@ -1223,6 +1223,23 @@ When need to update the schema:
   - most DBs can handle ALTER TABLE (to add a new field) quickly, but MySQL would copy the whole table so it is slow
   - UPDATE to change the values of each row is slow
 
+Data locality: all the data of an object stores in one place, encoded in JSON.
+
+- If the data often needs to read together, this can save some queries across different tables
+- but when only a small part is read, or need to update, the whole document needs to R/W. So need keep the document small.
+- when document size increases, it cannot be updated in place.
+- not only in document type database, but also in:
+  - Google spanner DB: interleaved table rows.
+  - Oracle: multi-table index cluster table
+  - Bigtable used by Cassandra and HBase: column-family
+
+Query lang:
+
+- SQL: Declarative query. specify the pattern of the data and how the data transformed (sorted, grouped, aggregated)
+  - DB can do improvements and don't worry about breaking queries
+  - can parallel excute
+- IMS, CODASYL: imperative code. Define what steps to do.
+
 HERE: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch02.html>
 
-DATA LOCALITY FOR QUERIES
+MapReduce Querying
