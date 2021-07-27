@@ -1249,6 +1249,19 @@ MapReduce: programming model
 - SQL can also use this framework.
 - aggregation pipeline: MongoDB uses it to do declarative queries over MapReduce rather than JS.
 
+Graph-Like Data Models
+
+- page rank: uses web pages as vertices and links as edges
+- vertices don't necessary to be the same object types.
+- property graph model: Neo4j, Titan, and InfiniteGraph
+  - vertex: a uniq id, outgoing edges, incoming edges, properties (key-value pairs)
+  - edge: a uniq id, tail vertex (start), head vertex (end), label (kind of the relationship), properties (key-value)
+  - use two relational DB tables to store vertex and edge.
+- triple-store model: Cypher, SPARQL, and Datalog
+- graph query languages: Gremlin
+- graph processing frameworks: Pregel
+- 
+
 HERE: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch02.html>
 
-Graph-Like Data Models
+Some important aspects of this model are:
