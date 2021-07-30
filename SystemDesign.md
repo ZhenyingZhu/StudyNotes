@@ -1259,6 +1259,8 @@ Graph-Like Data Models
   - use two relational DB tables to store vertex and edge.
   - can traverse both forward and backward
   - Neo4j use Cypher Query Language: **HERE**
+
+  - CREATE clause defines vertices and edges. MATCH clause finds vertices based on properties on vertices and edges.
 - triple-store model: Cypher, SPARQL, and Datalog
 - graph query languages: Gremlin
 - graph processing frameworks: Pregel
