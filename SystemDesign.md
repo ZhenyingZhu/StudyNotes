@@ -1258,7 +1258,7 @@ Graph-Like Data Models
   - edge: a uniq id, tail vertex (start), head vertex (end), label (kind of the relationship), properties (key-value)
   - use two relational DB tables to store vertex and edge.
   - can traverse both forward and backward
-  - Neo4j use Cypher Query Language: **HERE**
+  - Neo4j use Cypher Query Language: declarative. define vertex name and its json properties, then use the names to create relations. **HERE**
 - triple-store model: Cypher, SPARQL, and Datalog
 - graph query languages: Gremlin
 - graph processing frameworks: Pregel
