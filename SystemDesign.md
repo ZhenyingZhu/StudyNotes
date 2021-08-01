@@ -1270,9 +1270,13 @@ Graph-Like Data Models
   - object:
     - when predicate is a property, then object is its value
     - when predicate is an edge, object is another vertex
+  - semantic web: publish information as machine-readable data
+    - Resource Description Framework (RDF): out-of-date. subject, predicate, object could be URLs with domains to resolve conflicts.
+  - SPARQL query: query RDF. Powerful even without RDF.
+  - Datalog: foundation. Hadoop uses it to query large datasets. Define rules to query which can be reused. So one-off query is hard to write but query in complex data can be break down into steps and reuse rules.
 - graph query languages: Gremlin
 - graph processing frameworks: Pregel
 
 HERE: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch02.html>
 
-Triple-Stores and SPARQL
+Summary
