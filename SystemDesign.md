@@ -1264,6 +1264,12 @@ Graph-Like Data Models
     - challenge is not knowing how many vertices on the path, so the JOIN number is not fixed.
     - recursive common table expressions: WITH RECURSIVE to traverse the edges
 - triple-store model: Cypher, SPARQL, and Datalog
+  - similar to property graph model.
+  - all info stores in 3-part statements: subject, predicate, object.
+  - subject: like vertex
+  - object:
+    - when predicate is a property, then object is its value
+    - when predicate is an edge, object is another vertex
 - graph query languages: Gremlin
 - graph processing frameworks: Pregel
 
