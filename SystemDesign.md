@@ -1186,7 +1186,7 @@ Network model:
 - a.k.a, CODASYL model
 - a record could have multiple parents
 
-Relational model:
+Relational databases:
 
 - open data: a table is simply a collection of tuples
 - access path: query optimizer decides which part to query, in which order.
@@ -1277,6 +1277,5 @@ Graph-Like Data Models
 - graph query languages: Gremlin
 - graph processing frameworks: Pregel
 
-HERE: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch02.html>
+HERE: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch03.html>
 
-Summary
