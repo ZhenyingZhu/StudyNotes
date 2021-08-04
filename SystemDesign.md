@@ -1277,5 +1277,24 @@ Graph-Like Data Models
 - graph query languages: Gremlin
 - graph processing frameworks: Pregel
 
-HERE: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch03.html>
+#### Chapter 3. Storage and Retrieval
 
+Storage engines by purpose:
+
+- optimized for transactional workloads
+- optimized for analytics
+
+Storage engines by strcture:
+
+- log-structured storage engines, and
+- page-oriented storage engines such as B-trees.
+
+Data Structures
+
+- simplist log DB: a text file. each line contains a key-value pair. the old values are not overwritten, so search from end.
+  - Real DB needs to deal with concurrency control, reclaim disk space, handle errors and partially written data.
+- index: keep metadata aside. increase overhead on write
+
+Hash indexes
+
+HERE: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch03.html>
