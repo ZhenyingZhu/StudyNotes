@@ -1297,4 +1297,25 @@ Data Structures
 
 Hash indexes
 
+- simplist solution for log DB: keep a hash map: key is the key, value is the offset.
+  - All indexes store in RAM. Values store on disk and a part of it loaded in FS cache.
+  - good for scenarios where values of each key needs to be updated freq, but not too many uniq keys
+  - avoid running out of disk space: break log into segments
+  - compaction: throw away dup keys. Can merge multiple segments into one in parallel with compaction. While doing so, old segments are still available for read. After it is done, read from new segments.
+  - Each segment has its own in-mem hash table
+  - File format: csv is inefficent. use an encoded binary string. The length follow by the raw column.
+  - deletion: append a special record (tombstone).
+  - crash recovery: to recovery the index, re-iterate all the segments is slow, so store a snapshot on disk
+  - partial writes: maintain checksums and ignore corrupted logs
+  - concurrency control: use only one write thread. Segments are read only. Reads can be served concurrently.
+  - Benefits:
+    - fast writes on HDD and SSD.
+    - Simple for concurrency and crash recovery
+    - merging old segments to avoid files getting fragmented.
+  - limitations:
+    - key size
+    - range queries not efficient
+
+SSTables and LSM-Trees
+
 HERE: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch03.html>
