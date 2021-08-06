@@ -9,7 +9,7 @@ namespace DotNetCoreConsole
     {
         static void Main(string[] args)
         {
-            TestGrabString.TestMain();
+            IfBlockOutputValue.TestMain();
         }
     }
 }
