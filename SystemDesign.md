@@ -1318,4 +1318,21 @@ Hash indexes
 
 SSTables and LSM-Trees
 
+- sorted string table (SSTable): key value pairs sorted by key in each segment
+- write using sequential I/O.
+- Use merge sort to merge multiple segments into one.
+- no need to load whole segments from disk, but the first key in each segment, so use less memory.
+- Sparse index: no need to index of all the keys, but one key for every few kilobyte blocks.
+- Each block can be compressed. It can reduce the disk space and I/O bandwidth.
+- memtable: use red-black trees or AVL trees to make the inserting keys are done in sorted order in memory.
+- When read, first search in the memtable, then the most recent on-dist segment, then older segments.
+- periodically merge segments.
+- to recover from crash, while the memtable is in memory, every writes also write to a disk file that is not sorted.
+- Log-structured Merge-Tree (LSM-Tree)
+- full-text index: given a word in a search query, find all the documents have this word (term) using a term dictionary.
+- Use bloom filters: a mem-efficient data struture for approximating the contents of a set. Tells if a key doesn't appear in the DB.
+- size-tiered tied compaction: newer and smaller SSTables merged into older and larger SSTables
+- leveled compaction: key range is split into smaller SSTables. Older data is moved into separate levels.
+- write throughput is high.
+
 HERE: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch03.html>
