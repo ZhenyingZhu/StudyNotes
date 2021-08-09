@@ -1354,6 +1354,16 @@ B-Trees
 - create pointers to sibling pages, so scanning keys don't need to go back to parent page again and again
 - fractal trees borrow some ideas from LSM trees.
 
+Comparing B-Trees and LSM-Trees
+
+- In general: LSM tree fast for write, B-Tree fast for read. But need to test for the workload.
+- write amplification: 1 DB write becomes multiple writes. The write bandwidth is limited so more writes reduce the throughput of a DB.
+- B-tree update: 1 write to the write ahead log, 1 write for a page update (2 if split)
+- LSM tree update: multiple writes but not done during the DB update: repeated compaction, merge of SSTables. A concern for SSD, which can overwrite blocks a limit of times.
+- LSM has less write amplification. It also does seqential writes, which works better on magetic disk which handles seq writes better than random writes.
+- SSD internally uses LSM to convert random writes to seq writes, so the benefit is not so obvious.
+- LSM use less space. B-tree needs to maintain fragmentation.
+
 HERE: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch03.html>
 
-Comparing B-Trees and LSM-Trees
+Downsides of LSM-trees
