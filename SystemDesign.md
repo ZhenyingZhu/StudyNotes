@@ -1329,10 +1329,31 @@ SSTables and LSM-Trees
 - periodically merge segments.
 - to recover from crash, while the memtable is in memory, every writes also write to a disk file that is not sorted.
 - Log-structured Merge-Tree (LSM-Tree)
-- full-text index: given a word in a search query, find all the documents have this word (term) using a term dictionary.
+- full-text index: given a word in a search query, find all the documents have this word (term) using a term dictionary. **Q**: the latest segment might have some duplicate appears in previous segments, how to maintain a global index?
 - Use bloom filters: a mem-efficient data struture for approximating the contents of a set. Tells if a key doesn't appear in the DB.
 - size-tiered tied compaction: newer and smaller SSTables merged into older and larger SSTables
 - leveled compaction: key range is split into smaller SSTables. Older data is moved into separate levels.
 - write throughput is high.
 
+B-Trees
+
+- DB is break down into fix sized (4KB) pages.
+- R/W one page at a time. Correspond to disk.
+- each page is identified by the address. One page can be referenced by another.
+- root: also a page.
+- Each page starts and ends with ref and boundaries with in, except leaf pages which have keys and values in line.
+- branching factor: number of references in one page. Depends on the total space needed for store all the data. Normally couple hundreds.
+- When add a new key, if the leaf doesn't have enough space, it will be broken into two half-full pages, and update parent page references.
+- the depth for n keys: O(logn). It affects the speed of the search. Should be 3~4 levels. If factor is 500, and page size is 4KB, then 4-level DB can store 500^4*4KB=256TB data.
+- While split a page, if DB crashes, to avoid leaving orphan pages, use a write-ahead log
+- write-ahead log (WAL): every B-tree modification first writes to it, so it can be used to restore.
+- Copy-on-write scheme: not overwrite existing pages.
+- latches: a light weight lock to make B-Tree thread safe.
+- store abbrivate keys that are enough to present a boundary. It can pack more keys into a page, so the level can be reduced.
+- move pages with seq keys together on disk, so range search reads quicker
+- create pointers to sibling pages, so scanning keys don't need to go back to parent page again and again
+- fractal trees borrow some ideas from LSM trees.
+
 HERE: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch03.html>
+
+Comparing B-Trees and LSM-Trees
