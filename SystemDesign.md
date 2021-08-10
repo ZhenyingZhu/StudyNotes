@@ -1329,7 +1329,7 @@ SSTables and LSM-Trees
 - periodically merge segments.
 - to recover from crash, while the memtable is in memory, every writes also write to a disk file that is not sorted.
 - Log-structured Merge-Tree (LSM-Tree)
-- full-text index: given a word in a search query, find all the documents have this word (term) using a term dictionary. **Q**: the latest segment might have some duplicate appears in previous segments, how to maintain a global index?
+- full-text index: given a word in a search query, find all the documents have this word (term) using a term dictionary. **Q**: the latest segment might have some duplicate appears in previous segments, how to maintain a global index? From below the index is not global.
 - Use bloom filters: a mem-efficient data struture for approximating the contents of a set. Tells if a key doesn't appear in the DB.
 - size-tiered tied compaction: newer and smaller SSTables merged into older and larger SSTables
 - leveled compaction: key range is split into smaller SSTables. Older data is moved into separate levels.
@@ -1363,7 +1363,11 @@ Comparing B-Trees and LSM-Trees
 - LSM has less write amplification. It also does seqential writes, which works better on magetic disk which handles seq writes better than random writes.
 - SSD internally uses LSM to convert random writes to seq writes, so the benefit is not so obvious.
 - LSM use less space. B-tree needs to maintain fragmentation.
+- LSM compaction can impact ongoing R/W performance causing high percentile response time long. B-tree is more perdictable.
+- So for LSM, needs to config the compaction and monitor it.
+- SSTable based DB don't throttle writes.
+- Index for B-Trees exist in one place in the index. Transaction can be supported well. LSM has the indexes for same keys appear in multiple place.
 
 HERE: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch03.html>
 
-Downsides of LSM-trees
+Other Indexing Structures
