@@ -9,7 +9,7 @@ namespace DotNetCoreConsole
     {
         static void Main(string[] args)
         {
-            IfBlockOutputValue.TestMain();
+            TestNullCheck2.TestMain();
         }
     }
 }
