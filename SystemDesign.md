@@ -1368,6 +1368,23 @@ Comparing B-Trees and LSM-Trees
 - SSTable based DB don't throttle writes.
 - Index for B-Trees exist in one place in the index. Transaction can be supported well. LSM has the indexes for same keys appear in multiple place.
 
+Secondary index:
+
+- they are important for join operation performance
+- index keys are not necessary uniq.
+  - Either make the values contain the list of matching entry ids
+  - Or make each entry uniq by appending row ids to the key
+
+Value store with the index:
+
+- either store the index, or store the reference.
+- when store ref, actual rows are stored in heap file, without order
+- heap works well with secondary indexes because row positions are not change
+- if an update changes the value to larger than old value, then it needs to be moved. Either update all the indexes, or leave a forwarding point at the old place
+- clustered index: Store the indexed row within an index. e.g., InnoDB. secondary keys refer to primary key instead of heap.
+- covering index: store some columns within the index.
+- clustered and covering indexs require more data usage, more writes, and transactional guarantees complicate.
+
 HERE: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch03.html>
 
-Other Indexing Structures
+Multi-column indexes
