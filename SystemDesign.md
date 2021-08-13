@@ -1385,6 +1385,29 @@ Value store with the index:
 - covering index: store some columns within the index.
 - clustered and covering indexs require more data usage, more writes, and transactional guarantees complicate.
 
+Multi-column indexes
+
+- concatenated index: index defination defines the order to append indexes. Can only search by the index appears earlier in the concatended index.
+- multi-dimensional index:
+  - important for geospatial data. R-tree is one spatial index.
+  - HyperDex is an example of 2D index.
+- Full-text search and fuzzy indexes:
+  - Lucene is able to search text for words within a certain edit distance. It use a SSTable-like structure. the in-mem index is a finate state automaton over the chars in the key, like a trie. It can be transform into Levenshtein automaton for search
+  - Document classification
+  - machine learning
+
+In-memory databases
+
+- RAM is getting cheaper.
+- Memcached: for caching use only. So data don't need durable.
+- Can also use battery powered RAM
+- log changes to disk
+- write periodic snapshots to disk
+- replicate in-mem state to other machines
+- Redis: write to disk async.
+- encoding in-mem data structure to write to disk also needs overheads, so in-mem database is faster. Some data structure like priority queue is hard to serialized
+- anti-caching approach: evicting least recently used data to disk when mem is not enough. But all the keys are still need to be fit in memory
+
 HERE: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch03.html>
 
-Multi-column indexes
+Transaction Processing or Analytics
