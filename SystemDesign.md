@@ -1408,6 +1408,17 @@ In-memory databases
 - encoding in-mem data structure to write to disk also needs overheads, so in-mem database is faster. Some data structure like priority queue is hard to serialized
 - anti-caching approach: evicting least recently used data to disk when mem is not enough. But all the keys are still need to be fit in memory
 
+Transaction processing
+
+- Doesn't necessarily have ACID.
+- A group of low latency read and writes as a unit
+- vs. batch processing: runs periodically
+- online transaction processing (OLTP)
+- online analytic processing (OLAP)
+- data analytics: scan over a huge number of records, only reading a few columns per record, and calculates aggregate statistics
+- OLAP does bulk import or event stream
+- data warehouse: a separate DB for doing OLAP
+
 HERE: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch03.html>
 
-Transaction Processing or Analytics
+Data Warehousing
