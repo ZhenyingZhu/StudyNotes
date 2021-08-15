@@ -1419,6 +1419,17 @@ Transaction processing
 - OLAP does bulk import or event stream
 - data warehouse: a separate DB for doing OLAP
 
+Data Warehousing
+
+- contains a read-only copy of the data in all the various OLTP systems
+- process: Extract–Transform–Load (ETL)
+  1. Data is extracted either periodic or a continuous stream of updates
+  2. transform to a different schema
+  3. clean up
+- indexing for OLTP doesn't work well for data warehousing
+- SQL is commonly used for dataware house, because the data model is normally relational.
+- have graphical data analysis tools to generate SQL queries, visualize results, explore the data by drilling down, slicing and dicing.
+
 HERE: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch03.html>
 
-Data Warehousing
+
