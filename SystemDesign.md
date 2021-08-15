@@ -1428,8 +1428,12 @@ Data Warehousing
   3. clean up
 - indexing for OLTP doesn't work well for data warehousing
 - SQL is commonly used for dataware house, because the data model is normally relational.
-- have graphical data analysis tools to generate SQL queries, visualize results, explore the data by drilling down, slicing and dicing.
+- have graphical data analysis tools to generate SQL queries, visualize results, explore the data by drilling down, slicing (filter) and dicing (select a set).
+- hard to support transaction processing and analytics workloads in one system
+- Microsoft SQL Server supports both, but internally use two different systems, with same interface
+- Amazon RedShift: host data warehouse open-source software ParAccel
+- Apache Hive, Spark SQL, Cloudera Impala, Facebook Presto, Apache Tajo, and Apache Drill, Google’s Dremel
 
 HERE: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch03.html>
 
-
+Stars and Snowflakes: Schemas for Analytics
