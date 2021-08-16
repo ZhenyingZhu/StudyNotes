@@ -1434,6 +1434,15 @@ Data Warehousing
 - Amazon RedShift: host data warehouse open-source software ParAccel
 - Apache Hive, Spark SQL, Cloudera Impala, Facebook Presto, Apache Tajo, and Apache Drill, Google’s Dremel
 
+Stars and Snowflakes: Schemas for Analytics
+
+- star schema: aka, dimensional modeling.
+  - fact table: each row is an event occurred at a time
+  - dimension table: the tables that contain foreign keys of the fact table
+  - have a table to store date so that holidays can be captured
+  - snowflake schema: dimensions are further broken down to subdimensions, so it is more normalized but hard to work with.
+  - data warehouse normally have a lot of columns.
+
 HERE: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch03.html>
 
-Stars and Snowflakes: Schemas for Analytics
+Column-Oriented Storage
