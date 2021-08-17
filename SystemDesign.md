@@ -1441,8 +1441,14 @@ Stars and Snowflakes: Schemas for Analytics
   - dimension table: the tables that contain foreign keys of the fact table
   - have a table to store date so that holidays can be captured
   - snowflake schema: dimensions are further broken down to subdimensions, so it is more normalized but hard to work with.
-  - data warehouse normally have a lot of columns.
+
+Column-Oriented Storage
+
+- fact table is usually big, while dimension table is usually small.
+- fact tables normally have a lot of columns, but only use 4-5 at a time.
+- row oriented storage engine (relational and no-sql DBs) loads the whole row even with index appears.
+- column-oriented storage stores each column in a file
 
 HERE: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch03.html>
 
-Column-Oriented Storage
+Column Compression
