@@ -1449,6 +1449,12 @@ Column-Oriented Storage
 - row oriented storage engine (relational and no-sql DBs) loads the whole row even with index appears.
 - column-oriented storage stores each column in a file
 
+Column Compression
+
+- each fact table column normally have quite a few repeative (for example 0), so compression has good effect.
+- bitmap encoding: record how many 0, then how many 1, then how many 0 ...
+- bitmaps can also be nested.
+
 HERE: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch03.html>
 
-Column Compression
+
