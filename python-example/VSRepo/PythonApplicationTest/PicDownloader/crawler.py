@@ -51,7 +51,7 @@ class Crawler:
             # Doesn't work when there is a warning message. In this case pass in "/?nw=always" to the end of the url
             gdtm_class = re.findall('div class="gdtm"(.*?)</a>', main_html_page)[0]
             first_page_url = re.findall('<a href="(.*?)">', gdtm_class)[0]
-            return first_page_url + '/?nw=always'
+            return first_page_url
         except IndexError:
             print("Cannot find first page url")
             print(gdtm_class)
@@ -150,6 +150,8 @@ def main():
     print('Argument List:', str(argv))
 
     url = argv[1]
+    if url.endswith('/?nw=always'):
+        url += '/?nw=always'
     folder = argv[2]
 
     utils = Utils()
