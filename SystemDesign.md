@@ -1456,5 +1456,3 @@ Column Compression
 - bitmaps can also be nested.
 
 HERE: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch03.html>
-
-

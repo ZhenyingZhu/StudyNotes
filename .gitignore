@@ -16,6 +16,9 @@ build/
 *.class
 *.swp
 spring-example/src/main/java/hello/beans/
+vue.js
+bootstrap-5.0.1-dist
+bootstrap-5.0.1-examples
 
 uml-example/*.uml~
 
