@@ -1457,13 +1457,19 @@ Column Compression
 
 Warehouse bottleneck and solutions
 
-- memory bandwidth to load the data
-- bandwidth between memory and CPU cache
+- memory bandwidth to load the data is a bottleneck
+- bandwidth between memory and CPU cache is a bottleneck
 - Can use CPU feature single-instruction-multi-data (SIMD) **Q**: What does it mean "Developers of analytical databases also worry about efficiently using the bandwidth from main memory into the CPU cache, avoiding branch mispredictions and bubbles in the CPU instruction processing pipeline, and making use of single-instruction-multi-data (SIMD) instructions in modern CPUs"?
 - CPU cycles can be used efficiently by load a chunk of compressed column and iterate it in a tight loop without any function calls.
 - Compressed column makes more data fits in L1 cache.
 - vectorized processing: operations AND, OR in bitmap compression can be operate on compressed data directly in L1 cache.
 
+Sort Order in Column Storage
+
+- when move a value in a column, needs to move the whole row.
+- Can specify the first column, and then the second column as sorted keys.
+- if a column is sparse, after sort, the compression becomes more efficient.
+
 HERE: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch03.html>
 
-Sort Order in Column Storage
+Several different sort orders
