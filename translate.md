@@ -1,8 +1,36 @@
 # Translate Game
 
-## Unpack
+## 游戏汉化教程
 
-### pak file
+### [关于游戏汉化](https://www.cnblogs.com/sweetwxh/archive/2013/02/08/game_localization_tutorial_start.html)
+
+Knowledge base:
+
+- How operating system runs programs
+- File operation
+- compress algorithm: zlib, lzo
+- pic editing
+- TIFF，DDS，BMP formats(16pbb565,16bpp4444,24bpprgb)
+- text encoding
+- OCR
+
+Resource: <https://github.com/sweetwxh/Alpha-Translation>
+
+### [游戏汉化教程1-汉化流程](https://www.cnblogs.com/sweetwxh/archive/2013/02/15/game_localization_tutorial_1.html)
+
+Encoding: UTF8、ShiftJIS
+
+## Resource 2
+
+<https://www.cxyzjd.com/article/madonghyu/90029001>
+
+## Resource 3
+
+<https://www.bilibili.com/video/BV1cE411R7Q3/>
+
+## Others
+
+### QuickBMS
 
 [Write QuickBMS script](https://www.vg-resource.com/thread-28180.html)
 
@@ -11,7 +39,11 @@
 
 [blind guess](http://aluigi.altervista.org/quickbms/comtype_scan.htm)
 
+### DX Library
+
 [DXExtract](https://himeworks.com/tools/dxextract/)
 
 - Using CheatEngine, found the string `quingamepakcode`. Search on google, found a commend: `DxaEncode.exe -k:quingamepakcode Table Table.pak`
 - To download DXExtract, open in private window.
+
+[DxLibrary](http://nagarei.github.io/DxLibEx/index.html)
