@@ -9,6 +9,11 @@ namespace TestTimeSpan
             TimeSpan span = TimeSpan.FromMinutes(1);
 
             Console.WriteLine("Time span {0}", span.TotalSeconds);
+
+            string str = "Press a key to exit.";
+            Console.WriteLine(str);
+
+            Console.ReadLine();
         }
     }
 }
