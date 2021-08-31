@@ -21,3 +21,23 @@ ISA
 
 - x64 inherits opcodes from 8086. They have different length.
 - ARM is RISC (reduced instruction computing). opcodes are all 4 bytes (32 bits). But most opcodes don't used up all 4 bytes, so introduce thumb mode, which uses 2 bytes. ARM64 switch back to 4-byte opcodes.
+
+### Chapter 2 Basic Function
+
+```assembly
+f:
+    mov eax, 123
+    ret
+```
+
+According to calling convention, the next commend reads the val in EAX reg as output.
+
+mov is actually copy not move.
+
+[registers](https://www.tutorialspoint.com/assembly_programming/assembly_registers.htm)
+
+- **TODO**: Go through
+
+### Chapter 3 Hello World
+
+HERE: P25
