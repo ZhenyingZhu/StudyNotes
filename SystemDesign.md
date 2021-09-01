@@ -1469,7 +1469,20 @@ Sort Order in Column Storage
 - when move a value in a column, needs to move the whole row.
 - Can specify the first column, and then the second column as sorted keys.
 - if a column is sparse, after sort, the compression becomes more efficient.
+- Vertica (a commercial data warehouse) uses C-Store. Sort the keys in several different ways on different machines for the replication.
+
+Writing to Column-Oriented Storage
+
+- B-tree approach doesn't work. Update one row means update all the column files
+- LSM tree approach works. In-mem store doesn't need to be column oriented. When write to disk, write column files.
+
+Aggregation: Data Cubes and Materialized Views
+
+- materialized aggregates: speed up `COUNT`, `SUM`, `AVG`, `MIN`, `MAX` by using a materialized view.
+- Not like the virtual view in relational data model (a table where contents are getting from queries), the materialized view actually copies the result to disk.
+- when DB inserts values, the write is more expensive. So it is only used in read-heavy data warehouses.
+- Data cube: a grid of aggregates grouped by different dimensions.
 
 HERE: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch03.html>
 
-Several different sort orders
+Summary
