@@ -1014,31 +1014,31 @@ heterogeneous system
 
 Common services:
 
-- Redis: datastores that are also used as message queues.
-- Apache Kafka: message queues with database-like durability guarantees.
-- Memcached: application-managed caching layer
-- Elasticsearch/Solr: full-text search server
+- Redis: datastores that are also used as message queues. **[KEY]**
+- Apache Kafka: message queues with database-like durability guarantees. **[KEY]**
+- Memcached: application-managed caching layer. **[KEY]**
+- Elasticsearch/Solr: full-text search server. **[KEY]**
 
-3 concerns:
+3 concerns **[KEY]**:
 
 - Reliability
 - Scalability
 - Maintainability
 
-Netflix Chaos Monkey:  trigger fault deliberately
+Netflix Chaos Monkey:  trigger fault deliberately. **[KEY]**
 
 ##### Reliability
 
 Common faults:
 
-MTTF: mean time to fail
+MTTF: mean time to fail **[KEY]**
 
 - Hardware: hard disk, RAM, power, network
   - add redundency: RAID, dual power supplies, hot swappable CPU, backup generators. Good for single machine. Downtime could be long.
   - software fault tolerance: for system prioritize flexibility and elasticity over single-machine reliability. No downtime for the whole system.
 - Software: bug, too much resource consumption, dependency failure, cascading failures (a fault triggers another fault)
   - check the assumptions are still true
-  - process isolation
+  - process isolation **[KEY]**
   - watchdog
 - Human error
   - well designed API, UI
@@ -1052,7 +1052,7 @@ MTTF: mean time to fail
 
 Cannot make a system generically scale. Need to discuss a particular way.
 
-load parameters:
+load parameters **[KEY]**:
 
 - QPS
 - R/W ratio
@@ -1062,7 +1062,7 @@ load parameters:
 
 fan out: 1 write leads to k writes.
 
-twitter:
+twitter **[KEY]**:
 
 - tweet write: 4.6k/s, timeline read: 300k/s
 - first approach: timeline query reads the database. Cannot stand with timeline query requests.
@@ -1072,27 +1072,27 @@ twitter:
 
 Measure performace:
 
-- throughput: the number of records we can process per second, or the total time it takes to run a job on a dataset of a certain size.
+- throughput **[KEY]**: the number of records we can process per second, or the total time it takes to run a job on a dataset of a certain size.
   - Critical for batch processing system (e.g., Hadoop)
-- response time: what client see.
-  - vs. latency, which is when the request is awaiting in the system.
+- response time **[KEY]**: what client see.
+  - vs. latency **[KEY]**, which is when the request is awaiting in the system.
   - could be vary from time to time because it includes other facts like background process context switch, network package loss, TCP retransmission, garbage collection pause, page fault cause re-read from disk, mechanical vibrations in the server rack
-  - Need to measure the distribution of value: average, P50, P95, P99, P99.9 percentiles. tail latencies: high percentile of response time.
+  - Need to measure the distribution of value **[KEY]**: average, P50, P95, P99, P99.9 percentiles. tail latencies: high percentile of response time.
   - service level objectives (SLOs) and service level agreements (SLAs) use percentiles
-- Queueing delays: normally affect high percentile. head-of-line blocking effect: it only takes a small number of slow requests to hold up the processing of subsequent requests.
+- Queueing delays **[KEY]**: normally affect high percentile. head-of-line blocking effect: it only takes a small number of slow requests to hold up the processing of subsequent requests.
 - to measure performance under high load, the load generation client should send requests in parallel not one by one.
 - tail latency amplification: a slow call increases when client needs multiple backend calls for a single request, a higher proportion of the whole request requests end up being slow.
-- use a rolling window to calculate percentile in the last 10 mins for the monitor. To calculate that efficiently, can use algorithm: forward decay, t-digest, or HdrHistogram.
+- use a rolling window **[KEY]** to calculate percentile in the last 10 mins for the monitor. To calculate that efficiently, can use algorithm: forward decay, t-digest, or HdrHistogram.
 
 Handle load increase
 
 - scaling up (vertical scaling, moving to a more powerful machine)
 - scaling out (horizontal scaling, distributing the load across multiple smaller machines)
-- elastic:  automatically add computing resources when they detect a load increase
+- elastic: automatically add computing resources when they detect a load increase
 - distribute stateless system is easy, but stateful data system could be hard.
 - Early-stage should iterate quickly on product features than it is to scale to some hypothetical future load.
 
-Maintainability
+##### Maintainability
 
 - Operability
   - monitor health, visible to the runtime behavior and internal of the system. restore service
@@ -1126,33 +1126,33 @@ Agile:
 - TDD
 - Refactoring
 
-skew: data not being spread evenly across worker processes
+skew **[KEY]**: data not being spread evenly across worker processes
 
 #### Chapter 2. Data Models and Query Languages
 
 Data models: how we think about the problem that we are solving
 
-Layers:
+Layers **[KEY]**:
 
 - application: real world to data strutures, and APIs to manipulate them
 - store: general-purpose data model, e.g., JSON, XML, tables, graph model
 - database: bytes in RAM, disk, network.
 - hardware
 
-data models:
+data models **[KEY]**:
 
 - relational model
 - document model
 - graph-based data models
 
-Relational Model:
+Relational Model **[KEY]**:
 
 - relational database management system: (RDBMS)
 - transaction processing
 - batch processing
 - competitor: network model, hierarchical model
 
-NoSQL:
+NoSQL **[KEY]**:
 
 - open source, distributed, nonrelational databases
 - greater scalability: very large datasets or very high write throughput
@@ -1164,12 +1164,12 @@ Object-Relational Mismatch:
 - between SQL and OOD need to have a translation layer
 - Object-relational mapping (ORM) frameworks, e.g., ActiveRecord and Hibernate
 - SQL supports structured datatypes and XML data now. This allowed multi-valued data to be stored within a single row, with support for querying and indexing inside those documents.
-- Document-oriented databases: e.g., MongoDB, RethinkDB, CouchDB, and Espresso support document model (JSON), which is native to OOD.
+- Document-oriented databases **[KEY]**: e.g., MongoDB, RethinkDB, CouchDB, and Espresso support document model (JSON), which is native to OOD.
 - Lack of schema is good in some cases.
 - Require less queries for document model.
-- Easy to represent tree struture = one-to-many with document model
+- Easy to represent tree struture **[KEY]** = one-to-many with document model
 
-normalization: use id to store object while give the human interept info easy changeable.
+normalization **[KEY]**: use id to store object while give the human interept info easy changeable.
 
 Many to many:
 
@@ -1189,7 +1189,7 @@ Network model:
 Relational databases:
 
 - open data: a table is simply a collection of tuples
-- access path: query optimizer decides which part to query, in which order.
+- access path **[KEY]**: query optimizer decides which part to query, in which order.
 - the query won't change even adding a new index, access path will change automatically
 - general purpose optimizer is very complicate
 
@@ -1226,12 +1226,14 @@ When need to update the schema:
 Data locality: all the data of an object stores in one place, encoded in JSON.
 
 - If the data often needs to read together, this can save some queries across different tables
-- but when only a small part is read, or need to update, the whole document needs to R/W. So need keep the document small.
+- but when only a small part is read, or need to update, the whole document needs to R/W. So need keep the document small. **[KEY]**
 - when document size increases, it cannot be updated in place.
 - not only in document type database, but also in:
   - Google spanner DB: interleaved table rows.
   - Oracle: multi-table index cluster table
   - Bigtable used by Cassandra and HBase: column-family
+
+**HERE**
 
 Query lang:
 
