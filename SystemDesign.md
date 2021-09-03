@@ -1006,6 +1006,10 @@ heterogeneous system
 
 #### Chapter 1. Reliable, Scalable, and Maintainable Applications
 
+Review
+
+1. 9/2/2021
+
 - databases: multiple apps can read and write
 - caches
 - search indexes
@@ -1130,6 +1134,10 @@ skew **[KEY]**: data not being spread evenly across worker processes
 
 #### Chapter 2. Data Models and Query Languages
 
+Review
+
+1. 9/3/2021
+
 Data models: how we think about the problem that we are solving
 
 Layers **[KEY]**:
@@ -1233,8 +1241,6 @@ Data locality: all the data of an object stores in one place, encoded in JSON.
   - Oracle: multi-table index cluster table
   - Bigtable used by Cassandra and HBase: column-family
 
-**HERE**
-
 Query lang:
 
 - SQL: Declarative query. specify the pattern of the data and how the data transformed (sorted, grouped, aggregated)
@@ -1245,17 +1251,17 @@ Query lang:
 MapReduce: programming model
 
 - MongoDB and CouchDB also use it to perform RO queries
-- map: collect. Emit a key to group and a value.
-- reduce: fold/inject. Called once for each key.
+- map: collect. Emit a key to group and a value. **[KEY]**
+- reduce: fold/inject. Called once for each key. **[KEY]**
 - map and reduce must be pure functions: can only use pass-in data as RO, not do DB queries. So it can be used anywhere.
 - SQL can also use this framework.
 - aggregation pipeline: MongoDB uses it to do declarative queries over MapReduce rather than JS.
 
 Graph-Like Data Models
 
-- page rank: uses web pages as vertices and links as edges
+- page rank: uses web pages as vertices and links as edges **[KEY]**
 - vertices don't necessary to be the same object types.
-- property graph model: Neo4j, Titan, and InfiniteGraph
+- property graph model: Neo4j, Titan, and InfiniteGraph **[KEY]**
   - vertex: a uniq id, outgoing edges, incoming edges, properties (key-value pairs)
   - edge: a uniq id, tail vertex (start), head vertex (end), label (kind of the relationship), properties (key-value)
   - use two relational DB tables to store vertex and edge.
@@ -1275,7 +1281,7 @@ Graph-Like Data Models
   - semantic web: publish information as machine-readable data
     - Resource Description Framework (RDF): out-of-date. subject, predicate, object could be URLs with domains to resolve conflicts.
   - SPARQL query: query RDF. Powerful even without RDF.
-  - Datalog: foundation. Hadoop uses it to query large datasets. Define rules to query which can be reused. So one-off query is hard to write but query in complex data can be break down into steps and reuse rules.
+  - Datalog **[KEY]**: foundation. Hadoop uses it to query large datasets. Define rules to query which can be reused. So one-off query is hard to write but query in complex data can be break down into steps and reuse rules.
 - graph query languages: Gremlin
 - graph processing frameworks: Pregel
 
