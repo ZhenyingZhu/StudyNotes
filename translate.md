@@ -38,6 +38,14 @@ Encoding: UTF8、ShiftJIS
 - compiler: assembly lang
 - tools
 
+[合作平台](https://keylol.com/t744706-1-1)
+
+[怎么查看exe文件的代码？](https://www.zhihu.com/question/19937655)
+
+[看雪学院](https://www.kanxue.com/)
+
+[WinDbg](https://myfzy.top/2019/09/19/WinDbg/)
+
 ### QuickBMS
 
 [Write QuickBMS script](https://www.vg-resource.com/thread-28180.html)

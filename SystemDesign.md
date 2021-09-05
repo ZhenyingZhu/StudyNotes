@@ -1297,7 +1297,7 @@ Storage engines by strcture:
 - log-structured storage engines, and
 - page-oriented storage engines such as B-trees.
 
-Data Structures
+Data Structures **[KEY]**
 
 - simplist log DB: a text file. each line contains a key-value pair. the old values are not overwritten, so search from end.
   - Real DB needs to deal with concurrency control, reclaim disk space, handle errors and partially written data.
@@ -1306,16 +1306,16 @@ Data Structures
 Hash indexes
 
 - simplist solution for log DB: keep a hash map: key is the key, value is the offset.
-  - All indexes store in RAM. Values store on disk and a part of it loaded in FS cache.
+  - All indexes store in RAM. Values store on disk and a part of it loaded in FS cache. **[KEY]**
   - good for scenarios where values of each key needs to be updated freq, but not too many uniq keys
   - avoid running out of disk space: break log into segments
   - compaction: throw away dup keys. Can merge multiple segments into one in parallel with compaction. While doing so, old segments are still available for read. After it is done, read from new segments.
   - Each segment has its own in-mem hash table
-  - File format: csv is inefficent. use an encoded binary string. The length follow by the raw column.
-  - deletion: append a special record (tombstone).
-  - crash recovery: to recovery the index, re-iterate all the segments is slow, so store a snapshot on disk
-  - partial writes: maintain checksums and ignore corrupted logs
-  - concurrency control: use only one write thread. Segments are read only. Reads can be served concurrently.
+  - File format: csv is inefficent. use an encoded binary string. The length follow by the raw column. **[KEY]**
+  - deletion: append a special record (tombstone). **[KEY]**
+  - crash recovery: to recovery the index, re-iterate all the segments is slow, so store a snapshot on disk **[KEY]**
+  - partial writes: maintain checksums and ignore corrupted logs **[KEY]**
+  - concurrency control: use only one write thread. Segments are read only. Reads can be served concurrently. **[KEY]**
   - Benefits:
     - fast writes on HDD and SSD.
     - Simple for concurrency and crash recovery
@@ -1326,21 +1326,23 @@ Hash indexes
 
 SSTables and LSM-Trees
 
-- sorted string table (SSTable): key value pairs sorted by key in each segment
-- write using sequential I/O.
+**HERE**
+
+- sorted string table (SSTable): key value pairs sorted by key in each segment **[KEY]**
+- write using sequential I/O. First write to input segment. After certain threshold, input segment saves to disk.
 - Use merge sort to merge multiple segments into one.
-- no need to load whole segments from disk, but the first key in each segment, so use less memory.
-- Sparse index: no need to index of all the keys, but one key for every few kilobyte blocks.
+- while doing the merge, no need to load whole segments from disk, but the first key in each segment, so use less memory.
+- Sparse index: no need to index of all the keys, but one key for every few kilobyte blocks. **[KEY]**
 - Each block can be compressed. It can reduce the disk space and I/O bandwidth.
-- memtable: use red-black trees or AVL trees to make the inserting keys are done in sorted order in memory.
+- memtable: use red-black trees or AVL trees to make the inserting keys are done in sorted order in memory. **[KEY]**
 - When read, first search in the memtable, then the most recent on-dist segment, then older segments.
 - periodically merge segments.
 - to recover from crash, while the memtable is in memory, every writes also write to a disk file that is not sorted.
 - Log-structured Merge-Tree (LSM-Tree)
 - full-text index: given a word in a search query, find all the documents have this word (term) using a term dictionary. **Q**: the latest segment might have some duplicate appears in previous segments, how to maintain a global index? From below the index is not global.
-- Use bloom filters: a mem-efficient data struture for approximating the contents of a set. Tells if a key doesn't appear in the DB.
-- size-tiered tied compaction: newer and smaller SSTables merged into older and larger SSTables
-- leveled compaction: key range is split into smaller SSTables. Older data is moved into separate levels.
+- Use bloom filters: a mem-efficient data struture for approximating the contents of a set. Tells if a key doesn't appear in the DB. **[KEY]**
+- size-tiered tied compaction: newer and smaller SSTables merged into older and larger SSTables **[KEY]**
+- leveled compaction: key range is split into smaller SSTables. Older data is moved into separate levels. **[KEY]**
 - write throughput is high.
 
 B-Trees
