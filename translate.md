@@ -28,6 +28,10 @@ Encoding: UTF8、ShiftJIS
 
 <https://www.bilibili.com/video/BV1cE411R7Q3/>
 
+## 汉化游戏如何改程序
+
+<https://blog.chaofan.io/archives/%E6%B1%89%E5%8C%96%E6%B8%B8%E6%88%8F%E5%A6%82%E4%BD%95%E6%94%B9%E7%A8%8B%E5%BA%8F>
+
 ## Others
 
 ### QuickBMS
