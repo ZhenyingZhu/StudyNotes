@@ -34,6 +34,10 @@ Encoding: UTF8、ShiftJIS
 
 ## Others
 
+- OS
+- compiler: assembly lang
+- tools
+
 ### QuickBMS
 
 [Write QuickBMS script](https://www.vg-resource.com/thread-28180.html)
