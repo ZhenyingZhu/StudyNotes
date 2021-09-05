@@ -105,4 +105,9 @@ _TEXT ENDS
 - `add esp, 4`, since this is x86, and esp has the stack pointer. add 4 bytes skip the pointer, so the pointer content is released.
 - `xor eax, eax` is to calculate 0.
 
+Can use:
+
+- [IDA](https://hex-rays.com/ida-free/#download) to decompiler an application.
+- [WindDbg](https://myfzy.top/2019/09/19/WinDbg/)
+
 HERE: P27
