@@ -1219,3 +1219,9 @@ File used by another process:
 ### Check DLL info
 
 `ildasm.exe *.dll`
+
+### PackageReference Private
+
+[including package references and then private assets in csproj](https://forums.asp.net/t/2162896.aspx?including+package+references+and+then+private+assets+in+csproj#:~:text=By%20default%2C%20all%20package%20assets%20are%20included.%20%60PrivateAssets%60,by%20default%20when%20this%20attribute%20is%20not%20present.)
+
+- `IncludeAssets` attribute specifies which assets belonging to the package specified by <PackageReference> should be consumed. By default, all package assets are included. `PrivateAssets` attribute specifies which assets belonging to the package specified by <PackageReference> should be consumed but not flow to the next project. The Analyzers, Build and ContentFiles assets are private by default when this attribute is not present.
