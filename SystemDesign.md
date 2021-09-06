@@ -1326,8 +1326,6 @@ Hash indexes
 
 SSTables and LSM-Trees
 
-**HERE**
-
 - sorted string table (SSTable): key value pairs sorted by key in each segment **[KEY]**
 - write using sequential I/O. First write to input segment. After certain threshold, input segment saves to disk.
 - Use merge sort to merge multiple segments into one.
@@ -1335,38 +1333,38 @@ SSTables and LSM-Trees
 - Sparse index: no need to index of all the keys, but one key for every few kilobyte blocks. **[KEY]**
 - Each block can be compressed. It can reduce the disk space and I/O bandwidth.
 - memtable: use red-black trees or AVL trees to make the inserting keys are done in sorted order in memory. **[KEY]**
-- When read, first search in the memtable, then the most recent on-dist segment, then older segments.
+- When read, first search in the memtable, then the most recent on-disk segment, then older segments.
 - periodically merge segments.
 - to recover from crash, while the memtable is in memory, every writes also write to a disk file that is not sorted.
-- Log-structured Merge-Tree (LSM-Tree)
-- full-text index: given a word in a search query, find all the documents have this word (term) using a term dictionary. **Q**: the latest segment might have some duplicate appears in previous segments, how to maintain a global index? From below the index is not global.
-- Use bloom filters: a mem-efficient data struture for approximating the contents of a set. Tells if a key doesn't appear in the DB. **[KEY]**
+- Log-structured Merge-Tree (LSM-Tree): the indexing structure. write throughput is high. **[KEY]**
+- full-text index: given a word in a search query, find all the documents have this word (term) using a term dictionary.
+- **Q**: the input segment might have some duplicate appears in other segments, how to maintain a global index? From below the index is not global.
+- Use bloom filters: a mem-efficient data struture for approximating the contents of a set. Tells if a key doesn't appear in the DB. A false positive check (can determine key definately not exist). **[KEY]**
 - size-tiered tied compaction: newer and smaller SSTables merged into older and larger SSTables **[KEY]**
-- leveled compaction: key range is split into smaller SSTables. Older data is moved into separate levels. **[KEY]**
-- write throughput is high.
+- leveled compaction: key range is split into smaller SSTables with no overlapping keys. Older data is moved into separate levels of files. **[KEY]**
 
 B-Trees
 
-- DB is break down into fix sized (4KB) pages.
+- DB is break down into fix sized (4KB) pages. **[KEY]**
 - R/W one page at a time. Correspond to disk.
-- each page is identified by the address. One page can be referenced by another.
+- each page is identified by the address. One page can be referenced by another. **[KEY]**
 - root: also a page.
-- Each page starts and ends with ref and boundaries with in, except leaf pages which have keys and values in line.
-- branching factor: number of references in one page. Depends on the total space needed for store all the data. Normally couple hundreds.
-- When add a new key, if the leaf doesn't have enough space, it will be broken into two half-full pages, and update parent page references.
+- Each page starts and ends with ref and boundaries with in, except leaf pages which have keys and values in line. **[KEY]**
+- branching factor: number of references in one page. Depends on the total space needed for store all the data. Normally couple hundreds. **[KEY]**
+- When add a new key, if the leaf doesn't have enough space, it will be broken into two half-full pages, and update parent page references. **[KEY]**
 - the depth for n keys: O(logn). It affects the speed of the search. Should be 3~4 levels. If factor is 500, and page size is 4KB, then 4-level DB can store 500^4*4KB=256TB data.
 - While split a page, if DB crashes, to avoid leaving orphan pages, use a write-ahead log
-- write-ahead log (WAL): every B-tree modification first writes to it, so it can be used to restore.
-- Copy-on-write scheme: not overwrite existing pages.
-- latches: a light weight lock to make B-Tree thread safe.
-- store abbrivate keys that are enough to present a boundary. It can pack more keys into a page, so the level can be reduced.
-- move pages with seq keys together on disk, so range search reads quicker
-- create pointers to sibling pages, so scanning keys don't need to go back to parent page again and again
+- write-ahead log (WAL): every B-tree modification first writes to it, so it can be used to restore. **[KEY]**
+- Copy-on-write scheme: not overwrite existing pages but write a new version. Another approach to restore from crash. **[KEY]**
+- latches: a light weight lock to make B-Tree thread safe. **[KEY]**
+- store abbrivate keys that are enough to present a boundary. It can pack more keys into a page, so the level can be reduced. **[KEY]**
+- move pages with seq keys together on disk, so range search reads quicker **[KEY]**
+- create pointers to sibling pages, so scanning keys don't need to go back to parent page again and again **[KEY]**
 - fractal trees borrow some ideas from LSM trees.
 
 Comparing B-Trees and LSM-Trees
 
-- In general: LSM tree fast for write, B-Tree fast for read. But need to test for the workload.
+- In general: LSM tree fast for write, B-Tree fast for read. But need to test for the real workload since different data might have different characterics. **[KEY]**
 - write amplification: 1 DB write becomes multiple writes. The write bandwidth is limited so more writes reduce the throughput of a DB.
 - B-tree update: 1 write to the write ahead log, 1 write for a page update (2 if split)
 - LSM tree update: multiple writes but not done during the DB update: repeated compaction, merge of SSTables. A concern for SSD, which can overwrite blocks a limit of times.
@@ -1374,9 +1372,11 @@ Comparing B-Trees and LSM-Trees
 - SSD internally uses LSM to convert random writes to seq writes, so the benefit is not so obvious.
 - LSM use less space. B-tree needs to maintain fragmentation.
 - LSM compaction can impact ongoing R/W performance causing high percentile response time long. B-tree is more perdictable.
-- So for LSM, needs to config the compaction and monitor it.
+- So for LSM, needs to config the compaction and monitor it. **[KEY]**
 - SSTable based DB don't throttle writes.
-- Index for B-Trees exist in one place in the index. Transaction can be supported well. LSM has the indexes for same keys appear in multiple place.
+- Index for B-Trees exist in one place in the index. Transaction can be supported well. LSM has the indexes for same keys appear in multiple place. **[KEY]**
+
+**HERE**
 
 Secondary index:
 
