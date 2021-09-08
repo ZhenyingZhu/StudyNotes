@@ -2823,6 +2823,35 @@ The @ character tells ASP.NET that what follows is Razor code, not HTML. ASP.NET
 
 **TODO**: <https://docs.microsoft.com/en-us/aspnet/core/data/ef-rp/intro?view=aspnetcore-3.0&tabs=visual-studio#scaffold-student-pages>
 
+## Tutorial: Create a web API with ASP.NET Core
+
+<https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-web-api?view=aspnetcore-5.0&tabs=visual-studio>
+
+### Create the ASP.NET Core Web API project with the identity
+
+Select the microsoft identity platform as the auth type. Follow [doc](https://aka.ms/dotnet-template-ms-identity-platform).
+
+- it uses Azure AD. Need to provision the App Registrations.
+- `dotnet tool install -g msidentity-app-sync`
+- 
+
+**HERE**
+
+### Build the app
+
+- [.NET Core docs](https://docs.microsoft.com/en-us/aspnet/core/?utm_source=aspnet-start-page&utm_campaign=vside&view=aspnetcore-5.0)
+- [.NET app Architech](https://dotnet.microsoft.com/learn/dotnet/architecture-guides?utm_source=aspnet-start-page&utm_campaign=vside)
+
+### Publish
+
+- [publish to azure](https://docs.microsoft.com/en-us/azure/app-service/quickstart-dotnetcore?tabs=netcore31&pivots=development-environment-vs#launch-the-publish-wizard?utm_source=aspnet-start-page&utm_campaign=vside)
+- [azure docs](https://docs.microsoft.com/en-us/dotnet/azure/?utm_source=aspnet-start-page&utm_campaign=vside)
+
+### Productivity guides
+
+- [visual studio](https://docs.microsoft.com/en-us/visualstudio/ide/csharp-developer-productivity?utm_source=VisualStudio&utm_medium=aspnet-getstarted&utm_campaign=VisualStudio&view=vs-2019)
+- [code gen](https://docs.microsoft.com/en-us/visualstudio/ide/code-generation-in-visual-studio?utm_source=VisualStudio&utm_medium=aspnet-getstarted&utm_campaign=VisualStudio&view=vs-2019)
+
 ## MVC
 
 [Doc](https://docs.microsoft.com/en-us/aspnet/core/mvc/overview?view=aspnetcore-3.1)
