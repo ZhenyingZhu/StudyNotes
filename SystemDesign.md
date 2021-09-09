@@ -1338,7 +1338,7 @@ SSTables and LSM-Trees
 - to recover from crash, while the memtable is in memory, every writes also write to a disk file that is not sorted.
 - Log-structured Merge-Tree (LSM-Tree): the indexing structure. write throughput is high. **[KEY]**
 - full-text index: given a word in a search query, find all the documents have this word (term) using a term dictionary.
-- **Q**: the input segment might have some duplicate appears in other segments, how to maintain a global index? From below the index is not global.
+- Q: the input segment might have some duplicate appears in other segments, how to maintain a global index? From below the index is not global.
 - Use bloom filters: a mem-efficient data struture for approximating the contents of a set. Tells if a key doesn't appear in the DB. A false positive check (can determine key definately not exist). **[KEY]**
 - size-tiered tied compaction: newer and smaller SSTables merged into older and larger SSTables **[KEY]**
 - leveled compaction: key range is split into smaller SSTables with no overlapping keys. Older data is moved into separate levels of files. **[KEY]**
@@ -1376,9 +1376,7 @@ Comparing B-Trees and LSM-Trees
 - SSTable based DB don't throttle writes.
 - Index for B-Trees exist in one place in the index. Transaction can be supported well. LSM has the indexes for same keys appear in multiple place. **[KEY]**
 
-**HERE**
-
-Secondary index:
+Secondary index: **[KEY]**
 
 - they are important for join operation performance
 - index keys are not necessary uniq.
@@ -1388,12 +1386,14 @@ Secondary index:
 Value store with the index:
 
 - either store the index, or store the reference.
-- when store ref, actual rows are stored in heap file, without order
+- when store ref, actual rows are stored in heap file, without order **[KEY]**
 - heap works well with secondary indexes because row positions are not change
 - if an update changes the value to larger than old value, then it needs to be moved. Either update all the indexes, or leave a forwarding point at the old place
-- clustered index: Store the indexed row within an index. e.g., InnoDB. secondary keys refer to primary key instead of heap.
-- covering index: store some columns within the index.
+- clustered index **[KEY]**: Store the indexed row within an index. e.g., InnoDB. secondary keys refer to primary key instead of heap.
+- covering index **[KEY]**: store some columns within the index.
 - clustered and covering indexs require more data usage, more writes, and transactional guarantees complicate.
+
+**HERE**
 
 Multi-column indexes
 
