@@ -2829,11 +2829,21 @@ The @ character tells ASP.NET that what follows is Razor code, not HTML. ASP.NET
 
 ### Create the ASP.NET Core Web API project with the identity
 
-Select the microsoft identity platform as the auth type. Follow [doc](https://aka.ms/dotnet-template-ms-identity-platform).
+Select the microsoft identity platform as the auth type. Follow [Creating ASP.NET Core projects with Microsoft identity platform](https://aka.ms/dotnet-template-ms-identity-platform).
 
 - it uses Azure AD. Need to provision the App Registrations.
 - `dotnet tool install -g msidentity-app-sync`
-- 
+
+Without using the tool, the steps are [Protect an ASP.NET Core web API with the Microsoft identity platform](https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-v2-aspnet-core-web-api)
+
+- Azure portal -> Azure Active Directory -> App registrations -> New registration
+- App name: ToDoTracker. Then click Register.
+- Expose an API -> Add a scope -> Save and continue: generated an App ID URI -> fill in details of the scope.
+- in the web API project's appsettings.json: clientId is the appId. TenantId is the directoryId.
+- In the `Startup.cs`, reg a middleware `AddMicrosoftIdentityWebApi` in the `ConfigureServices()`. It will receive a token from a client app. The WebApi validates the token.
+- the Security token service (STS) endpoint is `https://login.microsoftonline.com/`.
+- In the `Configure()`, adds `app.UseAuthentication();` and `app.UseAuthorization();`.
+- Add `[Authorize]` to protect a controller. the `scopeRequiredByApi` checks whether the user has the scope.
 
 **HERE**
 
