@@ -2836,16 +2836,38 @@ Select the microsoft identity platform as the auth type. Follow [Creating ASP.NE
 
 Without using the tool, the steps are [Protect an ASP.NET Core web API with the Microsoft identity platform](https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-v2-aspnet-core-web-api)
 
+[Register an application with the Microsoft identity platform](https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app)
+
 - Azure portal -> Azure Active Directory -> App registrations -> New registration
 - App name: ToDoTracker. Then click Register.
+- Account type
+- To enable the app, in the Azure portal navigate to Azure Active Directory > Enterprise applications and select the app. Then on the Properties page toggle Visible to users? to Yes.
+- redirect URI: where the Microsoft identity platform redirects a user's client and sends security tokens after authentication.
+- Authentication > Platform configurations > Add a platform to set the redirect URI.
+
+[Configure an application to expose a web API](https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-configure-app-expose-web-apis)
+
+- don't need a redirect API because no user is logged in.
+- Only if the API accesses a downstream API would it need its own credentials, so can skip creds setup.
 - Expose an API -> Add a scope -> Save and continue: generated an App ID URI -> fill in details of the scope.
+- Once a client app registration is granted permission to access the web API, the client can be issued an OAuth 2.0 access token by the Microsoft identity platform.
+
+[Add permissions to access your web API](https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-configure-app-access-web-apis#add-permissions-to-access-your-web-api)
+
+- a client app access a web api. The app has the permission, the web api validates the scope.
+- API permissions > Add a permission > My APIs.
+
+https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-v2-javascript-auth-code
+**HERE**
+
+
 - in the web API project's appsettings.json: clientId is the appId. TenantId is the directoryId.
 - In the `Startup.cs`, reg a middleware `AddMicrosoftIdentityWebApi` in the `ConfigureServices()`. It will receive a token from a client app. The WebApi validates the token.
 - the Security token service (STS) endpoint is `https://login.microsoftonline.com/`.
 - In the `Configure()`, adds `app.UseAuthentication();` and `app.UseAuthorization();`.
 - Add `[Authorize]` to protect a controller. the `scopeRequiredByApi` checks whether the user has the scope.
 
-**HERE**
+
 
 ### Build the app
 
