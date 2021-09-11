@@ -2834,8 +2834,6 @@ Select the microsoft identity platform as the auth type. Follow [Creating ASP.NE
 - it uses Azure AD. Need to provision the App Registrations.
 - `dotnet tool install -g msidentity-app-sync`
 
-Without using the tool, the steps are [Protect an ASP.NET Core web API with the Microsoft identity platform](https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-v2-aspnet-core-web-api)
-
 [Register an application with the Microsoft identity platform](https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app)
 
 - Azure portal -> Azure Active Directory -> App registrations -> New registration
@@ -2858,8 +2856,13 @@ Without using the tool, the steps are [Protect an ASP.NET Core web API with the 
 - API permissions > Add a permission > My APIs.
 
 https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-v2-javascript-auth-code
+
+- `Install-Package Microsoft.Graph`
+- `Install-Package Microsoft.Graph.Auth -IncludePrerelease`
+
 **HERE**
 
+Without using the tool, the steps are [Protect an ASP.NET Core web API with the Microsoft identity platform](https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-v2-aspnet-core-web-api)
 
 - in the web API project's appsettings.json: clientId is the appId. TenantId is the directoryId.
 - In the `Startup.cs`, reg a middleware `AddMicrosoftIdentityWebApi` in the `ConfigureServices()`. It will receive a token from a client app. The WebApi validates the token.
