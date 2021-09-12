@@ -2855,10 +2855,10 @@ Select the microsoft identity platform as the auth type. Follow [Creating ASP.NE
 - a client app access a web api. The app has the permission, the web api validates the scope.
 - API permissions > Add a permission > My APIs.
 
-https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-v2-javascript-auth-code
+[Sign in users and get an access token in a JavaScript SPA using the auth code flow with PKCE](https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-v2-javascript-auth-code)
 
-- `Install-Package Microsoft.Graph`
-- `Install-Package Microsoft.Graph.Auth -IncludePrerelease`
+- Need to first install powershell dependencies: `Install-Package Microsoft.Graph`, `Install-Package Microsoft.Graph.Auth -IncludePrerelease`
+- 
 
 **HERE**
 
