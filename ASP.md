@@ -2858,7 +2858,9 @@ Select the microsoft identity platform as the auth type. Follow [Creating ASP.NE
 [Sign in users and get an access token in a JavaScript SPA using the auth code flow with PKCE](https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-v2-javascript-auth-code)
 
 - Need to first install powershell dependencies: `Install-Package Microsoft.Graph`, `Install-Package Microsoft.Graph.Auth -IncludePrerelease`
-- 
+- After run `Configure.ps1`, an app is created with redirect URL `http://localhost:3000` and MS Graph `User.Read` permission is created.
+- `npm install`, `npm start`
+- go to `http://localhost:3000/`, then sign in.
 
 **HERE**
 
@@ -2869,8 +2871,6 @@ Without using the tool, the steps are [Protect an ASP.NET Core web API with the 
 - the Security token service (STS) endpoint is `https://login.microsoftonline.com/`.
 - In the `Configure()`, adds `app.UseAuthentication();` and `app.UseAuthorization();`.
 - Add `[Authorize]` to protect a controller. the `scopeRequiredByApi` checks whether the user has the scope.
-
-
 
 ### Build the app
 
