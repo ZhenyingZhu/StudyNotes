@@ -2861,6 +2861,7 @@ Select the microsoft identity platform as the auth type. Follow [Creating ASP.NE
 - After run `Configure.ps1`, an app is created with redirect URL `http://localhost:3000` and MS Graph `User.Read` permission is created.
 - `npm install`, `npm start`
 - go to `http://localhost:3000/`, then sign in.
+- it uses `https://alcdn.msauth.net/browser/2.15.0/js/msal-browser.js` msal for getting token.
 
 **HERE**
 
