@@ -2862,6 +2862,15 @@ Select the microsoft identity platform as the auth type. Follow [Creating ASP.NE
 - `npm install`, `npm start`
 - go to `http://localhost:3000/`, then sign in.
 - it uses `https://alcdn.msauth.net/browser/2.15.0/js/msal-browser.js` msal for getting token.
+- A `SignIn` button calls `signin()` for the button.
+- A `seeProfile` and a `readMail` button.
+- A `card-div` to show those buttons after login.
+- A `list-tab` div and a `nav-tabContent` div.
+- `authConfig.js`: defines the `msalConfig`, `loginRequest` and `tokenRequest`
+- `graphConfig.js`: defines endpoints for MS Graph APIs.
+- `ui.js`: `showWelcomeMessage()` and `updateUI()`
+- `graph.js`: defines `callMSGraph()`.
+- `authPopup.js`:
 
 **HERE**
 
