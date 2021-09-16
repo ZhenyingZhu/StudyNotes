@@ -2871,6 +2871,8 @@ Select the microsoft identity platform as the auth type. Follow [Creating ASP.NE
 - `ui.js`: `showWelcomeMessage()` and `updateUI()`
 - `graph.js`: defines `callMSGraph()`.
 - `authPopup.js`:
+  - `selectAccount()`: can support [multi-account scenario](https://github.com/AzureAD/microsoft-authentication-library-for-js/blob/dev/lib/msal-common/docs/Accounts.md)
+  - 
 
 **HERE**
 
