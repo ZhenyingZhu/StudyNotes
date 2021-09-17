@@ -1379,8 +1379,8 @@ Comparing B-Trees and LSM-Trees
 Secondary index: **[KEY]**
 
 - they are important for join operation performance
-- index keys are not necessary uniq.
-  - Either make the values contain the list of matching entry ids
+- index keys are not necessary uniq. The secondary index can be stored as key-value pairs:
+  - Either make the values contain the list of all the matching entry ids
   - Or make each entry uniq by appending row ids to the key
 
 Value store with the index:
@@ -1389,7 +1389,7 @@ Value store with the index:
 - when store ref, actual rows are stored in heap file, without order **[KEY]**
 - heap works well with secondary indexes because row positions are not change
 - if an update changes the value to larger than old value, then it needs to be moved. Either update all the indexes, or leave a forwarding point at the old place
-- clustered index **[KEY]**: Store the indexed row within an index. e.g., InnoDB. secondary keys refer to primary key instead of heap.
+- clustered index **[KEY]**: Store the indexed row ref within an index. e.g., InnoDB. secondary keys refer to primary key instead of heap.
 - covering index **[KEY]**: store some columns within the index.
 - clustered and covering indexs require more data usage, more writes, and transactional guarantees complicate.
 
