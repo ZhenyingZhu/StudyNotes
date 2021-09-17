@@ -2872,9 +2872,8 @@ Select the microsoft identity platform as the auth type. Follow [Creating ASP.NE
 - `graph.js`: defines `callMSGraph()`.
 - `authPopup.js`:
   - `selectAccount()`: can support [multi-account scenario](https://github.com/AzureAD/microsoft-authentication-library-for-js/blob/dev/lib/msal-common/docs/Accounts.md)
-  - 
-
-**HERE**
+  - `handleResponse()`: used in `signIn()`
+  - `signIn()`: pop up a window and ask me to sign in.
 
 Without using the tool, the steps are [Protect an ASP.NET Core web API with the Microsoft identity platform](https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-v2-aspnet-core-web-api)
 
