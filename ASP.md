@@ -2857,11 +2857,16 @@ Select the microsoft identity platform as the auth type. Follow [Creating ASP.NE
 
 [Sign in users and get an access token in a JavaScript SPA using the auth code flow with PKCE](https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-v2-javascript-auth-code)
 
+- [code](https://github.com/Azure-Samples/ms-identity-javascript-v2/)
+  - **[KEY]**: a good javascript SPA example
 - Need to first install powershell dependencies: `Install-Package Microsoft.Graph`, `Install-Package Microsoft.Graph.Auth -IncludePrerelease`
 - After run `Configure.ps1`, an app is created with redirect URL `http://localhost:3000` and MS Graph `User.Read` permission is created.
 - `npm install`, `npm start`
 - go to `http://localhost:3000/`, then sign in.
 - it uses `https://alcdn.msauth.net/browser/2.15.0/js/msal-browser.js` msal for getting token.
+  - When sign in, the SPA calls MS Identity `/authorize` to get an auth code.
+  - then the SPA calls `/token` with the auth code to get an token. Also the Access, ID are returned as well.
+  - then the SPA calls MS Graph with the token.
 - A `SignIn` button calls `signin()` for the button.
 - A `seeProfile` and a `readMail` button.
 - A `card-div` to show those buttons after login.
@@ -2877,11 +2882,16 @@ Select the microsoft identity platform as the auth type. Follow [Creating ASP.NE
 
 Without using the tool, the steps are [Protect an ASP.NET Core web API with the Microsoft identity platform](https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-v2-aspnet-core-web-api)
 
+- [code](https://github.com/Azure-Samples/active-directory-dotnet-native-aspnetcore-v2/)
 - in the web API project's appsettings.json: clientId is the appId. TenantId is the directoryId.
 - In the `Startup.cs`, reg a middleware `AddMicrosoftIdentityWebApi` in the `ConfigureServices()`. It will receive a token from a client app. The WebApi validates the token.
 - the Security token service (STS) endpoint is `https://login.microsoftonline.com/`.
 - In the `Configure()`, adds `app.UseAuthentication();` and `app.UseAuthorization();`.
 - Add `[Authorize]` to protect a controller. the `scopeRequiredByApi` checks whether the user has the scope.
+
+[WEB API Turtorial](https://github.com/Azure-Samples/active-directory-dotnet-native-aspnetcore-v2)
+
+**HERE**
 
 ### Build the app
 
