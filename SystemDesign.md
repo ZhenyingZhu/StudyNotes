@@ -1393,37 +1393,35 @@ Value store with the index:
 - covering index **[KEY]**: store some columns within the index.
 - clustered and covering indexs require more data usage, more writes, and transactional guarantees complicate.
 
-**HERE**
-
 Multi-column indexes
 
-- concatenated index: index defination defines the order to append indexes. Can only search by the index appears earlier in the concatended index.
+- concatenated index **[KEY]**: index defination defines the order to append indexes. Can only search by the index appears earlier in the concatended index.
 - multi-dimensional index:
-  - important for geospatial data. R-tree is one spatial index.
+  - important for geospatial data. R-tree **[KEY]** is one spatial index.
   - HyperDex is an example of 2D index.
 - Full-text search and fuzzy indexes:
-  - Lucene is able to search text for words within a certain edit distance. It use a SSTable-like structure. the in-mem index is a finate state automaton over the chars in the key, like a trie. It can be transform into Levenshtein automaton for search
+  - Lucene is able to search text for words within a certain edit distance. It use a SSTable-like structure. the in-mem index is a finate state automaton over the chars in the key, like a trie. It can be transform into Levenshtein automaton for search. **[KEY]**
   - Document classification
   - machine learning
 
 In-memory databases
 
 - RAM is getting cheaper.
-- Memcached: for caching use only. So data don't need durable.
+- Memcached **[KEY]**: for caching use only. So data don't need durable.
 - Can also use battery powered RAM
-- log changes to disk
-- write periodic snapshots to disk
+- to achieve data durability **[KEY]**, write logs of the changes to disk, but merely not use the logs on disk
+- Another approach is to periodically write snapshots to disk. **[KEY]**
 - replicate in-mem state to other machines
-- Redis: write to disk async.
-- encoding in-mem data structure to write to disk also needs overheads, so in-mem database is faster. Some data structure like priority queue is hard to serialized
-- anti-caching approach: evicting least recently used data to disk when mem is not enough. But all the keys are still need to be fit in memory
+- Redis: write to disk async. **[KEY]**
+- encoding in-mem data structure to write to disk also needs overheads, so in-mem database is faster. Some data structure like priority queue is hard to serialized **[KEY]**
+- anti-caching approach: evicting least recently used data to disk when mem is not enough. But all the keys are still need to be fit in memory **[KEY]**
 
 Transaction processing
 
-- Doesn't necessarily have ACID.
+- Doesn't necessarily have ACID. **[KEY]**
 - A group of low latency read and writes as a unit
-- vs. batch processing: runs periodically
-- online transaction processing (OLTP)
+- vs. batch processing: runs periodically **[KEY]**
+- online transaction processing (OLTP) **[KEY]**
 - online analytic processing (OLAP)
 - data analytics: scan over a huge number of records, only reading a few columns per record, and calculates aggregate statistics
 - OLAP does bulk import or event stream
@@ -1432,7 +1430,7 @@ Transaction processing
 Data Warehousing
 
 - contains a read-only copy of the data in all the various OLTP systems
-- process: Extract–Transform–Load (ETL)
+- process: Extract–Transform–Load (ETL) **[KEY]**
   1. Data is extracted either periodic or a continuous stream of updates
   2. transform to a different schema
   3. clean up
@@ -1448,7 +1446,7 @@ Stars and Snowflakes: Schemas for Analytics
 
 - star schema: aka, dimensional modeling.
   - fact table: each row is an event occurred at a time
-  - dimension table: the tables that contain foreign keys of the fact table
+  - dimension table **[KEY]**: the table that contain the possible values for a colume in the fact table. The fact table uses foreign keys to the fact tables.
   - have a table to store date so that holidays can be captured
   - snowflake schema: dimensions are further broken down to subdimensions, so it is more normalized but hard to work with.
 
@@ -1462,7 +1460,7 @@ Column-Oriented Storage
 Column Compression
 
 - each fact table column normally have quite a few repeative (for example 0), so compression has good effect.
-- bitmap encoding: record how many 0, then how many 1, then how many 0 ...
+- bitmap encoding **[KEY]**: record how many 0, then how many 1, then how many 0 ...
 - bitmaps can also be nested.
 
 Warehouse bottleneck and solutions
@@ -1493,6 +1491,6 @@ Aggregation: Data Cubes and Materialized Views
 - when DB inserts values, the write is more expensive. So it is only used in read-heavy data warehouses.
 - Data cube: a grid of aggregates grouped by different dimensions.
 
-HERE: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch03.html>
+#### Chapter 4. Encoding and Evolution
 
-Summary
+**HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch04.html>
