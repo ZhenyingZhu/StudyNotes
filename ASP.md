@@ -2889,9 +2889,7 @@ Without using the tool, the steps are [Protect an ASP.NET Core web API with the 
 - In the `Configure()`, adds `app.UseAuthentication();` and `app.UseAuthorization();`.
 - Add `[Authorize]` to protect a controller. the `scopeRequiredByApi` checks whether the user has the scope.
 
-[WEB API Turtorial](https://github.com/Azure-Samples/active-directory-dotnet-native-aspnetcore-v2)
-
-**HERE**
+**TODO**: continue when the Web API Turtorial completes
 
 ### Build the app
 
@@ -2907,6 +2905,13 @@ Without using the tool, the steps are [Protect an ASP.NET Core web API with the 
 
 - [visual studio](https://docs.microsoft.com/en-us/visualstudio/ide/csharp-developer-productivity?utm_source=VisualStudio&utm_medium=aspnet-getstarted&utm_campaign=VisualStudio&view=vs-2019)
 - [code gen](https://docs.microsoft.com/en-us/visualstudio/ide/code-generation-in-visual-studio?utm_source=VisualStudio&utm_medium=aspnet-getstarted&utm_campaign=VisualStudio&view=vs-2019)
+
+## [WEB API Turtorial](https://github.com/Azure-Samples/active-directory-dotnet-native-aspnetcore-v2)
+
+### [Desktop app calls a protected Web API](https://docs.microsoft.com/en-us/samples/azure-samples/active-directory-dotnet-native-aspnetcore-v2/1-desktop-app-calls-web-api/)
+
+- WebAPI: TodoListService. Based on the logged in user, write the TodoItem or return the TodoItem.
+- WPF app: TodoListClient. Login the user and get a token, then call the WebAPI.
 
 ## MVC
 
