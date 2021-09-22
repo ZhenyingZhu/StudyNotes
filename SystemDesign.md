@@ -1493,4 +1493,30 @@ Aggregation: Data Cubes and Materialized Views
 
 #### Chapter 4. Encoding and Evolution
 
+Client side app change: need to count in that users might not upgrade any time soon.
+
+- Backward compatibility: newer code read data written by older code.
+- Forward compatibility: Older code can read data that was written by newer code.
+- encoding format should be able to handle the compatibility.
+- Representational State Transfer (REST)
+- remote procedure calls (RPC)
+- message-passing systems: actors and message queues.
+
+Formats for Encoding Data
+
+- In mem, data structure stored as pointer. Optimized to be read and manipulate by CPU
+- write to file, or send through network, need to encode it to self-contained sequence bytes
+
+Language-Specific Formats
+
+- Lang build in serialize support
+- hard to be used by another lang.
+- Security concern if the bytes are captured by an attacker
+- versioning could be hard, so compatibility is not maintained.
+- efficiency might be poor.
+
+JSON, XML, and Binary Variants
+
+- 
+
 **HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch04.html>
