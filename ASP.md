@@ -2912,6 +2912,13 @@ Without using the tool, the steps are [Protect an ASP.NET Core web API with the 
 
 - WebAPI: TodoListService. Based on the logged in user, write the TodoItem or return the TodoItem.
 - WPF app: TodoListClient. Login the user and get a token, then call the WebAPI.
+- After reg an app, in the Expose an API, set the App ID URL. By default it generates `api://{clientId}`
+- need at least one scope to obtain an access token.
+- Admin consent is for api to access the API as a signed-in user. User consent is access the api on the user behalf.
+- Domain can be found in Azure Active Directory overview page.
+- Both the server and the client app need to be reged.
+
+**HERE**: Register the client app (TodoListClient (active-directory-dotnet-native-aspnetcore-v2))
 
 ## MVC
 
