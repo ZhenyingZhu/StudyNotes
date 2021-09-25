@@ -2917,7 +2917,8 @@ Without using the tool, the steps are [Protect an ASP.NET Core web API with the 
 - Admin consent is for api to access the API as a signed-in user. User consent is access the api on the user behalf.
 - Domain can be found in Azure Active Directory overview page.
 - Both the server and the client app need to be reged.
-- the client app reg needs to select Authentication.
+- the client app reg needs to select Authentication > Add a platform > mobile and desktop application. Redirect URL use `http://localhost`
+- API permissions > add a permission > My APIs > TodoListServer
 
 **HERE**: Register the client app (TodoListClient (active-directory-dotnet-native-aspnetcore-v2))
 
