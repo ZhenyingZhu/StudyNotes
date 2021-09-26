@@ -1517,6 +1517,25 @@ Language-Specific Formats
 
 JSON, XML, and Binary Variants
 
-- 
+- XML: too verbose and complicate
+- CSV is less powerful
+- JSON can distinct number from string, but not integer vs. float. Since it is come from JavaScript, JS has inaccurate issue with large int because it uses floating-point numbers.
+- XML, JSON support unicode string, but not binary string (without char encoding). Need to use Base64 to encode the binary data first, which increase the size by 33%.
+- XML, JSON have opt schema support. XML schema is widely adopted, but not JSON. CSV doesn't support that. Making a change would be hard, and also might face issues when value has a delimeter char.
+- XML, JSON and CSV are widely used because different orgs agree on them. It is not easy.
+
+Binary encoding: used within an org
+
+- for large data set, need to use a format that is more compact or faster to parse
+- JSON in binary: MessagePack, BSON, BJSON, BISON, etc. Some supports datatypes.
+- Since not using schema, field names are also stored in the data.
+- Need a byte before each field/value to tell what is the type and the length.
+- Thrift and Protocol Buffers: binary encoding libraries. require a schema. In the data, refer the fields as tags not real names.
+- When changing the schema,
+  - the field names can be easily changed, but not the field tags. When adding a new tag, it cannot be required. Old code just ignore it. When remove a tag, it must be optional because old code still requires it. The tag cannot be reused.
+  - changing the data type is doable, but might loss precision or values get truncated by old code.
+  - changing a single-value property to multi-value property: old code reads the last one.
 
 **HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch04.html>
+
+Avro
