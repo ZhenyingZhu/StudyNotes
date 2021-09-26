@@ -1530,12 +1530,43 @@ Binary encoding: used within an org
 - JSON in binary: MessagePack, BSON, BJSON, BISON, etc. Some supports datatypes.
 - Since not using schema, field names are also stored in the data.
 - Need a byte before each field/value to tell what is the type and the length.
-- Thrift and Protocol Buffers: binary encoding libraries. require a schema. In the data, refer the fields as tags not real names.
+
+Thrift and Protocol Buffers: binary encoding libraries. require a schema. In the data, refer the fields as tags not real names.
+
 - When changing the schema,
   - the field names can be easily changed, but not the field tags. When adding a new tag, it cannot be required. Old code just ignore it. When remove a tag, it must be optional because old code still requires it. The tag cannot be reused.
   - changing the data type is doable, but might loss precision or values get truncated by old code.
   - changing a single-value property to multi-value property: old code reads the last one.
 
+Avro: used in Hadoop. Also use a schema. When encoding, don't record which field but only value type and the order.
+
+- decode uses reader schema, which might be old. The writer schema should be compatible with old reader schema. Avro resolve the difference with both schema side by side.
+- Can only add or remove a field that has default value.
+- null must be used only by field with value type `union { null, <value type> }`.
+- How the writer schema gets to the decoder
+  - For transfering large file with lot of records: encode the writer schema in beginning the file
+  - For database that writes each record once at a time, might use different write schema: store an encoding version, and store the corresponding schemas in DB.
+  - Keep sending records over network: negotiate the schema version on connection setup.
+- Dynamically generated schemas: can generate the schema from a relational DB's schema, so the data can be convert to an Avro object and send over the network.
+  - If the DB schema changed, Avro can easily adopt the change.
+
+Code generation and dynamically typed languages
+
+- Thrift and Protocol Buffers can auto generate code in staticically typed lang to decode data.
+- Avro doesn't need code generation. Avro reads the data file as a JSON file and connect it to the writer schema. Dynamically typed data processing lang like Apache Pig suits it because Pig doesn't care about the schema.
+
+The Merits of Schemas
+
+- schema for binary encoding is used by ASN.1, which is used to encode SSL cert (X.509) with its binary encoding (DER)
+- relational DBs have a network protocol to transfer data. Drivers like ODBC APIs can decode the binary data into in-mem data structure.
+
+Modes of Dataflow: when encode data, who decodes it?
+
+- Via DBs
+- Via service calls
+- Via async message passing
+
+
 **HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch04.html>
 
-Avro
+Dataflow Through Databases
