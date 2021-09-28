@@ -1566,7 +1566,8 @@ Modes of Dataflow: when encode data, who decodes it?
 - Via service calls
 - Via async message passing
 
+Dataflow Through Databases
 
 **HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch04.html>
 
-Dataflow Through Databases
+
