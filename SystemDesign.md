@@ -1568,6 +1568,31 @@ Modes of Dataflow: when encode data, who decodes it?
 
 Dataflow Through Databases
 
+- The services might using newer code on some machines, and old code on other machines. So fore and backward compatibility both needed.
+- An edge case: A new field is added. A newer record writes the field, then an older code updates this record without this field. The field needs to be retained. So the encoding of the old code should let unknown fields untouched.
+- migrating data into new schema is expensive for large data set, so new fields should have default values.
+- While dumping the data, use the latest schema to backfill old data.
+
+Dataflow Through Services: REST and RPC
+
+- HTTP can be used to transfer HTML, CSS, JS, image, JSON, etc. by `GET`
+- AJAX: a client-side JavaScript application running in Web browser can use XMLHttpRequest to become an HTTP client
+- service-oriented architecture (SOA)/microservices architecture: a large app is decomposed to smaller services by area of functionality. So each service could be both the server and client for some other services at the same time.
+- services can impose fine-grained restrictions on what clients can and cannot do by defining the API.
+- services independently deployable and evolvable so easy to make changes
+- middleware: a service running inside an org to communicate between services. Traffic not go through internet.
+- Services in different orgs need to communicate through internet with public APIs. Like OAuth that sharing access to user data, credit card processing system.
+- Web services commonly use either REST or SOAP.
+  - REST: a design philosophy build upon HTTP principals. It emphasizes simple data formats, using URLs for identifying resources and using HTTP features for cache control, authentication, and content type negotiation. An API designed according to the principles of REST is called RESTful.
+  - Swagger, aka. OpenAPI, can be used to describe APIs and generate docs.
+  - SOAP is an XML-based protocol for making network API requests. It aims to be independent from HTTP. It uses Web Services Description Language(WSDL) to define APIs, and can auto generate codes. It relies on tools and IDEs so not friendly for simple apps.
+
+The problems with remote procedure calls (RPCs)
+
+- Enterprise JavaBeans (EJB) and Java’s Remote Method Invocation (RMI) are limited to Java. The Distributed Component Object Model (DCOM) is limited to Microsoft platforms.
+- RPC model tries to make a request to a remote network service look the same as calling a function or method in your programming language, within the same process (this abstraction is called location transparency).
+- 
+
 **HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch04.html>
 
-
+Although RPC seems convenient at first, the approach is fundamentally flawed [43, 44]. A network request is very different from a local function call:
