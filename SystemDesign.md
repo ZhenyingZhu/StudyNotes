@@ -1591,8 +1591,28 @@ The problems with remote procedure calls (RPCs)
 
 - Enterprise JavaBeans (EJB) and Java’s Remote Method Invocation (RMI) are limited to Java. The Distributed Component Object Model (DCOM) is limited to Microsoft platforms.
 - RPC model tries to make a request to a remote network service look the same as calling a function or method in your programming language, within the same process (this abstraction is called location transparency).
-- 
+- But not like local call, not all the parameters, like network, are predictable.
+- local call either return a result or throw exception, or not return in an inf loop. Network call can return without a result, for example timeout.
+- When retry a failed network call, the previous call could already go through. Need to maintain idempotence.
+- the duration for a same network call may vary from time to time
+- network call cannot use data structure, so big objects could be problematic.
+- client and server might use different lang.
+
+Current directions for RPC
+
+- use futures (promises) to encapsulate asynchronous actions that may fail.
+- Futures also simplify situations where you need to make requests to multiple services in parallel, and combine their results.
+- gRPC supports streams, a series of requests and reponses over time.
+- service discovery: client to find which IP and which port for a service
+- a RESTful API is good for experimentation and debugging because it is widely supported by standard tools, langs, platforms. So use REST for public APIs, while RPC for internal data transfer.
+
+Data encoding and evolution for RPC
+
+- Can assumpt that all servers update first, then clients. So only backward compatibility is needed
+- RPC can be used across org boundaries so cannot force clients to upgrade. So need to maintain compatibility for longer time. If need to make a breaking change, need to maintain different API versions side by side.
+- For RESTful APIs, append the API version to the URL or in the HTTP `Accept` Header.
+- For services that use API keys to identify a particular client, another option is to store a client’s requested API version on the server and to allow this version selection to be updated through a separate administrative interface **Q**
 
 **HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch04.html>
 
-Although RPC seems convenient at first, the approach is fundamentally flawed [43, 44]. A network request is very different from a local function call:
+Message-Passing Dataflow
