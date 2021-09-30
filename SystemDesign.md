@@ -1568,6 +1568,7 @@ Modes of Dataflow: when encode data, who decodes it?
 
 Dataflow Through Databases
 
+- The data is stored and read later
 - The services might using newer code on some machines, and old code on other machines. So fore and backward compatibility both needed.
 - An edge case: A new field is added. A newer record writes the field, then an older code updates this record without this field. The field needs to be retained. So the encoding of the old code should let unknown fields untouched.
 - migrating data into new schema is expensive for large data set, so new fields should have default values.
@@ -1575,6 +1576,7 @@ Dataflow Through Databases
 
 Dataflow Through Services: REST and RPC
 
+- Expect data to be transferred ASAP
 - HTTP can be used to transfer HTML, CSS, JS, image, JSON, etc. by `GET`
 - AJAX: a client-side JavaScript application running in Web browser can use XMLHttpRequest to become an HTTP client
 - service-oriented architecture (SOA)/microservices architecture: a large app is decomposed to smaller services by area of functionality. So each service could be both the server and client for some other services at the same time.
@@ -1613,6 +1615,30 @@ Data encoding and evolution for RPC
 - For RESTful APIs, append the API version to the URL or in the HTTP `Accept` Header.
 - For services that use API keys to identify a particular client, another option is to store a client’s requested API version on the server and to allow this version selection to be updated through a separate administrative interface **Q**
 
+Message-Passing Dataflow
+
+- data is transferred async
+- message: a client request
+- message broker: aka. message queue or message-oriented middleware. message transferred through it and stored temporarily
+- work as a buffer. improve system reliability
+- It can automatically redeliver messages to a process that has crashed, and thus prevent messages from being lost.
+- sender doesn't need to know the IP and the port of the receiver. In cloud it is useful.
+- one message can be sent to multiple recipient.
+- sender doesn't need to know who is the receiver
+- But sender usually doesn't expect to wait and receive response in message dataflow. It is one-way.
+
+Message brokers
+
+- RabbitMQ, Apache Kafka
+- Terms: producer - queue - consumer. producer - topic - subscriber.
+- one consumer might public to another queue as a producer.
+- to broker, message is just bytes, so any encoding works
+
+Distributed actor frameworks
+
+- actor model: a programming model for concurrency in a single process. Each actor represents one client, have some local state and communicates with other actors by sending and receiving asynchronous messages. Since each actor processes only one message at a time, it doesn’t need to worry about threads.
+- Message delivery is not guaranteed
+- used to scale an application across multiple nodes. No matter whether the clients are on the same node or not, use MQ to communicate.
+
 **HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch04.html>
 
-Message-Passing Dataflow
