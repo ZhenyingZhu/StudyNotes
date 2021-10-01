@@ -1519,9 +1519,9 @@ JSON, XML, and Binary Variants
 
 - XML: too verbose and complicate
 - CSV is less powerful
-- JSON can distinct number from string, but not integer vs. float. Since it is come from JavaScript, JS has inaccurate issue with large int because it uses floating-point numbers.
-- XML, JSON support unicode string, but not binary string (without char encoding). Need to use Base64 to encode the binary data first, which increase the size by 33%.
-- XML, JSON have opt schema support. XML schema is widely adopted, but not JSON. CSV doesn't support that. Making a change would be hard, and also might face issues when value has a delimeter char.
+- JSON can distinct number from string, but not integer vs. float. Since it is come from JavaScript, JS has inaccurate issue with large int because it uses floating-point numbers. **[KEY]**
+- XML, JSON support unicode string, but not binary string (without char encoding). Need to use Base64 to encode the binary data first, which increase the size by 33%. **[KEY]**
+- XML, JSON have opt schema support. XML schema is widely adopted, but not JSON. CSV doesn't support that. Making a change would be hard, and also might face issues when value has a delimeter char. **[KEY]**
 - XML, JSON and CSV are widely used because different orgs agree on them. It is not easy.
 
 Binary encoding: used within an org
@@ -1531,19 +1531,19 @@ Binary encoding: used within an org
 - Since not using schema, field names are also stored in the data.
 - Need a byte before each field/value to tell what is the type and the length.
 
-Thrift and Protocol Buffers: binary encoding libraries. require a schema. In the data, refer the fields as tags not real names.
+Thrift and Protocol Buffers: binary encoding libraries. require a schema. In the data, refer the fields as tags not real names. **[KEY]**
 
 - When changing the schema,
-  - the field names can be easily changed, but not the field tags. When adding a new tag, it cannot be required. Old code just ignore it. When remove a tag, it must be optional because old code still requires it. The tag cannot be reused.
+  - the field names can be easily changed, but not the field tags. When adding a new field, it cannot be a required field. Old code just ignore it. When remove a tag, it must be optional because old code still requires it. The tag cannot be reused.
   - changing the data type is doable, but might loss precision or values get truncated by old code.
-  - changing a single-value property to multi-value property: old code reads the last one.
+  - changing a single-value property to multi-value property: old code reads the last one. **[KEY]**
 
-Avro: used in Hadoop. Also use a schema. When encoding, don't record which field but only value type and the order.
+Avro: used in Hadoop. Also use a schema. When encoding, don't record which field but only value type and the order. **[KEY]**
 
-- decode uses reader schema, which might be old. The writer schema should be compatible with old reader schema. Avro resolve the difference with both schema side by side.
+- decode uses reader schema, which might be old. The writer schema should be compatible with old reader schema. Avro resolve the difference with both schema side by side. **[KEY]**
 - Can only add or remove a field that has default value.
 - null must be used only by field with value type `union { null, <value type> }`.
-- How the writer schema gets to the decoder
+- How the writer schema gets to the decoder **[KEY]**
   - For transfering large file with lot of records: encode the writer schema in beginning the file
   - For database that writes each record once at a time, might use different write schema: store an encoding version, and store the corresponding schemas in DB.
   - Keep sending records over network: negotiate the schema version on connection setup.
@@ -1570,7 +1570,7 @@ Dataflow Through Databases
 
 - The data is stored and read later
 - The services might using newer code on some machines, and old code on other machines. So fore and backward compatibility both needed.
-- An edge case: A new field is added. A newer record writes the field, then an older code updates this record without this field. The field needs to be retained. So the encoding of the old code should let unknown fields untouched.
+- An edge case: A new field is added. A newer record writes the field, then an older code updates this record without this field. The field needs to be retained. So the encoding of the old code should let unknown fields untouched. **[KEY]**
 - migrating data into new schema is expensive for large data set, so new fields should have default values.
 - While dumping the data, use the latest schema to backfill old data.
 
@@ -1578,20 +1578,20 @@ Dataflow Through Services: REST and RPC
 
 - Expect data to be transferred ASAP
 - HTTP can be used to transfer HTML, CSS, JS, image, JSON, etc. by `GET`
-- AJAX: a client-side JavaScript application running in Web browser can use XMLHttpRequest to become an HTTP client
-- service-oriented architecture (SOA)/microservices architecture: a large app is decomposed to smaller services by area of functionality. So each service could be both the server and client for some other services at the same time.
+- AJAX: a client-side JavaScript application running in Web browser can use XMLHttpRequest to become an HTTP client **[KEY]**
+- service-oriented architecture (SOA)/microservices architecture: a large app is decomposed to smaller services by area of functionality. So each service could be both the server and client for some other services at the same time. **[KEY]**
 - services can impose fine-grained restrictions on what clients can and cannot do by defining the API.
 - services independently deployable and evolvable so easy to make changes
 - middleware: a service running inside an org to communicate between services. Traffic not go through internet.
-- Services in different orgs need to communicate through internet with public APIs. Like OAuth that sharing access to user data, credit card processing system.
+- Services in different orgs need to communicate through internet with public APIs. Like OAuth that sharing access to user data, credit card processing system. **[KEY]**
 - Web services commonly use either REST or SOAP.
-  - REST: a design philosophy build upon HTTP principals. It emphasizes simple data formats, using URLs for identifying resources and using HTTP features for cache control, authentication, and content type negotiation. An API designed according to the principles of REST is called RESTful.
-  - Swagger, aka. OpenAPI, can be used to describe APIs and generate docs.
-  - SOAP is an XML-based protocol for making network API requests. It aims to be independent from HTTP. It uses Web Services Description Language(WSDL) to define APIs, and can auto generate codes. It relies on tools and IDEs so not friendly for simple apps.
+  - REST: a design philosophy build upon HTTP principals. It emphasizes simple data formats, using URLs for identifying resources and using HTTP features for cache control, authentication, and content type negotiation. An API designed according to the principles of REST is called RESTful. **[KEY]**
+  - Swagger, aka. OpenAPI, can be used to describe APIs and generate docs. **[KEY]**
+  - SOAP is an XML-based protocol for making network API requests. It aims to be independent from HTTP. It uses Web Services Description Language(WSDL) to define APIs, and can auto generate codes. It relies on tools and IDEs so not friendly for simple apps. **[KEY]**
 
 The problems with remote procedure calls (RPCs)
 
-- Enterprise JavaBeans (EJB) and Java’s Remote Method Invocation (RMI) are limited to Java. The Distributed Component Object Model (DCOM) is limited to Microsoft platforms.
+- Enterprise JavaBeans (EJB) and Java’s Remote Method Invocation (RMI) are limited to Java. The Distributed Component Object Model (DCOM) is limited to Microsoft platforms. **[KEY]**
 - RPC model tries to make a request to a remote network service look the same as calling a function or method in your programming language, within the same process (this abstraction is called location transparency).
 - But not like local call, not all the parameters, like network, are predictable.
 - local call either return a result or throw exception, or not return in an inf loop. Network call can return without a result, for example timeout.
@@ -1602,43 +1602,42 @@ The problems with remote procedure calls (RPCs)
 
 Current directions for RPC
 
-- use futures (promises) to encapsulate asynchronous actions that may fail.
-- Futures also simplify situations where you need to make requests to multiple services in parallel, and combine their results.
+- use futures (promises) to encapsulate asynchronous actions that may fail. **[KEY]**
+- Futures also simplify situations where you need to make requests to multiple services in parallel, and combine their results. **[KEY]**
 - gRPC supports streams, a series of requests and reponses over time.
-- service discovery: client to find which IP and which port for a service
+- service discovery: client to find which IP and which port for a service **[KEY]**
 - a RESTful API is good for experimentation and debugging because it is widely supported by standard tools, langs, platforms. So use REST for public APIs, while RPC for internal data transfer.
 
 Data encoding and evolution for RPC
 
 - Can assumpt that all servers update first, then clients. So only backward compatibility is needed
 - RPC can be used across org boundaries so cannot force clients to upgrade. So need to maintain compatibility for longer time. If need to make a breaking change, need to maintain different API versions side by side.
-- For RESTful APIs, append the API version to the URL or in the HTTP `Accept` Header.
-- For services that use API keys to identify a particular client, another option is to store a client’s requested API version on the server and to allow this version selection to be updated through a separate administrative interface **Q**
+- For RESTful APIs, append the API version to the URL or in the HTTP `Accept` Header. **[KEY]**
+- For services that use API keys to identify a particular client, another option is to store a client’s requested API version on the server and to allow this version selection to be updated through a separate administrative interface **[KEY]**
 
 Message-Passing Dataflow
 
 - data is transferred async
-- message: a client request
-- message broker: aka. message queue or message-oriented middleware. message transferred through it and stored temporarily
-- work as a buffer. improve system reliability
-- It can automatically redeliver messages to a process that has crashed, and thus prevent messages from being lost.
-- sender doesn't need to know the IP and the port of the receiver. In cloud it is useful.
-- one message can be sent to multiple recipient.
-- sender doesn't need to know who is the receiver
-- But sender usually doesn't expect to wait and receive response in message dataflow. It is one-way.
+- message: a client request **[KEY]**
+- message broker: aka. message queue or message-oriented middleware. message transferred through it and stored temporarily **[KEY]**
+- work as a buffer. improve system reliability **[KEY]**
+- It can automatically redeliver messages to a process that has crashed, and thus prevent messages from being lost. **[KEY]**
+- sender doesn't need to know the IP and the port of the receiver. In cloud it is useful. **[KEY]**
+- one message can be sent to multiple recipient. **[KEY]**
+- sender doesn't need to know who is the receiver **[KEY]**
+- But sender usually doesn't expect to wait and receive response in message dataflow. It is one-way. **[KEY]**
 
 Message brokers
 
-- RabbitMQ, Apache Kafka
-- Terms: producer - queue - consumer. producer - topic - subscriber.
-- one consumer might public to another queue as a producer.
+- RabbitMQ, Apache Kafka **[KEY]**
+- Terms: producer - queue - consumer. producer - topic - subscriber. **[KEY]**
+- one consumer might public to another queue as a producer. **[KEY]**
 - to broker, message is just bytes, so any encoding works
 
 Distributed actor frameworks
 
-- actor model: a programming model for concurrency in a single process. Each actor represents one client, have some local state and communicates with other actors by sending and receiving asynchronous messages. Since each actor processes only one message at a time, it doesn’t need to worry about threads.
+- actor model: a programming model for concurrency in a single process. Each actor represents one client, have some local state and communicates with other actors by sending and receiving asynchronous messages. Since each actor processes only one message at a time, it doesn’t need to worry about threads. **[KEY]**
 - Message delivery is not guaranteed
 - used to scale an application across multiple nodes. No matter whether the clients are on the same node or not, use MQ to communicate.
 
 **HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch04.html>
-
