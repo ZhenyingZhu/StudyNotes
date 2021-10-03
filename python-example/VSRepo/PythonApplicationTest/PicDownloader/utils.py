@@ -4,6 +4,7 @@ import os
 import urllib.request
 import requests
 import shutil
+import ssl
 from pathlib import Path
 
 class Utils:
@@ -47,6 +48,10 @@ class Utils:
         filename = pic_url.split('/')[-1]
         save_position = os.path.normpath(os.path.join(base_save_path, filename))
         try:
+            # TODO: fix the SSL issue <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1129)>
+            if (not os.environ.get('PYTHONHTTPSVERIFY', '') and getattr(ssl, '_create_unverified_context', None)):
+                ssl._create_default_https_context = ssl._create_unverified_context
+
             local_filename, headers = urllib.request.urlretrieve(pic_url)
             shutil.move(local_filename, save_position)
             
