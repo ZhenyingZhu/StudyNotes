@@ -1640,4 +1640,64 @@ Distributed actor frameworks
 - Message delivery is not guaranteed
 - used to scale an application across multiple nodes. No matter whether the clients are on the same node or not, use MQ to communicate.
 
-**HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch04.html>
+### Part 2. Distributed Data
+
+reasons to distribute a database across multiple machines
+
+- Scalability: volume, R/W load
+- Fault tolerance/high availability: redundancy
+- Latency: geo redundancy
+
+vertical scale up (better performance machine using shared-memory architecture)
+
+- cost grow faster than linearly. twice the cost cannot handle twice load
+- limited fault tolerance
+
+horizontal scaling (shared-nothing architectures)
+
+- node: a virtual machine
+- coordination between nodes are done in software level, using conventional network
+- incurs additional complexity for applications and sometimes limits the expressiveness of the data models
+
+Replication Versus Partitioning
+
+- Replication: copy of same data. provides redundancy
+- Partitioning: sharding
+- can be used together
+
+#### Chapter 5. Replication
+
+The difficulty of replication: handling changes to replicated data. three popular algorithms:
+
+- single-leader
+- multi-leader
+- leaderless replication
+
+trade-offs to consider:
+
+- use synchronous or asynchronous replication
+- handle failed replicas
+
+eventual consistency:
+
+- read-your-writes
+- monotonic reads guarantees
+
+leader-based replication(active/passive or master–slave replication)
+
+- writes send to leader
+- followers (hot standby) get changes from leader via replication log or change stream
+- reads can be done from leader or followers
+
+Synchronous Versus Asynchronous Replication
+
+- one follower needs to get the change sync, others could do it async
+- no guarantee how long can replication take
+- sync replication failure on one node could cause the whole system halted
+- semi-synchronous: to solve this issue, a async replica becomes sync one when the sync one is not available
+- leader-based replication is often configured to be completely asynchronous.
+- alternative to avoid leader failure cause the write data loss: chain replication
+
+**HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch05.html>
+
+Setting Up New Followers
