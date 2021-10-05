@@ -2920,7 +2920,7 @@ Without using the tool, the steps are [Protect an ASP.NET Core web API with the 
 - the client app reg needs to select Authentication > Add a platform > mobile and desktop application. Redirect URL use `http://localhost`
 - API permissions > add a permission > My APIs > TodoListServer
 
-**HERE**: Register the client app (TodoListClient (active-directory-dotnet-native-aspnetcore-v2))
+**HERE**: How was the code created
 
 ## MVC
 
