@@ -1698,6 +1698,40 @@ Synchronous Versus Asynchronous Replication
 - leader-based replication is often configured to be completely asynchronous.
 - alternative to avoid leader failure cause the write data loss: chain replication
 
+Setting Up New Followers
+
+- cannot lock the DB because the requirement for high availability
+- Take a consistent snapshot of the leader’s database
+- Restore the snapshot on the follower
+- Follower requests changes after the snapshot from leader.
+- Each snapshot should associate with a position. It can be called as log sequence number, binlog coordinates.
+- follower is caught up
+
+Handling Node Outages
+
+- Follower failure: Catch-up recovery. Follower maintain a log of data changes it has received from leader.
+- Leader failure: Failover. one of the followers needs to be promoted to be the new leader. Config client to send traffic to the new leader.
+- Use a timeout to detect node failure. Planned mantainance shouldn't trigger alert.
+- Use an election process to choose the new leader by the majority replicas, or appointed the previous controller node. Should choose the most up-to-date replica
+- Through consensus to let all nodes agree on it
+- Let client send traffic to the new leader. The old leader might still think it is the leader after it comes back so need to make it become a follower
+
+fraughts can happen during failover
+
+- In async replication design, the new leader might miss some writes. To not cause write conflicts when the old leader comes back, those writes can be discarded, but will cause data loss
+- For data needs to be coordinate outside the system, discard writes is dangeous
+- split brain: two nodes both believe they are the leader. To avoid write conflicts, can use a mechanism to shut one down. But be careful not to shut both down
+- How long should be the timeout? Longer means long fail duration. Shorter means might un-necessarily failover. Can make the failover manual
+
+Implementation of Replication Logs
+
+- Statement-based replication: forward the request statement to all the followers
+  - But for non-deterministic statements like `NOW()` or `RAND()` won't write the same change on the followers
+  - If multiple concurrently executing transations use auto-incrementing column, running them in different order leads to different results
+  - statements have side effects, like triggers, stored procedures, user-defined functions, may result differently
+  - Can solve those issues by the leader converts such statements to deterministic statements, but too many edge cases
+- Write-ahead log (WAL) shipping
+
 **HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch05.html>
 
-Setting Up New Followers
+Write-ahead log (WAL) shipping
