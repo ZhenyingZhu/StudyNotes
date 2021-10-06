@@ -1731,7 +1731,29 @@ Implementation of Replication Logs
   - statements have side effects, like triggers, stored procedures, user-defined functions, may result differently
   - Can solve those issues by the leader converts such statements to deterministic statements, but too many edge cases
 - Write-ahead log (WAL) shipping
+  - log is an append-only sequence of bytes containing all writes to the database. Can be used to build a replica
+  - disadvantage: the log is very low level, which byte changed in which disk blocks. Closely couple to the storage engine. If the engine needs to be upgrade, there would be a downtime to let leader and followers both upgrade at the same time
+- Logical (row-based) log replication
+  - logical log: a sequence of records describing writes to database tables at the granularity of a row
+  - each create/update/delete generates a log
+  - a transaction modify multiple rows has a log for each row update, follow by a transaction commit log
+  - change data capture: the logical log format is easy to be interpreted by external systems, so building custom indexes and caching would be easier
+- Trigger-based replication
+  - let application level not DB to control the replication, when need to replicate a special subset of data, replicate between different DBs, run conflict resolution logic
+  - trigger: register code to execute when data change happens
+  - has greater overhead, and error proning
+
+Problems with Replication Lag
+
+- replication suits for read-scaling architecture. But async replication cause reads might land on an out-of-date replica
+- eventual consistency: when the replication lag is more than couple secs, could cause issues
+- Reading Your Own Writes: can solve by read-after-write consistency. The user writes the data can read the data immediately, while other users need wait
+  - Approach 1: the writer reads from leader. The system needs to know something has been modified without querying. Suitable for DB that only a few fields can be modified by users
+  - Approach 2: all reads in a duration after writes read from leader. Prevent reads to the followers that are this duration behind
+  - Approach 3: client remembers the write seq number, and read from followers not behind it, or wait until the follower catch up.
+  - In a multi-geo design, the requests need to be served by the leader needs to be routed to the leader's DC first
+  - If the user uses multiple devices, the metadata to identify the user and the timestamp/seq number needs to be centerialized. Also need to route the requests to the leader's DC because user's devices might be in different geo.
 
 **HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch05.html>
 
-Write-ahead log (WAL) shipping
+Monotonic Reads
