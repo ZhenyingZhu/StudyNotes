@@ -2919,6 +2919,7 @@ Without using the tool, the steps are [Protect an ASP.NET Core web API with the 
 - Both the server and the client app need to be reged.
 - the client app reg needs to select Authentication > Add a platform > mobile and desktop application. Redirect URL use `http://localhost`
 - API permissions > add a permission > My APIs > TodoListServer
+- Controller uses `ConcurrentBag`
 
 **HERE**: How was the code created
 
