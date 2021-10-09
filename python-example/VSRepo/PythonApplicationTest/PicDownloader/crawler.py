@@ -151,7 +151,7 @@ def main():
     print('Argument List:', str(argv))
 
     url = argv[1]
-    if url.endswith('/?nw=always'):
+    if not url.endswith('/?nw=always'):
         url += '/?nw=always'
     folder = argv[2]
 
