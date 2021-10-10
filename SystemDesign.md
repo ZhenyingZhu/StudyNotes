@@ -1753,7 +1753,30 @@ Problems with Replication Lag
   - Approach 3: client remembers the write seq number, and read from followers not behind it, or wait until the follower catch up.
   - In a multi-geo design, the requests need to be served by the leader needs to be routed to the leader's DC first
   - If the user uses multiple devices, the metadata to identify the user and the timestamp/seq number needs to be centerialized. Also need to route the requests to the leader's DC because user's devices might be in different geo.
+- Monotonic Reads: to prevent when several reads occurs, later query return previous state
+  - a guarantee that the level is between strong consistency and eventually consistency
+  - the same user always read from the same replica. Chosing the replica based on a hash of the user id (but need to consider if the replica failed, how to re-route the user)
+- Consistent Prefix Reads: when multiple writes happen in a seq, prevents a reader seeing them out of order
+  - only happened in partitioned DBs. In the same partition the writes can be kept in order, but hard to coordinate in different partitions
+  - Can make writes that order matters write to the same partition.
+  - Another solution: use algorithms to keep track of causal dependencies
+- Transaction is the DB provided solution to deal with replication lag
+  - Single-node transactions is a solution, but cannot be used in distributed system
+
+Multi-Leader Replication
+
+- Single leader cons: all writes go through the same leader
+- multi-leader (active-active replication): each leader acts as others' follower
+
+Use cases for multi-leader
+
+- multi-DC operation: each DC has a leader and some followers. Between leaders across DCs, there is a conflict resolver
+  - performance is better from user point-of-view because cross DC replication is hidden from user
+  - single DC outage won't affect other DCs
+  - cross DC traffic normally goes through public internet. With multi-leader the dependency on public internet is reduced
+  - cons: same data can be concurrently modified in multiple DCs. Need to resolve conflicts
+  - it is often considerred as dangeous and need to be avoid
 
 **HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch05.html>
 
-Monotonic Reads
+Clients with offline operation
