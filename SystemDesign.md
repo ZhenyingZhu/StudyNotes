@@ -1776,7 +1776,32 @@ Use cases for multi-leader
   - cross DC traffic normally goes through public internet. With multi-leader the dependency on public internet is reduced
   - cons: same data can be concurrently modified in multiple DCs. Need to resolve conflicts
   - it is often considerred as dangeous and need to be avoid
+- Clients with offline operation: an app that needs to work even disconnect from internet.
+  - write changes can be synced after next time connected to internet.
+  - Every client has a local DB worked as leader. The replication lag could be days.
+  - CouchDB is designed for this case
+- Collaborative editing: need auto conflict resolution algorithm
+  - edits made to local replica and then async replicated to server.
+  - to achieve fast collaborate, need make the change unit very small and avoid locking
+
+Handling Write Conflicts
+
+- in single leader, the conflict write would be blocked or aborted.
+- in multi leader, the conflict only detects during replication, and too late to ask the user to resolve
+- conflict avoidance: require all the writes to a same record goes to a same leader
+  - when the DC is failing or the record partition is changed, the writes need to be re-route and can have write conflicts
+- Converging toward a consistent state: all replicas must arrive to the same final state after all changes have been replicated
+  - single leader, last write is the latest state.
+  - multi leader, writes have no defined ordering. The database must resolve the conflict in a convergent way
+  - Can give each writes a UUID, and use the highest number as the final state. Can lead to data loss
+  - Can give replica ids, the changes on the higher number replica wins. Can lead to data loss
+  - merge the value together by concat them
+  - use a data structure to record the conflict details and promote to the user to resolve the conflict in a later time
+- Custom conflict resolution logic: DB provided features to hook the custom code
+  - On write: when DB detects a conflict, run the conflict handler. Runs in the background and should be quick.
+  - On read: store all the conflict writes. When read the data, present all the versions of the data to the user. Prompt the user to resolve it.
+- Conflict resolution applies at the level of an individual row/document. In a transaction, each write needs to resolve conflicts separately
 
 **HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch05.html>
 
-Clients with offline operation
+AUTOMATIC CONFLICT RESOLUTION
