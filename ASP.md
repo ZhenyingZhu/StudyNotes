@@ -2924,6 +2924,8 @@ Without using the tool, the steps are [Protect an ASP.NET Core web API with the 
 
 **HERE**: How was the code created
 
+[desktop apps](https://docs.microsoft.com/en-us/azure/active-directory/develop/scenario-desktop-app-configuration?tabs=dotnet)
+
 ## MVC
 
 [Doc](https://docs.microsoft.com/en-us/aspnet/core/mvc/overview?view=aspnetcore-3.1)
