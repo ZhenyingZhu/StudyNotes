@@ -1801,7 +1801,8 @@ Handling Write Conflicts
   - On write: when DB detects a conflict, run the conflict handler. Runs in the background and should be quick.
   - On read: store all the conflict writes. When read the data, present all the versions of the data to the user. Prompt the user to resolve it.
 - Conflict resolution applies at the level of an individual row/document. In a transaction, each write needs to resolve conflicts separately
+  - Automatic Conflict Resolution: Conflict-free replicated datatypes (CRDTs), Mergeable persistent data structures, Operational transformation
 
 **HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch05.html>
 
-AUTOMATIC CONFLICT RESOLUTION
+What is a conflict?
