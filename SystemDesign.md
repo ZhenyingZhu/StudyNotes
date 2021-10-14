@@ -1803,8 +1803,15 @@ Handling Write Conflicts
 - Conflict resolution applies at the level of an individual row/document. In a transaction, each write needs to resolve conflicts separately
   - Automatic Conflict Resolution: Conflict-free replicated datatypes (CRDTs), Mergeable persistent data structures, Operational transformation
 
-What is a conflict
+Multi-Leader Replication Topologies
+
+- Circular topology: each leader sends writes to it (including writes from previous leaders) to its next leader
+- Star topology: a leader acked as a centeral (root node). All other leaders first send writes to it, and then it sends writes to others. This topology can be generized to a tree.
+- All-to-all topology: a mesh. Each leader sends writes to all other leaders.
+- In Circular and Star topology, since changes are forward through multiple nodes, there could be infinite replication loop. To avoid that, each node has a uuid, and changes are tagged with the uuid. If a node receives changes with its own uuid, ignore the changes.
+- In Circular and Star topology, a single node failure could halt the whole replication. Need manual operation to reconfig. All-to-all doesn't have this issue.
+- All-to-all topology could have some nodes seeing changes in reversed order, because changes might be replicated through different paths to a node. Using timestamp to tag each write is not sufficient, because clock could be skew. Version vectors can solve the issue.
 
 **HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch05.html>
 
-What is a conflict
+Leaderless Replication
