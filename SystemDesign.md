@@ -1803,6 +1803,8 @@ Handling Write Conflicts
 - Conflict resolution applies at the level of an individual row/document. In a transaction, each write needs to resolve conflicts separately
   - Automatic Conflict Resolution: Conflict-free replicated datatypes (CRDTs), Mergeable persistent data structures, Operational transformation
 
+What is a conflict
+
 **HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch05.html>
 
-What is a conflict?
+What is a conflict
