@@ -1812,6 +1812,15 @@ Multi-Leader Replication Topologies
 - In Circular and Star topology, a single node failure could halt the whole replication. Need manual operation to reconfig. All-to-all doesn't have this issue.
 - All-to-all topology could have some nodes seeing changes in reversed order, because changes might be replicated through different paths to a node. Using timestamp to tag each write is not sufficient, because clock could be skew. Version vectors can solve the issue.
 
+Leaderless Replication
+
+- allow any replica to directly accept writes from clients. Used by Dynamo, Cassandra
+- Client either write changes to all the replicas, or a coordinator node does it on behalf of client
+- does not enforce write orders
+- Writing to the Database When a Node Is Down:
+  - client writes changes to all 3 replicas in parallel. When it receives 2 ok, it treats the write as succeed, even more replicas are failing.
+  - When read, reads from all 3 replicas. Use the version number to determine which is the most up-to-date writes.
+
 **HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch05.html>
 
-Leaderless Replication
+
