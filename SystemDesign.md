@@ -1824,7 +1824,24 @@ Leaderless Replication
     - Read repair: when the client detects a node is left behind, makes a writes to let it catch up. Works well when values are frequently read
     - Anti-entropy process: a background process constantly looks for differences between replicas and copy data around. Write orders are not guaranteed. Also could have a huge delay.
   - Quorums for reading and writing: if there are n replicas, every writes must be confirmed by w nodes to be considered as successful. Must query at least r nodes for each read. w + r >= n. Normally n is a odd number (3 or 5). w = r = (n + 1) / 2. When read, we can tolerate n - r nodes to be unavailable. When writes, n - w.
+  - Limitations of Quorum Consistency:
+    - to gain lower latency and higher availability, can let w + r < n, if client doesn't that cares about not reading stale data
+    - even with w + r > n, if sloppy quorum is used (client thought it was successfully connected to some nodes but actually not), there is no guaranteed overlap between read and write nodes.
+    - concurrent writes may succeed on different nodes, but winner is chosen by timestamp. Before the conflict is resolved, writes can be lost due to clock skew.
+    - if a write happens concurrently with a read, some nodes have the write while others don't.
+    - if a write succeed on less than n - r nodes, it should be rolled back, but some nodes might not rolled back yet when read occurs
+    - if a node carrying the new write fails, and it restored from an old replica, then less than n - r nodes have the latest value
+    - can have timing issue ?? Linearizability and quorums
+  - Dynamo-style databases are generally optimized for use cases that can tolerate eventual consistency. Normally don't guarantee reading your writes, monotonic reads, or consistent prefix reads.
+
+Monitoring staleness
+
+- even client can tolerate staleness, the service needs to aware of the replication health.
+- Leader based replication: can emit metrics for the replication lag. Substract the followers replication timestamp with the leaders write timestamp.
+- Leaderless replication, if not use anti-entropy, the replication lag could be huge. No good pratice yet.
+
+Sloppy Quorums and Hinted Handoff
+
+- 
 
 **HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch05.html>
-
-Limitations of Quorum Consistency
