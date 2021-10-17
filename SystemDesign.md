@@ -1820,7 +1820,11 @@ Leaderless Replication
 - Writing to the Database When a Node Is Down:
   - client writes changes to all 3 replicas in parallel. When it receives 2 ok, it treats the write as succeed, even more replicas are failing.
   - When read, reads from all 3 replicas. Use the version number to determine which is the most up-to-date writes.
+  - To let once unavailable node catch up, there are 2 ways:
+    - Read repair: when the client detects a node is left behind, makes a writes to let it catch up. Works well when values are frequently read
+    - Anti-entropy process: a background process constantly looks for differences between replicas and copy data around. Write orders are not guaranteed. Also could have a huge delay.
+  - Quorums for reading and writing: if there are n replicas, every writes must be confirmed by w nodes to be considered as successful. Must query at least r nodes for each read. w + r >= n. Normally n is a odd number (3 or 5). w = r = (n + 1) / 2. When read, we can tolerate n - r nodes to be unavailable. When writes, n - w.
 
 **HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch05.html>
 
-
+Limitations of Quorum Consistency
