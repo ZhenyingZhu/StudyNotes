@@ -1826,7 +1826,7 @@ Leaderless Replication
   - Quorums for reading and writing: if there are n replicas, every writes must be confirmed by w nodes to be considered as successful. Must query at least r nodes for each read. w + r >= n. Normally n is a odd number (3 or 5). w = r = (n + 1) / 2. When read, we can tolerate n - r nodes to be unavailable. When writes, n - w.
   - Limitations of Quorum Consistency:
     - to gain lower latency and higher availability, can let w + r < n, if client doesn't that cares about not reading stale data
-    - even with w + r > n, if sloppy quorum is used (client thought it was successfully connected to some nodes but actually not), there is no guaranteed overlap between read and write nodes.
+    - even with w + r > n, if sloppy quorum is used (when quorum cannot maintain, writes to nodes that are not belongs to w and r nodes), there is no guaranteed overlap between read and write nodes.
     - concurrent writes may succeed on different nodes, but winner is chosen by timestamp. Before the conflict is resolved, writes can be lost due to clock skew.
     - if a write happens concurrently with a read, some nodes have the write while others don't.
     - if a write succeed on less than n - r nodes, it should be rolled back, but some nodes might not rolled back yet when read occurs
@@ -1842,6 +1842,12 @@ Monitoring staleness
 
 Sloppy Quorums and Hinted Handoff
 
-- 
+- Leaderless replication has the benefits that when a node fails, no failover is needed.
+- But during an internet interruption, if more than w or r nodes are not available, need to trade off:
+  - return error that quorum cannot meet
+  - sloppy quorum: accept write anyway on those reachable nodes, even if they are not among the normal w and r nodes
+- hinted handoff: after network interruption is fixed, the tempoary node writes the changes to the apporate node
+- But when read, the stale data might return as the write can landed in a node outside n, until hinted handoff is complete
+- Multi-datacenter operation: Cassandra: n includes nodes in all DCs. When write, writes to all DCs, but client only waits for local DC quorum.
 
 **HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch05.html>
