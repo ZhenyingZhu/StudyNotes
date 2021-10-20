@@ -1852,4 +1852,17 @@ Sloppy Quorums and Hinted Handoff
 
 Detecting Concurrent Writes
 
+- Dynamo-style DB allows clients to concurrently write. Conflicts could arise during read repair and hinted handoff.
+- Last write wins (LWW)/discarding concurrent writes: need to have a unambiguously determining which write is last. But for concurrent writes, the orders are undefined. LWW can lose writes. In cache it is fine. Otherwise need to make a key can only be write once. Cassandra recommend to use an UUID for each write.
+- The "happens-before" relationship and concurrency: one write causally dependent on another, means the write is based on the others' result. If two writes don't know each other, and neither happens before the other, then they are concurrent. It doesn't necessary mean two writes are happened with time overlapping.
+- Capturing the happens-before relationship:
+  - server maintains a version number for each write to a key, with the written value
+  - when client reads a key, return all the values that have not been overwritten (a version is overwritten when the same client sends a new write)
+  - a client must first read a key before writes to it
+  - when write, the client needs to include the version number of the previous read, with all the values merged
+  - when server receive a write with a version, it overwrites the key with all the values from this version or below, and bump up the version
+  - if the write doesn't include a version, the server assign a new version and don't overwrite any values, as this is the first write from a client
+
 **HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch05.html>
+
+Merging concurrently written values
