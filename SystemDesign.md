@@ -1862,7 +1862,15 @@ Detecting Concurrent Writes
   - when write, the client needs to include the version number of the previous read, with all the values merged
   - when server receive a write with a version, it overwrites the key with all the values from this version or below, and bump up the version
   - if the write doesn't include a version, the server assign a new version and don't overwrite any values, as this is the first write from a client
+- Merging concurrently written values:
+  - concurrent values are siblings
+  - When a value is deleted, need to mark it as deleted with a version number. It is called tombstone.
+  - CRDTs is a data structure to support merge concurrent writes
+- Version vectors:
+  - a version number per replica per key
+  - The versions collection from all replicas are the version vector. dotted version vector is the most common one
+  - client can read from one replica and write to another with the version vector, and don't need to worry about data loss
 
 **HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch05.html>
 
-Merging concurrently written values
+Summary
