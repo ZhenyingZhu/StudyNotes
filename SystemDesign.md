@@ -1678,12 +1678,12 @@ trade-offs to consider:
 - use synchronous or asynchronous replication
 - handle failed replicas
 
-eventual consistency:
+eventual consistency issues:
 
 - read-your-writes
 - monotonic reads guarantees
 
-leader-based replication(active/passive or master–slave replication)
+leader-based replication(active/passive or master–slave replication) **[KEY]**
 
 - writes send to leader
 - followers (hot standby) get changes from leader via replication log or change stream
@@ -1691,14 +1691,14 @@ leader-based replication(active/passive or master–slave replication)
 
 Synchronous Versus Asynchronous Replication
 
-- one follower needs to get the change sync, others could do it async
+- one follower needs to get the change sync, others could do it async **[KEY]**
 - no guarantee how long can replication take
 - sync replication failure on one node could cause the whole system halted
-- semi-synchronous: to solve this issue, a async replica becomes sync one when the sync one is not available
+- semi-synchronous: to solve this issue, an async replica becomes sync one when the sync one is not available **[KEY]**
 - leader-based replication is often configured to be completely asynchronous.
 - alternative to avoid leader failure cause the write data loss: chain replication
 
-Setting Up New Followers
+Setting Up New Followers **[KEY]**
 
 - cannot lock the DB because the requirement for high availability
 - Take a consistent snapshot of the leader’s database
@@ -1707,16 +1707,16 @@ Setting Up New Followers
 - Each snapshot should associate with a position. It can be called as log sequence number, binlog coordinates.
 - follower is caught up
 
-Handling Node Outages
+Handling Node Outages **[KEY]**
 
 - Follower failure: Catch-up recovery. Follower maintain a log of data changes it has received from leader.
 - Leader failure: Failover. one of the followers needs to be promoted to be the new leader. Config client to send traffic to the new leader.
 - Use a timeout to detect node failure. Planned mantainance shouldn't trigger alert.
-- Use an election process to choose the new leader by the majority replicas, or appointed the previous controller node. Should choose the most up-to-date replica
+- Use an election process to choose the new leader by the majority replicas, or appointed by the previous controller node. Should choose the most up-to-date replica
 - Through consensus to let all nodes agree on it
 - Let client send traffic to the new leader. The old leader might still think it is the leader after it comes back so need to make it become a follower
 
-fraughts can happen during failover
+faults can happen during failover **[KEY]**
 
 - In async replication design, the new leader might miss some writes. To not cause write conflicts when the old leader comes back, those writes can be discarded, but will cause data loss
 - For data needs to be coordinate outside the system, discard writes is dangeous
@@ -1730,10 +1730,10 @@ Implementation of Replication Logs
   - If multiple concurrently executing transations use auto-incrementing column, running them in different order leads to different results
   - statements have side effects, like triggers, stored procedures, user-defined functions, may result differently
   - Can solve those issues by the leader converts such statements to deterministic statements, but too many edge cases
-- Write-ahead log (WAL) shipping
+- Write-ahead log (WAL) shipping **[KEY]**
   - log is an append-only sequence of bytes containing all writes to the database. Can be used to build a replica
   - disadvantage: the log is very low level, which byte changed in which disk blocks. Closely couple to the storage engine. If the engine needs to be upgrade, there would be a downtime to let leader and followers both upgrade at the same time
-- Logical (row-based) log replication
+- Logical (row-based) log replication **[KEY]**
   - logical log: a sequence of records describing writes to database tables at the granularity of a row
   - each create/update/delete generates a log
   - a transaction modify multiple rows has a log for each row update, follow by a transaction commit log
@@ -1747,20 +1747,20 @@ Problems with Replication Lag
 
 - replication suits for read-scaling architecture. But async replication cause reads might land on an out-of-date replica
 - eventual consistency: when the replication lag is more than couple secs, could cause issues
-- Reading Your Own Writes: can solve by read-after-write consistency. The user writes the data can read the data immediately, while other users need wait
+- Reading Your Own Writes: can solve by read-after-write consistency. The user writes the data can read the data immediately, while other users need wait **[KEY]**
   - Approach 1: the writer reads from leader. The system needs to know something has been modified without querying. Suitable for DB that only a few fields can be modified by users
   - Approach 2: all reads in a duration after writes read from leader. Prevent reads to the followers that are this duration behind
   - Approach 3: client remembers the write seq number, and read from followers not behind it, or wait until the follower catch up.
   - In a multi-geo design, the requests need to be served by the leader needs to be routed to the leader's DC first
   - If the user uses multiple devices, the metadata to identify the user and the timestamp/seq number needs to be centerialized. Also need to route the requests to the leader's DC because user's devices might be in different geo.
-- Monotonic Reads: to prevent when several reads occurs, later query return previous state
+- Monotonic Reads: to prevent when several reads occurs, later query return previous state **[KEY]**
   - a guarantee that the level is between strong consistency and eventually consistency
   - the same user always read from the same replica. Chosing the replica based on a hash of the user id (but need to consider if the replica failed, how to re-route the user)
-- Consistent Prefix Reads: when multiple writes happen in a seq, prevents a reader seeing them out of order
+- Consistent Prefix Reads: when multiple writes happen in a seq, prevents a reader seeing them out of order **[KEY]**
   - only happened in partitioned DBs. In the same partition the writes can be kept in order, but hard to coordinate in different partitions
   - Can make writes that order matters write to the same partition.
   - Another solution: use algorithms to keep track of causal dependencies
-- Transaction is the DB provided solution to deal with replication lag
+- Transaction is the DB provided solution to deal with replication lag **[KEY]**
   - Single-node transactions is a solution, but cannot be used in distributed system
 
 Multi-Leader Replication
