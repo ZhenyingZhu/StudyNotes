@@ -1768,7 +1768,7 @@ Multi-Leader Replication
 - Single leader cons: all writes go through the same leader
 - multi-leader (active-active replication): each leader acts as others' follower
 
-Use cases for multi-leader
+Use cases for multi-leader **[KEY]**
 
 - multi-DC operation: each DC has a leader and some followers. Between leaders across DCs, there is a conflict resolver
   - performance is better from user point-of-view because cross DC replication is hidden from user
@@ -1788,11 +1788,11 @@ Handling Write Conflicts
 
 - in single leader, the conflict write would be blocked or aborted.
 - in multi leader, the conflict only detects during replication, and too late to ask the user to resolve
-- conflict avoidance: require all the writes to a same record goes to a same leader
+- conflict avoidance: require all the writes to a same record goes to a same leader **[KEY]**
   - when the DC is failing or the record partition is changed, the writes need to be re-route and can have write conflicts
 - Converging toward a consistent state: all replicas must arrive to the same final state after all changes have been replicated
   - single leader, last write is the latest state.
-  - multi leader, writes have no defined ordering. The database must resolve the conflict in a convergent way
+  - multi leader, writes have no defined ordering. The database must resolve the conflict in a convergent way **[KEY]**
   - Can give each writes a UUID, and use the highest number as the final state. Can lead to data loss
   - Can give replica ids, the changes on the higher number replica wins. Can lead to data loss
   - merge the value together by concat them
@@ -1800,10 +1800,10 @@ Handling Write Conflicts
 - Custom conflict resolution logic: DB provided features to hook the custom code
   - On write: when DB detects a conflict, run the conflict handler. Runs in the background and should be quick.
   - On read: store all the conflict writes. When read the data, present all the versions of the data to the user. Prompt the user to resolve it.
-- Conflict resolution applies at the level of an individual row/document. In a transaction, each write needs to resolve conflicts separately
+- Conflict resolution applies at the level of an individual row/document. In a transaction, each write needs to resolve conflicts separately **[KEY]**
   - Automatic Conflict Resolution: Conflict-free replicated datatypes (CRDTs), Mergeable persistent data structures, Operational transformation
 
-Multi-Leader Replication Topologies
+Multi-Leader Replication Topologies **[KEY]**
 
 - Circular topology: each leader sends writes to it (including writes from previous leaders) to its next leader
 - Star topology: a leader acked as a centeral (root node). All other leaders first send writes to it, and then it sends writes to others. This topology can be generized to a tree.
@@ -1814,17 +1814,17 @@ Multi-Leader Replication Topologies
 
 Leaderless Replication
 
-- allow any replica to directly accept writes from clients. Used by Dynamo, Cassandra
+- allow any replica to directly accept writes from clients. Used by Dynamo, Cassandra **[KEY]**
 - Client either write changes to all the replicas, or a coordinator node does it on behalf of client
 - does not enforce write orders
 - Writing to the Database When a Node Is Down:
   - client writes changes to all 3 replicas in parallel. When it receives 2 ok, it treats the write as succeed, even more replicas are failing.
   - When read, reads from all 3 replicas. Use the version number to determine which is the most up-to-date writes.
-  - To let once unavailable node catch up, there are 2 ways:
+  - To let once unavailable node catch up, there are 2 ways: **[KEY]**
     - Read repair: when the client detects a node is left behind, makes a writes to let it catch up. Works well when values are frequently read
     - Anti-entropy process: a background process constantly looks for differences between replicas and copy data around. Write orders are not guaranteed. Also could have a huge delay.
-  - Quorums for reading and writing: if there are n replicas, every writes must be confirmed by w nodes to be considered as successful. Must query at least r nodes for each read. w + r >= n. Normally n is a odd number (3 or 5). w = r = (n + 1) / 2. When read, we can tolerate n - r nodes to be unavailable. When writes, n - w.
-  - Limitations of Quorum Consistency:
+  - Quorums for reading and writing: if there are n replicas, every writes must be confirmed by w nodes to be considered as successful. Must query at least r nodes for each read. w + r >= n. Normally n is a odd number (3 or 5). w = r = (n + 1) / 2. When read, we can tolerate n - r nodes to be unavailable. When writes, n - w. **[KEY]**
+  - Limitations of Quorum Consistency: **[KEY]**
     - to gain lower latency and higher availability, can let w + r < n, if client doesn't that cares about not reading stale data
     - even with w + r > n, if sloppy quorum is used (when quorum cannot maintain, writes to nodes that are not belongs to w and r nodes), there is no guaranteed overlap between read and write nodes.
     - concurrent writes may succeed on different nodes, but winner is chosen by timestamp. Before the conflict is resolved, writes can be lost due to clock skew.
@@ -1836,7 +1836,7 @@ Leaderless Replication
 
 Monitoring staleness
 
-- even client can tolerate staleness, the service needs to aware of the replication health.
+- even client can tolerate staleness, the service needs to aware of the replication health. **[KEY]**
 - Leader based replication: can emit metrics for the replication lag. Substract the followers replication timestamp with the leaders write timestamp.
 - Leaderless replication, if not use anti-entropy, the replication lag could be huge. No good pratice yet.
 
@@ -1845,32 +1845,38 @@ Sloppy Quorums and Hinted Handoff
 - Leaderless replication has the benefits that when a node fails, no failover is needed.
 - But during an internet interruption, if more than w or r nodes are not available, need to trade off:
   - return error that quorum cannot meet
-  - sloppy quorum: accept write anyway on those reachable nodes, even if they are not among the normal w and r nodes
-- hinted handoff: after network interruption is fixed, the tempoary node writes the changes to the apporate node
+  - sloppy quorum: accept write anyway on those reachable nodes, even if they are not among the normal w and r nodes **[KEY]**
+- hinted handoff: after network interruption is fixed, the tempoary node writes the changes to the apporate node **[KEY]**
 - But when read, the stale data might return as the write can landed in a node outside n, until hinted handoff is complete
-- Multi-datacenter operation: Cassandra: n includes nodes in all DCs. When write, writes to all DCs, but client only waits for local DC quorum.
+- Multi-datacenter operation: Cassandra: n includes nodes in all DCs. When write, writes to all DCs, but client only waits for local DC quorum. **[KEY]**
 
 Detecting Concurrent Writes
 
 - Dynamo-style DB allows clients to concurrently write. Conflicts could arise during read repair and hinted handoff.
-- Last write wins (LWW)/discarding concurrent writes: need to have a unambiguously determining which write is last. But for concurrent writes, the orders are undefined. LWW can lose writes. In cache it is fine. Otherwise need to make a key can only be write once. Cassandra recommend to use an UUID for each write.
-- The "happens-before" relationship and concurrency: one write causally dependent on another, means the write is based on the others' result. If two writes don't know each other, and neither happens before the other, then they are concurrent. It doesn't necessary mean two writes are happened with time overlapping.
-- Capturing the happens-before relationship:
+- Last write wins (LWW)/discarding concurrent writes: need to have a unambiguously determining which write is last. But for concurrent writes, the orders are undefined. LWW can lose writes. In cache it is fine. Otherwise need to make a key can only be write once. Cassandra recommend to use an UUID for each write. **[KEY]**
+- The "happens-before" relationship and concurrency: one write causally dependent on another, means the write is based on the others' result. If two writes don't know each other, and neither happens before the other, then they are concurrent. It doesn't necessary mean two writes are happened with time overlapping. **[KEY]**
+- Capturing the happens-before relationship: **[KEY]**
   - server maintains a version number for each write to a key, with the written value
   - when client reads a key, return all the values that have not been overwritten (a version is overwritten when the same client sends a new write)
   - a client must first read a key before writes to it
   - when write, the client needs to include the version number of the previous read, with all the values merged
   - when server receive a write with a version, it overwrites the key with all the values from this version or below, and bump up the version
   - if the write doesn't include a version, the server assign a new version and don't overwrite any values, as this is the first write from a client
-- Merging concurrently written values:
+- Merging concurrently written values: **[KEY]**
   - concurrent values are siblings
   - When a value is deleted, need to mark it as deleted with a version number. It is called tombstone.
   - CRDTs is a data structure to support merge concurrent writes
-- Version vectors:
+- Version vectors: **[KEY]**
   - a version number per replica per key
   - The versions collection from all replicas are the version vector. dotted version vector is the most common one
   - client can read from one replica and write to another with the version vector, and don't need to worry about data loss
 
-**HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch05.html>
+Replication purpose:
 
-Summary
+- High availability: when some nodes down
+- Disconnected operation: during a network interruption
+- Latency: different Geo
+- Scalability
+
+**HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch06.html>
+
