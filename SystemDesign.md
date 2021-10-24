@@ -1878,5 +1878,36 @@ Replication purpose:
 - Latency: different Geo
 - Scalability
 
+#### Chapter 6. Partitioning
+
+each partition is a small database of its own, although the database may support operations that touch multiple partitions at the same time.
+
+Different partitions can be placed on different nodes in a shared-nothing (node and node are all standalone) cluster.
+
+Each node can execute queries for its partition. By adding more nodes, the throughput can be scaled.
+
+Partition and replication
+
+- A node may store more than one partition.
+- Each node can have a leader of a partition while followers for other partitions
+- Repliaction scheme can be chosen independently with partition scheme
+
+Partitioning of Key-Value Data
+
+- goal with partitioning is to spread the data and the query load evenly across nodes
+- skewed: some partitions have more data or queries than others
+- hot spot: A partition with disproportionately high load
+- Partitioning by Key Range:
+  - The partition boundaries can be chosen by DB automatically
+  - Within each partition, we can keep keys in sorted order. Makes binary search and range scan easier
+  - certain access patterns can lead to hot spots
+- Partitioning by Hash of Key: makes keys uniformly distributed across partitions
+  - the hash function need not be cryptographically strong. MongoDB uses MD5
+  - but hash value needs to be consistent. Java hash has different values on different processors
+  - consistent hashing: partition boundaries can be chosen pseudorandomly. It in theory can be worked for rebalance, but in pratice not work well.
+  - But lose the ability to do range scan
+  - Cassandra can declare compound primary key. First part is hashed, to determine the partition. Other columns are used for sorting data in SSTables.
+
 **HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch06.html>
 
+Skewed Workloads and Relieving Hot Spots
