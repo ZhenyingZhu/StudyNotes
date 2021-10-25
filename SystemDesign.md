@@ -1908,6 +1908,20 @@ Partitioning of Key-Value Data
   - But lose the ability to do range scan
   - Cassandra can declare compound primary key. First part is hashed, to determine the partition. Other columns are used for sorting data in SSTables.
 
+Skewed Workloads and Relieving Hot Spots
+
+- celebrity activity could still cause hot spot even use hashing partition
+- can append a 2-digit random number to a hot key. But it requires read to retrieve all those new keys. Also need a bookkeeping tech to track such special hot keys
+
+Partitioning and Secondary Indexes
+
+- NoSQL doesn't support secondary index to avoid complexity, but it is useful so Elasticsearch is developed
+- the complexity is that secondary index cannot be neatly map to partitions. Two main approaches are
+  - Partitioning Secondary Indexes by Document: let DB create another table to track the seconary index to the entries' primary keys within the partition. It is also called local index. When search, need combine results from all partitions. It is called scatter/gather. It is expensive and is prone to tail latency amplification
+  - Partitioning Secondary Indexes by Term: create a global index that is partitioned by the term, which is different from the partition of the primary key. It is called term-partitioned. Term can be partitioned by its value to support range scan, or by hash to evenly distributed the load.
+    - The complexity is added to write. It requires a distributed transaction to update all partitions, which is not supported by DBs. So the global index is async
+
+
 **HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch06.html>
 
-Skewed Workloads and Relieving Hot Spots
+Rebalancing Partitions
