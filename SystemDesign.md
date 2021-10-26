@@ -1921,7 +1921,23 @@ Partitioning and Secondary Indexes
   - Partitioning Secondary Indexes by Term: create a global index that is partitioned by the term, which is different from the partition of the primary key. It is called term-partitioned. Term can be partitioned by its value to support range scan, or by hash to evenly distributed the load.
     - The complexity is added to write. It requires a distributed transaction to update all partitions, which is not supported by DBs. So the global index is async
 
+Rebalancing Partitions
+
+- After rebalancing, the load (data storage, read and write requests) should be shared fairly between the nodes in the cluster
+- While rebalancing is happening, the database should continue accepting reads and writes
+- No more data than necessary should be moved between nodes, to make rebalancing fast and to minimize the network and disk I/O load
+
+Strategies for Rebalancing
+
+- don't use hash mod N: when N changes, too much data needs to move
+- Fixed number of partitions: more partitions than nodes. When a node comes up, only few partitions need to move.
+  - entire partition is moved.
+  - during the move, the old node still have the data, so read is still working. only after the partition is fully moved, the partition assignment change can be done
+  - for mismatched hardwares, stronger nodes can take more partitions
+  - can support split and merge partitions, but normally they are not supported. The total partition count remains same
+  - too many partitions could cause the management overhead also high
+  - partition size is hard to define when dataset is too variable
 
 **HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch06.html>
 
-Rebalancing Partitions
+Dynamic partitioning
