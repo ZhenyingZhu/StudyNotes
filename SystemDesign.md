@@ -1938,6 +1938,22 @@ Strategies for Rebalancing
   - too many partitions could cause the management overhead also high
   - partition size is hard to define when dataset is too variable
 
+Dynamic partitioning
+
+- with the fixed partition boundaries, reconfig manually would be tedious
+- dynamically create partitions: when a partition exceed certain size, plit into two. If a partition shrinks below certain threshold, merged it with adjacent partition
+- when a big partition is splitted into two, one can be moved to another node to balance the load
+- reduce the overhead of managing too many partitions
+- one caveat: before the first partition gets splitted, all writes go to the same node. Pre-splitting: allows an init set of partitions on an empty DB.
+
+Partitioning proportionally to nodes
+
+- make the number of partitions proportional to the number of nodes. Each node contains certain number of partitions
+- when increase nodes, partition size become smaller. Size of each partition is stable
+- when adding a new node, randomly choose fixed number of partitions to split, and move half of them to the new node. Even it is unfair split, with 256 partitions on a node, the load is distributed evenly.
+  - This approach is close to Consistent hashing.
+  - it requires to use Hash-base parititioning, so the boundaries can be picked up from hash-generated numbers
+
 **HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch06.html>
 
-Dynamic partitioning
+Operations: Automatic or Manual Rebalancing
