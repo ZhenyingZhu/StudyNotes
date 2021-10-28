@@ -1954,6 +1954,6 @@ Partitioning proportionally to nodes
   - This approach is close to Consistent hashing.
   - it requires to use Hash-base parititioning, so the boundaries can be picked up from hash-generated numbers
 
-**HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch06.html>
-
 Operations: Automatic or Manual Rebalancing
+
+**HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch06.html>
