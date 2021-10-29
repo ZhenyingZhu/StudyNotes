@@ -1956,4 +1956,22 @@ Partitioning proportionally to nodes
 
 Operations: Automatic or Manual Rebalancing
 
+- Fully automated rebalancing can be unpredictable. Because rebalance is an expensive operation due to need reroute requests and move data. Alone with automatic failure detection, which might unnecessarily mark a slow node as unhealthy and move data out, causing a cascading failure.
+- good to have human in the rebalancing loop
+
+Request Routing (service discovery)
+
+- one approach: allow clients to talk to any node via a round-robin LB. then the node forward the request to the appropriate node
+- another: send requests to a routing tier first. The tier acts as a partition-aware LB
+- another: let clients aware of the partitioning and the node assignment
+- the challenge: how to know the assignment changes of nodes. All participants need to agree, i.e., achieving consensus following some protocols
+- ZooKeeper: a seperate coordination service used by distributed data system. It keeps tracking cluster metadata
+- Cassandra uses a gossip protocol among nodes so that each node knows the partition assignment. It adds complexity to nodes but remove the dependency on an external service
+- find the ip of the nodes are through DNS as it is less freq changes
+
+Parallel Query Execution
+
+- massively parallel processing (MPP) used by analytics breaks complex queries into a number of execution stages and partitions, which can be run in parallel
+- scaning over large dataset can be benefit
+
 **HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch06.html>
