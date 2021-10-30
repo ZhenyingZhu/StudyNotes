@@ -1886,7 +1886,7 @@ Different partitions can be placed on different nodes in a shared-nothing (node 
 
 Each node can execute queries for its partition. By adding more nodes, the throughput can be scaled.
 
-Partition and replication
+Partition and replication **[KEY]**
 
 - A node may store more than one partition.
 - Each node can have a leader of a partition while followers for other partitions
@@ -1895,13 +1895,13 @@ Partition and replication
 Partitioning of Key-Value Data
 
 - goal with partitioning is to spread the data and the query load evenly across nodes
-- skewed: some partitions have more data or queries than others
+- skewed: some partitions have more data or queries than others **[KEY]**
 - hot spot: A partition with disproportionately high load
-- Partitioning by Key Range:
+- Partitioning by Key Range **[KEY]**:
   - The partition boundaries can be chosen by DB automatically
   - Within each partition, we can keep keys in sorted order. Makes binary search and range scan easier
   - certain access patterns can lead to hot spots
-- Partitioning by Hash of Key: makes keys uniformly distributed across partitions
+- Partitioning by Hash of Key: makes keys uniformly distributed across partitions **[KEY]**
   - the hash function need not be cryptographically strong. MongoDB uses MD5
   - but hash value needs to be consistent. Java hash has different values on different processors
   - consistent hashing: partition boundaries can be chosen pseudorandomly. It in theory can be worked for rebalance, but in pratice not work well.
@@ -1911,17 +1911,17 @@ Partitioning of Key-Value Data
 Skewed Workloads and Relieving Hot Spots
 
 - celebrity activity could still cause hot spot even use hashing partition
-- can append a 2-digit random number to a hot key. But it requires read to retrieve all those new keys. Also need a bookkeeping tech to track such special hot keys
+- can append a 2-digit random number to a hot key. But it requires read to retrieve all those new keys. Also need a bookkeeping tech to track such special hot keys **[KEY]**
 
 Partitioning and Secondary Indexes
 
-- NoSQL doesn't support secondary index to avoid complexity, but it is useful so Elasticsearch is developed
-- the complexity is that secondary index cannot be neatly map to partitions. Two main approaches are
+- NoSQL doesn't support secondary index to avoid complexity, but it is useful so Elasticsearch is developed **[KEY]**
+- the complexity is that secondary index cannot be neatly map to partitions. Two main approaches are **[KEY]**
   - Partitioning Secondary Indexes by Document: let DB create another table to track the seconary index to the entries' primary keys within the partition. It is also called local index. When search, need combine results from all partitions. It is called scatter/gather. It is expensive and is prone to tail latency amplification
   - Partitioning Secondary Indexes by Term: create a global index that is partitioned by the term, which is different from the partition of the primary key. It is called term-partitioned. Term can be partitioned by its value to support range scan, or by hash to evenly distributed the load.
     - The complexity is added to write. It requires a distributed transaction to update all partitions, which is not supported by DBs. So the global index is async
 
-Rebalancing Partitions
+Rebalancing Partitions **[KEY]**
 
 - After rebalancing, the load (data storage, read and write requests) should be shared fairly between the nodes in the cluster
 - While rebalancing is happening, the database should continue accepting reads and writes
@@ -1930,7 +1930,7 @@ Rebalancing Partitions
 Strategies for Rebalancing
 
 - don't use hash mod N: when N changes, too much data needs to move
-- Fixed number of partitions: more partitions than nodes. When a node comes up, only few partitions need to move.
+- Fixed number of partitions: more partitions than nodes. When a node comes up, only few partitions need to move. **[KEY]**
   - entire partition is moved.
   - during the move, the old node still have the data, so read is still working. only after the partition is fully moved, the partition assignment change can be done
   - for mismatched hardwares, stronger nodes can take more partitions
@@ -1941,25 +1941,25 @@ Strategies for Rebalancing
 Dynamic partitioning
 
 - with the fixed partition boundaries, reconfig manually would be tedious
-- dynamically create partitions: when a partition exceed certain size, plit into two. If a partition shrinks below certain threshold, merged it with adjacent partition
-- when a big partition is splitted into two, one can be moved to another node to balance the load
+- dynamically create partitions: when a partition exceed certain size, plit into two. If a partition shrinks below certain threshold, merged it with adjacent partition **[KEY]**
+- when a big partition is splitted into two, one can be moved to another node to balance the load **[KEY]**
 - reduce the overhead of managing too many partitions
-- one caveat: before the first partition gets splitted, all writes go to the same node. Pre-splitting: allows an init set of partitions on an empty DB.
+- one caveat: before the first partition gets splitted, all writes go to the same node. Pre-splitting: allows an init set of partitions on an empty DB. **[KEY]**
 
 Partitioning proportionally to nodes
 
-- make the number of partitions proportional to the number of nodes. Each node contains certain number of partitions
+- make the number of partitions proportional to the number of nodes. Each node contains certain number of partitions **[KEY]**
 - when increase nodes, partition size become smaller. Size of each partition is stable
-- when adding a new node, randomly choose fixed number of partitions to split, and move half of them to the new node. Even it is unfair split, with 256 partitions on a node, the load is distributed evenly.
+- when adding a new node, randomly choose fixed number of partitions to split, and move half of them to the new node. Even it is unfair split, with 256 partitions on a node, the load is distributed evenly. **[KEY]**
   - This approach is close to Consistent hashing.
-  - it requires to use Hash-base parititioning, so the boundaries can be picked up from hash-generated numbers
+  - it requires to use Hash-base parititioning, so the boundaries can be picked up from hash-generated numbers **[KEY]**
 
 Operations: Automatic or Manual Rebalancing
 
 - Fully automated rebalancing can be unpredictable. Because rebalance is an expensive operation due to need reroute requests and move data. Alone with automatic failure detection, which might unnecessarily mark a slow node as unhealthy and move data out, causing a cascading failure.
 - good to have human in the rebalancing loop
 
-Request Routing (service discovery)
+Request Routing (service discovery) **[KEY]**
 
 - one approach: allow clients to talk to any node via a round-robin LB. then the node forward the request to the appropriate node
 - another: send requests to a routing tier first. The tier acts as a partition-aware LB
@@ -1974,4 +1974,4 @@ Parallel Query Execution
 - massively parallel processing (MPP) used by analytics breaks complex queries into a number of execution stages and partitions, which can be run in parallel
 - scaning over large dataset can be benefit
 
-**HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch06.html>
+**HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch07.html>
