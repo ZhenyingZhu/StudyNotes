@@ -1974,4 +1974,24 @@ Parallel Query Execution
 - massively parallel processing (MPP) used by analytics breaks complex queries into a number of execution stages and partitions, which can be run in parallel
 - scaning over large dataset can be benefit
 
+#### Chapter 7. Transactions
+
+harsh reality of data systems
+
+- DB or hardware failures in the middle of a write
+- application crashs during a series of operations
+- network interruption between app and DB, or DB nodes
+- clients can overwrite each others
+- client gets partial result
+- multiple clients cause race condition
+
+Transaction simplify these issues
+
+- all the operations either commit, or abort and rollback
+- app can safely retry, ignore certain potential error scenarios and concurrency issues, because DB provides safety guarantees
+- sometimes there are advantages to weakening transactional guarantees or abandoning them entirely, to achieve high performance and availbility
+- databases isolation levels: read committed, snapshot isolation, and serializability
+
 **HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch07.html>
+
+The Slippery Concept of a Transaction
