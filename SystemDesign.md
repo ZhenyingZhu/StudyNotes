@@ -1992,6 +1992,17 @@ Transaction simplify these issues
 - sometimes there are advantages to weakening transactional guarantees or abandoning them entirely, to achieve high performance and availbility
 - databases isolation levels: read committed, snapshot isolation, and serializability
 
+The Slippery Concept of a Transaction
+
+- NoSQL use new data models than relational DB, and include replication and partition by default, causing support of transaction lost or weaken
+
+The Meaning of ACID
+
+- Atomicity, Consistency, Isolation, and Durability.
+- BASE: Basically Available, Soft state, and Eventual consistency. not meed ACID criteria
+- Atomicity: a fault occurs during several writes, DB needs to undo writes already made in the transaction
+- Consistency: certain statements about data must always be true. The data should be valid after the writes
+
 **HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch07.html>
 
-The Slippery Concept of a Transaction
+Isolation
