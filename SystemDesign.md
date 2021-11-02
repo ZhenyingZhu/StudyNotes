@@ -2002,7 +2002,15 @@ The Meaning of ACID
 - BASE: Basically Available, Soft state, and Eventual consistency. not meed ACID criteria
 - Atomicity: a fault occurs during several writes, DB needs to undo writes already made in the transaction
 - Consistency: certain statements about data must always be true. The data should be valid after the writes
+- Isolation: concurrently executing transactions are isolated from each other. One solution by introduce the serializability of the transactions have performance penalty. So a weaker guarantee snapshot isolation is used.
+- Durability: the promise that once a transaction has committed successfully, the data won't lose even if there is a hardware fault or the database crashes. Use write-ahead logs for recovery. Use replication.
+
+Single-Object and Multi-Object Operations
+
+- multi-object transactions are needed if several pieces of data need to be kept in sync
+- which read and write operations belong to the same transaction: based on the client’s TCP connection to the database, between a BEGIN TRANSACTION and a COMMIT statement.
+- NonSQL multi-put operation doesn't necessarily mean it is atomic
 
 **HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch07.html>
 
-Isolation
+Single-object writes
