@@ -2011,6 +2011,11 @@ Single-Object and Multi-Object Operations
 - which read and write operations belong to the same transaction: based on the client’s TCP connection to the database, between a BEGIN TRANSACTION and a COMMIT statement.
 - NonSQL multi-put operation doesn't necessarily mean it is atomic
 
-**HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch07.html>
-
 Single-object writes
+
+- Atomicity and isolation also apply when a single object is being changed, because the write might take some time
+- Atomicity can be implemented using a log for crash recovery
+- isolation can be implemented using a lock on each object
+- more complex atomic operations: increment operation that can removes the need for a read-modify-write cycle
+
+**HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch07.html>
