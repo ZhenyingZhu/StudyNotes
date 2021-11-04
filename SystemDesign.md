@@ -2018,4 +2018,15 @@ Single-object writes
 - isolation can be implemented using a lock on each object
 - more complex atomic operations: increment operation that can removes the need for a read-modify-write cycle
 
+The need for multi-object transactions
+
+- it is challenging in distributed DB, because it needs acorss partitions, and could affect performance and high availbility
+- transaction is useful for foreign reference
+- in document data model, fields need to be update together should be within the same document, so it can be treated as single object write
+- for denormalization, several documents might need to be updated for a single change, so transaction is useful
+- for secondary index as well
+- if not use transaction, error handling for those cases would be hard
+
 **HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch07.html>
+
+Handling errors and aborts
