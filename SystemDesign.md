@@ -2041,3 +2041,9 @@ Handling errors and aborts
 **HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch07.html>
 
 Weak Isolation Levels
+
+## Open Questions
+
+How distributed lock works (ZooKeeper)
+
+How cache works? (when to update TTL)
