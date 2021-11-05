@@ -2027,6 +2027,17 @@ The need for multi-object transactions
 - for secondary index as well
 - if not use transaction, error handling for those cases would be hard
 
+Handling errors and aborts
+
+- ACID philosophy: if the database is in danger of violating ACID, rather abandon the transaction entirely than allow it to remain half-finished
+- leaderless replication DB works on best-effort, so the philosophy doesn't apply
+- retrying aborted transaction can also have issues
+  - if transaction succeed but network error occurs, then retry could cause dup
+  - if the error is caused by overload, retrying cause it worse. Need to limit retry count, with exponential backoff, and not retry on overload issue
+  - retry on transient error is fine, but doesn't help on permantent error
+  - there could be side effect outside DB when retry
+  - if client fails while retrying, then it could lost the data
+
 **HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch07.html>
 
-Handling errors and aborts
+Weak Isolation Levels
