@@ -2038,12 +2038,36 @@ Handling errors and aborts
   - there could be side effect outside DB when retry
   - if client fails while retrying, then it could lost the data
 
+Weak Isolation Levels
+
+- happened when two transactions update the same data
+- transaction isolation: isolate concurrency issues from application developers
+- serializable isolation: transactions have the same effect when run one at a time
+
+Read Committed
+
+- most basic level of transaction isolation
+- when read, only data that has been committed is read
+- when write, only overwrites committed data
+- dirty reads: another transaction sees uncommitted data
+- 2 guarantees for no dirty reads: 1. before commit is done, no partitial change is returned; 2. if a transaction is abort, all changes are rolled back
+- prevent dirty writes: delay the second transaction until the first is either committed or aborted
+- read commit doesn't prevent race condition between two counter increments (two writes in transaction 1 happens before and after two writes in transaction 2, causing transaction 2 totally lost, because transaction 2 doesn't see transaction 1 as it was not committed)
+- Implementing read committed: default in Oracle, PostgreSQL
+  - using row level locks (for an object) when write. Only one lock can be hold per object. If acquired, before transaction committed/aborted the lock is not released
+  - to prevent dirty read, one approach is to acquire the same lock when read. But one long read could block writes
+  - better approach is let the DB remember the value before uncommitted writes, and return that value
+
 **HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch07.html>
 
-Weak Isolation Levels
+Snapshot Isolation and Repeatable Read
 
 ## Open Questions
 
 How distributed lock works (ZooKeeper)
 
 How cache works? (when to update TTL)
+
+What are the QPS of our services
+
+Services: SignalR, Gossip
