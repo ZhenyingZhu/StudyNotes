@@ -2058,9 +2058,22 @@ Read Committed
   - to prevent dirty read, one approach is to acquire the same lock when read. But one long read could block writes
   - better approach is let the DB remember the value before uncommitted writes, and return that value
 
+Snapshot Isolation and Repeatable Read
+
+- read skew: nonrepeatable read for two different data seems inconsistant results, if there is a transaction ongoing, causing timing anomaly. It is mostly toleratable from client under read committed guarantee, because retry the reads can get the correct result
+- not tolerate situation:
+  - backup: the writes during the backup are inconsistent. If restore it, the inconsistency could be permanent.
+  - Analytic queries and integrity checks: could return nonsensical results
+- Snapshot isolation can solve the issue: each transaction reads from a consistent snapshot (the committed data at the start of the transaction). Even the data is subsequently changed by another transaction, each transaction sees the old data.
+- Implementing snapshot isolation: use write lock. Read not require lock. readers never block writers. writers never block readers.
+  - multi-version concurrency control (MVCC): DB potentially keep committed versions of an object.
+  - when a transaction starts, a unique, always-increasing transaction ID (txid) is assigned.
+  - each row has a createdBy field, records the txid that insert it, and a deletedBy field records when the entry is marked as deleted.
+  - an update is translated to a created and deleted record
+
 **HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch07.html>
 
-Snapshot Isolation and Repeatable Read
+Visibility rules for observing a consistent snapshot
 
 ## Open Questions
 
