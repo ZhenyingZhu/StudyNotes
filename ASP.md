@@ -2906,10 +2906,16 @@ Without using the tool, the steps are [Protect an ASP.NET Core web API with the 
 - [visual studio](https://docs.microsoft.com/en-us/visualstudio/ide/csharp-developer-productivity?utm_source=VisualStudio&utm_medium=aspnet-getstarted&utm_campaign=VisualStudio&view=vs-2019)
 - [code gen](https://docs.microsoft.com/en-us/visualstudio/ide/code-generation-in-visual-studio?utm_source=VisualStudio&utm_medium=aspnet-getstarted&utm_campaign=VisualStudio&view=vs-2019)
 
-## [WEB API Turtorial](https://github.com/Azure-Samples/active-directory-dotnet-native-aspnetcore-v2)
+## WEB API Turtorial
+
+[Protecting an ASP.NET Core Web API using Microsoft identity platform](https://github.com/Azure-Samples/active-directory-dotnet-native-aspnetcore-v2)
+
+- OAuth 2.0 On-Behalf-Of flow (OBO):  an application invokes a service/web API, which in turn needs to call another service/web API. Propagate the delegated user identity and permissions through the request chain.
 
 ### [Desktop app calls a protected Web API](https://docs.microsoft.com/en-us/samples/azure-samples/active-directory-dotnet-native-aspnetcore-v2/1-desktop-app-calls-web-api/)
 
+- The Web API will be protected using Azure Active Directory OAuth Bearer Authorization.
+- The .NET Desktop WPF application uses the [Microsoft Authentication Library](https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/wiki#conceptual-documentation) to obtain a JWT Access Token through the OAuth 2.0 protocol. The access token is sent to the ASP.NET Core Web API, which authorizes the user using the ASP.NET JWT Bearer Authentication middleware.
 - WebAPI: TodoListService. Based on the logged in user, write the TodoItem or return the TodoItem.
 - WPF app: TodoListClient. Login the user and get a token, then call the WebAPI.
 - After reg an app, in the Expose an API, set the App ID URL. By default it generates `api://{clientId}`
