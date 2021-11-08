@@ -2071,9 +2071,34 @@ Snapshot Isolation and Repeatable Read
   - each row has a createdBy field, records the txid that insert it, and a deletedBy field records when the entry is marked as deleted.
   - an update is translated to a created and deleted record
 
+Visibility rules for observing a consistent snapshot
+
+- at the start of each transaction, DB lists all the ongoing transactions, and ignore their writes.
+- any writes made by aborted transactions are ignored
+- any transactions with a later txid are ignored
+- all other writes are visible to the app's queries
+- never updating values in place but instead creating a new version every time a value is changed
+- garbage collector removes old versions that are not visible to any transactions
+
+Indexes and snapshot isolation
+
+- simple solution: an index query to filter out any object versions that are not visible to the current transaction. Remove index entries after GCs remove those versions
+- to improve the performance for multi-version concurrency control, avoid index updates if all the versions of an object can be fit in one page. Used by PostgreSQL
+- another approach: CouchDB uses an append only B-tree. every write transaction creates a new B-tree root, and each root presents a consistant snapshot. Need a background process to compact and GC.
+
+Repeatable read and naming confusion
+
+- snapshot isloation is also called as serializable, repeatable read.
+
+Preventing Lost Updates
+
+- two transactions writing concurrently: dirty write is one of the write-write conflict
+- Lost update: two read-modify-write cycles happen concurrently, causing one writes lost
+- happened in scenarios: 1. increase counter/account balance, 2. making a local change to a complex value (need parse-change-write), 3. edit wiki page
+
 **HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch07.html>
 
-Visibility rules for observing a consistent snapshot
+Atomic write operations
 
 ## Open Questions
 
