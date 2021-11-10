@@ -2122,9 +2122,15 @@ Compare-and-set
 - atomic compare-and-set op are supported in some DBs that don't support transaction
 - only allow writes to object that are not changed after read. Wiki can use this approach
 
+Conflict resolution and replication
+
+- in replicated DB, the same data could be modified on different nodes. Lock or compare-and-set doesn't work here.
+- allow conflict versions for the data, and use app code to resolve and merge the conflicts
+- if operations are commutative (excute in different orders can still get to the same result), 
+
 **HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch07.html>
 
-Conflict resolution and replication
+Write Skew and Phantoms
 
 ## Open Questions
 
