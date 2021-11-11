@@ -2124,13 +2124,27 @@ Compare-and-set
 
 Conflict resolution and replication
 
-- in replicated DB, the same data could be modified on different nodes. Lock or compare-and-set doesn't work here.
+- in replicated DB, the same data could be modified on different nodes. Lock or compare-and-set doesn't work here
 - allow conflict versions for the data, and use app code to resolve and merge the conflicts
-- if operations are commutative (excute in different orders can still get to the same result), 
+- if operations are commutative (excute in different orders can still get to the same result), DB can auto merge the changes to prevent lost update
+
+Write Skew and Phantoms
+
+- two transactions are updating two different objects, but one has to be run after another (for example in the transaction there is a check for the latest statuses of those objects), then the race condition could cause write skew
+- Automatically preventing write skew requires true serializable isolation
+- DB can config constraints (uniq, foreign key, value range). Can also use trigger or materialized views to prevent write skew
+- explicitly lock rows the transaction depends on can help in some cases, but if the requirement needs check the absense of some rows (like a user name is not taken), then it cannot lock those non-exist rows
+- pattern: a `SELECT` query check some requirements, then the app code decides whether to make a write. The write changes the pre-condition.
+- phantom: a write in one transaction changes the result of a search query in another transaction
+
+Materializing conflicts
+
+- artificially introduce locks for non-exist rows
+- but hard figure out what needs to lock, and also a leak in the data model, so can only be used as a last resort
 
 **HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch07.html>
 
-Write Skew and Phantoms
+Serializability
 
 ## Open Questions
 
