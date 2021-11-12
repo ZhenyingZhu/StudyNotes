@@ -2917,7 +2917,29 @@ Without using the tool, the steps are [Protect an ASP.NET Core web API with the 
 - The Web API will be protected using Azure Active Directory OAuth Bearer Authorization.
 - The .NET Desktop WPF application uses the [Microsoft Authentication Library](https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/wiki#conceptual-documentation) to obtain a JWT Access Token through the OAuth 2.0 protocol. The access token is sent to the ASP.NET Core Web API, which authorizes the user using the ASP.NET JWT Bearer Authentication middleware.
 - WebAPI: TodoListService. Based on the logged in user, write the TodoItem or return the TodoItem.
-- WPF app: TodoListClient. Login the user and get a token, then call the WebAPI.
+- WPF app: TodoListClient. Login the user and get a token, then call the WebAPI. Need user consent to allow the app accessing the TodoListService on user behalf
+
+TodoListService code
+
+- `Startup.ConfigureServices(services)` add `services.AddMicrosoftIdentityWebApiAuthentication(Configuration);`
+- `Startup.Configure(app, env)` add `app.UseAuthentication(); app.UseAuthorization();`
+- `appsettings.json` has `AzureAd.ClientId` which is the `Application (client) ID` of the TodoListService in Azure AD.
+- Controller uses `ConcurrentBag` to store an in-memory dictionary
+- Controller use `[RequiredScope("access_as_user")]`
+- Get the user by `string owner = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;`
+
+TodoListService app
+
+- API permissions has MS Graph User.Read Delegated (sign-in as user) permission
+- An API with App ID URI `api://<app id>`
+- A scope `api://<app id>/access_as_user`
+
+TodoListClient code
+
+- Uses `AddMicrosoftIdentityWebApiAuthentication` to get the token.
+
+**HERE**
+
 - After reg an app, in the Expose an API, set the App ID URL. By default it generates `api://{clientId}`
 - need at least one scope to obtain an access token.
 - Admin consent is for api to access the API as a signed-in user. User consent is access the api on the user behalf.
@@ -2925,8 +2947,7 @@ Without using the tool, the steps are [Protect an ASP.NET Core web API with the 
 - Both the server and the client app need to be reged.
 - the client app reg needs to select Authentication > Add a platform > mobile and desktop application. Redirect URL use `http://localhost`
 - API permissions > add a permission > My APIs > TodoListServer
-- Controller uses `ConcurrentBag`
-- Uses `AddMicrosoftIdentityWebApiAuthentication` to get the token.
+
 
 **HERE**: How was the code created
 
