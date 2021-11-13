@@ -2142,9 +2142,20 @@ Materializing conflicts
 - artificially introduce locks for non-exist rows
 - but hard figure out what needs to lock, and also a leak in the data model, so can only be used as a last resort
 
+Serializability
+
+- isolation levels: read committed, snapshot isolation. But they are hard to understand and different DBs have different implementation
+- from app code, it is hard to tell which isolation level is enough
+- no good tools to detect race conditions
+- use serializable isolation can solve those issues
+- 3 techniques that each can implement serializable isolation
+  - executing transactions in serial order
+  - two phase locking
+  - Optimistic concurrency control techniques such as serializable snapshot isolation (SSI)
+
 **HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch07.html>
 
-Serializability
+Actual Serial Execution
 
 ## Open Questions
 
