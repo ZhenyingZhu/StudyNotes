@@ -2153,9 +2153,13 @@ Serializability
   - two phase locking
   - Optimistic concurrency control techniques such as serializable snapshot isolation (SSI)
 
+Actual Serial Execution
+
+- 
+
 **HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch07.html>
 
-Actual Serial Execution
+
 
 ## Open Questions
 
