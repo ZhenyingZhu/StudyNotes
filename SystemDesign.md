@@ -2155,11 +2155,37 @@ Serializability
 
 Actual Serial Execution
 
-- 
+- can use single thread because:
+  - Keep the entire active dataset in memory
+  - OLTP transactions only makes a small number of reads and writes. BTW, OLAP can be run against snapshot isolation so don't need serialization
+- Redis use single thread
+- Save the overhead of using lock, so could have better performance over concurrency. But throughput is limited to single CPU core
+- transactions need to be structured differently to make them single thread
+
+Encapsulating transactions in stored procedures
+
+- to avoid a  transaction be idle when wait for human actions, normally let a transaction committed within a same HTTP request
+- transactions normally are interactive stype: app client query something, and use the result to decide what to do next. There are network delay between app and DB. The throughput would be dreadful if execute transactions one by one
+- single-threaded serial transaction processing don’t allow interactive multi-statement transactions. App needs to submit the entire transaction code to DB as a stored proecdure
+
+Pros and cons of stored procedures
+
+- different DBs have different lang for stored procedures
+- hard to debug. No version control, no metrics
+- a bad stored procedure could impact all apps accessing the DB
+- to overcome the cons, modern DBs use Java or other standard langs
+
+Partitioning
+
+- Since single-thread transaction processing only use single CPU core, to avoid waste resource, read-only transactions can be execute somewhere else use snapshot isolation
+- for writes, can scale to multiple cores/nodes by partitioning the data that each transaction only needs to read and write from a single partition
+- if a transaction needs to access multiple partitions, need the stored procedure to use locks to coordinate across all the partitions
+- The throughput is lower because the overhead of coordinate partitions, and also cannot be increased by adding more nodes
+- simple key-value pair data can be easily partitioned, while secondary indexes would be hard
 
 **HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch07.html>
 
-
+Two-Phase Locking (2PL)
 
 ## Open Questions
 
