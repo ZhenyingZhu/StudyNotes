@@ -2193,11 +2193,27 @@ Two-Phase Locking (2PL)
 
 Implementation of two-phase locking
 
+- have a lock on each object in DB. Lock can be in shared or exclusive mode
+- when a transaction wants to read an object, acquire the lock in shared mode. Multiple transactions can hold the lock in shared mode, but if there is another transaction gets the lock in exclusive mode, then this transaction needs to wait
+- when a transaction wants to write an object, it needs acquire the lock in exclusive mode
+- if a transaction first read then write, it can upgrade the lock to exclusive
+- after a transaction gets a lock, it must hold the lock until the transaction ends
+- two phases: 1. when gets the locks, 2. when all locks are released
+- deadlock could happen. DB detects the transactions that cause deadlocks and abort one of them
+
+Performance of two-phase locking
+
+- transaction throughput and response time of quries are much worse than weak isolation
+- performance degrade due to wait time for acquiring the lock. There could be a queue for transactions on an object. The latency could be unstable
+- if deadlocks are happening quite often, transactions would need to be aborted and retry all the works they have already done. Causing long latency for high percentile
+
+Predicate locks
+
 - 
 
 **HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch07.html>
 
-Implementation of two-phase locking
+
 
 ## Open Questions
 
