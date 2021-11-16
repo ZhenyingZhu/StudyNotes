@@ -2183,9 +2183,21 @@ Partitioning
 - The throughput is lower because the overhead of coordinate partitions, and also cannot be increased by adding more nodes
 - simple key-value pair data can be easily partitioned, while secondary indexes would be hard
 
+Two-Phase Locking (2PL)
+
+- if nobody writes to an object, transactions concurrently read the object are allowed
+- if transation A has read an object, transaction B that writes to the object must wait until A is committed or aborted
+- if transaction B has written to an object, before B commits or aborts, A cannot read
+- writes also block other writes
+- vs. snapshot isolation, where reads never block writes, and writes never block reads
+
+Implementation of two-phase locking
+
+- 
+
 **HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch07.html>
 
-Two-Phase Locking (2PL)
+Implementation of two-phase locking
 
 ## Open Questions
 
