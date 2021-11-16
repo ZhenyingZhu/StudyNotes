@@ -2209,11 +2209,15 @@ Performance of two-phase locking
 
 Predicate locks
 
-- 
+- solve phantom problem
+- the predicate lock belongs to all the objects that match some search condition
+- if a transaction wants to read objects matching some conditions, it acquires a shared-mode predicate lock on the conditions of all the objects (based on the value). If another transaction holds an exclusive lock on any of those objects, this transaction needs wait
+- if a transaction want to insert/update/delete any object, it needs to check whether there is a lock on old and the new values
+- The predicate lock applied to objects that not exist yet
 
 **HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch07.html>
 
-
+Index-range locks
 
 ## Open Questions
 
