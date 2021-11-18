@@ -2215,9 +2215,23 @@ Predicate locks
 - if a transaction want to insert/update/delete any object, it needs to check whether there is a lock on old and the new values
 - The predicate lock applied to objects that not exist yet
 
+Index-range locks
+
+- one transaction can add too many predicate locks and cause checking locks become time consuming
+- index-range lock (next-key lock): blocking greater set of objects than predicate lock is safe. So put a shared lock on the index entry or a range of values in the index. When another transaction needs to update the index entries, it needs to wait
+- If no index is used during the query, DB can fall back to lock the whole table
+
+Serializable Snapshot Isolation (SSI)
+
+- SSI provides full serializability but only small performance penalty.
+
+Pessimistic versus optimistic concurrency control
+
+- 
+
 **HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch07.html>
 
-Index-range locks
+
 
 ## Open Questions
 
