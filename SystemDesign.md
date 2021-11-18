@@ -2227,11 +2227,17 @@ Serializable Snapshot Isolation (SSI)
 
 Pessimistic versus optimistic concurrency control
 
-- 
+- 2PL is pessimistic concurrency control mechanism: if anything might go wrong, wait until safe again
+- Serial execution: also pessimistic, requires the whole DB to be locked, and operations need to be quick
+- SSI is an optimistic concurrency control technique: transactions concurrently run, and only check if bad things happened during commit
+- it perform badly if there is high contention (a lot of transaction access the same object)
+- if there is enough spare capacity, and contention is not too high, SSI performance better
+- Contention can be reduced with commutative atomic operations (like increase counter)
+- SSI is based on snapshot isolation
 
 **HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch07.html>
 
-
+Decisions based on an outdated premise
 
 ## Open Questions
 
