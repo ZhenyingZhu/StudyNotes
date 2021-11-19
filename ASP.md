@@ -2936,6 +2936,8 @@ TodoListService app
 
 TodoListClient code
 
+- MainWindow:
+  - Authority: `https://login.microsoftonline.com/<TenantId>/v2.0`
 - Uses `AddMicrosoftIdentityWebApiAuthentication` to get the token.
 
 **HERE**
