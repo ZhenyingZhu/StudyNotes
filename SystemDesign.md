@@ -2256,11 +2256,13 @@ Detecting writes that affect prior reads
 
 Performance of serializable snapshot isolation
 
-- 
+- to reduce the number of unnecessary aborts, if can prove that the result of the execution is nevertheless serializable, no need to abort
+- SSI is not limited to the throughput of a single CPU core: the detection of conflicts can across multiple machines
+- The aborts can impact the performance a lot. So SSI requires that read-write transactions be fairly short. long-running read-only transactions may be okay
 
 **HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch07.html>
 
-
+Summary
 
 ## Open Questions
 
