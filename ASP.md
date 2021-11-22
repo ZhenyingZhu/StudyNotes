@@ -2930,12 +2930,16 @@ TodoListService code
 
 TodoListService app
 
+- needs `<PackageReference Include="Microsoft.Identity.Web" Version="1.17.0" />`
 - API permissions has MS Graph User.Read Delegated (sign-in as user) permission
 - An API with App ID URI `api://<app id>`
 - A scope `api://<app id>/access_as_user`
 
 TodoListClient code
 
+- MainWindow:
+  - Authority: `https://login.microsoftonline.com/<TenantId>/v2.0`
+  - TodoListScope: `api://<clientId>/access_as_user`
 - Uses `AddMicrosoftIdentityWebApiAuthentication` to get the token.
 
 **HERE**
