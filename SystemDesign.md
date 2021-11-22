@@ -2235,9 +2235,32 @@ Pessimistic versus optimistic concurrency control
 - Contention can be reduced with commutative atomic operations (like increase counter)
 - SSI is based on snapshot isolation
 
+Decisions based on an outdated premise
+
+- phantom transaction takes action based on a premise that is not longer true when commit
+- DB assumes if a transaction makes a query, when the premise changes, writes in the transaction are invalid and the transaction needs to abort
+- two cases when a query result could be changed
+  - Detecting reads of a stale MVCC object version (uncommitted write occurred before the read)
+  - Detecting writes that affect prior reads (the write occurs after the read before the commit)
+
+Detecting stale MVCC reads
+
+- the DB tracks when a transaction ignores other transactions' writes due to MVCC, and when the transaction wants to commit, if there are any ignored writes are committed, abort
+- For read only transactions, no need to abort the transaction
+
+Detecting writes that affect prior reads
+
+- Use the SSI lock (index range lock) but not block other transactions
+- after multiple transaction searchs for an index, the index is locked and the transactions are recorded. When a transaction is finished, the record can be removed
+- when a transaction writes, check any other transactions hold the shared lock on the index. notify those transactions that the premise might out dated. When the transaction commits, those transactions that get notifications need to abort
+
+Performance of serializable snapshot isolation
+
+- 
+
 **HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch07.html>
 
-Decisions based on an outdated premise
+
 
 ## Open Questions
 
