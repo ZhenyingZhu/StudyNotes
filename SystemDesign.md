@@ -1976,7 +1976,7 @@ Parallel Query Execution
 
 #### Chapter 7. Transactions
 
-harsh reality of data systems
+harsh reality of data systems **[KEY]**
 
 - DB or hardware failures in the middle of a write
 - application crashs during a series of operations
@@ -1996,10 +1996,10 @@ The Slippery Concept of a Transaction
 
 - NoSQL use new data models than relational DB, and include replication and partition by default, causing support of transaction lost or weaken
 
-The Meaning of ACID
+The Meaning of ACID **[KEY]**
 
 - Atomicity, Consistency, Isolation, and Durability.
-- BASE: Basically Available, Soft state, and Eventual consistency. not meed ACID criteria
+- BASE: Basically Available, Soft state, and Eventual consistency. not meet ACID criteria
 - Atomicity: a fault occurs during several writes, DB needs to undo writes already made in the transaction
 - Consistency: certain statements about data must always be true. The data should be valid after the writes
 - Isolation: concurrently executing transactions are isolated from each other. One solution by introduce the serializability of the transactions have performance penalty. So a weaker guarantee snapshot isolation is used.
@@ -2021,17 +2021,17 @@ Single-object writes
 The need for multi-object transactions
 
 - it is challenging in distributed DB, because it needs acorss partitions, and could affect performance and high availbility
-- transaction is useful for foreign reference
-- in document data model, fields need to be update together should be within the same document, so it can be treated as single object write
-- for denormalization, several documents might need to be updated for a single change, so transaction is useful
-- for secondary index as well
+- transaction is useful for foreign reference **[KEY]**
+- in document data model, fields need to be update together should be within the same document, so it can be treated as single object write **[KEY]**
+- for denormalization, several documents might need to be updated for a single change, so transaction is useful **[KEY]**
+- for secondary index as well **[KEY]**
 - if not use transaction, error handling for those cases would be hard
 
 Handling errors and aborts
 
 - ACID philosophy: if the database is in danger of violating ACID, rather abandon the transaction entirely than allow it to remain half-finished
 - leaderless replication DB works on best-effort, so the philosophy doesn't apply
-- retrying aborted transaction can also have issues
+- retrying aborted transaction can also have issues **[KEY]**
   - if transaction succeed but network error occurs, then retry could cause dup
   - if the error is caused by overload, retrying cause it worse. Need to limit retry count, with exponential backoff, and not retry on overload issue
   - retry on transient error is fine, but doesn't help on permantent error
@@ -2047,29 +2047,31 @@ Weak Isolation Levels
 Read Committed
 
 - most basic level of transaction isolation
-- when read, only data that has been committed is read
-- when write, only overwrites committed data
+- when read, only data that has been committed is read **[KEY]**
+- when write, only overwrites committed data **[KEY]**
 - dirty reads: another transaction sees uncommitted data
-- 2 guarantees for no dirty reads: 1. before commit is done, no partitial change is returned; 2. if a transaction is abort, all changes are rolled back
-- prevent dirty writes: delay the second transaction until the first is either committed or aborted
-- read commit doesn't prevent race condition between two counter increments (two writes in transaction 1 happens before and after two writes in transaction 2, causing transaction 2 totally lost, because transaction 2 doesn't see transaction 1 as it was not committed)
-- Implementing read committed: default in Oracle, PostgreSQL
+- 2 guarantees for no dirty reads: 1. before commit is done, no partitial change is returned; 2. if a transaction is abort, all changes are rolled back **[KEY]**
+- prevent dirty writes: delay the second transaction until the first is either committed or aborted **[KEY]**
+- read commit doesn't prevent race condition **[KEY]** between two counter increments (two writes in transaction 1 happens before and after two writes in transaction 2, causing transaction 2 totally lost, because transaction 2 doesn't see transaction 1 as it was not committed)
+- Implementing read committed: default in Oracle, PostgreSQL **[KEY]**
   - using row level locks (for an object) when write. Only one lock can be hold per object. If acquired, before transaction committed/aborted the lock is not released
   - to prevent dirty read, one approach is to acquire the same lock when read. But one long read could block writes
   - better approach is let the DB remember the value before uncommitted writes, and return that value
 
 Snapshot Isolation and Repeatable Read
 
-- read skew: nonrepeatable read for two different data seems inconsistant results, if there is a transaction ongoing, causing timing anomaly. It is mostly toleratable from client under read committed guarantee, because retry the reads can get the correct result
+- read skew: **[KEY]** nonrepeatable read for two different data seems inconsistant results, if there is a transaction ongoing, causing timing anomaly. It is mostly toleratable from client under read committed guarantee, because retry the reads can get the correct result
 - not tolerate situation:
   - backup: the writes during the backup are inconsistent. If restore it, the inconsistency could be permanent.
   - Analytic queries and integrity checks: could return nonsensical results
-- Snapshot isolation can solve the issue: each transaction reads from a consistent snapshot (the committed data at the start of the transaction). Even the data is subsequently changed by another transaction, each transaction sees the old data.
-- Implementing snapshot isolation: use write lock. Read not require lock. readers never block writers. writers never block readers.
+- Snapshot isolation **[KEY]** can solve the issue: each transaction reads from a consistent snapshot (the committed data at the start of the transaction). Even the data is subsequently changed by another transaction, each transaction sees the old data.
+- Implementing snapshot isolation **[KEY]**: use write lock. Read not require lock. readers never block writers. writers never block readers.
   - multi-version concurrency control (MVCC): DB potentially keep committed versions of an object.
   - when a transaction starts, a unique, always-increasing transaction ID (txid) is assigned.
   - each row has a createdBy field, records the txid that insert it, and a deletedBy field records when the entry is marked as deleted.
   - an update is translated to a created and deleted record
+
+**HERE**
 
 Visibility rules for observing a consistent snapshot
 
