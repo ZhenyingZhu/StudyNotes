@@ -2060,7 +2060,7 @@ Read Committed
 
 Snapshot Isolation and Repeatable Read
 
-- read skew: **[KEY]** nonrepeatable read for two different data seems inconsistant results, if there is a transaction ongoing, causing timing anomaly. It is mostly toleratable from client under read committed guarantee, because retry the reads can get the correct result
+- read skew: **[KEY]** nonrepeatable read for two different data (some relation between them) sees inconsistant results, if there is a transaction ongoing, causing timing anomaly. It is mostly toleratable from client under read committed guarantee, because retry the reads can get the correct result
 - not tolerate situation:
   - backup: the writes during the backup are inconsistent. If restore it, the inconsistency could be permanent.
   - Analytic queries and integrity checks: could return nonsensical results
@@ -2071,9 +2071,7 @@ Snapshot Isolation and Repeatable Read
   - each row has a createdBy field, records the txid that insert it, and a deletedBy field records when the entry is marked as deleted.
   - an update is translated to a created and deleted record
 
-**HERE**
-
-Visibility rules for observing a consistent snapshot
+Visibility rules for observing a consistent snapshot **[KEY]**
 
 - at the start of each transaction, DB lists all the ongoing transactions, and ignore their writes.
 - any writes made by aborted transactions are ignored
@@ -2084,15 +2082,15 @@ Visibility rules for observing a consistent snapshot
 
 Indexes and snapshot isolation
 
-- simple solution: an index query to filter out any object versions that are not visible to the current transaction. Remove index entries after GCs remove those versions
+- simple solution: an index query to filter out any object versions that are not visible to the current transaction. Remove index entries after GCs remove those versions **[KEY]**
 - to improve the performance for multi-version concurrency control, avoid index updates if all the versions of an object can be fit in one page. Used by PostgreSQL
-- another approach: CouchDB uses an append only B-tree. every write transaction creates a new B-tree root, and each root presents a consistant snapshot. Need a background process to compact and GC.
+- another approach: CouchDB uses an append only B-tree. every write transaction creates a new B-tree root, and each root presents a consistant snapshot. Need a background process to compact and GC. **[KEY]**
 
 Repeatable read and naming confusion
 
 - snapshot isloation is also called as serializable, repeatable read.
 
-Preventing Lost Updates
+Preventing Lost Updates **[KEY]**
 
 - two transactions writing concurrently: dirty write is one of the write-write conflict
 - Lost update: two read-modify-write cycles happen concurrently, causing one writes lost
@@ -2100,7 +2098,7 @@ Preventing Lost Updates
 
 Atomic write operations
 
-- DB provided function to avoid app needs to write the read-modify-write cycle. It is concurrently safe
+- DB provided function to avoid app needs to write the read-modify-write cycle. It is concurrently safe **[KEY]**
 - for SQL `UPDATE counters SET value = value + 1 WHERE key = 'foo';`
 - for MongoDB, supports atomic modify JSON; Redis for update data structure like priority queue
 - but wiki would be hard to support atomic write. So atomic write is not supported in all the scenarios
@@ -2108,7 +2106,7 @@ Atomic write operations
 - another option is to force single thread update
 - But ORM (object-relational mapping) frameworks can accidently generate code that make read-modify-write cycle instead of using atomic operation. Without looking into the details it is a hard bug to detect
 
-Explicit locking
+Explicit locking **[KEY]**
 
 - In an transaction, `SELECT * FROM figures WHERE name = 'robot' AND game_id = 222 FOR UPDATE;` The `FOR UPDATE` puts a lock on all the rows returned by this query
 - before the update, there could be other operations that the app does (like validating some rules), so need to put a lock explicitly
@@ -2119,16 +2117,18 @@ Automatically detecting lost updates
 - the check can work efficiently with snapshot isolation
 - it happens automatically so is better than explicit lock
 
-Compare-and-set
+Compare-and-set **[KEY]**
 
 - atomic compare-and-set op are supported in some DBs that don't support transaction
 - only allow writes to object that are not changed after read. Wiki can use this approach
 
-Conflict resolution and replication
+Conflict resolution and replication **[KEY]**
 
 - in replicated DB, the same data could be modified on different nodes. Lock or compare-and-set doesn't work here
 - allow conflict versions for the data, and use app code to resolve and merge the conflicts
 - if operations are commutative (excute in different orders can still get to the same result), DB can auto merge the changes to prevent lost update
+
+**HERE**
 
 Write Skew and Phantoms
 
