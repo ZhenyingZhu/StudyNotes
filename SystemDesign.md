@@ -2128,23 +2128,21 @@ Conflict resolution and replication **[KEY]**
 - allow conflict versions for the data, and use app code to resolve and merge the conflicts
 - if operations are commutative (excute in different orders can still get to the same result), DB can auto merge the changes to prevent lost update
 
-**HERE**
-
 Write Skew and Phantoms
 
-- two transactions are updating two different objects, but one has to be run after another (for example in the transaction there is a check for the latest statuses of those objects), then the race condition could cause write skew
+- two transactions are updating two different objects, but one has to be run after another (for example in the transaction there is a check for the latest statuses of those objects), then the race condition could cause write skew **[KEY]**
 - Automatically preventing write skew requires true serializable isolation
-- DB can config constraints (uniq, foreign key, value range). Can also use trigger or materialized views to prevent write skew
+- DB can config constraints (uniq, foreign key, value range). Can also use trigger or materialized views to prevent write skew **[KEY]**
 - explicitly lock rows the transaction depends on can help in some cases, but if the requirement needs check the absense of some rows (like a user name is not taken), then it cannot lock those non-exist rows
 - pattern: a `SELECT` query check some requirements, then the app code decides whether to make a write. The write changes the pre-condition.
-- phantom: a write in one transaction changes the result of a search query in another transaction
+- phantom: a write in one transaction changes the result of a search query in another transaction **[KEY]**
 
 Materializing conflicts
 
-- artificially introduce locks for non-exist rows
+- artificially introduce locks for non-exist rows **[KEY]**
 - but hard figure out what needs to lock, and also a leak in the data model, so can only be used as a last resort
 
-Serializability
+Serializability **[KEY]**
 
 - isolation levels: read committed, snapshot isolation. But they are hard to understand and different DBs have different implementation
 - from app code, it is hard to tell which isolation level is enough
@@ -2158,17 +2156,17 @@ Serializability
 Actual Serial Execution
 
 - can use single thread because:
-  - Keep the entire active dataset in memory
-  - OLTP transactions only makes a small number of reads and writes. BTW, OLAP can be run against snapshot isolation so don't need serialization
+  - Keep the entire active dataset in memory **[KEY]**
+  - OLTP transactions only makes a small number of reads and writes **[KEY]**. BTW, OLAP can be run against snapshot isolation so don't need serialization
 - Redis use single thread
-- Save the overhead of using lock, so could have better performance over concurrency. But throughput is limited to single CPU core
-- transactions need to be structured differently to make them single thread
+- Save the overhead of using lock, so could have better performance over concurrency. But throughput is limited to single CPU core **[KEY]**
+- transactions need to be structured differently to make them single thread **[KEY]**
 
 Encapsulating transactions in stored procedures
 
 - to avoid a  transaction be idle when wait for human actions, normally let a transaction committed within a same HTTP request
-- transactions normally are interactive stype: app client query something, and use the result to decide what to do next. There are network delay between app and DB. The throughput would be dreadful if execute transactions one by one
-- single-threaded serial transaction processing don’t allow interactive multi-statement transactions. App needs to submit the entire transaction code to DB as a stored proecdure
+- transactions normally are interactive style: app client query something, and use the result to decide what to do next. There are network delay between app and DB. The throughput would be dreadful if execute transactions one by one
+- single-threaded serial transaction processing don’t allow interactive multi-statement transactions **[KEY]**. App needs to submit the entire transaction code to DB as a stored proecdure
 
 Pros and cons of stored procedures
 
@@ -2177,7 +2175,7 @@ Pros and cons of stored procedures
 - a bad stored procedure could impact all apps accessing the DB
 - to overcome the cons, modern DBs use Java or other standard langs
 
-Partitioning
+Partitioning **[KEY]**
 
 - Since single-thread transaction processing only use single CPU core, to avoid waste resource, read-only transactions can be execute somewhere else use snapshot isolation
 - for writes, can scale to multiple cores/nodes by partitioning the data that each transaction only needs to read and write from a single partition
@@ -2185,7 +2183,7 @@ Partitioning
 - The throughput is lower because the overhead of coordinate partitions, and also cannot be increased by adding more nodes
 - simple key-value pair data can be easily partitioned, while secondary indexes would be hard
 
-Two-Phase Locking (2PL)
+Two-Phase Locking (2PL) **[KEY]**
 
 - if nobody writes to an object, transactions concurrently read the object are allowed
 - if transation A has read an object, transaction B that writes to the object must wait until A is committed or aborted
@@ -2193,7 +2191,7 @@ Two-Phase Locking (2PL)
 - writes also block other writes
 - vs. snapshot isolation, where reads never block writes, and writes never block reads
 
-Implementation of two-phase locking
+Implementation of two-phase locking **[KEY]**
 
 - have a lock on each object in DB. Lock can be in shared or exclusive mode
 - when a transaction wants to read an object, acquire the lock in shared mode. Multiple transactions can hold the lock in shared mode, but if there is another transaction gets the lock in exclusive mode, then this transaction needs to wait
@@ -2213,17 +2211,17 @@ Predicate locks
 
 - solve phantom problem
 - the predicate lock belongs to all the objects that match some search condition
-- if a transaction wants to read objects matching some conditions, it acquires a shared-mode predicate lock on the conditions of all the objects (based on the value). If another transaction holds an exclusive lock on any of those objects, this transaction needs wait
+- if a transaction wants to read objects matching some conditions, it acquires a shared-mode predicate lock on the conditions of all the objects (based on the value). If another transaction holds an exclusive lock on any of those objects, this transaction needs wait **[KEY]**
 - if a transaction want to insert/update/delete any object, it needs to check whether there is a lock on old and the new values
 - The predicate lock applied to objects that not exist yet
 
 Index-range locks
 
 - one transaction can add too many predicate locks and cause checking locks become time consuming
-- index-range lock (next-key lock): blocking greater set of objects than predicate lock is safe. So put a shared lock on the index entry or a range of values in the index. When another transaction needs to update the index entries, it needs to wait
+- index-range lock (next-key lock): blocking greater set of objects than predicate lock is safe. So put a shared lock on the index entry or a range of values in the index. When another transaction needs to update the index entries, it needs to wait **[KEY]**
 - If no index is used during the query, DB can fall back to lock the whole table
 
-Serializable Snapshot Isolation (SSI)
+Serializable Snapshot Isolation (SSI) **[KEY]**
 
 - SSI provides full serializability but only small performance penalty.
 
@@ -2231,40 +2229,42 @@ Pessimistic versus optimistic concurrency control
 
 - 2PL is pessimistic concurrency control mechanism: if anything might go wrong, wait until safe again
 - Serial execution: also pessimistic, requires the whole DB to be locked, and operations need to be quick
-- SSI is an optimistic concurrency control technique: transactions concurrently run, and only check if bad things happened during commit
-- it perform badly if there is high contention (a lot of transaction access the same object)
+- SSI is an optimistic concurrency control technique: transactions concurrently run, and only check if bad things happened during commit **[KEY]**
+- it perform badly if there is high contention (a lot of transaction access the same object) **[KEY]**
 - if there is enough spare capacity, and contention is not too high, SSI performance better
-- Contention can be reduced with commutative atomic operations (like increase counter)
+- Contention can be reduced with commutative atomic operations (like increase counter) **[KEY]**
 - SSI is based on snapshot isolation
 
 Decisions based on an outdated premise
 
-- phantom transaction takes action based on a premise that is not longer true when commit
+- phantom transaction takes action based on a premise that is not longer true when commit **[KEY]**
 - DB assumes if a transaction makes a query, when the premise changes, writes in the transaction are invalid and the transaction needs to abort
-- two cases when a query result could be changed
+- two cases when a query result could be changed **[KEY]**
   - Detecting reads of a stale MVCC object version (uncommitted write occurred before the read)
   - Detecting writes that affect prior reads (the write occurs after the read before the commit)
 
-Detecting stale MVCC reads
+Detecting stale MVCC reads **[KEY]**
 
 - the DB tracks when a transaction ignores other transactions' writes due to MVCC, and when the transaction wants to commit, if there are any ignored writes are committed, abort
 - For read only transactions, no need to abort the transaction
 
-Detecting writes that affect prior reads
+Detecting writes that affect prior reads **[KEY]**
 
 - Use the SSI lock (index range lock) but not block other transactions
 - after multiple transaction searchs for an index, the index is locked and the transactions are recorded. When a transaction is finished, the record can be removed
 - when a transaction writes, check any other transactions hold the shared lock on the index. notify those transactions that the premise might out dated. When the transaction commits, those transactions that get notifications need to abort
 
-Performance of serializable snapshot isolation
+Performance of serializable snapshot isolation **[KEY]**
 
 - to reduce the number of unnecessary aborts, if can prove that the result of the execution is nevertheless serializable, no need to abort
 - SSI is not limited to the throughput of a single CPU core: the detection of conflicts can across multiple machines
 - The aborts can impact the performance a lot. So SSI requires that read-write transactions be fairly short. long-running read-only transactions may be okay
 
-**HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch07.html>
-
 Summary
+
+- **TODO**: a good summary, better to revisit
+
+**HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch08.html>
 
 ## Open Questions
 
