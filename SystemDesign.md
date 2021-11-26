@@ -2264,7 +2264,34 @@ Summary
 
 - **TODO**: a good summary, better to revisit
 
+#### Chapter 8. The Trouble with Distributed Systems
+
+things that may go wrong in a distributed system
+
+- network issues
+- clocks and timing issues
+
+Faults and Partial Failures
+
+- single machine hardward problems can cause kernel panic
+- good software either fully functional or entirely broken
+- distributed system has a wide range of things can go wrong
+- Datacenter backbone: A backbone connects local area networks (LAN) to wide area networks (WAN)
+- partial failures are nondeterministic but will happen
+
+Cloud Computing and Supercomputing
+
+- high-performance computing (HPC) vs. cloud computing
+- supercomputer: has checkpoints for computation work. Can be used to restore
+- internet-related applications: stopping the cluster for repair is not acceptable
+- Supercomputers: also have multiple nodes with special network topologies. nodes communicate through shared memory and remote direct memory access (RDMA)
+- Large datacenter networks are based on IP and Ethernet, arranged in Clos topologies to provide high bisection bandwidth
+- distributed systems must be a reliable system from unreliable components
+- suspicion, pessimism, and paranoia pay off
+
 **HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch08.html>
+
+Unreliable Networks
 
 ## Open Questions
 
@@ -2275,3 +2302,7 @@ How cache works? (when to update TTL)
 What are the QPS of our services
 
 Services: SignalR, Gossip
+
+How token works (OAuth2)
+
+OOD Design Patterns
