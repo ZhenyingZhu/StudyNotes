@@ -2289,9 +2289,34 @@ Cloud Computing and Supercomputing
 - distributed systems must be a reliable system from unreliable components
 - suspicion, pessimism, and paranoia pay off
 
+Unreliable Networks
+
+- The internet and most internal networks in datacenters (often Ethernet) are asynchronous packet networks
+- Ethernet is the technology to make internet works. Ehternet vs. wifi
+- the network gives no guarantees as to when it will arrive, or whether it will arrive at all
+- Issues could be
+  - request lost due to network cable unplugged
+  - request wait in the queue due to recipient overloaded
+  - remote node failure due to power outage
+  - remote node temporarily stop responding due to process pauses
+  - the response lost due to a network switch misconfigured
+  - response delayed due to network congestion
+- timeout is the usual way to handle such issues
+
+Network Faults in Practice
+
+- adding redundant networking gear doesn’t reduce faults since it doesn’t guard against human error
+- a network link works in one direction doesn’t guarantee it’s also working in the opposite direction, inbound traffic works but outbound might not
+- network fault (network partition or netsplit): one part of the network is cut off from the rest due to a network fault
+- error handling of network faults needs to be defined and tested, otherwise could cause
+  - a cluster could become deadlocked and permanently unable to serve requests, even when the network recovers
+  - delete all the data
+- simple approach is to show an error message
+- Chaos Monkey: deliberately trigger network problems
+
 **HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch08.html>
 
-Unreliable Networks
+Detecting Faults
 
 ## Open Questions
 
