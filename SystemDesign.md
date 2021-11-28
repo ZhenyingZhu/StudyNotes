@@ -2073,7 +2073,7 @@ Snapshot Isolation and Repeatable Read
 
 Visibility rules for observing a consistent snapshot **[KEY]**
 
-- at the start of each transaction, DB lists all the ongoing transactions, and ignore their writes.
+- at the start of each transaction, DB lists all the ongoing transactions, and ignore their writes
 - any writes made by aborted transactions are ignored
 - any transactions with a later txid are ignored
 - all other writes are visible to the app's queries
@@ -2324,9 +2324,24 @@ Detecting Faults
 - to make sure a request is successful, need a positive response
 - TCP retries automatically, app can also retry, until timeout
 
+Timeouts and Unbounded Delays
+
+- if the timeout is too short, the node treated as dead might just processing some actions. If another node taken over, the actions might be processed twice
+- if the node is slow due to high load, declaring it as dead spread the load to other nodes and cause cascading failure
+- asynchronous networks have unbounded delays
+
+Network congestion and queueing
+
+- packets wait in the queue of the destination's network switch. If the queue is filled up, further packets dropped
+- virtual machine needs wait for the CPU cycle so it could increase the network delay
+- TCP performs flow control(i.e., congestion avoidance/backpressure): a node can limit its sending rate. There is a queue on the sender
+- If TCP doesn't get ack within a timeout (round trip time), it would retransmit and increase the delay
+- if a packet loss is worthless, can use UDP that doesn't have flow conntrol
+- 
+
 **HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch08.html>
 
-Timeouts and Unbounded Delays
+
 
 ## Open Questions
 
