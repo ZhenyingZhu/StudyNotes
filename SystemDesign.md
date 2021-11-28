@@ -2314,9 +2314,19 @@ Network Faults in Practice
 - simple approach is to show an error message
 - Chaos Monkey: deliberately trigger network problems
 
+Detecting Faults
+
+- no process is listening on the destination port (system sends a `RST` or `FIN` packet to let TCP connections close or refuse)
+- a node process crashed but the node’s operating system is still running, a script can notify other nodes about the crash so that another node can take over
+- query management interface of the network switches to detect hardware link failures (e.g., machine power down). But the interface itself might not reachable
+- a router may reply with an ICMP Destination Unreachable packet
+- negative feedback can help quicker fail over, but cannot be rely on it to detect faults. should assume no response at call when failure occurs
+- to make sure a request is successful, need a positive response
+- TCP retries automatically, app can also retry, until timeout
+
 **HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch08.html>
 
-Detecting Faults
+Timeouts and Unbounded Delays
 
 ## Open Questions
 
