@@ -2341,9 +2341,34 @@ Network congestion and queueing
 - can meture data points before setting out the timeout
 - systems can continually measure response times and their variability (jitter), and automatically adjust timeouts
 
+Synchronous Versus Asynchronous Networks
+
+- fixed line telephone network: a fixed, guaranteed amount of bandwidth is allocated. It is synchronous. It has bounded delay.
+
+Can we not simply make network delays predictable?
+
+- circuit-switched networks vs. packet-switched protocols: IP suffer from queueing, but optimized for bursty traffic
+- ATM has hybrid network supports both circuit and packet switching
+- Use quality of service (QoS, prioritization and scheduling of packets) and admission control (rate-limiting senders), can provide statistically bounded delay, but it is not used in multi-tenant DCs and public clouds
+- guaranteed latency vs. resource utilization is the key difference
+
+Unreliable Clocks
+
+- In a distributed system, time is used to determine the order of requests/responses
+- each machine on the network has its own clock that are not perfectly accurate
+- Network Time Protocol (NTP)
+
+Monotonic Versus Time-of-Day Clocks
+
+- mordern computers have both
+- Time-of-day clocks: could be reset when sync with NTP. unsuitable for measuring elapsed time.
+- Monotonic clocks: suitable for measuring a duration, e.g., timeout. Guaranteed to always move forward. shouldn't compare it between different machines
+  - NTP might change the speed of monotonic clock
+
+
 **HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch08.html>
 
-Synchronous Versus Asynchronous Networks
+Clock Synchronization and Accuracy
 
 ## Open Questions
 
