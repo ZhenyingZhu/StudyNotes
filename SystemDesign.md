@@ -2337,11 +2337,13 @@ Network congestion and queueing
 - TCP performs flow control(i.e., congestion avoidance/backpressure): a node can limit its sending rate. There is a queue on the sender
 - If TCP doesn't get ack within a timeout (round trip time), it would retransmit and increase the delay
 - if a packet loss is worthless, can use UDP that doesn't have flow conntrol
-- 
+- a noisy neighbor can used up shared resources like network links and switches
+- can meture data points before setting out the timeout
+- systems can continually measure response times and their variability (jitter), and automatically adjust timeouts
 
 **HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch08.html>
 
-
+Synchronous Versus Asynchronous Networks
 
 ## Open Questions
 
