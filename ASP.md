@@ -2942,7 +2942,7 @@ TodoListClient code
   - TodoListScope: `api://<clientId>/access_as_user`
 - Uses `AddMicrosoftIdentityWebApiAuthentication` to get the token.
 
-**HERE**
+**HERE**: put a temp note
 
 - After reg an app, in the Expose an API, set the App ID URL. By default it generates `api://{clientId}`
 - need at least one scope to obtain an access token.
@@ -2951,7 +2951,6 @@ TodoListClient code
 - Both the server and the client app need to be reged.
 - the client app reg needs to select Authentication > Add a platform > mobile and desktop application. Redirect URL use `http://localhost`
 - API permissions > add a permission > My APIs > TodoListServer
-
 
 **HERE**: How was the code created
 
