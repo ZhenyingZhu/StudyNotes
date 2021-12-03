@@ -2393,11 +2393,13 @@ Timestamps for ordering events
 
 Clock readings have a confidence interval
 
+- the best possible accuracy is probably to the tens of milliseconds, and the error may easily spike to over 100 ms when there is network congestion
+
 **HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch08.html>
 
-Clock readings have a confidence interval
+Synchronized clocks for global snapshots
 
-11h12m
+11h
 
 ## Open Questions
 
