@@ -2422,7 +2422,7 @@ Process Pauses
 
 Response time guarantees
 
-10h48m
+10h48m - 9h2m
 
 ## Open Questions
 
