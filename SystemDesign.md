@@ -2395,11 +2395,34 @@ Clock readings have a confidence interval
 
 - the best possible accuracy is probably to the tens of milliseconds, and the error may easily spike to over 100 ms when there is network congestion
 
-**HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch08.html>
-
 Synchronized clocks for global snapshots
 
-11h
+- snapshot isolation requires a monotonically increasing transaction ID. It is hard to get a global increasing transaction id.
+- since generating global transaction id needs coordinate across machines, it could be the bottleneck
+- Use google TrueTime API, which returns the timestamp with a confident internal range, to get more accurate timestamps, and use them as the transaction ids
+- But timestamp ranges can overlap with each other and cause the order cannot be determined. So the DB needs to let read-write commits always after the confidence interval
+
+Process Pauses
+
+- In a single leader replication topology, how to determine which replica is the leader:
+  - leader obtain a lease (a lock with timeout) from other nodes. It needs to periodically renew the lease before expire. If fail to renew, another node take over
+  - when to renew the lease is based on local synchronized clock
+  - the renew might take some time. If the lease expired during that, other node might take over
+  - the long running renewal could be caused by
+    - the lang runtime GC occasionally pause all running threads
+    - VM suspended to save everything in memory to disk
+    - user put the client to sleep
+    - slow disk I/O
+    - OS can do swapping to disk (paging). Thrashing: when memory pressure is high, OS keeps swapping pages in and out of memory. On server paging is often disabled
+    - Unix process can be stopped when it received `SIGSTOP` until `SIGCONT`
+- Get thread-safe on a single machine: use nutexes, semaphores, atomic counters, lock-free data structures, blocking queues, etc.
+- distributed system doesn't have shared memory so those methods are not there. Distributed systems rely on messages send over unreliable network. So pause can happen any time while others still running. The paused node might wake up and not know it was asleep
+
+**HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch08.html>
+
+Response time guarantees
+
+10h48m
 
 ## Open Questions
 
