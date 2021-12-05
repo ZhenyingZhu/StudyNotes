@@ -2418,11 +2418,37 @@ Process Pauses
 - Get thread-safe on a single machine: use nutexes, semaphores, atomic counters, lock-free data structures, blocking queues, etc.
 - distributed system doesn't have shared memory so those methods are not there. Distributed systems rely on messages send over unreliable network. So pause can happen any time while others still running. The paused node might wake up and not know it was asleep
 
-**HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch08.html>
-
 Response time guarantees
 
-10h48m - 9h2m
+- hard real-time systems: carefully designed and tested to meet specified timing guarantees in all circumstances
+- real-time operating system (RTOS): allows processes to be scheduled with a guaranteed allocation of CPU time in specified intervals; lib functions doc their worst case exectuion times; dynamic memory allocation restricted
+- such system may has low throughput
+
+Limiting the impact of garbage collection
+
+- process pause can be mitigated without using RTOS
+- treat GC pause as a brief planned outage of a node. let other nodes handle requests during the time. runtime needs to warn the app that it will do a GC soon
+- another idea, let GC only run for short lived objects that are fast to collect. Restart process periodically to avoid a full GC for long lived objects. Other nodes handle requests like a rolling upgrade
+
+Knowledge, Truth, and Lies
+
+- a node can only make guesses based on the messages it receives or doesn’t receive, but not for sure
+- system model: state the assumptions about the behavior. Algorithms can be proved to function correctly within a certain system model, even if the underlying system model provides very few guarantees
+
+The Truth Is Defined by the Majority
+
+- one node can receive inbound traffic but cannot send outbound traffic
+  - other nodes will declare it as dead even it is running
+  - if using ack message, the node can detect that some fault happens with the network
+- a node experience a process pause. other nodes declare it as dead, but it come back after a while and didn't realize some time has passed
+- in those scenarios, node cannot trust its own judgement, so many distributed algorithms rely on a quorum
+- the quorum is an absolute majority of more than half the nodes in normal case
+
+The leader and the lock
+
+**HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch08.html>
+
+9h38m - 8h39m
 
 ## Open Questions
 
