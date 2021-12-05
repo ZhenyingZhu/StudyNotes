@@ -2446,9 +2446,34 @@ The Truth Is Defined by the Majority
 
 The leader and the lock
 
+- uniq in distributed system needs to be agreed by a quorum of nodes
+- a client gets a lock from a lock system, but before it writes the data, the process paused and lease expired. So when it start writes, other clients might get the lock
+
+Fencing tokens
+
+- when accquire a lock, it also returns a fencing token, which is a self-increasing number
+- when a client sends a write request, needs to provide the token
+- if the storage sees a token that is smaller than previous write, the client lost the token already, so reject
+- ZooKeeper can be used as lock service. the transaction id `zxid` or the node version `cversion` are guaranteed to be monotonically increasing
+- it requires the resource to check the token. If DB doesn't support that, can append the token version to the filename
+
+Byzantine Faults
+
+- client can send fake fencing token
+- Byzantine fault: a node claims it received a message when in fact it didn’t
+- Byzantine Generals Problem: reaching consensus in an untrusting environment
+- the cost of deploying Byzantine fault-tolerant solutions is high, so not commonly used in server-side data systems
+- Web applications need to expect arbitrary and malicious behavior of clients that are under end-user control
+  - input validation, sanitization, and output escaping are needed
+- make the server the authority on deciding what client behavior is allowed
+- peer-to-peer networks needs to solve Byzantine problem as it doesn't have a central authority
+- Byzantine fault-tolerant algorithms require a supermajority of more than two-thirds of the nodes to be functioning correctly
+
+Weak forms of lying
+
 **HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch08.html>
 
-9h38m - 8h39m
+8h27m
 
 ## Open Questions
 
