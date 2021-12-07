@@ -2471,6 +2471,39 @@ Byzantine Faults
 
 Weak forms of lying
 
+- corrupted packets are caught by the checksums built into TCP and UDP. Can also have app level checksums to validate the whole request
+- A publicly accessible app must carefully sanitize any inputs from users. Can do protocol parsing.
+- NTP clients can be configured with multiple server addresses
+
+System Model and Reality
+
+- Algorithms should not depend too heavily on the  hardware and software configuration
+- need formalize the kinds of faults that we expect to happen in a system
+- system model: an abstraction describes what things an algorithm may assume
+- timing assumption system models
+  - Synchronous model: assumes bounded network delay, process pauses, and clock error. not a realistic model
+  - Partially synchronous model: sometimes exceeds the bounds for network delay, process pauses, and clock drift. Most useful
+  - Asynchronous model: an algorithm is not allowed to make any timing assumptions. Doesn't have a clock
+- node failure system models
+  - Crash-stop faults: node failures always lead to crash
+  - Crash-recovery faults: after crash, the node might start responding after unknown time. Storage is stable. Memory is lost. Most useful
+  - Byzantine (arbitrary) faults: nodes can do anything
+
+Correctness of an algorithm
+
+- Need describe the properties of the output, then check if the algorithm is correct
+- For fencing token:
+  - token should be uniq
+  - token should be monotonic seq
+  - availability: a node request a token can get it if not crash
+
+Safety and liveness
+
+- Safety properties: nothing bad happens
+- liveness properties: something good eventually happens
+
+Mapping system models to the real world
+
 **HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch08.html>
 
 8h27m
