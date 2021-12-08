@@ -2285,13 +2285,13 @@ Cloud Computing and Supercomputing
 - supercomputer: has checkpoints for computation work. Can be used to restore
 - internet-related applications: stopping the cluster for repair is not acceptable
 - Supercomputers: also have multiple nodes with special network topologies. nodes communicate through shared memory and remote direct memory access (RDMA)
-- Large datacenter networks are based on IP and Ethernet, arranged in Clos topologies to provide high bisection bandwidth
+- Large datacenter networks are based on IP and Ethernet, arranged in Clos topologies to provide high bisection bandwidth **[KEY]**
 - distributed systems must be a reliable system from unreliable components
 - suspicion, pessimism, and paranoia pay off
 
 Unreliable Networks
 
-- The internet and most internal networks in datacenters (often Ethernet) are asynchronous packet networks
+- The internet and most internal networks in datacenters (often Ethernet) are asynchronous packet networks **[KEY]**
 - Ethernet is the technology to make internet works. Ehternet vs. wifi
 - the network gives no guarantees as to when it will arrive, or whether it will arrive at all
 - Issues could be
@@ -2301,13 +2301,13 @@ Unreliable Networks
   - remote node temporarily stop responding due to process pauses
   - the response lost due to a network switch misconfigured
   - response delayed due to network congestion
-- timeout is the usual way to handle such issues
+- timeout is the usual way to handle such issues **[KEY]**
 
 Network Faults in Practice
 
 - adding redundant networking gear doesn’t reduce faults since it doesn’t guard against human error
 - a network link works in one direction doesn’t guarantee it’s also working in the opposite direction, inbound traffic works but outbound might not
-- network fault (network partition or netsplit): one part of the network is cut off from the rest due to a network fault
+- network fault (network partition or netsplit) **[KEY]**: one part of the network is cut off from the rest due to a network fault
 - error handling of network faults needs to be defined and tested, otherwise could cause
   - a cluster could become deadlocked and permanently unable to serve requests, even when the network recovers
   - delete all the data
@@ -2316,30 +2316,32 @@ Network Faults in Practice
 
 Detecting Faults
 
-- no process is listening on the destination port (system sends a `RST` or `FIN` packet to let TCP connections close or refuse)
-- a node process crashed but the node’s operating system is still running, a script can notify other nodes about the crash so that another node can take over
+- no process is listening on the destination port **[KEY]** (system sends a `RST` or `FIN` packet to let TCP connections close or refuse)
+- a node process crashed but the node’s operating system is still running **[KEY]**, a script can notify other nodes about the crash so that another node can take over
 - query management interface of the network switches to detect hardware link failures (e.g., machine power down). But the interface itself might not reachable
 - a router may reply with an ICMP Destination Unreachable packet
-- negative feedback can help quicker fail over, but cannot be rely on it to detect faults. should assume no response at call when failure occurs
-- to make sure a request is successful, need a positive response
+- negative feedback can help quicker fail over, but cannot be rely on it to detect faults. should assume no response at call when failure occurs **[KEY]**
+- to make sure a request is successful, need a positive response **[KEY]**
 - TCP retries automatically, app can also retry, until timeout
 
 Timeouts and Unbounded Delays
 
-- if the timeout is too short, the node treated as dead might just processing some actions. If another node taken over, the actions might be processed twice
-- if the node is slow due to high load, declaring it as dead spread the load to other nodes and cause cascading failure
+- if the timeout is too short, the node treated as dead might just processing some actions. If another node taken over, the actions might be processed twice **[KEY]**
+- if the node is slow due to high load, declaring it as dead spread the load to other nodes and cause cascading failure **[KEY]**
 - asynchronous networks have unbounded delays
 
 Network congestion and queueing
 
-- packets wait in the queue of the destination's network switch. If the queue is filled up, further packets dropped
+- packets wait in the queue of the destination's network switch. If the queue is filled up, further packets dropped **[KEY]**
 - virtual machine needs wait for the CPU cycle so it could increase the network delay
-- TCP performs flow control(i.e., congestion avoidance/backpressure): a node can limit its sending rate. There is a queue on the sender
-- If TCP doesn't get ack within a timeout (round trip time), it would retransmit and increase the delay
+- TCP performs flow control(i.e., congestion avoidance/backpressure) **[KEY]**: a node can limit its sending rate. There is a queue on the sender
+- If TCP doesn't get ack within a timeout (round trip time), it would retransmit and increase the delay **[KEY]**
 - if a packet loss is worthless, can use UDP that doesn't have flow conntrol
-- a noisy neighbor can used up shared resources like network links and switches
-- can meture data points before setting out the timeout
-- systems can continually measure response times and their variability (jitter), and automatically adjust timeouts
+- a noisy neighbor **[KEY]** can used up shared resources like network links and switches
+- can measure data points before setting out the timeout
+- systems can continually measure response times and their variability (jitter), and automatically adjust timeouts **[KEY]**
+
+**HERE**
 
 Synchronous Versus Asynchronous Networks
 
@@ -2503,6 +2505,8 @@ Safety and liveness
 - liveness properties: something good eventually happens
 
 Mapping system models to the real world
+
+- Some realisitic issues can still happen other than what the system models expect, for example HDD failure
 
 **HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch08.html>
 
