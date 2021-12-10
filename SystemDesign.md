@@ -2506,9 +2506,22 @@ Mapping system models to the real world
 
 - Some realisitic issues can still happen other than what the system models expect, for example HDD failure
 
-**HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch08.html>
+Summary
 
-8h27m
+- timeouts can’t distinguish between network and node failures
+- some node can be still running but not healthy
+
+#### Chapter 9. Chapter 9. Consistency and Consensus
+
+tolerating faults: keeping the service functioning correctly, even if some internal component is faulty
+
+- find some general-purpose abstractions with useful guarantees, implement them, and then let applications rely on those guarantees
+- one abstraction: consensus. reliably reaching consensus in spite of network faults and process failures
+- consensus can be used in electing the leader of replicas, and quite a few other places
+
+Consistency Guarantees
+
+**HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch09.html>
 
 ## Open Questions
 
