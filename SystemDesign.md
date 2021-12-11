@@ -2537,7 +2537,23 @@ What Makes a System Linearizable?
 - one constraint: once a version of a register is returned, all the following read needs return that version
 - atomic compare-and-set operation: if x == some value, then set x to another value, otherwise not change x
 
-LINEARIZABILITY VERSUS SERIALIZABILITY
+Linearizability vs. Serializability
+
+- Serializability can read/write multiple objects/rows. Serial orders are fine to be different from the actual orders of the transactions
+- Linearizability only R/W single register/object. Doesn't group operations into transactions. Doesn't solve isolation issues
+- strict serializability/strong one-copy serializability: DB provides both serializability and linearizability, using 2P locking or actual serial execution. SSI does not
+
+Relying on Linearizability
+
+- Locking and leader election: when every node starts it accquires a lock. The lock must be lineariable
+  - Coordination services: Apache ZooKeeper and etcd. Can be used to implement distributed lock and leader election. They use consensus algorithms. Apache Curator lib is built on ZooKeeper and can be used. Underlayer build on linearizable storage service
+  - to implement distributed lock in a more granular level, can have a dedicated cluster interconnect network for communication between database nodes
+- Constraints and uniqueness guarantees: enforce the constraints when data is written, need the write accquires a lock, and do a atomic compare-and-set operation
+  - uniq must need linearizability
+  - foreign key or attribute constraints sometime can be implemented without linearizability
+- Cross-channel timing dependencies: for example store a file in a storage, and put an instruction in a message queue to let a background task to do something for the file. The instruction might be picked up earlier than the file replication
+
+Implementing Linearizable Systems
 
 **HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch09.html>
 
