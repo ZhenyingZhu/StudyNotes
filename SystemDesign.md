@@ -2521,6 +2521,24 @@ tolerating faults: keeping the service functioning correctly, even if some inter
 
 Consistency Guarantees
 
+- convergence: eventual consistency. But this guarantee is weak because it doesn't tell well the converge is done
+- systems with stronger guarantees may have worse performance or be less fault-tolerant
+- distributed consistency vs. transaction isolation: focus on different concerns, consistency is coordinate the replication state when delay and fault happen
+
+Linearizability
+
+- strongest consistency model. other names: atomic consistency, strong consistency, immediate consistency, or external consistency
+- the DB shows only one replica to the client. All operations on it are atomic
+- recency guarantee: the value read is the most up-to-date value
+
+What Makes a System Linearizable?
+
+- in distributed sytem, one stored object is called as a register
+- one constraint: once a version of a register is returned, all the following read needs return that version
+- atomic compare-and-set operation: if x == some value, then set x to another value, otherwise not change x
+
+LINEARIZABILITY VERSUS SERIALIZABILITY
+
 **HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch09.html>
 
 ## Open Questions
