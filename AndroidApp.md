@@ -56,6 +56,19 @@ Install ADB driver on Windows
 - Device Manager: install driver from Android\sdk\extras\google\usb_driver
 - cmd: `cd Android\sdk\platform-tools\; adb devices` to see if the device shows up.
 
+<https://blog.csdn.net/ctcwri/article/details/14643611>
+
+<https://www.xda-developers.com/quickly-install-adb/>
+
+Download Android SDK: <https://developer.android.com/studio>
+
+- Has its own JDK: `Program Files\Android\Android Studio\jre`. Gradle use it to build. But if `JAVA_HOME` is set, use that.
+- Android SDK installed to `D:\AndriodSDK`
+
+To connect to the virtal machine: <https://www.ucloud.cn/yun/2691.html>
+
+- `adb connect 127.0.0.1:62001` (mumu: 7555, itools: 54001, nox: 62001)
+
 ### Run
 
 <http://developer.android.com/training/basics/firstapp/running-app.html>
@@ -161,8 +174,34 @@ Create a new Activity
 
 (Doesn't work with the newest android studio)
 
-## Install ADB driver
+## Frida Framework
 
-<https://blog.csdn.net/ctcwri/article/details/14643611>
+Setup: <https://www.cnblogs.com/lxh2cwl/p/14842537.html>
 
-<https://www.xda-developers.com/quickly-install-adb/>
+Cannot find frida terms: <https://github.com/frida/frida/issues/1000>
+
+- `pip install frida`
+- `pip install frida-tools`
+
+Start Frida server
+
+- `adb push D:\Downloads\frida-server-15.1.14-android-x86 /data/local/tmp`
+- `adb shell`
+- Rename the file to `fs`, and `chmod 777 fs`
+- Run it `./fs &`
+- On windows, run `frida-ps -U`, if see the process list, it is running then
+- forward port `adb forward tcp:27042 tcp:27042`
+
+Retrieve EnMicroMsg.db
+
+- `adb pull /data/data/com.tencent.mm/MicroMsg/<the hash that contains the file>/EnMicroMsg.db D:\Downloads\EnMicroMsg.db`
+
+Run a js
+
+- (HERE)
+
+Other ways
+
+- <https://zhuanlan.zhihu.com/p/123942610>
+- <https://github.com/ppwwyyxx/wechat-dump>
+- <https://github.com/chg-hou/EnMicroMsg.db-Password-Cracker>
