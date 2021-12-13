@@ -68,6 +68,7 @@ Download Android SDK: <https://developer.android.com/studio>
 To connect to the virtal machine: <https://www.ucloud.cn/yun/2691.html>
 
 - `adb connect 127.0.0.1:62001` (mumu: 7555, itools: 54001, nox: 62001)
+- The second nox: `adb connect 127.0.0.1:62025`, run `Get-NetTCPConnection` in powershell, search for process id of `NoxVMHandle.exe`
 
 ### Run
 
