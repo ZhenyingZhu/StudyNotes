@@ -198,10 +198,20 @@ Retrieve EnMicroMsg.db
 
 Run a js
 
-- (HERE)
+- (Doesn't work)
+
+Install sqlcipher
+
+- <https://stackoverflow.com/questions/61718992/install-pysqlcipher3-windows>
+- <https://stackoverflow.com/questions/55446420/issue-in-installing-pysqlcipher3>
 
 Other ways
 
 - <https://zhuanlan.zhihu.com/p/123942610>
 - <https://github.com/ppwwyyxx/wechat-dump>
 - <https://github.com/chg-hou/EnMicroMsg.db-Password-Cracker>
+
+Python system env needs
+
+- PATH: `C:\Program Files\Python39\Scripts\`, `C:\Program Files\Python39\`, `C:\Users\<username>\AppData\Roaming\Python\Python39\Scripts`
+- PYTHONPATH: `C:\Program Files\Python39\`, `C:\Program Files\Python39\\Lib`
