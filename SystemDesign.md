@@ -2555,6 +2555,16 @@ Relying on Linearizability
 
 Implementing Linearizable Systems
 
+- single leader replication: read from leader or synchronously updated followers, it could be linearizable. But if use SSI, or if there are concurrency bugs, then it is not
+  - need the client knows who is the leader, which needs to solve consensus problem
+- Consensus algorithms: similar to single leader replication, but contains measures to prevent split brain and stale replicas. ZooKeeper and etcd work in this way
+- Multi-leader replication: cannot be linearizable
+- Leaderless replication: requring quorums can not achieve linearizable completely. Because LWW conflict resolution is based on time-of-day. Sloppy quorum also ruin linearizable
+
+Linearizability and quorums
+
+- 
+
 **HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch09.html>
 
 ## Open Questions
