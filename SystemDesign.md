@@ -2563,7 +2563,29 @@ Implementing Linearizable Systems
 
 Linearizability and quorums
 
-- 
+- because of the network delay, the quorum might not have enough replicas that get the latest value. If the read gets to the replica has the latest value once, but not next time, then it is not linearizable
+- if reduce the performance and force a read repair, and also the writer needs to read the quorum before a write
+- during concurrent writes, LWW makes Cassandra lose linearizability
+- the write cannot be compare-and-set operation, otherwise it lose linearizability because it needs consensus algorithms
+
+The Cost of Linearizability
+
+- if there is a network interruption between DCs
+  - multi-leader replication: each DC performs fine. The changes need to be replicated over are queued up
+  - single-leader replication: writes will be broken in the follower DC. reads are not linearizble from the follower. Client can connect directly to the leader
+
+The CAP theorem
+
+- any linearizable database has the issue (network interupt between inter-connection of nodes)
+- if the app needs linearizability, during the network issue it is unavailable, because write fails
+- app doesn't need linearizability can still perform write, just the read is not linearizable. The availbility is better
+- CAP theorem: Consistency, Availability, Partition tolerance can only pick 2 out of 3 (but partition fault happens any way so only choose 1 out of the first 2). need to choose between linearizability and availbility
+
+Linearizability and network delays
+
+- even within a machine, the memory access is not linearizable with multi-core doing concurrent writes to their own memory cache first
+
+Ordering Guarantees
 
 **HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch09.html>
 
