@@ -2593,6 +2593,15 @@ Ordering Guarantees
 
 Ordering and Causality
 
+- ordering helps preserve causality
+- Casual dependencies: 1. response need after the request, 2. update need after the create, 3. B happenes after A: so B knows about A
+- consistent means consist with causality. Read skew violate causality
+- snapshot isolation provides causal consistency: if see a data, then any data precedes it also be able to see
+
+The causal order is not a total order
+
+- 
+
 **HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch09.html>
 
 ## Open Questions
