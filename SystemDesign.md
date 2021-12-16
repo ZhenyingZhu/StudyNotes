@@ -2587,6 +2587,12 @@ Linearizability and network delays
 
 Ordering Guarantees
 
+- using a single leader replication is to make the write order easier to define
+- Serializability ensures transactions are behave as they are running in orders
+- The timestamp and clock are to introduce order
+
+Ordering and Causality
+
 **HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch09.html>
 
 ## Open Questions
