@@ -2616,9 +2616,37 @@ Capturing causal dependencies
 
 - when a replica processes an operation, it must ensure that all causally preceding operations have already been processed, otherwise need to wait
 - can use version vectors track casual dependencies across the DB
-- when write, the client pass in the version, and the DB make sure all the writes before the version has been processed
+- when write, the client pass in the version, and the DB use it to track which data has been read by which transaction
 
 Sequence Number Ordering
+
+- impracticable to keep track of all casual dependencies, because cannot track all the reads
+- use sequence numbers/timestamps from a logical clock to order events. It should be small in size and every op has an uniq seq num
+- in a single leader replication, if the follower applies the writes in the order as the replication log, then the follower is always causally consistent
+
+Noncausal sequence number generators
+
+- for non-single leader DB (e.g., partitioned DB, multi-leader or leaderless DB), serveral different ways
+  - each node has it own seq num and stored with some bits indicate which node
+  - attach the timestamp from time-of-day clock. LWW uses it
+  - preallocate some ranges of seq nums for each node. If used up, allocate a new range
+- those ways cannot generate casual consistent seq nums for ops across nodes
+
+Lamport timestamps
+
+- sequence numbers that is consistent with causality: a pair of (counter, node ID)
+- the one with a greater counter is the greater timestamp or the one with the greater node ID is the greater timestamp
+- every node and every client keeps track of the maximum counter value it has seen so far, and update to the max if one write gives a bigger counter
+- lamport timestamp vs. version vector
+  - version vector is used to distinguish weather two ops are concurrent or have casual dependence
+  - lamport timestamp enforce a total ordering, but cannot tell if two ops are concurrent, but it is more compact
+
+Timestamp ordering is not sufficient
+
+- Lamport timestamps cannot solve uniq constraint problem: because only when nodes compare with each other, then the timestamp can be used for LWW
+- need to use total order broadcast
+
+Total Order Broadcast
 
 **HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch09.html>
 
