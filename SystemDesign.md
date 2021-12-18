@@ -2600,7 +2600,25 @@ Ordering and Causality
 
 The causal order is not a total order
 
-- 
+- total order: any two elements can be compared
+- partially ordered: based on some rules, one is greater than another, but not always
+- linearizable system: total order
+- casuality: only two events are casually related, they have order, otherwise they can be concurrent so incomparable
+- in linearizable datastore, there is no concurrent. Events can be queued but only one occurs at a time
+
+Linearizability is stronger than causal consistency
+
+- linearizability implies causality
+- linearizability is not the only way of preserving causality, so no need to spend a lot to implement linearizability
+- causal consistency is the strongest possible consistency model that don't get slow down by nerwork latency. performance and availability are similar to eventual consistent systems. Still new tech.
+
+Capturing causal dependencies
+
+- when a replica processes an operation, it must ensure that all causally preceding operations have already been processed, otherwise need to wait
+- can use version vectors track casual dependencies across the DB
+- when write, the client pass in the version, and the DB make sure all the writes before the version has been processed
+
+Sequence Number Ordering
 
 **HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch09.html>
 
