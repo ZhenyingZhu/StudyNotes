@@ -2648,6 +2648,37 @@ Timestamp ordering is not sufficient
 
 Total Order Broadcast
 
+- single-leader replication: the throughput might not be able to handled on a single node; when the leader fail, needs failover
+- Partitioned databases only has ordering per partition. Total ordering across all partitions requires additional coordination
+- total order broadcast (atomic broadcast): a propotcol for exchanging message across nodes. requires two safety properties
+  - reliable delivery: if a message is delivered to one node, it is delivered to all nodes
+  - totally ordered delivery: all the nodes have same order
+
+Using total order broadcast
+
+- Consensus services (ZooKeeper and etcd) use it
+- state machine replication: every replica processes the same writes in the same order, then replicas remain consistent just with temp lag
+- same for serializable transactions
+- not allow to insert a message between delivered ordered messages
+- it is a way of creating logs
+- can also be used for implement a lock. The accquire lock op can be a message in the log. The seq num can be used as a fencing token
+
+Implementing linearizable storage using total order broadcast
+
+- linearizable system vs. total order broadcast
+  - total order broadcast is async. linearizablity is a rencency guarantee
+- linearizable storage can be build on top of total order broadcast
+  - uniq constraint: each object has it's own register with atomic compare-and-set op. initially they have value null. So if two clients create the same value, one will see the value is not null so fail the compare-and-set
+  - Append a log for the creation to a node. Then read the object. If the returned first log is not the log we create, then fail the op. Since all nodes have the same order of writes, if there is a concurrent write, LWW can drop following writes
+  - same for implementing serializable multi-object transactions
+  - but it only provides sequential consistency (timeline consistency), doesn’t guarantee linearizable reads
+- to make read linearizable, few options
+  - sequence read as a log. When the message returns, returned the log, so all the previous writes are already replicated (Quorum reads in etcd)
+  - fetch the position of the latest log message in a linearizble way, and wait for all entries up to that position to be returned (ZooKeeper `sync()`)
+  - read from a replica syncly updated on writes (chain replication)
+
+Implementing total order broadcast using linearizable storage
+
 **HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch09.html>
 
 ## Open Questions
