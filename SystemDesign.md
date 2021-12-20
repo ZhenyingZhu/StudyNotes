@@ -2679,6 +2679,31 @@ Implementing linearizable storage using total order broadcast
 
 Implementing total order broadcast using linearizable storage
 
+- vise versa, when have a linearizable register with compare-and-set ops, can implement total order broadcase
+- when write, append the seq num, then send the message to all nodes. Each node applies the message based on the seq num. There should be no gap in the seq nums
+- the linearizable compare-and-set register and total order broadcast have the same consensus challenge to solve
+
+Distributed Transactions and Consensus
+
+- FLP result: there is no algorithm that is always able to reach consensus if there is a risk that a node may crash, under async system model (cannot use clock)
+- if can use timeout or some other way to detect crashed nodes (even it is not actually crash), consensus can be achieved
+
+Atomic Commit and Two-Phase Commit (2PC)
+
+- used for atomic commit (a transaction span across multiple nodes). Not a good consensus algorithm
+- atomic commit is useful in multi-object transactions and secondary index
+
+From single-node to distributed atomic commit
+
+- on a single node, when commit a transaction, first writes to write-ahead log, then append a commit record. If the node crashes in the middle, if the commit is not written, then rollback; otherwise it is durable. The controller (the device manage the disk) makes the commit atomic
+- for multiple nodes, cannot send commits to all nodes. Failure cases cause inconsistency could happen:
+  - some nodes can hit constraint violations
+  - some commits lost due to network
+  - Some nodes might crash
+- compensating transaction: un-commit a commit transaction, but itself is another transaction
+
+Introduction to two-phase commit
+
 **HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch09.html>
 
 ## Open Questions
