@@ -2704,6 +2704,41 @@ From single-node to distributed atomic commit
 
 Introduction to two-phase commit
 
+- Needs a coordinator (transaction manager). Can be a lib or a service
+- nodes involved are participants
+- app reads and writes as normal. When commit
+  1. sends a prepare request to each node. Coordinator tracks the responses
+  2. If all participants return yes, then send a commit request, if any replies no, send an abort request to all nodes
+
+A system of promises
+
+- when app starts a transaction, the coordinator gives a transaction id that is globally uniq
+- on every node app does a single-node transaction on all the nodes. Read/Write are done on one of the participant with the transaction id appended
+- when commit, all nodes get the prepare request with the transaction id, and verify disk space, constaints etc. to make sure it can commit
+- the coordinator gets the responses and makes a decision, and writes it to its transaction logs. This is the commit point
+- when send commit request, if any nodes fail, the coordinator keep retrying
+
+Coordinator failure
+
+- before coordinator sends prepare requests, any participant can abort
+- if a participant sends a yes response for the prepare request, then it cannot abort by itself (so timeout cannot be used), and must wait for coordinator to send commit/abort request. This is doubt/uncertain state
+- participants can communicate with each other to find the decision when coordinator is not responding, but it is not in 2PC protocol
+- after recover, coordinator reads its transaction logs to see the decision. If it see any participant doesn't response to commit, the transaction is abort
+
+Three-phase commit
+
+- 2PC is blocking atomic commit protocol. 3PC makes it non-blocking, but not easy to implement in practical
+- need to have a network with bounded delay and response time
+- adds a perfect failure detector to detect node failure
+
+Distributed Transactions in Practice
+
+- compare to single node transaction, distributed transaction is 10x slower, because it needs disk forcing for recovery, and additional network RTT
+- Database-internal distributed transactions: in replication and partitioned DBs, because all nodes run the same software, it is supported well
+- Heterogeneous distributed transactions: participants can use different techs, such as message broker. Supporting distributed trasaction is challenging
+
+Exactly-once message processing
+
 **HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch09.html>
 
 ## Open Questions
