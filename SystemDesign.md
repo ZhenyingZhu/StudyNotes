@@ -2739,6 +2739,36 @@ Distributed Transactions in Practice
 
 Exactly-once message processing
 
+- Heterogeneous distributed transactions: diverse systems integrated together
+- message queue + DB: a transaction needs atomically committing the message and the DB write in one transaction. Then the message is ensured that it is effectively (not retry) processed exactly once
+- requires all systems use the same atomic commit protocol. Some described below
+
+XA transactions
+
+- X/Open XA (eXtended Architecture): a standard for 2PC across heterogeneous techs
+- It is a C API for interfacing with a transaction coordinator. The drivers of DB, MQ implements XA, and call the API to figure out if an op belongs to a distributed transaction
+- The transaction coordinator has XA built in as a lib. Normally the coordinator itself is a lib loaded by the app
+
+Holding locks while in doubt
+
+- during a transaction, some rows get locked before committed
+- if coordinator crashes, the lock won't be released
+
+Recovering from coordinator failure
+
+- Orphaned in-doubt transactions: coordinator cannot decide the outcome because transaction log lost, or software bug. They cannot commit or abort foever
+- heuristic decisions: a participant can commit or abort an in-doubt transaction without getting decision from the coordinator. It is an emergency escape hatch
+
+Limitations of distributed transactions
+
+- the coordinator is also kind of a DB, so needs care as DBs
+- Need replication
+- Since coordinator is not stateless, as its logs is a crucial part of the durable system state, deploying new software version to it would be tricky
+- Since XA needs to support a wide range of systems, it is a lowest common denominator. it cannot detect deadlock or work with SSI, because those are protocols implement on top of the systems
+- can cause amplifying failures and impact the fault tolerant, because block wait
+
+Fault-Tolerant Consensus
+
 **HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch09.html>
 
 ## Open Questions
