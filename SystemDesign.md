@@ -2511,7 +2511,7 @@ Summary
 - timeouts can’t distinguish between network and node failures
 - some node can be still running but not healthy
 
-#### Chapter 9. Chapter 9. Consistency and Consensus
+#### Chapter 9. Consistency and Consensus
 
 tolerating faults: keeping the service functioning correctly, even if some internal component is faulty
 
@@ -2521,11 +2521,11 @@ tolerating faults: keeping the service functioning correctly, even if some inter
 
 Consistency Guarantees
 
-- convergence: eventual consistency. But this guarantee is weak because it doesn't tell well the converge is done
+- convergence **[KEY]**: eventual consistency. But this guarantee is weak because it doesn't tell well the converge is done
 - systems with stronger guarantees may have worse performance or be less fault-tolerant
-- distributed consistency vs. transaction isolation: focus on different concerns, consistency is coordinate the replication state when delay and fault happen
+- distributed consistency vs. transaction isolation **[KEY]**: focus on different concerns, consistency is coordinate the replication state when delay and fault happen
 
-Linearizability
+Linearizability **[KEY]**
 
 - strongest consistency model. other names: atomic consistency, strong consistency, immediate consistency, or external consistency
 - the DB shows only one replica to the client. All operations on it are atomic
@@ -2537,7 +2537,7 @@ What Makes a System Linearizable?
 - one constraint: once a version of a register is returned, all the following read needs return that version
 - atomic compare-and-set operation: if x == some value, then set x to another value, otherwise not change x
 
-Linearizability vs. Serializability
+Linearizability vs. Serializability **[KEY]**
 
 - Serializability can read/write multiple objects/rows. Serial orders are fine to be different from the actual orders of the transactions
 - Linearizability only R/W single register/object. Doesn't group operations into transactions. Doesn't solve isolation issues
@@ -2545,19 +2545,19 @@ Linearizability vs. Serializability
 
 Relying on Linearizability
 
-- Locking and leader election: when every node starts it accquires a lock. The lock must be lineariable
-  - Coordination services: Apache ZooKeeper and etcd. Can be used to implement distributed lock and leader election. They use consensus algorithms. Apache Curator lib is built on ZooKeeper and can be used. Underlayer build on linearizable storage service
+- Locking and leader election: when every node starts it accquires a lock. The lock must be linearizable
+  - Coordination services **[KEY]**: Apache ZooKeeper and etcd. Can be used to implement distributed lock and leader election. They use consensus algorithms. Apache Curator lib is built on ZooKeeper and can be used. Underlayer build on linearizable storage service
   - to implement distributed lock in a more granular level, can have a dedicated cluster interconnect network for communication between database nodes
-- Constraints and uniqueness guarantees: enforce the constraints when data is written, need the write accquires a lock, and do a atomic compare-and-set operation
+- Constraints and uniqueness guarantees **[KEY]**: enforce the constraints when data is written, need the write accquires a lock, and do a atomic compare-and-set operation
   - uniq must need linearizability
   - foreign key or attribute constraints sometime can be implemented without linearizability
-- Cross-channel timing dependencies: for example store a file in a storage, and put an instruction in a message queue to let a background task to do something for the file. The instruction might be picked up earlier than the file replication
+- Cross-channel timing dependencies **[KEY]**: for example store a file in a storage, and put an instruction in a message queue to let a background task to do something for the file. The instruction might be picked up earlier than the file replication
 
 Implementing Linearizable Systems
 
-- single leader replication: read from leader or synchronously updated followers, it could be linearizable. But if use SSI, or if there are concurrency bugs, then it is not
+- single leader replication: read from leader or synchronously updated followers **[KEY]**, it could be linearizable. But if use SSI, or if there are concurrency bugs, then it is not
   - need the client knows who is the leader, which needs to solve consensus problem
-- Consensus algorithms: similar to single leader replication, but contains measures to prevent split brain and stale replicas. ZooKeeper and etcd work in this way
+- Consensus algorithms **[KEY]**: similar to single leader replication, but contains measures to prevent split brain and stale replicas. ZooKeeper and etcd work in this way
 - Multi-leader replication: cannot be linearizable
 - Leaderless replication: requring quorums can not achieve linearizable completely. Because LWW conflict resolution is based on time-of-day. Sloppy quorum also ruin linearizable
 
@@ -2570,7 +2570,7 @@ Linearizability and quorums
 
 The Cost of Linearizability
 
-- if there is a network interruption between DCs
+- if there is a network interruption between DCs **[KEY]**
   - multi-leader replication: each DC performs fine. The changes need to be replicated over are queued up
   - single-leader replication: writes will be broken in the follower DC. reads are not linearizble from the follower. Client can connect directly to the leader
 
@@ -2585,7 +2585,7 @@ Linearizability and network delays
 
 - even within a machine, the memory access is not linearizable with multi-core doing concurrent writes to their own memory cache first
 
-Ordering Guarantees
+Ordering Guarantees **[KEY]**
 
 - using a single leader replication is to make the write order easier to define
 - Serializability ensures transactions are behave as they are running in orders
@@ -2594,11 +2594,11 @@ Ordering Guarantees
 Ordering and Causality
 
 - ordering helps preserve causality
-- Casual dependencies: 1. response need after the request, 2. update need after the create, 3. B happenes after A: so B knows about A
-- consistent means consist with causality. Read skew violate causality
+- Casual dependencies **[KEY]**: 1. response need after the request, 2. update need after the create, 3. B happenes after A: so B knows about A
+- consistent means consist with causality **[KEY]**. Read skew violate causality
 - snapshot isolation provides causal consistency: if see a data, then any data precedes it also be able to see
 
-The causal order is not a total order
+The causal order is not a total order **[KEY]**
 
 - total order: any two elements can be compared
 - partially ordered: based on some rules, one is greater than another, but not always
@@ -2610,21 +2610,21 @@ Linearizability is stronger than causal consistency
 
 - linearizability implies causality
 - linearizability is not the only way of preserving causality, so no need to spend a lot to implement linearizability
-- causal consistency is the strongest possible consistency model that don't get slow down by nerwork latency. performance and availability are similar to eventual consistent systems. Still new tech.
+- causal consistency is the strongest possible consistency model that don't get slow down by nerwork latency. performance and availability are similar to eventual consistent systems. Still new tech
 
-Capturing causal dependencies
+Capturing causal dependencies **[KEY]**
 
 - when a replica processes an operation, it must ensure that all causally preceding operations have already been processed, otherwise need to wait
 - can use version vectors track casual dependencies across the DB
 - when write, the client pass in the version, and the DB use it to track which data has been read by which transaction
 
-Sequence Number Ordering
+Sequence Number Ordering **[KEY]**
 
 - impracticable to keep track of all casual dependencies, because cannot track all the reads
 - use sequence numbers/timestamps from a logical clock to order events. It should be small in size and every op has an uniq seq num
 - in a single leader replication, if the follower applies the writes in the order as the replication log, then the follower is always causally consistent
 
-Noncausal sequence number generators
+Noncausal sequence number generators **[KEY]**
 
 - for non-single leader DB (e.g., partitioned DB, multi-leader or leaderless DB), serveral different ways
   - each node has it own seq num and stored with some bits indicate which node
@@ -2632,13 +2632,13 @@ Noncausal sequence number generators
   - preallocate some ranges of seq nums for each node. If used up, allocate a new range
 - those ways cannot generate casual consistent seq nums for ops across nodes
 
-Lamport timestamps
+Lamport timestamps **[KEY]**
 
-- sequence numbers that is consistent with causality: a pair of (counter, node ID)
+- sequence numbers that is consistent with causality: a pair of [counter, node ID]
 - the one with a greater counter is the greater timestamp or the one with the greater node ID is the greater timestamp
 - every node and every client keeps track of the maximum counter value it has seen so far, and update to the max if one write gives a bigger counter
 - lamport timestamp vs. version vector
-  - version vector is used to distinguish weather two ops are concurrent or have casual dependence
+  - version vector is used to distinguish whether two ops are concurrent or have casual dependence
   - lamport timestamp enforce a total ordering, but cannot tell if two ops are concurrent, but it is more compact
 
 Timestamp ordering is not sufficient
@@ -2650,11 +2650,11 @@ Total Order Broadcast
 
 - single-leader replication: the throughput might not be able to handled on a single node; when the leader fail, needs failover
 - Partitioned databases only has ordering per partition. Total ordering across all partitions requires additional coordination
-- total order broadcast (atomic broadcast): a propotcol for exchanging message across nodes. requires two safety properties
+- total order broadcast (atomic broadcast) **[KEY]**: a propotcol for exchanging message across nodes. requires two safety properties
   - reliable delivery: if a message is delivered to one node, it is delivered to all nodes
   - totally ordered delivery: all the nodes have same order
 
-Using total order broadcast
+Using total order broadcast **[KEY]**
 
 - Consensus services (ZooKeeper and etcd) use it
 - state machine replication: every replica processes the same writes in the same order, then replicas remain consistent just with temp lag
@@ -2663,7 +2663,7 @@ Using total order broadcast
 - it is a way of creating logs
 - can also be used for implement a lock. The accquire lock op can be a message in the log. The seq num can be used as a fencing token
 
-Implementing linearizable storage using total order broadcast
+Implementing linearizable storage using total order broadcast **[KEY]**
 
 - linearizable system vs. total order broadcast
   - total order broadcast is async. linearizablity is a rencency guarantee
@@ -2677,11 +2677,13 @@ Implementing linearizable storage using total order broadcast
   - fetch the position of the latest log message in a linearizble way, and wait for all entries up to that position to be returned (ZooKeeper `sync()`)
   - read from a replica syncly updated on writes (chain replication)
 
-Implementing total order broadcast using linearizable storage
+Implementing total order broadcast using linearizable storage **[KEY]**
 
-- vise versa, when have a linearizable register with compare-and-set ops, can implement total order broadcase
+- vise versa, when have a linearizable register with compare-and-set ops, can implement total order broadcast
 - when write, append the seq num, then send the message to all nodes. Each node applies the message based on the seq num. There should be no gap in the seq nums
 - the linearizable compare-and-set register and total order broadcast have the same consensus challenge to solve
+
+**HERE**
 
 Distributed Transactions and Consensus
 
