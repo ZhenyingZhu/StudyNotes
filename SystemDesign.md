@@ -2769,6 +2769,34 @@ Limitations of distributed transactions
 
 Fault-Tolerant Consensus
 
+- consensus problem: nodes propose values, the consensus algorithm decides on one of those values
+- a consensus algorithm must satisfy properties:
+  - Uniform agreement
+  - Integrity: no node decide twice
+  - Validity: the decided value must be proposed by some nodes
+  - Termination: every node that is not crashed eventually decides some value (including coordinator)
+- fault tolerance: termination property formalize it. a consensus algorithm must make progress even some nodes fail (but still majority nodes are working and form a quorum)
+
+Consensus algorithms and total order broadcast
+
+- Well known consensus algorithms: Viewstamped Replication (VSR), Paxos, Raft, Zab
+- they are also total order broadcast algorithms. they decide on a sequence of values
+- total order broadcast is equivalent to repeated rounds of consensus
+
+Single-leader replication and consensus
+
+- if lead is chose by human, then it is already a consensus algorithm, but not satisfy termination property
+
+Epoch numbering and quorums
+
+- consensus protocols make a weaker guarantee: leader is not uniq. define an epoch num. Within each epoch, the leader is uniq
+- if the current leader is thought to be dead, nodes start a vote, and the election gives an incremented epoch num. Epoch nums are totally ordered
+- if there is a conflict between two leaders (maybe caused by the previous leader not dead), the higher epoch wins
+- before a leader decides, it must collect votes from a quorum of nodes. A note votes only when it doesn't know a higher epoch
+- two rounds of votes: 1. Decide leader, 2. votes on leader's decision. The quorums must overlap.
+
+Limitations of consensus
+
 **HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch09.html>
 
 ## Open Questions
