@@ -2797,6 +2797,43 @@ Epoch numbering and quorums
 
 Limitations of consensus
 
+- nodes vote proposal is sync replication, so it is high cost
+- it use strict majority, so need a min of 3 nodes to have the quorum
+- most consensus algorithms are static membership algorithms. They assume fixed of nodes. Dynamic membership extensions for those algorithms are not well known so far
+- rely on timeouts to detect failed nodes. But in an env with highly variable network delays (such as geographically distributed systems), it could cause frequent leader elections and harm performance
+
+Membership and Coordination Services
+
+- distributed key-value stores/coordination and configuration services: ZooKeeper, etcd. Their APIs are similar to DB
+- HBase, Hadoop YARN, OpenStack Nova, and Kafka all rely on ZooKeeper running in the background
+- they are only designed for small amount of data that can fit in memory
+- the data is replicated to all nodes using a fault-tolerant total order broadcast algorithm
+- ZooKeeper is modeled after Google’s Chubby lock service. It also implements:
+  - Linearizable atomic operations: can be used for a lock with compare-and-set op. The lock is implemented as a lease. The client fails after the expiry time
+  - Total ordering of operations: can implement a fencing token using the zxid (transaction id) and cversion
+  - Failure detection: clients maintain long-lived session with ZooKeeper server, so ZooKeeper can gather heartbeats. Release locks if a session times out for an ephemeral node
+  - Change notifications: a client can find out if another client joins the cluster or fails. Can subscribe to notifications
+
+Allocating work to nodes
+
+- leader election is also useful for job schedulers
+- node assigments for partitions changes can also use ZooKeeper. During the change, some nodes need to take loads from other nodes
+- perform mojority votes on a 1000+ nodes are inefficient, so ZooKeeper only votes among 3 to 5 nodes but supporting a large number of clients by outsourcing some coordinating works (consensus, operation ordering, and failure detection) to an external service
+- data managed by ZooKeeper normally change not frequently (1 w per min/hour). It should not store app runtime states
+
+Service discovery
+
+- to reach to a service, which IP to use
+- when a node starts, reg its network endpoint in a service registy, and use ZooKeeper to let other services find it
+- If not need consensus, DNS is the old and better way. It uses multi-level caching so data could be stale
+- but to tell who is the leader, need consensus
+- can use read-only caching replicas. Those nodes not participate in votes, but serve read requests
+
+Membership services
+
+- determines which nodes are currently active and live members of a cluster
+- hard to detect fail nodes, but with consensus, can come to agree on which node alive
+
 **HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch09.html>
 
 ## Open Questions
