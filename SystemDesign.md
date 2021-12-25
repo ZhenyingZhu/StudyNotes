@@ -2683,8 +2683,6 @@ Implementing total order broadcast using linearizable storage **[KEY]**
 - when write, append the seq num, then send the message to all nodes. Each node applies the message based on the seq num. There should be no gap in the seq nums
 - the linearizable compare-and-set register and total order broadcast have the same consensus challenge to solve
 
-**HERE**
-
 Distributed Transactions and Consensus
 
 - FLP result: there is no algorithm that is always able to reach consensus if there is a risk that a node may crash, under async system model (cannot use clock)
@@ -2704,7 +2702,7 @@ From single-node to distributed atomic commit
   - Some nodes might crash
 - compensating transaction: un-commit a commit transaction, but itself is another transaction
 
-Introduction to two-phase commit
+Introduction to two-phase commit **[KEY]**
 
 - Needs a coordinator (transaction manager). Can be a lib or a service
 - nodes involved are participants
@@ -2712,10 +2710,10 @@ Introduction to two-phase commit
   1. sends a prepare request to each node. Coordinator tracks the responses
   2. If all participants return yes, then send a commit request, if any replies no, send an abort request to all nodes
 
-A system of promises
+A system of promises **[KEY]**
 
 - when app starts a transaction, the coordinator gives a transaction id that is globally uniq
-- on every node app does a single-node transaction on all the nodes. Read/Write are done on one of the participant with the transaction id appended
+- Read/Write are done on one of the participant with the transaction id appended. The coordinator replicate it as a single-node transaction across all the nodes
 - when commit, all nodes get the prepare request with the transaction id, and verify disk space, constaints etc. to make sure it can commit
 - the coordinator gets the responses and makes a decision, and writes it to its transaction logs. This is the commit point
 - when send commit request, if any nodes fail, the coordinator keep retrying
@@ -2723,9 +2721,9 @@ A system of promises
 Coordinator failure
 
 - before coordinator sends prepare requests, any participant can abort
-- if a participant sends a yes response for the prepare request, then it cannot abort by itself (so timeout cannot be used), and must wait for coordinator to send commit/abort request. This is doubt/uncertain state
+- if a participant sends a yes response for the prepare request, then it cannot abort by itself (so timeout cannot be used) **[KEY]**, and must wait for coordinator to send commit/abort request. This is doubt/uncertain state
 - participants can communicate with each other to find the decision when coordinator is not responding, but it is not in 2PC protocol
-- after recover, coordinator reads its transaction logs to see the decision. If it see any participant doesn't response to commit, the transaction is abort
+- after recover, coordinator reads its transaction logs to see the decision **[KEY]**. If it see any participant doesn't response to commit, the transaction is abort
 
 Three-phase commit
 
@@ -2737,7 +2735,7 @@ Distributed Transactions in Practice
 
 - compare to single node transaction, distributed transaction is 10x slower, because it needs disk forcing for recovery, and additional network RTT
 - Database-internal distributed transactions: in replication and partitioned DBs, because all nodes run the same software, it is supported well
-- Heterogeneous distributed transactions: participants can use different techs, such as message broker. Supporting distributed trasaction is challenging
+- Heterogeneous distributed transactions **[KEY]**: participants can use different techs, such as message broker. Supporting distributed trasaction is challenging
 
 Exactly-once message processing
 
@@ -2747,7 +2745,7 @@ Exactly-once message processing
 
 XA transactions
 
-- X/Open XA (eXtended Architecture): a standard for 2PC across heterogeneous techs
+- X/Open XA (eXtended Architecture) **[KEY]**: a standard for 2PC across heterogeneous techs
 - It is a C API for interfacing with a transaction coordinator. The drivers of DB, MQ implements XA, and call the API to figure out if an op belongs to a distributed transaction
 - The transaction coordinator has XA built in as a lib. Normally the coordinator itself is a lib loaded by the app
 
@@ -2756,7 +2754,7 @@ Holding locks while in doubt
 - during a transaction, some rows get locked before committed
 - if coordinator crashes, the lock won't be released
 
-Recovering from coordinator failure
+Recovering from coordinator failure **[KEY]**
 
 - Orphaned in-doubt transactions: coordinator cannot decide the outcome because transaction log lost, or software bug. They cannot commit or abort foever
 - heuristic decisions: a participant can commit or abort an in-doubt transaction without getting decision from the coordinator. It is an emergency escape hatch
@@ -2765,11 +2763,11 @@ Limitations of distributed transactions
 
 - the coordinator is also kind of a DB, so needs care as DBs
 - Need replication
-- Since coordinator is not stateless, as its logs is a crucial part of the durable system state, deploying new software version to it would be tricky
-- Since XA needs to support a wide range of systems, it is a lowest common denominator. it cannot detect deadlock or work with SSI, because those are protocols implement on top of the systems
-- can cause amplifying failures and impact the fault tolerant, because block wait
+- Since coordinator is not stateless **[KEY]**, as its logs is a crucial part of the durable system state, deploying new software version to it would be tricky
+- Since XA needs to support a wide range of systems, it is a lowest common denominator. it cannot detect deadlock or work with SSI, because those are protocols implement on top of the systems **[KEY]**
+- can cause amplifying failures and impact the fault tolerant, because block wait **[KEY]**
 
-Fault-Tolerant Consensus
+Fault-Tolerant Consensus **[KEY]**
 
 - consensus problem: nodes propose values, the consensus algorithm decides on one of those values
 - a consensus algorithm must satisfy properties:
@@ -2783,13 +2781,13 @@ Consensus algorithms and total order broadcast
 
 - Well known consensus algorithms: Viewstamped Replication (VSR), Paxos, Raft, Zab
 - they are also total order broadcast algorithms. they decide on a sequence of values
-- total order broadcast is equivalent to repeated rounds of consensus
+- total order broadcast is equivalent to repeated rounds of consensus **[KEY]**
 
 Single-leader replication and consensus
 
 - if lead is chose by human, then it is already a consensus algorithm, but not satisfy termination property
 
-Epoch numbering and quorums
+Epoch numbering and quorums **[KEY]**
 
 - consensus protocols make a weaker guarantee: leader is not uniq. define an epoch num. Within each epoch, the leader is uniq
 - if the current leader is thought to be dead, nodes start a vote, and the election gives an incremented epoch num. Epoch nums are totally ordered
@@ -2797,7 +2795,7 @@ Epoch numbering and quorums
 - before a leader decides, it must collect votes from a quorum of nodes. A note votes only when it doesn't know a higher epoch
 - two rounds of votes: 1. Decide leader, 2. votes on leader's decision. The quorums must overlap.
 
-Limitations of consensus
+Limitations of consensus **[KEY]**
 
 - nodes vote proposal is sync replication, so it is high cost
 - it use strict majority, so need a min of 3 nodes to have the quorum
@@ -2806,11 +2804,11 @@ Limitations of consensus
 
 Membership and Coordination Services
 
-- distributed key-value stores/coordination and configuration services: ZooKeeper, etcd. Their APIs are similar to DB
+- distributed key-value stores/coordination and configuration services **[KEY]**: ZooKeeper, etcd. Their APIs are similar to DB
 - HBase, Hadoop YARN, OpenStack Nova, and Kafka all rely on ZooKeeper running in the background
 - they are only designed for small amount of data that can fit in memory
-- the data is replicated to all nodes using a fault-tolerant total order broadcast algorithm
-- ZooKeeper is modeled after Google’s Chubby lock service. It also implements:
+- the data is replicated to all nodes using a fault-tolerant total order broadcast algorithm **[KEY]**
+- ZooKeeper is modeled after Google’s Chubby lock service. It also implements **[KEY]**:
   - Linearizable atomic operations: can be used for a lock with compare-and-set op. The lock is implemented as a lease. The client fails after the expiry time
   - Total ordering of operations: can implement a fencing token using the zxid (transaction id) and cversion
   - Failure detection: clients maintain long-lived session with ZooKeeper server, so ZooKeeper can gather heartbeats. Release locks if a session times out for an ephemeral node
@@ -2820,14 +2818,14 @@ Allocating work to nodes
 
 - leader election is also useful for job schedulers
 - node assigments for partitions changes can also use ZooKeeper. During the change, some nodes need to take loads from other nodes
-- perform mojority votes on a 1000+ nodes are inefficient, so ZooKeeper only votes among 3 to 5 nodes but supporting a large number of clients by outsourcing some coordinating works (consensus, operation ordering, and failure detection) to an external service
+- perform mojority votes on a 1000+ nodes are inefficient, so ZooKeeper only votes among 3 to 5 nodes **[KEY]** but supporting a large number of clients by outsourcing some coordinating works (consensus, operation ordering, and failure detection) to an external service
 - data managed by ZooKeeper normally change not frequently (1 w per min/hour). It should not store app runtime states
 
 Service discovery
 
 - to reach to a service, which IP to use
-- when a node starts, reg its network endpoint in a service registy, and use ZooKeeper to let other services find it
-- If not need consensus, DNS is the old and better way. It uses multi-level caching so data could be stale
+- when a node starts, reg its network endpoint in a service registy, and use ZooKeeper to let other services find it **[KEY]**
+- If not need consensus, DNS is the old and better way. It uses multi-level caching so data could be stale **[KEY]**
 - but to tell who is the leader, need consensus
 - can use read-only caching replicas. Those nodes not participate in votes, but serve read requests
 
@@ -2836,7 +2834,9 @@ Membership services
 - determines which nodes are currently active and live members of a cluster
 - hard to detect fail nodes, but with consensus, can come to agree on which node alive
 
-**HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch09.html>
+### Part 3. Derived Data
+
+**HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/part03.html>
 
 ## Open Questions
 
