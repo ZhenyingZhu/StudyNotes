@@ -2836,7 +2836,26 @@ Membership services
 
 ### Part 3. Derived Data
 
-**HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/part03.html>
+- a large app needs to access and process data in different ways using different datastores
+- need implement mechanisums for moving data from one to another
+- Systems of record: source of truth. new data first write here exactly once and are normalized
+- Derived data systems: getting existing data and process it. e.g., cache, denormalized values, index, materialized views, predictive summary from a recommendation system
+
+#### Chapter 10. Batch Processing
+
+Different types of systems
+
+- Services (online systems): response time and availability is the primary measure of the performance
+- Batch processing systems (offline systems): measures throughput as the performance. e.g., Hadoop implements MapReduce algorithm
+- Stream processing systems (near-real-time systems): consume input and operate on event soon. Build on Batch processing system
+
+Batch Processing with Unix Tools
+
+- can be used in log system
+
+Simple Log Analysis
+
+**HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch10.html>
 
 ## Open Questions
 
