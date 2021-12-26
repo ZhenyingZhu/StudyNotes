@@ -2855,6 +2855,27 @@ Batch Processing with Unix Tools
 
 Simple Log Analysis
 
+- Unix tools: `awk`, `sed`, `grep`, `sort`, `uniq`, `xargs` can process GB files in seconds
+
+Chain of commands versus custom program
+
+- program is more readable, but not concise then unix pipe
+
+Sorting versus in-memory aggregation
+
+- for word count solutions, sorting to group same entries together vs. using hash table to aggregation in-mem
+- if the different words count is small, the working set of the job is small. They can fit in the memory allocated for the hash table
+- if the working set is large, sorting can make the efficient usage of disks with merge sort. The bottleneck is the disk read performance
+
+The Unix Philosophy
+
+- Make each program do one thing well
+- Expect the output of every program to become the input to another. Don’t clutter output with extraneous information. Make output columns flexiable. Don't insist on interactive input
+- Build and try small parts quickly. Don’t hesitate to throw away the clumsy parts and rebuild them.
+- Use tools to help. Build if necessary, even it needs to drop current work
+
+A uniform interface
+
 **HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch10.html>
 
 ## Open Questions
