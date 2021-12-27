@@ -2876,6 +2876,41 @@ The Unix Philosophy
 
 A uniform interface
 
+- to pipeline all programs, need to have a uniform interface
+- In unix, the interface is a file descriptor: can be a file, a communication channel to another process, a device driver, a TCP socket
+
+Separation of logic and wiring
+
+- use `stdin`, `stdout` They can attach to other processes, like keyboard, file, screen, etc. There is a in-mem buffer
+- similar to loose coupling/late binding/inversion of control
+- but it is hard to wire multiple input/output. Need some tricks and configs
+
+Transparency and experimentation
+
+- input is immutable
+- the pipeline can be stopped anywhere, and pipe the output to `less`
+- can write the output to a file so it can be restarted later
+- but UNIX tools can be only run on one machine, so need Hadoop
+
+MapReduce and Distributed Filesystems
+
+- MapReduce doesn't have side effects on input. The output files are written in a sequential fashion (not modify written parts)
+- Read and write on HDFS, similar to Object storage services (Amazon S3, Azure Blob Storage, and OpenStack Swift)
+- HDFS is shared-nothing. Different from shared-disk approach Network Attached Storage (NAS) and Storage Area Network (SAN)
+- HDFS has a daemon process running on each machine to expose a network service
+- NameNode is a central server that tracks the which file blocks stores on which machines
+- File blocks are either replicated or use erasure coding scheme (replicate on another disk on the same machine)
+
+MapReduce Job Execution
+
+- Read a set of input files, and break them into records done by MapReduce
+- Mapper function: extract a key-value pair from each record
+- sort key-value pairs by key done by MapReduce
+- Reducer function: iterate over key-value pairs
+- Can create a second job to process the output of the first job
+
+Distributed execution of MapReduce
+
 **HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch10.html>
 
 ## Open Questions
