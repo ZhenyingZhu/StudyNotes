@@ -2911,6 +2911,20 @@ MapReduce Job Execution
 
 Distributed execution of MapReduce
 
+- MapReduce handles the parallelism
+- The mapper and reducer don't care about the input source or output target, so it can handle moving data between machines
+- Hadoop parallelization is based on partitioning
+- Map task/Reduce task: including mapper/reducer callbacks, but also do other things
+- Map task side, each file block is a partition and can be proceeded by one map task. each input is 100 MB
+- putting the computation near the data: scheduler lets mapper run on the machine stores a replica of the input file
+- MapReduce framwork 1. copies the mapper code to the machine, 2. run the map task to read the input, 3. passing one record to the mapper callback each time
+- Reduce task side, job author decides number of reduce tasks to have
+- framework hashes the key and send the same key to same reduce task
+- shuffle: reduce task sorts map task output based on reducer partition and writes to map task's local disk. When a mapper finishes the work, the scheduler notifies the reducer to fetch the output
+- Reduce task merge sorts the map tasks' output files, then let the reducer iterates and processes each record. It can generates multiple records per input key-value pair, and writes to HDFS on the reduce task machine
+
+MapReduce workflows
+
 **HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch10.html>
 
 ## Open Questions
