@@ -2919,21 +2919,34 @@ Without using the tool, the steps are [Protect an ASP.NET Core web API with the 
 - WebAPI: TodoListService. Based on the logged in user, write the TodoItem or return the TodoItem.
 - WPF app: TodoListClient. Login the user and get a token, then call the WebAPI. Need user consent to allow the app accessing the TodoListService on user behalf
 
-TodoListService code
+How was the code created
 
-- `Startup.ConfigureServices(services)` add `services.AddMicrosoftIdentityWebApiAuthentication(Configuration);`
+- The server is created with `dotnet new webapi -au=SingleOrg` (suspect it will add those AD related entries in the appsettings.json)
+- requires nuget: `Microsoft.Identity.Web` and `Microsoft.Identity.Web.TokenCacheProviders.InMemory`
+- `Startup.ConfigureServices(services)` add `services.AddMicrosoftIdentityWebApiAuthentication(Configuration);` to replace `AddAzureAdBearer`
+  - it is to validate the token with Microsoft Identity platform
+  - the valid audiences: `options.Audience` in the AppCreationScripts and `api://{ClientID}`
 - `Startup.Configure(app, env)` add `app.UseAuthentication(); app.UseAuthorization();`
 - `appsettings.json` has `AzureAd.ClientId` which is the `Application (client) ID` of the TodoListService in Azure AD.
 - Controller uses `ConcurrentBag` to store an in-memory dictionary
 - Controller use `[RequiredScope("access_as_user")]`
 - Get the user by `string owner = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;`
-
-TodoListService app
-
+- the App URL should be `https://localhost:44351/api/todolist` and needs to enable SSL. In VS 2019, can do it in Debug tab. It is stored in `launchsettings.json`
 - needs `<PackageReference Include="Microsoft.Identity.Web" Version="1.17.0" />`
 - API permissions has MS Graph User.Read Delegated (sign-in as user) permission
 - An API with App ID URI `api://<app id>`
 - A scope `api://<app id>/access_as_user`
+
+Choosing which scopes to expose
+
+- The scope `access_as_user` will be presented in the access token claim
+- delegated permission scopes will be in the scp or http://schemas.microsoft.com/identity/claims/scope claim ??What does it mean??
+
+**HERE**: [A web API that calls web APIs](https://docs.microsoft.com/en-us/azure/active-directory/develop/scenario-web-api-call-api-overview)
+
+[desktop apps](https://docs.microsoft.com/en-us/azure/active-directory/develop/scenario-desktop-app-configuration?tabs=dotnet)
+
+**TODO**: Read through
 
 TodoListClient code
 
@@ -2942,8 +2955,6 @@ TodoListClient code
   - TodoListScope: `api://<clientId>/access_as_user`
 - Uses `AddMicrosoftIdentityWebApiAuthentication` to get the token.
 
-**HERE**: put a temp note
-
 - After reg an app, in the Expose an API, set the App ID URL. By default it generates `api://{clientId}`
 - need at least one scope to obtain an access token.
 - Admin consent is for api to access the API as a signed-in user. User consent is access the api on the user behalf.
@@ -2951,10 +2962,6 @@ TodoListClient code
 - Both the server and the client app need to be reged.
 - the client app reg needs to select Authentication > Add a platform > mobile and desktop application. Redirect URL use `http://localhost`
 - API permissions > add a permission > My APIs > TodoListServer
-
-**HERE**: How was the code created
-
-[desktop apps](https://docs.microsoft.com/en-us/azure/active-directory/develop/scenario-desktop-app-configuration?tabs=dotnet)
 
 ## MVC
 
