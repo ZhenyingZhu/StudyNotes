@@ -2925,6 +2925,31 @@ Distributed execution of MapReduce
 
 MapReduce workflows
 
+- workflow: multiple jobs chained together. Hadoop doesn't natively support it, so need to setup the jobs to output to and input from a same folder
+- if a job failed, the output would be discarded, so next job cannot starts. Workflow schedulers like Oozie have been developed
+- recommendation systems can have 50 to 100 jobs. High level tools like Pig, Hive can be used to setup workflows
+
+Reduce-Side Joins and Grouping
+
+- relational model: foreign key; document model: document reference; graph model: edge. DB would need lookup indexes multiple times for queries involve join
+- in batch processing, join means all the occurance of an association across the whole dataset, not an individual entry
+
+Example: analysis of user activity events
+
+- there is a user table, contains the birth date. A user activity table. Now want to find out which activities are common for an age group
+- Making random-access requests over the network for each record has a poor performance for batch processing. Also the data could change during the process
+- process on the backup/snapshot of the DB
+
+Sort-merge joins
+
+- an algorithm used in MapReduce for job requires join
+- can have two mappers: 1. map uid to activity, 2. map uid to dob (date of birth)
+- secondary sort: the reducer gets two inputs, put the uid dob records earlier than the activities, while the activities are sorted by the framework already
+- Reducer stores the dob as a local variable, then iterate the activies of the uid to generates a map between dob and activity
+- then pass the result to a subsequence job to compute the distribution
+
+Bringing related data together in the same place
+
 **HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch10.html>
 
 ## Open Questions
