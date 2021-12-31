@@ -2950,6 +2950,25 @@ Sort-merge joins
 
 Bringing related data together in the same place
 
+- the keys in the mapper results are the destination of which reduce task to receive
+- MapReduce programming model separate the physical network communication aspects, from the app logic
+
+GROUP BY
+
+- Group records by some key clause together. Follow by aggregation
+- Set up mapper to let the results using the grouping key
+- sessionization: the sequence of actions that a user take. Can implement it by using a session cookie so even requests across partitions
+
+Handling skew
+
+- linchpin objects/hot keys: some keys have way more records
+- can cause hot spot/significantly for a single reducer. Subsequent job would need to wait for this slowest reducer to complete
+- Pig skewed join method first runs a sampling job to determine which keys are hot, send them to several random picked reducers. Other inputs for the join replicates to all the reducers
+- Hive’s skewed join optimization requires the hot keys to be specified explicitly. Records stored separately. Use map-side join
+- Each reducer groups a subset of the records for the hot key, then a second MapReduce job combines the values
+
+Map-Side Joins
+
 **HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch10.html>
 
 ## Open Questions
