@@ -3003,6 +3003,37 @@ The Output of Batch Workflows
 
 Building search indexes
 
+- full-text search index is a file stores the term dictionary. Keyword as the key and document IDs (posting list) containing this keyword as value
+- when documents change, one expensive approach is to periodically rerun the workflox for all documents and replace existing indexes
+- can also incrementally adding new docs to indexes
+
+Key-value stores as batch process output
+
+- classifiers machine learning system: recommendation systems, spam filters, anomaly detection, image recognition
+- output is a DB that can be queried with userId/productId etc.
+- can direct the DB client to mapper or reducer, processing one record as a time, but it is a bad idea
+  - making a network request for each record is not scale
+  - batch process can cause concurrent writes
+  - the DB writes could fail causing MapReduce job needs to retry, and can be hard to make sure each record only procceed once
+- so create the DB inside the batch job, write the result to a read-only file, and expose to read only queries. HBase bulk loading uses it
+- since they don't frequently write, and the data structure is simple, they don't need a lot of protection, like write-ahead log
+
+Philosophy of batch process outputs
+
+- treating input as immutable, so the batch process can be run repeatly without side effects
+- human fault tolerance: if introduced a bug, can easily switch back to the old outputs, vs. DB that fixing bug cannot fix the data easily
+- minimizing irreversibility: beneficial for Agile software development
+- if a mapper or reducer fails, the framework retries couple times
+- same input can be used by multiple jobs, including monitoring metrics, compare the results for expected characteristics
+- separation of concerns: jobs can be wired. Code can be reused
+- Hadoop has structured file formats: Avro is used to provide schema-based encoding
+
+Comparing Hadoop to Distributed Databases
+
+- massively parallel processing (MPP): the idea of MapReduce in more earlier time
+
+Diversity of storage
+
 **HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch10.html>
 
 ## Open Questions
