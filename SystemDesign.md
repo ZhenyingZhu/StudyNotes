@@ -3034,6 +3034,36 @@ Comparing Hadoop to Distributed Databases
 
 Diversity of storage
 
+- Hadoop can store any format of data, vs. MPP needs the producer to standarize the input
+- data lake/data hub: collecting data in its raw form, and worrying about schema design later, allows the data collection to be speeded up
+- the dataset consumer can interpret the data. Producer has other priority to deal with
+
+Diversity of processing models
+
+- MPP are efficient for certain queries, but not all
+- MapReduce can easily run customized code
+- Hive build a SQL query execution engine on Hadoop
+- other processing models can all run on a single shared-user cluster of machines accessing the same files
+
+Designing for frequent faults
+
+- Batch process are less sensitive to faults as no immediately impact to users
+- MPP aborts the whole query when failures happen
+- MapReduce can tolerate the failure of a map/reduce task. It eager to write data to disk
+- MapReduce is target for large jobs, so even recovery from an individual task introduce a lot of overheads
+- Online production services and offline batch jobs runnnig on same machines. Each task has a priority. Higher priority task can terminate lower priority tasks on the same machine
+- the task owners need to pay for the resources, and higher priority tasks are more expensive. MapReduce tasks are normally low priority
+- Low-priority computing resources can be overcommitted, to better utilize resources better, but it also means tasks can be terminated any time
+- MapReduce is designed to tolerate frequent unexpected task termination
+
+Beyond MapReduce
+
+- Implementing a complex processing job using raw MapReduce APIs is hard
+
+Materialization of Intermediate State
+
+- 
+
 **HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch10.html>
 
 ## Open Questions
