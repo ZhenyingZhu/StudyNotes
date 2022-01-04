@@ -3062,7 +3062,15 @@ Beyond MapReduce
 
 Materialization of Intermediate State
 
-- 
+- The complex system that quites a lot of jobs in the workflow produces a lot of output/input folders as intermediate states
+- materialization: writing the intermediate state to files
+- fully materializing intermediate state vs. stream the output to next job (UNIX)
+  - a MapReduce job can only start when all tasks in the preduding jobs all completes
+  - Stream solution makes next job starts as soon as input comes
+  - some mappers are redundant. They just read the output of the previous job
+  - intermediate states are replicated across nodes unecessarily. they are just temp data
+
+Dataflow engines
 
 **HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch10.html>
 
