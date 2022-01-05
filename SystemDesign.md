@@ -3072,6 +3072,25 @@ Materialization of Intermediate State
 
 Dataflow engines
 
+- Spark: handle an entire workflow at one job
+- Repeatly calls a user-defined function to process one record at a time. Partition the input to make work parallel
+- The output of one function becomes the input of another
+- functions/operations are more flexible than mapper or reducer
+- different ways to connect outputs to another inputs
+  - repartition and sort by key. Enables sort-merging and grouping
+  - directly dump the output as the input, without sorting. When the paritioning hashing is more important than the order, use this option
+  - broadcast hash joins
+- Dataflow engine benefits are:
+  - expensive works like sorting are only done when required
+  - no unnecessary map tasks
+  - scheduler has a view of where the data is required, so it can optimize. Since all joins and data dependencies are explicitly declared
+  - intermediate states can be keep in memory or local disk
+  - when input is ready, operations can start ASAP
+  - existing JVM can be reused for new operators
+- Pig, Hive workflows can convert to Spark with just a config change
+
+Fault tolerance
+
 **HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch10.html>
 
 ## Open Questions
