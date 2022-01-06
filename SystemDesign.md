@@ -3091,6 +3091,15 @@ Dataflow engines
 
 Fault tolerance
 
+- Spark avoid writing intermidiate state to HDFS, but recomputed from other data when machine fails
+- uses the resilient distributed dataset (RDD) abstraction for tracking the ancestry of data
+- Flink checkpoints operator state
+- whether the computation is deterministic: if not, then downstream might have some previous compute results but some have new results
+- not deterministic operations: iterate through hash table, probabilistic and statistical algorithms relying on radom numbers, using system clock, using external data source
+- if recompute is very expensive, better to materialize the result
+
+Discussion of materialization
+
 **HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch10.html>
 
 ## Open Questions
