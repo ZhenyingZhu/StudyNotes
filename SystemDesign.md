@@ -3105,6 +3105,52 @@ Discussion of materialization
 
 Graphs and Iterative Processing
 
+- graph batch processing: used in recommendation engine or ranking systems
+- Spark arrange the operations in a job as a directed acyclic graph (DAG), but the data is still relational. While graph processing is on the graph strutured data
+- graph algorithms normally need iterate the data multiple times, but MapReduce only perform single pass. Can make MapReduce run repeatly, but inefficient
+
+The Pregel processing model
+
+- bulk synchronous parallel (BSP): Apache Giraph implements it
+- one vertex sends a message to another through the edge
+- in each iteration, a function is called for each vertex and process all the messages to it. The state is saved in memory. In next iteration, the vertex only process new messages
+
+Fault tolerance
+
+- not let vertex query neighbors but pass messages to neighbors save time
+- the prior iteration must fully complete before the next one can start
+- the framework transparently recovers from faults in order to simplify the programming model for algorithms
+- periodically checkpointing the state of all vertices at the end of an iteration. When any node in one iteration fails, rollback the whole system to the previous checkpoint
+
+Parallel execution
+
+- when sending a message, just need to use the vertexID. the framework can partition the graph
+- neighbor vertexes can be colocated on the same machine, but this way is complicate. Random assign machines is easier
+- intermediate state is normally bigger than the orignal data
+- overhead of sending message can slow down the algorithms. So if the graph algorithm can be done on a single machine, it would be quicker. Only when the data is too big, then use Pregel
+
+High-Level APIs and Languages
+
+- now can store and process many petabytes of data on clusters of over 10,000 machines
+- dataflow APIs like Hive and Pig use relational-style building blocks to express a computation: joining datasets on some field, grouping by key, filtering, then aggregating
+- less code, can see intermidiate state, make the job execution efficiency at machine level
+
+The move toward declarative query languages
+
+- making joins as relational operators, help framework analyze the properties of the join inputs and use algorithms to optimize
+- Hive, Spark have cost-based query optimizers, and can change the order of joins
+- the developer needs to specify the joins in a declarative way
+- but the mapper and reducer are arbitrary code. The benefit is that it can reuse existing codes, but not declarative like SQL
+- For example, filtering some fileds by the system can leverage column-oriented storage layouts
+- vectorized execution: iterating over data in a tight inner loop that is friendly to CPU caches
+
+Specialization for different domains
+
+- statistical and numerical algorithms that are needed for machine learning apps, like classicification and recommendation, can be reused
+- Mahout implements various algorithms for machine learning on top of MapReduce
+- spatial algorithms such as k-nearest neighbors: searches for items that are close to a given item in some multi-dimensional space to find similarity
+- Approximate search is also important for genome analysis algorithms
+
 **HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch10.html>
 
 ## Open Questions
