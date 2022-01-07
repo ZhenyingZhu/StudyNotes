@@ -3100,6 +3100,11 @@ Fault tolerance
 
 Discussion of materialization
 
+- Flink uses pipelined execution: incrementally pass the output to other operators, and start processing ASAP
+- sort needs all the input so it cannot be pipelined though
+
+Graphs and Iterative Processing
+
 **HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch10.html>
 
 ## Open Questions
