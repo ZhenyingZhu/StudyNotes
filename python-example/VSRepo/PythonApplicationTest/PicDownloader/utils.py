@@ -8,15 +8,24 @@ import ssl
 from pathlib import Path
 
 class Utils:
+    def __init__(self, cookie):
+        self.cookie = cookie
+
     def get_page_from_url(self, url, debug=False):
         try:
             hdr = {
-                'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.64 Safari/537.11',
-                'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-                'Accept-Charset': 'ISO-8859-1,utf-8;q=0.7,*;q=0.3',
-                'Accept-Encoding': 'none',
-                'Accept-Language': 'en-US,en;q=0.8',
-                'Connection': 'keep-alive'
+                'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8Accept-Encoding',
+                'Accept-Encoding': 'gzip, deflate, br',
+                'Accept-Language': 'en-US,en;q=0.5',
+                'Cache-Control': 'max-age=0',
+                'Connection': 'keep-alive',
+                'Cookie': this.cookie,
+                'Sec-Fetch-Dest': 'document',
+                'Sec-Fetch-Mode': 'navigate',
+                'Sec-Fetch-Site': 'same-origin',
+                'Sec-Fetch-User': '?1',
+                'Upgrade-Insecure-Requests': '1',
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:95.0) Gecko/20100101 Firefox/95.0'
             }
 
             req = requests.get(url, headers=hdr)
@@ -35,7 +44,8 @@ class Utils:
     def get_page_from_file(self, path):
         # Read from the debug_file which is crawled previously. Used for debugging.
         try:
-            debug_file = open(path, 'r')
+            Encoding = 'cp850'
+            debug_file = open(path, 'r', encoding=Encoding)
             html_page = debug_file.read()
             debug_file.close()
 
@@ -78,15 +88,15 @@ class Utils:
 
 
 def main():
-    utils = Utils()
+    utils = Utils("")
 
-    # html_page = utils.get_page_from_url("https://www.google.com")
-    # print(html_page)
+    html_page = utils.get_page_from_url("https://www.google.com/")
+    print(html_page)
 
     # Under Windows, the downloads folder could be moved.
     # download_path = os.path.join(Path.home(), "Downloads")
-    download_path = utils.get_download_path()
-    utils.download_pic(download_path, "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png")
+    # download_path = utils.get_download_path()
+    # utils.download_pic(download_path, "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png")
 
 if __name__ == "__main__":
     main()

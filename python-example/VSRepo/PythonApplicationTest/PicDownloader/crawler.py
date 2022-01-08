@@ -50,7 +50,7 @@ class Crawler:
     def get_first_page_url(self, main_html_page):
         try:
             # Doesn't work when there is a warning message. In this case pass in "/?nw=always" to the end of the url
-            gdtm_class = re.findall('div class="gdtm"(.*?)</a>', main_html_page)[0]
+            gdtm_class = re.findall('div class="gdt(.*?)</a>', main_html_page)[0]
             first_page_url = re.findall('<a href="(.*?)">', gdtm_class)[0]
             return first_page_url
         except IndexError:
@@ -151,11 +151,12 @@ def main():
     print('Argument List:', str(argv))
 
     url = argv[1]
-    if not url.endswith('/?nw=always'):
-        url += '/?nw=always'
+    # if not url.endswith('/?nw=always'):
+       # url += '/?nw=always'
     folder = argv[2]
+    cookie = argv[3]
 
-    utils = Utils()
+    utils = Utils(cookie)
     crawler = Crawler(url, os.path.join(utils.get_download_path(folder)))
     crawler.start()
 
