@@ -2846,8 +2846,8 @@ Membership services
 Different types of systems
 
 - Services (online systems): response time and availability is the primary measure of the performance
-- Batch processing systems (offline systems): measures throughput as the performance. e.g., Hadoop implements MapReduce algorithm
-- Stream processing systems (near-real-time systems): consume input and operate on event soon. Build on Batch processing system
+- Batch processing systems (offline systems): measures throughput as the performance **[KEY]**. e.g., Hadoop implements MapReduce algorithm
+- Stream processing systems (near-real-time systems): consume input and operate on event soon **[KEY]**. Build on Batch processing system
 
 Batch Processing with Unix Tools
 
@@ -2865,13 +2865,13 @@ Sorting versus in-memory aggregation
 
 - for word count solutions, sorting to group same entries together vs. using hash table to aggregation in-mem
 - if the different words count is small, the working set of the job is small. They can fit in the memory allocated for the hash table
-- if the working set is large, sorting can make the efficient usage of disks with merge sort. The bottleneck is the disk read performance
+- if the working set is large, sorting can make the efficient usage of disks with merge sort **[KEY]**. The bottleneck is the disk read performance
 
 The Unix Philosophy
 
 - Make each program do one thing well
 - Expect the output of every program to become the input to another. Don’t clutter output with extraneous information. Make output columns flexiable. Don't insist on interactive input
-- Build and try small parts quickly. Don’t hesitate to throw away the clumsy parts and rebuild them.
+- Build and try small parts quickly. Don’t hesitate to throw away the clumsy parts and rebuild them
 - Use tools to help. Build if necessary, even it needs to drop current work
 
 A uniform interface
@@ -2881,7 +2881,7 @@ A uniform interface
 
 Separation of logic and wiring
 
-- use `stdin`, `stdout` They can attach to other processes, like keyboard, file, screen, etc. There is a in-mem buffer
+- use `stdin`, `stdout` They can attach to other processes, like keyboard, file, screen, etc. There is an in-mem buffer
 - similar to loose coupling/late binding/inversion of control
 - but it is hard to wire multiple input/output. Need some tricks and configs
 
@@ -2889,10 +2889,10 @@ Transparency and experimentation
 
 - input is immutable
 - the pipeline can be stopped anywhere, and pipe the output to `less`
-- can write the output to a file so it can be restarted later
+- can write the output to a file so it can be restarted later **[KEY]**
 - but UNIX tools can be only run on one machine, so need Hadoop
 
-MapReduce and Distributed Filesystems
+MapReduce and Distributed Filesystems **[KEY]**
 
 - MapReduce doesn't have side effects on input. The output files are written in a sequential fashion (not modify written parts)
 - Read and write on HDFS, similar to Object storage services (Amazon S3, Azure Blob Storage, and OpenStack Swift)
@@ -2901,7 +2901,7 @@ MapReduce and Distributed Filesystems
 - NameNode is a central server that tracks the which file blocks stores on which machines
 - File blocks are either replicated or use erasure coding scheme (replicate on another disk on the same machine)
 
-MapReduce Job Execution
+MapReduce Job Execution **[KEY]**
 
 - Read a set of input files, and break them into records done by MapReduce
 - Mapper function: extract a key-value pair from each record
@@ -2915,10 +2915,10 @@ Distributed execution of MapReduce
 - The mapper and reducer don't care about the input source or output target, so it can handle moving data between machines
 - Hadoop parallelization is based on partitioning
 - Map task/Reduce task: including mapper/reducer callbacks, but also do other things
-- Map task side, each file block is a partition and can be proceeded by one map task. each input is 100 MB
-- putting the computation near the data: scheduler lets mapper run on the machine stores a replica of the input file
+- Map task side, each file block is a partition and can be proceeded by one map task. each input is 100 MB **[KEY]**
+- putting the computation near the data: scheduler lets mapper run on the machine stores a replica of the input file **[KEY]**
 - MapReduce framwork 1. copies the mapper code to the machine, 2. run the map task to read the input, 3. passing one record to the mapper callback each time
-- Reduce task side, job author decides number of reduce tasks to have
+- Reduce task side, job author decides number of reduce tasks to have **[KEY]**
 - framework hashes the key and send the same key to same reduce task
 - shuffle: reduce task sorts map task output based on reducer partition and writes to map task's local disk. When a mapper finishes the work, the scheduler notifies the reducer to fetch the output
 - Reduce task merge sorts the map tasks' output files, then let the reducer iterates and processes each record. It can generates multiple records per input key-value pair, and writes to HDFS on the reduce task machine
@@ -2927,7 +2927,7 @@ MapReduce workflows
 
 - workflow: multiple jobs chained together. Hadoop doesn't natively support it, so need to setup the jobs to output to and input from a same folder
 - if a job failed, the output would be discarded, so next job cannot starts. Workflow schedulers like Oozie have been developed
-- recommendation systems can have 50 to 100 jobs. High level tools like Pig, Hive can be used to setup workflows
+- recommendation systems can have 50 to 100 jobs **[KEY]**. High level tools like Pig, Hive can be used to setup workflows
 
 Reduce-Side Joins and Grouping
 
@@ -2944,7 +2944,7 @@ Sort-merge joins
 
 - an algorithm used in MapReduce for job requires join
 - can have two mappers: 1. map uid to activity, 2. map uid to dob (date of birth)
-- secondary sort: the reducer gets two inputs, put the uid dob records earlier than the activities, while the activities are sorted by the framework already
+- secondary sort **[KEY]**: the reducer gets two inputs, put the uid dob records earlier than the activities, while the activities are sorted by the framework already
 - Reducer stores the dob as a local variable, then iterate the activies of the uid to generates a map between dob and activity
 - then pass the result to a subsequence job to compute the distribution
 
@@ -2956,15 +2956,15 @@ Bringing related data together in the same place
 GROUP BY
 
 - Group records by some key clause together. Follow by aggregation
-- Set up mapper to let the results using the grouping key
-- sessionization: the sequence of actions that a user take. Can implement it by using a session cookie so even requests across partitions
+- Set up mapper to let the results using the grouping key **[KEY]**
+- sessionization **[KEY]**: the sequence of actions that a user take. Can implement it by using a session cookie so even requests across partitions
 
 Handling skew
 
 - linchpin objects/hot keys: some keys have way more records
 - can cause hot spot/significantly for a single reducer. Subsequent job would need to wait for this slowest reducer to complete
-- Pig skewed join method first runs a sampling job to determine which keys are hot, send them to several random picked reducers. Other inputs for the join replicates to all the reducers
-- Hive’s skewed join optimization requires the hot keys to be specified explicitly. Records stored separately. Use map-side join
+- Pig skewed join method first runs a sampling job to determine which keys are hot, send them to several random picked reducers. Other inputs for the join replicates to all the reducers **[KEY]**
+- Hive’s skewed join optimization requires the hot keys to be specified explicitly. Records stored separately. Use map-side join **[KEY]**
 - Each reducer groups a subset of the records for the hot key, then a second MapReduce job combines the values
 
 Map-Side Joins
@@ -2974,26 +2974,26 @@ Map-Side Joins
 
 Broadcast hash joins
 
-- one map-side join case: a large dataset join with a small dataset that can be loaded entirely in RAM
+- one map-side join case: a large dataset join with a small dataset that can be loaded entirely in RAM **[KEY]**
 - store the small dataset as a hash table, then process the large dataset and do join inline
 - can have multiple map tasks. Each process a small set of the large dataset
-- broadcast: each map task has one copy of the small dataset
+- broadcast: each map task has one copy of the small dataset **[KEY]**
 - Pig replicated join uses it
 
 Partitioned hash joins
 
-- the map task partition can be same as the input partition, so one map task only needs to read from one input partition
+- the map task partition can be same as the input partition, so one map task only needs to read from one input partition **[KEY]**
 - Hive bucketed map joins
 
 Map-side merge joins
 
 - if the inputs are both partitioned and sorted, no need to have the small dataset fits in the memory. Can iterate over both datasets
-- the inputs are normally generated by previous MapReduce jobs
+- the inputs are normally generated by previous MapReduce jobs **[KEY]**
 
 MapReduce workflows with map-side joins
 
 - reduce-side join outputs are sorted by the join key
-- map-side join outputs are sorted same as the marge input
+- map-side join outputs are sorted same as the large input
 - to know the dataset physical layout, like number of partitions, by which keys the data are partitioned and sorted, etc., can use HCatalog or Hive metastore to store such metadata
 
 The Output of Batch Workflows
@@ -3003,22 +3003,22 @@ The Output of Batch Workflows
 
 Building search indexes
 
-- full-text search index is a file stores the term dictionary. Keyword as the key and document IDs (posting list) containing this keyword as value
+- full-text search index **[KEY]** is a file stores the term dictionary. Keyword as the key and document IDs (posting list) containing this keyword as value
 - when documents change, one expensive approach is to periodically rerun the workflox for all documents and replace existing indexes
 - can also incrementally adding new docs to indexes
 
 Key-value stores as batch process output
 
-- classifiers machine learning system: recommendation systems, spam filters, anomaly detection, image recognition
+- classifiers machine learning system **[KEY]**: recommendation systems, spam filters, anomaly detection, image recognition
 - output is a DB that can be queried with userId/productId etc.
 - can direct the DB client to mapper or reducer, processing one record as a time, but it is a bad idea
   - making a network request for each record is not scale
   - batch process can cause concurrent writes
   - the DB writes could fail causing MapReduce job needs to retry, and can be hard to make sure each record only procceed once
-- so create the DB inside the batch job, write the result to a read-only file, and expose to read only queries. HBase bulk loading uses it
+- so create the DB inside the batch job, write the result to a read-only file, and expose to read only queries. HBase bulk loading uses it **[KEY]**
 - since they don't frequently write, and the data structure is simple, they don't need a lot of protection, like write-ahead log
 
-Philosophy of batch process outputs
+Philosophy of batch process outputs **[KEY]**
 
 - treating input as immutable, so the batch process can be run repeatly without side effects
 - human fault tolerance: if introduced a bug, can easily switch back to the old outputs, vs. DB that fixing bug cannot fix the data easily
@@ -3035,7 +3035,7 @@ Comparing Hadoop to Distributed Databases
 Diversity of storage
 
 - Hadoop can store any format of data, vs. MPP needs the producer to standarize the input
-- data lake/data hub: collecting data in its raw form, and worrying about schema design later, allows the data collection to be speeded up
+- data lake/data hub **[KEY]**: collecting data in its raw form, and worrying about schema design later, allows the data collection to be speeded up
 - the dataset consumer can interpret the data. Producer has other priority to deal with
 
 Diversity of processing models
@@ -3051,7 +3051,7 @@ Designing for frequent faults
 - MPP aborts the whole query when failures happen
 - MapReduce can tolerate the failure of a map/reduce task. It eager to write data to disk
 - MapReduce is target for large jobs, so even recovery from an individual task introduce a lot of overheads
-- Online production services and offline batch jobs runnnig on same machines. Each task has a priority. Higher priority task can terminate lower priority tasks on the same machine
+- Online production services and offline batch jobs runnnig on same machines. Each task has a priority. Higher priority task can terminate lower priority tasks on the same machine **[KEY]**
 - the task owners need to pay for the resources, and higher priority tasks are more expensive. MapReduce tasks are normally low priority
 - Low-priority computing resources can be overcommitted, to better utilize resources better, but it also means tasks can be terminated any time
 - MapReduce is designed to tolerate frequent unexpected task termination
@@ -3063,7 +3063,7 @@ Beyond MapReduce
 Materialization of Intermediate State
 
 - The complex system that quites a lot of jobs in the workflow produces a lot of output/input folders as intermediate states
-- materialization: writing the intermediate state to files
+- materialization: writing the intermediate state to files **[KEY]**
 - fully materializing intermediate state vs. stream the output to next job (UNIX)
   - a MapReduce job can only start when all tasks in the preduding jobs all completes
   - Stream solution makes next job starts as soon as input comes
@@ -3072,13 +3072,13 @@ Materialization of Intermediate State
 
 Dataflow engines
 
-- Spark: handle an entire workflow at one job
+- Spark: handle an entire workflow at one job **[KEY]**
 - Repeatly calls a user-defined function to process one record at a time. Partition the input to make work parallel
 - The output of one function becomes the input of another
-- functions/operations are more flexible than mapper or reducer
-- different ways to connect outputs to another inputs
+- functions/operations are more flexible than mapper or reducer **[KEY]**
+- different ways to connect outputs to another inputs **[KEY]**
   - repartition and sort by key. Enables sort-merging and grouping
-  - directly dump the output as the input, without sorting. When the paritioning hashing is more important than the order, use this option
+  - directly dump the output as the input, without sorting. When the paritioning hashing is more important than the order of records, use this option
   - broadcast hash joins
 - Dataflow engine benefits are:
   - expensive works like sorting are only done when required
@@ -3092,30 +3092,30 @@ Dataflow engines
 Fault tolerance
 
 - Spark avoid writing intermidiate state to HDFS, but recomputed from other data when machine fails
-- uses the resilient distributed dataset (RDD) abstraction for tracking the ancestry of data
-- Flink checkpoints operator state
+- uses the resilient distributed dataset (RDD) abstraction for tracking the ancestry of data **[KEY]**
+- Flink checkpoints operator state **[KEY]**
 - whether the computation is deterministic: if not, then downstream might have some previous compute results but some have new results
-- not deterministic operations: iterate through hash table, probabilistic and statistical algorithms relying on radom numbers, using system clock, using external data source
+- not deterministic operations: iterate through hash table, probabilistic and statistical algorithms relying on radom numbers, using system clock, using external data source **[KEY]**
 - if recompute is very expensive, better to materialize the result
 
 Discussion of materialization
 
 - Flink uses pipelined execution: incrementally pass the output to other operators, and start processing ASAP
-- sort needs all the input so it cannot be pipelined though
+- sort needs all the input so it cannot be pipelined though **[KEY]**
 
 Graphs and Iterative Processing
 
-- graph batch processing: used in recommendation engine or ranking systems
+- graph batch processing: used in recommendation engine or ranking systems **[KEY]**
 - Spark arrange the operations in a job as a directed acyclic graph (DAG), but the data is still relational. While graph processing is on the graph strutured data
 - graph algorithms normally need iterate the data multiple times, but MapReduce only perform single pass. Can make MapReduce run repeatly, but inefficient
 
-The Pregel processing model
+The Pregel processing model **[KEY]**
 
 - bulk synchronous parallel (BSP): Apache Giraph implements it
 - one vertex sends a message to another through the edge
 - in each iteration, a function is called for each vertex and process all the messages to it. The state is saved in memory. In next iteration, the vertex only process new messages
 
-Fault tolerance
+Fault tolerance **[KEY]**
 
 - not let vertex query neighbors but pass messages to neighbors save time
 - the prior iteration must fully complete before the next one can start
@@ -3125,7 +3125,7 @@ Fault tolerance
 Parallel execution
 
 - when sending a message, just need to use the vertexID. the framework can partition the graph
-- neighbor vertexes can be colocated on the same machine, but this way is complicate. Random assign machines is easier
+- neighbor vertexes can be colocated on the same machine, but this way is complicate. Random assign machines is easier **[KEY]**
 - intermediate state is normally bigger than the orignal data
 - overhead of sending message can slow down the algorithms. So if the graph algorithm can be done on a single machine, it would be quicker. Only when the data is too big, then use Pregel
 
@@ -3137,19 +3137,19 @@ High-Level APIs and Languages
 
 The move toward declarative query languages
 
-- making joins as relational operators, help framework analyze the properties of the join inputs and use algorithms to optimize
+- making joins as relational operators, help framework analyze the properties of the join inputs and use algorithms to optimize **[KEY]**
 - Hive, Spark have cost-based query optimizers, and can change the order of joins
 - the developer needs to specify the joins in a declarative way
 - but the mapper and reducer are arbitrary code. The benefit is that it can reuse existing codes, but not declarative like SQL
-- For example, filtering some fileds by the system can leverage column-oriented storage layouts
+- For example, filtering some fields by the system can leverage column-oriented storage layouts
 - vectorized execution: iterating over data in a tight inner loop that is friendly to CPU caches
 
 Specialization for different domains
 
 - statistical and numerical algorithms that are needed for machine learning apps, like classicification and recommendation, can be reused
-- Mahout implements various algorithms for machine learning on top of MapReduce
-- spatial algorithms such as k-nearest neighbors: searches for items that are close to a given item in some multi-dimensional space to find similarity
-- Approximate search is also important for genome analysis algorithms
+- Mahout implements various algorithms for machine learning on top of MapReduce **[KEY]**
+- spatial algorithms such as k-nearest neighbors: searches for items that are close to a given item in some multi-dimensional space to find similarity **[KEY]**
+- Approximate search is also important for genome analysis algorithms **[KEY]**
 
 **HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch10.html>
 
