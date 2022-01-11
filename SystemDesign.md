@@ -3188,6 +3188,12 @@ Direct messaging from producers to consumers
 
 Message brokers
 
+- a database for handling message steams. Producers and consumers connect to it as clients
+- can tolerate clients come and go including crash. The broker maintains the durability
+- consumers are generally asynchronous: the producer only waits the broker to confirm that the message is buffered, not wait for the message delivery
+
+Message brokers compared to databases
+
 **HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch10.html>
 
 ## Open Questions
