@@ -3194,7 +3194,15 @@ Message brokers
 
 Message brokers compared to databases
 
-**HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch10.html>
+- Some message brokers can participate in two-phase commit protocols
+- Message brokers delete a delivered message
+- working set for mesage brokers are small, the queues are short
+- message brokers support subscribing to a subset of topics matching some pattern
+- brokers notify clients when changes occur
+
+Multiple consumers
+
+**HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch11.html>
 
 ## Open Questions
 
