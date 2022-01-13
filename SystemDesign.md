@@ -3202,6 +3202,12 @@ Message brokers compared to databases
 
 Multiple consumers
 
+- Load balancing: one message deliver to one consumer. shared subscription
+- Fan-out: each message deliver to all consumers
+- can also combine above two patterns together
+
+Acknowledgments and redelivery
+
 **HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch11.html>
 
 ## Open Questions
