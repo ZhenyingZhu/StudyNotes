@@ -3208,6 +3208,13 @@ Multiple consumers
 
 Acknowledgments and redelivery
 
+- Consumer can crash and never process the message broker deliver. Broker use ack to make sure the message not lose
+- needs an atomic commit protocol to make sure the message is not process twice
+- for load balancer, the messages might delivered not in the original order
+- to keep the order, can have a separate queue per consumer for messages have causal depdencies
+
+Partitioned Logs
+
 **HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch11.html>
 
 ## Open Questions
