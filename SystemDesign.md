@@ -3215,6 +3215,11 @@ Acknowledgments and redelivery
 
 Partitioned Logs
 
+- sending message is normally not permanent traced
+- receiving a message is destructive as the message is deleted from broker
+
+Using logs for message storage
+
 **HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch11.html>
 
 ## Open Questions
