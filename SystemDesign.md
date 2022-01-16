@@ -3220,6 +3220,14 @@ Partitioned Logs
 
 Using logs for message storage
 
+- a producer sends a message by appending it to the end of the log, and a consumer receives messages by reading the log sequentially
+- consumer waits for a notification after it reaches the end of the log
+- logs can be partitioned. A topic can be defined as a group of partitions
+- within each partition, the broker assigns each message a monotonically increaing seq num, as offset, to give totally order of messages
+- Apache Kafka, Amazon Kinesis Streams, and Twitter’s DistributedLog work like this, achieve throughput of millions of messages per second by distributed across multiple machines. Achieve fault tolerance by replicating
+
+Logs compared to traditional messaging
+
 **HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch11.html>
 
 ## Open Questions
