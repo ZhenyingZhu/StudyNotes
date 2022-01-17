@@ -3251,6 +3251,108 @@ Disk space usage
 
 When consumers cannot keep up with producers
 
+- the log based approach is choosing the buffering way
+- need to monitor how far a consumer is behind and raise alert
+- the operational advantage is that one slow consumer won't block other consumers. So can debug with one consumer
+
+Replaying old messages
+
+- just move the offset can replay, make the log based approach like batch processing
+
+Databases and Streams
+
+- a write to a DB can also be an event. They are recorded in the replication log of the DB leader
+
+Keeping Systems in Sync
+
+- using ETL to keep data in different data systems sync, which is a batch process
+- periodic full DB dump can be slow
+- dual write: the app writes to each data system. Problems:
+  - race condition: concurrent writes causing a data in one system updated by client A and another by client B, cause permenant inconsist
+  - fault tolerance problem: one write fails while other succeed and lose atomic
+  - conflicts can occur because different data systems don't have a single leader
+
+Change Data Capture
+
+- change data capture (CDC): extract all data changes in a DB and replicate them into another data system, as a stream
+
+Implementing change data capture
+
+- CDC makes one DB as the leader, other derived data systems are followers/consumers. Using log based message broker as it perserve the order
+- DB trigger can be reged to changes and add entries to a changelog table, but it is fragile and slow
+- Parsing replication log is better, but have challenges: how to deal with schema change
+- LinkedIn’s Databus uses it
+- CDC is async. It can have replication lag
+
+Initial snapshot
+
+- replication logs are truncated, but build full-text index needs all changes
+- can create snapshot corresponding to a change log offset
+
+Log compaction
+
+API support for change streams
+
+Event Sourcing
+
+Deriving current state from the event log
+
+Commands and events
+
+State, Streams, and Immutability
+
+Advantages of immutable events 4
+
+Deriving several views from the same event log
+
+Concurrency control
+
+Limitations of immutability
+
+Processing Streams
+
+Uses of Stream Processing
+
+Complex event processing
+
+Stream analytics 3
+
+Maintaining materialized views
+
+Search on streams
+
+Message passing and RPC
+
+Reasoning About Time
+
+Event time versus processing time
+
+Knowing when you’re ready
+
+Whose clock are you using, anyway? 2
+
+Types of windows
+
+Stream Joins
+
+Stream-stream join (window join)
+
+Stream-table join (stream enrichment)
+
+Table-table join (materialized view maintenance)
+
+Time-dependence of joins
+
+Fault Tolerance
+
+Microbatching and checkpointing 1
+
+Atomic commit revisited
+
+Idempotence
+
+Rebuilding state after a failure
+
 **HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch11.html>
 
 ## Open Questions
