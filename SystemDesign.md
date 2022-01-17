@@ -3188,7 +3188,7 @@ Direct messaging from producers to consumers
 
 Message brokers
 
-- a database for handling message steams. Producers and consumers connect to it as clients
+- a database for handling message steams. Producers and consumers connect to it as clients This is AMQP/JMS(Java Message System)-style messaging
 - can tolerate clients come and go including crash. The broker maintains the durability
 - consumers are generally asynchronous: the producer only waits the broker to confirm that the message is buffered, not wait for the message delivery
 
@@ -3227,6 +3227,29 @@ Using logs for message storage
 - Apache Kafka, Amazon Kinesis Streams, and Twitter’s DistributedLog work like this, achieve throughput of millions of messages per second by distributed across multiple machines. Achieve fault tolerance by replicating
 
 Logs compared to traditional messaging
+
+- log based approach supports fan-out because read message doesn't delete it
+- to achieve coarse-grained load-balancing, assign partitions to different nodes. Downsides are:
+  - num of nodes cannot be more than partitions
+  - can cause head-of-line blocking: a single slow process message holds up all subsequence messages
+  - parallelize processing is not possible
+- when high throughput, ordering is important, and each message can be processed quick, then log-based approach is good
+- if message processing is expensive, and want to parallelize the work, while ordering is not important, then use JMS/AMQP style of message broker
+- consistant order only preserved in the same partition. Can use the client id of the consumer that requires to ordering to sharding the events it subscribes to
+
+Consumer offsets
+
+- the broker doesn't need to track ack for each message, just need to periodically record the consumer offsets to tell which messages have been processed
+- if a consumer node fails, a nother consumer node is assigned the partition, and start consuming the messages at the last recorded offset. But some message that are processed but not recorded will be processed twice
+
+Disk space usage
+
+- the logs are divided into segments to reclaim spaces. The old segments are moved to archieve storage
+- if a slow consumer is stilling reading an archieved segment, it will missed some messages
+- circular buffer: keep a bounded size buffer and discard old messages when full
+- log based message system always writes to disk. Another type of message system keeps messages in ram until ram is full, then start writing to disk. Its throughput depends on the amount of history
+
+When consumers cannot keep up with producers
 
 **HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch11.html>
 
