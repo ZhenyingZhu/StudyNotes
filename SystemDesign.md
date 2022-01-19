@@ -3291,6 +3291,11 @@ Initial snapshot
 
 Log compaction
 
+- check logs with the same key, and throw away duplicates
+- update a key with a special value `null` (a tombstone) means the key is removed
+- CDC can give every change a primary key, and every update overrides the previous value, then can keep the latest values. Don't need to take snapshots
+- It is supported by Apache Kafka
+
 API support for change streams
 
 Event Sourcing
