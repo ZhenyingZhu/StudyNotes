@@ -3298,6 +3298,9 @@ Log compaction
 
 API support for change streams
 
+- Firebase provide data sync based on change feed as first-class interface
+- Kafka Connect can  integrate CDC tools for other database systems
+
 Event Sourcing
 
 Deriving current state from the event log
