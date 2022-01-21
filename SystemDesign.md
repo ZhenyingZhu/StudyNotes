@@ -3303,6 +3303,12 @@ API support for change streams
 
 Event Sourcing
 
+- a tech developed by domain-driven design (DDD) community
+- store changes as log of events
+- not like CDC, event sourcing are based on immutable events to the application, not the low level DB
+- it is more meaningful as it records the user activities
+- similar to the chronicle data model and star schema fact table
+
 Deriving current state from the event log
 
 Commands and events
