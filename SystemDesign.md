@@ -3311,6 +3311,10 @@ Event Sourcing
 
 Deriving current state from the event log
 
+- application needs to get enough event logs from event sourcing to show customer a present view of the state. The result should be deterministic
+- CDC shows the latest status, while event sourcing only express the intention not the state, so need to retrieve the whole history
+- apps using event sourcing normally use snapshots, but still need to store the full history of events
+
 Commands and events
 
 State, Streams, and Immutability
