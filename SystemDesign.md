@@ -3317,6 +3317,10 @@ Deriving current state from the event log
 
 Commands and events
 
+- the customers send the application commands, but they can fail. The events are the succeed facts. They are durable and immutable
+- validations of a command need to be sync and before it becomes an event
+- one user request can be split to multiple events. For example, first a tentative reservation, then a confirmation event. The validation become async
+
 State, Streams, and Immutability
 
 Advantages of immutable events 4
