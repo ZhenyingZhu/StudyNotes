@@ -3323,13 +3323,31 @@ Commands and events
 
 State, Streams, and Immutability
 
-Advantages of immutable events 4
+- DB storing current state is optimized for reads
+- changelog represents the evolution of state over time
+
+Advantages of immutable events
+
+- event logs are also useful for auditing. It is used in accounting ledger
 
 Deriving several views from the same event log
 
+- when implementing a new feature that presents the existing data in new way, use the event log to build a separate read-optimized view for the feature is easier than migrate the DB schema, and let the old and new systems running side by side until migration is done
+- command query responsibility segregation (CQRS): to support cerntain queries and access patterns, complicate schema design, indexing and storing engines are needed. Using event logs are more flexible to allow different read views
+- twitter home timeline is an example of the read-optimized state
+
 Concurrency control
 
+- consumers are async, so they can see read-your-own-writes problem
+- solution: make the read view update sync with the event log write. Need to either make the read view and the event log in the same system, or do a distributed transaction, or following the way described in Implementing linearizable storage using total order broadcast
+- most of the need for multi-object transactions can be translated to an event that contains a self-contained description (?? my understanding is that it involves multiple object updates in one event)
+- no concurrency control needed if the event log and the application state are partitioned in the same way
+
 Limitations of immutability
+
+- even systems don't use event sourced model also reply on immutability for creating version snapshots
+- dataset with a lot of updates and deletes can get performance and garbage collection issues using event sourcing
+- for legal reasons, some data needs to be deleted
 
 Processing Streams
 
@@ -3337,7 +3355,7 @@ Uses of Stream Processing
 
 Complex event processing
 
-Stream analytics 3
+Stream analytics
 
 Maintaining materialized views
 
@@ -3345,13 +3363,13 @@ Search on streams
 
 Message passing and RPC
 
-Reasoning About Time
+Reasoning About Time 2
 
 Event time versus processing time
 
 Knowing when you’re ready
 
-Whose clock are you using, anyway? 2
+Whose clock are you using, anyway?
 
 Types of windows
 
@@ -3359,7 +3377,7 @@ Stream Joins
 
 Stream-stream join (window join)
 
-Stream-table join (stream enrichment)
+Stream-table join (stream enrichment) 1
 
 Table-table join (materialized view maintenance)
 
@@ -3367,7 +3385,7 @@ Time-dependence of joins
 
 Fault Tolerance
 
-Microbatching and checkpointing 1
+Microbatching and checkpointing
 
 Atomic commit revisited
 
