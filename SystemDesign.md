@@ -3351,6 +3351,11 @@ Limitations of immutability
 
 Processing Streams
 
+- can write the data in the event to DB, cache, index, storage
+- sending the event through emails, notifications, dashboards to users
+- process multiple input streams and generate multiple output streams. Input is read-only. Output is append-only
+- similar to MapReduce and data folow engines. Mapping operations such as transforming and filtering records work same
+
 Uses of Stream Processing
 
 Complex event processing
