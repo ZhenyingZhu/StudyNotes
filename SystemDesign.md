@@ -3358,6 +3358,9 @@ Processing Streams
 
 Uses of Stream Processing
 
+- used for monitors
+- requires sophisticated pattern matching and correlations
+
 Complex event processing
 
 Stream analytics
