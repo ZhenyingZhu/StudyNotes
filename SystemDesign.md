@@ -3363,6 +3363,10 @@ Uses of Stream Processing
 
 Complex event processing
 
+- Complex event processing (CEP): searching for certain event patterns while analysis event streams
+- provides a high level declarative query
+- queries submit to a process engine, consumes input streams, maintain a state machine perform the matching, emits a complex event when detect the pattern
+
 Stream analytics
 
 Maintaining materialized views
