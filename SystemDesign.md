@@ -3369,6 +3369,9 @@ Complex event processing
 
 Stream analytics
 
+- vs. CEP: stream analytics focus on aggregation metrics, measure the rate, calculate the rolling average, compare statistics between different intervals
+- use probabilistic algorithms, such as Bloom filters, HyperLogLog, percentile estimation algorithms
+
 Maintaining materialized views
 
 Search on streams
