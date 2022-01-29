@@ -3379,15 +3379,39 @@ Maintaining materialized views
 
 Search on streams
 
+- full-text search queries for individual events like a percolator feature
+- Elasticsearch can be used
+- cannot use index because when the event occurs, the index is not added yet
+- if there are a lot of queries, run the document against each query could be slow. So index the queries and the documents, and narrow down the num of queries that could match
+
 Message passing and RPC
 
-Reasoning About Time 2
+- message passing and RPC are not stream processors: they are mainly used in actor frameworks as a communication module to handle concurrency and distributed execution
+- comm between actors are one-to-one and ephemeral. Stream processor event logs are durable and multi-subscriber
+- actors can comm in arbitary ways, for example cyclic request/response, while stream processor are set up in acyclic pipelines and input streams are well defined
+- actor frameworks do not guarantee message delivery
+
+Reasoning About Time
+
+- needs to look at the event timestamp
+- the timeline of interest process in a few mins might need to read a year worth of events. The result needs to be deterministic
 
 Event time versus processing time
 
+- processing time might be delayed, causing unpredictable message orders
+- monitoring service restart could cause the event counts dropped 0 but sudden spike after it comes back
+
 Knowing when you’re ready
 
-Whose clock are you using, anyway?
+- cannot tell if all the events in a window has been received
+- while coming with statics of a time window, for straggler events that have a big delay, they can be 1. ignored in the window but emit a metric and alert when it becomes too many, 2. publish a correction
+- can publish a special message indicates there will be no more events before a timestamp, so the consumers can trigger windows
+
+Whose clock are you using
+
+- end devices could publish very out-of-date events
+- the event time should be the timestamp on the end devices, but end device clock is not trustworth
+- to adjust incorrect device clocks, can log 3 timestamps: 1. when the event occurs on the device, 2. when the event reachs the server according to the device, 3. the server timestamp. Substract 3 and 2 to calculate an offset
 
 Types of windows
 
