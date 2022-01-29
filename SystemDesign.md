@@ -3374,6 +3374,9 @@ Stream analytics
 
 Maintaining materialized views
 
+- deriving an alternative view onto some dataset so that you can query it efficiently, and updating that view whenever the underlying data changes
+- application state is also a kind of materialized view
+
 Search on streams
 
 Message passing and RPC
