@@ -3415,13 +3415,37 @@ Whose clock are you using
 
 Types of windows
 
+- Tumbling window: fixed length. Each event belongs to only one window
+- Hopping window: fixed length. Windows can overlap. e.g., 5-min window with 1-min hop size. Provide smoothing. Calculate the 1-min windows and aggregate them
+- Sliding window: no fixed boundaries. As long as two events occurred with in the interval, they are in the same window. Use a buffer and remove old events to calculate
+- Session window: no fix duration. Group all the events for a user til the user is inactive for some time
+
 Stream Joins
+
+- events can come anytime so join is harder than in batch jobs
 
 Stream-stream join (window join)
 
-Stream-table join (stream enrichment) 1
+- use case: calculate the click counts of web pages returned by a search query. Search is an event, each web page click is another event
+- the click could arrive before the search query event. Need to join a click for a search within an hour
+- cannot embedded the search info into the click event, since if there is no click event in a search, then the search won't appear
+- stream processor tracks all the events in the last hour indexed by session id
+
+Stream-table join (stream enrichment)
+
+- enriching the activity events with information from the database: given user info in a DB, and a stream of user activities, output a stream with single user scoped activities
+- quering DB for each event is slow. The stream processor can maintain a copy
+- but batch job can use a snapshot of the user DB, stream processor is long running so it cannot. Need use CDC to capture user DB changes
+- join between the user activities stream and user profile changes stream
 
 Table-table join (materialized view maintenance)
+
+- twitter: maintain a timeline cache per user. events are:
+  - a new tweet adds to followers' timelines
+  - delete a tweet removes from all timelines
+  - a new follower gets the tweets
+  - unfollow removes tweets
+- join tweet stream with follow relationship stream
 
 Time-dependence of joins
 
