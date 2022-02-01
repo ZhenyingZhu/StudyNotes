@@ -3449,6 +3449,9 @@ Table-table join (materialized view maintenance)
 
 Time-dependence of joins
 
+- slowly changing dimension (SCD): concurrent events on different streams would affect the join result based on which event is considerred as the first one, cause the result non-deterministic
+- using a unique identifier for a particular version of the joined record to solve the issue: when an event occurs, give it an id, and put the id into the events from the other stream, so the join is determinitic, but log compaction cannot be done afterwards
+
 Fault Tolerance
 
 Microbatching and checkpointing
