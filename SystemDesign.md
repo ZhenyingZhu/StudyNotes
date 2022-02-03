@@ -3180,19 +3180,19 @@ Messaging Systems
 
 Direct messaging from producers to consumers
 
-- UDP multicast: used when low latency is important. Application-level protocol can recovery lost packets
-- Brokerless messaging libraries: implementing publish/subscribe messaging over TCP or IP multicast
-- StatsD: use unreliable UDP messaging for collecting metrics
-- webhooks: consumer expose a network service. Producer directly makes HTTP or RPC requests to push messages. When ever an event occurs, make a request
+- UDP multicast: used when low latency is important. Application-level protocol can recovery lost packets **[KEY]**
+- Brokerless messaging libraries: implementing publish/subscribe messaging over TCP or IP multicast **[KEY]**
+- StatsD: use unreliable UDP messaging for collecting metrics **[KEY]**
+- webhooks: consumer expose a network service. Producer directly makes HTTP or RPC requests to push messages. When ever an event occurs, make a request **[KEY]**
 - those systems require the app code to be aware of possible message loss
 
-Message brokers
+Message brokers **[KEY]**
 
 - a database for handling message steams. Producers and consumers connect to it as clients This is AMQP/JMS(Java Message System)-style messaging
 - can tolerate clients come and go including crash. The broker maintains the durability
 - consumers are generally asynchronous: the producer only waits the broker to confirm that the message is buffered, not wait for the message delivery
 
-Message brokers compared to databases
+Message brokers compared to databases **[KEY]**
 
 - Some message brokers can participate in two-phase commit protocols
 - Message brokers delete a delivered message
@@ -3200,18 +3200,20 @@ Message brokers compared to databases
 - message brokers support subscribing to a subset of topics matching some pattern
 - brokers notify clients when changes occur
 
-Multiple consumers
+Multiple consumers **[KEY]**
 
 - Load balancing: one message deliver to one consumer. shared subscription
 - Fan-out: each message deliver to all consumers
 - can also combine above two patterns together
 
-Acknowledgments and redelivery
+Acknowledgments and redelivery **[KEY]**
 
 - Consumer can crash and never process the message broker deliver. Broker use ack to make sure the message not lose
 - needs an atomic commit protocol to make sure the message is not process twice
 - for load balancer, the messages might delivered not in the original order
 - to keep the order, can have a separate queue per consumer for messages have causal depdencies
+
+**[HERE]**
 
 Partitioned Logs
 
