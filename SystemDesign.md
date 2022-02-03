@@ -3174,7 +3174,7 @@ Transmitting Event Streams
 Messaging Systems
 
 - notifying consumers about new events. Most simple impementation: TCP connection between producer and consumer
-- to choose which publish-subscribe model system, answer two questions:
+- to choose which publish-subscribe model system, answer two questions: **[KEY]**
   1. what to do when producer sends messages faster than consumer can handle? drop, buffer (when the queue filled up, what to do), or backpressure (flow control)?
   2. if nodes crash, can messages lose?
 
