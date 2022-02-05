@@ -3213,20 +3213,20 @@ Acknowledgments and redelivery **[KEY]**
 - for load balancer, the messages might delivered not in the original order
 - to keep the order, can have a separate queue per consumer for messages have causal depdencies
 
-**[HERE]**
-
 Partitioned Logs
 
 - sending message is normally not permanent traced
-- receiving a message is destructive as the message is deleted from broker
+- receiving a message is destructive as the message is deleted from broker **[KEY]**
 
-Using logs for message storage
+Using logs for message storage **[KEY]**
 
 - a producer sends a message by appending it to the end of the log, and a consumer receives messages by reading the log sequentially
 - consumer waits for a notification after it reaches the end of the log
 - logs can be partitioned. A topic can be defined as a group of partitions
 - within each partition, the broker assigns each message a monotonically increaing seq num, as offset, to give totally order of messages
 - Apache Kafka, Amazon Kinesis Streams, and Twitter’s DistributedLog work like this, achieve throughput of millions of messages per second by distributed across multiple machines. Achieve fault tolerance by replicating
+
+**[HERE]**
 
 Logs compared to traditional messaging
 
