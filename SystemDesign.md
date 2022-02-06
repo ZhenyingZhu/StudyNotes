@@ -3226,35 +3226,33 @@ Using logs for message storage **[KEY]**
 - within each partition, the broker assigns each message a monotonically increaing seq num, as offset, to give totally order of messages
 - Apache Kafka, Amazon Kinesis Streams, and Twitter’s DistributedLog work like this, achieve throughput of millions of messages per second by distributed across multiple machines. Achieve fault tolerance by replicating
 
-**[HERE]**
-
 Logs compared to traditional messaging
 
 - log based approach supports fan-out because read message doesn't delete it
-- to achieve coarse-grained load-balancing, assign partitions to different nodes. Downsides are:
+- to achieve coarse-grained load-balancing, assign partitions to different nodes. Downsides are: **[KEY]**
   - num of nodes cannot be more than partitions
   - can cause head-of-line blocking: a single slow process message holds up all subsequence messages
   - parallelize processing is not possible
-- when high throughput, ordering is important, and each message can be processed quick, then log-based approach is good
+- when need high throughput, ordering is important, and each message can be processed quick, then log-based approach is good **[KEY]**
 - if message processing is expensive, and want to parallelize the work, while ordering is not important, then use JMS/AMQP style of message broker
 - consistant order only preserved in the same partition. Can use the client id of the consumer that requires to ordering to sharding the events it subscribes to
 
 Consumer offsets
 
-- the broker doesn't need to track ack for each message, just need to periodically record the consumer offsets to tell which messages have been processed
-- if a consumer node fails, a nother consumer node is assigned the partition, and start consuming the messages at the last recorded offset. But some message that are processed but not recorded will be processed twice
+- the broker doesn't need to track ack for each message, just need to periodically record the consumer offsets to tell which messages have been processed **[KEY]**
+- if a consumer node fails, another consumer node is assigned the partition, and start consuming the messages at the last recorded offset. But some message that are processed but not recorded will be processed twice
 
 Disk space usage
 
 - the logs are divided into segments to reclaim spaces. The old segments are moved to archieve storage
 - if a slow consumer is stilling reading an archieved segment, it will missed some messages
-- circular buffer: keep a bounded size buffer and discard old messages when full
+- circular buffer: keep a bounded size buffer and discard old messages when full **[KEY]**
 - log based message system always writes to disk. Another type of message system keeps messages in ram until ram is full, then start writing to disk. Its throughput depends on the amount of history
 
 When consumers cannot keep up with producers
 
 - the log based approach is choosing the buffering way
-- need to monitor how far a consumer is behind and raise alert
+- need to monitor how far a consumer is behind and raise alert **[KEY]**
 - the operational advantage is that one slow consumer won't block other consumers. So can debug with one consumer
 
 Replaying old messages
@@ -3269,46 +3267,46 @@ Keeping Systems in Sync
 
 - using ETL to keep data in different data systems sync, which is a batch process
 - periodic full DB dump can be slow
-- dual write: the app writes to each data system. Problems:
+- dual write: the app writes to each data system. Problems: **[KEY]**
   - race condition: concurrent writes causing a data in one system updated by client A and another by client B, cause permenant inconsist
   - fault tolerance problem: one write fails while other succeed and lose atomic
   - conflicts can occur because different data systems don't have a single leader
 
 Change Data Capture
 
-- change data capture (CDC): extract all data changes in a DB and replicate them into another data system, as a stream
+- change data capture (CDC): extract all data changes in a DB and replicate them into another data system, as a stream **[KEY]**
 
 Implementing change data capture
 
 - CDC makes one DB as the leader, other derived data systems are followers/consumers. Using log based message broker as it perserve the order
 - DB trigger can be reged to changes and add entries to a changelog table, but it is fragile and slow
-- Parsing replication log is better, but have challenges: how to deal with schema change
+- Parsing replication log is better, but have challenges: how to deal with schema change **[KEY]**
 - LinkedIn’s Databus uses it
 - CDC is async. It can have replication lag
 
 Initial snapshot
 
 - replication logs are truncated, but build full-text index needs all changes
-- can create snapshot corresponding to a change log offset
+- can create snapshot corresponding to a change log offset **[KEY]**
 
 Log compaction
 
 - check logs with the same key, and throw away duplicates
-- update a key with a special value `null` (a tombstone) means the key is removed
-- CDC can give every change a primary key, and every update overrides the previous value, then can keep the latest values. Don't need to take snapshots
+- update a key with a special value `null` (a tombstone) means the key is removed **[KEY]**
+- CDC can give every change a primary key, and every update overrides the previous value, then can keep the latest values. Don't need to take snapshots **[??]**
 - It is supported by Apache Kafka
 
 API support for change streams
 
 - Firebase provide data sync based on change feed as first-class interface
-- Kafka Connect can  integrate CDC tools for other database systems
+- Kafka Connect can integrate CDC tools for other database systems
 
 Event Sourcing
 
 - a tech developed by domain-driven design (DDD) community
 - store changes as log of events
 - not like CDC, event sourcing are based on immutable events to the application, not the low level DB
-- it is more meaningful as it records the user activities
+- it is more meaningful as it records the user activities **[KEY]**
 - similar to the chronicle data model and star schema fact table
 
 Deriving current state from the event log
@@ -3320,7 +3318,7 @@ Deriving current state from the event log
 Commands and events
 
 - the customers send the application commands, but they can fail. The events are the succeed facts. They are durable and immutable
-- validations of a command need to be sync and before it becomes an event
+- validations of a command need to be sync and before it becomes an event **[KEY]**
 - one user request can be split to multiple events. For example, first a tentative reservation, then a confirmation event. The validation become async
 
 State, Streams, and Immutability
@@ -3334,24 +3332,24 @@ Advantages of immutable events
 
 Deriving several views from the same event log
 
-- when implementing a new feature that presents the existing data in new way, use the event log to build a separate read-optimized view for the feature is easier than migrate the DB schema, and let the old and new systems running side by side until migration is done
-- command query responsibility segregation (CQRS): to support cerntain queries and access patterns, complicate schema design, indexing and storing engines are needed. Using event logs are more flexible to allow different read views
+- when implementing a new feature that presents the existing data in new way, use the event log to build a separate read-optimized view for the feature is easier than migrate the DB schema, and let the old and new systems running side by side until migration is done **[KEY]**
+- command query responsibility segregation (CQRS) **[KEY]**: to support cerntain queries and access patterns, complicate schema design, indexing and storing engines are needed. Using event logs are more flexible to allow different read views
 - twitter home timeline is an example of the read-optimized state
 
 Concurrency control
 
 - consumers are async, so they can see read-your-own-writes problem
-- solution: make the read view update sync with the event log write. Need to either make the read view and the event log in the same system, or do a distributed transaction, or following the way described in Implementing linearizable storage using total order broadcast
+- solution: make the read view update sync with the event log write. **[KEY]** Need to either make the read view and the event log in the same system, or do a distributed transaction, or following the way described in Implementing linearizable storage using total order broadcast
 - most of the need for multi-object transactions can be translated to an event that contains a self-contained description (?? my understanding is that it involves multiple object updates in one event)
 - no concurrency control needed if the event log and the application state are partitioned in the same way
 
 Limitations of immutability
 
 - even systems don't use event sourced model also reply on immutability for creating version snapshots
-- dataset with a lot of updates and deletes can get performance and garbage collection issues using event sourcing
-- for legal reasons, some data needs to be deleted
+- dataset with a lot of updates and deletes can get performance and garbage collection issues using event sourcing **[KEY]**
+- for legal reasons, some data needs to be deleted **[KEY]**
 
-Processing Streams
+Processing Streams **[KEY]**
 
 - can write the data in the event to DB, cache, index, storage
 - sending the event through emails, notifications, dashboards to users
@@ -3363,7 +3361,7 @@ Uses of Stream Processing
 - used for monitors
 - requires sophisticated pattern matching and correlations
 
-Complex event processing
+Complex event processing **[KEY]**
 
 - Complex event processing (CEP): searching for certain event patterns while analysis event streams
 - provides a high level declarative query
@@ -3372,14 +3370,14 @@ Complex event processing
 Stream analytics
 
 - vs. CEP: stream analytics focus on aggregation metrics, measure the rate, calculate the rolling average, compare statistics between different intervals
-- use probabilistic algorithms, such as Bloom filters, HyperLogLog, percentile estimation algorithms
+- use probabilistic algorithms, such as Bloom filters, HyperLogLog, percentile estimation algorithms **[KEY]**
 
-Maintaining materialized views
+Maintaining materialized views **[KEY]**
 
 - deriving an alternative view onto some dataset so that you can query it efficiently, and updating that view whenever the underlying data changes
 - application state is also a kind of materialized view
 
-Search on streams
+Search on streams **[KEY]**
 
 - full-text search queries for individual events like a percolator feature
 - Elasticsearch can be used
@@ -3389,7 +3387,7 @@ Search on streams
 Message passing and RPC
 
 - message passing and RPC are not stream processors: they are mainly used in actor frameworks as a communication module to handle concurrency and distributed execution
-- comm between actors are one-to-one and ephemeral. Stream processor event logs are durable and multi-subscriber
+- comm between actors are one-to-one and ephemeral **[KEY]**. Stream processor event logs are durable and multi-subscriber
 - actors can comm in arbitary ways, for example cyclic request/response, while stream processor are set up in acyclic pipelines and input streams are well defined
 - actor frameworks do not guarantee message delivery
 
@@ -3398,12 +3396,12 @@ Reasoning About Time
 - needs to look at the event timestamp
 - the timeline of interest process in a few mins might need to read a year worth of events. The result needs to be deterministic
 
-Event time versus processing time
+Event time versus processing time **[KEY]**
 
 - processing time might be delayed, causing unpredictable message orders
 - monitoring service restart could cause the event counts dropped 0 but sudden spike after it comes back
 
-Knowing when you’re ready
+Knowing when you’re ready **[KEY]**
 
 - cannot tell if all the events in a window has been received
 - while coming with statics of a time window, for straggler events that have a big delay, they can be 1. ignored in the window but emit a metric and alert when it becomes too many, 2. publish a correction
@@ -3413,9 +3411,9 @@ Whose clock are you using
 
 - end devices could publish very out-of-date events
 - the event time should be the timestamp on the end devices, but end device clock is not trustworth
-- to adjust incorrect device clocks, can log 3 timestamps: 1. when the event occurs on the device, 2. when the event reachs the server according to the device, 3. the server timestamp. Substract 3 and 2 to calculate an offset
+- to adjust incorrect device clocks, can log 3 timestamps: 1. when the event occurs on the device, 2. when the event reachs the server according to the device, 3. the server timestamp. Substract 3 and 2 to calculate an offset **[KEY]**
 
-Types of windows
+Types of windows **[KEY]**
 
 - Tumbling window: fixed length. Each event belongs to only one window
 - Hopping window: fixed length. Windows can overlap. e.g., 5-min window with 1-min hop size. Provide smoothing. Calculate the 1-min windows and aggregate them
@@ -3426,21 +3424,21 @@ Stream Joins
 
 - events can come anytime so join is harder than in batch jobs
 
-Stream-stream join (window join)
+Stream-stream join (window join) **[KEY]**
 
 - use case: calculate the click counts of web pages returned by a search query. Search is an event, each web page click is another event
 - the click could arrive before the search query event. Need to join a click for a search within an hour
 - cannot embedded the search info into the click event, since if there is no click event in a search, then the search won't appear
 - stream processor tracks all the events in the last hour indexed by session id
 
-Stream-table join (stream enrichment)
+Stream-table join (stream enrichment) **[KEY]**
 
 - enriching the activity events with information from the database: given user info in a DB, and a stream of user activities, output a stream with single user scoped activities
 - quering DB for each event is slow. The stream processor can maintain a copy
 - but batch job can use a snapshot of the user DB, stream processor is long running so it cannot. Need use CDC to capture user DB changes
 - join between the user activities stream and user profile changes stream
 
-Table-table join (materialized view maintenance)
+Table-table join (materialized view maintenance) **[KEY]**
 
 - twitter: maintain a timeline cache per user. events are:
   - a new tweet adds to followers' timelines
@@ -3449,17 +3447,17 @@ Table-table join (materialized view maintenance)
   - unfollow removes tweets
 - join tweet stream with follow relationship stream
 
-Time-dependence of joins
+Time-dependence of joins **[KEY]**
 
 - slowly changing dimension (SCD): concurrent events on different streams would affect the join result based on which event is considerred as the first one, cause the result non-deterministic
 - using a unique identifier for a particular version of the joined record to solve the issue: when an event occurs, give it an id, and put the id into the events from the other stream, so the join is determinitic, but log compaction cannot be done afterwards
 
 Fault Tolerance
 
-- exactly-once semantics/effectively-once: even retries occur, the results are seem like only processed once
+- exactly-once semantics/effectively-once **[KEY]**: even retries occur, the results are seem like only processed once
 - for stream process, task won't be finished, so won't be able to retry like batch process
 
-Microbatching and checkpointing
+Microbatching and checkpointing **[KEY]**
 
 - microbatching: used in Spark Streaming. Batch size is 1 sec. Smaller batch introduce more scheduling and coordination overhead, while larger batch make the results have longer delay
 - tumbling window with batch size length, based on processing time not event timestamp
@@ -3474,7 +3472,7 @@ Atomic commit revisited
 Idempotence
 
 - other than using distributed transaction to make sure an event is only processed once successfully, another approach is using idempotence
-- for operations that are not naturally idempotent, adding some extra metadata. In Kafka, each message has a offset, and record the processed offset
+- for operations that are not naturally idempotent, adding some extra metadata. In Kafka, each message has a offset, and record the processed offset **[KEY]**
 - Fencing might needed during failover to prevent a node loses network connection but not dead
 
 Rebuilding state after a failure
