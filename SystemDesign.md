@@ -3480,7 +3480,7 @@ Rebuilding state after a failure
 - keep checkpoint state in remote DB, or keep state locally but periodically replicate. The state change can be sent through CDC
 - for states that can recompute fairly quick, no need to replicate
 
-**HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch11.html>
+**HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch12.html>
 
 ## Open Questions
 
