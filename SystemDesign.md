@@ -3480,6 +3480,134 @@ Rebuilding state after a failure
 - keep checkpoint state in remote DB, or keep state locally but periodically replicate. The state change can be sent through CDC
 - for states that can recompute fairly quick, no need to replicate
 
+#### Chapter 12. The Future of Data Systems
+
+##### Data Integration
+
+###### 1. Combining Specialized Tools by Deriving Data
+
+a) Reasoning about dataflows
+
+b) Derived data versus distributed transactions
+
+c) The limits of total ordering
+
+d) Ordering events to capture causality
+
+###### 2. Batch and Stream Processing
+
+a) Maintaining derived state
+
+b) Reprocessing data for application evolution
+
+c) The lambda architecture
+
+d) Unifying batch and stream processing
+
+##### Unbundling Databases
+
+###### 1. Composing Data Storage Technologies
+
+a) Creating an index 5
+
+b) The meta-database of everything
+
+c) Making unbundling work
+
+d) Unbundled versus integrated systems
+
+e) What’s missing?
+
+###### 2. Designing Applications Around Dataflow
+
+a) Application code as a derivation function
+
+b) Separation of application code and state
+
+c) Dataflow: Interplay between state changes and application code
+
+###### 3. Observing Derived State
+
+a) Materialized views and caching 4
+
+b) Stateful, offline-capable clients
+
+c) Pushing state changes to clients
+
+d) End-to-end event streams
+
+e) Reads are events too
+
+f) Multi-partition data processing
+
+##### Aiming for Correctness
+
+###### 1. The End-to-End Argument for Databases
+
+a) Exactly-once execution of an operation
+
+b) Duplicate suppression
+
+c) Uniquely identifying requests 3
+
+d) The end-to-end argument
+
+e) Applying end-to-end thinking in data systems
+
+###### 2. Enforcing Constraints
+
+a) Uniqueness constraints require consensus
+
+b) Uniqueness in log-based messaging
+
+c) Multi-partition request processing
+
+###### 3. Timeliness and Integrity
+
+a) Correctness of dataflow systems
+
+b) Loosely interpreted constraints
+
+c) Coordination-avoiding data systems 2
+
+###### 4. Trust, but Verify
+
+a) Maintaining integrity in the face of software bugs
+
+b) Don’t just blindly trust what they promise
+
+c) A culture of verification
+
+d) Designing for auditability
+
+e) The end-to-end argument again
+
+f) Tools for auditable data systems
+
+##### Doing the Right Thing
+
+###### 1. Predictive Analytics
+
+a) Bias and discrimination 1
+
+b) Responsibility and accountability
+
+c) Feedback loops
+
+###### 2. Privacy and Tracking
+
+a) Surveillance
+
+b) Consent and freedom of choice
+
+c) Privacy and use of data
+
+d) Data as assets and power
+
+e) Remembering the Industrial Revolution
+
+f) Legislation and self-regulation
+
 **HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch12.html>
 
 ## Open Questions
