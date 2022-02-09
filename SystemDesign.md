@@ -3484,7 +3484,11 @@ Rebuilding state after a failure
 
 ##### Data Integration
 
+- in complex applications, data is often used in several different ways
+
 ###### 1. Combining Specialized Tools by Deriving Data
+
+**[HERE]**
 
 a) Reasoning about dataflows
 
