@@ -3488,9 +3488,10 @@ Rebuilding state after a failure
 
 ###### 1. Combining Specialized Tools by Deriving Data
 
-**[HERE]**
+- search indexes are not very suitable as a durable system of record, so normally stored in a different system
 
 a) Reasoning about dataflows
+**[HERE]**
 
 b) Derived data versus distributed transactions
 
