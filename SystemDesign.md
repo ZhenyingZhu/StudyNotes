@@ -3491,9 +3491,14 @@ Rebuilding state after a failure
 - search indexes are not very suitable as a durable system of record, so normally stored in a different system
 
 a) Reasoning about dataflows
-**[HERE]**
+
+- Need to be clear: 1. where is the data source, 2. where is each representation derived from, 3. what places do the data need to be, in what format
+- shouldn't have multiple source of authorities for a data, otherwise there could be write conflicts
+- If there is an order on the events in one place, other representations can use the same order
+- need maintain deterministic and idempotent for fault torlerance
 
 b) Derived data versus distributed transactions
+**[HERE]**
 
 c) The limits of total ordering
 
