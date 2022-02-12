@@ -3498,9 +3498,14 @@ a) Reasoning about dataflows
 - need maintain deterministic and idempotent for fault torlerance
 
 b) Derived data versus distributed transactions
-**[HERE]**
+
+- Distributed transactions decide on an ordering of writes by using locks for mutual exclusion. use atomic commit to ensure that changes take effect exactly once
+- CDC and event sourcing use a log for ordering. Can have deterministic retry and idempotence
+- derived data systems are updated async, so don't support read-your-own-write
+- XA is high cost so need a better distributed transaction protocol. Use log-based derived data is a direction
 
 c) The limits of total ordering
+**[HERE]**
 
 d) Ordering events to capture causality
 
