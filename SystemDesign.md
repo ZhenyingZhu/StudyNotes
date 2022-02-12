@@ -3505,9 +3505,15 @@ b) Derived data versus distributed transactions
 - XA is high cost so need a better distributed transaction protocol. Use log-based derived data is a direction
 
 c) The limits of total ordering
-**[HERE]**
+
+- to generate total ordering event logs, requests need to go through a single leader node. But if throughput is higher than a node capacity, need to partitioning to multiple nodes
+- mullti geo servers have seperate leader nodes in each DC
+- microservices design is to deploy each service and its durable state independently, so events across services have no defined orders
+- applications that maintain client side states could have different orders of events from the server side
+- need to have consensus algorithms to support geographically distributed services, as total order broadcast is based on consensus
 
 d) Ordering events to capture causality
+**[HERE]**
 
 ###### 2. Batch and Stream Processing
 
