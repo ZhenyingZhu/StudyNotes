@@ -3513,9 +3513,14 @@ c) The limits of total ordering
 - need to have consensus algorithms to support geographically distributed services, as total order broadcast is based on consensus
 
 d) Ordering events to capture causality
-**[HERE]**
+
+- when events for different objects have causal link, total orderring is important
+- logical timestamps can provide orderring without coordination needed, but that requires additional metadata and the receiptant needs to have logic to deal with out-of-order deliveries
+- if log an event to record the state that a user saw, later events can refer to this event, then the causal dependency can be captured
+- conflict resolution algorithms can help to deal with out-of-order delivery, but not help if the actions have side effects (like send an notification)
 
 ###### 2. Batch and Stream Processing
+**[HERE]**
 
 a) Maintaining derived state
 
