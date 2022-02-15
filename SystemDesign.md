@@ -3520,9 +3520,11 @@ d) Ordering events to capture causality
 - conflict resolution algorithms can help to deal with out-of-order delivery, but not help if the actions have side effects (like send an notification)
 
 ###### 2. Batch and Stream Processing
-**[HERE]**
+
+- batch and stream processings can emulate each other. But if implement one with the other, the performance might be poor. e.g., microbatching may perform poorly on hopping or sliding windows
 
 a) Maintaining derived state
+**[HERE]**
 
 b) Reprocessing data for application evolution
 
