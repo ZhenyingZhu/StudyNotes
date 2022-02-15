@@ -3524,19 +3524,46 @@ d) Ordering events to capture causality
 - batch and stream processings can emulate each other. But if implement one with the other, the performance might be poor. e.g., microbatching may perform poorly on hopping or sliding windows
 
 a) Maintaining derived state
-**[HERE]**
+
+- Batch process is functional flavor: using deterministic functions whose output depends only on input and not affect other outputs
+- derived data systems are run async to provide fault torlerance
+- secondary indexes often cross partition boundaries. Async makes them more reliable and scalable
 
 b) Reprocessing data for application evolution
 
+- Stream process is low latency, while batch process allows large amounts of accumulated historical data
+- reprocessing is needed for maintaining the system when changes occurs, e.g., schema is changed
+- Derived views allow gradual evolution: can maintain old and new schemas side by side
+
 c) The lambda architecture
+
+- an architecture to combine batch and stream processing together
+- read-optimized views are derived from incoming data
+- stream processor quickly generates an approximate update to the view use fast approximate algorithms
+- batch processor generates a corrected version uses slower exact algorithms
+- but it needs additional resources. If using the same system that can run in dual mode, then it is hard to debug
+- merging outputs of two systems could be complicate when the outputs are from complex operations
+- reprocessing all the historical data could be time consuming
 
 d) Unifying batch and stream processing
 
+- required features are
+  - replay historical events that stream processor already processed
+  - Exactly-once semantics even when fault occurs
+  - Tools for windowing by event time. Processing time is meaningless when reprocessing historical events
+
 ##### Unbundling Databases
+
+- Unix vs. relational databases information management problem philosophies
+  - unix: logical but low level hardware abstraction
+  - DB: high level abstraction hiding the data struction complexity, concurrency, crash recovery, etc.
 
 ###### 1. Composing Data Storage Technologies
 
+- DB features: secondary indexes, materialized views, replication logs, full-text search indexes
+
 a) Creating an index 5
+**[HERE]**
 
 b) The meta-database of everything
 
