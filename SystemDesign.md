@@ -3605,15 +3605,34 @@ b) Separation of application code and state
 - observer pattern: get noticed when data changes
 
 c) Dataflow: Interplay between state changes and application code
-**[HERE]**
+
+- dataflow: renegotiating the relationship between app code and state management
+- app code responds to state changes in one place by triggering state changes in another place
+- maintaining derived data is not the same as asynchronous job execution (MQ)
+  - derived data need keep the event order
+  - derived data cannot have event loss
+- stream processors can be used for mantaining derived data, with cheaper cost than distributed transaction
 
 d) Stream processors and services
 
+- service-oriented architecture/microservice: break down functionality into services that communicate via synchronous network requests
+- Composing stream operators into dataflow systems is similar, but the communication is single-directional and async
+
 ###### 3. Observing Derived State
 
-a) Materialized views and caching 4
+- write path: create derived states
+- create derived states are for read path
+- similar to functional programming, write path is eager evaluation, and the read path is lazy evaluation
+- derived dataset is a trade off between the amount of work done during read vs. write
+
+a) Materialized views and caching
+
+- only create cache of common queries (also a materialized view), so both read and write are not too expensive
 
 b) Stateful, offline-capable clients
+
+- client/server model: clients are stateless and servers have the authority over data
+- new model: offline/on-device state as a cache of state on the server
 
 c) Pushing state changes to clients
 
@@ -3632,6 +3651,7 @@ a) Exactly-once execution of an operation
 b) Duplicate suppression
 
 c) Uniquely identifying requests 3
+**[HERE]**
 
 d) The end-to-end argument
 
