@@ -3636,22 +3636,49 @@ b) Stateful, offline-capable clients
 
 c) Pushing state changes to clients
 
+- clients can have stale cache until next poll
+- server-sent events (EventSource API) and WebSockets can maintain TCP communication channels so the changes can be subscribed
+- if client goes offline, using log based message broker can let the consumer not miss messages
+
 d) End-to-end event streams
+
+- server pushes state-change events into client side event pipeline as an extension of end-to-end write path, with low latency
+- instant message and online game use such real-time architecture
+- but it is not widely supported by existing DBs, which are more request-response model, not publish-subscribe model
 
 e) Reads are events too
 
+- stream processor maintains states while performing aggregation and join
+- recording read events can handle joins across different DBs easiler, and track causual dependencies and data provenance
+
 f) Multi-partition data processing
+
+- complex queries might need combine data from multiple partitions
+- stream processors provide message routing, partitioning, joining which can help
+- distributed RPC supports combining results from many partitions
+- fraud prevention: need join a purchase with IP, email, billing, shipping address, etc.
 
 ##### Aiming for Correctness
 
+- the old meaning of reliable and correct applications: atomicity, isolation, durability of transactions
+- for better performance and availbility, those foundations are weaker
+- it is difficult to determine if an app is correct while under high concurrency and faulty environment
+
 ###### 1. The End-to-End Argument for Databases
+
+- DB provides strong safety doesn't mean app is free of data loss or corruption. The app might write wrong data
 
 a) Exactly-once execution of an operation
 
+- Processing twice is a form of data corruption
+
 b) Duplicate suppression
 
-c) Uniquely identifying requests 3
-**[HERE]**
+- TCP uses seq num to handle lost or dup packages
+- 2PC (two-phase commit) allows a transaction coordinator to reconnect after a network fault, but cannot prevent the client side sends dup requests
+
+c) Uniquely identifying requests
+**[HERE]**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch12.html>
 
 d) The end-to-end argument
 
@@ -3710,8 +3737,6 @@ d) Data as assets and power
 e) Remembering the Industrial Revolution
 
 f) Legislation and self-regulation
-
-**HERE**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch12.html>
 
 ## Open Questions
 
