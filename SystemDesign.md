@@ -3562,24 +3562,52 @@ d) Unifying batch and stream processing
 
 - DB features: secondary indexes, materialized views, replication logs, full-text search indexes
 
-a) Creating an index 5
-**[HERE]**
+a) Creating an index
+
+- need first create index on a snapshot of the DB, and then process writes after the snapshot
+- the process is similar to setup a new follower replica, and bootstrapping CDC in a streaming system
 
 b) The meta-database of everything
 
+- batch, stream, ETL process can act like subsystems of a huge DB to keep index/materialized views up to date
+- can composed them into a cohesived system
+- Federated databases/polystore: unifying reads. Provide uniform query interface
+- Unbundled databases: unifying writes: synchronize writes across disparate technologies. Following Unix: communicate through a uniform low-level API (pipes), and that can be composed using a higher-level language (shell)
+
 c) Making unbundling work
+
+- can implement unbundled DB writes by using an asynchronous event log with idempotent writes
+- it is loose coupling between the various components
+- async makes the system robust
+- unbundled systems can be managed by different teams easier
 
 d) Unbundled versus integrated systems
 
-e) What’s missing?
+- unbundled system won't retire individual DBs
+- the complexity of runnnig different systems, learn them, config them, ops for them are high. So unless really needed, use a single system would be better
 
 ###### 2. Designing Applications Around Dataflow
 
+- database inside-out approach: compose specialized storage and processing systems with app code
+- dataflow languages have overlay with the unbundled idea
+
 a) Application code as a derivation function
+
+- create a secondary index is a native feature for a lot of DB
+- but creating full text search index, machine learning model, cache, etc. are not easy to be implemented
+- DBs can provide hooks to custom code for those requirements
 
 b) Separation of application code and state
 
+- DBs cannot be easily deployed. No support for dependency management, version control, rolling upgrade, evolvability, monitoring, metrics, calls to network services, and integration with external systems
+- because DB couples app code with data durable together
+- stateless services are easy to manage because nodes can be removed at any time
+- observer pattern: get noticed when data changes
+
 c) Dataflow: Interplay between state changes and application code
+**[HERE]**
+
+d) Stream processors and services
 
 ###### 3. Observing Derived State
 
