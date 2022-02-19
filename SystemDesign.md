@@ -3678,9 +3678,12 @@ b) Duplicate suppression
 - 2PC (two-phase commit) allows a transaction coordinator to reconnect after a network fault, but cannot prevent the client side sends dup requests
 
 c) Uniquely identifying requests
-**[HERE]**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch12.html>
+
+- use a request id to prevent duplicate requests. It can be a UUID or a hash of the request
+- the request table can be seperated from actual transaction
 
 d) The end-to-end argument
+**[HERE]**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch12.html>
 
 e) Applying end-to-end thinking in data systems
 
