@@ -3717,15 +3717,35 @@ c) Multi-partition request processing
 
 ###### 3. Timeliness and Integrity
 
-**[HERE]**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch12.html>
+- transactions are linearizable. the writer waits until the transaction is complete
+- in unbundled system, it is async. The writer doesn't wait. The read can wait for a message instead
+- consistency is actually two requirements
+  - timeliness: user observe the system in an up-to-date state. If a user see an inconsist state, it can wait for the replication to happen. eventual consistency
+  - integrity: absence of corruption. the derived data must be correct. Wait doesn't help if integrity is violated. Need check and repair. perpetual inconsistency
 
 a) Correctness of dataflow systems
 
+- event-based dataflow systems decouple timeliness and integrity
+- integrity is preseved by Exactly-once/effectively-once semantics
+- using a combination of mechanisms:
+  - the write op is present as a single message, to make it easily become atomic
+  - using deterministic derivation functions to derive other state updates
+  - Passing a client-generated request ID end-to-end for duplicate suppression+idempotence
+  - Making messages immutable and easy to reprocess
+
 b) Loosely interpreted constraints
 
-c) Coordination-avoiding data systems 2
+- apps can use weaker notion of uniqueness
+- compensating transaction: after conflicts happen, ask the customer to correct later
+
+c) Coordination-avoiding data systems
+
+- such systems can have better performance and can be used in more flexible way, like multi-DC/leader replication
+- Synchronous coordination can still be used in the system at a smaller scope
 
 ###### 4. Trust, but Verify
+
+**[HERE]**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch12.html>
 
 a) Maintaining integrity in the face of software bugs
 
