@@ -3683,19 +3683,41 @@ c) Uniquely identifying requests
 - the request table can be seperated from actual transaction
 
 d) The end-to-end argument
-**[HERE]**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch12.html>
+
+- a general principle: The function in question (e.g., duplicate suppression) can completely and correctly be implemented only with the knowledge and help of the application standing at the endpoints of the communication system
+- another question: checking the integrity of data. Using end-to-end checksums not the message system checksums
 
 e) Applying end-to-end thinking in data systems
 
+- one direction is to wrap up the high-level fault-tolerance machinery in an abstraction for applications to adopt
+- but the abstraction shouldn't be too expansive
+
 ###### 2. Enforcing Constraints
+
+- another common constraint is uniqness constraint
+- tech used in uniq constraint can be used for other constraints like max count
 
 a) Uniqueness constraints require consensus
 
+- common solution is to partition the uniq value to a same node
+- async multi-master replcation cannot be used
+
 b) Uniqueness in log-based messaging
+
+- total order broadcast is equivalent to consensus
+- can use the order of logs to make consensus of which log to pick and others to reject
 
 c) Multi-partition request processing
 
+- achieve atomicity not through atomic commit but through partitioned logs
+- given a transaction a request id and log an event with all the operations in one node
+- for each register involved in the transaction, log the operation with the request id. Because the data for a single register normally appears in one node, no need to worry about atomicity
+- if one part of the transaction failed, retry the process. Since the request id is not changed, no need to worry about duplicates
+- can use another stream processor to validate the transaction first. Only validate transaction can be committed in the request id table
+
 ###### 3. Timeliness and Integrity
+
+**[HERE]**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch12.html>
 
 a) Correctness of dataflow systems
 
