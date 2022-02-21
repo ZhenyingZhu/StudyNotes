@@ -3745,15 +3745,23 @@ c) Coordination-avoiding data systems
 
 ###### 4. Trust, but Verify
 
-**[HERE]**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch12.html>
+- rowhammer: certain pathological memory access patterns can flip bits even in memory that has no faults, for hacker to use
 
 a) Maintaining integrity in the face of software bugs
 
+- Even DBs can have bugs. Apps can also use DB wrongly
+
 b) Don’t just blindly trust what they promise
+
+- auditing: a way to find out if data has corrupted
 
 c) A culture of verification
 
+- one direction is to build self-validating or self-auditing systems
+
 d) Designing for auditability
+
+**[HERE]**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch12.html>
 
 e) The end-to-end argument again
 
