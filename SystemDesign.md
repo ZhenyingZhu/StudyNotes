@@ -3761,17 +3761,34 @@ c) A culture of verification
 
 d) Designing for auditability
 
-**[HERE]**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch12.html>
+- the transaction logs might not explain why those updates are made. Cannot redo the transaction because state might already changed
+- in event-based systems, the user input is an immutable event, and resulting state updates are derived from the event. The derivation can be deterministic and repeatable
+- can use hashes to check that event storage is not currupt
+- rerun batch/stream processors and compare the results with the derived values, to check the integrity
 
 e) The end-to-end argument again
 
+- to check the data integrity, including more systems, fewer oppotunity for data corrpution could happen
+
 f) Tools for auditable data systems
+
+- signing transaction logs can make them tamper-proof
+- one direction is to use cryptographic tools prove the integrity of a system
+- Merkle trees: trees of hashes that can be used to efficiently prove that a record appears in some dataset
+- certificate transparency: a security technology that relies on Merkle trees to check the validity of TLS/SSL certificates
 
 ##### Doing the Right Thing
 
+- every system is built for a purpose
+- every action has both intended and unintended consequences
+- ACM Code of Ethics and Professional Conduct
+
 ###### 1. Predictive Analytics
 
-a) Bias and discrimination 1
+- can make bad impact to individuals if the predict is wrong
+
+a) Bias and discrimination
+**[HERE]**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch12.html>
 
 b) Responsibility and accountability
 
