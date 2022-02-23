@@ -3788,13 +3788,23 @@ f) Tools for auditable data systems
 - can make bad impact to individuals if the predict is wrong
 
 a) Bias and discrimination
-**[HERE]**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch12.html>
+
+- basing decisions on data, rather than subjective and instinctive assessments could be more fair
+- if there is a systematic bias in the input to an algorithm, the system will most likely learn and amplify that bias in its output
 
 b) Responsibility and accountability
 
+- when algorithms make mistakes, who to be response
+- using static from a lot of data to predict a single case could get wrong result
+
 c) Feedback loops
 
+- recommendation system can lead to echo chambers in which stereotypes, misinformation, and polarization can breed, due to self-reinforcing feedback loops
+- systems thinking: thinking about the entire system, not just the computerized parts, but also the people interacting with it
+
 ###### 2. Privacy and Tracking
+
+**[HERE]**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch12.html>
 
 a) Surveillance
 
