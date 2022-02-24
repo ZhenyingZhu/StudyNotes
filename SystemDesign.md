@@ -3804,15 +3804,24 @@ c) Feedback loops
 
 ###### 2. Privacy and Tracking
 
-**[HERE]**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch12.html>
+- if the data is not entered by customers to the system, then the relationship between the customer and the service need to be clear, otherwise could have interest conflict
 
 a) Surveillance
 
+- examining if the data collection can be used for surveillance can help us understand our relationship with the data collector
+
 b) Consent and freedom of choice
+
+- user cannot give meaningful consent if they don't fully understand how their data is used
+- a user might give data from another user who hasn't give consent
 
 c) Privacy and use of data
 
+- privacy doesn't mean keeping everything secret. It means have the freedom to choose
+- even internal system needs to have control on the users' privacy
+
 d) Data as assets and power
+**[HERE]**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch12.html>
 
 e) Remembering the Industrial Revolution
 
