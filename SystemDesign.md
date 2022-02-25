@@ -3821,11 +3821,16 @@ c) Privacy and use of data
 - even internal system needs to have control on the users' privacy
 
 d) Data as assets and power
-**[HERE]**: <https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch12.html>
+
+- should not build a system that can give the data into wrong hand even in the future
 
 e) Remembering the Industrial Revolution
 
+- collection and use of the data is like a pollution problem during industrial revolution and need to solve
+
 f) Legislation and self-regulation
+
+- Over-regulation may prevent innovation and improvements
 
 ## Open Questions
 
