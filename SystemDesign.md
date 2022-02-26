@@ -3493,18 +3493,18 @@ Rebuilding state after a failure
 a) Reasoning about dataflows
 
 - Need to be clear: 1. where is the data source, 2. where is each representation derived from, 3. what places do the data need to be, in what format
-- shouldn't have multiple source of authorities for a data, otherwise there could be write conflicts
+- shouldn't have multiple source of authorities for a data, otherwise there could be write conflicts **[KEY]**
 - If there is an order on the events in one place, other representations can use the same order
 - need maintain deterministic and idempotent for fault torlerance
 
 b) Derived data versus distributed transactions
 
 - Distributed transactions decide on an ordering of writes by using locks for mutual exclusion. use atomic commit to ensure that changes take effect exactly once
-- CDC and event sourcing use a log for ordering. Can have deterministic retry and idempotence
-- derived data systems are updated async, so don't support read-your-own-write
+- CDC and event sourcing use a log for ordering. Can have deterministic retry and idempotence **[KEY]**
+- derived data systems are updated async, so don't support read-your-own-write **[KEY]**
 - XA is high cost so need a better distributed transaction protocol. Use log-based derived data is a direction
 
-c) The limits of total ordering
+c) The limits of total ordering **[KEY]**
 
 - to generate total ordering event logs, requests need to go through a single leader node. But if throughput is higher than a node capacity, need to partitioning to multiple nodes
 - mullti geo servers have seperate leader nodes in each DC
@@ -3521,11 +3521,11 @@ d) Ordering events to capture causality
 
 ###### 2. Batch and Stream Processing
 
-- batch and stream processings can emulate each other. But if implement one with the other, the performance might be poor. e.g., microbatching may perform poorly on hopping or sliding windows
+- batch and stream processings can emulate each other. But if implement one with the other, the performance might be poor. e.g., microbatching may perform poorly on hopping or sliding windows **[KEY]**
 
 a) Maintaining derived state
 
-- Batch process is functional flavor: using deterministic functions whose output depends only on input and not affect other outputs
+- Batch process is using functional flavor: using deterministic functions whose output depends only on input and not affect other outputs
 - derived data systems are run async to provide fault torlerance
 - secondary indexes often cross partition boundaries. Async makes them more reliable and scalable
 
@@ -3535,7 +3535,7 @@ b) Reprocessing data for application evolution
 - reprocessing is needed for maintaining the system when changes occurs, e.g., schema is changed
 - Derived views allow gradual evolution: can maintain old and new schemas side by side
 
-c) The lambda architecture
+c) The lambda architecture **[KEY]**
 
 - an architecture to combine batch and stream processing together
 - read-optimized views are derived from incoming data
@@ -3574,7 +3574,7 @@ b) The meta-database of everything
 - Federated databases/polystore: unifying reads. Provide uniform query interface
 - Unbundled databases: unifying writes: synchronize writes across disparate technologies. Following Unix: communicate through a uniform low-level API (pipes), and that can be composed using a higher-level language (shell)
 
-c) Making unbundling work
+c) Making unbundling work **[KEY]**
 
 - can implement unbundled DB writes by using an asynchronous event log with idempotent writes
 - it is loose coupling between the various components
@@ -3591,7 +3591,7 @@ d) Unbundled versus integrated systems
 - database inside-out approach: compose specialized storage and processing systems with app code
 - dataflow languages have overlay with the unbundled idea
 
-a) Application code as a derivation function
+a) Application code as a derivation function **[KEY]**
 
 - create a secondary index is a native feature for a lot of DB
 - but creating full text search index, machine learning model, cache, etc. are not easy to be implemented
@@ -3599,7 +3599,7 @@ a) Application code as a derivation function
 
 b) Separation of application code and state
 
-- DBs cannot be easily deployed. No support for dependency management, version control, rolling upgrade, evolvability, monitoring, metrics, calls to network services, and integration with external systems
+- DBs cannot be easily deployed. No support for dependency management, version control, rolling upgrade, evolvability, monitoring, metrics, calls to network services, and integration with external systems **[KEY]**
 - because DB couples app code with data durable together
 - stateless services are easy to manage because nodes can be removed at any time
 - observer pattern: get noticed when data changes
@@ -3611,7 +3611,7 @@ c) Dataflow: Interplay between state changes and application code
 - maintaining derived data is not the same as asynchronous job execution (MQ)
   - derived data need keep the event order
   - derived data cannot have event loss
-- stream processors can be used for mantaining derived data, with cheaper cost than distributed transaction
+- stream processors can be used for mantaining derived data, with cheaper cost than distributed transaction **[KEY]**
 
 d) Stream processors and services
 
@@ -3622,19 +3622,19 @@ d) Stream processors and services
 
 - write path: create derived states
 - create derived states are for read path
-- similar to functional programming, write path is eager evaluation, and the read path is lazy evaluation
-- derived dataset is a trade off between the amount of work done during read vs. write
+- similar to functional programming, write path is eager evaluation, and the read path is lazy evaluation **[KEY]**
+- derived dataset is a trade off between the amount of work done during read vs. write **[KEY]**
 
 a) Materialized views and caching
 
-- only create cache of common queries (also a materialized view), so both read and write are not too expensive
+- only create cache of common queries (also a materialized view), so both read and write are not too expensive **[KEY]**
 
 b) Stateful, offline-capable clients
 
 - client/server model: clients are stateless and servers have the authority over data
 - new model: offline/on-device state as a cache of state on the server
 
-c) Pushing state changes to clients
+c) Pushing state changes to clients **[KEY]**
 
 - clients can have stale cache until next poll
 - server-sent events (EventSource API) and WebSockets can maintain TCP communication channels so the changes can be subscribed
@@ -3642,16 +3642,16 @@ c) Pushing state changes to clients
 
 d) End-to-end event streams
 
-- server pushes state-change events into client side event pipeline as an extension of end-to-end write path, with low latency
+- server pushes state-change events into client side event pipeline as an extension of end-to-end write path, with low latency **[KEY]**
 - instant message and online game use such real-time architecture
 - but it is not widely supported by existing DBs, which are more request-response model, not publish-subscribe model
 
 e) Reads are events too
 
 - stream processor maintains states while performing aggregation and join
-- recording read events can handle joins across different DBs easiler, and track causual dependencies and data provenance
+- recording read events can handle joins across different DBs easiler, and track causual dependencies and data provenance **[KEY]**
 
-f) Multi-partition data processing
+f) Multi-partition data processing **[KEY]**
 
 - complex queries might need combine data from multiple partitions
 - stream processors provide message routing, partitioning, joining which can help
@@ -3672,7 +3672,7 @@ a) Exactly-once execution of an operation
 
 - Processing twice is a form of data corruption
 
-b) Duplicate suppression
+b) Duplicate suppression **[KEY]**
 
 - TCP uses seq num to handle lost or dup packages
 - 2PC (two-phase commit) allows a transaction coordinator to reconnect after a network fault, but cannot prevent the client side sends dup requests
@@ -3682,7 +3682,7 @@ c) Uniquely identifying requests
 - use a request id to prevent duplicate requests. It can be a UUID or a hash of the request
 - the request table can be seperated from actual transaction
 
-d) The end-to-end argument
+d) The end-to-end argument **[KEY]**
 
 - a general principle: The function in question (e.g., duplicate suppression) can completely and correctly be implemented only with the knowledge and help of the application standing at the endpoints of the communication system
 - another question: checking the integrity of data. Using end-to-end checksums not the message system checksums
@@ -3707,7 +3707,7 @@ b) Uniqueness in log-based messaging
 - total order broadcast is equivalent to consensus
 - can use the order of logs to make consensus of which log to pick and others to reject
 
-c) Multi-partition request processing
+c) Multi-partition request processing **[KEY]**
 
 - achieve atomicity not through atomic commit but through partitioned logs
 - given a transaction a request id and log an event with all the operations in one node
@@ -3718,8 +3718,8 @@ c) Multi-partition request processing
 ###### 3. Timeliness and Integrity
 
 - transactions are linearizable. the writer waits until the transaction is complete
-- in unbundled system, it is async. The writer doesn't wait. The read can wait for a message instead
-- consistency is actually two requirements
+- in unbundled system, it is async. The writer doesn't wait. The read can wait for a message instead **[KEY]**
+- consistency is actually two requirements **[KEY]**
   - timeliness: user observe the system in an up-to-date state. If a user see an inconsist state, it can wait for the replication to happen. eventual consistency
   - integrity: absence of corruption. the derived data must be correct. Wait doesn't help if integrity is violated. Need check and repair. perpetual inconsistency
 
@@ -3727,7 +3727,7 @@ a) Correctness of dataflow systems
 
 - event-based dataflow systems decouple timeliness and integrity
 - integrity is preseved by Exactly-once/effectively-once semantics
-- using a combination of mechanisms:
+- using a combination of mechanisms: **[KEY]**
   - the write op is present as a single message, to make it easily become atomic
   - using deterministic derivation functions to derive other state updates
   - Passing a client-generated request ID end-to-end for duplicate suppression+idempotence
@@ -3736,7 +3736,7 @@ a) Correctness of dataflow systems
 b) Loosely interpreted constraints
 
 - apps can use weaker notion of uniqueness
-- compensating transaction: after conflicts happen, ask the customer to correct later
+- compensating transaction: after conflicts happen, ask the customer to correct later **[KEY]**
 
 c) Coordination-avoiding data systems
 
@@ -3759,7 +3759,7 @@ c) A culture of verification
 
 - one direction is to build self-validating or self-auditing systems
 
-d) Designing for auditability
+d) Designing for auditability **[KEY]**
 
 - the transaction logs might not explain why those updates are made. Cannot redo the transaction because state might already changed
 - in event-based systems, the user input is an immutable event, and resulting state updates are derived from the event. The derivation can be deterministic and repeatable
@@ -3774,8 +3774,8 @@ f) Tools for auditable data systems
 
 - signing transaction logs can make them tamper-proof
 - one direction is to use cryptographic tools prove the integrity of a system
-- Merkle trees: trees of hashes that can be used to efficiently prove that a record appears in some dataset
-- certificate transparency: a security technology that relies on Merkle trees to check the validity of TLS/SSL certificates
+- Merkle trees: trees of hashes that can be used to efficiently prove that a record appears in some dataset **[KEY]**
+- certificate transparency: a security technology that relies on Merkle trees to check the validity of TLS/SSL certificates **[KEY]**
 
 ##### Doing the Right Thing
 
