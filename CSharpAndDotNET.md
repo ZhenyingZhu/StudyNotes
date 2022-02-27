@@ -1124,6 +1124,20 @@ Schema terms: see examples in [XmlSchemaEnumerationFacet](https://docs.microsoft
 - XmlSchemaComplexType: xs:complexType. contains other elements and/or attributes.
 - XmlSchemaAttribute: xs:attribute.
 
+### XmlDocument
+
+[Load XML into the document object model](https://docs.microsoft.com/en-us/dotnet/api/system.xml.xmldocument?view=net-6.0#load-xml-into-the-document-object-model)
+
+```C#
+using (XmlReader reader = XmlReader.Create(filePath))
+{
+    XmlDocument doc = new XmlDocument();
+    doc.Load(reader);
+}
+```
+
+[Navigate the document tree](https://docs.microsoft.com/en-us/dotnet/api/system.xml.xmldocument?view=net-6.0#navigate-the-document-tree)
+
 ### Predicate
 
 [Doc](https://docs.microsoft.com/en-us/dotnet/api/system.predicate-1?view=netcore-3.1)
