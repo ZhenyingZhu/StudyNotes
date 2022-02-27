@@ -19,7 +19,7 @@ class Utils:
                 'Accept-Language': 'en-US,en;q=0.5',
                 'Cache-Control': 'max-age=0',
                 'Connection': 'keep-alive',
-                'Cookie': this.cookie,
+                'Cookie': self.cookie,
                 'Sec-Fetch-Dest': 'document',
                 'Sec-Fetch-Mode': 'navigate',
                 'Sec-Fetch-Site': 'same-origin',

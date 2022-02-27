@@ -15,11 +15,11 @@ import ssl
 from utils import Utils
 
 class Crawler:
-    def __init__(self, main_url, save_path):
+    def __init__(self, main_url, save_path, utils):
         self.main_url = main_url
         self.save_path = save_path
         self.failed_urls = []
-        self.utils = Utils()
+        self.utils = utils
 
     def get_title(self, html_page):
         # TODO: this is not used any more.
@@ -157,7 +157,7 @@ def main():
     cookie = argv[3]
 
     utils = Utils(cookie)
-    crawler = Crawler(url, os.path.join(utils.get_download_path(folder)))
+    crawler = Crawler(url, os.path.join(utils.get_download_path(folder)), utils)
     crawler.start()
 
 if __name__ == '__main__':
