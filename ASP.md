@@ -2940,7 +2940,7 @@ How was the code created
 Choosing which scopes to expose
 
 - The scope `access_as_user` will be presented in the access token claim
-- delegated permission scopes will be in the scp or http://schemas.microsoft.com/identity/claims/scope claim ??What does it mean??
+- delegated permission scopes will be in the scp or <http://schemas.microsoft.com/identity/claims/scope> claim ??What does it mean??
 
 **HERE**: [A web API that calls web APIs](https://docs.microsoft.com/en-us/azure/active-directory/develop/scenario-web-api-call-api-overview)
 
