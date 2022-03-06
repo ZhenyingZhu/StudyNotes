@@ -42,7 +42,7 @@ HTTP Methods
 
 - POST: return 201.
   - can set cache control in header
-- PUT: update existing data. return 204
+- PUT: update existing data. return 204 **Q**: whether the id should be in the path? See what visual studio template does
 - PATCH: update subset of existing data. return 204
 - GET: result is cached. should not be used to sensitive data. return 200.
 
@@ -54,13 +54,24 @@ Parameters
 
 [REST API Design Standard](https://blog.stoplight.io/rest-api-standards-do-they-even-exist)
 
+- OAuth
+- JSON PATCH
+
 [CRUD API Design](https://blog.stoplight.io/crud-api-design)
+
+- RPC: another design paradigm. executing commands instead of performing actions on resources
+- Paths can indicate a hierarchy of subresources (/contacts/22/addresses), but should not be more than 2 levels of nesting
+- resources should be lower case. use hyphen to seperate words (/legal-documents)
+- use HTTP Accept header to config json or xml is supported
+- actions break CRUD but can still be useful
 
 ## ASP.NET Core Web API
 
 ## Entity Framework Core
 
 ## Identity
+
+OAuth
 
 ## React
 
