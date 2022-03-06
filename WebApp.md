@@ -32,7 +32,31 @@
 
 [Swagger CodeGen](https://github.com/swagger-api/swagger-codegen#getting-started)
 
-## Web API
+[OpenAPI Spec](https://swagger.io/specification/)
+
+## RESTful API Design
+
+[API Design Pattern](https://blog.stoplight.io/api-design-patterns-for-rest-web-services)
+
+HTTP Methods
+
+- POST: return 201.
+  - can set cache control in header
+- PUT: update existing data. return 204
+- PATCH: update subset of existing data. return 204
+- GET: result is cached. should not be used to sensitive data. return 200.
+
+Parameters
+
+- Filtering: GET /users?age=30
+- Pagination: /users?page=3&results_per_page=20
+- Sorting: GET /users?sort_by=first_name&order=asc
+
+[REST API Design Standard](https://blog.stoplight.io/rest-api-standards-do-they-even-exist)
+
+[CRUD API Design](https://blog.stoplight.io/crud-api-design)
+
+## ASP.NET Core Web API
 
 ## Entity Framework Core
 
