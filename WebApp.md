@@ -42,7 +42,7 @@ HTTP Methods
 
 - POST: return 201.
   - can set cache control in header
-- PUT: update existing data. return 204 **Q**: whether the id should be in the path? See what visual studio template does
+- PUT: update existing data. return 204
 - PATCH: update subset of existing data. return 204
 - GET: result is cached. should not be used to sensitive data. return 200.
 
@@ -64,6 +64,20 @@ Parameters
 - resources should be lower case. use hyphen to seperate words (/legal-documents)
 - use HTTP Accept header to config json or xml is supported
 - actions break CRUD but can still be useful
+
+Visual Studio Template
+
+- GET api/{resources}: 200 with list of resources
+- GET api/{resources}/{id}: 404 or 200 with the resource. Not return 401 or 403 so the user won't be able to tell if an id exist
+- PUT api/{resources}/{id}: 404, 400 with error (e.g., if the id in the request doesn't match the url), or 204
+- POST api/{resources}: 201 with the created resource. Not return 400 might because the validation is done in UI
+- DELETE api/{resources}/{id}: 404 or 200
+
+OpenAPI trival notes
+
+- `x-codegen-request-body-name`: define the name of the request body. PUT and POST need it
+- `application/x-www-form-urlencoded`: HTML form
+- `api_key`: In the parameters, pass it in. In the security, define the scope? **Q** how to define it, how to use it?
 
 ## ASP.NET Core Web API
 
