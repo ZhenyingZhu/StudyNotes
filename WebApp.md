@@ -73,11 +73,15 @@ Visual Studio Template
 - POST api/{resources}: 201 with the created resource. Not return 400 might because the validation is done in UI
 - DELETE api/{resources}/{id}: 404 or 200
 
+[API Key](https://swagger.io/docs/specification/authentication/api-keys/)
+
+- can be in URL query string, or in header, or in cookie
+- defined scheme in `securitySchemes` using type `apiKey`. Define where it is in and what is the name
+
 OpenAPI trival notes
 
 - `x-codegen-request-body-name`: define the name of the request body. PUT and POST need it
 - `application/x-www-form-urlencoded`: HTML form
-- `api_key`: In the parameters, pass it in. In the security, define the scope? **Q** how to define it, how to use it?
 
 ## ASP.NET Core Web API
 
