@@ -85,6 +85,8 @@ OpenAPI trival notes
 
 ## ASP.NET Core Web API
 
+Swagger can generate code with doc `AddSwaggerGen`.
+
 ## Entity Framework Core
 
 ## Identity
