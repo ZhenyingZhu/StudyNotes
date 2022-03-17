@@ -14,6 +14,10 @@
 
 [Swagger](https://swagger.io/about/)
 
+[axios vs. fetch](https://betterprogramming.pub/rest-api-consumption-in-react-with-fetch-axios-and-axios-hooks-d9dd14b43c8b)
+
+- Smaller app use fetch
+
 **Decision**: Server use Web API. Client use Swagger to develop and later switch to React for better UI
 
 ## Swagger
