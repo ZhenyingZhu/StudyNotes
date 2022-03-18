@@ -91,6 +91,10 @@ OpenAPI trival notes
 
 Swagger can generate code with doc `AddSwaggerGen`.
 
+Server
+
+- Need to comment out the lagacy source in `swagger\server\NuGet.Config`
+
 ## Entity Framework Core
 
 ## Identity
