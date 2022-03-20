@@ -14,9 +14,17 @@
 
 [Swagger](https://swagger.io/about/)
 
-[axios vs. fetch](https://betterprogramming.pub/rest-api-consumption-in-react-with-fetch-axios-and-axios-hooks-d9dd14b43c8b)
+[axios vs. fetch](https://betterprogramming.pub/rest-api-consumption-in-react-with-fetch-axios-and-axios-hooks-d9dd14b43c8b): Smaller app use fetch
 
-- Smaller app use fetch
+[bower](https://bower.io/): package managenent
+
+[npm](https://www.npmjs.com/): node.js package manager
+
+[node.js](https://nodejs.org/en/): chrome JS engine runtime
+
+[gulp](https://gulpjs.com/): a toolkit to automate JS workflows
+
+[Bootstrap](https://getbootstrap.com/): themeing
 
 **Decision**: Server use Web API. Client use Swagger to develop and later switch to React for better UI
 
@@ -94,6 +102,7 @@ Swagger can generate code with doc `AddSwaggerGen`.
 Server
 
 - Need to comment out the lagacy source in `swagger\server\NuGet.Config`
+- A `ValidateModelState` attribute is deifined
 
 ## Entity Framework Core
 
