@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+
+    <PackageId>TestNugetLibZhenying</PackageId>
+    <Version>1.0.1</Version>
+    <Authors>your_name</Authors>
+    <Company>your_company</Company>
+
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+
+  </PropertyGroup>
+
+</Project>

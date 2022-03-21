@@ -772,6 +772,20 @@ TryGetValue can test if key exist or not.
 
 <https://stackoverflow.com/questions/7018913/where-does-nuget-put-the-dll>
 
+<https://docs.microsoft.com/en-us/nuget/concepts/package-versioning#version-ranges>
+
+- `<package id="{package}" version="{this will be updated every build}" allowedVersions="[1,2)" autoUpgrade="true" />`
+
+[Quickstart: Create and publish a package (dotnet CLI)](https://docs.microsoft.com/en-us/nuget/quickstart/create-and-publish-a-package-using-the-dotnet-cli)
+
+[Nuget sources command (NuGet CLI)](https://docs.microsoft.com/en-us/nuget/reference/cli-reference/cli-ref-sources)
+
+- Create a local source: `nuget sources add -name foo.bar -source C:\NuGet\local -username foo -password bar -StorePasswordInClearText -configfile %AppData%\NuGet\my.config`
+
+[Specify a nuget config](https://stackoverflow.com/questions/46795035/project-specific-nuget-config-with-net-core-code#:~:text=Project-specific%20NuGet.Config%20files%20located%20in%20any%20folder%20from,file%20to%20give%20that%20project%20a%20specific%20configuration.)
+
+<https://docs.microsoft.com/en-us/nuget/hosting-packages/local-feeds>
+
 ### CxCache
 
 It is folder to hold dependency packages. Maybe is related to <https://www.nuget.org/packages/xCache/> ?
