@@ -103,6 +103,10 @@ Server
 
 - Need to comment out the lagacy source in `swagger\server\NuGet.Config`
 - A `ValidateModelState` attribute is deifined
+- Controller name convension: `{Entity}ApiController`
+- Should the auth really pass in the apikey **??**
+- When use EF, can the properties that are another object saved **??**
+- FindPetsByTags() has a `FromQuery` parameter, how to use it **??**
 
 ## Entity Framework Core
 
