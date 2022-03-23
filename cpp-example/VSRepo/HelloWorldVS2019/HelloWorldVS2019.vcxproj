@@ -140,6 +140,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="HelloWorldVS2019.cpp" />
+    <ClCompile Include="TwoSum.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="TwoSum.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

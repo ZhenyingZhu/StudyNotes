@@ -2,10 +2,21 @@
 //
 
 #include <iostream>
+#include <vector>
+#include "TwoSum.h"
+
+using namespace std;
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    TwoSum sol;
+
+    vector<int> nums = { 1, 2, 4 };
+    vector<int> res = sol.twoSum(nums, 3);
+
+    cout << "Result: " << res[0] << ", " << res[1] << endl;
+    
+    return 0;
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
