@@ -107,6 +107,7 @@ Server
 - Should the auth really pass in the apikey **??**
 - When use EF, can the properties that are another object saved **??**
 - FindPetsByTags() has a `FromQuery` parameter, how to use it **??**
+- How to store the data would need to be handled by the developer
 
 ## Entity Framework Core
 
