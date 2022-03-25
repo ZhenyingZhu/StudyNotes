@@ -108,6 +108,9 @@ Server
 - When use EF, can the properties that are another object saved **??**
 - FindPetsByTags() has a `FromQuery` parameter, how to use it **??**
 - How to store the data would need to be handled by the developer
+- `[Authorize(AuthenticationSchemes = ApiKeyAuthenticationHandler.SchemeName)]` The API key seems not need to passed in **??**
+- `[FromRoute][Required][Range(1, 10)]long? orderId` the way to define restriction for a parameter
+- `IOperationFilter` and `IDocumentFilter` are for swagger
 
 ## Entity Framework Core
 
