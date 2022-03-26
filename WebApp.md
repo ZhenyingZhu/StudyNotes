@@ -111,6 +111,9 @@ Server
 - `[Authorize(AuthenticationSchemes = ApiKeyAuthenticationHandler.SchemeName)]` The API key seems not need to passed in **??**
 - `[FromRoute][Required][Range(1, 10)]long? orderId` the way to define restriction for a parameter
 - `IOperationFilter` and `IDocumentFilter` are for swagger
+- Models implement `IEquatable`
+- Need to know how to use the response model in code **??**
+- How to hook up with EF **??**
 
 ## Entity Framework Core
 
