@@ -124,7 +124,9 @@ C# Client
 - Has an ExceptionFactory and a config (contains base URL). How to use **??**
 - `{api}WithHttpInfo` is setting `Path`, `PathParams`, `QueryParams`, `HeaderParams`, `FormParams`, `FileParams`, `PostBody`, `HttpContentTypes`, `HttpHeaderAccepts`, 
 - How to enforce both `apiKey` and `AccessToken` are needed **??**
-- For writes, where are the `PostBody` passed in **??**
+- `PostBody` will be set from the input `localVarPostBody = this.Configuration.ApiClient.Serialize(body);`
+- For writes where are the `Form` passed in **??**
+- When upload file, the file content is `this.Configuration.ApiClient.ParameterToFile("file", file)`. how to call it **??**
 
 ASP.NET Core configs
 
