@@ -102,18 +102,26 @@ Swagger can generate code with doc `AddSwaggerGen`.
 Server
 
 - Need to comment out the lagacy source in `swagger\server\NuGet.Config`
+- It uses ASP.NET Core MVC. What's the difference and how to change it to Web API **??**
 - A `ValidateModelState` attribute is deifined
 - Controller name convension: `{Entity}ApiController`
 - Should the auth really pass in the apikey **??**
 - When use EF, can the properties that are another object saved **??**
 - FindPetsByTags() has a `FromQuery` parameter, how to use it **??**
 - How to store the data would need to be handled by the developer
-- `[Authorize(AuthenticationSchemes = ApiKeyAuthenticationHandler.SchemeName)]` The API key seems not need to passed in **??**
+- `[Authorize(AuthenticationSchemes = ApiKeyAuthenticationHandler.SchemeName)]` The API key seems not need to passed in. How to use it? **??**
 - `[FromRoute][Required][Range(1, 10)]long? orderId` the way to define restriction for a parameter
 - `IOperationFilter` and `IDocumentFilter` are for swagger
 - Models implement `IEquatable`
 - Need to know how to use the response model in code **??**
 - How to hook up with EF **??**
+
+ASP.NET Core configs
+
+- default launch URL: `https://localhost:5001/swagger`. How to launch in public **??**
+- How to config [HttpPlatformHandler](https://docs.microsoft.com/en-us/iis/extensions/httpplatformhandler/httpplatformhandler-configuration-reference) in web.config **??**
+- logging: `appsettings.json` how to setup and how to see **??**
+- [HSTS](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security)
 
 ## Entity Framework Core
 
@@ -121,6 +129,17 @@ Server
 
 OAuth
 
+- Claim?
+- identity?
+- principal?
+- ticket?
+
 ## React
 
 ## Bootstrap
+
+## Azure
+
+<https://docs.microsoft.com/en-us/aspnet/core/tutorials/publish-to-azure-webapp-using-vs?view=aspnetcore-6.0>
+
+How to use docker **??**
