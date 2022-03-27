@@ -116,6 +116,16 @@ Server
 - Need to know how to use the response model in code **??**
 - How to hook up with EF **??**
 
+C# Client
+
+- A C# program to call the RESTful APIs
+- Uses [RestSharp](https://restsharp.dev/) as the HTTP client
+- Each API has an async and a sync version
+- Has an ExceptionFactory and a config (contains base URL). How to use **??**
+- `{api}WithHttpInfo` is setting `Path`, `PathParams`, `QueryParams`, `HeaderParams`, `FormParams`, `FileParams`, `PostBody`, `HttpContentTypes`, `HttpHeaderAccepts`, 
+- How to enforce both `apiKey` and `AccessToken` are needed **??**
+- For writes, where are the `PostBody` passed in **??**
+
 ASP.NET Core configs
 
 - default launch URL: `https://localhost:5001/swagger`. How to launch in public **??**
@@ -127,7 +137,7 @@ ASP.NET Core configs
 
 ## Identity
 
-OAuth
+OAuth2? JWT?
 
 - Claim?
 - identity?
