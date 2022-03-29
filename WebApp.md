@@ -118,8 +118,9 @@ Server
 
 C# Client
 
-- A C# program to call the RESTful APIs
+- A C# program to call the RESTful APIs. Might be used in some programs talking to the RESTful APIs
 - Uses [RestSharp](https://restsharp.dev/) as the HTTP client
+  - How to use `InterceptRequest` and `InterceptResponse` **??**
 - Each API has an async and a sync version
 - Has an ExceptionFactory and a config (contains base URL). How to use **??**
 - `{api}WithHttpInfo` is setting `Path`, `PathParams`, `QueryParams`, `HeaderParams`, `FormParams`, `FileParams`, `PostBody`, `HttpContentTypes`, `HttpHeaderAccepts`, 
