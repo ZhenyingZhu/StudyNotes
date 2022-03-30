@@ -122,12 +122,25 @@ C# Client
 - Uses [RestSharp](https://restsharp.dev/) as the HTTP client
   - How to use `InterceptRequest` and `InterceptResponse` **??**
 - Each API has an async and a sync version
-- Has an ExceptionFactory and a config (contains base URL). How to use **??**
-- `{api}WithHttpInfo` is setting `Path`, `PathParams`, `QueryParams`, `HeaderParams`, `FormParams`, `FileParams`, `PostBody`, `HttpContentTypes`, `HttpHeaderAccepts`, 
+- Has a config class. Contains:
+  - base URL
+  - Default header
+  - ApiKey, ApiKeyPrefix
+  - username, password
+  - access token
+  - timeout
+  - userAgent
+- `{api}WithHttpInfo` is setting `Path`, `PathParams`, `QueryParams`, `HeaderParams`, `FormParams`, `FileParams`, `PostBody`, `HttpContentTypes`, `HttpHeaderAccepts`
 - How to enforce both `apiKey` and `AccessToken` are needed **??**
 - `PostBody` will be set from the input `localVarPostBody = this.Configuration.ApiClient.Serialize(body);`
 - For writes where are the `Form` passed in **??**
 - When upload file, the file content is `this.Configuration.ApiClient.ParameterToFile("file", file)`. how to call it **??**
+- `ExceptionFactory`: just a delegate. From the method name and response status code, generate `ApiException`
+- `IApiAccessor`: how API endpoints interact with config
+- `SwaggerDateConverter`: handling date time value type
+- All the models are re-defined same as them on the server side with `IEquatable` and `IValidatableObject` interface
+- build with C# compiler (CSC) directly
+- has a test project using mono.  **TODO: give it a try**
 
 ASP.NET Core configs
 
