@@ -102,6 +102,7 @@ Swagger can generate code with doc `AddSwaggerGen`.
 Server
 
 - Need to comment out the lagacy source in `swagger\server\NuGet.Config`
+- Need to comment out the `TermsOfService` in `Startup.cs`
 - It uses ASP.NET Core MVC. What's the difference and how to change it to Web API **??**
 - A `ValidateModelState` attribute is deifined
 - Controller name convension: `{Entity}ApiController`
@@ -115,6 +116,7 @@ Server
 - Models implement `IEquatable`
 - Need to know how to use the response model in code **??**
 - How to hook up with EF **??**
+- when start, the `index.html` is retrieved in the npm [swagger-ui](https://github.com/swagger-api/swagger-ui) **??**
 
 C# Client
 
