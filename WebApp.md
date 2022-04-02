@@ -46,6 +46,8 @@
 
 [OpenAPI Spec](https://swagger.io/specification/)
 
+[petstore](https://petstore.swagger.io/#/pet/uploadFile)
+
 ## RESTful API Design
 
 [API Design Pattern](https://blog.stoplight.io/api-design-patterns-for-rest-web-services)
@@ -152,6 +154,8 @@ ASP.NET Core configs
 - [HSTS](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security)
 
 [Tutorial: Create a web API with ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-web-api?view=aspnetcore-6.0&tabs=visual-studio)
+
+- HERE: https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-web-api?view=aspnetcore-6.0&tabs=visual-studio#register-the-database-context
 
 ## Entity Framework Core
 
