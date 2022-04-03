@@ -155,7 +155,11 @@ ASP.NET Core configs
 
 [Tutorial: Create a web API with ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-web-api?view=aspnetcore-6.0&tabs=visual-studio)
 
-- HERE: https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-web-api?view=aspnetcore-6.0&tabs=visual-studio#register-the-database-context
+- `CreatedAtAction`: return 201 with the location in the response header points to the URI of the newly created resource
+- `dotnet tool install -g Microsoft.dotnet-httprepl`
+- HERE: https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-web-api?view=aspnetcore-6.0&tabs=visual-studio#test-posttodoitem
+
+**TODO**: Read [Create web APIs with ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/web-api/?view=aspnetcore-6.0)
 
 ## Entity Framework Core
 
