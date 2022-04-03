@@ -157,9 +157,19 @@ ASP.NET Core configs
 
 - `CreatedAtAction`: return 201 with the location in the response header points to the URI of the newly created resource
 - `dotnet tool install -g Microsoft.dotnet-httprepl`
-- HERE: https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-web-api?view=aspnetcore-6.0&tabs=visual-studio#test-posttodoitem
+- `ActionResult` ctor contains `actionName`, `routeValue`, `objectValue`
+- [ActionResult vs IActionResult](https://docs.microsoft.com/en-us/aspnet/core/web-api/action-return-types?view=aspnetcore-6.0#actionresult-vs-iactionresult). If return `NoContent`, use `IActionResult`, otherwise use `ActionResult` so the results can be converted to the HTTP response
+- PUT method needs `_context.Entry(input).State = EntityState.Modified;` so the `DbUpdateConcurrencyException` can be thrown
+- Data Transfer Object (DTO): hide some properties in the model. More details in [Preventing mass assignment or over posting in ASP.NET Core](https://andrewlock.net/preventing-mass-assignment-or-over-posting-in-asp-net-core/#:~:text=Mass%20assignment%2C%20also%20known%20as%20over-posting%2C%20is%20an,a%20developer%20did%20not%20expect%20to%20be%20set.)
+- While handling `DbUpdateConcurrencyException` during PUT, check item exists is to deal with the case that the item is deleted by another caller.
 
-**TODO**: Read [Create web APIs with ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/web-api/?view=aspnetcore-6.0)
+**TODO**: Read 
+
+- [Tutorial: Call an ASP.NET Core web API with JavaScript](https://docs.microsoft.com/en-us/aspnet/core/tutorials/web-api-javascript?view=aspnetcore-6.0)
+- [Protect a web API with AAD](https://docs.microsoft.com/en-us/azure/api-management/api-management-howto-protect-backend-with-aad)
+- [Entity Framework Core](https://docs.microsoft.com/en-us/ef/core/)
+- [Getting Started with EF Core](https://docs.microsoft.com/en-us/ef/core/get-started/overview/first-app?tabs=visual-studio)
+- [Create web APIs with ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/web-api/?view=aspnetcore-6.0)
 
 ## Entity Framework Core
 
