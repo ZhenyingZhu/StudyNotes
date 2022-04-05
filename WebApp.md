@@ -163,9 +163,12 @@ ASP.NET Core configs
 - Data Transfer Object (DTO): hide some properties in the model. More details in [Preventing mass assignment or over posting in ASP.NET Core](https://andrewlock.net/preventing-mass-assignment-or-over-posting-in-asp-net-core/#:~:text=Mass%20assignment%2C%20also%20known%20as%20over-posting%2C%20is%20an,a%20developer%20did%20not%20expect%20to%20be%20set.)
 - While handling `DbUpdateConcurrencyException` during PUT, check item exists is to deal with the case that the item is deleted by another caller.
 
-**TODO**: Read 
+[Tutorial: Call an ASP.NET Core web API with JavaScript](https://docs.microsoft.com/en-us/aspnet/core/tutorials/web-api-javascript?view=aspnetcore-6.0)
 
-- [Tutorial: Call an ASP.NET Core web API with JavaScript](https://docs.microsoft.com/en-us/aspnet/core/tutorials/web-api-javascript?view=aspnetcore-6.0)
+- [What Does javascript:void(0); Mean?](https://www.freecodecamp.org/news/javascript-void-keyword-explained/)
+
+**TODO**: Read
+
 - [Protect a web API with AAD](https://docs.microsoft.com/en-us/azure/api-management/api-management-howto-protect-backend-with-aad)
 - [Entity Framework Core](https://docs.microsoft.com/en-us/ef/core/)
 - [Getting Started with EF Core](https://docs.microsoft.com/en-us/ef/core/get-started/overview/first-app?tabs=visual-studio)
