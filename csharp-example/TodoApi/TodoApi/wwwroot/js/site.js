@@ -16,7 +16,34 @@ function _displayItems(data) {
     const button = document.createElement('button');
 
     data.forEach(item => {
+        let tr = tBody.insertRow();
 
+        let isCompleteCheckbox = document.createElement('input');
+        isCompleteCheckbox.type = 'checkbox';
+        isCompleteCheckbox.disabled = true;
+        isCompleteCheckbox.checked = item.isComplete;
+
+        let td1 = tr.insertCell(0);
+        td1.appendChild(isCompleteCheckbox);
+
+        let textNode = document.createTextNode(item.name);
+
+        let td2 = tr.insertCell(1);
+        td2.appendChild(textNode);
+
+        let editButton = button.cloneNode(false);
+        editButton.innerText = 'Edit';
+        editButton.setAttribute('onclick', `displayEditForm(${item.id})`);
+
+        let td3 = tr.insertCell(2);
+        td3.appendChild(editButton);
+
+        let deleteButton = button.cloneNode(false);
+        deleteButton.innerText = 'Delete';
+        deleteButton.setAttribute('onclick', `deleteItem(${item.id})`);
+
+        let td4 = tr.insertCell(3);
+        td4.appendChild(deleteButton);
     });
 
     todos = data;
@@ -29,3 +56,47 @@ function getItems() {
         .catch(error => console.error('Unable to get items.', error));
 }
 
+function addItem() {
+    const addNameTextbox = document.getElementById('add-name');
+
+    const item = {
+        isComplete: false,
+        name: addNameTextbox.value.trim()
+    };
+
+    fetch(uri, {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(item)
+    })
+        .then(response => response.json())
+        .then(() => {
+            getItems();
+            addNameTextbox.value = '';
+        })
+        .catch(error => console.error('Unable to add item.', error));
+}
+
+function deleteItem(id) {
+    fetch(`${uri}/${id}`, {
+        method: 'DELETE'
+    })
+        .then(() => getItems)
+        .catch(error => console.error('Unable to delete item.', error));
+}
+
+function displayEditForm(id) {
+    const item = todos.find(item => item.id === id);
+
+    document.getElementById('edit-name').value = item.name;
+    document.getElementById('edit-id').value = item.id;
+    document.getElementById('edit-isComplete').checked = item.isComplete;
+    document.getElementById('editForm').style.display = 'block';
+}
+
+function updateItem() {
+
+}
