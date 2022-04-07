@@ -51,9 +51,9 @@ function _displayItems(data) {
 
 function getItems() {
     fetch(uri)
-        .then(response => response.json())
-        .then(data => _displayItems(data))
-        .catch(error => console.error('Unable to get items.', error));
+    .then(response => response.json())
+    .then(data => _displayItems(data))
+    .catch(error => console.error('Unable to get items.', error));
 }
 
 function addItem() {
@@ -72,20 +72,20 @@ function addItem() {
         },
         body: JSON.stringify(item)
     })
-        .then(response => response.json())
-        .then(() => {
-            getItems();
-            addNameTextbox.value = '';
-        })
-        .catch(error => console.error('Unable to add item.', error));
+    .then(response => response.json())
+    .then(() => {
+        getItems();
+        addNameTextbox.value = '';
+    })
+    .catch(error => console.error('Unable to add item.', error));
 }
 
 function deleteItem(id) {
     fetch(`${uri}/${id}`, {
         method: 'DELETE'
     })
-        .then(() => getItems)
-        .catch(error => console.error('Unable to delete item.', error));
+    .then(() => getItems)
+    .catch(error => console.error('Unable to delete item.', error));
 }
 
 function displayEditForm(id) {
@@ -98,5 +98,29 @@ function displayEditForm(id) {
 }
 
 function updateItem() {
+    const itemId = document.getElementById('edit-id').value;
+    const item = {
+        id: parseInt(itemId, 10),
+        isComplete: document.getElementById('edit-isComlete').checked,
+        name: document.getElementById('edit-name').value.trim()
+    };
 
+    fetch(`${uri}/${itemId}`, {
+        method: 'PUT',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(item)
+    })
+    .then(getItems())
+    .catch(error => console.error('Unable to update item.', error));
+
+    closeInput();
+
+    return false;
+}
+
+function closeInput() {
+    document.getElementById('editForm').style.display = 'none';
 }
