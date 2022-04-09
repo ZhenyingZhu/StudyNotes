@@ -84,7 +84,7 @@ function deleteItem(id) {
     fetch(`${uri}/${id}`, {
         method: 'DELETE'
     })
-    .then(() => getItems)
+    .then(() => getItems())
     .catch(error => console.error('Unable to delete item.', error));
 }
 
