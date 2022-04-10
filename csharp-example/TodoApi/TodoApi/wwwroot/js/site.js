@@ -101,7 +101,7 @@ function updateItem() {
     const itemId = document.getElementById('edit-id').value;
     const item = {
         id: parseInt(itemId, 10),
-        isComplete: document.getElementById('edit-isComlete').checked,
+        isComplete: document.getElementById('edit-isComplete').checked,
         name: document.getElementById('edit-name').value.trim()
     };
 
@@ -113,7 +113,7 @@ function updateItem() {
         },
         body: JSON.stringify(item)
     })
-    .then(getItems())
+    .then(() => getItems())
     .catch(error => console.error('Unable to update item.', error));
 
     closeInput();
