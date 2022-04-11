@@ -166,12 +166,25 @@ ASP.NET Core configs
 [Tutorial: Call an ASP.NET Core web API with JavaScript](https://docs.microsoft.com/en-us/aspnet/core/tutorials/web-api-javascript?view=aspnetcore-6.0)
 
 - [What Does javascript:void(0); Mean?](https://www.freecodecamp.org/news/javascript-void-keyword-explained/)
+- flows
+  - view: a table. `getItems()` is called at the end of rendering the html
+    - `getItems()` calls `GET uri` and gets the response json, then call `_displayItems()` that sets the view table and the counter
+    - `_displayItems()` first clean the view table, then create a row for each todo item, then stores the todo items in an array. `cloneNode` is faster than `createElement`, so use `cloneNode` as much as possible
+    - `Edit` button `onclick` calls `displayEditForm(id)`. It reads an todo item from the array, then binds the fields to the edit form, then unhides the form
+    - `Delete` button `onclick` calls `deleteItem(id)`. It calls `DELETE uri/id`, then `getItems()`
+  - add: a form, `onsubmit` calls `addItem()` with `POST` method. Submit button `Add`
+    - `addItem()` reads input from the form, calls `trim()` for the text input, then calls `POST uri`, but not uses the result, and instead calls `getItems()`, then cleans the input form
+  - update: a form, normally hidden. `onsubmit` calls `updateItem()` without set method. Submit button `Save`
+    - `aria-label` is set for the inavtive button `X` (`&#10006;`). It calls `closeInput()` when `onclick`
+    - `updateItem()` reads input from the form, then `parseInt()` on int and `trim()` on string, then calls `PUT uri/id`, and then calls `getItems()`. `closeInput()` is called outside the async, because even the call fails, it also hides the form. Return false to stop default form submission
+    - [What is the meaning of onsubmit="return false"?](https://stackoverflow.com/questions/35037069/what-is-the-meaning-of-onsubmit-return-false-javascript-jquery)
+  - counter: a `<p>`
 
 **TODO**: Read
 
-- [Protect a web API with AAD](https://docs.microsoft.com/en-us/azure/api-management/api-management-howto-protect-backend-with-aad)
 - [Entity Framework Core](https://docs.microsoft.com/en-us/ef/core/)
 - [Getting Started with EF Core](https://docs.microsoft.com/en-us/ef/core/get-started/overview/first-app?tabs=visual-studio)
+- [Protect a web API with AAD](https://docs.microsoft.com/en-us/azure/api-management/api-management-howto-protect-backend-with-aad)
 - [Create web APIs with ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/web-api/?view=aspnetcore-6.0)
 
 ## Entity Framework Core
@@ -186,6 +199,9 @@ OAuth2? JWT?
 - ticket?
 
 ## React
+
+- Form input validation?
+- what input pre-process? `parseInt`, `string.trim()`?
 
 ## Bootstrap
 
