@@ -194,11 +194,14 @@ ASP.NET Core configs
   - need knowledge of primary and foreign keys, constraints, indexes, normalization, DML and DDL statements, data types, profiling, etc. **??**
   - test frameworks upgrade like ASP.NET Core, OData, or AutoMapper **??**
   - Performance and stress testing to catch inefficient operations: multiple collections Includes, heavy use of lazy loading, conditional queries on non-indexed columns, massive updates and inserts with store-generated values, lack of concurrency handling, large models, inadequate cache policy **??**
-  - **HERE**: Security review
+  - Security review: connection strings, secrets, database permissions, input validation for raw SQL, encryption for sensitive data **??**
+  - failure scenarios: version rollback, fallback servers, scale-out and load balancing, DoS mitigation, and data backups **??**
+  - App deployment/migration: data migration during app start might hit concurrency issue. Staging.
 
 **TODO**: Read
 
 - [Getting Started with EF Core](https://docs.microsoft.com/en-us/ef/core/get-started/overview/first-app?tabs=visual-studio)
+- [Applying Migrations](https://docs.microsoft.com/en-us/ef/core/managing-schemas/migrations/applying?tabs=dotnet-core-cli)
 
 ## Identity
 
