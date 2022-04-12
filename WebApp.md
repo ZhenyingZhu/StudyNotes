@@ -182,14 +182,27 @@ ASP.NET Core configs
 
 **TODO**: Read
 
-- [Entity Framework Core](https://docs.microsoft.com/en-us/ef/core/)
-- [Getting Started with EF Core](https://docs.microsoft.com/en-us/ef/core/get-started/overview/first-app?tabs=visual-studio)
-- [Protect a web API with AAD](https://docs.microsoft.com/en-us/azure/api-management/api-management-howto-protect-backend-with-aad)
 - [Create web APIs with ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/web-api/?view=aspnetcore-6.0)
 
 ## Entity Framework Core
 
+[Entity Framework Core](https://docs.microsoft.com/en-us/ef/core/)
+
+- object-relational mapper (O/RM)
+- context object: represents a session with the database
+- avoid common pitfalls:
+  - need knowledge of primary and foreign keys, constraints, indexes, normalization, DML and DDL statements, data types, profiling, etc. **??**
+  - test frameworks upgrade like ASP.NET Core, OData, or AutoMapper **??**
+  - Performance and stress testing to catch inefficient operations: multiple collections Includes, heavy use of lazy loading, conditional queries on non-indexed columns, massive updates and inserts with store-generated values, lack of concurrency handling, large models, inadequate cache policy **??**
+  - **HERE**: Security review
+
+**TODO**: Read
+
+- [Getting Started with EF Core](https://docs.microsoft.com/en-us/ef/core/get-started/overview/first-app?tabs=visual-studio)
+
 ## Identity
+
+- [Protect a web API with AAD](https://docs.microsoft.com/en-us/azure/api-management/api-management-howto-protect-backend-with-aad)
 
 OAuth2? JWT?
 
