@@ -198,9 +198,12 @@ ASP.NET Core configs
   - failure scenarios: version rollback, fallback servers, scale-out and load balancing, DoS mitigation, and data backups **??**
   - App deployment/migration: data migration during app start might hit concurrency issue. Staging.
 
+[Getting Started with EF Core](https://docs.microsoft.com/en-us/ef/core/get-started/overview/first-app?tabs=visual-studio)
+
+- `Microsoft.EntityFrameworkCore.Sqlite`
+
 **TODO**: Read
 
-- [Getting Started with EF Core](https://docs.microsoft.com/en-us/ef/core/get-started/overview/first-app?tabs=visual-studio)
 - [Applying Migrations](https://docs.microsoft.com/en-us/ef/core/managing-schemas/migrations/applying?tabs=dotnet-core-cli)
 
 ## Identity
