@@ -200,11 +200,13 @@ ASP.NET Core configs
 
 [Getting Started with EF Core](https://docs.microsoft.com/en-us/ef/core/get-started/overview/first-app?tabs=visual-studio)
 
-- `Microsoft.EntityFrameworkCore.Sqlite`
+- `Microsoft.EntityFrameworkCore.Sqlite` to use SQLite
+- `OnConfiguring(DbContextOptionsBuilder)` sets the DB context
 
 **TODO**: Read
 
 - [Applying Migrations](https://docs.microsoft.com/en-us/ef/core/managing-schemas/migrations/applying?tabs=dotnet-core-cli)
+- [Connection Strings](https://docs.microsoft.com/en-us/ef/core/miscellaneous/connection-strings)
 
 ## Identity
 
