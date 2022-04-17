@@ -200,30 +200,42 @@ ASP.NET Core configs
 
 [Getting Started with EF Core](https://docs.microsoft.com/en-us/ef/core/get-started/overview/first-app?tabs=visual-studio)
 
-- `Microsoft.EntityFrameworkCore.Sqlite` to use SQLite
 - `Install-Package Microsoft.EntityFrameworkCore.Tools` to manage DB migration locally
   - `Add-Migration InitialCreate`
   - `Update-Database`
+- The context class can inherit `IdentityDbContext` instead of `DBContext`
 
-- `DBContext.OnConfiguring(DbContextOptionsBuilder)` sets the DB context. The connection string is set here
+- In `Program.CreateWebHostBuilder()`, calls `Startup.ConfigureServices(IServiceCollection)` to setup the DB.
+  - SqlServer: `services.AddDbContext<SchoolContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));`
+  - SQLite: `services.AddDbContext<MyDatabaseContext>(options => options.UseSqlite("Data Source=localdatabase.db"));`
+  - With Identity:
+    - `services.AddIdentity<StoreUser, IdentityRole>().AddEntityFrameworkStores<DutchContext>();` and `services.AddAuthentication().AddCookie().AddJwtBearer(cfg => { cfg.TokenValidationParameters = new TokenValidationParameters() });`
+    - or `services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<ApplicationDbContext>();`
+    - then `services.AddDbContext()`
+  - In memory: `services.AddDbContext<TodoContext>(options => options.UseInMemoryDatabase("TodoList"));`
+
+- `DBContext.OnConfiguring(DbContextOptionsBuilder)`: can be used to sets the DB context (e.g., connection string), but the best place is in the `Startup.ConfigureServices(IServiceCollection)`
+  - [DbContextOptionsBuilder](https://docs.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.dbcontextoptionsbuilder?view=efcore-6.0): set options with predefined setups
 - `DBContext.OnModelCreating(ModelBuilder)` do actions when models are creating
   - `modelBuilder.Entity<Course>().ToTable("Course");`
   - Create compound index: `modelBuilder.Entity<CourseAssignment>().HasKey(c => new { c.CourseID, c.InstructorID });`
   - `modelBuilder.Entity<Product>().Property(p => p.Title).HasMaxLength(250);`
   - Seed an entry: `modelBuilder.Entity<AppTestModel>().HasData(new AppTestModel() { Id = 10, AppTestInput = "Seeding Test1" });`
 
-- Can inherit `IdentityDbContext` instead of `DBContext`
-  - **HERE**
+[Migrations Overview](https://docs.microsoft.com/en-us/ef/core/managing-schemas/migrations/?tabs=vs)
+
+- **HERE**
 
 **TODO**: Read
 
-- [Applying Migrations](https://docs.microsoft.com/en-us/ef/core/managing-schemas/migrations/applying?tabs=dotnet-core-cli)
 - [Connection Strings](https://docs.microsoft.com/en-us/ef/core/miscellaneous/connection-strings)
   - [ProjectV13 vs. MSSqlLocalDB](https://stackoverflow.com/questions/43211082/purpose-of-projectsv13-localdb-instance#:~:text=According%20to%20this%20answer%2C%20SQL%20Server%20Data%20Tools,should%20use%20MSSQLLocalDB%20or%20your%20own%20private%20instance.)
+- [Creating and configuring a model](https://docs.microsoft.com/en-us/ef/core/modeling/)
 
 ## Identity
 
 - [Protect a web API with AAD](https://docs.microsoft.com/en-us/azure/api-management/api-management-howto-protect-backend-with-aad)
+- [Overview of ASP.NET Core authentication](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/?view=aspnetcore-6.0)
 
 OAuth2? JWT?
 
