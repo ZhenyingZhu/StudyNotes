@@ -26,7 +26,7 @@
 
 [Bootstrap](https://getbootstrap.com/): themeing
 
-**Decision**: Server use Web API. Client use Swagger to develop and later switch to React for better UI
+**Decision**: Backend use EF and SQLServer. Server use Web API with Swagger to develop. Client use JS to interact with Web API. Bootstrap for basic UI, and later switch to React for better UI
 
 ## Swagger
 
@@ -47,6 +47,53 @@
 [OpenAPI Spec](https://swagger.io/specification/)
 
 [petstore](https://petstore.swagger.io/#/pet/uploadFile)
+
+Swagger can generate code with doc `AddSwaggerGen`.
+
+Server
+
+- Need to comment out the lagacy source in `swagger\server\NuGet.Config`
+- Need to comment out the `TermsOfService` in `Startup.cs`
+- It uses ASP.NET Core MVC. What's the difference and how to change it to Web API **??**
+- A `ValidateModelState` attribute is deifined
+- Controller name convension: `{Entity}ApiController`
+- Should the auth really pass in the apikey **??**
+- When use EF, can the properties that are another object saved **??**
+- FindPetsByTags() has a `FromQuery` parameter, how to use it **??**
+- How to store the data would need to be handled by the developer
+- `[Authorize(AuthenticationSchemes = ApiKeyAuthenticationHandler.SchemeName)]` The API key seems not need to passed in. How to use it? **??**
+- `[FromRoute][Required][Range(1, 10)]long? orderId` the way to define restriction for a parameter
+- `IOperationFilter` and `IDocumentFilter` are for swagger
+- Models implement `IEquatable`
+- Need to know how to use the response model in code **??**
+- How to hook up with EF **??**
+- when start, the `index.html` is retrieved in the npm [swagger-ui](https://github.com/swagger-api/swagger-ui) **??**
+
+C# Client
+
+- A C# program to call the RESTful APIs. Might be used in some programs talking to the RESTful APIs
+- Uses [RestSharp](https://restsharp.dev/) as the HTTP client
+  - How to use `InterceptRequest` and `InterceptResponse` **??**
+- Each API has an async and a sync version
+- Has a config class. Contains:
+  - base URL
+  - Default header
+  - ApiKey, ApiKeyPrefix
+  - username, password
+  - access token
+  - timeout
+  - userAgent
+- `{api}WithHttpInfo` is setting `Path`, `PathParams`, `QueryParams`, `HeaderParams`, `FormParams`, `FileParams`, `PostBody`, `HttpContentTypes`, `HttpHeaderAccepts`
+- How to enforce both `apiKey` and `AccessToken` are needed **??**
+- `PostBody` will be set from the input `localVarPostBody = this.Configuration.ApiClient.Serialize(body);`
+- For writes where are the `Form` passed in **??**
+- When upload file, the file content is `this.Configuration.ApiClient.ParameterToFile("file", file)`. how to call it **??**
+- `ExceptionFactory`: just a delegate. From the method name and response status code, generate `ApiException`
+- `IApiAccessor`: how API endpoints interact with config
+- `SwaggerDateConverter`: handling date time value type
+- All the models are re-defined same as them on the server side with `IEquatable` and `IValidatableObject` interface
+- build with C# compiler (CSC) directly
+- has a test project using mono.  **TODO: give it a try**
 
 ## RESTful API Design
 
@@ -98,53 +145,6 @@ OpenAPI trival notes
 - `application/x-www-form-urlencoded`: HTML form
 
 ## ASP.NET Core Web API
-
-Swagger can generate code with doc `AddSwaggerGen`.
-
-Server
-
-- Need to comment out the lagacy source in `swagger\server\NuGet.Config`
-- Need to comment out the `TermsOfService` in `Startup.cs`
-- It uses ASP.NET Core MVC. What's the difference and how to change it to Web API **??**
-- A `ValidateModelState` attribute is deifined
-- Controller name convension: `{Entity}ApiController`
-- Should the auth really pass in the apikey **??**
-- When use EF, can the properties that are another object saved **??**
-- FindPetsByTags() has a `FromQuery` parameter, how to use it **??**
-- How to store the data would need to be handled by the developer
-- `[Authorize(AuthenticationSchemes = ApiKeyAuthenticationHandler.SchemeName)]` The API key seems not need to passed in. How to use it? **??**
-- `[FromRoute][Required][Range(1, 10)]long? orderId` the way to define restriction for a parameter
-- `IOperationFilter` and `IDocumentFilter` are for swagger
-- Models implement `IEquatable`
-- Need to know how to use the response model in code **??**
-- How to hook up with EF **??**
-- when start, the `index.html` is retrieved in the npm [swagger-ui](https://github.com/swagger-api/swagger-ui) **??**
-
-C# Client
-
-- A C# program to call the RESTful APIs. Might be used in some programs talking to the RESTful APIs
-- Uses [RestSharp](https://restsharp.dev/) as the HTTP client
-  - How to use `InterceptRequest` and `InterceptResponse` **??**
-- Each API has an async and a sync version
-- Has a config class. Contains:
-  - base URL
-  - Default header
-  - ApiKey, ApiKeyPrefix
-  - username, password
-  - access token
-  - timeout
-  - userAgent
-- `{api}WithHttpInfo` is setting `Path`, `PathParams`, `QueryParams`, `HeaderParams`, `FormParams`, `FileParams`, `PostBody`, `HttpContentTypes`, `HttpHeaderAccepts`
-- How to enforce both `apiKey` and `AccessToken` are needed **??**
-- `PostBody` will be set from the input `localVarPostBody = this.Configuration.ApiClient.Serialize(body);`
-- For writes where are the `Form` passed in **??**
-- When upload file, the file content is `this.Configuration.ApiClient.ParameterToFile("file", file)`. how to call it **??**
-- `ExceptionFactory`: just a delegate. From the method name and response status code, generate `ApiException`
-- `IApiAccessor`: how API endpoints interact with config
-- `SwaggerDateConverter`: handling date time value type
-- All the models are re-defined same as them on the server side with `IEquatable` and `IValidatableObject` interface
-- build with C# compiler (CSC) directly
-- has a test project using mono.  **TODO: give it a try**
 
 ASP.NET Core configs
 
@@ -221,6 +221,12 @@ ASP.NET Core configs
   - Create compound index: `modelBuilder.Entity<CourseAssignment>().HasKey(c => new { c.CourseID, c.InstructorID });`
   - `modelBuilder.Entity<Product>().Property(p => p.Title).HasMaxLength(250);`
   - Seed an entry: `modelBuilder.Entity<AppTestModel>().HasData(new AppTestModel() { Id = 10, AppTestInput = "Seeding Test1" });`
+
+[Managing Database Schemas](https://docs.microsoft.com/en-us/ef/core/managing-schemas/)
+
+- Migrations: when EF Core model is SOT
+- Reverse Engineering: when DB schema is SOT
+- [Create and Drop APIs](https://docs.microsoft.com/en-us/ef/core/managing-schemas/ensure-created): `dbContext.Database.EnsureCreated();`. only for testing. A lightweight version of Migrations, but can only use one
 
 [Migrations Overview](https://docs.microsoft.com/en-us/ef/core/managing-schemas/migrations/?tabs=vs)
 
