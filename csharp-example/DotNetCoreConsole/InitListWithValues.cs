@@ -6,7 +6,7 @@ namespace DotNetCoreConsole
 {
     public class InitListWithValues
     {
-        public static async void TestMain()
+        public static void TestMain()
         {
             List<int> a = new List<int>{1, 2, 3};
             List<int> b = new List<int>{4, 5, 6};
