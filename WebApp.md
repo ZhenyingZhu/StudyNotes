@@ -233,6 +233,7 @@ ASP.NET Core configs
 - EF core compares the current model against a snapshot of the old model to generate migration file
 - migration file can be applied to DB
 - EF core records the applied migration in a history table
+- `Add-Migration InitialCreate`
 
 - **HERE**
 
