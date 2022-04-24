@@ -203,7 +203,7 @@ ASP.NET Core configs
 - `Install-Package Microsoft.EntityFrameworkCore.Tools` to manage DB migration locally
   - `Add-Migration InitialCreate`
   - `Update-Database`
-- The context class can inherit `IdentityDbContext` instead of `DBContext`
+- The context class can inherit `IdentityDbContext` instead of `DBContext`. When use Identity scaffolding
 
 - In `Program.CreateWebHostBuilder()`, calls `Startup.ConfigureServices(IServiceCollection)` to setup the DB.
   - SqlServer: `services.AddDbContext<SchoolContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));`
@@ -233,9 +233,9 @@ ASP.NET Core configs
 - EF core compares the current model against a snapshot of the old model to generate migration file
 - migration file can be applied to DB
 - EF core records the applied migration in a history table
-- `Add-Migration InitialCreate`
+- Excluding parts of your model: can have the app getting data from multiple DB context. To avoid conflict, exclude the entity from current context
 
-- **HERE**
+- **HERE**: <https://docs.microsoft.com/en-us/ef/core/managing-schemas/migrations/managing?tabs=dotnet-core-cli#adding-raw-sql>
 
 **TODO**: Read
 
