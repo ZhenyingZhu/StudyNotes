@@ -245,8 +245,13 @@ ASP.NET Core configs
 
 ## Identity
 
+[Scaffold Identity in ASP.NET Core projects](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/scaffold-identity?view=aspnetcore-6.0&tabs=visual-studio)
+
+- Visual studio 2022 -> Add -> Identity
+
 - [Protect a web API with AAD](https://docs.microsoft.com/en-us/azure/api-management/api-management-howto-protect-backend-with-aad)
 - [Overview of ASP.NET Core authentication](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/?view=aspnetcore-6.0)
+- [Creating ASP.NET Core projects with Microsoft identity platform](https://github.com/AzureAD/microsoft-identity-web/blob/master/tools/app-provisioning-tool/vs2019-16.9-how-to-use.md)
 
 OAuth2? JWT?
 
