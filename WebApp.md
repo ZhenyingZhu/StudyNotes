@@ -234,8 +234,12 @@ ASP.NET Core configs
 - migration file can be applied to DB
 - EF core records the applied migration in a history table
 - Excluding parts of your model: can have the app getting data from multiple DB context. To avoid conflict, exclude the entity from current context
-
-- **HERE**: <https://docs.microsoft.com/en-us/ef/core/managing-schemas/migrations/managing?tabs=dotnet-core-cli#adding-raw-sql>
+- In the Migrations folder, {timestamp}_{migration name}.cs are calling `migrationBuilder` to interact with DB
+- `migrationBuilder.Sql(sqlQuery)`
+- Generate SQL script to be applied in Prod: `Script-Migration <FromMigration> <ToMigration>`. If from migration is newer than to migration, it generates a rollback script
+- `Script-Migration -Idempotent` can use the history table to generate SQL script automatically
+- `Bundle-Migration` and then run the generated `.\efbundle.exe --connection 'Data Source=(local)\MSSQLSERVER;Initial Catalog=Blogging;User ID=myUsername;Password=myPassword'`
+- App migration should not be used in Prod: In the `Main()`, `using (var scope = host.Services.CreateScope()) { var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>(); db.Database.Migrate(); }`
 
 **TODO**: Read
 
