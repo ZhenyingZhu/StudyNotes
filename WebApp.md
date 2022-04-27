@@ -241,6 +241,10 @@ ASP.NET Core configs
 - `Bundle-Migration` and then run the generated `.\efbundle.exe --connection 'Data Source=(local)\MSSQLSERVER;Initial Catalog=Blogging;User ID=myUsername;Password=myPassword'`
 - App migration should not be used in Prod: In the `Main()`, `using (var scope = host.Services.CreateScope()) { var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>(); db.Database.Migrate(); }`
 
+[Error: "There was an error running the selected code generator: Package restore failed"](https://stackoverflow.com/questions/44509694/error-there-was-an-error-running-the-selected-code-generator-package-restore)
+
+- The scaffold needs the latest NuGet package versions
+
 **TODO**: Read
 
 - [Connection Strings](https://docs.microsoft.com/en-us/ef/core/miscellaneous/connection-strings)
