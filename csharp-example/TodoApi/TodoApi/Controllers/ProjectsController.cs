@@ -25,14 +25,16 @@ namespace TodoApi.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Project>>> GetProjects()
         {
-            return await _context.Projects.ToListAsync();
+            return await _context.Projects.Include(p => p.TodoItems).ToListAsync();
         }
 
         // GET: api/Projects/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Project>> GetProject(int id)
         {
-            var project = await _context.Projects.FindAsync(id);
+            // Cannot use FindAsync because Include(TodoItems) make the return not Project
+            // var project = await _context.Projects.FindAsync(id);
+            var project = await _context.Projects.Where(p => p.Id == id).Include(p => p.TodoItems).FirstOrDefaultAsync();
 
             if (project == null)
             {
