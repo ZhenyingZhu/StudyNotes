@@ -49,6 +49,8 @@ namespace TodoApi.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutProject(int id, Project project)
         {
+            // Don't let PUT add tasks as it will hard to distinguish if it is updating an existing task
+            // or adding a new task.
             if (id != project.Id)
             {
                 return BadRequest();
@@ -98,6 +100,37 @@ namespace TodoApi.Controllers
 
             _context.Projects.Remove(project);
             await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+
+        // POST: api/Projects/5
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [HttpPost("{pid}")]
+        public async Task<IActionResult> AddTaskToProject(int pid, TodoItemDTO todoItemDTO)
+        {
+            // https://stackoverflow.com/questions/48359363/ef-core-adding-updating-entity-and-adding-updating-removing-child-entities-in
+            var project = await _context.Projects.FindAsync(pid);
+            if (project == null)
+            {
+                return NotFound();
+            }
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!ProjectExists(pid))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
 
             return NoContent();
         }

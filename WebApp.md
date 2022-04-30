@@ -245,6 +245,10 @@ ASP.NET Core configs
 
 - The scaffold needs the latest NuGet package versions
 
+[EF Core - adding/updating entity and adding/updating/removing child entities in one request](https://stackoverflow.com/questions/48359363/ef-core-adding-updating-entity-and-adding-updating-removing-child-entities-in)
+
+- **HERE**
+
 **TODO**: Read
 
 - [Connection Strings](https://docs.microsoft.com/en-us/ef/core/miscellaneous/connection-strings)
