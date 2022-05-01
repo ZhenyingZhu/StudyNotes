@@ -247,6 +247,29 @@ ASP.NET Core configs
 
 [EF Core - adding/updating entity and adding/updating/removing child entities in one request](https://stackoverflow.com/questions/48359363/ef-core-adding-updating-entity-and-adding-updating-removing-child-entities-in)
 
+Models:
+
+- Master
+  - Id
+  - SomeProperty
+  - Children
+  - SuperMaster: `[ForeignKey("SuperMasterId")]`
+  - SuperMasterId
+- Child
+  - Id
+  - SomeDescription
+  - Count
+  - Master: `[ForeignKey("MasterId")]`
+  - MasterId
+  - RelatedEntity: `[ForeignKey("RelatedEntityId")]`
+  - RelatedEntityId
+
+Controllers:
+
+- `Master entity = Context.Masters.Include(x => x.SuperMaster).Include(x => x.Children).ThenInclude(x => x.RelatedEntity).FirstOrDefault(x => x.id == id)`
+- `entity.Children.Add(Mapper.Map<Child>(child));`: // Mapper.Map uses AutoMapper to map from the input DTO to entity
+- Child is created/updated directly in Child table, instead of letting EF updating the Master entity. If child.id is 0, create new one, is -1, delete, otherwise is updating. But this is bad pratice to update primary key as it messed up the EF tracking. Create a seperate list for recording them
+
 - **HERE**
 
 **TODO**: Read
