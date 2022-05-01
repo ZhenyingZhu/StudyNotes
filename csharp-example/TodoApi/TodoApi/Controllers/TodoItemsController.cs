@@ -15,17 +15,21 @@ namespace TodoApi.Controllers
     public class TodoItemsController : ControllerBase
     {
         private readonly TodoContext _context;
+        private readonly TodoRepository _repository;
+        private readonly ILogger _logger;
 
-        public TodoItemsController(TodoContext context)
+        public TodoItemsController(TodoContext context, TodoRepository repository, ILogger<TodoItemsController> logger)
         {
-            _context = context;
+            this._context = context;
+            this._repository = repository;
+            this._logger = logger;
         }
 
         // GET: api/TodoItems
         [HttpGet]
         public async Task<ActionResult<IEnumerable<TodoItemDTO>>> GetTodoItems()
         {
-            return await _context.TodoItems.Select(x => ItemToDTO(x)).ToListAsync();
+            return await this._repository.GetTodoItemsAsync();
         }
 
         // GET: api/TodoItems/5
@@ -117,13 +121,5 @@ namespace TodoApi.Controllers
             return _context.TodoItems.Any(e => e.Id == id);
         }
 
-        // A better solution is to create a TodoItemDTO class and let TodoItem inherit from it.
-        // Or use [ModelMetadataType(typeof(TodoItem))] annotation on the TodoItemDTO
-        private static TodoItemDTO ItemToDTO(TodoItem todoItem) =>
-            new TodoItemDTO {
-                Id = todoItem.Id,
-                Name = todoItem.Name,
-                IsComplete = todoItem.IsComplete
-            };
     }
 }
