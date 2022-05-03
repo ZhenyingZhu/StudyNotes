@@ -116,9 +116,6 @@ namespace TodoApi.Controllers
                 return NotFound();
             }
 
-            await TodoItemsController.CreateTodoItem(todoItemDTO);
-
-
             try
             {
                 await _context.SaveChangesAsync();

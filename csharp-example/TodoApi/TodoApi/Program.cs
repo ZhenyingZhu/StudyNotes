@@ -8,6 +8,9 @@ var connectionString = builder.Configuration.GetConnectionString("TodoContextCon
 builder.Services.AddDbContext<TodoContext>(options =>
     options.UseSqlServer(connectionString));
 
+// Add the repository.
+builder.Services.AddScoped<TodoRepository>();
+
 // Add services to the container.
 builder.Services.AddControllers();
 
