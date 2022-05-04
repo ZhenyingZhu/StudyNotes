@@ -37,7 +37,7 @@ namespace TodoApi.Models
             _context.TodoItems.Add(todoItem);
             await _context.SaveChangesAsync();
 
-            // Create a new TodoItemDTO because the todoItem.id is set and needed by the caller.
+            // Create a new TodoItemDTO because the todoItem.id is set to the real value and needed by the caller.
             return new TodoItemDTO(todoItem);
         }
 
@@ -120,12 +120,12 @@ namespace TodoApi.Models
             _context.Projects.Add(project);
             await _context.SaveChangesAsync();
 
-            // Test if the id is set.
             return project;
         }
 
         public async Task<List<Project>> GetProjectsAsync()
         {
+            // TODO: Need convert the TodoItem to TodoItemDTO
             return await _context.Projects.Include(p => p.TodoItems).ToListAsync();
         }
 
@@ -153,7 +153,7 @@ namespace TodoApi.Models
             }
         }
 
-        public async Task DeleteProject(long id)
+        public async Task DeleteProjectAsync(int id)
         {
             var project = await _context.Projects.FindAsync(id);
 
@@ -162,6 +162,7 @@ namespace TodoApi.Models
                 throw new ObjectNotFoundException($"Project {id} doesn't exist");
             }
 
+            // TODO: when there are todo items refering it, how to handle it.
             _context.Projects.Remove(project);
             await _context.SaveChangesAsync();
         }

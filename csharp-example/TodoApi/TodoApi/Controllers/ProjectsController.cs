@@ -83,7 +83,7 @@ namespace TodoApi.Controllers
         {
             try
             {
-                await _repository.DeleteTodoItemAsync(id);
+                await _repository.DeleteProjectAsync(id);
 
                 return NoContent();
             }
