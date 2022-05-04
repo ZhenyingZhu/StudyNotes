@@ -1,6 +1,7 @@
 ﻿#nullable disable
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Core;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
@@ -14,27 +15,27 @@ namespace TodoApi.Controllers
     [ApiController]
     public class ProjectsController : ControllerBase
     {
-        private readonly TodoContext _context;
+        private readonly ILogger _logger;
+        private readonly TodoRepository _repository;
 
-        public ProjectsController(TodoContext context)
+        public ProjectsController(TodoRepository repository, ILogger<ProjectsController> logger)
         {
-            _context = context;
+            _repository = repository;
+            _logger = logger;
         }
 
         // GET: api/Projects
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Project>>> GetProjects()
         {
-            return await _context.Projects.Include(p => p.TodoItems).ToListAsync();
+            return await _repository.GetProjectsAsync();
         }
 
         // GET: api/Projects/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Project>> GetProject(int id)
         {
-            // Cannot use FindAsync because Include(TodoItems) make the return not Project
-            // var project = await _context.Projects.FindAsync(id);
-            var project = await _context.Projects.Where(p => p.Id == id).Include(p => p.TodoItems).FirstOrDefaultAsync();
+            var project = await _repository.GetProjectByIdAsync(id);
 
             if (project == null)
             {
@@ -47,61 +48,49 @@ namespace TodoApi.Controllers
         // PUT: api/Projects/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutProject(int id, Project project)
+        public async Task<IActionResult> UpdateProject(int id, Project project)
         {
-            // Don't let PUT add tasks as it will hard to distinguish if it is updating an existing task
-            // or adding a new task.
             if (id != project.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(project).State = EntityState.Modified;
-
             try
             {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ProjectExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+                await _repository.UpdateProjectAsync(project);
 
-            return NoContent();
+                return NoContent();
+            }
+            catch (ObjectNotFoundException)
+            {
+                return NotFound();
+            }
         }
 
         // POST: api/Projects
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Project>> PostProject(Project project)
+        public async Task<ActionResult<Project>> CreateProject(Project project)
         {
-            _context.Projects.Add(project);
-            await _context.SaveChangesAsync();
+            await _repository.CreateProjectAsync(project);
 
-            return CreatedAtAction("GetProject", new { id = project.Id }, project);
+            return CreatedAtAction(nameof(GetProject), new { id = project.Id }, project);
         }
 
         // DELETE: api/Projects/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteProject(int id)
         {
-            var project = await _context.Projects.FindAsync(id);
-            if (project == null)
+            try
+            {
+                await _repository.DeleteTodoItemAsync(id);
+
+                return NoContent();
+            }
+            catch(ObjectNotFoundException)
             {
                 return NotFound();
             }
-
-            _context.Projects.Remove(project);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
         }
 
         // POST: api/Projects/5
@@ -110,34 +99,7 @@ namespace TodoApi.Controllers
         public async Task<IActionResult> AddTaskToProject(int pid, TodoItemDTO todoItemDTO)
         {
             // https://stackoverflow.com/questions/48359363/ef-core-adding-updating-entity-and-adding-updating-removing-child-entities-in
-            var project = await _context.Projects.FindAsync(pid);
-            if (project == null)
-            {
-                return NotFound();
-            }
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ProjectExists(pid))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
             return NoContent();
-        }
-
-        private bool ProjectExists(int id)
-        {
-            return _context.Projects.Any(e => e.Id == id);
         }
     }
 }
