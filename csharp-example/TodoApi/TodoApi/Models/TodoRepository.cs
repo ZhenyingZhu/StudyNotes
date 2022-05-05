@@ -44,12 +44,12 @@ namespace TodoApi.Models
         public async Task<List<TodoItemDTO>> GetTodoItemsAsync()
         {
             // Need to return List, so the ActionResult can convert it to IEnumerable.
-            return await _context.TodoItems.Select(t => new TodoItemDTO(t)).ToListAsync();
+            return await _context.TodoItems.Include(t => t.Project).Select(t => new TodoItemDTO(t)).ToListAsync();
         }
 
         public async Task<TodoItemDTO?> GetTodoItemByIdAsync(long id)
         {
-            var todoItem = await _context.TodoItems.FindAsync(id);
+            var todoItem = await _context.TodoItems.Where(t => t.Id == id).Include(t => t.Project).FirstOrDefaultAsync();
 
             // Let upper layer handles the NotFound error.
             if (todoItem == null)
@@ -62,6 +62,7 @@ namespace TodoApi.Models
 
         public async Task UpdateTodoItemAsync(TodoItemDTO todoItemDTO)
         {
+            // Doesn't support move it to a different project. The operation will be done by another API.
             var todoItem = await _context.TodoItems.FindAsync(todoItemDTO.Id);
 
             if (todoItem == null)
@@ -87,6 +88,7 @@ namespace TodoApi.Models
 
         public async Task DeleteTodoItemAsync(long id)
         {
+            // No need to remove it from project, because the project table doesn't record the reference.
             var todoItem = await _context.TodoItems.FindAsync(id);
 
             if (todoItem == null)
@@ -165,6 +167,11 @@ namespace TodoApi.Models
             // TODO: when there are todo items refering it, how to handle it.
             _context.Projects.Remove(project);
             await _context.SaveChangesAsync();
+        }
+
+        public async Task RemoveTodoItemFromProjectAsync(int pid, int tid)
+        {
+            var todoItem = await _context.TodoItems.FindAsync(tid);
         }
 
         private bool ProjectExists(long id)
