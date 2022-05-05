@@ -49,6 +49,7 @@ namespace TodoApi.Models
 
         public async Task<TodoItemDTO?> GetTodoItemByIdAsync(long id)
         {
+            // Include can be added in any order but add after where might load less data?
             var todoItem = await _context.TodoItems.Where(t => t.Id == id).Include(t => t.Project).FirstOrDefaultAsync();
 
             // Let upper layer handles the NotFound error.
@@ -62,12 +63,18 @@ namespace TodoApi.Models
 
         public async Task UpdateTodoItemAsync(TodoItemDTO todoItemDTO)
         {
-            // Doesn't support move it to a different project. The operation will be done by another API.
-            var todoItem = await _context.TodoItems.FindAsync(todoItemDTO.Id);
+            var todoItem = await _context.TodoItems.Where(t => t.Id == todoItemDTO.Id).Include(t => t.Project).FirstOrDefaultAsync();
 
             if (todoItem == null)
             {
                 throw new ObjectNotFoundException($"TodoItem {todoItemDTO.Id} doesn't exist");
+            }
+
+            // Doesn't support move it to a different project. The operation will be done by another API.
+            if ((todoItemDTO.ProjectId != null && todoItemDTO.ProjectId != todoItem.ProjectId) || 
+                (todoItemDTO.ProjectName != null && todoItemDTO.ProjectName != todoItem.Project?.Name))
+            {
+                throw new InvalidOperationException($"Cannot update project for TodoItem {todoItem.Id}");
             }
 
             todoItem.Name = todoItemDTO.Name;

@@ -11,7 +11,7 @@ namespace TodoApi.Models
 
         public bool IsComplete { get; set; }
 
-        public long? ProjectId { get; set; }
+        public int? ProjectId { get; set; }
 
         public string? ProjectName { get; set; }
 

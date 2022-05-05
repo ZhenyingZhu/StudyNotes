@@ -66,6 +66,10 @@ namespace TodoApi.Controllers
             {
                 return NotFound();
             }
+            catch (InvalidOperationException e)
+            {
+                return BadRequest(e.Message);
+            }
         }
 
         // POST: api/TodoItems
