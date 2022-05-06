@@ -22,6 +22,7 @@ namespace TodoApi.Models
         }
 
         #region TodoItem
+        [Obsolete]
         public async Task<TodoItemDTO> CreateTodoItemAsync(TodoItemDTO todoItemDTO)
         {
             if (todoItemDTO.Id != 0)
@@ -176,12 +177,46 @@ namespace TodoApi.Models
             await _context.SaveChangesAsync();
         }
 
-        public async Task RemoveTodoItemFromProjectAsync(int pid, int tid)
+        public async Task<Project> AddTodoItemToProjectAsync(int pid, TodoItemDTO todoItemDTO)
+        {
+            var project = await GetProjectByIdAsync(pid);
+            if (project == null)
+            {
+                throw new ObjectNotFoundException($"Project {pid} doesn't exist");
+            }
+
+            if (todoItemDTO.Id != 0)
+            {
+                _logger.LogWarning($"Creating a todoItem {todoItemDTO.Name} with id set {todoItemDTO.Id}");
+            }
+
+            TodoItem todoItem = new TodoItem
+            {
+                Name = todoItemDTO.Name,
+                IsComplete = todoItemDTO.IsComplete,
+                ProjectId = pid
+            };
+            _context.TodoItems.Add(todoItem);
+
+            try
+            {
+                await _context.SaveChangesAsync();
+
+                // Should reload project?
+                return project;
+            }
+            catch (DBConcurrencyException) when (!ProjectExists(pid))
+            {
+                throw new ObjectNotFoundException($"Project {pid} doesn't exist");
+            }
+        }
+
+        public async Task MoveTodoItemToProjectAsync(int pid, int tid)
         {
             var todoItem = await _context.TodoItems.FindAsync(tid);
         }
 
-        private bool ProjectExists(long id)
+        private bool ProjectExists(int id)
         {
             return _context.Projects.Any(p => p.Id == id);
         }

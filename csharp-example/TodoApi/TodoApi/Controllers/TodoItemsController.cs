@@ -74,10 +74,11 @@ namespace TodoApi.Controllers
 
         // POST: api/TodoItems
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
+        [HttpPost, Obsolete]
         public async Task<ActionResult<TodoItemDTO>> CreateTodoItem(TodoItemDTO todoItemDTO)
         {
             // Old method name PostTodoItem
+            // Shouldn't call this method directly. TodoItems should already created under a project.
             TodoItemDTO todoItem = await _repository.CreateTodoItemAsync(todoItemDTO);
 
             // remove the hardcoding of the action name

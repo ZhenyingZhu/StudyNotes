@@ -93,13 +93,22 @@ namespace TodoApi.Controllers
             }
         }
 
-        // POST: api/Projects/5
+        // POST: api/Projects/5/TodoItems
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost("{pid}")]
-        public async Task<IActionResult> AddTaskToProject(int pid, TodoItemDTO todoItemDTO)
+        [HttpPost("{pid}/TodoItems")]
+        public async Task<ActionResult<Project>> AddTodoItemToProject(int pid, TodoItemDTO todoItemDTO)
         {
             // https://stackoverflow.com/questions/48359363/ef-core-adding-updating-entity-and-adding-updating-removing-child-entities-in
-            return NoContent();
+            try
+            {
+                var project = await _repository.AddTodoItemToProjectAsync(pid, todoItemDTO);
+
+                return CreatedAtAction(nameof(GetProject), new { id = project.Id }, project);
+            }
+            catch (ObjectNotFoundException)
+            {
+                return NotFound();
+            }
         }
     }
 }
