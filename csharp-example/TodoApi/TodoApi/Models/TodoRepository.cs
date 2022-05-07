@@ -97,6 +97,40 @@ namespace TodoApi.Models
             }
         }
 
+        public async Task ChangeTodoItemProjectAsync(long tid, int pid)
+        {
+            var todoItem = await _context.TodoItems.FindAsync(tid);
+            if (todoItem == null)
+            {
+                throw new ObjectNotFoundException($"TodoItem {tid} doesn't exist");
+            }
+
+            if (!ProjectExists(pid))
+            {
+                throw new ObjectNotFoundException($"Project {pid} doesn't exist");
+            }
+
+            todoItem.ProjectId = pid;
+            _context.Entry(todoItem).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DBConcurrencyException)
+            {
+                if (!TodoItemExists(tid))
+                {
+                    throw new ObjectNotFoundException($"TodoItem {tid} doesn't exist");
+                }
+
+                if (!ProjectExists(pid))
+                {
+                    throw new ObjectNotFoundException($"Project {pid} doesn't exist");
+                }
+            }
+        }
+
         public async Task DeleteTodoItemAsync(long id)
         {
             // No need to remove it from project, because the project table doesn't record the reference.
@@ -189,8 +223,7 @@ namespace TodoApi.Models
 
         public async Task<ProjectDTO> AddTodoItemToProjectAsync(int pid, TodoItem todoItem)
         {
-            var project = await GetProjectByIdAsync(pid);
-            if (project == null)
+            if (!ProjectExists(pid))
             {
                 throw new ObjectNotFoundException($"Project {pid} doesn't exist");
             }
@@ -207,18 +240,18 @@ namespace TodoApi.Models
             {
                 await _context.SaveChangesAsync();
 
-                // Should reload project?
+                var project = await GetProjectByIdAsync(pid);
+                if (project == null)
+                {
+                    throw new ObjectNotFoundException($"Project {pid} doesn't exist");
+                }
+
                 return project;
             }
             catch (DBConcurrencyException) when (!ProjectExists(pid))
             {
                 throw new ObjectNotFoundException($"Project {pid} doesn't exist");
             }
-        }
-
-        public async Task MoveTodoItemToProjectAsync(int pid, int tid)
-        {
-            var todoItem = await _context.TodoItems.FindAsync(tid);
         }
 
         private bool ProjectExists(int id)

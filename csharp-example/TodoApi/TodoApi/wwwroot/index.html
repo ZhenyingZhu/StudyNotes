@@ -8,7 +8,40 @@
 <body>
     <h1>To-do CRUD</h1>
 
-    <div id="addForm">
+    <!--Project panel-->
+    <div id="viewProjectsForm">
+    </div>
+
+    <div id="projectCounterForm">
+        <h3>Project Counter</h3>
+        <p id="projectCounter"></p>
+    </div>
+
+    <div id="createProjectForm">
+    </div>
+
+    <!--Todo panel-->
+    <div id="viewTodosForm">
+        <h3>View</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Is Complete?</th>
+                    <th>Name</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody id="todos"></tbody>
+        </table>
+    </div>
+
+    <div id="todoCounterForm">
+        <h3>Todo Counter</h3>
+        <p id="todoCounter"></p>
+    </div>
+
+    <div id="createTodoForm">
         <h3>Add</h3>
         <form action="javascript:void(0);" method="POST" onsubmit="addItem()">
             <input type="text" id="add-name" placeholder="New to-do">
@@ -31,25 +64,6 @@
         </form>
     </div>
 
-    <div id="CounterForm">
-        <h3>Counter</h3>
-        <p id="counter"></p>
-    </div>
-
-    <div id="viewForm">
-        <h3>View</h3>
-        <table>
-            <thead>
-                <tr>
-                    <th>Is Complete?</th>
-                    <th>Name</th>
-                    <th>Edit</th>
-                    <th>Delete</th>
-                </tr>
-            </thead>
-            <tbody id="todos"></tbody>
-        </table>
-    </div>
 
     <script src="js/site.js" asp-append-version="true"></script>
     <script type="text/javascript">

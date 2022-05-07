@@ -144,6 +144,10 @@ OpenAPI trival notes
 - `x-codegen-request-body-name`: define the name of the request body. PUT and POST need it
 - `application/x-www-form-urlencoded`: HTML form
 
+**TODO**: Read
+
+- [RESTful Web Services Cookbook](https://learning.oreilly.com/library/view/restful-web-services/9780596809140/)
+
 ## ASP.NET Core Web API
 
 ASP.NET Core configs

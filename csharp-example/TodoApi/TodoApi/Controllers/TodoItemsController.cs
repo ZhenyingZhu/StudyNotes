@@ -72,6 +72,23 @@ namespace TodoApi.Controllers
             }
         }
 
+        // POST: api/TodoItems/5/Belongs/5
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [HttpPost("{tid}/Belongs/{pid}")]
+        public async Task<IActionResult> ChangeTodoItemProject(long tid, int pid)
+        {
+            try
+            {
+                await _repository.ChangeTodoItemProjectAsync(tid, pid);
+
+                return NoContent();
+            }
+            catch (ObjectNotFoundException)
+            {
+                return NotFound();
+            }
+        }
+
         // POST: api/TodoItems
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost, Obsolete]

@@ -1,17 +1,20 @@
-﻿const uri = 'api/todoitems';
+﻿const projectUri = 'api/projects';
+const todoUri = 'api/todoitems';
+let projects = [];
 let todos = [];
 
-function _displayCount(itemCount) {
+// Todos
+function _displayTodosCount(itemCount) {
     const name = (itemCount === 1) ? 'to-do' : 'to-dos';
 
-    document.getElementById('counter').innerText = `${itemCount} ${name}`;
+    document.getElementById('todoCounter').innerText = `${itemCount} ${name}`;
 }
 
 function _displayItems(data) {
     const tBody = document.getElementById('todos');
     tBody.innerHTML = '';
 
-    _displayCount(data.length);
+    _displayTodosCount(data.length);
 
     const button = document.createElement('button');
 
@@ -50,7 +53,7 @@ function _displayItems(data) {
 }
 
 function getItems() {
-    fetch(uri)
+    fetch(todoUri)
     .then(response => response.json())
     .then(data => _displayItems(data))
     .catch(error => console.error('Unable to get items.', error));
@@ -64,7 +67,7 @@ function addItem() {
         name: addNameTextbox.value.trim()
     };
 
-    fetch(uri, {
+    fetch(todoUri, {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -81,7 +84,7 @@ function addItem() {
 }
 
 function deleteItem(id) {
-    fetch(`${uri}/${id}`, {
+    fetch(`${todoUri}/${id}`, {
         method: 'DELETE'
     })
     .then(() => getItems())
@@ -105,7 +108,7 @@ function updateItem() {
         name: document.getElementById('edit-name').value.trim()
     };
 
-    fetch(`${uri}/${itemId}`, {
+    fetch(`${todoUri}/${itemId}`, {
         method: 'PUT',
         headers: {
             'Accept': 'application/json',

@@ -96,7 +96,7 @@ namespace TodoApi.Controllers
         // POST: api/Projects/5/TodoItems
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost("{pid}/TodoItems")]
-        public async Task<ActionResult<Project>> AddTodoItemToProject(int pid, TodoItem todoItem)
+        public async Task<ActionResult<ProjectDTO>> AddTodoItemToProject(int pid, TodoItem todoItem)
         {
             // https://stackoverflow.com/questions/48359363/ef-core-adding-updating-entity-and-adding-updating-removing-child-entities-in
             try
