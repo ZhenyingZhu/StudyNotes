@@ -62,35 +62,38 @@ namespace TodoApi.Models
             return new TodoItemDTO(todoItem);
         }
 
-        public async Task UpdateTodoItemAsync(TodoItemDTO todoItemDTO)
+        public async Task UpdateTodoItemAsync(TodoItem updatedTodoItem)
         {
-            var todoItem = await _context.TodoItems.Where(t => t.Id == todoItemDTO.Id).Include(t => t.Project).FirstOrDefaultAsync();
+            // Accept TodoItem so the Secret can be updated.
+            var existingTodoItem = await _context.TodoItems
+                .Where(t => t.Id == updatedTodoItem.Id)
+                .Include(t => t.Project).FirstOrDefaultAsync();
 
-            if (todoItem == null)
+            if (existingTodoItem == null)
             {
-                throw new ObjectNotFoundException($"TodoItem {todoItemDTO.Id} doesn't exist");
+                throw new ObjectNotFoundException($"TodoItem {updatedTodoItem.Id} doesn't exist");
             }
 
             // Doesn't support move it to a different project. The operation will be done by another API.
-            if ((todoItemDTO.ProjectId != null && todoItemDTO.ProjectId != todoItem.ProjectId) || 
-                (todoItemDTO.ProjectName != null && todoItemDTO.ProjectName != todoItem.Project?.Name))
+            if (updatedTodoItem.ProjectId != null && updatedTodoItem.ProjectId != existingTodoItem.ProjectId)
             {
-                throw new InvalidOperationException($"Cannot update project for TodoItem {todoItem.Id}");
+                throw new InvalidOperationException($"Cannot update project for TodoItem {updatedTodoItem.Id}");
             }
 
-            todoItem.Name = todoItemDTO.Name;
-            todoItem.IsComplete = todoItemDTO.IsComplete;
+            existingTodoItem.Name = updatedTodoItem.Name;
+            existingTodoItem.IsComplete = updatedTodoItem.IsComplete;
+            existingTodoItem.Secret = updatedTodoItem.Secret;
 
-            _context.Entry(todoItem).State = EntityState.Modified;
+            _context.Entry(existingTodoItem).State = EntityState.Modified;
 
             try
             {
                 await _context.SaveChangesAsync();
             }
-            catch (DbUpdateConcurrencyException) when (!TodoItemExists(todoItemDTO.Id))
+            catch (DbUpdateConcurrencyException) when (!TodoItemExists(updatedTodoItem.Id))
             {
                 // TodoItem get deleted concurrently.
-                throw new ObjectNotFoundException($"TodoItem {todoItemDTO.Id} doesn't exist");
+                throw new ObjectNotFoundException($"TodoItem {updatedTodoItem.Id} doesn't exist");
             }
         }
 
@@ -110,6 +113,7 @@ namespace TodoApi.Models
 
         // A better solution is to create a TodoItemDTO class and let TodoItem inherit from it.
         // Or use [ModelMetadataType(typeof(TodoItem))] annotation on the TodoItemDTO
+        [Obsolete]
         private static TodoItemDTO ItemToDTO(TodoItem todoItem) =>
             new TodoItemDTO
             {
@@ -125,25 +129,28 @@ namespace TodoApi.Models
         #endregion
 
         #region Project
-        public async Task<Project> CreateProjectAsync(Project project)
+        public async Task<ProjectDTO> CreateProjectAsync(Project project)
         {
             _context.Projects.Add(project);
             await _context.SaveChangesAsync();
 
-            return project;
+            return new ProjectDTO(project);
         }
 
-        public async Task<List<Project>> GetProjectsAsync()
+        public async Task<List<ProjectDTO>> GetProjectsAsync()
         {
-            // TODO: Need convert the TodoItem to TodoItemDTO
-            return await _context.Projects.Include(p => p.TodoItems).ToListAsync();
+            // Use the DTO to avoid getting TodoItems then Projects in a loop.
+            return await _context.Projects.Include(p => p.TodoItems).Select(p => new ProjectDTO(p)).ToListAsync();
         }
 
-        public async Task<Project?> GetProjectByIdAsync(long id)
+        public async Task<ProjectDTO?> GetProjectByIdAsync(long id)
         {
             // Cannot use FindAsync because Include(TodoItems) make the return not Project
             // var project = await _context.Projects.FindAsync(id);
-            var project = await _context.Projects.Where(p => p.Id == id).Include(p => p.TodoItems).FirstOrDefaultAsync();
+            var project = await _context.Projects
+                .Where(p => p.Id == id)
+                .Include(p => p.TodoItems)
+                .Select(p => new ProjectDTO(p)).FirstOrDefaultAsync();
             return project;
         }
 
@@ -173,11 +180,14 @@ namespace TodoApi.Models
             }
 
             // TODO: when there are todo items refering it, how to handle it.
+            // catch exception: nted
+            // Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes.See the inner exception for details.
+            // Microsoft.Data.SqlClient.SqlException(0x80131904): The DELETE statement conflicted with the REFERENCE constraint "FK_TodoItems_Projects_ProjectId".The conflict occurred in database "TodoApi", table "dbo.TodoItems", column 'ProjectId'.
             _context.Projects.Remove(project);
             await _context.SaveChangesAsync();
         }
 
-        public async Task<Project> AddTodoItemToProjectAsync(int pid, TodoItemDTO todoItemDTO)
+        public async Task<ProjectDTO> AddTodoItemToProjectAsync(int pid, TodoItem todoItem)
         {
             var project = await GetProjectByIdAsync(pid);
             if (project == null)
@@ -185,17 +195,12 @@ namespace TodoApi.Models
                 throw new ObjectNotFoundException($"Project {pid} doesn't exist");
             }
 
-            if (todoItemDTO.Id != 0)
+            if (todoItem.Id != 0)
             {
-                _logger.LogWarning($"Creating a todoItem {todoItemDTO.Name} with id set {todoItemDTO.Id}");
+                _logger.LogWarning($"Creating a todoItem {todoItem.Name} with id set {todoItem.Id}");
             }
 
-            TodoItem todoItem = new TodoItem
-            {
-                Name = todoItemDTO.Name,
-                IsComplete = todoItemDTO.IsComplete,
-                ProjectId = pid
-            };
+            todoItem.ProjectId = pid;
             _context.TodoItems.Add(todoItem);
 
             try

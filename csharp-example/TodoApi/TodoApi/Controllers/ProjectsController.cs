@@ -26,14 +26,14 @@ namespace TodoApi.Controllers
 
         // GET: api/Projects
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Project>>> GetProjects()
+        public async Task<ActionResult<IEnumerable<ProjectDTO>>> GetProjects()
         {
             return await _repository.GetProjectsAsync();
         }
 
         // GET: api/Projects/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Project>> GetProject(int id)
+        public async Task<ActionResult<ProjectDTO>> GetProject(int id)
         {
             var project = await _repository.GetProjectByIdAsync(id);
 
@@ -70,11 +70,11 @@ namespace TodoApi.Controllers
         // POST: api/Projects
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Project>> CreateProject(Project project)
+        public async Task<ActionResult<ProjectDTO>> CreateProject(Project project)
         {
-            await _repository.CreateProjectAsync(project);
+            var projectDTO = await _repository.CreateProjectAsync(project);
 
-            return CreatedAtAction(nameof(GetProject), new { id = project.Id }, project);
+            return CreatedAtAction(nameof(GetProject), new { id = projectDTO.Id }, projectDTO);
         }
 
         // DELETE: api/Projects/5
@@ -96,12 +96,12 @@ namespace TodoApi.Controllers
         // POST: api/Projects/5/TodoItems
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost("{pid}/TodoItems")]
-        public async Task<ActionResult<Project>> AddTodoItemToProject(int pid, TodoItemDTO todoItemDTO)
+        public async Task<ActionResult<Project>> AddTodoItemToProject(int pid, TodoItem todoItem)
         {
             // https://stackoverflow.com/questions/48359363/ef-core-adding-updating-entity-and-adding-updating-removing-child-entities-in
             try
             {
-                var project = await _repository.AddTodoItemToProjectAsync(pid, todoItemDTO);
+                var project = await _repository.AddTodoItemToProjectAsync(pid, todoItem);
 
                 return CreatedAtAction(nameof(GetProject), new { id = project.Id }, project);
             }

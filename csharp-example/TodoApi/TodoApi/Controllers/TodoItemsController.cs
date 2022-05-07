@@ -48,17 +48,17 @@ namespace TodoApi.Controllers
         // PUT: api/TodoItems/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateTodoItem(long id, TodoItemDTO todoItemDTO)
+        public async Task<IActionResult> UpdateTodoItem(long id, TodoItem todoItem)
         {
             // The old name is PutTodoItem
-            if (id != todoItemDTO.Id)
+            if (id != todoItem.Id)
             {
                 return BadRequest();
             }
 
             try
             {
-                await _repository.UpdateTodoItemAsync(todoItemDTO);
+                await _repository.UpdateTodoItemAsync(todoItem);
 
                 return NoContent();
             }
