@@ -9,20 +9,51 @@
     <h1>To-do CRUD</h1>
 
     <!--Project panel-->
-    <div id="viewProjectsForm">
-    </div>
-
+    <h2>Projects</h2>
     <div id="projectCounterForm">
         <h3>Project Counter</h3>
         <p id="projectCounter"></p>
+    </div>
+
+    <div id="viewProjectsForm">
+        <h3>Projects View</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                    <th>Check</th>
+                </tr>
+            </thead>
+            <tbody id="projects"></tbody>
+        </table>
+    </div>
+
+    <div id="editProjectForm">
+        <h3>Project Edit</h3>
+        <form action="javascript:void(0);" onsubmit="updateProject()">
+            <input type="hidden" id="editProjectId">
+            <label for="project">Project: </label>
+            <input type="text" id="editProjectName">
+            <br />
+            <input type="submit" value="Save">
+            <a onclick="closeProjectInput()" aria-label="Close">&#10006;</a>
+        </form>
     </div>
 
     <div id="createProjectForm">
     </div>
 
     <!--Todo panel-->
+    <h2>Todos</h2>
+    <div id="todoCounterForm">
+        <h3>Todo Counter</h3>
+        <p id="todoCounter"></p>
+    </div>
+
     <div id="viewTodosForm">
-        <h3>View</h3>
+        <h3>Todos View</h3>
         <table>
             <thead>
                 <tr>
@@ -36,16 +67,12 @@
         </table>
     </div>
 
-    <div id="todoCounterForm">
-        <h3>Todo Counter</h3>
-        <p id="todoCounter"></p>
-    </div>
-
-    <div id="createTodoForm">
+    <div id="addTodoItemToProjectForm">
         <h3>Add</h3>
-        <form action="javascript:void(0);" method="POST" onsubmit="addItem()">
-            <input type="text" id="add-name" placeholder="New to-do">
-            <input type="submit" value="Add">
+        <form action="javascript:void(0);" method="POST" onsubmit="addTodoItemToProject()">
+            <input type="text" id="createTodoName" placeholder="New to-do">
+            <input type="text" id="createTodoSecret" placeholder="todo secret">
+            <input type="submit" value="Create">
         </form>
     </div>
 
@@ -67,7 +94,7 @@
 
     <script src="js/site.js" asp-append-version="true"></script>
     <script type="text/javascript">
-        getItems();
+        getProjects();
     </script>
 </body>
 </html>
