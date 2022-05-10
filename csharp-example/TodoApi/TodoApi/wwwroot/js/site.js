@@ -23,6 +23,12 @@ function _displayProjects(data) {
 
     _displayProjectsCount(data.length);
 
+    // Don't need to unset selectedProject here because get shouldn't update anything.
+    // But need to reload the selectedProject name as there might be changes.
+    if (selectedProjectId !== -1) {
+        _selectProjectAndDisplayTodoViewForm(selectedProjectId);
+    }
+
     const button = document.createElement('button');
 
     data.forEach(project => {
@@ -46,7 +52,7 @@ function _displayProjects(data) {
 
         let checkButton = button.cloneNode(false);
         checkButton.innerText = 'Check';
-        checkButton.setAttribute('onclick', `_displayTodoViewForm(${project.id})`);
+        checkButton.setAttribute('onclick', `_selectProjectAndDisplayTodoViewForm(${project.id})`);
         let td4 = tr.insertCell(3);
         td4.appendChild(checkButton);
     });
@@ -56,6 +62,8 @@ function _displayProjects(data) {
 
 function displayProjectEditForm(id) {
     const project = projects.find(project => project.id === id);
+
+    _selectProjectAndDisplayTodoViewForm(project.id);
 
     document.getElementById('editProjectId').value = project.id;
     document.getElementById('editProjectName').value = project.name;
@@ -73,6 +81,7 @@ function updateProject() {
         name: document.getElementById('editProjectName').value.trim()
     };
 
+    // Here don't need set the selectedProjectId as it is set during click the edit button.
     fetch(`${projectUri}/${projectId}`, {
         method: 'PUT',
         headers: {
@@ -93,16 +102,35 @@ function deleteProject(id) {
     fetch(`${projectUri}/${id}`, {
         method: 'DELETE'
     })
-        .then(() => getProjects())
-        .catch(error => console.error('Unable to delete project.', error));
+        .then(() => {
+            _unselectProject();
+            getProjects();
+        })
+        .catch(error => _displayProjectErrorMessage('Unable to delete project.', error));
 }
 
-function _displayTodoViewForm(projectId) {
-    selectedProjectId = projectId;
+function _selectProjectAndDisplayTodoViewForm(projectId) {
     project = projects.find(project => project.id === projectId);
-    console.log(JSON.stringify(project));
-    _displayTodosCount(project.todoItems.length);
+
+    selectedProjectId = project.id;
+    const selectedProject = document.getElementById('selectedProject');
+    selectedProject.innerText = `Selected ${project.name}`;
+    selectedProject.style.display = 'none';
+
     _displayTodoItems(project.todoItems);
+}
+
+function _unselectProject() {
+    selectedProjectId = -1;
+    const selectedProject = document.getElementById('selectedProject');
+    selectedProject.innerText = '';
+    selectedProject.style.display = 'block';
+    _displayTodoItems([]);
+}
+
+function _displayProjectErrorMessage(msg, error) {
+    console.error(msg, error);
+    document.getElementById('projectErrorMessage').innerText = msg;
 }
 
 // Todos
@@ -194,6 +222,7 @@ function getItems() {
 }
 
 function deleteItem(id) {
+    // Make sure after delete it refreshes
     fetch(`${todoUri}/${id}`, {
         method: 'DELETE'
     })
