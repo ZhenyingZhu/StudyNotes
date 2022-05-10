@@ -134,7 +134,8 @@ function addTodoItemToProject() {
     })
         .then(response => response.json())
         .then(() => {
-            getItems(); // This should be Project
+            // This should be Project
+            getItems();
             createTodoNameTextbox.value = '';
         })
         .catch(error => console.error('Unable to add item.', error));
