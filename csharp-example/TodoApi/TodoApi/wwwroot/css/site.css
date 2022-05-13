@@ -1,5 +1,9 @@
-﻿input[type='submit'], button, [aria-label] {
+input[type='submit'], button, [aria-label] {
     cursor: pointer;
+}
+
+#editProjectForm {
+    display: none;
 }
 
 #editForm {

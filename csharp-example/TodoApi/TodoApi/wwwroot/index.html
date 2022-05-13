@@ -2,11 +2,11 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>To-do CRUD</title>
+    <title>Projects with TODOs</title>
     <link rel="stylesheet" href="css/site.css" />
 </head>
 <body>
-    <h1>To-do CRUD</h1>
+    <h1>Projects with TODOs</h1>
 
     <!--Project panel-->
     <h2>Projects</h2>
@@ -31,6 +31,13 @@
         </table>
     </div>
 
+    <div id="createProjectForm">
+        <form action="javascript:void(0);" method="POST" onsubmit="createProject()">
+            <input type="text" id="createProjectName" placeholder="New project">
+            <input type="submit" value="Create">
+        </form>
+    </div>
+
     <div id="editProjectForm">
         <h3>Project Edit</h3>
         <form action="javascript:void(0);" onsubmit="updateProject()">
@@ -41,9 +48,6 @@
             <input type="submit" value="Save">
             <a onclick="closeProjectInput()" aria-label="Close">&#10006;</a>
         </form>
-    </div>
-
-    <div id="createProjectForm">
     </div>
 
     <div id="projectErrorMessageForm">

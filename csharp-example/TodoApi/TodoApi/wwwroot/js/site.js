@@ -11,7 +11,7 @@ function _displayProjectsCount(projectCount) {
 }
 
 function getProjects() {
-    _clearProjectErrorMessage();
+    console.log("Getting projects.");
 
     fetch(projectUri)
         .then(response => response.json())
@@ -90,14 +90,14 @@ function updateProject() {
     // Here don't need set the selectedProjectId as it is set during click the edit button.
     fetch(`${projectUri}/${projectId}`, {
         method: 'PUT',
-        headers: {
+        headers: { // TODO: move headers to a const.
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(project)
     })
-        .then(() => getProjects())
-        .catch(error => console.error('Unable to update project.', error));
+        .then(() => getProjects()) // TODO: handle 500.
+        .catch(error => _displayProjectErrorMessage('Unable to update project.', error));
 
     closeProjectInput();
 
@@ -112,7 +112,7 @@ function deleteProject(id) {
     })
         .then((response) => {
             if (response.status === 500) {
-                _displayProjectErrorMessage('Unable to delete project.', null);
+                _displayProjectErrorMessage('Failed to delete project.', null);
             }
             else {
                 _unselectProject();
@@ -152,10 +152,32 @@ function _displayProjectErrorMessage(msg, error) {
 }
 
 function _clearProjectErrorMessage() {
+    // Should be called when doing a new write of a project or select another project.
     const errorPara = document.getElementById('projectErrorMessage');
     errorPara.innerText = '';
     errorPara.style.display = 'none';
 }
+
+function createProject() {
+    const createProjectNameTextBox = document.getElementById('createProjectName');
+
+    const project = {
+        name: createProjectNameTextBox.value.trim()
+    };
+
+    fetch(projectUri, {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(project)
+    })
+        .then(response => response.json()) // TODO: Handle 500
+        .then(() => getProjects())
+        .catch(error => _displayProjectErrorMessage('Unable to create project.', error));
+}
+
 
 // Todos
 function _displayTodosCount(itemCount) {
@@ -287,6 +309,6 @@ function updateItem() {
     return false;
 }
 
-function closeInput() {
+function getProjects() {
     document.getElementById('editForm').style.display = 'none';
 }
