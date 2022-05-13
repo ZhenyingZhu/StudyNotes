@@ -11,6 +11,8 @@ function _displayProjectsCount(projectCount) {
 }
 
 function getProjects() {
+    _clearProjectErrorMessage();
+
     fetch(projectUri)
         .then(response => response.json())
         .then(data => _displayProjects(data))
@@ -61,6 +63,8 @@ function _displayProjects(data) {
 }
 
 function displayProjectEditForm(id) {
+    _clearProjectErrorMessage();
+
     const project = projects.find(project => project.id === id);
 
     _selectProjectAndDisplayTodoViewForm(project.id);
@@ -75,6 +79,8 @@ function closeProjectInput() {
 }
 
 function updateProject() {
+    _clearProjectErrorMessage();
+
     const projectId = document.getElementById('editProjectId').value;
     const project = {
         id: parseInt(projectId, 10),
@@ -99,23 +105,32 @@ function updateProject() {
 }
 
 function deleteProject(id) {
+    _clearProjectErrorMessage();
+
     fetch(`${projectUri}/${id}`, {
         method: 'DELETE'
     })
-        .then(() => {
-            _unselectProject();
-            getProjects();
+        .then((response) => {
+            if (response.status === 500) {
+                _displayProjectErrorMessage('Unable to delete project.', null);
+            }
+            else {
+                _unselectProject();
+                getProjects();
+            }
         })
         .catch(error => _displayProjectErrorMessage('Unable to delete project.', error));
 }
 
 function _selectProjectAndDisplayTodoViewForm(projectId) {
+    _clearProjectErrorMessage();
+
     project = projects.find(project => project.id === projectId);
 
     selectedProjectId = project.id;
     const selectedProject = document.getElementById('selectedProject');
-    selectedProject.innerText = `Selected ${project.name}`;
-    selectedProject.style.display = 'none';
+    selectedProject.innerText = `Selected Project: ${project.name}`;
+    selectedProject.style.display = 'block';
 
     _displayTodoItems(project.todoItems);
 }
@@ -124,13 +139,22 @@ function _unselectProject() {
     selectedProjectId = -1;
     const selectedProject = document.getElementById('selectedProject');
     selectedProject.innerText = '';
-    selectedProject.style.display = 'block';
+    selectedProject.style.display = 'none';
     _displayTodoItems([]);
 }
 
 function _displayProjectErrorMessage(msg, error) {
     console.error(msg, error);
-    document.getElementById('projectErrorMessage').innerText = msg;
+    const errorPara = document.getElementById('projectErrorMessage');
+    console.log(errorPara.innerText);
+    errorPara.innerText = msg;
+    errorPara.style.display = 'block';
+}
+
+function _clearProjectErrorMessage() {
+    const errorPara = document.getElementById('projectErrorMessage');
+    errorPara.innerText = '';
+    errorPara.style.display = 'none';
 }
 
 // Todos
