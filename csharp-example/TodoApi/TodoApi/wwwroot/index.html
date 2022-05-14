@@ -13,7 +13,6 @@
     <div id="projectCounterForm">
         <h3>Project Counter</h3>
         <p id="projectCounter"></p>
-        <p id="selectedProject"></p>
     </div>
 
     <div id="viewProjectsForm">
@@ -38,7 +37,8 @@
         </form>
     </div>
 
-    <div id="editProjectForm">
+    <!-- No idea why the css setup doesn't work. -->
+    <div id="editProjectForm" style="display: none;">
         <h3>Project Edit</h3>
         <form action="javascript:void(0);" onsubmit="updateProject()">
             <input type="hidden" id="editProjectId">
@@ -57,6 +57,7 @@
     <!--Todo panel-->
     <h2>Todos</h2>
     <div id="todoCounterForm">
+        <p id="selectedProject"></p>
         <h3>Todo Counter</h3>
         <p id="todoCounter"></p>
     </div>

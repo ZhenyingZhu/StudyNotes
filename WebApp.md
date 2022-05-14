@@ -299,6 +299,12 @@ OAuth2? JWT?
 - principal?
 - ticket?
 
+## Javascript
+
+[Handling status 500 with try and catch](https://stackoverflow.com/questions/70709770/handling-status-500-with-try-and-catch#:~:text=1%20Take%20a%20look%20at%20the%20Fetch%20docs%3A,the%20promise%20resolves%20and%20no%20error%20is%20thrown.)
+
+- `fetch` returns 500 doesn't go to `catch` block.
+
 ## React
 
 - Form input validation?

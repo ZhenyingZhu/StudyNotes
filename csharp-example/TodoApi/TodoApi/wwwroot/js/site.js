@@ -11,8 +11,6 @@ function _displayProjectsCount(projectCount) {
 }
 
 function getProjects() {
-    console.log("Getting projects.");
-
     fetch(projectUri)
         .then(response => response.json())
         .then(data => _displayProjects(data))
@@ -40,6 +38,11 @@ function _displayProjects(data) {
         let td1 = tr.insertCell(0);
         td1.appendChild(textNode);
 
+        // TODO: rethink about the flows. Does edit and check needs to be seperate.
+        // They can be combined together.
+        // Delete button should also not appear in the form but appear aside the checked
+        // project detail, as need to see TODOs to delete.
+        // In the table, show the todo counts might be better.
         let editButton = button.cloneNode(false);
         editButton.innerText = 'Edit';
         editButton.setAttribute('onclick', `displayProjectEditForm(${project.id})`);
@@ -309,6 +312,6 @@ function updateItem() {
     return false;
 }
 
-function getProjects() {
+function closeInput() {
     document.getElementById('editForm').style.display = 'none';
 }
