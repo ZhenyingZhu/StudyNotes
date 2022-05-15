@@ -11,18 +11,18 @@
     <!--Project panel-->
     <h2>Projects</h2>
     <div id="projectCounterForm">
-        <h3>Project Counter</h3>
         <p id="projectCounter"></p>
     </div>
 
     <div id="viewProjectsForm">
-        <h3>Projects View</h3>
         <table>
             <thead>
                 <tr>
                     <th>Name</th>
+                    <!--
                     <th>Edit</th>
                     <th>Delete</th>
+                    -->
                     <th>Check</th>
                 </tr>
             </thead>
@@ -31,33 +31,35 @@
     </div>
 
     <div id="createProjectForm">
+        <br />
         <form action="javascript:void(0);" method="POST" onsubmit="createProject()">
             <input type="text" id="createProjectName" placeholder="New project">
             <input type="submit" value="Create">
         </form>
     </div>
 
-    <!-- No idea why the css setup doesn't work. -->
-    <div id="editProjectForm" style="display: none;">
-        <h3>Project Edit</h3>
+    <!-- No idea why at somepoint the css setup doesn't work. style="display: none;" -->
+    <div id="editProjectForm">
+        <h3>Project Details</h3>
         <form action="javascript:void(0);" onsubmit="updateProject()">
             <input type="hidden" id="editProjectId">
-            <label for="project">Project: </label>
+            <label for="project">Project name: </label>
             <input type="text" id="editProjectName">
             <br />
-            <input type="submit" value="Save">
+            <input type="submit" value="Change">
+            <button id="deleteProjectButton" onclick="deleteProject()">Delete</button>
             <a onclick="closeProjectInput()" aria-label="Close">&#10006;</a>
         </form>
     </div>
 
     <div id="projectErrorMessageForm">
+        <!-- TODO: set the color to be red -->
         <p id="projectErrorMessage"></p>
     </div>
 
     <!--Todo panel-->
     <h2>Todos</h2>
     <div id="todoCounterForm">
-        <p id="selectedProject"></p>
         <h3>Todo Counter</h3>
         <p id="todoCounter"></p>
     </div>

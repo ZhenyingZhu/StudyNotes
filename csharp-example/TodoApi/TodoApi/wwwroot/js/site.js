@@ -7,7 +7,7 @@ let selectedProjectId = -1;
 // Projects
 function _displayProjectsCount(projectCount) {
     const name = (projectCount === 1) ? 'project' : 'projects';
-    document.getElementById('projectCounter').innerText = `${projectCount} ${name}`;
+    document.getElementById('projectCounter').innerText = `In total ${projectCount} ${name}`;
 }
 
 function getProjects() {
@@ -23,12 +23,6 @@ function _displayProjects(data) {
 
     _displayProjectsCount(data.length);
 
-    // Don't need to unset selectedProject here because get shouldn't update anything.
-    // But need to reload the selectedProject name as there might be changes.
-    if (selectedProjectId !== -1) {
-        _selectProjectAndDisplayTodoViewForm(selectedProjectId);
-    }
-
     const button = document.createElement('button');
 
     data.forEach(project => {
@@ -38,31 +32,41 @@ function _displayProjects(data) {
         let td1 = tr.insertCell(0);
         td1.appendChild(textNode);
 
-        // TODO: rethink about the flows. Does edit and check needs to be seperate.
-        // They can be combined together.
-        // Delete button should also not appear in the form but appear aside the checked
-        // project detail, as need to see TODOs to delete.
+        // TODO: rethink about the flows. Edit and check can be combined together.
+        // Delete button should appear with project detail, as need to see TODOs to delete.
         // In the table, show the todo counts might be better.
+
+        /*
         let editButton = button.cloneNode(false);
         editButton.innerText = 'Edit';
         editButton.setAttribute('onclick', `displayProjectEditForm(${project.id})`);
         let td2 = tr.insertCell(1);
         td2.appendChild(editButton);
+        */
 
+        /*
         let deleteButton = button.cloneNode(false);
         deleteButton.innerText = 'Delete';
         deleteButton.setAttribute('onclick', `deleteProject(${project.id})`);
         let td3 = tr.insertCell(2);
         td3.appendChild(deleteButton);
+        */
 
         let checkButton = button.cloneNode(false);
         checkButton.innerText = 'Check';
-        checkButton.setAttribute('onclick', `_selectProjectAndDisplayTodoViewForm(${project.id})`);
-        let td4 = tr.insertCell(3);
+        checkButton.setAttribute('onclick', `displayProjectEditForm(${project.id})`);
+        let td4 = tr.insertCell(1);
         td4.appendChild(checkButton);
     });
 
     projects = data;
+
+    // Don't need to unset selectedProject here because get shouldn't update anything.
+    // But need to reload the selectedProject name as there might be changes.
+    // Do it here because the in mem projects array is used to display.
+    if (selectedProjectId !== -1) {
+        _selectProjectAndDisplayTodoViewForm(selectedProjectId);
+    }
 }
 
 function displayProjectEditForm(id) {
@@ -90,7 +94,7 @@ function updateProject() {
         name: document.getElementById('editProjectName').value.trim()
     };
 
-    // Here don't need set the selectedProjectId as it is set during click the edit button.
+    // Here don't need set the selectedProjectId as it is set during click the check button.
     fetch(`${projectUri}/${projectId}`, {
         method: 'PUT',
         headers: { // TODO: move headers to a const.
@@ -102,15 +106,16 @@ function updateProject() {
         .then(() => getProjects()) // TODO: handle 500.
         .catch(error => _displayProjectErrorMessage('Unable to update project.', error));
 
-    closeProjectInput();
+    // Don't need to close the edit form as it is still selected
+    // closeProjectInput();
 
     return false;
 }
 
-function deleteProject(id) {
+function deleteProject() {
     _clearProjectErrorMessage();
 
-    fetch(`${projectUri}/${id}`, {
+    fetch(`${projectUri}/${selectedProjectId}`, {
         method: 'DELETE'
     })
         .then((response) => {
@@ -131,18 +136,12 @@ function _selectProjectAndDisplayTodoViewForm(projectId) {
     project = projects.find(project => project.id === projectId);
 
     selectedProjectId = project.id;
-    const selectedProject = document.getElementById('selectedProject');
-    selectedProject.innerText = `Selected Project: ${project.name}`;
-    selectedProject.style.display = 'block';
 
     _displayTodoItems(project.todoItems);
 }
 
 function _unselectProject() {
     selectedProjectId = -1;
-    const selectedProject = document.getElementById('selectedProject');
-    selectedProject.innerText = '';
-    selectedProject.style.display = 'none';
     _displayTodoItems([]);
 }
 
@@ -176,7 +175,7 @@ function createProject() {
         },
         body: JSON.stringify(project)
     })
-        .then(response => response.json()) // TODO: Handle 500
+        .then(response => response.json()) // TODO: Handle 500, get project id
         .then(() => getProjects())
         .catch(error => _displayProjectErrorMessage('Unable to create project.', error));
 }
