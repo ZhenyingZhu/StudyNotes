@@ -5,12 +5,14 @@ let todos = [];
 let selectedProjectId = -1;
 
 // Projects
-function _displayProjectsCount(projectCount) {
-    const name = (projectCount === 1) ? 'project' : 'projects';
-    document.getElementById('projectCounter').innerText = `In total ${projectCount} ${name}`;
-}
-
 function getProjects() {
+    // Called in
+    // 1. page load
+    // 2. create a project
+    // 3. update a project
+    // 4. delete a project
+    // Don't unselect project/clear error here. After create and update a project, the
+    // selected project should not change.
     fetch(projectUri)
         .then(response => response.json())
         .then(data => _displayProjects(data))
@@ -18,6 +20,7 @@ function getProjects() {
 }
 
 function _displayProjects(data) {
+    // Only called in getProjects()
     const tBody = document.getElementById('projects');
     tBody.innerHTML = '';
 
@@ -28,35 +31,19 @@ function _displayProjects(data) {
     data.forEach(project => {
         let tr = tBody.insertRow();
 
-        let textNode = document.createTextNode(project.name);
+        let projectNameTextNode = document.createTextNode(project.name);
         let td1 = tr.insertCell(0);
-        td1.appendChild(textNode);
+        td1.appendChild(projectNameTextNode);
 
-        // TODO: rethink about the flows. Edit and check can be combined together.
-        // Delete button should appear with project detail, as need to see TODOs to delete.
-        // In the table, show the todo counts might be better.
-
-        /*
-        let editButton = button.cloneNode(false);
-        editButton.innerText = 'Edit';
-        editButton.setAttribute('onclick', `displayProjectEditForm(${project.id})`);
+        let todoCountTextNode = document.createTextNode(project.todoItems.length);
         let td2 = tr.insertCell(1);
-        td2.appendChild(editButton);
-        */
-
-        /*
-        let deleteButton = button.cloneNode(false);
-        deleteButton.innerText = 'Delete';
-        deleteButton.setAttribute('onclick', `deleteProject(${project.id})`);
-        let td3 = tr.insertCell(2);
-        td3.appendChild(deleteButton);
-        */
+        td2.appendChild(todoCountTextNode);
 
         let checkButton = button.cloneNode(false);
         checkButton.innerText = 'Check';
-        checkButton.setAttribute('onclick', `displayProjectEditForm(${project.id})`);
-        let td4 = tr.insertCell(1);
-        td4.appendChild(checkButton);
+        checkButton.setAttribute('onclick', `_displayProjectEditForm(${project.id})`);
+        let td3 = tr.insertCell(2);
+        td3.appendChild(checkButton);
     });
 
     projects = data;
@@ -69,8 +56,18 @@ function _displayProjects(data) {
     }
 }
 
-function displayProjectEditForm(id) {
-    _clearProjectErrorMessage();
+function _displayProjectsCount(projectCount) {
+    // Only called in _displayProjects
+    const name = (projectCount === 1) ? 'project' : 'projects';
+    document.getElementById('projectCounter').innerText = `In total ${projectCount} ${name}`;
+}
+
+function _displayProjectEditForm(id) {
+    // Only called in _displayProjects()
+    // This is the logic for select a project.
+    if (id !== selectedProjectId) {
+        _clearProjectErrorMessage();
+    }
 
     const project = projects.find(project => project.id === id);
 
@@ -81,11 +78,57 @@ function displayProjectEditForm(id) {
     document.getElementById('editProjectForm').style.display = 'block';
 }
 
-function closeProjectInput() {
+function _selectProjectAndDisplayTodoViewForm(projectId) {
+    // Called in
+    // 1. display projects when selectedProject is set
+    // 2. display a project
+    // Not clear error message here because here cannot decide wheter a new or old project is selected 
+    project = projects.find(project => project.id === projectId);
+
+    selectedProjectId = project.id;
+
+    _displayTodoItems(project.todoItems);
+}
+
+function closeProjectEditForm() {
+    // Called in when click the close button in edit form or a project get deleted.
+    // This is same as unselect a project.
+    _clearProjectErrorMessage();
+
     document.getElementById('editProjectForm').style.display = 'none';
+
+    selectedProjectId = -1;
+    _clearTodoItems([]);
+}
+
+function createProject() {
+    // Only called when click the submit button on createProjectForm.
+    _clearProjectErrorMessage();
+
+    const createProjectNameTextBox = document.getElementById('createProjectName');
+
+    const project = {
+        name: createProjectNameTextBox.value.trim()
+    };
+
+    fetch(projectUri, {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(project)
+    })
+        .then(response => response.json()) // TODO: Handle 500, get project id
+        .then(() => {
+            createProjectNameTextBox.value = '';
+            getProjects();
+        })
+        .catch(error => _displayProjectErrorMessage('Unable to create project.', error));
 }
 
 function updateProject() {
+    // Called when click the submit button on the edit form.
     _clearProjectErrorMessage();
 
     const projectId = document.getElementById('editProjectId').value;
@@ -106,15 +149,14 @@ function updateProject() {
         .then(() => getProjects()) // TODO: handle 500.
         .catch(error => _displayProjectErrorMessage('Unable to update project.', error));
 
-    // Don't need to close the edit form as it is still selected
-    // closeProjectInput();
-
+    // Don't need to close the edit form as the updated project should still be selected
     return false;
 }
 
 function deleteProject() {
-    _clearProjectErrorMessage();
-
+    // Only called when click the delete button.
+    // No need to clear error message because if the deletion succeed, unselect the project
+    // clears it. If the deletion fails, the error message rewrites
     fetch(`${projectUri}/${selectedProjectId}`, {
         method: 'DELETE'
     })
@@ -123,29 +165,15 @@ function deleteProject() {
                 _displayProjectErrorMessage('Failed to delete project.', null);
             }
             else {
-                _unselectProject();
+                closeProjectEditForm();
                 getProjects();
             }
         })
         .catch(error => _displayProjectErrorMessage('Unable to delete project.', error));
 }
 
-function _selectProjectAndDisplayTodoViewForm(projectId) {
-    _clearProjectErrorMessage();
-
-    project = projects.find(project => project.id === projectId);
-
-    selectedProjectId = project.id;
-
-    _displayTodoItems(project.todoItems);
-}
-
-function _unselectProject() {
-    selectedProjectId = -1;
-    _displayTodoItems([]);
-}
-
 function _displayProjectErrorMessage(msg, error) {
+    // Called in create, update, delete projects.
     console.error(msg, error);
     const errorPara = document.getElementById('projectErrorMessage');
     console.log(errorPara.innerText);
@@ -154,41 +182,15 @@ function _displayProjectErrorMessage(msg, error) {
 }
 
 function _clearProjectErrorMessage() {
+    // Called when select a new project, create, update, delete projects.
     // Should be called when doing a new write of a project or select another project.
     const errorPara = document.getElementById('projectErrorMessage');
     errorPara.innerText = '';
     errorPara.style.display = 'none';
 }
 
-function createProject() {
-    const createProjectNameTextBox = document.getElementById('createProjectName');
-
-    const project = {
-        name: createProjectNameTextBox.value.trim()
-    };
-
-    fetch(projectUri, {
-        method: 'POST',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(project)
-    })
-        .then(response => response.json()) // TODO: Handle 500, get project id
-        .then(() => getProjects())
-        .catch(error => _displayProjectErrorMessage('Unable to create project.', error));
-}
-
 
 // Todos
-function _displayTodosCount(itemCount) {
-    const name = (itemCount === 1) ? 'to-do' : 'to-dos';
-
-    document.getElementById('todoCounter').innerText = `${itemCount} ${name}`;
-}
-
-
 function addTodoItemToProject() {
     // TODO: check if selectedProject is not -1.
     const createTodoNameTextbox = document.getElementById('createTodoName');
@@ -260,6 +262,17 @@ function _displayTodoItems(data) {
     });
 
     todos = data;
+}
+
+function _displayTodosCount(itemCount) {
+    const name = (itemCount === 1) ? 'to-do' : 'to-dos';
+
+    document.getElementById('todoCounter').innerText = `In total ${itemCount} ${name}`;
+}
+
+function _clearTodoItems() {
+    document.getElementById('todoCounter').innerText = '';
+    document.getElementById('todos').innerHTML = '';
 }
 
 function getItems() {

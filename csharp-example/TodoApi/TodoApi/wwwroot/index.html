@@ -19,10 +19,7 @@
             <thead>
                 <tr>
                     <th>Name</th>
-                    <!--
-                    <th>Edit</th>
-                    <th>Delete</th>
-                    -->
+                    <th>Todo Count</th>
                     <th>Check</th>
                 </tr>
             </thead>
@@ -38,7 +35,6 @@
         </form>
     </div>
 
-    <!-- No idea why at somepoint the css setup doesn't work. style="display: none;" -->
     <div id="editProjectForm">
         <h3>Project Details</h3>
         <form action="javascript:void(0);" onsubmit="updateProject()">
@@ -48,7 +44,7 @@
             <br />
             <input type="submit" value="Change">
             <button id="deleteProjectButton" onclick="deleteProject()">Delete</button>
-            <a onclick="closeProjectInput()" aria-label="Close">&#10006;</a>
+            <a onclick="closeProjectEditForm()" aria-label="Close">&#10006;</a>
         </form>
     </div>
 
@@ -60,12 +56,10 @@
     <!--Todo panel-->
     <h2>Todos</h2>
     <div id="todoCounterForm">
-        <h3>Todo Counter</h3>
         <p id="todoCounter"></p>
     </div>
 
     <div id="viewTodosForm">
-        <h3>Todos View</h3>
         <table>
             <thead>
                 <tr>
