@@ -74,26 +74,29 @@
     </div>
 
     <div id="addTodoItemToProjectForm">
-        <h3>Add</h3>
+        <h3>Add a Todo Item</h3>
         <form action="javascript:void(0);" method="POST" onsubmit="addTodoItemToProject()">
-            <input type="text" id="createTodoName" placeholder="New to-do">
-            <input type="text" id="createTodoSecret" placeholder="todo secret">
+            <label for="createTodoName">Name: </label>
+            <input type="text" id="createTodoName" placeholder="New to-do"><br />
+            <label for="createTodoName">Secret: </label>
+            <input type="text" id="createTodoSecret" placeholder="todo secret"><br />
             <input type="submit" value="Create">
         </form>
     </div>
 
-    <div id="editForm">
-        <h3>Edit</h3>
+    <div id="editTodoForm">
+        <h3>Edit a Todo Item</h3>
         <form action="javascript:void(0);" onsubmit="updateItem()">
-            <input type="hidden" id="edit-id">
-            <label for="isComplete">Completed: </label>
-            <input type="checkbox" id="edit-isComplete">
+            <input type="hidden" id="editTodoId">
+            <label for="editTodoName">Todo Item: </label>
+            <input type="text" id="editTodoName">
             <br />
-            <label for="todoItem">Todo Item: </label>
-            <input type="text" id="edit-name">
+            <label for="editTodoIsComplete">Completed: </label>
+            <input type="checkbox" id="editTodoIsComplete">
             <br />
             <input type="submit" value="Save">
-            <a onclick="closeInput()" aria-label="Close">&#10006;</a>
+            <!-- Unselect todo item since the todo item doesn't need to open after updated -->
+            <a onclick="closeTodoEditForm()" aria-label="Close">&#10006;</a>
         </form>
     </div>
 

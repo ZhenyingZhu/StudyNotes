@@ -191,38 +191,8 @@ function _clearProjectErrorMessage() {
 
 
 // Todos
-function addTodoItemToProject() {
-    // TODO: check if selectedProject is not -1.
-    const createTodoNameTextbox = document.getElementById('createTodoName');
-    const createTodoSecretTextbox = document.getElementById('createTodoSecret');
-
-    const item = {
-        isComplete: false,
-        name: createTodoNameTextbox.value.trim(),
-        secret: createTodoSecretTextbox.value.trim()
-    };
-
-    fetch(`${projectUri}/${selectedProjectId}/TodoItems`, {
-        method: 'POST',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(item)
-    })
-        .then(response => response.json())
-        .then(() => {
-            // This should be Project
-            getItems();
-            createTodoNameTextbox.value = '';
-        })
-        .catch(error => console.error('Unable to add item.', error));
-}
-
-
-
-
 function _displayTodoItems(data) {
+    // Get called in _selectProjectAndDisplayTodoViewForm.
     const tBody = document.getElementById('todos');
     tBody.innerHTML = '';
 
@@ -248,11 +218,13 @@ function _displayTodoItems(data) {
 
         let editButton = button.cloneNode(false);
         editButton.innerText = 'Edit';
-        editButton.setAttribute('onclick', `displayEditForm(${item.id})`);
+        editButton.setAttribute('onclick', `_displayEditForm(${item.id})`);
 
         let td3 = tr.insertCell(2);
         td3.appendChild(editButton);
 
+        // Support delete button here since TodoItem is lowest level, so no need to check details
+        // before deletion.
         let deleteButton = button.cloneNode(false);
         deleteButton.innerText = 'Delete';
         deleteButton.setAttribute('onclick', `deleteItem(${item.id})`);
@@ -265,47 +237,79 @@ function _displayTodoItems(data) {
 }
 
 function _displayTodosCount(itemCount) {
+    // Get called in _displayTodoItems()
     const name = (itemCount === 1) ? 'to-do' : 'to-dos';
 
     document.getElementById('todoCounter').innerText = `In total ${itemCount} ${name}`;
 }
 
 function _clearTodoItems() {
+    // Only called when unselect the project.
     document.getElementById('todoCounter').innerText = '';
     document.getElementById('todos').innerHTML = '';
+
+    closeTodoEditForm();
 }
 
-function getItems() {
-    fetch(todoUri)
-    .then(response => response.json())
-    .then(data => _displayTodoItems(data))
-    .catch(error => console.error('Unable to get items.', error));
-}
+function addTodoItemToProject() {
+    // Called only when click submit button in the create todo form.
+    // TODO: check if selectedProject is not -1.
+    const createTodoNameTextbox = document.getElementById('createTodoName');
+    const createTodoSecretTextbox = document.getElementById('createTodoSecret');
 
-function deleteItem(id) {
-    // Make sure after delete it refreshes
-    fetch(`${todoUri}/${id}`, {
-        method: 'DELETE'
+    const item = {
+        isComplete: false,
+        name: createTodoNameTextbox.value.trim(),
+        secret: createTodoSecretTextbox.value.trim()
+    };
+
+    fetch(`${projectUri}/${selectedProjectId}/TodoItems`, {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(item)
     })
-    .then(() => getItems())
-    .catch(error => console.error('Unable to delete item.', error));
+        .then(response => response.json())
+        .then(() => {
+            // This reloads all projects, not efficient
+            getProjects();
+            createTodoNameTextbox.value = '';
+            createTodoSecretTextbox.value = '';
+
+            // Close the todo edit form. It looks weird after create a new one,
+            // the old selectd todo still shows as edit.
+            closeTodoEditForm();
+        })
+        .catch(error => console.error('Unable to add item.', error)); // Handle error.
 }
 
-function displayEditForm(id) {
+function _displayEditForm(id) {
+    // Only called when click Edit TodoItem button
     const item = todos.find(item => item.id === id);
 
-    document.getElementById('edit-name').value = item.name;
-    document.getElementById('edit-id').value = item.id;
-    document.getElementById('edit-isComplete').checked = item.isComplete;
-    document.getElementById('editForm').style.display = 'block';
+    document.getElementById('editTodoId').value = item.id;
+    document.getElementById('editTodoName').value = item.name;
+    document.getElementById('editTodoIsComplete').checked = item.isComplete;
+
+    document.getElementById('editTodoForm').style.display = 'block';
+}
+
+function closeTodoEditForm() {
+    document.getElementById('editTodoForm').style.display = 'none';
+
+    document.getElementById('editTodoId').value = '';
+    document.getElementById('editTodoName').value = '';
+    document.getElementById('editTodoIsComplete').checked = '';
 }
 
 function updateItem() {
-    const itemId = document.getElementById('edit-id').value;
+    const itemId = document.getElementById('editTodoId').value;
     const item = {
         id: parseInt(itemId, 10),
-        isComplete: document.getElementById('edit-isComplete').checked,
-        name: document.getElementById('edit-name').value.trim()
+        name: document.getElementById('editTodoName').value.trim(),
+        isComplete: document.getElementById('editTodoIsComplete').checked
     };
 
     fetch(`${todoUri}/${itemId}`, {
@@ -316,14 +320,22 @@ function updateItem() {
         },
         body: JSON.stringify(item)
     })
-    .then(() => getItems())
+        .then(() => getProjects())
     .catch(error => console.error('Unable to update item.', error));
 
-    closeInput();
+    closeTodoEditForm();
 
     return false;
 }
 
-function closeInput() {
-    document.getElementById('editForm').style.display = 'none';
+function deleteItem(id) {
+    // Make sure after delete it refreshes
+    fetch(`${todoUri}/${id}`, {
+        method: 'DELETE'
+    })
+        .then(() => {
+            closeTodoEditForm();
+            getProjects();
+        })
+        .catch(error => console.error('Unable to delete item.', error));
 }

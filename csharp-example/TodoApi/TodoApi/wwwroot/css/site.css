@@ -6,7 +6,7 @@ input[type='submit'], button, [aria-label] {
     display: none;
 }
 
-#editForm {
+#editTodoForm {
     display: none;
 }
 
