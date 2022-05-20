@@ -1,8 +1,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using TodoApi.Models;
+using Microsoft.AspNetCore.Identity;
+using TodoApi.Data;
 
 var builder = WebApplication.CreateBuilder(args);
+var connectionString = builder.Configuration.GetConnectionString("TodoApiContextConnection") ?? throw new InvalidOperationException("Connection string 'TodoApiContextConnection' not found.");
+
+builder.Services.AddDbContext<TodoApiContext>(options =>
+    options.UseSqlServer(connectionString));;
+
+builder.Services.AddDefaultIdentity<TodoApiUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddEntityFrameworkStores<TodoApiContext>();;
 var connectionString = builder.Configuration.GetConnectionString("TodoContextConnection");
 
 builder.Services.AddDbContext<TodoContext>(options =>
@@ -34,6 +43,7 @@ app.UseDefaultFiles();
 app.UseStaticFiles();
 
 app.UseHttpsRedirection();
+app.UseAuthentication();;
 
 app.UseAuthorization();
 
