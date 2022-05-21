@@ -287,6 +287,8 @@ Controllers:
 [Scaffold Identity in ASP.NET Core projects](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/scaffold-identity?view=aspnetcore-6.0&tabs=visual-studio)
 
 - Visual studio 2022 -> Add -> Identity
+- Then do `Add-Migration`
+- Must do it before adding a DB context, otherwise the Identity DB context cannot add-migration. **TODO**: figure out why
 
 - [Protect a web API with AAD](https://docs.microsoft.com/en-us/azure/api-management/api-management-howto-protect-backend-with-aad)
 - [Overview of ASP.NET Core authentication](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/?view=aspnetcore-6.0)
