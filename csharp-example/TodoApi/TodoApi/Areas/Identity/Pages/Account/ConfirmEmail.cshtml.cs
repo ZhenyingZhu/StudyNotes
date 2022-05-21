@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
-using TodoApi.Models;
+using TodoApi.Areas.Identity.Data;
 
 namespace TodoApi.Areas.Identity.Pages.Account
 {
