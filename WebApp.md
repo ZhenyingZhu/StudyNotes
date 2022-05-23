@@ -289,6 +289,7 @@ Controllers:
 - Visual studio 2022 -> Add -> Identity
 - Then do `Add-Migration`
 - Must do it before adding a DB context, otherwise the Identity DB context cannot add-migration. **TODO**: figure out why
+- Where is the page? [Identity not working in .NET Core project](https://stackoverflow.com/questions/60099787/identity-not-working-in-net-core-project) **TODO**: figure out where
 
 - [Protect a web API with AAD](https://docs.microsoft.com/en-us/azure/api-management/api-management-howto-protect-backend-with-aad)
 - [Overview of ASP.NET Core authentication](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/?view=aspnetcore-6.0)
