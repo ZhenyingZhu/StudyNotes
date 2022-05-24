@@ -184,6 +184,10 @@ ASP.NET Core configs
     - [What is the meaning of onsubmit="return false"?](https://stackoverflow.com/questions/35037069/what-is-the-meaning-of-onsubmit-return-false-javascript-jquery)
   - counter: a `<p>`
 
+Compare the WebAPI vs. WebApp
+
+- WebAPI: 
+
 **TODO**: Read
 
 - [Create web APIs with ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/web-api/?view=aspnetcore-6.0)
@@ -289,7 +293,8 @@ Controllers:
 - Visual studio 2022 -> Add -> Identity
 - Then do `Add-Migration`
 - Must do it before adding a DB context, otherwise the Identity DB context cannot add-migration. **TODO**: figure out why
-- Where is the page? [Identity not working in .NET Core project](https://stackoverflow.com/questions/60099787/identity-not-working-in-net-core-project) **TODO**: figure out where
+- The Identity webpage link is under url: `https://localhost:{port}/Identity/Account/Login`
+- [Identity not working in .NET Core project](https://stackoverflow.com/questions/60099787/identity-not-working-in-net-core-project)
 
 - [Protect a web API with AAD](https://docs.microsoft.com/en-us/azure/api-management/api-management-howto-protect-backend-with-aad)
 - [Overview of ASP.NET Core authentication](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/?view=aspnetcore-6.0)
