@@ -186,7 +186,15 @@ ASP.NET Core configs
 
 Compare the WebAPI vs. WebApp
 
-- WebAPI: 
+- WebApp: has Individual account auth support
+- WebApp: has IIS support
+- WebAPI: with swagger build in
+- WebApp: has `Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore` that shows the EF error page
+- WebApp: has a Index.cshtml with `IndeModel` randered
+- WebApp: has `builder.Services.AddDatabaseDeveloperPageExceptionFilter();`
+- WebApp: has `builder.Services.AddRazorPages();`
+- WebAPI: has `builder.Services.AddControllers();` and `builder.Services.AddEndpointsApiExplorer();`
+- WebApp: has `app.UseStaticFiles();`, `app.UseRouting();` and `app.MapRazorPages();`
 
 **TODO**: Read
 

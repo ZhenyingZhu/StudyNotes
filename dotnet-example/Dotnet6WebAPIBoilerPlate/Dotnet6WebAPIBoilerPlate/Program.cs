@@ -15,6 +15,9 @@ builder.Services.AddDbContext<TodoContext>(options =>
 builder.Services.AddDefaultIdentity<TodoUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<TodoContext>();
 
+// zhenying: copy from WebApp boiler plate.
+builder.Services.AddRazorPages();
+
 // Add services to the container.
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddMicrosoftIdentityWebApi(builder.Configuration.GetSection("AzureAd"));
@@ -35,9 +38,16 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+// zhenying: copy from WebApp boiler plate
+app.UseStaticFiles();
+app.UseRouting();
+
 app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
+// zhenying: copy from WebApp boiler plate
+app.MapRazorPages();
 
 app.Run();
