@@ -296,6 +296,15 @@ Controllers:
 
 ## Identity
 
+[ASP.NET Core security topics](https://docs.microsoft.com/en-us/aspnet/core/security/?view=aspnetcore-6.0)
+
+- **TODO**: go over below security topics
+  - [XSRF/CSRF prevention](https://docs.microsoft.com/en-us/aspnet/core/security/anti-request-forgery?view=aspnetcore-6.0)
+  - [CORS](https://docs.microsoft.com/en-us/aspnet/core/security/cors?view=aspnetcore-6.0)
+  - [XSS attacks](https://docs.microsoft.com/en-us/aspnet/core/security/cross-site-scripting?view=aspnetcore-6.0)
+  - [SQL injection attacks](https://docs.microsoft.com/en-us/ef/core/querying/raw-sql)
+  - [Open redirect attacks](https://docs.microsoft.com/en-us/aspnet/core/security/?view=aspnetcore-6.0)
+
 [Scaffold Identity in ASP.NET Core projects](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/scaffold-identity?view=aspnetcore-6.0&tabs=visual-studio)
 
 - Visual studio 2022 -> Add -> Identity
