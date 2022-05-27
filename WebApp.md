@@ -305,6 +305,11 @@ Controllers:
   - [SQL injection attacks](https://docs.microsoft.com/en-us/ef/core/querying/raw-sql)
   - [Open redirect attacks](https://docs.microsoft.com/en-us/aspnet/core/security/?view=aspnetcore-6.0)
 
+[Overview of ASP.NET Core authentication](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/?view=aspnetcore-6.0)
+
+- schemes: The registered authentication handlers and their configuration options
+  - `builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options => builder.Configuration.Bind("JwtSettings", options)).AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options => builder.Configuration.Bind("CookieSettings", options));`
+
 [Scaffold Identity in ASP.NET Core projects](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/scaffold-identity?view=aspnetcore-6.0&tabs=visual-studio)
 
 - Visual studio 2022 -> Add -> Identity
