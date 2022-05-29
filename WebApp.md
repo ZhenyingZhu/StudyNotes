@@ -309,7 +309,19 @@ Controllers:
 
 - schemes: The registered authentication handlers and their configuration options
   - `builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options => builder.Configuration.Bind("JwtSettings", options)).AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options => builder.Configuration.Bind("CookieSettings", options));`
-  - `AddJwtBearer` is an extention
+  - `AddJwtBearer` and `AddCookie` are scheme specific extentions. The first parameter specify the scheme name
+  - AuthZ policies can specify schemes to authN a user
+  - Call UseAuthentication before any middleware that depends on users being authenticated.
+- AuthN provides the claims principal for AuthZ
+- AuthN scheme approaches to select which authN handler to generate claims:
+  - AuthN scheme
+  - default authN scheme
+  - directly set HttpContext.User
+- AuthN handler: implements the behavior of a scheme. It creates `AuthenticationTicket` for a user when authN succeed. Also has methods to challenge (unauthN) and forbid (unauthZ)
+- RemoteAuthenticationHandler: Async. OAuth 2.0 and OIDC both use this pattern. JWT and cookies don't
+- Challenge: A cookie authentication scheme redirecting the user to a login page. A JWT bearer scheme returning a 401 result with a `www-authenticate: bearer` header.
+
+**HERE**: <https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity?view=aspnetcore-6.0&tabs=visual-studio>
 
 [Scaffold Identity in ASP.NET Core projects](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/scaffold-identity?view=aspnetcore-6.0&tabs=visual-studio)
 
