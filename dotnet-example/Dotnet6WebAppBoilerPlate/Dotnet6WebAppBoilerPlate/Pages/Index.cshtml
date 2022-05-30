@@ -8,3 +8,20 @@
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
+
+<div id="viewProjectsForm">
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tbody id="todos"></tbody>
+    </table>
+</div>
+
+<!-- zhenying: need to check how to put it after the _layout.cshtml adds the sites.js. -->
+<script type="text/javascript">
+    getTodos();
+</script>
+

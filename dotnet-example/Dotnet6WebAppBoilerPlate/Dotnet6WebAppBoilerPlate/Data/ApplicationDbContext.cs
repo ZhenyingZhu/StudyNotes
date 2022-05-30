@@ -9,5 +9,7 @@ namespace Dotnet6WebAppBoilerPlate.Data
             : base(options)
         {
         }
+
+        public DbSet<TodoItem> TodoItems { get; set; }
     }
 }
