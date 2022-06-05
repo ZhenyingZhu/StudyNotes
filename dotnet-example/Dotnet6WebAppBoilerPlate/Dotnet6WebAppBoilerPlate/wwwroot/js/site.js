@@ -26,3 +26,27 @@ function _displayTodos(data) {
 
     todos = data;
 }
+
+function createTodo() {
+    const createTodoNameTextBox = document.getElementById('createTodoName');
+
+    const todo = {
+        name: createTodoNameTextBox.value.trim(),
+        isComplete: false
+    };
+
+    fetch(todoUri, {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(todo)
+    })
+        .then(response => response.json())
+        .then(() => {
+            createTodoNameTextBox.value = '';
+            getTodos();
+        })
+        .catch(error => console.error('Unable to create Todo.', error));
+}

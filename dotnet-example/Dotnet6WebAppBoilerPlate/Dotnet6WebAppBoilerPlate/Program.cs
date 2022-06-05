@@ -15,6 +15,9 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
+// Add services to the container.
+builder.Services.AddControllers();
+
 builder.Services.AddRazorPages();
 
 var app = builder.Build();
@@ -40,5 +43,7 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapRazorPages();
+
+app.MapControllers();
 
 app.Run();

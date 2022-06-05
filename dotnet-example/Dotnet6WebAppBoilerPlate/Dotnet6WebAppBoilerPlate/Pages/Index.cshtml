@@ -3,13 +3,16 @@
 @{
     ViewData["Title"] = "Home page";
 }
+@section Scripts {
+    <script type="text/javascript">getTodos();</script>
+}
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
 
-<div id="viewProjectsForm">
+<div id="viewTodosForm">
     <table>
         <thead>
             <tr>
@@ -20,8 +23,12 @@
     </table>
 </div>
 
-<!-- zhenying: need to check how to put it after the _layout.cshtml adds the sites.js. -->
-<script type="text/javascript">
-    getTodos();
-</script>
+<div id="createTodoForm">
+    <br />
+    <form action="javascript:void(0);" method="POST" onsubmit="createTodo()">
+        <input type="text" id="createTodoName" placeholder="New TODO">
+        <input type="submit" value="Create">
+    </form>
+</div>
+
 

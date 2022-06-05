@@ -24,10 +24,10 @@ namespace Dotnet6WebAppBoilerPlate.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<TodoItem>>> GetTodoItems()
         {
-          if (_context.TodoItems == null)
-          {
-              return NotFound();
-          }
+            //if (_context.TodoItems == null)
+            //{
+            //    return NotFound();
+            //}
             return await _context.TodoItems.ToListAsync();
         }
 
@@ -85,14 +85,15 @@ namespace Dotnet6WebAppBoilerPlate.Controllers
         [HttpPost]
         public async Task<ActionResult<TodoItem>> PostTodoItem(TodoItem todoItem)
         {
-          if (_context.TodoItems == null)
-          {
-              return Problem("Entity set 'ApplicationDbContext.TodoItems'  is null.");
-          }
+            // zhenying: the default code seems weird.
+            //if (_context.TodoItems == null)
+            //{
+            //    return Problem("Entity set 'ApplicationDbContext.TodoItems'  is null.");
+            //}
             _context.TodoItems.Add(todoItem);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetTodoItem", new { id = todoItem.Id }, todoItem);
+            return CreatedAtAction(nameof(GetTodoItem), new { id = todoItem.Id }, todoItem);
         }
 
         // DELETE: api/TodoItems/5
