@@ -313,7 +313,7 @@ Controllers:
   - AuthZ policies can specify schemes to authN a user
   - Call UseAuthentication before any middleware that depends on users being authenticated.
 - AuthN provides the claims principal for AuthZ
-- AuthN scheme approaches to select which authN handler to generate claims:
+- Multiple AuthN scheme approaches to select which authN handler to generate claims:
   - AuthN scheme
   - default authN scheme
   - directly set HttpContext.User
@@ -321,16 +321,30 @@ Controllers:
 - RemoteAuthenticationHandler: Async. OAuth 2.0 and OIDC both use this pattern. JWT and cookies don't
 - Challenge: A cookie authentication scheme redirecting the user to a login page. A JWT bearer scheme returning a 401 result with a `www-authenticate: bearer` header.
 
+[What Is Federated Identity?](https://www.okta.com/identity-101/what-is-federated-identity/)
+
+- **HERE**
+
+[The Differences Between Standards](https://www.okta.com/identity-101/whats-the-difference-between-oauth-openid-connect-and-saml/#:~:text=The%20main%20differentiator%20between%20these,industry%20standards%20for%20federated%20authentication.)
+
+- Federated Identity: a method of linking a user’s identity across multiple separate identity management systems
+- **HERE**
+
 [Introduction to Identity on ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity?view=aspnetcore-6.0&tabs=visual-studio)
 
 - Adds UI and SQL server for ASP.NET Core web app. Work with Azure AD and [Duende IdentityServer4](https://duendesoftware.com/products/identityserver)
 - [src code](https://github.com/dotnet/AspNetCore/tree/main/src/Identity)
-- A razor class lib. Use UserManager and SignInManager. Need to [disable default account verification](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity?view=aspnetcore-6.0&tabs=visual-studio#disable-default-account-verification) in Prod
+- A razor class lib. Use UserManager and SignInManager. Need to [disable default account verification](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity?view=aspnetcore-6.0&tabs=visual-studio#disable-default-account-verification) in Prod **TODO**: How to add a real email sender
 - Can use `builder.Services.Configure<IdentityOptions>(options => )` to config identity and `builder.Services.ConfigureApplicationCookie(options => )` to config cookie. [Options](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.identity.identityoptions?view=aspnetcore-6.0)
-- Add `[Authorize]` to a razor model
+- Add `[Authorize]` to a razor model or an api controller
 - [Microsoft identity platform](https://docs.microsoft.com/en-us/azure/active-directory/develop/): An evolution of the Azure AD developer platform. But not related to ASP.NET Core Identity
 
-**HERE**: <https://docs.microsoft.com/en-us/aspnet/core/security/authentication/claims?view=aspnetcore-6.0>
+[Mapping, customizing, and transforming claims in ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/claims?view=aspnetcore-6.0)
+
+- claim: a name value pair represents what the subject is (like email, role) for a user/identity data. Issued by a trusted identity provider (ASP.NET Core identity)
+- OpenId connect client: config and map claims
+
+**HERE**: <https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity-api-authorization?view=aspnetcore-6.0>
 
 [Scaffold Identity in ASP.NET Core projects](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/scaffold-identity?view=aspnetcore-6.0&tabs=visual-studio)
 

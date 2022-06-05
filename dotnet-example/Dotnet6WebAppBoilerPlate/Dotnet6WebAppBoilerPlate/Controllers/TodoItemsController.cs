@@ -6,13 +6,17 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Dotnet6WebAppBoilerPlate.Data;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Dotnet6WebAppBoilerPlate.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class TodoItemsController : ControllerBase
     {
+        // zhenying: With Authorize, only the logged in user can see the content.
+        // TODO: handle the unauth error in JS.
         private readonly ApplicationDbContext _context;
 
         public TodoItemsController(ApplicationDbContext context)
