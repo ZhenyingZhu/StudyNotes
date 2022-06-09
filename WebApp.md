@@ -336,8 +336,16 @@ Controllers:
   5. Competition: support multiple identity providers
   6. Human integration: need a real person to involve
   7. Consistency
-- Federated identity management relies on strong agreements.
-- 
+- Federated identity management relies on strong agreements: what attributes are representative of who you are online. technologies
+  - Security Assertion Markup Language (SAML)
+  - OAuth
+  - OpenID
+- security tokens: JWT (JSON Web Token) tokens and SAML assertions, to pass permissions from one platform to another
+  - Pull OAuth credentials from Google's API: choose data like client id and client secrets that both Google and the company knows
+  - Grab an access token from the Google Authorization Server
+  - Compare the access scopes: compare that your request matches their willingness to share
+  - Send the token to an API: Users are ready to gain access, as long as the token is included in an HTTP authorization request header
+- **HERE**: The Government's Role in Identity Federation
 
 [strong agreements](https://www.networkworld.com/article/2285444/understanding-federated-identity.html)
 
