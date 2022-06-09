@@ -323,6 +323,24 @@ Controllers:
 
 [What Is Federated Identity?](https://www.okta.com/identity-101/what-is-federated-identity/)
 
+- Federated identity: linking a user’s identity across multiple separate identity management systems
+- Build on single sign-on (SSO) techniques
+- agree on a set of shared principals
+- Service providers trust Identity provider (IdP)
+- Federated identity: an agreement between entities about the definition and use of those attributes
+- laws of identity
+  1. User control and consent
+  2. Minimal disclosure: stored securely and deleted quickly
+  3. Justification
+  4. Directed identity: one company cannot have a permanent view of a user
+  5. Competition: support multiple identity providers
+  6. Human integration: need a real person to involve
+  7. Consistency
+- Federated identity management relies on strong agreements.
+- 
+
+[strong agreements](https://www.networkworld.com/article/2285444/understanding-federated-identity.html)
+
 - **HERE**
 
 [The Differences Between Standards](https://www.okta.com/identity-101/whats-the-difference-between-oauth-openid-connect-and-saml/#:~:text=The%20main%20differentiator%20between%20these,industry%20standards%20for%20federated%20authentication.)
