@@ -345,16 +345,24 @@ Controllers:
   - Grab an access token from the Google Authorization Server
   - Compare the access scopes: compare that your request matches their willingness to share
   - Send the token to an API: Users are ready to gain access, as long as the token is included in an HTTP authorization request header
-- **HERE**: The Government's Role in Identity Federation
 
 [strong agreements](https://www.networkworld.com/article/2285444/understanding-federated-identity.html)
 
-- **HERE**
+- defining an identity for each user, associating attributes with the identity and enforcing a means by which a user can verify identity
+- standardized means of representing attributes
+- a user may have multiple identifiers associated with multiple roles, each with its own access permissions
+- identity mapping: map identities and attributes of a user in one domain to the requirements of another domain
+- IdP acquires attribute information through dialog and protocol exchanges with users and administrators
+- Service providers: entities that obtain and employ data maintained and provided by identity providers, to support authorization decisions and to collect audit information
+- management tasks: configuring systems to perform attribute transfers and identity mapping, and performing logging and auditing functions
+- SAML: The principal standard for federated identity
 
 [The Differences Between Standards](https://www.okta.com/identity-101/whats-the-difference-between-oauth-openid-connect-and-saml/#:~:text=The%20main%20differentiator%20between%20these,industry%20standards%20for%20federated%20authentication.)
 
 - Federated Identity: a method of linking a user’s identity across multiple separate identity management systems
-- **HERE**
+- OAuth 2.0: a framework that controls authZ to a protected resource
+- OpenID Connect: industry standard for federated authN. Built on the OAuth 2.0 protocol and uses an additional JSON Web Token (JWT)
+- SAML: another industry standard for federated authN. Independent of OAuth, relying on an exchange of messages to authenticate in XML SAML format
 
 [Introduction to Identity on ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity?view=aspnetcore-6.0&tabs=visual-studio)
 
@@ -370,7 +378,13 @@ Controllers:
 - claim: a name value pair represents what the subject is (like email, role) for a user/identity data. Issued by a trusted identity provider (ASP.NET Core identity)
 - OpenId connect client: config and map claims
 
-**HERE**: <https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity-api-authorization?view=aspnetcore-6.0>
+[Authentication and authorization for SPAs](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity-api-authorization?view=aspnetcore-6.0)
+
+- Duende IdentityServer implements OpenID Connect
+- `services.AddIdentityServer().AddApiAuthorization<ApplicationUser, ApplicationDbContext>();` to use IdentityServer
+- `app.UseIdentityServer();` to expose OpenID connect endpoints
+
+**HERE**: <https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity-api-authorization?view=aspnetcore-6.0#require-authorization-on-a-new-api>
 
 [Scaffold Identity in ASP.NET Core projects](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/scaffold-identity?view=aspnetcore-6.0&tabs=visual-studio)
 
