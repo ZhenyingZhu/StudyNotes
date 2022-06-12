@@ -1,5 +1,24 @@
 # Computer Science Domain knowledges
 
+## Cracking the Coding Interview 6th
+
+### Arrays and Strings
+
+Hash table
+
+- array of linked lists + hash code function
+- resize the array when too many collision ??
+- use a balalnced binary search tree ??
+
+Resizable array
+
+- Resize insertion amortized to O(1)
+
+StringBuilder: a resizeable array and convert to string when necessary. Implemetation ??
+
+ASCII vs. Unicode: unicode uses more storage ??
+
+
 ## Terms
 
 - Idempotency
