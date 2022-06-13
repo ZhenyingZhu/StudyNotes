@@ -46,7 +46,7 @@ address represents in hex.
 
 left rotate
 
-```
+```text
     4         2
    / \       / \
   2   5  => 1   3

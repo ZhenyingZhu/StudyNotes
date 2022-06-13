@@ -311,7 +311,7 @@ Controllers:
   - `builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options => builder.Configuration.Bind("JwtSettings", options)).AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options => builder.Configuration.Bind("CookieSettings", options));`
   - `AddJwtBearer` and `AddCookie` are scheme specific extentions. The first parameter specify the scheme name
   - AuthZ policies can specify schemes to authN a user
-  - Call UseAuthentication before any middleware that depends on users being authenticated.
+  - Call UseAuthentication before any middleware that depends on users being authenticated
 - AuthN provides the claims principal for AuthZ
 - Multiple AuthN scheme approaches to select which authN handler to generate claims:
   - AuthN scheme
@@ -383,8 +383,11 @@ Controllers:
 - Duende IdentityServer implements OpenID Connect
 - `services.AddIdentityServer().AddApiAuthorization<ApplicationUser, ApplicationDbContext>();` to use IdentityServer
 - `app.UseIdentityServer();` to expose OpenID connect endpoints
+- Use `services.Configure<JwtBearerOptions>(schemeName, options => {})` to config API authN handler
+- API's JWT handler raises `JwtBearerEvents`. AddIdentityServerJwt registers its own event handlers.
+- For client: `const token = await authService.getAccessToken();`, then add the token to header 'Authorization': `Bearer ${token}`.
 
-**HERE**: <https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity-api-authorization?view=aspnetcore-6.0#require-authorization-on-a-new-api>
+**HERE**: <https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity-api-authorization?view=aspnetcore-6.0#deploy-to-production>
 
 [Scaffold Identity in ASP.NET Core projects](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/scaffold-identity?view=aspnetcore-6.0&tabs=visual-studio)
 
