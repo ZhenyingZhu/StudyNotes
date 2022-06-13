@@ -16,8 +16,18 @@ Resizable array
 
 StringBuilder: a resizeable array and convert to string when necessary. Implemetation ??
 
-ASCII vs. Unicode: unicode uses more storage ??
+String encodings
 
+- ASCII has in total 128 chars, including control chars
+- extended ASCII has 256 chars
+- one char is 1 byte/8 bits
+- Unicode:
+  - has different char encoding: UTF-8, UTF-16, GB18030
+  - In total 2 bytes. First byte: code points, represent ASCII chars
+
+Permutation
+
+Sort: what are the common sort methods ??
 
 ## Terms
 
