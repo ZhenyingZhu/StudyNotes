@@ -29,6 +29,7 @@ Permutation
 
 Sort: what are the common sort methods ??
 
+IsSubstring: what is the best algorithm ??
 ## Terms
 
 - Idempotency
