@@ -30,6 +30,24 @@ Permutation
 Sort: what are the common sort methods ??
 
 IsSubstring: what is the best algorithm ??
+
+Delete a node
+
+- check for null if the node doesn't exist
+- update head and tail nodes
+- dealloc the node
+
+Runner technique = second pointer
+
+Recursion
+
+- O(n) space where n is the depth of the recursive call
+- can be implmented iteratively
+
+### Linked Lists
+
+Singly vs. doubly linked list
+
 ## Terms
 
 - Idempotency
