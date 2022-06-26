@@ -386,8 +386,11 @@ Controllers:
 - Use `services.Configure<JwtBearerOptions>(schemeName, options => {})` to config API authN handler
 - API's JWT handler raises `JwtBearerEvents`. AddIdentityServerJwt registers its own event handlers.
 - For client: `const token = await authService.getAccessToken();`, then add the token to header 'Authorization': `Bearer ${token}`.
+- When deploy to prod, need resources to be provisioned:
+  - a DB to store identity user accounts and IdentityServer grants
+  - A production certificate to use for signing tokens
 
-**HERE**: <https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity-api-authorization?view=aspnetcore-6.0#deploy-to-production>
+**HERE**: <https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity-api-authorization?view=aspnetcore-6.0#example-deploy-to-a-non-azure-web-hosting-provider>
 
 [Scaffold Identity in ASP.NET Core projects](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/scaffold-identity?view=aspnetcore-6.0&tabs=visual-studio)
 
