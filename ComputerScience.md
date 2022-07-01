@@ -48,6 +48,17 @@ Recursion
 
 Singly vs. doubly linked list
 
+### Stacks and Queues
+
+Stack: LIFO
+
+- OPs: pop, push, peek, isEmpty
+- Can use a linked list to implement
+
+QueueL FIFO
+
+- OPs: add, remove, peek, isEmpty
+
 ## Terms
 
 - Idempotency
