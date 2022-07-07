@@ -29,6 +29,9 @@ Permutation
 
 Sort: what are the common sort methods ??
 
+- quicksort
+- mergesort
+
 IsSubstring: what is the best algorithm ??
 
 Delete a node
