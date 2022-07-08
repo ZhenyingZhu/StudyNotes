@@ -62,6 +62,31 @@ QueueL FIFO
 
 - OPs: add, remove, peek, isEmpty
 
+### Trees and Graphs
+
+ternary tree: 3 children
+
+binary search tree:
+
+- each node n: left descendents <= n < right descendents
+- But definitions can be different so need to discuss
+
+balanced:
+
+- ensure O(logn) for insert and find
+
+Complete binary tree:
+
+- all levels are fully filled unless the last one. The last level is filled from left to right
+
+Full binary tree:
+
+- every node has either 0 or 2 children
+
+Perfect binary tree:
+
+- both full and complete. Exactly 2 ^ k - 1 nodes
+
 ## Terms
 
 - Idempotency
