@@ -87,6 +87,24 @@ Perfect binary tree:
 
 - both full and complete. Exactly 2 ^ k - 1 nodes
 
+Use stack to do in-order traversal ??
+
+Use stack to do pre-order traversal ?? Also a method to relink
+
+Use stack to do post-order traversal ??
+
+Binary Heaps (min heap)
+
+- a complete binary tree
+- each node is smaller than its children
+- ops: insert, extract_min
+- insert: first add to bottom right, then swap it with its parent
+- extract_min: return root, and swap it with the last element, then bubble it down
+
+Tries (Prefix trees)
+
+- null (*) node to indicates a complete word
+
 ## Terms
 
 - Idempotency
