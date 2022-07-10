@@ -105,6 +105,27 @@ Tries (Prefix trees)
 
 - null (*) node to indicates a complete word
 
+Graphs
+
+directed vs. undirected
+
+connected graph: there is a path between every pair of vertices
+
+a graph doesn't necessary to be a connected graph (so can be multiple isolated subgraphs)
+
+acyclic graph: no cycles
+
+Represent graph:
+
+- adjacency list
+- adjacency matrices: true indicates an edge from node i to j
+
+Depth-first search (DFS): recursive and need to mark a node as visisted before recursive call
+
+Breadth-first search (BFS): use a queue and mark a node as visisted before enqueue
+
+Bidirectional search: to find the shortest path. Start BFS from both source and target
+
 ## Terms
 
 - Idempotency
