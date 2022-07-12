@@ -126,6 +126,13 @@ Breadth-first search (BFS): use a queue and mark a node as visisted before enque
 
 Bidirectional search: to find the shortest path. Start BFS from both source and target
 
+Topology sort ??
+
+- build a graph (not necessary to be connected)
+- if there is a cycle, then cannot sort
+- node without income edge can be in the first. remove them
+- then find new nodes that don't have income edges
+
 ## Terms
 
 - Idempotency
