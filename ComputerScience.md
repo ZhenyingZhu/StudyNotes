@@ -128,6 +128,7 @@ Bidirectional search: to find the shortest path. Start BFS from both source and 
 
 Topology sort ??
 
+- <https://www.geeksforgeeks.org/topological-sorting/>
 - build a graph (not necessary to be connected)
 - if there is a cycle, then cannot sort
 - node without income edge can be in the first. remove them
