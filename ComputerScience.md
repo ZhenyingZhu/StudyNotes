@@ -134,6 +134,32 @@ Topology sort ??
 - node without income edge can be in the first. remove them
 - then find new nodes that don't have income edges
 
+### Bit Manipulation
+
+Tricks:
+
+- Create a mask that sets the last n digits to 0: x & (~0 << n)
+- get last bit: (x - 1) ^ (~x)
+- ~x = x ^ (~0)
+- get bit: (num & (1 << i)) != 0
+- set bit: num | (1 << i)
+- clear a bit: num & (~(1 << i))
+- clear bits from most significant bit to i: num & ((1 << i) - 1)
+- clear bits from i to 0: num & (-1 << (i + 1))
+- update a bit to x: clear bit then set bit if x is 1
+
+two's complement representation
+
+- convert a positive number into a negative number with greatest place value indicates the sign
+- invert all bits, then +1
+- complement + original number = the max number
+
+Right shift
+
+- Arithmetic (>>): devices by 2. It shifts the sign bit but fill in the sign again
+- logical (>>>): the sign bit also shift
+
+
 ## Terms
 
 - Idempotency
