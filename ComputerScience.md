@@ -159,6 +159,9 @@ Right shift
 - Arithmetic (>>): devices by 2. It shifts the sign bit but fill in the sign again
 - logical (>>>): the sign bit also shift
 
+Decimal number: `0.101 = 1*1/2^1 + 0*1/2^2 + 1*1/2^3`. Keep multiple a real number with 2. If it is > 1, then the digit there is 1; otherwise 0
+
+Best Conceivable Runtime (B.C.R)
 
 ## Terms
 
