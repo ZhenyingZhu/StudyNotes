@@ -163,6 +163,10 @@ Decimal number: `0.101 = 1*1/2^1 + 0*1/2^2 + 1*1/2^3`. Keep multiple a real numb
 
 Best Conceivable Runtime (B.C.R)
 
+Check if a number is 2 power: (n & (n - 1)) == 0
+
+Clear last 1: n & (n - 1)
+
 ## Terms
 
 - Idempotency
