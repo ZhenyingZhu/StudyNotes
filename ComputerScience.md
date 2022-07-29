@@ -167,6 +167,10 @@ Check if a number is 2 power: (n & (n - 1)) == 0
 
 Clear last 1: n & (n - 1)
 
+### Math and Logic Puzzles
+
+Prime number: every positive integer can be decomposed into a product of primes
+
 ## Terms
 
 - Idempotency
