@@ -313,7 +313,7 @@ Create
 - a class, `CustomEventPublisher`, implement `ApplicationEventPublisherAware`: has a `ApplicationEventPublisher` memeber and can publish a `CustomEvent`
 - a class implement `ApplicationListener<CustomEvent>`: response to event and do something
 
-### Aspect oriented programming 
+### Aspect oriented programming
 
 [AOP](https://en.wikipedia.org/wiki/Aspect-oriented_programming)
 
@@ -370,3 +370,24 @@ Static factory method can create a singleton bean which is itself. Instance fact
     <scope>runtime</scope>
 </dependency>
 ```
+
+## Learning system
+
+To start the server
+
+- `mvn verify`
+- `mvn spring-boot:run`
+
+Hibernate: map the class to DB
+
+lombok.Data: annotation to reduce the Getter/Setter in the bean
+
+spring framework: rest controller, request mapping, Autowired (DI)
+
+spring boot: tomcat, auto config
+
+JPA: Java Persistence API
+
+Auto increase number? annotation `GeneratedValue` and `SequenceGenerator`
+
+Spring security
