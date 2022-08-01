@@ -169,7 +169,17 @@ Clear last 1: n & (n - 1)
 
 ### Math and Logic Puzzles
 
-Prime number: every positive integer can be decomposed into a product of primes
+Prime number
+
+- every positive integer can be decomposed into a product of primes
+- prime number can only be divided by 1 and itself
+- prime number law: for a num x to divide y, mod(y, x) = 0, all primes in x's prime factorization must be in y's
+- GCD: greatest common divisor, LCM: least common multiple. `gcd(x, y) * lcm(x, y) = x * y`
+- 0, 1 is not prime
+- check for primality: from 2 to sqrt(n), if n cannot devide, then n is prime
+- The Sieve of Eratosthenes to generating a list of primes: cross out all num divisible by 2, then next non-crossed off number. Can only list odd nums
+
+Probability
 
 ## Terms
 
