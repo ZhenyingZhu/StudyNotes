@@ -181,6 +181,9 @@ Prime number
 
 Probability
 
+- Venn diagram: { A and B }
+- P(A and B) = P(B given A) P(A)
+
 ## Terms
 
 - Idempotency
