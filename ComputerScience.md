@@ -181,8 +181,11 @@ Prime number
 
 Probability
 
-- Venn diagram: { A and B }
-- P(A and B) = P(B given A) P(A)
+- Venn diagram
+- P(A|B): probability of A given B is true
+- `P(A and B) = P(B|A) * P(A) = P(A|B) * P(B)`
+- Bayes' Theorem: `P(A|B) = P(B|A) * P(A) / P(B)`
+- `P(A or B) = P(A) + P(B) - P(A and B)`
 
 ## Terms
 
