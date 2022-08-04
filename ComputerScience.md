@@ -186,6 +186,8 @@ Probability
 - `P(A and B) = P(B|A) * P(A) = P(A|B) * P(B)`
 - Bayes' Theorem: `P(A|B) = P(B|A) * P(A) / P(B)`
 - `P(A or B) = P(A) + P(B) - P(A and B)`
+- independence: A happens has nothing to do with B. `P(B|A) = P(B)`, so `P(A and B) = P(A) * P(B)`
+- Mutual exclusive: `P(A and B) = 0`, `P(A or B) = P(A) + P(B)`
 
 ## Terms
 
