@@ -189,6 +189,10 @@ Probability
 - independence: A happens has nothing to do with B. `P(B|A) = P(B)`, so `P(A and B) = P(A) * P(B)`
 - Mutual exclusive: `P(A and B) = 0`, `P(A or B) = P(A) + P(B)`
 
+Worst-case minimization problem
+
+- nine balls, one heavier. A balance. Divide by 3
+
 ## Terms
 
 - Idempotency
