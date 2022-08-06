@@ -191,7 +191,7 @@ Probability
 
 Worst-case minimization problem
 
-- nine balls, one heavier. A balance. Divide by 3
+- nine balls, find the one ball that is heavier given a balance. In total 2 times. Divide by 3
 
 ## Terms
 
