@@ -178,6 +178,7 @@ Prime number
 - 0, 1 is not prime
 - check for primality: from 2 to sqrt(n), if n cannot devide, then n is prime
 - The Sieve of Eratosthenes to generating a list of primes: cross out all num divisible by 2, then next non-crossed off number. Can only list odd nums
+- given 2 prime numbers, using plus and minus, can get any values between 1 and sum of them
 
 Probability
 
