@@ -167,23 +167,6 @@ ASP.NET Core configs
 - Data Transfer Object (DTO): hide some properties in the model. More details in [Preventing mass assignment or over posting in ASP.NET Core](https://andrewlock.net/preventing-mass-assignment-or-over-posting-in-asp-net-core/#:~:text=Mass%20assignment%2C%20also%20known%20as%20over-posting%2C%20is%20an,a%20developer%20did%20not%20expect%20to%20be%20set.)
 - While handling `DbUpdateConcurrencyException` during PUT, check item exists is to deal with the case that the item is deleted by another caller.
 
-[Tutorial: Call an ASP.NET Core web API with JavaScript](https://docs.microsoft.com/en-us/aspnet/core/tutorials/web-api-javascript?view=aspnetcore-6.0)
-
-- [What Does javascript:void(0); Mean?](https://www.freecodecamp.org/news/javascript-void-keyword-explained/)
-- flows
-  - view: a table. `getItems()` is called at the end of rendering the html
-    - `getItems()` calls `GET uri` and gets the response json, then call `_displayItems()` that sets the view table and the counter
-    - `_displayItems()` first clean the view table, then create a row for each todo item, then stores the todo items in an array. `cloneNode` is faster than `createElement`, so use `cloneNode` as much as possible
-    - `Edit` button `onclick` calls `displayEditForm(id)`. It reads an todo item from the array, then binds the fields to the edit form, then unhides the form
-    - `Delete` button `onclick` calls `deleteItem(id)`. It calls `DELETE uri/id`, then `getItems()`
-  - add: a form, `onsubmit` calls `addItem()` with `POST` method. Submit button `Add`
-    - `addItem()` reads input from the form, calls `trim()` for the text input, then calls `POST uri`, but not uses the result, and instead calls `getItems()`, then cleans the input form
-  - update: a form, normally hidden. `onsubmit` calls `updateItem()` without set method. Submit button `Save`
-    - `aria-label` is set for the inavtive button `X` (`&#10006;`). It calls `closeInput()` when `onclick`
-    - `updateItem()` reads input from the form, then `parseInt()` on int and `trim()` on string, then calls `PUT uri/id`, and then calls `getItems()`. `closeInput()` is called outside the async, because even the call fails, it also hides the form. Return false to stop default form submission
-    - [What is the meaning of onsubmit="return false"?](https://stackoverflow.com/questions/35037069/what-is-the-meaning-of-onsubmit-return-false-javascript-jquery)
-  - counter: a `<p>`
-
 Compare the WebAPI vs. WebApp
 
 - WebApp: has Individual account auth support
@@ -305,22 +288,6 @@ Controllers:
   - [SQL injection attacks](https://docs.microsoft.com/en-us/ef/core/querying/raw-sql)
   - [Open redirect attacks](https://docs.microsoft.com/en-us/aspnet/core/security/?view=aspnetcore-6.0)
 
-[Overview of ASP.NET Core authentication](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/?view=aspnetcore-6.0)
-
-- schemes: The registered authentication handlers and their configuration options
-  - `builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options => builder.Configuration.Bind("JwtSettings", options)).AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options => builder.Configuration.Bind("CookieSettings", options));`
-  - `AddJwtBearer` and `AddCookie` are scheme specific extentions. The first parameter specify the scheme name
-  - AuthZ policies can specify schemes to authN a user
-  - Call UseAuthentication before any middleware that depends on users being authenticated
-- AuthN provides the claims principal for AuthZ
-- Multiple AuthN scheme approaches to select which authN handler to generate claims:
-  - AuthN scheme
-  - default authN scheme
-  - directly set HttpContext.User
-- AuthN handler: implements the behavior of a scheme. It creates `AuthenticationTicket` for a user when authN succeed. Also has methods to challenge (unauthN) and forbid (unauthZ)
-- RemoteAuthenticationHandler: Async. OAuth 2.0 and OIDC both use this pattern. JWT and cookies don't
-- Challenge: A cookie authentication scheme redirecting the user to a login page. A JWT bearer scheme returning a 401 result with a `www-authenticate: bearer` header.
-
 [What Is Federated Identity?](https://www.okta.com/identity-101/what-is-federated-identity/)
 
 - Federated identity: linking a user’s identity across multiple separate identity management systems
@@ -363,6 +330,22 @@ Controllers:
 - OAuth 2.0: a framework that controls authZ to a protected resource
 - OpenID Connect: industry standard for federated authN. Built on the OAuth 2.0 protocol and uses an additional JSON Web Token (JWT)
 - SAML: another industry standard for federated authN. Independent of OAuth, relying on an exchange of messages to authenticate in XML SAML format
+
+[Overview of ASP.NET Core authentication](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/?view=aspnetcore-6.0)
+
+- schemes: The registered authentication handlers and their configuration options
+  - `builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options => builder.Configuration.Bind("JwtSettings", options)).AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options => builder.Configuration.Bind("CookieSettings", options));`
+  - `AddJwtBearer` and `AddCookie` are scheme specific extentions. The first parameter specify the scheme name
+  - AuthZ policies can specify schemes to authN a user
+  - Call UseAuthentication before any middleware that depends on users being authenticated
+- AuthN provides the claims principal for AuthZ
+- Multiple AuthN scheme approaches to select which authN handler to generate claims:
+  - AuthN scheme
+  - default authN scheme
+  - directly set HttpContext.User
+- AuthN handler: implements the behavior of a scheme. It creates `AuthenticationTicket` for a user when authN succeed. Also has methods to challenge (unauthN) and forbid (unauthZ)
+- RemoteAuthenticationHandler: Async. OAuth 2.0 and OIDC both use this pattern. JWT and cookies don't
+- Challenge: A cookie authentication scheme redirecting the user to a login page. A JWT bearer scheme returning a 401 result with a `www-authenticate: bearer` header.
 
 [Introduction to Identity on ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity?view=aspnetcore-6.0&tabs=visual-studio)
 
@@ -413,6 +396,23 @@ Controllers:
 - ticket?
 
 ## Javascript
+
+[Tutorial: Call an ASP.NET Core web API with JavaScript](https://docs.microsoft.com/en-us/aspnet/core/tutorials/web-api-javascript?view=aspnetcore-6.0)
+
+- [What Does javascript:void(0); Mean?](https://www.freecodecamp.org/news/javascript-void-keyword-explained/)
+- flows
+  - view: a table. `getItems()` is called at the end of rendering the html
+    - `getItems()` calls `GET uri` and gets the response json, then call `_displayItems()` that sets the view table and the counter
+    - `_displayItems()` first clean the view table, then create a row for each todo item, then stores the todo items in an array. `cloneNode` is faster than `createElement`, so use `cloneNode` as much as possible
+    - `Edit` button `onclick` calls `displayEditForm(id)`. It reads an todo item from the array, then binds the fields to the edit form, then unhides the form
+    - `Delete` button `onclick` calls `deleteItem(id)`. It calls `DELETE uri/id`, then `getItems()`
+  - add: a form, `onsubmit` calls `addItem()` with `POST` method. Submit button `Add`
+    - `addItem()` reads input from the form, calls `trim()` for the text input, then calls `POST uri`, but not uses the result, and instead calls `getItems()`, then cleans the input form
+  - update: a form, normally hidden. `onsubmit` calls `updateItem()` without set method. Submit button `Save`
+    - `aria-label` is set for the inavtive button `X` (`&#10006;`). It calls `closeInput()` when `onclick`
+    - `updateItem()` reads input from the form, then `parseInt()` on int and `trim()` on string, then calls `PUT uri/id`, and then calls `getItems()`. `closeInput()` is called outside the async, because even the call fails, it also hides the form. Return false to stop default form submission
+    - [What is the meaning of onsubmit="return false"?](https://stackoverflow.com/questions/35037069/what-is-the-meaning-of-onsubmit-return-false-javascript-jquery)
+  - counter: a `<p>`
 
 [Handling status 500 with try and catch](https://stackoverflow.com/questions/70709770/handling-status-500-with-try-and-catch#:~:text=1%20Take%20a%20look%20at%20the%20Fetch%20docs%3A,the%20promise%20resolves%20and%20no%20error%20is%20thrown.)
 
