@@ -389,6 +389,8 @@ Controllers:
 - [Overview of ASP.NET Core authentication](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/?view=aspnetcore-6.0)
 - [Creating ASP.NET Core projects with Microsoft identity platform](https://github.com/AzureAD/microsoft-identity-web/blob/master/tools/app-provisioning-tool/vs2019-16.9-how-to-use.md)
 
+Cannot find Identity pages. Need compare to [Dotnet6WebAppBoilerPlate](https://github.com/ZhenyingZhu/StudyNotes/tree/master/dotnet-example/Dotnet6WebAppBoilerPlate)
+
 - OAuth2?
 - JWT?
 

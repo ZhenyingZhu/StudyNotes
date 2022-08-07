@@ -193,6 +193,7 @@ Probability
 Worst-case minimization problem
 
 - nine balls, find the one ball that is heavier given a balance. In total 2 times. Divide by 3
+- drop 2 eggs to find floor n (CC189 6th 6.8): find the drop strategey, that in worst case, dropping the total drops for the first egg and second egg are same
 
 ## Terms
 
