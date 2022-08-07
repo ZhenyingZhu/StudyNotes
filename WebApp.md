@@ -28,6 +28,8 @@
 
 **Decision**: Backend use EF and SQLServer. Server use Web API with Swagger to develop. Client use JS to interact with Web API. Bootstrap for basic UI, and later switch to React for better UI
 
+[Prototype](https://github.com/ZhenyingZhu/StudyNotes/tree/master/dotnet-example/TodoApi)
+
 ## Swagger
 
 [Getting Start](https://swagger.io/tools/open-source/getting-started/)
