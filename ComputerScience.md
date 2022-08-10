@@ -199,6 +199,11 @@ Worst-case minimization problem
 
 six Ws: who, what, where, when, how, why
 
+- define core objects
+- analyze relationships
+- Consider key actions
+- design patterns: singleton and factory method
+
 ## Terms
 
 - Idempotency
