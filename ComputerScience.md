@@ -204,6 +204,8 @@ six Ws: who, what, where, when, how, why
 - Consider key actions
 - design patterns: singleton and factory method
 
+### Recursion and Dynamic Programming
+
 ## Terms
 
 - Idempotency
