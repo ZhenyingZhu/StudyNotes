@@ -206,6 +206,17 @@ six Ws: who, what, where, when, how, why
 
 ### Recursion and Dynamic Programming
 
+Recursive solution:
+
+- bottom up: from simple case
+- top down: divide problem into sub problems. be caureful of overlap between cases
+- half-and-half: binary search
+
+Fibonacci number
+
+- O(2^n) without DP, a tree with n as hight
+- O(2n) with DP
+
 ## Terms
 
 - Idempotency
