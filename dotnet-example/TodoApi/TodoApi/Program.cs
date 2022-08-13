@@ -2,27 +2,25 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using TodoApi.Models;
 using Microsoft.AspNetCore.Identity;
-using TodoApi.Data;
 using TodoApi.Areas.Identity.Data;
 
 var builder = WebApplication.CreateBuilder(args);
-var connectionString = builder.Configuration.GetConnectionString("TodoApiContextConnection") ?? throw new InvalidOperationException("Connection string 'TodoApiContextConnection' not found.");
+var connectionString = builder.Configuration.GetConnectionString("TodoContextConnection") ?? throw new InvalidOperationException("Connection string 'TodoContextConnection' not found.");
 
-builder.Services.AddDbContext<TodoApiContext>(options =>
+builder.Services.AddDbContext<TodoContext>(options =>
     options.UseSqlServer(connectionString));;
 
 builder.Services.AddDefaultIdentity<TodoApiUser>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<TodoApiContext>();;
-// var connectionString = builder.Configuration.GetConnectionString("TodoContextConnection");
-
-builder.Services.AddDbContext<TodoContext>(options =>
-    options.UseSqlServer(connectionString));
+    .AddEntityFrameworkStores<TodoContext>();;
 
 // Add the repository.
 builder.Services.AddScoped<TodoRepository>();
 
 // Add services to the container.
 builder.Services.AddControllers();
+
+// zhenying: trying to see if Razor is the reason for identity pages
+builder.Services.AddRazorPages();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -40,13 +38,19 @@ if (app.Environment.IsDevelopment())
 }
 
 // To serve index page.
-app.UseDefaultFiles();
+// app.UseDefaultFiles();
 app.UseStaticFiles();
+
+// zhenying: See if it is the reason.
+app.UseRouting();
 
 app.UseHttpsRedirection();
 app.UseAuthentication();;
 
 app.UseAuthorization();
+
+// zhenying: see if it is the reason.
+app.MapRazorPages();
 
 app.MapControllers();
 
