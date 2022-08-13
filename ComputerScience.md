@@ -178,6 +178,7 @@ Prime number
 - 0, 1 is not prime
 - check for primality: from 2 to sqrt(n), if n cannot devide, then n is prime
 - The Sieve of Eratosthenes to generating a list of primes: cross out all num divisible by 2, then next non-crossed off number. Can only list odd nums
+- given 2 prime numbers, using plus and minus, can get any values between 1 and sum of them
 
 Probability
 
@@ -188,6 +189,33 @@ Probability
 - `P(A or B) = P(A) + P(B) - P(A and B)`
 - independence: A happens has nothing to do with B. `P(B|A) = P(B)`, so `P(A and B) = P(A) * P(B)`
 - Mutual exclusive: `P(A and B) = 0`, `P(A or B) = P(A) + P(B)`
+
+Worst-case minimization problem
+
+- nine balls, find the one ball that is heavier given a balance. In total 2 times. Divide by 3
+- drop 2 eggs to find floor n (CC189 6th 6.8): find the drop strategey, that in worst case, dropping the total drops for the first egg and second egg are same
+
+### Object-Oriented Design
+
+six Ws: who, what, where, when, how, why
+
+- define core objects
+- analyze relationships
+- Consider key actions
+- design patterns: singleton and factory method
+
+### Recursion and Dynamic Programming
+
+Recursive solution:
+
+- bottom up: from simple case
+- top down: divide problem into sub problems. be caureful of overlap between cases
+- half-and-half: binary search
+
+Fibonacci number
+
+- O(2^n) without DP, a tree with n as hight
+- O(2n) with DP
 
 ## Terms
 

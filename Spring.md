@@ -335,7 +335,7 @@ Implement `FactoryBean` or inherit from `AbstractFactoryBean`
 
 To create non-singleton beans, call `setSingleton(false)` in the constructor of the Factory.
 
-Use XML-base config, no need to call `FactoryBean::getObject()`. But need explicitly call it when use Java-base config <b>Really?</b>
+Use XML-base config, no need to call `FactoryBean::getObject()`. But need explicitly call it when use Java-base config **Really?**
 
 Use factory method [src](https://docs.spring.io/spring/docs/current/spring-framework-reference/html/beans.html#beans-factory-class)
 
