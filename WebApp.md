@@ -396,9 +396,8 @@ Controllers:
 
 - Visual studio 2022 -> Add -> Identity
 - Then do `Add-Migration`
-- It seems install .NET 6.0 as well. To use .NET Core, need to specify `EntityFrameworkCore\Enable-Migrations`
-- Must do it before adding a DB context, otherwise the Identity DB context cannot add-migration. **TODO**: figure out why
-- The Identity webpage link is under url: `https://localhost:{port}/Identity/Account/Login`
+- It seems install .NET 6.0 as well. To use .NET Core, need to specify `EntityFrameworkCore\Enable-Migrations` so migration can still work
+- The Identity webpage link is under url: `https://localhost:{port}/Identity/Account/Login`. Need to enable Razor routing
 - [Identity not working in .NET Core project](https://stackoverflow.com/questions/60099787/identity-not-working-in-net-core-project)
 
 - [Protect a web API with AAD](https://docs.microsoft.com/en-us/azure/api-management/api-management-howto-protect-backend-with-aad)
