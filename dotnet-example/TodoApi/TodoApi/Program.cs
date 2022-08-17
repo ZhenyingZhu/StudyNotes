@@ -38,7 +38,7 @@ if (app.Environment.IsDevelopment())
 }
 
 // To serve index page.
-// app.UseDefaultFiles();
+app.UseDefaultFiles();
 app.UseStaticFiles();
 
 // zhenying: See if it is the reason.
