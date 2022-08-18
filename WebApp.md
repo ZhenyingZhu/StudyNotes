@@ -374,8 +374,13 @@ Controllers:
 - When deploy to prod, need resources to be provisioned:
   - a DB to store identity user accounts and IdentityServer grants
   - A production certificate to use for signing tokens
-
-**HERE**: <https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity-api-authorization?view=aspnetcore-6.0#example-deploy-to-a-non-azure-web-hosting-provider>
+- For web hosting provider, in the `appsettings.json`, can add `IdentityServer` section to define where is the key and what is the CN of the key. [Example](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity-api-authorization?view=aspnetcore-6.0#example-deploy-to-a-non-azure-web-hosting-provider)
+- In Azure portal, the cert needs to be configured following [Use a TLS/SSL certificate in your code in Azure App Service](https://docs.microsoft.com/en-us/azure/app-service/configure-ssl-certificate-in-code#load-the-certificate-in-code)
+- App profiles: predefined configs of the `IdentityServer`
+  - IdentityServerSPA: a SPA hosted alongside IdentityServer
+  - SPA: isn't hosted with IdentityServer
+  - IdentityServerJwt: an API that is hosted alongside with IdentityServer
+  - API: isn't hosted with IdentityServer
 
 [Scaffold Identity in ASP.NET Core projects](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/scaffold-identity?view=aspnetcore-6.0&tabs=visual-studio)
 
@@ -389,7 +394,7 @@ Controllers:
 - [Overview of ASP.NET Core authentication](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/?view=aspnetcore-6.0)
 - [Creating ASP.NET Core projects with Microsoft identity platform](https://github.com/AzureAD/microsoft-identity-web/blob/master/tools/app-provisioning-tool/vs2019-16.9-how-to-use.md)
 
-Cannot find Identity pages. Need compare to [Dotnet6WebAppBoilerPlate](https://github.com/ZhenyingZhu/StudyNotes/tree/master/dotnet-example/Dotnet6WebAppBoilerPlate)
+- **HERE**
 
 - OAuth2?
 - JWT?
