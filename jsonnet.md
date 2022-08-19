@@ -4,6 +4,10 @@
 
 [Tutorial](https://jsonnet.org/learning/tutorial.html)
 
+## Win10 Install issue
+
+[python setup.py bdist_wheel did not run successfully](https://stackoverflow.com/questions/71470989/python-setup-py-bdist-wheel-did-not-run-successfully)
+
 ## Tutorial
 
 ### Syntax
