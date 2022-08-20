@@ -8,6 +8,8 @@
 
 [python setup.py bdist_wheel did not run successfully](https://stackoverflow.com/questions/71470989/python-setup-py-bdist-wheel-did-not-run-successfully)
 
+- Not solved yet
+
 ## Tutorial
 
 ### Syntax
@@ -54,3 +56,7 @@ Field start with no quote. But if there is a space, then need to put a quote.
 ### Imports
 
 **HERE**: continue
+
+## Advanced
+
+<https://stackoverflow.com/questions/51255389/update-an-existing-array-element-with-jsonnet>
