@@ -394,15 +394,17 @@ Controllers:
 - [Overview of ASP.NET Core authentication](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/?view=aspnetcore-6.0)
 - [Creating ASP.NET Core projects with Microsoft identity platform](https://github.com/AzureAD/microsoft-identity-web/blob/master/tools/app-provisioning-tool/vs2019-16.9-how-to-use.md)
 
-- **HERE**
+- **TODO**
+  - OAuth2?
+  - JWT?
+  - Claim?
+  - identity?
+  - principal?
+  - ticket?
 
-- OAuth2?
-- JWT?
+### How to reference a user
 
-- Claim?
-- identity?
-- principal?
-- ticket?
+Refer to [Previous code](dotnet-example\WebApplicationMVCDemo\WebApplicationMVCDemo\Controllers\ProjectsController.cs)
 
 ## Javascript
 

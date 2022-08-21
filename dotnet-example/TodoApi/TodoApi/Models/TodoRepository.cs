@@ -5,20 +5,30 @@ using System.Data.Entity.Core;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using TodoApi.Areas.Identity.Data;
 
 namespace TodoApi.Models
 {
     public class TodoRepository
     {
         private readonly TodoContext _context;
+        private readonly UserManager<TodoApiUser> _userManager;
         private readonly ILogger<TodoContext> _logger;
 
-        public TodoRepository(TodoContext context, ILogger<TodoContext> logger)
+        public TodoRepository(TodoContext context, UserManager<TodoApiUser> userManager, ILogger<TodoContext> logger)
         {
             _context = context;
+            _userManager = userManager;
             _logger = logger;
+        }
+
+        private async Task<string> GetUserIdAsync()
+        {
+            TodoApiUser user = await _userManager.GetUserAsync(User);
+            return user.Id;
         }
 
         #region TodoItem
