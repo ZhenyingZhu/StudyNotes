@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity.Core;
 using System.Linq;
+using System.Security.Claims;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -27,7 +29,8 @@ namespace TodoApi.Models
 
         private async Task<string> GetUserIdAsync()
         {
-            TodoApiUser user = await _userManager.GetUserAsync(User);
+            // TODO: Migrate to the new way of dotnet core
+            TodoApiUser user = await _userManager.GetUserAsync(ClaimsPrincipal.Current);
             return user.Id;
         }
 
@@ -42,6 +45,7 @@ namespace TodoApi.Models
 
             TodoItem todoItem = new TodoItem
             {
+                OwnerId = await GetUserIdAsync(),
                 Name = todoItemDTO.Name,
                 IsComplete = todoItemDTO.IsComplete
             };
@@ -54,14 +58,26 @@ namespace TodoApi.Models
 
         public async Task<List<TodoItemDTO>> GetTodoItemsAsync()
         {
+            string userId = await GetUserIdAsync();
+
             // Need to return List, so the ActionResult can convert it to IEnumerable.
-            return await _context.TodoItems.Include(t => t.Project).Select(t => new TodoItemDTO(t)).ToListAsync();
+            return await _context.TodoItems
+                .Where(t => t.OwnerId == userId)
+                .Include(t => t.Project)
+                .Select(t => new TodoItemDTO(t))
+                .ToListAsync();
         }
 
         public async Task<TodoItemDTO?> GetTodoItemByIdAsync(long id)
         {
+            string userId = await GetUserIdAsync();
+
             // Include can be added in any order but add after where might load less data?
-            var todoItem = await _context.TodoItems.Where(t => t.Id == id).Include(t => t.Project).FirstOrDefaultAsync();
+            var todoItem = await _context.TodoItems
+                .Where(t => t.Id == id)
+                .Where(t => t.OwnerId == userId)
+                .Include(t => t.Project)
+                .FirstOrDefaultAsync();
 
             // Let upper layer handles the NotFound error.
             if (todoItem == null)
@@ -74,10 +90,14 @@ namespace TodoApi.Models
 
         public async Task UpdateTodoItemAsync(TodoItem updatedTodoItem)
         {
+            string userId = await GetUserIdAsync();
+
             // Accept TodoItem so the Secret can be updated.
             var existingTodoItem = await _context.TodoItems
                 .Where(t => t.Id == updatedTodoItem.Id)
-                .Include(t => t.Project).FirstOrDefaultAsync();
+                .Where(t => t.OwnerId == userId)
+                .Include(t => t.Project)
+                .FirstOrDefaultAsync();
 
             if (existingTodoItem == null)
             {
@@ -100,7 +120,7 @@ namespace TodoApi.Models
             {
                 await _context.SaveChangesAsync();
             }
-            catch (DbUpdateConcurrencyException) when (!TodoItemExists(updatedTodoItem.Id))
+            catch (DbUpdateConcurrencyException) when (!TodoItemExists(updatedTodoItem.Id, userId))
             {
                 // TodoItem get deleted concurrently.
                 throw new ObjectNotFoundException($"TodoItem {updatedTodoItem.Id} doesn't exist");
@@ -109,13 +129,19 @@ namespace TodoApi.Models
 
         public async Task ChangeTodoItemProjectAsync(long tid, int pid)
         {
-            var todoItem = await _context.TodoItems.FindAsync(tid);
+            string userId = await GetUserIdAsync();
+
+            // var todoItem = await _context.TodoItems.FindAsync(tid);
+            var todoItem = await _context.TodoItems
+                .Where(t => t.Id == tid)
+                .Where(t => t.OwnerId == userId)
+                .FirstOrDefaultAsync();
             if (todoItem == null)
             {
                 throw new ObjectNotFoundException($"TodoItem {tid} doesn't exist");
             }
 
-            if (!ProjectExists(pid))
+            if (!ProjectExists(pid, userId))
             {
                 throw new ObjectNotFoundException($"Project {pid} doesn't exist");
             }
@@ -129,12 +155,12 @@ namespace TodoApi.Models
             }
             catch (DBConcurrencyException)
             {
-                if (!TodoItemExists(tid))
+                if (!TodoItemExists(tid, userId))
                 {
                     throw new ObjectNotFoundException($"TodoItem {tid} doesn't exist");
                 }
 
-                if (!ProjectExists(pid))
+                if (!ProjectExists(pid, userId))
                 {
                     throw new ObjectNotFoundException($"Project {pid} doesn't exist");
                 }
@@ -143,8 +169,14 @@ namespace TodoApi.Models
 
         public async Task DeleteTodoItemAsync(long id)
         {
+            string userId = await GetUserIdAsync();
+
             // No need to remove it from project, because the project table doesn't record the reference.
-            var todoItem = await _context.TodoItems.FindAsync(id);
+            // var todoItem = await _context.TodoItems.FindAsync(id);
+            var todoItem = await _context.TodoItems
+                .Where(t => t.Id == id)
+                .Where(t => t.OwnerId == userId)
+                .FirstOrDefaultAsync();
 
             if (todoItem == null)
             {
@@ -166,15 +198,16 @@ namespace TodoApi.Models
                 IsComplete = todoItem.IsComplete
             };
 
-        private bool TodoItemExists(long id)
+        private bool TodoItemExists(long id, string userId)
         {
-            return _context.TodoItems.Any(e => e.Id == id);
+            return _context.TodoItems.Any(e => e.Id == id && e.OwnerId == userId);
         }
         #endregion
 
         #region Project
         public async Task<ProjectDTO> CreateProjectAsync(Project project)
         {
+            project.OwnerId = await GetUserIdAsync();
             _context.Projects.Add(project);
             await _context.SaveChangesAsync();
 
@@ -183,16 +216,25 @@ namespace TodoApi.Models
 
         public async Task<List<ProjectDTO>> GetProjectsAsync()
         {
+            string userId = await GetUserIdAsync();
+
             // Use the DTO to avoid getting TodoItems then Projects in a loop.
-            return await _context.Projects.Include(p => p.TodoItems).Select(p => new ProjectDTO(p)).ToListAsync();
+            return await _context.Projects
+                .Where(p => p.OwnerId == userId)
+                .Include(p => p.TodoItems)
+                .Select(p => new ProjectDTO(p))
+                .ToListAsync();
         }
 
         public async Task<ProjectDTO?> GetProjectByIdAsync(long id)
         {
+            string userId = await GetUserIdAsync();
+
             // Cannot use FindAsync because Include(TodoItems) make the return not Project
             // var project = await _context.Projects.FindAsync(id);
             var project = await _context.Projects
                 .Where(p => p.Id == id)
+                .Where(p => p.OwnerId == userId)
                 .Include(p => p.TodoItems)
                 .Select(p => new ProjectDTO(p)).FirstOrDefaultAsync();
             return project;
@@ -200,6 +242,14 @@ namespace TodoApi.Models
 
         public async Task UpdateProjectAsync(Project project)
         {
+            string userId = await GetUserIdAsync();
+
+            // The difference between Todo and Project updates are because project doesn't have additional fields to update.
+            if (!ProjectExists(project.Id, userId))
+            {
+                throw new ObjectNotFoundException($"Project {project.Id} doesn't exist");
+            }
+
             // This method can only update project properties not todoItems.
             // As it will be hard to distinguish if the task list is to updating an existing task or adding a new task.
             _context.Entry(project).State = EntityState.Modified;
@@ -208,7 +258,7 @@ namespace TodoApi.Models
             {
                 await _context.SaveChangesAsync();
             }
-            catch (DBConcurrencyException) when (!ProjectExists(project.Id))
+            catch (DBConcurrencyException) when (!ProjectExists(project.Id, userId))
             {
                 throw new ObjectNotFoundException($"Project {project.Id} doesn't exist");
             }
@@ -216,8 +266,13 @@ namespace TodoApi.Models
 
         public async Task DeleteProjectAsync(int id)
         {
-            var project = await _context.Projects.FindAsync(id);
+            string userId = await GetUserIdAsync();
+            if (!ProjectExists(id, userId))
+            {
+                throw new ObjectNotFoundException($"Project {id} doesn't exist");
+            }
 
+            Project? project = await _context.Projects.FindAsync(id);
             if (project == null)
             {
                 throw new ObjectNotFoundException($"Project {id} doesn't exist");
@@ -233,7 +288,8 @@ namespace TodoApi.Models
 
         public async Task<ProjectDTO> AddTodoItemToProjectAsync(int pid, TodoItem todoItem)
         {
-            if (!ProjectExists(pid))
+            string userId = await GetUserIdAsync();
+            if (!ProjectExists(pid, userId))
             {
                 throw new ObjectNotFoundException($"Project {pid} doesn't exist");
             }
@@ -258,15 +314,15 @@ namespace TodoApi.Models
 
                 return project;
             }
-            catch (DBConcurrencyException) when (!ProjectExists(pid))
+            catch (DBConcurrencyException) when (!ProjectExists(pid, userId))
             {
                 throw new ObjectNotFoundException($"Project {pid} doesn't exist");
             }
         }
 
-        private bool ProjectExists(int id)
+        private bool ProjectExists(int id, string userId)
         {
-            return _context.Projects.Any(p => p.Id == id);
+            return _context.Projects.Any(p => p.Id == id && p.OwnerId == userId);
         }
         #endregion
     }

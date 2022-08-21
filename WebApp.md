@@ -404,7 +404,12 @@ Controllers:
 
 ### How to reference a user
 
-Refer to [Previous code](dotnet-example\WebApplicationMVCDemo\WebApplicationMVCDemo\Controllers\ProjectsController.cs)
+**HERE**:
+
+- Refer to [Previous code](dotnet-example\WebApplicationMVCDemo\WebApplicationMVCDemo\Controllers\ProjectsController.cs)
+- [Simple authorization in ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/security/authorization/simple?view=aspnetcore-6.0)
+- [Migrate from ClaimsPrincipal.Current](https://docs.microsoft.com/en-us/aspnet/core/migration/claimsprincipal-current?view=aspnetcore-6.0)
+- [Getting the ClaimsPrincipal in a logic layer in an aspnet core 1 application](https://stackoverflow.com/questions/38291374/getting-the-claimsprincipal-in-a-logic-layer-in-an-aspnet-core-1-application)
 
 ## Javascript
 
