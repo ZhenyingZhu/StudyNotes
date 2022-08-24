@@ -60,3 +60,7 @@ Field start with no quote. But if there is a space, then need to put a quote.
 ## Advanced
 
 <https://stackoverflow.com/questions/51255389/update-an-existing-array-element-with-jsonnet>
+
+<https://stackoverflow.com/questions/58792596/jsonnet-get-the-position-of-an-element-in-an-array>
+
+<https://stackoverflow.com/questions/63915576/jsonnet-std-mapwithkey-not-generating-an-array>
