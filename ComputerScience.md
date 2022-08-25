@@ -217,6 +217,11 @@ Fibonacci number
 - O(2^n) without DP, a tree with n as hight
 - O(2n) with DP
 
+Catalan numbers:
+
+- when n is the num of operators
+- the number of ways of parenthesizing an expression: C(n) = (2n)! / ((n+1)! * n!)
+
 ## Terms
 
 - Idempotency
