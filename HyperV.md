@@ -1,6 +1,8 @@
+# Hyper-V
+
 Hyper-V doesn't have a valid IP configuration
 
-https://post.smzdm.com/p/481040/
+<https://post.smzdm.com/p/481040/>
 
 Virtual box cannot start: [raw-mode unavailable courtesy of Hyper-V](https://discuss.erpnext.com/t/virtualbox-wont-run-raw-mode-unavailable-courtesy-of-hyper-v/34541)
 
@@ -8,3 +10,5 @@ Virtual box cannot start: [raw-mode unavailable courtesy of Hyper-V](https://dis
 - `bcdedit /set hypervisorlaunchtype off`
 - reboot and run Virtual box
 - `bcdedit /set hypervisorlaunchtype auto`
+
+[Running GPU passthrough for a virtual desktop with Hyper-V](https://www.techtarget.com/searchvirtualdesktop/tip/Running-GPU-passthrough-for-a-virtual-desktop-with-Hyper-V)

@@ -49,6 +49,13 @@ app.UseAuthentication();;
 
 app.UseAuthorization();
 
+// zhenying: let the pricipal use user
+app.Use((context, next) =>
+{
+    Thread.CurrentPrincipal = context.User;
+    return next(context);
+});
+
 // zhenying: see if it is the reason.
 app.MapRazorPages();
 
