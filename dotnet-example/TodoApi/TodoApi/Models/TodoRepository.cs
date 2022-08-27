@@ -31,6 +31,9 @@ namespace TodoApi.Models
         {
             // TODO: Migrate to the new way of dotnet core
             TodoApiUser user = await _userManager.GetUserAsync(ClaimsPrincipal.Current);
+
+            _logger.LogInformation($"Logging in user: {user.Id}");
+
             return user.Id;
         }
 
