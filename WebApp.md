@@ -394,6 +394,8 @@ Controllers:
   - uses `jquery.validate.js` and `jquery.validate.unobtrusive.js` for validation. [jQuery Validation Plugin](https://jqueryvalidation.org/)
   - It uses `_signInManager.PasswordSignInAsync()` and return a result
 
+- **HERE**: there is another layer validate the input??
+
 - [Why ClaimsPrincipal.Current is returned null even when the user is authenticated?](https://stackoverflow.com/questions/51921885/why-claimsprincipal-current-is-returned-null-even-when-the-user-is-authenticated)
 
 - [Protect a web API with AAD](https://docs.microsoft.com/en-us/azure/api-management/api-management-howto-protect-backend-with-aad)
