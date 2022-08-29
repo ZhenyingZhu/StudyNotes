@@ -239,7 +239,9 @@ Design steps:
 
 1. Scope the problem: what features/use cases are supported?
 2. Make reasonable assumptions. Need some product sense (timeout for the requests)
-3. Draw major components
+3. Draw major components. Start from simple case. Don't worry about scaliability challenges too early
+4. Identify key issues: bottlenecks, major challenges
+5. Redesign for the key issues. Be open about limitations. Might need a whole redesign, but could also be just a minor tweaking (e.g., use a cache)
 
 ## Terms
 
