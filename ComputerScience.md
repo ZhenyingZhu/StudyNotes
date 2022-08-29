@@ -222,6 +222,25 @@ Catalan numbers:
 - when n is the num of operators
 - the number of ways of parenthesizing an expression: C(n) = (2n)! / ((n+1)! * n!)
 
+### System Design and Scalability
+
+Key goals
+
+- Commincate with questions. Be open about the issues
+- don't get excessively focused on one part
+- draw picture of what is proposing
+- Validate concerns people bring up. Make changes accordingly
+- Stating out and questioning all assumptions
+- Estimate when necessary
+- driving through questions
+- tradeoffs and make improvements
+
+Design steps:
+
+1. Scope the problem: what features/use cases are supported?
+2. Make reasonable assumptions. Need some product sense (timeout for the requests)
+3. Draw major components
+
 ## Terms
 
 - Idempotency
