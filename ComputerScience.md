@@ -243,6 +243,14 @@ Design steps:
 4. Identify key issues: bottlenecks, major challenges
 5. Redesign for the key issues. Be open about limitations. Might need a whole redesign, but could also be just a minor tweaking (e.g., use a cache)
 
+Algorithms that scale:
+
+1. figure out the real problem
+2. first solve the problem in the most simple case
+3. Think about how much data can fit on one machine. What can happen when split up the data? How to identify the machine for data
+4. Find solutions that might remove the issue or mitigate the issue
+5. New issues might occur. Use iterative approach. Goal is not to re-architect a complex system
+
 ## Terms
 
 - Idempotency
