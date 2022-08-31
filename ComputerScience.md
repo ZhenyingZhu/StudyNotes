@@ -251,6 +251,22 @@ Algorithms that scale:
 4. Find solutions that might remove the issue or mitigate the issue
 5. New issues might occur. Use iterative approach. Goal is not to re-architect a complex system
 
+Horizontal vs. Vertical Scaling: add more nodes vs. increase resources for a node
+
+Load Balancer
+
+DB denormalization: save redundant data to avoid join, so make reads quicker
+
+NoSQL
+
+DB partitioning/sharding
+
+- vertical partitioning: break down colums into different tables based on features
+- key(hash)-based partitioning
+- directory-based partitioning: maintain a lookup table. But the table can be a SPOF and the performance bottle neck
+
+Cachging
+
 ## Terms
 
 - Idempotency
