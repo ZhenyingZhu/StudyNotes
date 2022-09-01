@@ -265,7 +265,19 @@ DB partitioning/sharding
 - key(hash)-based partitioning
 - directory-based partitioning: maintain a lookup table. But the table can be a SPOF and the performance bottle neck
 
-Cachging
+Caching
+
+Asynchronous processing & queues
+
+- in some cases, can do pre-processing
+
+Networking metrics
+
+- 1. Bandwidth, 2. throughput, 3. latency
+- Make transmit speed quicker not only short the latency, but also increase bandwitdh and throughput
+- data compression can reduce the latency
+
+Map Reduce
 
 ## Terms
 
