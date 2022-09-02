@@ -277,7 +277,17 @@ Networking metrics
 - Make transmit speed quicker not only short the latency, but also increase bandwitdh and throughput
 - data compression can reduce the latency
 
-Map Reduce
+MapReduce
+
+Considerations
+
+- failures
+- availability: percentage of time
+- reliability: probability for a certain unit of time
+- read heavy: cache
+- write heavy: queuing up writes
+- security
+- the operation is one-time or repeatedly
 
 ## Terms
 
