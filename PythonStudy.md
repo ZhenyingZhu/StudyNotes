@@ -303,13 +303,15 @@ fool.showname() # your name is Jane, My name is FooClass
 
 Module 就是module.py 这个文件里的组织形式。可import。
 当import 一个脚本的时候，这个脚本的可执行部分就会自动执行。
-```
+
+```python
 import sys
 
 sys.stdout.write("Hello World\n")
 sys.platform
 sys.version
 ```
+
 write()函数不会自动换行。
 PEP(Python Enhancement Proposal)： 用以增加新特性。[PEP](http://python.org/dev/peps)。
 
