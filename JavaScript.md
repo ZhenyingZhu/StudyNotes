@@ -2463,3 +2463,6 @@ HERE: Chaining
 <https://www.freecodecamp.org/news/var-let-and-const-whats-the-difference/>
 
 - var is global scope. So should use let. If a value/function shouldn't change. use const.
+
+- Find a node: `document.querySelectorAll('.class[attr="val"]')`
+- get the node parent: `node.parentElement`
