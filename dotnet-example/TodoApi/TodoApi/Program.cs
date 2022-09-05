@@ -19,7 +19,7 @@ builder.Services.AddScoped<TodoRepository>();
 // Add services to the container.
 builder.Services.AddControllers();
 
-// zhenying: trying to see if Razor is the reason for identity pages
+// zhenying: need Razor engine for Identity UI.
 builder.Services.AddRazorPages();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -41,7 +41,7 @@ if (app.Environment.IsDevelopment())
 app.UseDefaultFiles();
 app.UseStaticFiles();
 
-// zhenying: See if it is the reason.
+// zhenying: need routing for Identity UI.
 app.UseRouting();
 
 app.UseHttpsRedirection();
@@ -49,7 +49,13 @@ app.UseAuthentication();;
 
 app.UseAuthorization();
 
-// zhenying: see if it is the reason.
+// zhenying: set the ClaimPricipal.Current
+app.Use((context, next) =>
+{
+    Thread.CurrentPrincipal = context.User;
+    return next(context);
+});
+
 app.MapRazorPages();
 
 app.MapControllers();

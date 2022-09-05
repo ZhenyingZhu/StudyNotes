@@ -14,7 +14,7 @@
 - `document.domain`, `document.baseURI`, `document.URL`
 - `document.body` `document.cookie`
 - `document.forms[form id]`, `document.images`, `document.links`, `document.scripts`, `document.title`
-- CSS selector `var x = document.querySelectorAll("p.intro");`
+- CSS selector `var x = document.querySelectorAll("p.intro");` [Getting HTML elements by their attribute names](https://stackoverflow.com/questions/7647095/getting-html-elements-by-their-attribute-names)
 
 - `element.innerHTML = html text`
 - `element.style.property = new style`. [all style](https://www.w3schools.com/jsref/dom_obj_style.asp)

@@ -217,6 +217,78 @@ Fibonacci number
 - O(2^n) without DP, a tree with n as hight
 - O(2n) with DP
 
+Catalan numbers:
+
+- when n is the num of operators
+- the number of ways of parenthesizing an expression: C(n) = (2n)! / ((n+1)! * n!)
+
+### System Design and Scalability
+
+Key goals
+
+- Commincate with questions. Be open about the issues
+- don't get excessively focused on one part
+- draw picture of what is proposing
+- Validate concerns people bring up. Make changes accordingly
+- Stating out and questioning all assumptions
+- Estimate when necessary
+- driving through questions
+- tradeoffs and make improvements
+
+Design steps:
+
+1. Scope the problem: what features/use cases are supported?
+2. Make reasonable assumptions. Need some product sense (timeout for the requests)
+3. Draw major components. Start from simple case. Don't worry about scaliability challenges too early
+4. Identify key issues: bottlenecks, major challenges
+5. Redesign for the key issues. Be open about limitations. Might need a whole redesign, but could also be just a minor tweaking (e.g., use a cache)
+
+Algorithms that scale:
+
+1. figure out the real problem
+2. first solve the problem in the most simple case
+3. Think about how much data can fit on one machine. What can happen when split up the data? How to identify the machine for data
+4. Find solutions that might remove the issue or mitigate the issue
+5. New issues might occur. Use iterative approach. Goal is not to re-architect a complex system
+
+Horizontal vs. Vertical Scaling: add more nodes vs. increase resources for a node
+
+Load Balancer
+
+DB denormalization: save redundant data to avoid join, so make reads quicker
+
+NoSQL
+
+DB partitioning/sharding
+
+- vertical partitioning: break down colums into different tables based on features
+- key(hash)-based partitioning
+- directory-based partitioning: maintain a lookup table. But the table can be a SPOF and the performance bottle neck
+
+Caching
+
+Asynchronous processing & queues
+
+- in some cases, can do pre-processing
+
+Networking metrics
+
+- 1. Bandwidth, 2. throughput, 3. latency
+- Make transmit speed quicker not only short the latency, but also increase bandwitdh and throughput
+- data compression can reduce the latency
+
+MapReduce
+
+Considerations
+
+- failures
+- availability: percentage of time
+- reliability: probability for a certain unit of time
+- read heavy: cache
+- write heavy: queuing up writes
+- security
+- the operation is one-time or repeatedly
+
 ## Terms
 
 - Idempotency
