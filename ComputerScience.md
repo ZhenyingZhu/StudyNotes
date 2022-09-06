@@ -289,6 +289,18 @@ Considerations
 - security
 - the operation is one-time or repeatedly
 
+### Sorting and Searching
+
+Need to first know how big is the data set and how large is the value range.
+
+Common Sorting Algorithms
+
+- Merge sort
+- Quick sort
+- Bucket/Radix sort: can sort based on the integer bits
+- Bubble sort
+- Selection sort: Scan through and find the smallest element, swap with the first element, and then move to the next
+
 ## Terms
 
 - Idempotency
