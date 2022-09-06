@@ -262,3 +262,8 @@ function myFunction() {
 ```
 
 Maybe use <http://www.netinstructions.com/how-to-make-a-simple-web-crawler-in-javascript-and-node-js/>
+
+<https://stackoverflow.com/questions/10213703/how-do-i-view-events-fired-on-an-element-in-chrome-devtools>
+
+<https://stackoverflow.com/questions/13598909/how-to-simulate-a-keypress-in-a-greasemonkey-script>
+
