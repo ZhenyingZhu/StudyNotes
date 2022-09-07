@@ -301,6 +301,10 @@ Common Sorting Algorithms
 - Bubble sort
 - Selection sort: Scan through and find the smallest element, swap with the first element, and then move to the next
 
+Searching algorithms
+
+- Binary search
+
 ## Terms
 
 - Idempotency
