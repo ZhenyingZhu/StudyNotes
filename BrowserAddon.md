@@ -267,3 +267,6 @@ Maybe use <http://www.netinstructions.com/how-to-make-a-simple-web-crawler-in-ja
 
 <https://stackoverflow.com/questions/13598909/how-to-simulate-a-keypress-in-a-greasemonkey-script>
 
+<https://stackoverflow.com/questions/10331305/what-is-define-used-for-in-javascript-aside-from-the-obvious>
+
+<https://docs.microsoft.com/en-us/azure/devops/pipelines/release/define-multistage-release-process?view=azure-devops>
