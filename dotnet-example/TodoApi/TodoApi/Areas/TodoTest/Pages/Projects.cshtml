@@ -1,0 +1,108 @@
+﻿@{
+    ViewData["Title"] = "Projects with TODOs";
+}
+
+@section AddToHead {
+    <link rel="stylesheet" href="css/site.css" />
+}
+
+<h1>Projects with TODOs</h1>
+
+<!--Project panel-->
+<h2>Projects</h2>
+<div id="projectCounterForm">
+    <p id="projectCounter"></p>
+</div>
+
+<div id="viewProjectsForm">
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Todo Count</th>
+                <th>Check</th>
+            </tr>
+        </thead>
+        <tbody id="projects"></tbody>
+    </table>
+</div>
+
+<div id="createProjectForm">
+    <br />
+    <form action="javascript:void(0);" method="POST" onsubmit="createProject()">
+        <input type="text" id="createProjectName" placeholder="New project">
+        <input type="submit" value="Create">
+    </form>
+</div>
+
+<div id="editProjectForm">
+    <h3>Project Details</h3>
+    <form action="javascript:void(0);" onsubmit="updateProject()">
+        <input type="hidden" id="editProjectId">
+        <label for="project">Project name: </label>
+        <input type="text" id="editProjectName">
+        <br />
+        <input type="submit" value="Change">
+        <button id="deleteProjectButton" onclick="deleteProject()">Delete</button>
+        <a onclick="closeProjectEditForm()" aria-label="Close">&#10006;</a>
+    </form>
+</div>
+
+<div id="projectErrorMessageForm">
+    <!-- TODO: set the color to be red -->
+    <p id="projectErrorMessage"></p>
+</div>
+
+<!--Todo panel-->
+<h2>Todos</h2>
+<div id="todoCounterForm">
+    <p id="todoCounter"></p>
+</div>
+
+<div id="viewTodosForm">
+    <table>
+        <thead>
+            <tr>
+                <th>Is Complete?</th>
+                <th>Name</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody id="todos"></tbody>
+    </table>
+</div>
+
+<div id="addTodoItemToProjectForm">
+    <h3>Add a Todo Item</h3>
+    <form action="javascript:void(0);" method="POST" onsubmit="addTodoItemToProject()">
+        <label for="createTodoName">Name: </label>
+        <input type="text" id="createTodoName" placeholder="New to-do"><br />
+        <label for="createTodoName">Secret: </label>
+        <input type="text" id="createTodoSecret" placeholder="todo secret"><br />
+        <input type="submit" value="Create">
+    </form>
+</div>
+
+<div id="editTodoForm">
+    <h3>Edit a Todo Item</h3>
+    <form action="javascript:void(0);" onsubmit="updateItem()">
+        <input type="hidden" id="editTodoId">
+        <label for="editTodoName">Todo Item: </label>
+        <input type="text" id="editTodoName">
+        <br />
+        <label for="editTodoIsComplete">Completed: </label>
+        <input type="checkbox" id="editTodoIsComplete">
+        <br />
+        <input type="submit" value="Save">
+        <!-- Unselect todo item since the todo item doesn't need to open after updated -->
+        <a onclick="closeTodoEditForm()" aria-label="Close">&#10006;</a>
+    </form>
+</div>
+
+@section Scripts {
+    <script src="js/site.js" asp-append-version="true"></script>
+    <script type="text/javascript">
+        getProjects();
+    </script>
+}

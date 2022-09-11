@@ -273,6 +273,12 @@ Controllers:
 
 - **HERE**
 
+<https://stackoverflow.com/questions/5110028/add-css-or-javascript-files-to-layout-head-from-views-or-partial-views>
+
+<https://stackoverflow.com/questions/13144234/how-to-add-a-css-to-a-cshtml>
+
+<https://www.tutorialsteacher.com/mvc/area-in-asp.net-mvc#:~:text=You%20can%20create%20an%20area,click%20on%20the%20Add%20button.>
+
 **TODO**: Read
 
 - [Connection Strings](https://docs.microsoft.com/en-us/ef/core/miscellaneous/connection-strings)
