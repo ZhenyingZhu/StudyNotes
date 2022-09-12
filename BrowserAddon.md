@@ -272,3 +272,7 @@ Maybe use <http://www.netinstructions.com/how-to-make-a-simple-web-crawler-in-ja
 <https://requirejs.org/docs/api.html#define>
 
 <https://docs.microsoft.com/en-us/azure/devops/pipelines/release/define-multistage-release-process?view=azure-devops>
+
+<https://stackoverflow.com/questions/57814152/detect-react-event-from-tampermonkey>
+
+<https://bbs.tampermonkey.net.cn/forum.php?mod=viewthread&tid=1250>
