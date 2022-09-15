@@ -73,3 +73,11 @@ git stuck at auto packing the repository for optimum performance
 - find the commits since a commit reversely.
 
 `git clean -f -d` to stop pulling the packages.
+
+## Git not remember user name
+
+[Git does not remember username and password on Windows](https://snede.net/git-does-not-remember-username-password/#:~:text=Git%20does%20not%20remember%20username%20and%20password%20on,%E2%80%9Crun%20command%E2%80%9D%20and%20open%20the%20key%20manager%20)
+
+[Getting Git To Remember Your Username and Password](https://xp-dev.com/docs/user-guide/repositories/remember-username-password.html#:~:text=To%20get%20your%20Git%20client%20to%20remember%20your,you%20can%20do%20so%20by%20specifying%20a%20--timeout%3D%3A): not natively working on windows
+
+[Error fatal: credential-cache unavailable; no Unix socket support](https://stackoverflow.com/questions/67951554/error-fatal-credential-cache-unavailable-no-unix-socket-support)
