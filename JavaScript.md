@@ -2468,3 +2468,7 @@ HERE: Chaining
 - get the node parent: `node.parentElement`
 
 [JavaScript let vs var: Complete Guide](https://askjavascript.com/javascript-let-vs-var/#:~:text=The%20main%20difference%20between%20let%20vs%20var%20in,type%20of%20variable%20declaration%20with%20the%20keyword%20%E2%80%9Clet%E2%80%9D.)
+
+[Javascript collection of DOM objects - why can't I reverse with Array.reverse()?](https://stackoverflow.com/questions/45613/javascript-collection-of-dom-objects-why-cant-i-reverse-with-array-reverse)
+
+<https://www.sitepoint.com/delay-sleep-pause-wait/>
