@@ -460,3 +460,7 @@ Controllers:
 <https://docs.microsoft.com/en-us/aspnet/core/tutorials/publish-to-azure-webapp-using-vs?view=aspnetcore-6.0>
 
 How to use docker **??**
+
+## Others
+
+RESTFul with Swagger can be used to generate Proxy files and used in Powershell
