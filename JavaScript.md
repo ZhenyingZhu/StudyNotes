@@ -2472,3 +2472,5 @@ HERE: Chaining
 [Javascript collection of DOM objects - why can't I reverse with Array.reverse()?](https://stackoverflow.com/questions/45613/javascript-collection-of-dom-objects-why-cant-i-reverse-with-array-reverse)
 
 <https://www.sitepoint.com/delay-sleep-pause-wait/>
+
+<https://masteringjs.io/tutorials/fundamentals/foreach-break#:~:text=How%20to%20Break%20Out%20of%20a%20JavaScript%20forEach,Local%20Variable%204%204.%20Modify%20the%20array%20length>
