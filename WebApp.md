@@ -408,6 +408,21 @@ Controllers:
 - [Overview of ASP.NET Core authentication](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/?view=aspnetcore-6.0)
 - [Creating ASP.NET Core projects with Microsoft identity platform](https://github.com/AzureAD/microsoft-identity-web/blob/master/tools/app-provisioning-tool/vs2019-16.9-how-to-use.md)
 
+[Basics of Authentication](https://www.youtube.com/watch?v=Mcyt9SrZT6g)
+
+- Auth factors
+  - Knowledge: Username/Password, security code
+  - Possesion: Hard/Soft tokens
+  - Qualities: biometric
+- Strategies:
+  - basic
+  - session based
+  - token based
+  - JWT
+  - OAuth
+  - SSO
+
+
 - **TODO**
   - OAuth2?
   - JWT?
