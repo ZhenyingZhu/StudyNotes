@@ -26,7 +26,9 @@
 
 [Bootstrap](https://getbootstrap.com/): themeing
 
-**Decision**: Backend use EF and SQLServer. Server use Web API with Swagger to develop. Client use JS to interact with Web API. Bootstrap for basic UI, and later switch to React for better UI
+**Decision**: Backend use EF and SQLServer. Server use .NET Framework 6 Web App. Client use JS to interact with Web API. Bootstrap for basic UI, and later switch to React for better UI. Reasons are:
+
+- Not use Web API with Swagger because the Identity plugin needs to be rendered with Web App.
 
 [Prototype](https://github.com/ZhenyingZhu/StudyNotes/tree/master/dotnet-example/TodoApi)
 
@@ -421,7 +423,6 @@ Controllers:
   - JWT
   - OAuth
   - SSO
-
 
 - **TODO**
   - OAuth2?
