@@ -183,6 +183,8 @@ Compare the WebAPI vs. WebApp
 - WebAPI: has `builder.Services.AddControllers();` and `builder.Services.AddEndpointsApiExplorer();`
 - WebApp: has `app.UseStaticFiles();`, `app.UseRouting();` and `app.MapRazorPages();`
 
+[Create an ASP Area](https://geeksarray.com/blog/how-to-use-areas-in-asp-net-core-mvc#:~:text=ASP.NET%20Core%20MVC%20Area%20is%20a%20feature%20to,by%20having%20subfolders%20for%20Models%2C%20Views%2C%20and%20Controller.)
+
 **TODO**: Read
 
 - [Create web APIs with ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/web-api/?view=aspnetcore-6.0)
