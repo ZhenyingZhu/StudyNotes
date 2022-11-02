@@ -277,6 +277,10 @@ Controllers:
 
 - **HERE**
 
+<https://learn.microsoft.com/en-us/aspnet/core/mvc/views/working-with-forms?view=aspnetcore-6.0>
+
+<https://learn.microsoft.com/en-us/aspnet/core/mvc/controllers/areas?view=aspnetcore-6.0>
+
 <https://stackoverflow.com/questions/5110028/add-css-or-javascript-files-to-layout-head-from-views-or-partial-views>
 
 <https://stackoverflow.com/questions/13144234/how-to-add-a-css-to-a-cshtml>
