@@ -293,6 +293,8 @@ Controllers:
   - [ProjectV13 vs. MSSqlLocalDB](https://stackoverflow.com/questions/43211082/purpose-of-projectsv13-localdb-instance#:~:text=According%20to%20this%20answer%2C%20SQL%20Server%20Data%20Tools,should%20use%20MSSQLLocalDB%20or%20your%20own%20private%20instance.)
 - [Creating and configuring a model](https://docs.microsoft.com/en-us/ef/core/modeling/)
 
+- <https://stackoverflow.com/questions/38138100/addtransient-addscoped-and-addsingleton-services-differences>
+
 ## Identity
 
 [ASP.NET Core security topics](https://docs.microsoft.com/en-us/aspnet/core/security/?view=aspnetcore-6.0)
