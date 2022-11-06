@@ -1259,3 +1259,14 @@ It is under `C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.6.
 ### Interlock
 
 <https://docs.microsoft.com/en-us/dotnet/api/system.threading.interlocked?view=net-5.0>
+
+### WCF
+
+[Windows Communication Foundation](https://learn.microsoft.com/en-us/dotnet/framework/wcf/whats-wcf)
+
+[Native APIs](https://learn.microsoft.com/en-us/dotnet/api/system.servicemodel?view=dotnet-plat-ext-6.0)
+
+[Http auth](https://learn.microsoft.com/en-us/dotnet/framework/wcf/feature-details/understanding-http-authentication)
+
+- Anonymous: request does not contain any authentication information
+- Negotiate: automatically selects between the Kerberos protocol and NTLM authentication, depending on availability
