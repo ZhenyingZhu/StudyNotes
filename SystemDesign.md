@@ -3832,6 +3832,20 @@ f) Legislation and self-regulation
 
 - Over-regulation may prevent innovation and improvements
 
+## Think Software Learning
+
+### Payment Gateway System
+
+Card Network Association (Scheme): Visa, master card
+
+- Auth phase
+- clearing and settlement phase
+
+Stripe makes the customer no need to be PCI-DSS compliant
+
+- checkout session:
+  - inputs: 1. mode: one time, recurring, future charge. 2. lineItemDetails: detail of the transaction
+
 ## Open Questions
 
 How distributed lock works (ZooKeeper)
