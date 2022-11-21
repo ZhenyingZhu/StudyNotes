@@ -216,3 +216,7 @@ Python system env needs
 
 - PATH: `C:\Program Files\Python39\Scripts\`, `C:\Program Files\Python39\`, `C:\Users\<username>\AppData\Roaming\Python\Python39\Scripts`
 - PYTHONPATH: `C:\Program Files\Python39\`, `C:\Program Files\Python39\\Lib`
+
+## ADB
+
+Pull the files to desktop `adb pull /sdcard/Movies .`

@@ -3838,6 +3838,45 @@ f) Legislation and self-regulation
 
 Card Network Association (Scheme): Visa, master card
 
+Main functional requirements
+
+1. charge customer without being PCI-DSS compliant
+2. merchant can reg an account
+3. charge and refund
+4. view transaction details
+5. support one-time/periodic purchase
+6. securly store payment info
+
+Extended functional requirements
+
+1. generate invoice
+2. report in a time period
+3. multiple ways of payments (debit, credit)
+4. audit support
+5. discount coupon
+
+Non-functional requirements
+
+1. highly available and fault tolerant
+2. highly reliable: lack of, dup, incorrect, dangling authZ
+3. scalable
+4. durable
+5. strongly consistent
+6. security
+
+Merchant APIs:
+
+- `createCheckoutSession(mechartId, mode, lineItemDetails, successUri, failureUri)`
+- `expireSession(sessionId)`
+- `getCheckoutSession(sessionId)`
+- `listCheckoutSession(optoinal mode)`
+
+Services:
+
+- Merchant Profile Service: cache, 3 app servers, distributed DB.Shard by user id hash
+- Checkout page generation service: storage a page for each sessionId; store logo, CSS and validate CSS for a CSS style. 3 webservers, distributed cache, datastore. Object storage service.
+- Checkout session service: store the merchant, payment details and webhooks. call to page generation service. insert a transaction record in the pending queue for the payment processor service. Can store one-time session and period session in two table
+
 - Auth phase
 - clearing and settlement phase
 
