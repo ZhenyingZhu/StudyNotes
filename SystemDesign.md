@@ -3873,9 +3873,16 @@ Merchant APIs:
 
 Services:
 
-- Merchant Profile Service: cache, 3 app servers, distributed DB.Shard by user id hash
+- Merchant Profile Service: cache, 3 app servers, distributed DB. Shard by user id hash
 - Checkout page generation service: storage a page for each sessionId; store logo, CSS and validate CSS for a CSS style. 3 webservers, distributed cache, datastore. Object storage service.
 - Checkout session service: store the merchant, payment details and webhooks. call to page generation service. insert a transaction record in the pending queue for the payment processor service. Can store one-time session and period session in two table
+- Payment processor service:
+  1. get a transaction from the queue, send to external payment procesor adapter for auth,
+  2. move the trans record to completed queue when external processor authZ/decline the trans
+  3. external payment service provider (PSP) might not be using the trans id due to id space, generate temp id.
+  - Use a ACID compliant DB. also have a retry queue. Dead letter queue (DLQ) is used for message that cannot retry and order doesn't matter
+  - for idempotency: use local DB. need send the trans id to PSP when retry. Either get the previous response or get a dup error
+  - state: pending, authz, denied, failed. if authz succeed, there is authz code
 
 - Auth phase
 - clearing and settlement phase
