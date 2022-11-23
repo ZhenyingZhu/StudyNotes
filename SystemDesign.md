@@ -3883,6 +3883,12 @@ Services:
   - Use a ACID compliant DB. also have a retry queue. Dead letter queue (DLQ) is used for message that cannot retry and order doesn't matter
   - for idempotency: use local DB. need send the trans id to PSP when retry. Either get the previous response or get a dup error
   - state: pending, authz, denied, failed. if authz succeed, there is authz code
+- Payment settlement service: consumer of the completed queue. Store authzed payment in DB. Workflows perform settlement EOD
+  1. group by payment provider type (Visa, Master card, etc.)
+  2. write transaction info and authZ code in a file
+  3. use SFTP to transfer the file to the scheme for settlement
+  4. once received a file with settled transaction details, insert records to the settled transaciton queue
+- Transaction Service: keep track transaction. consume from completed transaction and settled transaction queues. Store data to the same ACID DB for transaction. Call the Webhook that is reg by merchant. Idempotent.
 
 - Auth phase
 - clearing and settlement phase
