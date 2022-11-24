@@ -3889,6 +3889,14 @@ Services:
   3. use SFTP to transfer the file to the scheme for settlement
   4. once received a file with settled transaction details, insert records to the settled transaciton queue
 - Transaction Service: keep track transaction. consume from completed transaction and settled transaction queues. Store data to the same ACID DB for transaction. Call the Webhook that is reg by merchant. Idempotent.
+- Webhook callback service: The webhook for the same trans can be called multiple times, so merchant needs to be able to idempotently reg to the callback. Also need to retry with expoential backoff. Can have 2 solutions
+  1. listen to a transaction notification queue. Not use completed transaction queue is to make sure the transaction service already get the message
+  2. Use FaaS
+  - For security, the webhook endpoint needs to be HTTPS, and also put a signature in the header with a key pair. The Key Management Service generates the key.
+  - to avoid replay attack, add the timestamp in the header
+- Payment profile service: store customer's payment info. Decrypetion keys store in Key management service. The keys used by this service are not shared by other services. Store PK profile id, data: CreationTime, EncryptedData, keyId, keyVer.
+  - tokenization: use a non-sensitive equivalent data (the token) to replace the data
+- Key management service: handle encryption keys.
 
 - Auth phase
 - clearing and settlement phase
