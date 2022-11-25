@@ -3834,6 +3834,29 @@ f) Legislation and self-regulation
 
 ## Think Software Learning
 
+### URL Shortening Service
+
+Functional requirement:
+
+- from big URL to uniq short URL
+- from short URL to big URL or not found
+- short URL is 6 chars
+- short URL is random
+- two short URLs for the same big URLs are different
+- only users with account to create the URL
+- URL with expiration date
+- monitor the health and metrics
+
+Non-funcitonal requirements
+
+- highly available
+- fault tolerant
+- R/W ops minimal latencies
+- scalable
+- min cost possible
+- strong consistency as a whole
+- durable
+
 ### Payment Gateway System
 
 Card Network Association (Scheme): Visa, master card
