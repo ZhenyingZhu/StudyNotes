@@ -3838,24 +3838,49 @@ f) Legislation and self-regulation
 
 Functional requirement:
 
-- from big URL to uniq short URL
-- from short URL to big URL or not found
-- short URL is 6 chars
-- short URL is random
-- two short URLs for the same big URLs are different
-- only users with account to create the URL
-- URL with expiration date
-- monitor the health and metrics
+1. from big URL to uniq short URL
+2. from short URL to big URL or not found
+3. short URL is 6 chars
+4. short URL is random
+5. two short URLs for the same big URLs from two different users are different
+6. only users with account to create the URL
+7. URL with expiration date
+8. monitor the health and metrics
 
 Non-funcitonal requirements
 
-- highly available
-- fault tolerant
-- R/W ops minimal latencies
-- scalable
-- min cost possible
-- strong consistency as a whole
-- durable
+1. highly available: 99.999%
+2. fault tolerant
+3. R/W ops minimal latencies
+4. scalable
+5. min cost possible
+6. strong consistency as a whole
+7. durable
+
+APIs
+
+1. userLogon(): return token
+2. userLogoff()
+3. createShortURL(userToken, bigURL, option expirationTime)
+4. getBigURL(shortURL)
+
+High level design:
+
+- a LB in front of 3 app servers.
+- distributed DB
+- In-memory cache: use LRU.
+  - local vs. global: local is quicker, but can cause dup copy
+  - global: Memcache
+
+Detailed Design:
+
+- base64: (0-9, a-z, A-Z, -, _). + and / are unsafe for HTTP request.
+- 6 chars, so 64^6=68.7B
+- Generate short URL options
+  1. Use MD5 hash of the big URL: MD5 is 128 bits and encoded to 22 chars. So 16 chars would be dropped
+  2. zookeeper to get a range of counter: need to maintain another service
+  3. Use key-generation service (KGS)
+  4. store a counter in DB, each app server reserves a block of numbers until exhausted, then get another block. Need a lock to make sure no race condition
 
 ### Payment Gateway System
 
