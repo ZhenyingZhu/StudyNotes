@@ -3881,6 +3881,23 @@ Detailed Design:
   2. zookeeper to get a range of counter: need to maintain another service
   3. Use key-generation service (KGS)
   4. store a counter in DB, each app server reserves a block of numbers until exhausted, then get another block. Need a lock to make sure no race condition
+- use 3 DB machines with replication
+
+DB design
+
+- Use NoSQL to store: 1. URL mapping, Users
+- Document type NoSQL can search by secondary key
+- Need a transaction to update the short URL mapping and the user URL count together
+- If the NoSQL DB doesn't provide transaction, use a persistent queue
+
+Scale the datastore
+
+- partitioned by the short URL. Options: 1. Hash based, 2. Range based. Hash based is better because the URLs are a counter value
+
+Purge the DB
+
+- Option 1: only delete an expired URL when GetBigURL() call
+- run a background jobs. That needs the DB to support range query
 
 ### Payment Gateway System
 
