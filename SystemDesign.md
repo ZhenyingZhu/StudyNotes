@@ -3897,7 +3897,28 @@ Scale the datastore
 Purge the DB
 
 - Option 1: only delete an expired URL when GetBigURL() call
-- run a background jobs. That needs the DB to support range query
+- Option 2: run a background jobs. That needs the DB to support range query
+
+Global cache vs. Local Cache
+
+- to prevent DDoS, can add an entry in the global cache to say the URL hasn't have a map yet
+
+### Distributed Cache Design
+
+Purpose:
+
+- DB caching
+- Storing User Sessions
+
+R/W Policies
+
+1. Cache Aside: writes go to DB. Cache is filled when read. For system that not updated after write
+2. Read Through: app only read from cache
+3. Write Through: two approaches
+   1. write to cache the DB at the same time. If write to DB succeed, return succeed and retry on cache asyncly
+   2. write to cache and let cache write to DB. Return succeed only when cache and DB both are succeed
+4. Write back/behind: write to cache and cache write to DB async (normal periodically). Can haev data loss and out of order updates
+5. Read/Refresh Ahead: use machine learning to load cache prior to user access. Used in a write-heavy system using eventual consistency
 
 ### Payment Gateway System
 
