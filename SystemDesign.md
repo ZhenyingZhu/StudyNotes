@@ -3917,8 +3917,43 @@ R/W Policies
 3. Write Through: two approaches
    1. write to cache the DB at the same time. If write to DB succeed, return succeed and retry on cache asyncly
    2. write to cache and let cache write to DB. Return succeed only when cache and DB both are succeed
-4. Write back/behind: write to cache and cache write to DB async (normal periodically). Can haev data loss and out of order updates
+4. Write back/behind: write to cache and cache write to DB async (normal periodically). Can have data loss and out of order updates
 5. Read/Refresh Ahead: use machine learning to load cache prior to user access. Used in a write-heavy system using eventual consistency
+
+Cache Eviction Policies
+
+- LRU: data access again and again
+- LFU: quickly a lot of elements are accessed. To avoid a recent added data get removed, it needs to set a time-bound
+- MRU (Most recently Used): Used in read ahead
+- FIFO
+
+Requirements
+
+1. user can insert a key-value record
+2. retrieve a record by key if it exists
+3. invalidate a record
+4. specify the cache read policy (by default cache aside)
+5. specify the cache evitction policy (by default LRU)
+
+Non Functional requirements
+
+1. highly available and fault-tolerant
+2. performant: minimal latencies
+3. scalable
+4. affordability
+5. can be configed to be strong or eventual consistency: if the cache content require updating. But strong consistency could cause write failure due to cache node unavailable
+
+API
+
+- insert(key, value)
+- get(key)
+- delete(key)
+
+Design
+
+- a server with hashmap and a double linked list
+- use replicas to distribute the read load
+- use partitions by hash key value range
 
 ### Payment Gateway System
 
