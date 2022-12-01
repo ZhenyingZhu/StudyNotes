@@ -3955,6 +3955,25 @@ Design
 - use replicas to distribute the read load
 - use partitions by hash key value range
 
+Partitioning of Key-Value Data
+
+1. by key range: not evenly distriuted. Good for range search
+2. by hash of key: a good hash makes the data uniformly distrubted
+
+Write partition approaches
+
+1. single-master/leader writes: replicates to secondary. select leader logic is hard. Whether the replicate is sync depends
+2. multi-lead writes: replicate writes in a mesh
+3. leaderless writes: no particular order enforced
+
+CAP: consistent, available, partition-tolerance
+
+- R+W>N
+
+Secondary replica do not evict entries due to LRU. It waits for primary to notify it to evict
+
+- secondary use TTL to make sure even the primary evict doesn't get replicated, the data is still gone
+
 ### Payment Gateway System
 
 Card Network Association (Scheme): Visa, master card
