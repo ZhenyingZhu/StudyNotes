@@ -3974,6 +3974,29 @@ Secondary replica do not evict entries due to LRU. It waits for primary to notif
 
 - secondary use TTL to make sure even the primary evict doesn't get replicated, the data is still gone
 
+Topology
+
+- can have a lot of logical partitions (1k) so data move can be easier
+- mmechanism
+  1. app talk to topology manager to get replica, then write to primary replica. Upgrading the cache SDK would be hard to maintain compatability
+  2. a thin SDK talk to proxy layer like LB. The LB maintains the topology. LB redirect the R/W traffic to the replicas
+
+### Twitter
+
+Function Requirements
+
+1. post tweets
+2. size of a tweet is 140 chars
+3. user can delete tweet but cannot update (a write)
+4. favorate tweets
+5. follow another user
+6. two type of timelines: 1. the last N of his tweets; 2. popular tweets of the user is following
+7. search tweets based on keywords
+8. create account
+9. add pic, videos
+10. analytics load, health, functionality
+11. others: recommendation, replying, sharing, notification, trending
+
 ### Payment Gateway System
 
 Card Network Association (Scheme): Visa, master card
