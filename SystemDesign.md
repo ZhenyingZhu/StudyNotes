@@ -3997,6 +3997,35 @@ Function Requirements
 10. analytics load, health, functionality
 11. others: recommendation, replying, sharing, notification, trending
 
+Non-functional requirements
+
+1. highly available
+2. generate timeline within half a sec
+3. eventual consistency is fine: see a twitter a little late is fine, search index is built async. But user should see her just posted tweet
+4. high scalable
+5. user data durable
+
+APIs
+
+1. postTweet(token, tweetData)
+2. deleteTweet(token, tweetId)
+3. like/UnlikeTweet(token, tweetId, like)
+4. followUser(token, followUserId)
+5. readHomeTimeline(token, pageSize, option pagetoken)
+6. readUserTimeline(token, userId, pageSize, opt pageToken)
+7. searchTweets(token, search_terms, max_count, pageToken, sortType)
+
+High level design: all of them have LB
+
+- Tweet service: receive, forward tweets to timeline and service services. Store tweet info, nums of tweet from a user, user likes, etc.
+  - Tables: Users: isHotUser; Tweet: SKL UserId, CreationTime; Favorite_Tweet: likeTime
+- User timeline service
+- Fanout service
+- Home timeline service
+- Social graph service
+- Search service
+- Database and caching layer: not a single component
+
 ### Payment Gateway System
 
 Card Network Association (Scheme): Visa, master card
