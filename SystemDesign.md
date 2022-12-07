@@ -4023,13 +4023,23 @@ High level design: all of them have LB
   - use write through cache because tweet is read heavy. If write to cache fails, still return success if write to DB is succeed
   - scaling up: partition cache and datastore. User table shard by hash of userId. Tweet table shard by userId can cause hotspot. Add more replicas to the hotspot partition. Can throttle user who creates too many tweets. Can move old tweet to cold storage. Shard by tweet id makes get tweets for a user across partitions. Two layer sharding: first by userId and then by tweet id.
   - find liked users: op1: run a scatter-gather on all partitions. op2: build a secnary global index on the tweenId.
-- User timeline service
-- Fanout service
+- Social graph service:
+  - followUer(), readUserFollowers(), readUserFollowee()
+  - use write through cache
+  - scaling: op1: shard by followeeUserId, op2: dup the data in both follower and followees' partition. Write is slower but read is quicker
+- User timeline service: only uses app servers and distributed in-memory cache.
+  - A linked list of user tweets and other user's info. Only keep 100 tweets in user timeline. Use LRU. Can preload before user logon.
+- Fanout service: two queues using Kafka
+  - first queue gets each posted tweet, put it in the search service and store it. Then pass it to the second queue.
+  - seems like the shard is different: the first one shard by user id, the second one shard by follower id and have a copy of the message for each follower. use consistent hashing
+  - fanout service is async, so cannot use for user timeline
+  - hot user has more than 10K followers. Their tweets don't add to the second queue
 - Home timeline service
-- Social graph service
 - Search service
 - Database and caching layer: not a single component
 - Analytic service
+
+
 
 ### Payment Gateway System
 
