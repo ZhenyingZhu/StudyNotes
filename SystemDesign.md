@@ -4034,8 +4034,14 @@ High level design: all of them have LB
   - seems like the shard is different: the first one shard by user id, the second one shard by follower id and have a copy of the message for each follower. use consistent hashing
   - fanout service is async, so cannot use for user timeline
   - hot user has more than 10K followers. Their tweets don't add to the second queue
-- Home timeline service
-- Search service
+- Home timeline service: also in cache with linked list. When remove tweets, need to rank the tweets
+  - prefer tweets that are recently liked, shared, replied or searched
+  - based on followees' reputation
+  - celebrity users' tweets: queried when home tineline is rendering the list
+- Search service: ingester -> search index (talking to datastore with cache) -> blender -> to user performing search queries
+  - ingester: tokenizing tweets. Remove the stop words like "a". Then stemming to reduce the inflected
+  - serch index: create inverted index. the storage stored creationTime. op1: Shard by work, makes the ingester needs to write to a lot of partitions in a transaction, also create a hotspot; op2: shard by tweet id: causing high load for search; op3: shard by two levels: words and tweet ids
+  - Blender: also fact in the tweet metadatas. Cache so other users with same search terms can get the results
 - Database and caching layer: not a single component
 - Analytic service
 
