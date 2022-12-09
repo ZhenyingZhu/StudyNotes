@@ -4018,7 +4018,7 @@ APIs
 High level design: all of them have LB
 
 - Tweet service: receive, forward tweets to timeline and service services. Store tweet info, nums of tweet from a user, user likes, etc.
-  - Tables: Users: isHotUser; Tweet: SKL UserId, CreationTime; Favorite_Tweet: likeTime
+  - Tables: Users: isHotUser; Tweet: SK UserId, CreationTime; Favorite_Tweet: likeTime
   - Generate tweet id: option 1: use UUID, 2: use user id append a monotonically increasing counter.
   - use write through cache because tweet is read heavy. If write to cache fails, still return success if write to DB is succeed
   - scaling up: partition cache and datastore. User table shard by hash of userId. Tweet table shard by userId can cause hotspot. Add more replicas to the hotspot partition. Can throttle user who creates too many tweets. Can move old tweet to cold storage. Shard by tweet id makes get tweets for a user across partitions. Two layer sharding: first by userId and then by tweet id.
@@ -4032,7 +4032,7 @@ High level design: all of them have LB
 - Fanout service: two queues using Kafka
   - first queue gets each posted tweet, put it in the search service and store it. Then pass it to the second queue.
   - seems like the shard is different: the first one shard by user id, the second one shard by follower id and have a copy of the message for each follower. use consistent hashing
-  - fanout service is async, so cannot use for user timeline
+  - fanout service is async, so cannot use for user timeline because it needs strong consistency
   - hot user has more than 10K followers. Their tweets don't add to the second queue
 - Home timeline service: also in cache with linked list. When remove tweets, need to rank the tweets
   - prefer tweets that are recently liked, shared, replied or searched
@@ -4045,7 +4045,25 @@ High level design: all of them have LB
 - Database and caching layer: not a single component
 - Analytic service
 
+### Ride-Sharing Service
 
+Function requirements
+
+1. Account: Passenger: create a account with credit card. Driver: driver verification
+2. passenger see her locationand nearby drivers
+3. passenger request a ride: pick up location and destination address
+4. passenger see ETA
+5. passenger see previous trips
+6. driver notify uber for available for a ride
+7. nearby driver reveive a request for a ride
+8. when driver accept, passenger see the ETA when driver arrive
+9. driver and passenger can see location when trip connected
+10. driver marks the trip as complete
+11. driver see driver past trips
+12. driver and passenger rate each others
+13. analytics/monitoring
+14. uber pool
+15. different types of rides
 
 ### Payment Gateway System
 
