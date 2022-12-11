@@ -4065,6 +4065,30 @@ Function requirements
 14. uber pool
 15. different types of rides
 
+Non-function requirements
+
+1. highly available
+2. passenger can get a driver assigned within 30 sec threshold
+3. strongly consistent for the trip, rates can be eventually consistent
+4. scalable
+5. durable
+
+API
+
+1. getMap(apiKey, centerLocation, long mapSize, MapType type): raster or vector map
+2. getLocation(apiKey, address)
+3. getTravelPathWithETA(apiKey, startLocation, endLocation)
+4. requestTrip(userToken, currentLocation, destinationLocation) -> tripId
+5. getPendingTripRequest(userToken)
+6. setDriverStatus(userToken, status)
+7. acceptTrip(userToken, tripId)
+8. getTripStatus(userToken, tripId): status: pending, waiting, onGoing, completed, cancelled
+9. cancelTrip(userToken, tripId, CancelType type, cancellationReason): driver cannot call this API
+10. completeTrip(userToken, tripId)
+11. updateLocation(userToken, currentLocation. optional tripId)
+12. rateUser(userToken, userId, rating)
+13. getTripsInfo(token, pageSize, token, sortType): tripType, tripStatus, passenger info, driver info, ETA for the trip
+
 ### Payment Gateway System
 
 Card Network Association (Scheme): Visa, master card
