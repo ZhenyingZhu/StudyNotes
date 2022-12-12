@@ -4050,7 +4050,7 @@ High level design: all of them have LB
 Function requirements
 
 1. Account: Passenger: create a account with credit card. Driver: driver verification
-2. passenger see her locationand nearby drivers
+2. passenger see her location and nearby drivers
 3. passenger request a ride: pick up location and destination address
 4. passenger see ETA
 5. passenger see previous trips
@@ -4085,9 +4085,22 @@ API
 8. getTripStatus(userToken, tripId): status: pending, waiting, onGoing, completed, cancelled
 9. cancelTrip(userToken, tripId, CancelType type, cancellationReason): driver cannot call this API
 10. completeTrip(userToken, tripId)
-11. updateLocation(userToken, currentLocation. optional tripId)
+11. updateLocation(userToken, currentLocation, optional tripId)
 12. rateUser(userToken, userId, rating)
 13. getTripsInfo(token, pageSize, token, sortType): tripType, tripStatus, passenger info, driver info, ETA for the trip
+
+High level design
+
+1. Mpa service:
+   1. raster map: satellite image at various resolutions. Stored in BLOBs with spatial info recognize map area
+   2. vector map: road maps with form of coordinates, edges, intersections. Store in GeoJSON/graph DB
+   3. convert GPS to address
+   4. calculate ETA: Geographic information system. Point of interest (POIs). Use graph algorithms and daily driver data to get the ETA. Divide the city into segments with Points of Entries and Exits.
+2. routing service: routes requests between users and BE
+3. trip service
+4. driver service: driver location
+5. billing service
+6. driver/passenger info service
 
 ### Payment Gateway System
 
