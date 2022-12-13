@@ -4096,11 +4096,18 @@ High level design
    2. vector map: road maps with form of coordinates, edges, intersections. Store in GeoJSON/graph DB
    3. convert GPS to address
    4. calculate ETA: Geographic information system. Point of interest (POIs). Use graph algorithms and daily driver data to get the ETA. Divide the city into segments with Points of Entries and Exits.
-2. routing service: routes requests between users and BE
+2. routing service: routes requests between users and BE. Dispatch messages betwen user apps and uber services
+   1. passenger app sends a trip request, go to trip service and respond back a trip id.
+   2. after passenger app requests a trip, waits for the driver assignment notification
+   3. driver app starts, report location and wait for trip requests
+   4. passenger app starts, see nearby drivers
+   5. Op1: use HTTP long pool. Op2: Web sockets
+   6. two types of web servers with a distributed cache: 1. server farm for the coneections, 2. dispatch servers route requests from internal services to the web servers. Cache has the look up table to find where is a request hold. User Connection table: PK: UserId; Host, CreationTime, LastPingTime
+   7. 
 3. trip service
 4. driver service: driver location
 5. billing service
-6. driver/passenger info service
+6. driver/passenger info service: keep track of user rating. stateless app server with cache. Shard by user type then user id.
 
 ### Payment Gateway System
 
