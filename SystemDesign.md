@@ -4091,7 +4091,7 @@ API
 
 High level design
 
-1. Mpa service:
+1. Map service:
    1. raster map: satellite image at various resolutions. Stored in BLOBs with spatial info recognize map area
    2. vector map: road maps with form of coordinates, edges, intersections. Store in GeoJSON/graph DB
    3. convert GPS to address
@@ -4102,10 +4102,16 @@ High level design
    3. driver app starts, report location and wait for trip requests
    4. passenger app starts, see nearby drivers
    5. Op1: use HTTP long pool. Op2: Web sockets
-   6. two types of web servers with a distributed cache: 1. server farm for the coneections, 2. dispatch servers route requests from internal services to the web servers. Cache has the look up table to find where is a request hold. User Connection table: PK: UserId; Host, CreationTime, LastPingTime
-   7. 
+      1. Op1: two types of web servers with a distributed cache: 1. server farm for the coneections, 2. dispatch servers route requests from internal services to the web servers. Cache has the look up table to find where is a request hold. User Connection table: PK: UserId; Host, CreationTime, LastPingTime
+      2. Op2: instantiating a bi-direction connection by upgrade the HTTP request. It doesn't time out so need less handshake. Instead of use route robin, LB can listen to the connections eash server holds.
+   6. If not use routing service, some services need to wait until user send some requests before they can send response to them
 3. trip service
-4. driver service: driver location
+4. driver service: driver location. Trip service use it to find nearby drivers
+   1. Not stored in DB
+   2. data structure: currentGuidId, previousGridId, latitude, longitude
+   3. Quick lookup: quadtrees, R-trees, Kd-trees, etc.
+   4. C-squares: divide the map into rectangular grids with ids. Store drivers as a double list with guid id as the key
+   5. parititon by the range of grid ids first, then shard by product type. No need to update if the driver is still within the same grid.
 5. billing service
 6. driver/passenger info service: keep track of user rating. stateless app server with cache. Shard by user type then user id.
 
