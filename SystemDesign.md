@@ -4105,13 +4105,17 @@ High level design
       1. Op1: two types of web servers with a distributed cache: 1. server farm for the coneections, 2. dispatch servers route requests from internal services to the web servers. Cache has the look up table to find where is a request hold. User Connection table: PK: UserId; Host, CreationTime, LastPingTime
       2. Op2: instantiating a bi-direction connection by upgrade the HTTP request. It doesn't time out so need less handshake. Instead of use route robin, LB can listen to the connections eash server holds.
    6. If not use routing service, some services need to wait until user send some requests before they can send response to them
-3. trip service
+3. trip service: 3 services
+   1. dispatch service: query driver location service to get nearby available drivers, then rank using K-Nearest Neighbor search. If the driver doesn't response with in 3 sec or reject the trip, her rank is affected and the request send to the next driver
+   2. recorder service: gets trip updates from the driver app and stor the trip time series locations. a table for trip info shard by tripId, secondary index by passenger id and driver id. Another table for timeseries
+   3. history service: sharing the datastore with dispatch and recorder services. Sol1: partition secondary index (driver id, passenger id) by document (trip info) - local index: partitioned locally; Sol2: global index for driver id. Search trips by driver is quicker but write is slower. Need a distributed transaction.
 4. driver service: driver location. Trip service use it to find nearby drivers
    1. Not stored in DB
-   2. data structure: currentGuidId, previousGridId, latitude, longitude
-   3. Quick lookup: quadtrees, R-trees, Kd-trees, etc.
+   2. data structure: a table driver_location: currentGuidId, previousGridId, latitude, longitude
+   3. Quick lookup: a table grids: quadtrees, R-trees, Kd-trees, etc.
    4. C-squares: divide the map into rectangular grids with ids. Store drivers as a double list with guid id as the key
    5. parititon by the range of grid ids first, then shard by product type. No need to update if the driver is still within the same grid.
+   6. When find nearby drivers, query nearby grids. if not find enough drivers, query larger set.
 5. billing service
 6. driver/passenger info service: keep track of user rating. stateless app server with cache. Shard by user type then user id.
 
