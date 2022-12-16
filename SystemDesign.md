@@ -4119,6 +4119,55 @@ High level design
 5. billing service
 6. driver/passenger info service: keep track of user rating. stateless app server with cache. Shard by user type then user id.
 
+### Whatsapp Messenger
+
+Functional requirements
+
+1. send and receive messages
+2. group chat with 2-256 users
+3. user can track the status of the message
+4. contacts are online
+5. regiester the account with phone num
+6. analytics/monitoring
+7. receive pending messages when online
+8. push notification when offline
+9. keep message history for 60 days
+10. send media files
+11. E2E encryption
+12. web app support
+
+Non-func requirements
+
+1. available
+2. min latency
+3. aync message delivery
+4. durable
+
+APIs
+
+1. registerAccount(apiKey, userInfo) -> token
+2. validateAccount(apiKey, userRegToken, validationCode)
+3. initiateDirectChatSession(token, otherUserId, initialHandshakeInfo) -> chatSessionId: info: initial set of keys to exchanged for a secure connection
+4. sendMessage(token,sessionId, message) -> messageId: combination of sessionId + timestamp
+5. receiveNewMessages(token, sessionId, lastTimestamp)
+6. initiateGroupChatSession(token, groupInfo): info contains groupId, sessionId, num of users, etc.
+7. addUserToGroup(token, groupSessionId, userId, initialHankShakeInfo)
+8. removeUserFromGroup(token, groupSessionId, userId)
+9. promoteUsertoAdmin(token, groupSessionId, userId)
+
+High level design
+
+1. Routing service: using web-sockets. Connection created when client app starts
+2. group: maintain group membership. Groups table and GroupMembership table shard by groupId. Group table stores SessionId. Membership table has userId as secondary index. Op1: local index, Op2: global index. Because writes to group membership is very few, global index is better. It can be updated async
+3. sessions
+4. fanout
+5. user: store user info and publick keys. Primary key is the phone num. Shard by userId.
+6. user registration: stateless app servers with DB and cache. RegAcount() API also creates a validation code sent through SMS.
+7. push notification
+8. SMS Gateway
+9. DB and caching
+10. Analytics
+
 ### Payment Gateway System
 
 Card Network Association (Scheme): Visa, master card
