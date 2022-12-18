@@ -4159,7 +4159,14 @@ High level design
 
 1. Routing service: using web-sockets. Connection created when client app starts
 2. group: maintain group membership. Groups table and GroupMembership table shard by groupId. Group table stores SessionId. Membership table has userId as secondary index. Op1: local index, Op2: global index. Because writes to group membership is very few, global index is better. It can be updated async
-3. sessions
+3. session: store session metadata and messages
+   1. Session table shard by sessionId. Op1: SessionId is a UUID; Op2: hash UserIds.
+   2. Session_message table: Store senderId, receipantId, messageId combine sessionId and timestamp. Shard by sessionId. Timestamp is a unique monotonically increasing integer. Op1: use a nanosec time along with a counter. When collide, retry; Op2: Use a seq number that is stored in Session table; Op3: Use DB seq num.
+   3. message type: message to a single recipient; message to group; message to a single recipient with deliverred status; status message to a group
+   4. Session service sends message to Fanout service
+   5. Receipient sends a last messageId to request for more message
+   6. background processes running once a week to delete records older than 2 months
+   7. Need to validate the sessionId the client passed in
 4. fanout
 5. user: store user info and publick keys. Primary key is the phone num. Shard by userId.
 6. user registration: stateless app servers with DB and cache. RegAcount() API also creates a validation code sent through SMS.
