@@ -4167,10 +4167,10 @@ High level design
    5. Receipient sends a last messageId to request for more message
    6. background processes running once a week to delete records older than 2 months
    7. Need to validate the sessionId the client passed in
-4. fanout
+4. fanout: a distributed message queue. Agents are listening to the queues. Shard by sessionId. If routing service says user is unavailable, send to push notification service. The client app gets the event and query session service to get the new messages and sorted with the time order.
 5. user: store user info and publick keys. Primary key is the phone num. Shard by userId.
 6. user registration: stateless app servers with DB and cache. RegAcount() API also creates a validation code sent through SMS.
-7. push notification
+7. push notification: use external push notification servers, i.e., Google Cloud Messaging (GCM). On the client, there is a daemon connecting to the server. Reg the app to it, which generates a token for that device and forward to Push notification service. The push notification server records the recipientId to token map. When push notifications, the second notification overrides the first one, so the app needs to query the push notification service to get all messages. Also store a table for receipentId+sessionId to creationTime map.
 8. SMS Gateway
 9. DB and caching
 10. Analytics
