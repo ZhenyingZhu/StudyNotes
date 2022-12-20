@@ -4175,6 +4175,34 @@ High level design
 9. DB and caching
 10. Analytics
 
+### Online Dating Service - Tinder
+
+Geosocial network
+
+Func requirements
+
+1. sign up account
+2. upload 5 pics
+3. provide user profiles based on criteria
+   1. distance
+   2. gender
+   3. age ranges
+   4. race
+   5. interests, activities, career paths, etc.
+4. swiping right for like
+5. showed profiles not show again
+6. two users like each other, they both receive a notificaction. Communicate via chat messages
+7. monitor
+8. video chat with each other
+
+Non-func requirements
+
+1. available
+2. scalable
+3. real-time experience when swipe
+4. profiles are durable
+5. eventual consistency
+
 ### Payment Gateway System
 
 Card Network Association (Scheme): Visa, master card
