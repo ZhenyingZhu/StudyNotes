@@ -4182,7 +4182,7 @@ Geosocial network
 Func requirements
 
 1. sign up account
-2. upload 5 pics
+2. upload at most 5 pics
 3. provide user profiles based on criteria
    1. distance
    2. gender
@@ -4190,7 +4190,7 @@ Func requirements
    4. race
    5. interests, activities, career paths, etc.
 4. swiping right for like
-5. showed profiles not show again
+5. unliked profiles not show again within a period
 6. two users like each other, they both receive a notificaction. Communicate via chat messages
 7. monitor
 8. video chat with each other
@@ -4202,6 +4202,26 @@ Non-func requirements
 3. real-time experience when swipe
 4. profiles are durable
 5. eventual consistency
+
+APIs
+
+1. updateSearchPreference(token, searchQueryPreferences)
+2. getProfiles(token, count)
+3. rateProfiles(token, listOfProfileRatings): not make a call for every swipe
+
+Design
+
+1. Routing: use web-socket. Also used to init chat sessions once two user profiles matches
+2. Chat
+3. Swipe
+4. Search
+5. User Profile: also store user search preferences. Shard by user id. Opts to store images
+   1. in the same data store as Blob: when update one field, all the fields need to be rewrite and replicate. Image can be updated in a transaction. Won't have orphaned files. The system can use a single seciruty model.
+   2. in a file server and store location in the DB: need to maintain the durable and deletion
+   3. in object storage service like S3: use Content delivery network (CDN)
+6. User Reg + SMS gateway
+7. Push Notification
+8. Analytics
 
 ### Payment Gateway System
 
