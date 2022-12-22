@@ -4213,8 +4213,13 @@ Design
 
 1. Routing: use web-socket. Also used to init chat sessions once two user profiles matches
 2. Chat
-3. Swipe
-4. Search
+3. Swipe: client app store like info and periodically send it to swipe service. A MQ to push notification service. Matched_Users table. PK is user pair and user1 is alphabetically less than user2. Data: creationTime, user1Liked, user2Liked. The liked info can be archived in cold storage and doesn't count any more after certain time.
+4. Search: types of perferences
+   1. Hard preferences: distance, gender, age range. Used to filter out.
+   2. Soft preferences: activities, interests, career path. Use to rank
+   3. much active users get more chance to show up
+   4. data is geo sharded using grids. Guid size is the max distance range that can be searched. Can also use Google S2 or Quad tree.
+   5. USA data can store on the same machine as India data, as peak time is different
 5. User Profile: also store user search preferences. Shard by user id. Opts to store images
    1. in the same data store as Blob: when update one field, all the fields need to be rewrite and replicate. Image can be updated in a transaction. Won't have orphaned files. The system can use a single seciruty model.
    2. in a file server and store location in the DB: need to maintain the durable and deletion
@@ -4222,6 +4227,8 @@ Design
 6. User Reg + SMS gateway
 7. Push Notification
 8. Analytics
+
+
 
 ### Payment Gateway System
 
