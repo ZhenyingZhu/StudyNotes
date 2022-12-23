@@ -4218,8 +4218,9 @@ Design
    1. Hard preferences: distance, gender, age range. Used to filter out.
    2. Soft preferences: activities, interests, career path. Use to rank
    3. much active users get more chance to show up
-   4. data is geo sharded using grids. Guid size is the max distance range that can be searched. Can also use Google S2 or Quad tree.
+   4. data is geo sharded using grids. Grid size is the max distance range that can be searched. Can also use Google S2 or Quad tree.
    5. USA data can store on the same machine as India data, as peak time is different
+   6. database schema: table 1: User_Profile: PK: userId, data: currentGridId, previousGuid, LastLoginTime, Age, Gender, interests (JSON). Use secondary indexes and multi-level sharding. LastLoginTime is used in rank. Uses Elasticsearch with Lucene inddices. Use bloom filter (if an element is definately not in a set or maybe in) to not send seen profiles again. table 2: store search results for caching. Store LastLoginTime, SearchResult and BloomFilter. This table is periodically updated in the background. More the user login, more the table updated. A MQ is to queue the run. The cache policy is read-ahead polcity with MRU. The search is batched for multiple users. Use ML to categorize: content-based and collabortive filtering methods.
 5. User Profile: also store user search preferences. Shard by user id. Opts to store images
    1. in the same data store as Blob: when update one field, all the fields need to be rewrite and replicate. Image can be updated in a transaction. Won't have orphaned files. The system can use a single seciruty model.
    2. in a file server and store location in the DB: need to maintain the durable and deletion
