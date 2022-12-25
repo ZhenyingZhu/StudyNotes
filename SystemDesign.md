@@ -4229,7 +4229,55 @@ Design
 7. Push Notification
 8. Analytics
 
+### Netflix
 
+Func req
+
+1. Users: 1. Content providers, 2. Viewers/subscribers
+2. content provider can upload a video
+3. content provider can provide metadata
+4. users can watch a video
+5. search for a video
+6. rate a video
+7. recommend videos based on watch history and rating
+8. keep track of all the analytics of a video
+
+Non-func req
+
+1. available
+2. scalable
+3. min latency
+4. durable and reliable
+
+APIs
+
+1. uploadVideo(token, videoMetadata, videoContent): video can be private. return 202
+2. updateVideoMetadata(token, videoId, videoMetadata)
+3. deleteVideo(token, videoId)
+4. listVideos(token, pageSize, pageToken)
+5. searchVideo(token, searchTags, pageSize, pageToken): tags include different keywords. return thumbnails
+6. getWatchHistory(token, count)
+7. getVideoRecommendations(token, count)
+8. getVideoInfo(token, videoId)
+9. getVideoStreamSessionUrl(token, videoId): return the stream session URL that can retrieve the video stream
+10. rateVideo(token, videoId, rating)
+
+Open Connect Appliances (OCA): to not overloading the ISP, uses CDN (content delivery network) within each ISP network. Those CNDs are OCAs
+
+Design
+
+1. Gateway service
+2. Content Provider Profile
+3. Video service
+4. object storage
+5. Upload service
+6. Post processing service
+7. Search service
+8. User profile
+9. Homepage generation service
+10. Recommendation service
+11. Billing Service
+12. Push notification
 
 ### Payment Gateway System
 
