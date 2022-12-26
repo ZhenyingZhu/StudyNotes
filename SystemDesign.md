@@ -4266,15 +4266,18 @@ Open Connect Appliances (OCA): to not overloading the ISP, uses CDN (content del
 
 Design
 
-1. Gateway service
-2. Content Provider Profile
+1. Gateway service: used for TLS termination, dynamic routing, stress testing, analytics, static response, rate limiting, multi-region resiliency
+2. Content Provider Profile: composite by a LB, app servers, distributed cache, distributed data store.
+   1. account table: capture company info
+   2. user table: capture departments info in the company. Shard by accountId.
 3. Video service
 4. object storage
-5. Upload service
-6. Post processing service
+5. Upload service: to object-storage service. Once upload is done, put event in the queue to notify post-processing service. Use multi-part upload to increase throughput and quick recovery.
+   1. table: uploadId, videoId (get from video service, also give video service a state)
+6. Post processing service: 1. break the video into 3-10 sec apart and put in another queue, 2. dequeue and transcoding to support different devices, also include DRM info, 3. send a message through another queue to video service and notification service, notify the content provider and update the video state.
 7. Search service
 8. User profile
-9. Homepage generation service
+9.  Homepage generation service
 10. Recommendation service
 11. Billing Service
 12. Push notification
