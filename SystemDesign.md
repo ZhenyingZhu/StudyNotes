@@ -4254,7 +4254,7 @@ APIs
 1. uploadVideo(token, videoMetadata, videoContent): video can be private. return 202
 2. updateVideoMetadata(token, videoId, videoMetadata)
 3. deleteVideo(token, videoId)
-4. listVideos(token, pageSize, pageToken)
+4. listVideos(token, pageSize, pageToken): content provider calls this API
 5. searchVideo(token, searchTags, pageSize, pageToken): tags include different keywords. return thumbnails
 6. getWatchHistory(token, count)
 7. getVideoRecommendations(token, count)
@@ -4270,14 +4270,21 @@ Design
 2. Content Provider Profile: composite by a LB, app servers, distributed cache, distributed data store.
    1. account table: capture company info
    2. user table: capture departments info in the company. Shard by accountId.
-3. Video service
+3. Video service: composite of two services.
+   1. Video playback service: store metadata, video segment info, rating. Shard by video id.
+   2. Cache-control service: ensure OCAs receive the videos. Write-behind/back cache policy to avoid write load on data store ??.
+      1. ContentDeliveryAppliances table: PK: CNDId, data: name, lastStatus, Region
+      2. VideoCacheStatus: PK: VideoId+CNDId, SK: regionId, URI
+      3. CDN periodically check cache control service to see if a new video is available, then a small set of CDNs across regions downloads from video playback service with a random delay. Other CDNs can retrive from those CDNs.
+      4. When customer wants to watch a video, request come to video playback service with rejion info. It check cache-control service to find a list of near CDNs. Client find a best one. If no CDN available, playback service notify cache control service to upload video to certain CDNs.
+      5. client app informs the network and supported bitrates. OCA use adaptive bitrate streaming based on HTTP to provide best experience. If network is good, start from low bitrate, increasing to better bitrate if network is good. Since over HTTP, pure on client and no diffculties travering firewalls and NAT devices. No need to persist state.
 4. object storage
 5. Upload service: to object-storage service. Once upload is done, put event in the queue to notify post-processing service. Use multi-part upload to increase throughput and quick recovery.
    1. table: uploadId, videoId (get from video service, also give video service a state)
 6. Post processing service: 1. break the video into 3-10 sec apart and put in another queue, 2. dequeue and transcoding to support different devices, also include DRM info, 3. send a message through another queue to video service and notification service, notify the content provider and update the video state.
 7. Search service
 8. User profile
-9.  Homepage generation service
+9. Homepage generation service
 10. Recommendation service
 11. Billing Service
 12. Push notification
