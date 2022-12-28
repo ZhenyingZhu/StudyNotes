@@ -4282,10 +4282,11 @@ Design
 5. Upload service: to object-storage service. Once upload is done, put event in the queue to notify post-processing service. Use multi-part upload to increase throughput and quick recovery.
    1. table: uploadId, videoId (get from video service, also give video service a state)
 6. Post processing service: 1. break the video into 3-10 sec apart and put in another queue, 2. dequeue and transcoding to support different devices, also include DRM info, 3. send a message through another queue to video service and notification service, notify the content provider and update the video state.
-7. Search service
-8. User profile
+7. Search service: work on the video metadata to get different keywords and build inverted search index. Shard by keyword makes search faster but write slower. Can also has hot keyword. If shard by video id, can have long tail latency amplification due to the scatter/gather.
+8. User profile: user_interaction table: PK: userId+videoId, video rating and watch history including watched sec. History can be cleaned off after 6 monthes.
 9. Homepage generation service
-10. Recommendation service
+10. Recommendation service: results passed to home page generation service.
+    1. 
 11. Billing Service
 12. Push notification
 
