@@ -4284,9 +4284,11 @@ Design
 6. Post processing service: 1. break the video into 3-10 sec apart and put in another queue, 2. dequeue and transcoding to support different devices, also include DRM info, 3. send a message through another queue to video service and notification service, notify the content provider and update the video state.
 7. Search service: work on the video metadata to get different keywords and build inverted search index. Shard by keyword makes search faster but write slower. Can also has hot keyword. If shard by video id, can have long tail latency amplification due to the scatter/gather.
 8. User profile: user_interaction table: PK: userId+videoId, video rating and watch history including watched sec. History can be cleaned off after 6 monthes.
-9. Homepage generation service
-10. Recommendation service: results passed to home page generation service.
-    1. 
+9. Homepage generation service: for a user, get recommendation videos + newly released videos. Also listen to videos that users watched.
+10. Recommendation service: results passed to home page generation service. A lot of agents to run the recommendation algorithms periodically. Can generate the list once a week. No need to process all history of a user. Use map-reduce + pipeline.
+    1. Collaborative filtering: build a model from users' past behavior. Recommend videos from videos viewed by other users with similar rating. Use KNN algorithm and Pearson correlation. Challenges: users with less rating have a large and sparse filtering and cold start problem for a new video.
+    2. Content-based filtering: keywords describe the videos. Build user profile to indicate the type of items users likes. Use TF-IDF (weighted vector space representation). Bayesian classfiers, cluster analysis, decision trees, articial nerual networks.
+    3. Popularity based/trending video: for new users who don't have a lot of history/rating.
 11. Billing Service
 12. Push notification
 
