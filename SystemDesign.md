@@ -4292,6 +4292,37 @@ Design
 11. Billing Service
 12. Push notification
 
+### Dropbox
+
+Func req
+
+1. accounts: free vs. premium
+2. user can create root folder (a.k.a, namespace) and map it to devices. Changes sync to all devices
+3. max file size is 1GB. It is artificial limit that can be changed.
+4. share files or folders. Changes in shared folders auto synced to all other users' devices.
+5. share folder shares all sub folders. But no matter if it is a subfolder in the home user, it is under root folder of other users.
+6. shared folder can be R/W or read-only
+7. support storing files up to 1GB and limited by the storage capacity
+8. allow offline file changes. Sync as soon as online again
+9. extended requr: fire covery and version history. op1: any updates create a new ver. op2: daily
+10. analytics stats of all storage and network consumptuion
+11. resolve conflicts
+12. data security use encrptuion
+13. search
+
+Non-func req
+
+1. available
+2. scalable
+3. minimize network bandwidth consumption
+4. min file transfer latency
+5. ACID:
+   1. Atomicity: use a temp file first
+   2. consistency: no partially changed files
+   3. isolation: multiple devices updating a same file should not cause conflicts
+   4. durability
+6. eventual consistency
+
 ### Payment Gateway System
 
 Card Network Association (Scheme): Visa, master card
