@@ -4304,7 +4304,7 @@ Func req
 6. shared folder can be R/W or read-only
 7. support storing files up to 1GB and limited by the storage capacity
 8. allow offline file changes. Sync as soon as online again
-9. extended requr: fire covery and version history. op1: any updates create a new ver. op2: daily
+9. extended requests: fire covery and version history. op1: any updates create a new ver. op2: daily
 10. analytics stats of all storage and network consumptuion
 11. resolve conflicts
 12. data security use encrptuion
@@ -4322,6 +4322,34 @@ Non-func req
    3. isolation: multiple devices updating a same file should not cause conflicts
    4. durability
 6. eventual consistency
+
+APIs
+
+1. uploadFile(token, metadata, content): metadata includes crypto hash of the file
+2. updateFileMetadata(token, fileId, metadata)
+3. updateFile(token, fileId, changeMetadata, fileSegments): only changedParts.
+4. deleteFile(token, fileId)
+5. listFiles(token, rootFolder, pageSize, pageToken)
+6. shareFileOrFolder(token, fileOrFilderId, otherUserId, sharingPermission)
+7. stopSharing(token, sharedNamespaceId, optionalUserId)
+8. listSharedNamespaces(token)
+
+Design
+
+1. client-side app: monitor a folder, replicate changes
+   1. Chunker: 4MB. Use cryptographic hash (SHA-256) to identify if file has been changed. Chunk size determined by internet connection (slow device can use multi-part upload/download). underlying block storage tech. file size to upload (should keep chunk count less than 1024).
+   2. indexer: get notified by watcher. Use Chunker to identify modified chunks. Update local metadata database. Inform synchronizer.
+   3. watcher: reg to OS change notifications. notify indexer about file/folder actions.
+   4. internal metadata DB: stores: file name, file size, chunk sizes, chunk # and location, cryptographic hash of each chunk
+   5. Synchronizer: upload/download only changed chunks in parallel.
+2. gateway service
+3. synchronization service
+4. File/Folder metadata
+5. User & Devices
+6. Notification Service
+7. Object Storage
+8. Block service
+9. Billing
 
 ### Payment Gateway System
 
