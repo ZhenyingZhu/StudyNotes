@@ -4341,8 +4341,8 @@ Design
    2. indexer: get notified by watcher. Use Chunker to identify modified chunks. Update local metadata database. Inform synchronizer.
    3. watcher: reg to OS change notifications. notify indexer about file/folder actions.
    4. internal metadata DB: stores: file name, file size, chunk sizes, chunk # and location, cryptographic hash of each chunk
-   5. Synchronizer: upload/download only changed chunks in parallel.
-2. gateway service
+   5. Synchronizer: upload/download only changed chunks in parallel. Queries sync service about newly added files from other devices. Get all the chunks, then copy the local file and switch in atomic fashion. Op1: Periodically polling the sync services, Op2: use Http Long pool, Op3: use Web Socket.
+2. gateway service:
 3. synchronization service
 4. File/Folder metadata
 5. User & Devices
