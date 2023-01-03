@@ -4342,10 +4342,14 @@ Design
    3. watcher: reg to OS change notifications. notify indexer about file/folder actions.
    4. internal metadata DB: stores: file name, file size, chunk sizes, chunk # and location, cryptographic hash of each chunk
    5. Synchronizer: upload/download only changed chunks in parallel. Queries sync service about newly added files from other devices. Get all the chunks, then copy the local file and switch in atomic fashion. Op1: Periodically polling the sync services, Op2: use Http Long pool, Op3: use Web Socket.
-2. gateway service:
+2. gateway service
 3. synchronization service
-4. File/Folder metadata
-5. User & Devices
+4. File/Folder metadata: folder hierachy and sharing info.
+   1. Namespaces types: Home namespace, Shared namespace: the shared folder in the owner's account; Proxy namespace: the shared folder in other users
+   2. Namespace table schema: PK: namespaceId, type, UserId; Data: parentNamepaceId; When shared a folder with multiple users, each user has one proxy namespace with the same namespaceId but different type
+   3. Namespace_objects table schema: store file and folder metadata. Each is an object. Ways to store hierachical data:
+      1. Parent reference adjacency list model: each item contains a pointer to its parent. Root folder has null parent. Data stores ChunkCount, LastModifiedTime, LastModifiedByUserId. Shard by userId.
+5. User & Devices: user table and device table are shard by userId.
 6. Notification Service
 7. Object Storage
 8. Block service
