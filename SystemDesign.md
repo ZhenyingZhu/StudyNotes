@@ -4304,7 +4304,7 @@ Func req
 6. shared folder can be R/W or read-only
 7. support storing files up to 1GB and limited by the storage capacity
 8. allow offline file changes. Sync as soon as online again
-9. extended requests: fire covery and version history. op1: any updates create a new ver. op2: daily
+9. extended requests: file covery and version history. op1: any updates create a new ver. op2: daily
 10. analytics stats of all storage and network consumptuion
 11. resolve conflicts
 12. data security use encrptuion
@@ -4349,11 +4349,16 @@ Design
    2. Namespace table schema: PK: namespaceId, type, UserId; Data: parentNamepaceId; When shared a folder with multiple users, each user has one proxy namespace with the same namespaceId but different type
    3. Namespace_objects table schema: store file and folder metadata. Each is an object. Ways to store hierachical data:
       1. Parent reference adjacency list model: each item contains a pointer to its parent. Root folder has null parent. Data stores ChunkCount, LastModifiedTime, LastModifiedByUserId. Shard by userId.
+      2. Child refernece adjacency list model: has ChildrenIds as CLOB. Only folder has this field. Has upper limit. When one child update, the whole list updates.
+      3. Materialized path model: store all the parents on the path. Easy for finding nodes by partial paths. Can create index on it. But if folders can be moved, with this model, all children need update
+      4. Nested sets model: for each folder, visit it twice. Record its pre-order ids as left and right. Good for find subfolders but inefficient for modifying folder structure
+      5. Closure table: only supported in SQL
+   4. When share, a background workflow first creates a shared namespace in home user, then a proxy namespace for each target user. Then traverse all the files and folders to change the namespaceIds. Lookup the permission for those files are easier then. Stop sharing deletes the shared namespace.
 5. User & Devices: user table and device table are shard by userId.
 6. Notification Service
 7. Object Storage
 8. Block service
-9. Billing
+9.  Billing
 
 ### Payment Gateway System
 
