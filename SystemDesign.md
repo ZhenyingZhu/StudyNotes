@@ -4357,8 +4357,10 @@ Design
 5. User & Devices: user table and device table are shard by userId.
 6. Notification Service
 7. Object Storage
-8. Block service
-9.  Billing
+8. Chunk/Block service: keeps track of chunk history. Versions are kept up to a certain configuraable threshold.
+   1. Database schema: Op1: chunks info of a file stored as a JSON in the Chunk_Information table. An update to a file creates a new info. Op2: individual chunk record stored separately. Stores nextChunkIds for easy traverse. Getting a new version of a file is harder, because only some chunks in the file is updated, then need to have the ability to use topology sort to find the chunks for a specific version
+   2. data deduplication: don't store duplicate chunks
+9. Billing
 
 ### Payment Gateway System
 
