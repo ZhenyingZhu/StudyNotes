@@ -4343,7 +4343,10 @@ Design
    4. internal metadata DB: stores: file name, file size, chunk sizes, chunk # and location, cryptographic hash of each chunk
    5. Synchronizer: upload/download only changed chunks in parallel. Queries sync service about newly added files from other devices. Get all the chunks, then copy the local file and switch in atomic fashion. Op1: Periodically polling the sync services, Op2: use Http Long pool, Op3: use Web Socket.
 2. gateway service
-3. synchronization service
+3. synchronization service: maintains a file changelog for every namespace. Uses change notification queues. All devices with those namespaces have agents listening to the queues.
+   1. Namespace_ChangeLog table: PK: namespaceId, Timestamp, data: CreationTime, type (Folder create/del, File create/del/updated), userId, data (the changed blocks).
+   2. If device is offline, go through notification service
+   3. Chunks are send to sync service then upload to the block service
 4. File/Folder metadata: folder hierachy and sharing info.
    1. Namespaces types: Home namespace, Shared namespace: the shared folder in the owner's account; Proxy namespace: the shared folder in other users
    2. Namespace table schema: PK: namespaceId, type, UserId; Data: parentNamepaceId; When shared a folder with multiple users, each user has one proxy namespace with the same namespaceId but different type
@@ -4360,7 +4363,7 @@ Design
 8. Chunk/Block service: keeps track of chunk history. Versions are kept up to a certain configuraable threshold.
    1. Database schema: Op1: chunks info of a file stored as a JSON in the Chunk_Information table. An update to a file creates a new info. Op2: individual chunk record stored separately. Stores nextChunkIds for easy traverse. Getting a new version of a file is harder, because only some chunks in the file is updated, then need to have the ability to use topology sort to find the chunks for a specific version
    2. data deduplication: don't store duplicate chunks
-9. Billing
+9.  Billing
 
 ### Payment Gateway System
 
