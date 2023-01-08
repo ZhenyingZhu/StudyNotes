@@ -4363,7 +4363,32 @@ Design
 8. Chunk/Block service: keeps track of chunk history. Versions are kept up to a certain configuraable threshold.
    1. Database schema: Op1: chunks info of a file stored as a JSON in the Chunk_Information table. An update to a file creates a new info. Op2: individual chunk record stored separately. Stores nextChunkIds for easy traverse. Getting a new version of a file is harder, because only some chunks in the file is updated, then need to have the ability to use topology sort to find the chunks for a specific version
    2. data deduplication: don't store duplicate chunks
-9.  Billing
+9. Billing
+
+### Distributed Message Queue
+
+Components
+
+1. sencer or producer
+2. Receiver or Consumer
+3. Message broker
+4. Filter: 1. topic based filtering: publisher define the topic, 2. content based filtering: subscriber classify the message
+
+Delivery models in distributed message queues
+
+1. at least once delivery: could be delivered more than once. Consumer needs to implement idempotent
+2. at most once delivery: highest throughput available. Need keep state and an ck mechanism
+3. exactly once delivery: almost impossible, high overheads.
+
+Types
+
+1. Based on num of cunsumers:
+   1. P2P MQ: only a single consumer can get a specific message. Could have multiple consumers. Absolute order cannot be guarantee because receivers can process in different speed.
+      1. single sender single receiver
+      2. multiple senders single receiver
+      3. single sender multiple receivers
+      4. multiple senders multiple receivers
+2. 
 
 ### Payment Gateway System
 
