@@ -4369,7 +4369,7 @@ Design
 
 Components
 
-1. sencer or producer
+1. sender or producer
 2. Receiver or Consumer
 3. Message broker
 4. Filter: 1. topic based filtering: publisher define the topic, 2. content based filtering: subscriber classify the message
@@ -4377,17 +4377,18 @@ Components
 Delivery models in distributed message queues
 
 1. at least once delivery: could be delivered more than once. Consumer needs to implement idempotent
-2. at most once delivery: highest throughput available. Need keep state and an ck mechanism
+2. at most once delivery: highest throughput available. Need keep state and an ack mechanism
 3. exactly once delivery: almost impossible, high overheads.
 
 Types
 
 1. Based on num of cunsumers:
-   1. P2P MQ: only a single consumer can get a specific message. Could have multiple consumers. Absolute order cannot be guarantee because receivers can process in different speed.
+   1. P2P MQ: only a single consumer can get a specific message. Could have multiple consumers. Absolute order cannot be guarantee because receivers can process in different speed. Message can have states: 1. READY, 2. PROCESSING, 3. PROCESSED, 4. WAITING, 5. EXPIRED
       1. single sender single receiver
       2. multiple senders single receiver
       3. single sender multiple receivers
       4. multiple senders multiple receivers
+   2. 
 2. 
 
 ### Payment Gateway System
