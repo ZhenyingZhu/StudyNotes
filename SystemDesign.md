@@ -4388,8 +4388,12 @@ Types
       2. multiple senders single receiver
       3. single sender multiple receivers
       4. multiple senders multiple receivers
-   2. 
-2. 
+   2. Publish-subscriber MQ: multiple consumers can receive the same message for a topic. Exact order can be guarantee. Subscriber doesn't need to ack. If subscriber fails to get a message, can replay the stream from the point of the failure
+      1. single publisher
+      2. multiple publisher
+2. Based on the order of consumption:
+   1. FIFO Queue: used when order is critical or cannot tolerate dups.
+3. 
 
 ### Payment Gateway System
 
