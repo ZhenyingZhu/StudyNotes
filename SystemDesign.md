@@ -4392,7 +4392,8 @@ Types
       1. single publisher
       2. multiple publisher
 2. Based on the order of consumption:
-   1. FIFO Queue: used when order is critical or cannot tolerate dups.
+   1. FIFO Queue: used when order is critical or cannot tolerate dups. Need consumer to ack to make sure not miss a message.
+   2. Standard Queue: provide best-effort ordering. At least once dilivery. Compare to FIFO, it can have multiple active consumers. Once a consumer ack a message, the message is removed.
 3. 
 
 ### Payment Gateway System
