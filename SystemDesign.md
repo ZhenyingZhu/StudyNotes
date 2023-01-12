@@ -4394,7 +4394,12 @@ Types
 2. Based on the order of consumption:
    1. FIFO Queue: used when order is critical or cannot tolerate dups. Need consumer to ack to make sure not miss a message.
    2. Standard Queue: provide best-effort ordering. At least once dilivery. Compare to FIFO, it can have multiple active consumers. Once a consumer ack a message, the message is removed.
-3. 
+3. Based on Message durability
+   1. Non-Durable queue: in-memory only queue. OK to lost events but high throughput. Future events will cover lost events. At most once delivery.
+   2. Durable queue: durability level varies.
+      1. Single node queue: still can have data loss if disk fails
+      2. Mirrored queue: one master and multiple mirrors. One mirror synchronizely update, others async.
+      3. Quorum queue: 1 primary and 2+ seconary. When writes succeeded on quorum machines, write succeed. Used when fault tolerance is more important than latency.
 
 ### Payment Gateway System
 
