@@ -4401,6 +4401,16 @@ Types
       2. Mirrored queue: one master and multiple mirrors. One mirror synchronizely update, others async.
       3. Quorum queue: 1 primary and 2+ seconary. When writes succeeded on quorum machines, write succeed. Used when fault tolerance is more important than latency.
 
+Purpose:
+
+- Loose coupling
+- Better performance via async communication
+- User responsiveness
+- Increased reliablity
+- Handling traffic spikes: queue-based load leveling pattern
+- Implementing SAGA transaction: when all operations succeed, succeed, if failed, keep retrying until threshold, then all rolled back. Used for heterogeneous data store scenario. Need use compensating transaction.
+- Competing consumers, ordering guarantee and concurrency control: competing consumer pattern
+
 ### Payment Gateway System
 
 Card Network Association (Scheme): Visa, master card
