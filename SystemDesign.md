@@ -4411,6 +4411,49 @@ Purpose:
 - Implementing SAGA transaction: when all operations succeed, succeed, if failed, keep retrying until threshold, then all rolled back. Used for heterogeneous data store scenario. Need use compensating transaction.
 - Competing consumers, ordering guarantee and concurrency control: competing consumer pattern
 
+Func Requirements
+
+1. publish message to a logical channel (topic)
+2. a publisher is responsible for the topic lifetime: create a topic and delete it
+3. the publisher publishes messages to a topic
+4. a consumer read messages from a topic
+5. multiple consumers can subscribe to a topic
+6. consumers are responsible for keeping track of the read positions
+7. an upper limit to individual message size
+8. delete messages in a topic after expiration time or reach certain size limit
+
+Extended func requirements
+
+1. The publisher defines the number of publisher instances and the expected publising rate, or defines the # of partitions
+2. The MQ guarantees FIFO order of messages from a publisher instance. Doesn't guarantee order between multiple publishers
+3. Consumer can query # of partitions and allocate a suitable # of instances to read from the topic
+4. Support multi-tenant architecture: users in a tenant share a common access with specific privileges. Different customers are isolated from each other
+
+Non-func req:
+
+1. highly available
+2. minimal latencies
+3. highly scalable
+   1. introducing topics: each topic isolate from others
+   2. introducing multiple partitions in a topic. Consumers can define consumer groups so each consumer instance can read from a partition
+   3. afforablity
+   4. strongly consistent
+   5. durable
+
+APIs
+
+1. createTopic(accessKey, publisherId, topicProperties: publisherInstanceCount, rateOfMessages, otherProperties)
+2. deleteTopic(accessKey, publisherId, topicId): async, touch multiple partitions
+3. getTopicInformation(accessKey, topicId)
+4. publishRecords(accessKey, topicId, publisherId, listOfRecords): support batch call to reduce overhead
+5. readRecords(accessKey, topicId, partitionId, lastRecordPosition, count)
+
+Detailed Design
+
+1. Control plane
+2. data plane
+3. topology synchronization
+
 ### Payment Gateway System
 
 Card Network Association (Scheme): Visa, master card
