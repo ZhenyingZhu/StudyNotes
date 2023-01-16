@@ -4436,9 +4436,9 @@ Non-func req:
 3. highly scalable
    1. introducing topics: each topic isolate from others
    2. introducing multiple partitions in a topic. Consumers can define consumer groups so each consumer instance can read from a partition
-   3. afforablity
-   4. strongly consistent
-   5. durable
+4. afforablity
+5. strongly consistent
+6. durable
 
 APIs
 
@@ -4450,9 +4450,15 @@ APIs
 
 Detailed Design
 
-1. Control plane
-2. data plane
-3. topology synchronization
+1. Control plane: LB, app servers, distributed cache, distributed data store
+   1. configs: security (authN, authZ, encryption), resources, data retention
+2. data plane: each node hosts multiple partitions that belong to different topics
+   1. proxy/routing layer: talk to topology sync
+   2. message broker cluster
+   3. message durability: can use one of
+      1. database based persistence layer: SSTable is better than B/B+-tree
+      2. file-based persistence layer: kafka uses it. Each file has an offset records a range of the messageIds based on partitionId.
+3. topology synchronization: Zookeeper
 
 ### Payment Gateway System
 
