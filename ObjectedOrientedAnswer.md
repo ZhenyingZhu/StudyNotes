@@ -1,7 +1,9 @@
 # The Advanced Object-Oriented Technology
-https://www.coursera.org/learn/aoo/home/welcome
+
+<https://www.coursera.org/learn/aoo/home/welcome>
 
 ## Test1
+
 信息隐藏使对象能够集中而完整地描述并对应一个具体事物。
 
 多态可实现接口复用，节省大量的编码工作量.
@@ -24,8 +26,6 @@ https://www.coursera.org/learn/aoo/home/welcome
 
 多态情况下，需要在运行时查询虚拟方法表，以便确定最终调用的方法的首地址。
 
-
-
 1/ 功能分解法中局部的错误和修改很容易产生全局性的影响。
 
 2/ 注重研究实际的业务。
@@ -38,10 +38,9 @@ Jacobson方法中提出use case驱动。
 Jacobson方法中提出宏过程和微过程的概念。
 Coad/Yourdon方法概念简练，过程清晰。
 
-
 5/ UML只是统一的概念与表示法，没有统一过程。
 
-6/ 
+6/
 Booch
 Jacobson
 Rumbaugh
@@ -60,6 +59,7 @@ Web领域的Jsp
 10/ UML2中无论是模型种类还是在模型元素的种类，数量上都比UML1有较为明显的增长。
 
 ## Test2
+
 下列关于本课程采用的面向对象的分析与设计方法的描述，正确的是
   面向对象分析描述问题域与系统责任，面向对象的设计考虑与软件实现有关的问题。
 
@@ -90,8 +90,5 @@ Usecase出现在以下哪些阶段
 关于用况图的描述正确的是
   可以在不同阶段采用自然语言、顺序图等方式详细描述用况。
 
-
 下列关于面向对象的分析与设计的描述，正确的是
   面向对象分析描述问题域与系统责任，面向对象的设计考虑与软件实现有关的问题。
-
-
