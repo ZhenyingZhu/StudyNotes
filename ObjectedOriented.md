@@ -2,7 +2,12 @@
 
 ## Grokking the low level design interview using OOD principles
 
+OOP principles
 
+- Encapsulation
+- Abstration
+- Inheritance
+- Polymorphism
 
 ## The Advanced Object-Oriented Technology
 
