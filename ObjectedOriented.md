@@ -6,8 +6,10 @@ OOP principles
 
 - Encapsulation
 - Abstration
-- Inheritance
-- Polymorphism
+- Inheritance: inherit all the non-private properties/methods
+  - types: single inheritance, multiple inheritance (more than 1 base class), multi-level inheritance, hierarchical inheritance, hybrid inheritance
+- Polymorphism: many forms.
+  - types: dynamic: method overriding (same name, var, return between two classes), static: method + operator overload(same name different var with in a same class)
 
 ## The Advanced Object-Oriented Technology
 
