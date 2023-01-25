@@ -11,6 +11,29 @@ OOP principles
 - Polymorphism: many forms.
   - types: dynamic: method overriding (same name, var, return between two classes), static: method + operator overload(same name different var with in a same class)
 
+UML:
+
+- things
+- relationships
+- diagrams
+  - structural
+  - Behavioral: case diagrams, activity diagrams, sequence diagrams
+
+Relationships
+
+1. association
+2. generalization: inheritance
+3. include
+4. extend
+
+Object Association
+
+1. simple association
+2. composition
+3. aggregation: objects can exist independently
+
+Dependency
+
 ## The Advanced Object-Oriented Technology
 
 <https://www.coursera.org/learn/aoo/home/welcome>
