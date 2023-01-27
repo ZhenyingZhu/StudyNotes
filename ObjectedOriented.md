@@ -34,6 +34,22 @@ Object Association
 
 Dependency
 
+Sequence diagram
+
+- lifeline
+- activation bars
+- messages
+
+Activity diagram
+
+SOLID
+
+- Single Responsibility Principle
+- Open/Closed Principle: open for extension but closed for modification. Use inherit not directly modify
+- Liskov Substitution princile: superclass should be replaceable by subclasses
+- Interface Segregation Principle: fine-grained interfaces. Have group of used interfaces not fat interfaces with useless methods
+- Dependency Inversion Principle: high level modules should not dependent on low-level modules. Both should depend on abstrations
+
 ## The Advanced Object-Oriented Technology
 
 <https://www.coursera.org/learn/aoo/home/welcome>
