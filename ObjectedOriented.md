@@ -50,6 +50,52 @@ SOLID
 - Interface Segregation Principle: fine-grained interfaces. Have group of used interfaces not fat interfaces with useless methods
 - Dependency Inversion Principle: high level modules should not dependent on low-level modules. Both should depend on abstrations
 
+Design patterns
+
+- creational
+- structual
+- behavioral
+- achitectrual
+
+Creational design patterns
+
+- factory
+- constructor
+- singleton
+- builder
+- prototype
+- abstract
+
+structual design patterns
+
+- decroator
+- facade
+- adapter
+- bridge
+- composite
+- flyweight
+- proxy
+
+behavioral design pattern
+
+- chain of responsibitlity
+- command
+- iterator
+- mediator
+- observer
+- vistor
+- interpreter pattern
+- template pattern
+- memento pattern
+- state pattern
+- strategy pattern
+
+Architectural design patterns
+
+- MVC
+- MVP
+- MVVM
+
 ## The Advanced Object-Oriented Technology
 
 <https://www.coursera.org/learn/aoo/home/welcome>
