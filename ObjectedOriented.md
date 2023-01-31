@@ -71,9 +71,11 @@ structual design patterns
 - decroator
 - facade
 - adapter
-- bridge
+- bridge: ?
 - composite
-- flyweight
+- flyweight: use context with cache to share across different compoents
+  - intrinsic
+  - extrinsic
 - proxy
 
 behavioral design pattern
