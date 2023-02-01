@@ -80,17 +80,17 @@ structual design patterns
 
 behavioral design pattern
 
-- chain of responsibitlity
-- command
+- chain of responsibitlity: a request either handled or passed
+- command: ?
 - iterator
-- mediator
-- observer
-- vistor
+- mediator: central authority
+- observer: notification
+- vistor: ?
 - interpreter pattern
 - template pattern
 - memento pattern
 - state pattern
-- strategy pattern
+- strategy pattern: use interface and override
 
 Architectural design patterns
 
