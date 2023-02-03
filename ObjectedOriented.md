@@ -98,6 +98,21 @@ Architectural design patterns
 - MVP
 - MVVM
 
+Real problem
+
+1. Collecting requirements
+2. scope down the problem
+3. SOLID: easy to extend
+
+Model the problem: establish the classes and their relationships
+
+Parking lot
+
+1. payment flexibility
+2. parking spot type
+3. vehicle types
+4. pricing
+
 ## The Advanced Object-Oriented Technology
 
 <https://www.coursera.org/learn/aoo/home/welcome>
