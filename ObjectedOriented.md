@@ -2,6 +2,8 @@
 
 ## Grokking the low level design interview using OOD principles
 
+### Knowledges
+
 OOP principles
 
 - Encapsulation
@@ -106,12 +108,31 @@ Real problem
 
 Model the problem: establish the classes and their relationships
 
-Parking lot
+### Parking lot
 
 1. payment flexibility
 2. parking spot type
 3. vehicle types
 4. pricing
+
+Requirements
+
+1. park 40k cars
+2. types of spots: hanicapped, compact, large, motorcycle
+3. multiple entrance and exit
+4. types of cars: car, truck, van, motorcycle
+5. a display board shows free parking spots
+6. customers collect a ticket from the entrance, pay at exit
+7. pay with either automated exit panel or pay the parking agent at exit
+8. payment is calculated at an hourly rate.
+9. payment made using either a credit/debit card or cash
+
+Actors
+
+1. customer: take/scan/pay ticket
+2. parking agent
+3. admin: add/remove/update a spot, agent, entry/exit panels. Modify hourly rate, view/update account (customer)
+4. system: giving details of parking spot. assigning parking spots to vehicles
 
 ## The Advanced Object-Oriented Technology
 
