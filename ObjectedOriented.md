@@ -134,6 +134,8 @@ Actors
 3. admin: add/remove/update a spot, agent, entry/exit panels. Modify hourly rate, view/update account (customer)
 4. system: giving details of parking spot. assigning parking spots to vehicles
 
+
+
 ## The Advanced Object-Oriented Technology
 
 <https://www.coursera.org/learn/aoo/home/welcome>
