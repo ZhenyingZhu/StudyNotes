@@ -134,6 +134,31 @@ Actors
 3. admin: add/remove/update a spot, agent, entry/exit panels. Modify hourly rate, view/update account (customer)
 4. system: giving details of parking spot. assigning parking spots to vehicles
 
+### Elevator System
+
+Consideration
+
+1. how many elevators
+2. wait time and running cost
+3. how passengers see the status of elevator
+
+Design pattern
+
+1. strategy
+2. state
+3. delegation
+
+Requirements
+
+1. 15 floors, 3 elevators
+2. move up or down or in idle state
+3. door open in idle state
+4. elevator passes through each floor
+5. a button to call elevator car, up and down
+6. panel inside elevator have buttons to go to every floor, and open/close doors
+7. display in and out shows the current floor and the direction
+8. inside display shows capacity
+
 ## The Advanced Object-Oriented Technology
 
 <https://www.coursera.org/learn/aoo/home/welcome>
