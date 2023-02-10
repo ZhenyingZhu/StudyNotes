@@ -159,6 +159,30 @@ Requirements
 7. display in and out shows the current floor and the direction
 8. inside display shows capacity
 
+Actors
+
+1. passengers
+2. system
+
+Use cases
+
+1. press panel button
+2. move/stop elevator
+3. dispatcher algorithm
+4. display
+5. open/close door
+6. request for elevator
+7. fllor request
+8. call emergency
+
+Dispatching algorithms
+
+1. First Come First Serve: 4 states: elevator idle; elevator moving towards passenger and same direction; moving towards and wrong direction; moving away. Use a queue to track which passenger comes first
+2. Shortest Seek Time First: passenger who is closest to the elevator gets it
+3. SCAN: always go up to the top then go down to bottom
+4. LOOK: advanced SCAN
+
+
 ## The Advanced Object-Oriented Technology
 
 <https://www.coursera.org/learn/aoo/home/welcome>
