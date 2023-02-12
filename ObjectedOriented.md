@@ -182,6 +182,20 @@ Dispatching algorithms
 3. SCAN: always go up to the top then go down to bottom
 4. LOOK: advanced SCAN
 
+### Library management system
+
+Use cases
+
+1. book info: # of copies of a book, position, name + attributes
+2. renewal extend borrow
+3. fine
+4. book reservation
+
+Design pattern
+
+- facotry
+- delegation
+- observer
 
 ## The Advanced Object-Oriented Technology
 
