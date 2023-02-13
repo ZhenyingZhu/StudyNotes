@@ -190,12 +190,13 @@ Use cases
 2. renewal extend borrow
 3. fine
 4. book reservation
+5. barcode scanner
 
 Design pattern
 
 - facotry
-- delegation
-- observer
+- delegation: delegate a task from one class to another
+- observer: notify after a book is available
 
 ## The Advanced Object-Oriented Technology
 
