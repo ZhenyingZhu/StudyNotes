@@ -198,6 +198,27 @@ Design pattern
 - delegation: delegate a task from one class to another
 - observer: notify after a book is available
 
+### Amazon locker service
+
+Considerations
+
+1. Locker size
+2. Locker selection: not double booked
+3. Lock status: time constraint for package kept in the locker
+4. return an item using a locker
+5. code
+
+Design patterns
+
+1. strategy
+2. repository
+
+actors
+
+1. customer
+2. delivery guy
+3. system
+
 ## The Advanced Object-Oriented Technology
 
 <https://www.coursera.org/learn/aoo/home/welcome>
