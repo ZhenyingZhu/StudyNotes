@@ -219,6 +219,24 @@ actors
 2. delivery guy
 3. system
 
+### Vending Machine
+
+Points
+
+1. states of the vending machine: no money state, money inserted state, dispense state
+2. receive, caculate, return money
+3. racks
+
+Design patterns
+
+1. state
+
+Actors
+
+1. customer
+2. operator: collect cash
+3. system
+
 ## The Advanced Object-Oriented Technology
 
 <https://www.coursera.org/learn/aoo/home/welcome>
