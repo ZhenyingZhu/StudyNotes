@@ -237,6 +237,42 @@ Actors
 2. operator: collect cash
 3. system
 
+### Blackjack game
+
+rules
+
+1. A is 1 or 11
+2. 10, J, Q, K = 10
+3. hit or pat
+4. blackjack: A + 10
+
+Points
+
+1. how many players?
+2. can players play against each other?
+3. how many points can the player and the dealer hit the card
+4. what if dealer and player gets same points
+5. how many cards at max player can take
+
+Design patterns
+
+1. iterator
+2. state
+
+Actors
+
+1. player: resigns a game
+2. dealer: block member
+
+Classes
+
+1. card
+2. deck
+3. Shoe: shuffle
+4. hand: get score
+5. player: player + dealer
+6. controller
+
 ## The Advanced Object-Oriented Technology
 
 <https://www.coursera.org/learn/aoo/home/welcome>
