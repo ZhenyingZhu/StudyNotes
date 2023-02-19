@@ -273,6 +273,27 @@ Classes
 5. player: player + dealer
 6. controller
 
+### Meeting scheduler
+
+Expectations
+
+1. room + capacity
+2. book room
+3. attendees' availability
+4. meeting notification to the invitee
+5. accept or reject the invite
+6. a calendar
+
+pattern
+
+1. singleton
+
+actors
+
+1. scheduler
+2. user
+3. system
+
 ## The Advanced Object-Oriented Technology
 
 <https://www.coursera.org/learn/aoo/home/welcome>
