@@ -294,6 +294,28 @@ actors
 2. user
 3. system
 
+### Movie Ticket Booking
+
+Expectations
+
+1. seat selection: do not double booked
+2. seat reservation timeout? First come first serve?
+3. Price of the booking: seat type? discount?
+4. multiple cinemas with multiple halls? same movie at different time?
+5. search movie
+6. users can select multiple searts
+7. notification
+
+Design pattern
+
+1. strategy
+
+Actors
+
+1. Systems
+2. Customer
+3. ticket agent
+
 ## The Advanced Object-Oriented Technology
 
 <https://www.coursera.org/learn/aoo/home/welcome>
