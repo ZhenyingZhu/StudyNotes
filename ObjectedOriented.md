@@ -316,6 +316,24 @@ Actors
 2. Customer
 3. ticket agent
 
+### Car rental
+
+Expectations
+
+1. vehicle type
+2. search by name + location
+3. services: assign a driver, roadside assistant
+4. reservation + cancellation
+5. payment + fine with notification
+6. vehicle logs
+7. multiple branches + parking stalls
+
+design pattern
+
+1. decorate
+
+
+
 ## The Advanced Object-Oriented Technology
 
 <https://www.coursera.org/learn/aoo/home/welcome>
