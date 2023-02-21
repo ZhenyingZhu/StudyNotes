@@ -330,9 +330,14 @@ Expectations
 
 design pattern
 
-1. decorate
+1. decorate: discount, peak season, damaged fine, partially filled fuel tank fine
 
+Actors
 
+1. member
+2. receptionist
+3. worker
+4. system
 
 ## The Advanced Object-Oriented Technology
 
