@@ -339,6 +339,22 @@ Actors
 3. worker
 4. system
 
+### ATM system
+
+Design patterns
+
+1. singleton
+2. state
+
+Requirements
+
+1. get account while insert card
+2. card reader, keypad, screen, cash dispenser, printer, network infrastructure
+3. PIN auth
+4. checking + saving
+5. cancel transaction before confirmation
+6. withdrawal limit
+
 ## The Advanced Object-Oriented Technology
 
 <https://www.coursera.org/learn/aoo/home/welcome>
