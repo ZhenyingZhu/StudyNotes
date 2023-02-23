@@ -355,6 +355,24 @@ Requirements
 5. cancel transaction before confirmation
 6. withdrawal limit
 
+### Chess game
+
+Requirements
+
+1. King, queen, rooks, knights, bishops, pawns
+2. player takes first turn
+3. undo
+
+Design pattern
+
+1. singleton
+2. command
+
+Objects
+
+1. box: piece, x, y
+2. Piece
+
 ## The Advanced Object-Oriented Technology
 
 <https://www.coursera.org/learn/aoo/home/welcome>
