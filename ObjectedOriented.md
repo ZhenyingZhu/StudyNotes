@@ -373,6 +373,26 @@ Objects
 1. box: piece, x, y
 2. Piece
 
+### Hotel management
+
+Requirements
+
+1. book room: not double booked
+2. search room
+3. payment: in advance, or JIT
+4. price: room size, time, duration
+5. booking cancelation
+6. housekeeper, receiptionist, guest, server
+7. standard, deluxe, family suite, business suite
+8. room service
+9. return key
+
+Design patterm
+
+1. strategy
+2. singleton
+3. factory
+
 ## The Advanced Object-Oriented Technology
 
 <https://www.coursera.org/learn/aoo/home/welcome>
