@@ -393,6 +393,27 @@ Design patterm
 2. singleton
 3. factory
 
+## Amazon online shopping
+
+Requirements
+
+1. Discoverability
+2. cart and checkout
+3. payment
+4. product reviews and ratings
+5. guest user can view
+6. authN user can buy, sell
+7. shipping: address, tracking
+8. order can be cancelled before it is shipped
+9. notification
+10. order log
+11. coupon
+
+Design pattern
+
+1. factory
+2. strategy
+
 ## The Advanced Object-Oriented Technology
 
 <https://www.coursera.org/learn/aoo/home/welcome>
