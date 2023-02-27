@@ -414,6 +414,21 @@ Design pattern
 1. factory
 2. strategy
 
+### Stack overflow
+
+Requirements
+
+1. question: view and search, post and answer
+2. comment on questions and answers
+3. reputation
+4. voting
+5. bounty
+6. notification
+
+Design pattern
+
+1. observer
+
 ## The Advanced Object-Oriented Technology
 
 <https://www.coursera.org/learn/aoo/home/welcome>
