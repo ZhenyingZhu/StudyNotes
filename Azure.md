@@ -468,3 +468,7 @@ Should not check in pfx.
 ## Spring boot on Azure
 
 <https://azure.microsoft.com/en-us/services/spring-cloud/#security>
+
+## Azure Queue Storage
+
+<https://learn.microsoft.com/en-us/azure/storage/queues/storage-queues-introduction>
