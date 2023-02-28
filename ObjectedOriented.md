@@ -429,6 +429,24 @@ Design pattern
 
 1. observer
 
+### Restaurant management
+
+Requirements
+
+1. branch
+2. cerate order
+3. menu item
+4. available table
+5. table reservation
+6. notification
+7. pay bills
+8. different table configs
+
+Design pattern
+
+1. singleton
+2. factory
+
 ## The Advanced Object-Oriented Technology
 
 <https://www.coursera.org/learn/aoo/home/welcome>
