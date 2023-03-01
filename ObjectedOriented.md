@@ -447,6 +447,25 @@ Design pattern
 1. singleton
 2. factory
 
+### Facebook
+
+Requirements
+
+1. privacy
+2. profile
+3. group
+4. search for users, groups, pages
+5. write a new post
+6. friend request
+7. like, share post
+8. notification
+9. alert
+10. send + receive message
+
+Design pattern
+
+1. observation
+
 ## The Advanced Object-Oriented Technology
 
 <https://www.coursera.org/learn/aoo/home/welcome>
