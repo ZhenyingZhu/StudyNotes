@@ -466,6 +466,24 @@ Design pattern
 
 1. observation
 
+### Online stock brokeerage system
+
+Requirements
+
+1. discoverability: search for stock
+2. visibility
+3. Multiplicity
+4. trade in
+5. watchlist
+6. different lots of the same stock
+7. notify user when a trade order is carried out
+8. trade types: market, limit, stop-loss, stop-limit
+
+Design pattern
+
+1. singleton
+2. observer
+
 ## The Advanced Object-Oriented Technology
 
 <https://www.coursera.org/learn/aoo/home/welcome>
