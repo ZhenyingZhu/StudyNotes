@@ -484,6 +484,19 @@ Design pattern
 1. singleton
 2. observer
 
+### Jigsaw puzzle
+
+Requirements
+
+1. Puzzle board
+2. puzzle pieces: corner vs. edge vs. middle pieces
+3. puzzle solver: check if two pieces can matching up
+4. rotate piece
+
+Design pattern
+
+1. singleton
+
 ## The Advanced Object-Oriented Technology
 
 <https://www.coursera.org/learn/aoo/home/welcome>
