@@ -497,6 +497,26 @@ Design pattern
 
 1. singleton
 
+### Airline management
+
+Requirements
+
+1. search flight
+2. flight reservation: multiple flights
+3. payment
+4. book
+5. flight cancellation
+6. seat
+7. airports
+8. pilots and crew members
+9. itineraries
+10. notification
+
+Design pattern
+
+1. singleton
+2. observer
+
 ## The Advanced Object-Oriented Technology
 
 <https://www.coursera.org/learn/aoo/home/welcome>
