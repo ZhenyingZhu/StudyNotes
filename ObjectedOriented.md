@@ -517,6 +517,15 @@ Design pattern
 1. singleton
 2. observer
 
+### Cricinfo
+
+- players, coaches, teams
+- stats
+- tournament
+- matches
+- points table
+- stadium
+
 ## The Advanced Object-Oriented Technology
 
 <https://www.coursera.org/learn/aoo/home/welcome>
