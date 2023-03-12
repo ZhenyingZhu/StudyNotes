@@ -546,10 +546,6 @@ Requirements
 14. follow vs. connect
 15. apply job
 
-Design pattern
-
-1. 
-
 ## The Advanced Object-Oriented Technology
 
 <https://www.coursera.org/learn/aoo/home/welcome>
