@@ -526,6 +526,30 @@ Design pattern
 - points table
 - stadium
 
+### LinkedIn
+
+Requirements
+
+1. profile
+2. serach for a user/page
+3. connection
+4. follow
+5. stats: # of connections, profile views, post impressions, search appearance
+6. recommendations to other users
+7. write a new post
+8. react, share, comment on a post
+9. message
+10. notification
+11. company page
+12. open jobs
+13. groups
+14. follow vs. connect
+15. apply job
+
+Design pattern
+
+1. 
+
 ## The Advanced Object-Oriented Technology
 
 <https://www.coursera.org/learn/aoo/home/welcome>
