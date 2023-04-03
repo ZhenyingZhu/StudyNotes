@@ -1,10 +1,26 @@
 # Azure
 
+<https://learn.microsoft.com/en-us/users/zhenyingzhu-8722/collections/bookmarks>
+
 ## Resource
 
 - <https://www.tutorialspoint.com/microsoft_azure/index.htm>
 - <https://docs.microsoft.com/en-us/azure/architecture/>
 - <https://developer.microsoft.com/en-us/graph/blogs/30daysmsgraph-day-9-azure-ad-applications-on-v2-endpoint/>
+
+## Microsoft Azure Fundamentals: Describe cloud concepts
+
+<https://learn.microsoft.com/en-us/training/paths/microsoft-azure-fundamentals-describe-cloud-concepts/>
+
+Cloud types
+
+- Hybrid cloud: public + private cloud.
+- Multi-cloud: different cloud providers.
+
+expenses
+
+- Capital expenditure
+- Operational expenditure
 
 ## Azure Solutions Architect Expert
 
