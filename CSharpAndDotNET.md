@@ -1270,3 +1270,7 @@ It is under `C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.6.
 
 - Anonymous: request does not contain any authentication information
 - Negotiate: automatically selects between the Kerberos protocol and NTLM authentication, depending on availability
+
+### Extend a method
+
+<https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/extension-methods>
