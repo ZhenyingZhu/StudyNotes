@@ -1,14 +1,29 @@
 # Azure
 
-<https://learn.microsoft.com/en-us/users/zhenyingzhu-8722/collections/bookmarks>
+## Resources
 
-## Resource
+In Plan
+
+- <https://learn.microsoft.com/en-us/certifications/azure-fundamentals/>
+- <https://learn.microsoft.com/en-us/certifications/azure-administrator/>
+- <https://learn.microsoft.com/en-us/certifications/azure-solutions-architect/>
+
+Backlog
 
 - <https://www.tutorialspoint.com/microsoft_azure/index.htm>
-- <https://docs.microsoft.com/en-us/azure/architecture/>
 - <https://developer.microsoft.com/en-us/graph/blogs/30daysmsgraph-day-9-azure-ad-applications-on-v2-endpoint/>
+- <https://learn.microsoft.com/en-us/users/zhenyingzhu-8722/collections/bookmarks>
+- <https://docs.microsoft.com/en-us/azure/architecture/>
 
-## Microsoft Azure Fundamentals: Describe cloud concepts
+## Content Map
+
+Before [Old notes](#old-notes), capture systematic learning from certificates learning pathes. Each Certificate is a level 2 chapter, while a Learning Path is a level 3 chapter. Don't have too many more sub chapters in a learning path. Also don't take too much notes within a learning path.
+
+## Microsoft Certified: Azure Fundamentals
+
+<https://learn.microsoft.com/en-us/certifications/azure-fundamentals/>
+
+### Learning Path: Microsoft Azure Fundamentals: Describe cloud concepts
 
 <https://learn.microsoft.com/en-us/training/paths/microsoft-azure-fundamentals-describe-cloud-concepts/>
 
@@ -22,7 +37,36 @@ expenses
 - Capital expenditure
 - Operational expenditure
 
-## Azure Solutions Architect Expert
+### Learning Path: Azure Fundamentals: Describe Azure architecture and services
+
+<https://learn.microsoft.com/en-us/training/paths/azure-fundamentals-describe-azure-architecture-services/>
+
+```powershell
+az version
+az interactive
+```
+
+<https://portal.azure.com/>
+
+- A region: across multiple DCs. Can have multiple AZs. But not all of regions have AZs.
+  - Region pair: same geography (country) but far away. Can auto fail over.
+  - Sovereign Regions
+- An AZ: 1 or more DCs that are physically seperated. Belong to 1 region.
+  - Zonal service
+  - Zone-redundent service: the platform (e.g., zone redundent storage) replicates across AZs
+  - Non-regional service: resilient to zone-wide outages as well as region-wide outages.
+
+**HERE**: <https://learn.microsoft.com/en-us/training/modules/describe-core-architectural-components-of-azure/6-describe-azure-management-infrastructure>
+
+## Microsoft Certified: Azure Administrator Associate
+
+<https://learn.microsoft.com/en-us/certifications/azure-administrator/>
+
+### Learning Path: AZ-104: Prerequisites for Azure administrators
+
+<https://learn.microsoft.com/en-us/training/paths/az-104-administrator-prerequisites/>
+
+## Microsoft Certified: Azure Solutions Architect Expert
 
 <https://docs.microsoft.com/en-us/learn/certifications/azure-solutions-architect?wt.mc_id=learningredirect_certs-web-wwl>
 
@@ -226,7 +270,9 @@ Application security
 
 Next to look <https://docs.microsoft.com/en-us/azure/architecture/>
 
-## tutorialspoint Microsoft Azure Tutorial
+## Old notes
+
+### tutorialspoint Microsoft Azure Tutorial
 
 [Cloud Computing - Overview](https://www.tutorialspoint.com/microsoft_azure/cloud_computing_overview.htm)
 
@@ -263,16 +309,9 @@ Azure as PaaS: The clients can focus on the application development rather than 
 
 Azure as IaaS: gives complete control of the operating systems and the application platform stack to the application developers.
 
-[Microsoft Azure - Components](https://www.tutorialspoint.com/microsoft_azure/microsoft_azure_components.htm)
-HERE
+[Microsoft Azure - Components](https://www.tutorialspoint.com/microsoft_azure/microsoft_azure_components.htm): **HERE**
 
-## Portal
-
-<https://portal.azure.com/>
-
-<https://manage.windowsazure.com>
-
-## Active directory
+### Active directory
 
 name service: maps the names of network resources to their respective network addresses
 
@@ -286,11 +325,11 @@ Azure AD:
 - <https://docs.microsoft.com/en-us/azure/active-directory/active-directory-whatis>
 - <https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-developers-guide>
 
-### Advancing Azure Active Directory availability
+#### Advancing Azure Active Directory availability
 
 <https://azure.microsoft.com/en-us/blog/advancing-azure-active-directory-availability/>
 
-### Proxy Addresses
+#### Proxy Addresses
 
 <https://support.microsoft.com/en-us/help/3190357/how-the-proxyaddresses-attribute-is-populated-in-azure-ad>
 
@@ -309,7 +348,7 @@ Concepts
 - mail: This is an attribute in Active Directory, the value of which represents the email address of a user.
 - mailNickName: This is an attribute in Active Directory, the value of which represents the alias of a user in an Exchange organization.
 
-### Service Principal
+#### Service Principal
 
 Azure Active Directory (Azure AD) is a centralized identity provider in the cloud. This capability is referred to as Single Sign On (SSO).
 
@@ -350,7 +389,7 @@ The security principal defines the access policy and permissions for the user/ap
 
 [Terms](https://docs.microsoft.com/en-us/azure/active-directory/develop/developer-glossary)
 
-## Get start
+### Get start
 
 1. get Azure AD tenant
 
@@ -387,11 +426,11 @@ ADAL:
 - WinRT: Windows Store
 - CoreCLR: Core CLR
 
-## Template
+### Azure Template
 
 <https://github.com/Azure/azure-quickstart-templates>
 
-## Windows server manage certs
+### Windows server manage certs
 
 Add a cert:
 
@@ -453,7 +492,7 @@ More details about cert
 - OAuth is an authz protocol/framework, unrelated services can allow authn access to their assets, without actually share the creds.
 - seamless SSO (singal sign-on, one set of creds access multiple apps) amoung multiple computer.
 
-## Create a Ubuntu Dev Desktop
+### Create a Ubuntu Dev Desktop
 
 [Install and configure Remote Desktop to connect to a Linux VM in Azure](https://docs.microsoft.com/en-us/azure/virtual-machines/linux/use-remote-desktop)
 
@@ -467,24 +506,24 @@ Install `xrdp`.
 
 [Resolve RDP thindrives issue](https://github.com/neutrinolabs/xrdp/issues/720)
 
-## Enable TLS 1.2
+### Enable TLS 1.2
 
 [doc](https://docs.microsoft.com/en-us/mem/configmgr/core/plan-design/security/enable-tls-1-2)
 
-## repo security
+### repo security
 
 Should not check in pfx.
 
-## Azure template
+### Azure template
 
 <https://azure.microsoft.com/en-us/resources/templates/minecraft-on-ubuntu/>
 
 - Notice the oracle java install is failing.
 
-## Spring boot on Azure
+### Spring boot on Azure
 
 <https://azure.microsoft.com/en-us/services/spring-cloud/#security>
 
-## Azure Queue Storage
+### Azure Queue Storage
 
 <https://learn.microsoft.com/en-us/azure/storage/queues/storage-queues-introduction>
