@@ -56,7 +56,36 @@ az interactive
   - Zone-redundent service: the platform (e.g., zone redundent storage) replicates across AZs
   - Non-regional service: resilient to zone-wide outages as well as region-wide outages.
 
-**HERE**: <https://learn.microsoft.com/en-us/training/modules/describe-core-architectural-components-of-azure/6-describe-azure-management-infrastructure>
+management infrastructure
+
+- Resource group: can be grant access to
+- subscription: authN, authZ, billing. Can have test, dev, prod subscriptions
+  - billing boundary
+  - access control boundary: can be based on env, or org structure
+- account: an identity in Azure AD. Can have multiple subscriptions
+- management group: manage many subscriptions
+  - can apply a security policy
+  - can apply Azure RBAC
+  - can be nested
+
+Virtual machine scale sets
+
+- a group of identical, load-balanced VMs. Scale up/down automatically based on load or schedule. A LB is auto created.
+
+Virtual machine availability sets
+
+- a more resilient, highly available environment.
+- stagger updates and have varied power and network connectivity
+- update domain: can be rebooted at the same time. Bake 30 mins, then go to next update domain
+- fault domain: same power source and network switch. An availability set is broken down into 3 FD.
+
+lift and shift: move a physical server to the cloud
+
+```powershell
+az vm extension set # config extra software/service on a VM by using the Custom Script Extension
+```
+
+**HERE**: <https://learn.microsoft.com/en-us/training/modules/describe-azure-compute-networking-services/5-containers>
 
 ## Microsoft Certified: Azure Administrator Associate
 
