@@ -85,7 +85,36 @@ lift and shift: move a physical server to the cloud
 az vm extension set # config extra software/service on a VM by using the Custom Script Extension
 ```
 
-**HERE**: <https://learn.microsoft.com/en-us/training/modules/describe-azure-compute-networking-services/5-containers>
+Azure Container
+
+- lightweight virtual env, without OS. PaaS
+- multiple containers on a single physical or virual host
+- using microservice architecture
+- Function can be stateful (Durable functions), a context is passed through
+
+Azure Function
+
+- an event driven, serverless compute option. No container is needed
+- via an event (REST request), timer, or message
+
+Azure App Service
+
+- HTTP-based service for hosting web apps, REST APIs, WebJobs and mobile back ends
+- enable auto deployments
+- Endpoints can be secured
+- auto scale and high availbility
+
+Virtual Networking
+
+- Isolation and segmentation: internal or external DNS server
+- Internet communications
+- Communicate between Azure resources: can via virtual network or service endpoints
+- Communicate with on-premises resources
+- Route network traffic: between subnets with route tables. Border Gateway Protocol (BGP)
+- Filter network traffic: network security group (NSG) with inbound/outbound security rules. Network virtual appliances (e.g., firewall, WAN optimization)
+- Connect virtual networks: virtual network peering privately
+
+**HERE**: <https://learn.microsoft.com/en-us/training/modules/describe-azure-compute-networking-services/9-exercise-configure-network-access>
 
 ## Microsoft Certified: Azure Administrator Associate
 
