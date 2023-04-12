@@ -114,7 +114,52 @@ Virtual Networking
 - Filter network traffic: network security group (NSG) with inbound/outbound security rules. Network virtual appliances (e.g., firewall, WAN optimization)
 - Connect virtual networks: virtual network peering privately
 
-**HERE**: <https://learn.microsoft.com/en-us/training/modules/describe-azure-compute-networking-services/9-exercise-configure-network-access>
+```powershell
+IPADDRESS="$(az vm list-ip-addresses \
+  --resource-group [resource group name] \
+  --name my-vm \
+  --query "[].virtualMachine.network.publicIpAddresses[*].ipAddress" \
+  --output tsv)"
+
+az network nsg list \
+  --resource-group [resource group name] \
+  --query '[].name' \
+  --output tsv
+
+az network nsg rule list \
+  --resource-group [resource group name] \
+  --nsg-name my-vmNSG
+  --query '[].{Name:name, Priority:priority, Port:destinationPortRange, Access:access}' \
+  --output table
+
+az network nsg rule create \
+  --resource-group [resource group name] \
+  --nsg-name my-vmNSG \
+  --name allow-http \
+  --protocol tcp \
+  --priority 100 \
+  --destination-port-range 80 \
+  --access Allow
+
+curl --connect-timeout 5 http://$IPADDRESS
+```
+
+Azure Virtual Private Networks
+
+- VPNs are typically deployed to connect two or more trusted private networks to one another over an untrusted network (typically the public internet).
+- VPN gateway: deployed in a dedicated subnet and enable:
+  - OnPrem DC to virtual network through site-to-site connection
+  - device to virtual network through point-to-site
+  - virtual network to virtual network through network-to-network
+- Policy based: a set of IP addresses to encrypt packages.
+- route based: IPSec tunnels are modeled as virtual network interface
+- High-availability scenarios:
+  - Active/standby
+  - Active/active: both are taking traffic
+  - ExpressRoute failover
+  - Zone-redundant gateways: use both VPN gateways and ExpressRoute gateways
+
+**HERE**: <https://learn.microsoft.com/en-us/training/modules/describe-azure-compute-networking-services/11-expressroute>
 
 ## Microsoft Certified: Azure Administrator Associate
 
