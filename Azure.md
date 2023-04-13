@@ -159,7 +159,17 @@ Azure Virtual Private Networks
   - ExpressRoute failover
   - Zone-redundant gateways: use both VPN gateways and ExpressRoute gateways
 
-**HERE**: <https://learn.microsoft.com/en-us/training/modules/describe-azure-compute-networking-services/11-expressroute>
+Azure ExpressRoute
+
+- extend your on-premises networks into the Microsoft cloud over a private connection, with the help of a connectivity provider.
+
+Azure DNS
+
+- uses anycast networking
+- supports private DNS domains
+- supports alias record sets: refer to an Azure public IP address, an Azure Traffic Manager profile, or an Azure Content Delivery Network (CDN) endpoint
+
+**HERE**: <https://learn.microsoft.com/en-us/training/modules/describe-azure-storage-services/>
 
 ## Microsoft Certified: Azure Administrator Associate
 
