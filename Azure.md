@@ -169,7 +169,30 @@ Azure DNS
 - supports private DNS domains
 - supports alias record sets: refer to an Azure public IP address, an Azure Traffic Manager profile, or an Azure Content Delivery Network (CDN) endpoint
 
-**HERE**: <https://learn.microsoft.com/en-us/training/modules/describe-azure-storage-services/>
+Azure storage accounts
+
+- Redundant options
+  - Locally redundant storage (LRS)
+  - Geo-redundant storage (GRS)
+  - Read-access geo-redundant storage (RA-GRS)
+  - Zone-redundant storage (ZRS)
+  - Geo-zone-redundant storage (GZRS)
+  - Read-access geo-zone-redundant storage (RA-GZRS)
+- Types
+  - Standard general-purpose v2: Blob Storage (including Data Lake Storage), Queue Storage, Table Storage, and Azure Files
+  - Premium block blobs
+  - Premium file shares: both Server Message Block (SMB) and network file system (NFS) file shares.
+  - Premium page blobs
+
+Storage account endpoints
+
+- Blob Storage: `https://<storage-account-name>.blob.core.windows.net`
+Data Lake Storage Gen2: `https://<storage-account-name>.dfs.core.windows.net`
+Azure Files: `https://<storage-account-name>.file.core.windows.net`
+Queue Storage: `https://<storage-account-name>.queue.core.windows.net`
+Table Storage: `https://<storage-account-name>.table.core.windows.net`
+
+**HERE**: <https://learn.microsoft.com/en-us/training/modules/describe-azure-storage-services/3-redundancy>
 
 ## Microsoft Certified: Azure Administrator Associate
 
