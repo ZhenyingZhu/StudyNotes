@@ -173,9 +173,9 @@ Azure storage accounts
 
 - Redundant options
   - Locally redundant storage (LRS)
-  - Geo-redundant storage (GRS)
-  - Read-access geo-redundant storage (RA-GRS)
-  - Zone-redundant storage (ZRS)
+  - Geo-redundant storage (GRS): seconary region. Need customer to perform failover.
+  - Read-access geo-redundant storage (RA-GRS): seconary only has read access
+  - Zone-redundant storage (ZRS): 3 AZs in the primary region. Azure does failover.
   - Geo-zone-redundant storage (GZRS)
   - Read-access geo-zone-redundant storage (RA-GZRS)
 - Types
@@ -187,12 +187,12 @@ Azure storage accounts
 Storage account endpoints
 
 - Blob Storage: `https://<storage-account-name>.blob.core.windows.net`
-Data Lake Storage Gen2: `https://<storage-account-name>.dfs.core.windows.net`
-Azure Files: `https://<storage-account-name>.file.core.windows.net`
-Queue Storage: `https://<storage-account-name>.queue.core.windows.net`
-Table Storage: `https://<storage-account-name>.table.core.windows.net`
+- Data Lake Storage Gen2: `https://<storage-account-name>.dfs.core.windows.net`
+- Azure Files: `https://<storage-account-name>.file.core.windows.net`
+- Queue Storage: `https://<storage-account-name>.queue.core.windows.net`
+- Table Storage: `https://<storage-account-name>.table.core.windows.net`
 
-**HERE**: <https://learn.microsoft.com/en-us/training/modules/describe-azure-storage-services/3-redundancy>
+**HERE**: <https://learn.microsoft.com/en-us/training/modules/describe-azure-storage-services/4-describe-azure-storage-services>
 
 ## Microsoft Certified: Azure Administrator Associate
 
@@ -361,7 +361,7 @@ Encryption
 
 [HTTPS](./Networking.md#HTTPS)
 
-**HERE**: continue review
+**TODO**: continue review
 
 Encryption on Azure
 
@@ -402,7 +402,7 @@ Application security
 - Data protection: use TLS and TDE. client-side encryption using .NET lib.
 - Secure key and secret storage: use Azure Key Vault.
 
-**HERE**: <https://docs.microsoft.com/en-us/learn/modules/design-for-performance-and-scalability-in-azure/2-scaling-up-and-scaling-out>
+**TODO**: <https://docs.microsoft.com/en-us/learn/modules/design-for-performance-and-scalability-in-azure/2-scaling-up-and-scaling-out>
 
 Next to look <https://docs.microsoft.com/en-us/azure/architecture/>
 
@@ -445,7 +445,7 @@ Azure as PaaS: The clients can focus on the application development rather than 
 
 Azure as IaaS: gives complete control of the operating systems and the application platform stack to the application developers.
 
-[Microsoft Azure - Components](https://www.tutorialspoint.com/microsoft_azure/microsoft_azure_components.htm): **HERE**
+[Microsoft Azure - Components](https://www.tutorialspoint.com/microsoft_azure/microsoft_azure_components.htm): **TODO**
 
 ### Active directory
 
