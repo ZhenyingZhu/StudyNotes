@@ -183,6 +183,11 @@ Azure storage accounts
   - Premium block blobs
   - Premium file shares: both Server Message Block (SMB) and network file system (NFS) file shares.
   - Premium page blobs
+- Services
+  - Blobs: text and binary data. Support for big data analytics. Has Hot/Cool/Archive access tier
+  - Files: Server Message Block (SMB) or Network File System (NFS) protocols.
+  - Queues: up to 64 KB in size.
+  - Disks
 
 Storage account endpoints
 
@@ -192,7 +197,15 @@ Storage account endpoints
 - Queue Storage: `https://<storage-account-name>.queue.core.windows.net`
 - Table Storage: `https://<storage-account-name>.table.core.windows.net`
 
-**HERE**: <https://learn.microsoft.com/en-us/training/modules/describe-azure-storage-services/4-describe-azure-storage-services>
+Azure Migrate: is a service that helps you migrate from an on-premises environment to the cloud.
+
+Azure file movement options
+
+- AzCopy: copy blobs or files to or from your storage account.
+- Azure Storage Explorer
+- Azure File Sync
+
+**HERE**: <https://learn.microsoft.com/en-us/training/modules/describe-azure-identity-access-security/>
 
 ## Microsoft Certified: Azure Administrator Associate
 
