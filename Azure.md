@@ -205,7 +205,23 @@ Azure file movement options
 - Azure Storage Explorer
 - Azure File Sync
 
-**HERE**: <https://learn.microsoft.com/en-us/training/modules/describe-azure-identity-access-security/>
+Azure directory services
+
+- in on-premises environments, Active Directory running on Windows Server provides an identity and access management service
+- Online service subscribers: Microsoft 365, Microsoft Office 365, Azure, and Microsoft Dynamics CRM Online subscribers are already using Azure AD to authenticate into their account.
+- Provides:
+  - Authentication
+  - Single sign-on (SSO)
+  - Application management: Application Proxy, SaaS apps, the My Apps portal
+  - Device management: devices to be managed through tools like Microsoft Intune. Allows for device-based Conditional Access policies
+
+Azure Active Directory Domain Services (Azure AD DS)
+
+- managed domain services such as domain join, group policy, lightweight directory access protocol (LDAP), and Kerberos/NTLM authentication
+- support running legacy applications in the cloud that can't use modern authentication methods
+- When create an Azure AD DS managed domain, needs to define a unique namespace: domain name. 2 Windows Server domain controllers are then deployed into the Azure region: a replica set.
+
+**HERE**: <https://learn.microsoft.com/en-us/training/modules/describe-azure-identity-access-security/3-authentication-methods>
 
 ## Microsoft Certified: Azure Administrator Associate
 
