@@ -221,7 +221,14 @@ Azure Active Directory Domain Services (Azure AD DS)
 - support running legacy applications in the cloud that can't use modern authentication methods
 - When create an Azure AD DS managed domain, needs to define a unique namespace: domain name. 2 Windows Server domain controllers are then deployed into the Azure region: a replica set.
 
-**HERE**: <https://learn.microsoft.com/en-us/training/modules/describe-azure-identity-access-security/3-authentication-methods>
+Azure authentication methods
+
+- authN methods: standard passwords, single sign-on (SSO), multifactor authentication (MFA), and passwordless
+- SSO: only as secure as the initial authenticator
+- MFA: authenticate elements fall into three categories: knows, has, is
+- Passwordless: a device associated with an ID, plus knows and is.
+
+**HERE**: <https://learn.microsoft.com/en-us/training/modules/describe-azure-identity-access-security/4-external-identities>
 
 ## Microsoft Certified: Azure Administrator Associate
 
