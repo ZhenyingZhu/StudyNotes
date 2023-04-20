@@ -228,7 +228,13 @@ Azure authentication methods
 - MFA: authenticate elements fall into three categories: knows, has, is
 - Passwordless: a device associated with an ID, plus knows and is.
 
-**HERE**: <https://learn.microsoft.com/en-us/training/modules/describe-azure-identity-access-security/4-external-identities>
+External identities
+
+- Business to business (B2B) collaboration
+- B2B direct connect: another Azure AD tenant
+- Azure AD business to customer (B2C)
+
+**HERE**: <https://learn.microsoft.com/en-us/training/modules/describe-azure-identity-access-security/5-conditional-access>
 
 ## Microsoft Certified: Azure Administrator Associate
 
