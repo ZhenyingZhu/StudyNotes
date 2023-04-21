@@ -234,7 +234,12 @@ External identities
 - B2B direct connect: another Azure AD tenant
 - Azure AD business to customer (B2C)
 
-**HERE**: <https://learn.microsoft.com/en-us/training/modules/describe-azure-identity-access-security/5-conditional-access>
+Conditional access
+
+- allow access to resources based on identity signals: who, where, what device.
+- make dicisions to allow full or limited access
+
+**HERE**: <https://learn.microsoft.com/en-us/training/modules/describe-azure-identity-access-security/6-role-based-access-control>
 
 ## Microsoft Certified: Azure Administrator Associate
 
