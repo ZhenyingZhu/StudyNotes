@@ -239,7 +239,16 @@ Conditional access
 - allow access to resources based on identity signals: who, where, what device.
 - make dicisions to allow full or limited access
 
-**HERE**: <https://learn.microsoft.com/en-us/training/modules/describe-azure-identity-access-security/6-role-based-access-control>
+role-based access control
+
+- The principle of least privilege
+- a scope: a set of resources that an RBAC access control applies to.
+- a scope can include: management group of subscriptions, single subscription, resource group, single resource
+- typical roles: observers, users managing resources, admins, and automated processes
+- when grant access at a parent scope, those permissions are inherited by all child scopes
+- Azure RBAC doesn't enforce access permissions at the application or data level
+
+**HERE**: <https://learn.microsoft.com/en-us/training/modules/describe-azure-identity-access-security/7-describe-zero-trust-model>
 
 ## Microsoft Certified: Azure Administrator Associate
 
