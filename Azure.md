@@ -248,7 +248,23 @@ role-based access control
 - when grant access at a parent scope, those permissions are inherited by all child scopes
 - Azure RBAC doesn't enforce access permissions at the application or data level
 
-**HERE**: <https://learn.microsoft.com/en-us/training/modules/describe-azure-identity-access-security/7-describe-zero-trust-model>
+zero trust model
+
+- Verify explicitly: Always authenticate and authorize based on all available data points.
+- Use least privilege access: Just-In-Time and Just-Enough-Access (JIT/JEA)
+- Assume breach: Minimize blast radius and segment access. Verify end-to-end encryption. Use analytics to get visibility, drive threat detection, and improve defenses
+
+defense-in-depth
+
+- physical security layer: protect computing hardware in the datacenter.
+- identity and access layer: SSO, access control, audit.
+- perimeter layer: uses distributed denial of service (DDoS) protection
+- network layer: limits communication between resources through segmentation and access controls.
+- compute layer: secures access to virtual machines.
+- application layer: helps ensure that applications are secure and free of security vulnerabilities.
+- data layer: controls access to business and customer data that you need to protect.
+
+**HERE**: <https://learn.microsoft.com/en-us/training/modules/describe-azure-identity-access-security/9-describe-microsoft-defender-for-cloud>
 
 ## Microsoft Certified: Azure Administrator Associate
 
