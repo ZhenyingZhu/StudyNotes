@@ -264,11 +264,19 @@ defense-in-depth
 - application layer: helps ensure that applications are secure and free of security vulnerabilities.
 - data layer: controls access to business and customer data that you need to protect.
 
-**HERE**: <https://learn.microsoft.com/en-us/training/modules/describe-azure-identity-access-security/9-describe-microsoft-defender-for-cloud>
+Microsoft Defender for Cloud
+
+- Azure-native service: services are monitored and protected without needing any deployment
+- automatically deploy a Log Analytics agent to gather security-related data
+- for on-prem/other clouds: Cloud security posture management (CSPM)
+- 3 vital needs as you manage the security of your resources
+  - Continuously assess
+  - Secure: Zero Trust. **TODO**: See Azure Security Benchmark.
+  - Defend
 
 ## Microsoft Certified: Azure Administrator Associate
 
-<https://learn.microsoft.com/en-us/certifications/azure-administrator/>
+**HERE**: <https://learn.microsoft.com/en-us/certifications/azure-administrator/>
 
 ### Learning Path: AZ-104: Prerequisites for Azure administrators
 
