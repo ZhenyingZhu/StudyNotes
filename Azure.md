@@ -276,11 +276,11 @@ Microsoft Defender for Cloud
 
 ## Microsoft Certified: Azure Administrator Associate
 
-**HERE**: <https://learn.microsoft.com/en-us/certifications/azure-administrator/>
+<https://learn.microsoft.com/en-us/certifications/azure-administrator/>
 
 ### Learning Path: AZ-104: Prerequisites for Azure administrators
 
-<https://learn.microsoft.com/en-us/training/paths/az-104-administrator-prerequisites/>
+**HERE**: <https://learn.microsoft.com/en-us/training/paths/az-104-administrator-prerequisites/>
 
 ## Microsoft Certified: Azure Solutions Architect Expert
 
