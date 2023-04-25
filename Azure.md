@@ -280,7 +280,7 @@ Microsoft Defender for Cloud
 
 ### Learning Path: AZ-104: Prerequisites for Azure administrators
 
-**HERE**: <https://learn.microsoft.com/en-us/training/paths/az-104-administrator-prerequisites/>
+**HERE**: <https://learn.microsoft.com/en-us/training/modules/configure-azure-resources-tools/6-use-azure-cli>
 
 ## Microsoft Certified: Azure Solutions Architect Expert
 
