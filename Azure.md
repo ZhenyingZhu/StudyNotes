@@ -280,7 +280,12 @@ Microsoft Defender for Cloud
 
 ### Learning Path: AZ-104: Prerequisites for Azure administrators
 
-**HERE**: <https://learn.microsoft.com/en-us/training/modules/configure-azure-resources-tools/6-use-azure-cli>
+```powershell
+az find blob
+az storage blob --help
+```
+
+**HERE**: <https://learn.microsoft.com/en-us/training/modules/use-azure-resource-manager/2-review-benefits>
 
 ## Microsoft Certified: Azure Solutions Architect Expert
 
