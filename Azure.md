@@ -285,7 +285,12 @@ az find blob
 az storage blob --help
 ```
 
-**HERE**: <https://learn.microsoft.com/en-us/training/modules/use-azure-resource-manager/2-review-benefits>
+Azure Resource Manager
+
+- use a template
+- provides a consistent management layer
+
+**HERE**: <https://learn.microsoft.com/en-us/training/modules/use-azure-resource-manager/3-review-terminology>
 
 ## Microsoft Certified: Azure Solutions Architect Expert
 
