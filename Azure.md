@@ -290,6 +290,11 @@ Azure Resource Manager
 - use a template
 - provides a consistent management layer
 
+Azure resource terminology
+
+- resource provider: A service that supplies the resources. E.g., if you want to store keys and secrets, you work with the Microsoft.KeyVault resource provider.
+- a resource type is in the format: {resource-provider}/{resource-type}.
+
 **HERE**: <https://learn.microsoft.com/en-us/training/modules/use-azure-resource-manager/3-review-terminology>
 
 ## Microsoft Certified: Azure Solutions Architect Expert
