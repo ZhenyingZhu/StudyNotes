@@ -295,7 +295,14 @@ Azure resource terminology
 - resource provider: A service that supplies the resources. E.g., if you want to store keys and secrets, you work with the Microsoft.KeyVault resource provider.
 - a resource type is in the format: {resource-provider}/{resource-type}.
 
-**HERE**: <https://learn.microsoft.com/en-us/training/modules/use-azure-resource-manager/3-review-terminology>
+Resource Group
+
+- Resource group cannot be renamed
+- All the resources in the group should share the same lifecycle
+- Other than [resources not support move](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/move-support-resources), resources can be moved across resource groups
+- resource group region is where the metadata of the group stores
+
+**HERE**: <https://learn.microsoft.com/en-us/training/modules/use-azure-resource-manager/5-create-locks>
 
 ## Microsoft Certified: Azure Solutions Architect Expert
 
