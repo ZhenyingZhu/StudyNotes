@@ -301,8 +301,9 @@ Resource Group
 - All the resources in the group should share the same lifecycle
 - Other than [resources not support move](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/move-support-resources), resources can be moved across resource groups
 - resource group region is where the metadata of the group stores
+- can add a lock to prevent modify or delete.
 
-**HERE**: <https://learn.microsoft.com/en-us/training/modules/use-azure-resource-manager/5-create-locks>
+**HERE**: <https://learn.microsoft.com/en-us/training/modules/use-azure-resource-manager/6-reorganize-azure-resources>
 
 ## Microsoft Certified: Azure Solutions Architect Expert
 
