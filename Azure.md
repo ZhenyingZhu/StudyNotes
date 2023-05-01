@@ -289,6 +289,7 @@ Azure Resource Manager
 
 - use a template
 - provides a consistent management layer
+- [Azure limits](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/azure-subscription-service-limits)
 
 Azure resource terminology
 
@@ -303,7 +304,12 @@ Resource Group
 - resource group region is where the metadata of the group stores
 - can add a lock to prevent modify or delete.
 
-**HERE**: <https://learn.microsoft.com/en-us/training/modules/use-azure-resource-manager/6-reorganize-azure-resources>
+ARM (Azure Resource Manager) template
+
+- [Bicep](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/overview?tabs=bicep): a domain-specific language (DSL). Not in Json. When deploying, ARM run transpilation to make it become a JSON.
+- parameters: need define value type
+
+**HERE**: <https://learn.microsoft.com/en-us/training/modules/configure-resources-arm-templates/6-review-quickstart-templates>
 
 ## Microsoft Certified: Azure Solutions Architect Expert
 
