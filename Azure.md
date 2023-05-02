@@ -308,6 +308,7 @@ ARM (Azure Resource Manager) template
 
 - [Bicep](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/overview?tabs=bicep): a domain-specific language (DSL). Not in Json. When deploying, ARM run transpilation to make it become a JSON.
 - parameters: need define value type
+- [QuickStart templates](https://learn.microsoft.com/en-us/training/modules/configure-resources-arm-templates/6-review-quickstart-templates) can be good start points.
 
 **HERE**: <https://learn.microsoft.com/en-us/training/modules/configure-resources-arm-templates/6-review-quickstart-templates>
 
