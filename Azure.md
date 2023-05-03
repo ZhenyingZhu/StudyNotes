@@ -310,7 +310,13 @@ ARM (Azure Resource Manager) template
 - parameters: need define value type
 - [QuickStart templates](https://learn.microsoft.com/en-us/training/modules/configure-resources-arm-templates/6-review-quickstart-templates) can be good start points.
 
-**HERE**: <https://learn.microsoft.com/en-us/training/modules/configure-resources-arm-templates/6-review-quickstart-templates>
+Administration tools
+
+- Azure portal
+- Azure CLI: `az vm create`
+- Azure PowerShell: `New-AzVm`
+
+**HERE**: <https://learn.microsoft.com/en-us/training/modules/automate-azure-tasks-with-powershell/5-create-resource-interactively?pivots=windows>
 
 ## Microsoft Certified: Azure Solutions Architect Expert
 
