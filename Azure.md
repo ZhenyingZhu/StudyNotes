@@ -316,7 +316,17 @@ Administration tools
 - Azure CLI: `az vm create`
 - Azure PowerShell: `New-AzVm`
 
-**HERE**: <https://learn.microsoft.com/en-us/training/modules/automate-azure-tasks-with-powershell/5-create-resource-interactively?pivots=windows>
+Powershell commands
+
+- `Get-Help -Name Get-ChildItem -Detailed`
+- `Get-Module`
+- `Install-Module -Name Az -Scope CurrentUser -Repository PSGallery`
+- `Get-ExecutionPolicy`, `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser`
+- `Connect-AzAccount`
+- `Set-AzContext -Subscription '00000000-0000-0000-0000-000000000000'`
+- `Get-AzResourceGroup | Format-Table`
+
+**HERE**: <https://learn.microsoft.com/en-us/training/modules/automate-azure-tasks-with-powershell/7-create-resource-using-script>
 
 ## Microsoft Certified: Azure Solutions Architect Expert
 
