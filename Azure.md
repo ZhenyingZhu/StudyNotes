@@ -325,8 +325,9 @@ Powershell commands
 - `Connect-AzAccount`
 - `Set-AzContext -Subscription '00000000-0000-0000-0000-000000000000'`
 - `Get-AzResourceGroup | Format-Table`
+- `$adminCredential = Get-Credential`
 
-**HERE**: <https://learn.microsoft.com/en-us/training/modules/automate-azure-tasks-with-powershell/7-create-resource-using-script>
+**HERE**: <https://learn.microsoft.com/en-us/training/modules/control-azure-services-with-cli/2-what-is-the-azure-cli>
 
 ## Microsoft Certified: Azure Solutions Architect Expert
 
