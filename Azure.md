@@ -327,7 +327,14 @@ Powershell commands
 - `Get-AzResourceGroup | Format-Table`
 - `$adminCredential = Get-Credential`
 
-**HERE**: <https://learn.microsoft.com/en-us/training/modules/control-azure-services-with-cli/2-what-is-the-azure-cli>
+CLI commands
+
+- `az find blob` to find most popular commands related to word blob
+- `az storage blob --help`
+- `az login`
+- `az group list --query "[?name == '$RESOURCE_GROUP']" --output table`
+
+**HERE**: <https://learn.microsoft.com/en-us/training/modules/create-azure-resource-manager-template-vs-code/2-explore-template-structure?tabs=azure-cli>
 
 ## Microsoft Certified: Azure Solutions Architect Expert
 
