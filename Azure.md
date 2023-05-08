@@ -334,7 +334,22 @@ CLI commands
 - `az login`
 - `az group list --query "[?name == '$RESOURCE_GROUP']" --output table`
 
-**HERE**: <https://learn.microsoft.com/en-us/training/modules/create-azure-resource-manager-template-vs-code/2-explore-template-structure?tabs=azure-cli>
+ARM template
+
+- uses a declarative syntax (outline resources without describing its control flow), not like imperative syntax which describe steps
+- ARM templates are idempotent
+- templates can be linked (nested). The linked templates should be stored and protected use SAS token
+- Resource Manager orchestrates the deployment
+- Can integrate ARM templates to CI/CD tools like [Azure pipeline](https://azure.microsoft.com/en-us/products/devops/pipelines/) or Github actions
+- elements:
+  - apiProfile: optional, define API version for resource types togather
+  - parameters
+  - variables
+  - functions: reuse complicated expressions
+  - resources: syntax `{resource-provider}/{resource-type}`. All the providers are listed in [Resource providers for Azure services](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/azure-services-resource-providers). All the resources are sub pages of [Reference](https://learn.microsoft.com/en-us/azure/templates/)
+  - output: values to return at the end of deployment
+
+**HERE**: <https://learn.microsoft.com/en-us/training/modules/create-azure-resource-manager-template-vs-code/3-exercise-create-and-deploy-template?pivots=powershell>
 
 ## Microsoft Certified: Azure Solutions Architect Expert
 
