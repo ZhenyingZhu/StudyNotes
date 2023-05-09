@@ -348,8 +348,9 @@ ARM template
   - functions: reuse complicated expressions
   - resources: syntax `{resource-provider}/{resource-type}`. All the providers are listed in [Resource providers for Azure services](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/azure-services-resource-providers). All the resources are sub pages of [Reference](https://learn.microsoft.com/en-us/azure/templates/)
   - output: values to return at the end of deployment
+- deploy: `New-AzResourceGroupDeployment -Name $deploymentName -TemplateFile $templateFile`
 
-**HERE**: <https://learn.microsoft.com/en-us/training/modules/create-azure-resource-manager-template-vs-code/3-exercise-create-and-deploy-template?pivots=powershell>
+**HERE**: <https://learn.microsoft.com/en-us/training/modules/create-azure-resource-manager-template-vs-code/4-add-flexibility-arm-template?tabs=azure-cli>
 
 ## Microsoft Certified: Azure Solutions Architect Expert
 
