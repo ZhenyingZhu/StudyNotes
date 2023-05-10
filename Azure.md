@@ -348,9 +348,32 @@ ARM template
   - functions: reuse complicated expressions
   - resources: syntax `{resource-provider}/{resource-type}`. All the providers are listed in [Resource providers for Azure services](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/azure-services-resource-providers). All the resources are sub pages of [Reference](https://learn.microsoft.com/en-us/azure/templates/)
   - output: values to return at the end of deployment
-- deploy: `New-AzResourceGroupDeployment -Name $deploymentName -TemplateFile $templateFile`
+- deploy: `New-AzResourceGroupDeployment -Name $deploymentName -TemplateFile $templateFile  --parameters $key=$value`
 
-**HERE**: <https://learn.microsoft.com/en-us/training/modules/create-azure-resource-manager-template-vs-code/4-add-flexibility-arm-template?tabs=azure-cli>
+ARM parameters
+
+- input properties
+  - type
+  - defaultValue
+  - allowedValues
+  - minValue, maxValue
+  - minLength, maxLength
+  - metadata: description
+- allowed types
+  - string
+  - object
+  - integers
+  - boolean
+  - secureString, secureObject: cannot be read after deployment
+  - array
+- In ARM template: `"location": "[resourceGroup().location]",`, `"name": "[parameters('storageAccountType')]"`
+- output properties
+  - condition: bool whether to output it
+  - type
+  - value
+  - copy: count, input when need to return more than 1
+
+**HERE**: <https://learn.microsoft.com/en-us/training/modules/create-azure-resource-manager-template-vs-code/5-exercise-parameters-output?pivots=powershell>
 
 ## Microsoft Certified: Azure Solutions Architect Expert
 
