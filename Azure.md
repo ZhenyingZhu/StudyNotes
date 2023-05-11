@@ -370,10 +370,14 @@ ARM parameters
 - output properties
   - condition: bool whether to output it
   - type
-  - value
+  - value: `"value": "[reference(parameters('storageName')).primaryEndpoints]"`
   - copy: count, input when need to return more than 1
 
-**HERE**: <https://learn.microsoft.com/en-us/training/modules/create-azure-resource-manager-template-vs-code/5-exercise-parameters-output?pivots=powershell>
+### AZ-104: Manage identities and governance in Azure
+
+<https://learn.microsoft.com/en-us/training/paths/az-104-manage-identities-governance/>
+
+**HERE**: <https://learn.microsoft.com/en-us/training/modules/configure-azure-active-directory/1-introduction>
 
 ## Microsoft Certified: Azure Solutions Architect Expert
 
