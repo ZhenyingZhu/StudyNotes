@@ -377,7 +377,26 @@ ARM parameters
 
 <https://learn.microsoft.com/en-us/training/paths/az-104-manage-identities-governance/>
 
-**HERE**: <https://learn.microsoft.com/en-us/training/modules/configure-azure-active-directory/1-introduction>
+Azure AD (Active Directory)
+
+- directory and identity management service
+- for On-Prem
+  - [Kerberos](https://learn.microsoft.com/en-us/windows-server/security/kerberos/kerberos-authentication-overview): authentication protocol
+  - [NTLM](https://learn.microsoft.com/en-us/windows-server/security/kerberos/ntlm-overview): a family of AuthN protocols
+- for cloud
+  - SAML
+  - Oauth
+  - Open ID
+  - WS-Federation
+- features
+  - SSO
+  - Ubiquitous device support: across different devices
+  - Secure remote access: MFA, conditional access, group-based access
+  - Cloud extensibility
+  - Sensitive data protection: identity protection, audit
+  - Self-service support: delegate tasks, JIT
+
+**HERE**: <https://learn.microsoft.com/en-us/training/modules/configure-azure-active-directory/3-describe-azure-active-directory-concepts>
 
 ## Microsoft Certified: Azure Solutions Architect Expert
 
