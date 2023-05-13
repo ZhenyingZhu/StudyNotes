@@ -396,7 +396,14 @@ Azure AD (Active Directory)
   - Sensitive data protection: identity protection, audit
   - Self-service support: delegate tasks, JIT
 
-**HERE**: <https://learn.microsoft.com/en-us/training/modules/configure-azure-active-directory/3-describe-azure-active-directory-concepts>
+Azure AD terms
+
+- Identity: can be apps
+- Account: an identity that has data associated with it
+- Azure tenant (directory): An Azure tenant is a single dedicated and trusted instance of Azure AD
+- Azure subscription: pay for Azure cloud services
+
+**HERE**: <https://learn.microsoft.com/en-us/training/modules/configure-azure-active-directory/4-compare-active-directory-domain-services>
 
 ## Microsoft Certified: Azure Solutions Architect Expert
 
