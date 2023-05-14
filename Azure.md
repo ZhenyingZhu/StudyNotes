@@ -408,7 +408,7 @@ Azure AD terms
   - Communication protocols: doesn't use Kerberos authentication. Can use SAML, WS-Federation, and OpenID Connect for authentication (and OAuth for authorization).
   - Federation services: many third-party services like Facebook.
   - Flat structure: no organizational units (OUs) or group policy objects (GPOs).
-  - Managed service: 
+  - Managed service: customers only manage only users, groups, and policies not devops.
 
 **HERE**: <https://learn.microsoft.com/en-us/training/modules/configure-azure-active-directory/4-compare-active-directory-domain-services>
 
