@@ -402,6 +402,13 @@ Azure AD terms
 - Account: an identity that has data associated with it
 - Azure tenant (directory): An Azure tenant is a single dedicated and trusted instance of Azure AD
 - Azure subscription: pay for Azure cloud services
+- Active Directory Domain Services (AD DS): include Active Directory Certificate Services (AD CS), Active Directory Lightweight Directory Services (AD LS), Active Directory Federation Services (AD FS), and Active Directory Rights Management Services (AD RMS).
+- Azure AD:
+  - Identity solution: designed for internet-based applications that use HTTPS communications
+  - Communication protocols: doesn't use Kerberos authentication. Can use SAML, WS-Federation, and OpenID Connect for authentication (and OAuth for authorization).
+  - Federation services: many third-party services like Facebook.
+  - Flat structure: no organizational units (OUs) or group policy objects (GPOs).
+  - Managed service: 
 
 **HERE**: <https://learn.microsoft.com/en-us/training/modules/configure-azure-active-directory/4-compare-active-directory-domain-services>
 
