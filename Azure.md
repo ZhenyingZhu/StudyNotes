@@ -403,14 +403,28 @@ Azure AD terms
 - Azure tenant (directory): An Azure tenant is a single dedicated and trusted instance of Azure AD
 - Azure subscription: pay for Azure cloud services
 - Active Directory Domain Services (AD DS): include Active Directory Certificate Services (AD CS), Active Directory Lightweight Directory Services (AD LS), Active Directory Federation Services (AD FS), and Active Directory Rights Management Services (AD RMS).
-- Azure AD:
-  - Identity solution: designed for internet-based applications that use HTTPS communications
-  - Communication protocols: doesn't use Kerberos authentication. Can use SAML, WS-Federation, and OpenID Connect for authentication (and OAuth for authorization).
-  - Federation services: many third-party services like Facebook.
-  - Flat structure: no organizational units (OUs) or group policy objects (GPOs).
-  - Managed service: customers only manage only users, groups, and policies not devops.
 
-**HERE**: <https://learn.microsoft.com/en-us/training/modules/configure-azure-active-directory/4-compare-active-directory-domain-services>
+Azure AD
+
+- Identity solution: designed for internet-based applications that use HTTPS communications
+- Communication protocols: doesn't use Kerberos authentication. Can use SAML, WS-Federation, and OpenID Connect for authentication (and OAuth for authorization).
+- Federation services: many third-party services like Facebook.
+- Flat structure: no organizational units (OUs) or group policy objects (GPOs).
+- Managed service: customers only manage only users, groups, and policies not devops.
+
+Azure AD Editions
+
+- Free: SSO, Core identity and access management, B2B collaboration.
+- M365 Apps: includes branding
+- Premium P1: hybrid id, group access management, conditional access
+- Premium P2: id protection, governance
+
+Azure AD join
+
+- SSO
+- Enterprise state roaming: sync user settings to joined devices
+
+**HERE**: <https://learn.microsoft.com/en-us/training/modules/configure-user-group-accounts/1-introduction>
 
 ## Microsoft Certified: Azure Solutions Architect Expert
 
