@@ -627,9 +627,9 @@ ProxyAddress
 Concepts
 
 - Initial domain: This is the first provisioned domain in the tenant. For example, contoso.onmicrosoft.com.
-- Microsoft Online Email Routing Address (MOERA): The MOERA is constructed from the user's userPrincipalName attribute in Active Directory and is automatically assigned to the cloud account during the initial sync. For example, user@contoso.onmicrosoft.com. MOERA domain is init domain.
-- Primary SMTP address: This is the primary email address of an Exchange recipient object. For example, SMTP:user@contoso.com. Notice it is different than the init domain.
-- Secondary SMTP address: This is the secondary email address of an Exchange recipient object. For example, smtp:user@contoso.com.
+- Microsoft Online Email Routing Address (MOERA): The MOERA is constructed from the user's userPrincipalName attribute in Active Directory and is automatically assigned to the cloud account during the initial sync. For example, <user@contoso.onmicrosoft.com>. MOERA domain is init domain.
+- Primary SMTP address: This is the primary email address of an Exchange recipient object. For example, <SMTP:user@contoso.com>. Notice it is different than the init domain.
+- Secondary SMTP address: This is the secondary email address of an Exchange recipient object. For example, <smtp:user@contoso.com>.
 - User principal name (UPN): The UPN can be the sign-in name of the user.
 - mail: This is an attribute in Active Directory, the value of which represents the email address of a user.
 - mailNickName: This is an attribute in Active Directory, the value of which represents the alias of a user in an Exchange organization.
@@ -681,7 +681,7 @@ The security principal defines the access policy and permissions for the user/ap
 
 - domain: Azure AD tenant
 - ClientId: Application ID, Audience
-- user: zhenying.zhu91@hotmail.com
+- user: <zhenying.zhu91@hotmail.com>
 
 1. App registrations
 
