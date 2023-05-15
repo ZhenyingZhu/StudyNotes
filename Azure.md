@@ -348,9 +348,69 @@ ARM template
   - functions: reuse complicated expressions
   - resources: syntax `{resource-provider}/{resource-type}`. All the providers are listed in [Resource providers for Azure services](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/azure-services-resource-providers). All the resources are sub pages of [Reference](https://learn.microsoft.com/en-us/azure/templates/)
   - output: values to return at the end of deployment
-- deploy: `New-AzResourceGroupDeployment -Name $deploymentName -TemplateFile $templateFile`
+- deploy: `New-AzResourceGroupDeployment -Name $deploymentName -TemplateFile $templateFile  --parameters $key=$value`
 
-**HERE**: <https://learn.microsoft.com/en-us/training/modules/create-azure-resource-manager-template-vs-code/4-add-flexibility-arm-template?tabs=azure-cli>
+ARM parameters
+
+- input properties
+  - type
+  - defaultValue
+  - allowedValues
+  - minValue, maxValue
+  - minLength, maxLength
+  - metadata: description
+- allowed types
+  - string
+  - object
+  - integers
+  - boolean
+  - secureString, secureObject: cannot be read after deployment
+  - array
+- In ARM template: `"location": "[resourceGroup().location]",`, `"name": "[parameters('storageAccountType')]"`
+- output properties
+  - condition: bool whether to output it
+  - type
+  - value: `"value": "[reference(parameters('storageName')).primaryEndpoints]"`
+  - copy: count, input when need to return more than 1
+
+### AZ-104: Manage identities and governance in Azure
+
+<https://learn.microsoft.com/en-us/training/paths/az-104-manage-identities-governance/>
+
+Azure AD (Active Directory)
+
+- directory and identity management service
+- for On-Prem
+  - [Kerberos](https://learn.microsoft.com/en-us/windows-server/security/kerberos/kerberos-authentication-overview): authentication protocol
+  - [NTLM](https://learn.microsoft.com/en-us/windows-server/security/kerberos/ntlm-overview): a family of AuthN protocols
+- for cloud
+  - SAML
+  - Oauth
+  - Open ID
+  - WS-Federation
+- features
+  - SSO
+  - Ubiquitous device support: across different devices
+  - Secure remote access: MFA, conditional access, group-based access
+  - Cloud extensibility
+  - Sensitive data protection: identity protection, audit
+  - Self-service support: delegate tasks, JIT
+
+Azure AD terms
+
+- Identity: can be apps
+- Account: an identity that has data associated with it
+- Azure tenant (directory): An Azure tenant is a single dedicated and trusted instance of Azure AD
+- Azure subscription: pay for Azure cloud services
+- Active Directory Domain Services (AD DS): include Active Directory Certificate Services (AD CS), Active Directory Lightweight Directory Services (AD LS), Active Directory Federation Services (AD FS), and Active Directory Rights Management Services (AD RMS).
+- Azure AD:
+  - Identity solution: designed for internet-based applications that use HTTPS communications
+  - Communication protocols: doesn't use Kerberos authentication. Can use SAML, WS-Federation, and OpenID Connect for authentication (and OAuth for authorization).
+  - Federation services: many third-party services like Facebook.
+  - Flat structure: no organizational units (OUs) or group policy objects (GPOs).
+  - Managed service: customers only manage only users, groups, and policies not devops.
+
+**HERE**: <https://learn.microsoft.com/en-us/training/modules/configure-azure-active-directory/4-compare-active-directory-domain-services>
 
 ## Microsoft Certified: Azure Solutions Architect Expert
 
