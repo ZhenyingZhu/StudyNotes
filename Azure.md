@@ -424,7 +424,13 @@ Azure AD join
 - SSO
 - Enterprise state roaming: sync user settings to joined devices
 
-**HERE**: <https://learn.microsoft.com/en-us/training/modules/configure-user-group-accounts/1-introduction>
+User accounts
+
+- Cloud identity: can from an external Azure AD instance. Deleted in the primary directory deletes the user account.
+- Directory-synchronized identity: defined in on-prem AD.
+- Guest user: outside Azure like other cloud providers or Microsoft account (XBOX live).
+
+**HERE**: <https://learn.microsoft.com/en-us/training/modules/configure-user-group-accounts/3-manage-user-accounts>
 
 ## Microsoft Certified: Azure Solutions Architect Expert
 
