@@ -430,7 +430,13 @@ User accounts
 - Directory-synchronized identity: defined in on-prem AD.
 - Guest user: outside Azure like other cloud providers or Microsoft account (XBOX live).
 
-**HERE**: <https://learn.microsoft.com/en-us/training/modules/configure-user-group-accounts/5-create>
+Group accounts
+
+- Security groups: manage access using security policy to shared resources.
+- Microsoft 365 groups: provide access to a shared mailbox, calendar, files, SharePoint site, and more.
+- can assign user to a group, or use Dynamic user/device
+
+**HERE**: <https://learn.microsoft.com/en-us/training/modules/configure-user-group-accounts/6-create-administrative-units>
 
 ## Microsoft Certified: Azure Solutions Architect Expert
 
