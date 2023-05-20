@@ -436,7 +436,11 @@ Group accounts
 - Microsoft 365 groups: provide access to a shared mailbox, calendar, files, SharePoint site, and more.
 - can assign user to a group, or use Dynamic user/device
 
-**HERE**: <https://learn.microsoft.com/en-us/training/modules/configure-user-group-accounts/6-create-administrative-units>
+Administrative unit
+
+- a set of permissions that can be assigned to roles
+
+**HERE**: <https://learn.microsoft.com/en-us/training/modules/configure-user-group-accounts/7-simulation-user-groups>
 
 ## Microsoft Certified: Azure Solutions Architect Expert
 
