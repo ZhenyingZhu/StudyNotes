@@ -440,7 +440,7 @@ Administrative unit
 
 - a set of permissions that can be assigned to roles
 
-**HERE**: <https://learn.microsoft.com/en-us/training/modules/configure-user-group-accounts/7-simulation-user-groups>
+**HERE**: <https://learn.microsoft.com/en-us/training/modules/configure-subscriptions/1-introduction>
 
 ## Microsoft Certified: Azure Solutions Architect Expert
 
