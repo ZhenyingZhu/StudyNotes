@@ -440,7 +440,11 @@ Administrative unit
 
 - a set of permissions that can be assigned to roles
 
-**HERE**: <https://learn.microsoft.com/en-us/training/modules/configure-subscriptions/1-introduction>
+Products
+
+- All azure products can be found in [Products available by region](https://azure.microsoft.com/en-us/explore/global-infrastructure/products-by-region/?products=all)
+
+**HERE**: <https://learn.microsoft.com/en-us/training/modules/configure-subscriptions/3-implement-azure-subscriptions>
 
 ## Microsoft Certified: Azure Solutions Architect Expert
 
