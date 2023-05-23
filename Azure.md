@@ -444,7 +444,13 @@ Products
 
 - All azure products can be found in [Products available by region](https://azure.microsoft.com/en-us/explore/global-infrastructure/products-by-region/?products=all)
 
-**HERE**: <https://learn.microsoft.com/en-us/training/modules/configure-subscriptions/3-implement-azure-subscriptions>
+Azure subscription
+
+- a logical unit of Azure services that's linked to an Azure account
+- Billing for Azure services is done on a per-subscription basis.
+- Every Azure subscription can be associated with an Azure AD.
+
+**HERE**: <https://learn.microsoft.com/en-us/training/modules/configure-subscriptions/4-obtain-subscription>
 
 ## Microsoft Certified: Azure Solutions Architect Expert
 
