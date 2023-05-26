@@ -451,7 +451,7 @@ Azure subscription
 - Every Azure subscription can be associated with an Azure AD.
 - Can obtain through Enterprise agreement, reseller or partner.
 
-**HERE**: <https://learn.microsoft.com/en-us/training/modules/configure-subscriptions/6-implement-cost-management>
+**HERE**: <https://learn.microsoft.com/en-us/training/modules/configure-subscriptions/7-apply-resource-tagging>
 
 ## Microsoft Certified: Azure Solutions Architect Expert
 
