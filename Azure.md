@@ -451,7 +451,12 @@ Azure subscription
 - Every Azure subscription can be associated with an Azure AD.
 - Can obtain through Enterprise agreement, reseller or partner.
 
-**HERE**: <https://learn.microsoft.com/en-us/training/modules/configure-azure-policy/1-introduction>
+Azure Policy
+
+- Work on [management groups](https://learn.microsoft.com/en-us/azure/governance/management-groups/overview). By default, all new subscriptions are under root group.
+
+
+**HERE**: <https://learn.microsoft.com/en-us/training/modules/configure-azure-policy/3-implement-azure-policies>
 
 ## Microsoft Certified: Azure Solutions Architect Expert
 
