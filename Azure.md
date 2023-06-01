@@ -454,8 +454,10 @@ Azure subscription
 Azure Policy
 
 - Work on [management groups](https://learn.microsoft.com/en-us/azure/governance/management-groups/overview). By default, all new subscriptions are under root group.
+- A policy definition describes the compliance conditions for a resource, and the actions to complete when the conditions are met.
+- An initiative definition is a set of policy definitions that help you track your resource compliance state to meet a larger goal.
 
-**HERE**: <https://learn.microsoft.com/en-us/training/modules/configure-azure-policy/4-create-azure-policies>
+**HERE**: <https://learn.microsoft.com/en-us/training/modules/configure-azure-policy/5-create-policy-definitions>
 
 ## Microsoft Certified: Azure Solutions Architect Expert
 
