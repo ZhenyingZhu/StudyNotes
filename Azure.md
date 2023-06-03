@@ -457,8 +457,9 @@ Azure Policy
 - A policy definition describes the compliance conditions for a resource, and the actions to complete when the conditions are met.
 - An initiative definition is a set of policy definitions that help you track your resource compliance state to meet a larger goal.
 - [build in policies](https://learn.microsoft.com/en-us/azure/governance/policy/samples/built-in-policies)
+- [built-in initiatives](https://learn.microsoft.com/en-us/azure/governance/policy/samples/built-in-initiatives)
 
-**HERE**: <https://learn.microsoft.com/en-us/training/modules/configure-azure-policy/6-create-initiative-definitions>
+**HERE**: <https://learn.microsoft.com/en-us/training/modules/configure-azure-policy/7-scope-initiative-definition>
 
 ## Microsoft Certified: Azure Solutions Architect Expert
 
