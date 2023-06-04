@@ -459,7 +459,7 @@ Azure Policy
 - [build in policies](https://learn.microsoft.com/en-us/azure/governance/policy/samples/built-in-policies)
 - [built-in initiatives](https://learn.microsoft.com/en-us/azure/governance/policy/samples/built-in-initiatives)
 
-**HERE**: <https://learn.microsoft.com/en-us/training/modules/configure-azure-policy/7-scope-initiative-definition>
+**HERE**: <https://learn.microsoft.com/en-us/training/modules/configure-role-based-access-control/>
 
 ## Microsoft Certified: Azure Solutions Architect Expert
 
