@@ -459,7 +459,18 @@ Azure Policy
 - [build in policies](https://learn.microsoft.com/en-us/azure/governance/policy/samples/built-in-policies)
 - [built-in initiatives](https://learn.microsoft.com/en-us/azure/governance/policy/samples/built-in-initiatives)
 
-**HERE**: <https://learn.microsoft.com/en-us/training/modules/configure-role-based-access-control/>
+Role-based access control
+
+- control what areas of a resource each user can access.
+- an authorization system built on Azure Resource Manager.
+- Can manage an app/user/group to access resources and resource groups
+- terms
+  - Security principal: The object. User, group, service principal, managed identity
+  - Role definition: A set of permissions that lists the allowed operations.
+  - Scope: The boundary for the requested level of access. Root, management group, subscription, resource group, resource
+  - Assignment: role def to a security principal
+
+**HERE**: <https://learn.microsoft.com/en-us/training/modules/configure-role-based-access-control/3-create-role-definition>
 
 ## Microsoft Certified: Azure Solutions Architect Expert
 
