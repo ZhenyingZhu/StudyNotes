@@ -470,7 +470,15 @@ Role-based access control
   - Scope: The boundary for the requested level of access. Root, management group, subscription, resource group, resource
   - Assignment: role def to a security principal
 
-**HERE**: <https://learn.microsoft.com/en-us/training/modules/configure-role-based-access-control/3-create-role-definition>
+Role definition
+
+- Actions: `Authorization/*/Delete`, `Authorization/elevateAccess/Action`
+- NotActions
+- DataActions
+- AssignableScopes: `/`
+- The system subtracts NotActions permissions from Actions permissions to determine the effective permissions for a role.
+
+**HERE**: <https://learn.microsoft.com/en-us/training/modules/configure-role-based-access-control/4-create-role-assignment>
 
 ## Microsoft Certified: Azure Solutions Architect Expert
 
