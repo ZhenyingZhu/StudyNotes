@@ -477,8 +477,10 @@ Role definition
 - DataActions
 - AssignableScopes: `/`
 - The system subtracts NotActions permissions from Actions permissions to determine the effective permissions for a role.
+- A resource inherits role assignments from its parent resource.
+- The effective permissions for a requestor are a combination of the permissions for the requestor's assigned roles, and the permissions for the roles assigned to the requested resources.
 
-**HERE**: <https://learn.microsoft.com/en-us/training/modules/configure-role-based-access-control/4-create-role-assignment>
+**HERE**: <https://learn.microsoft.com/en-us/training/modules/configure-role-based-access-control/5-compare-azure-roles-to-azure-ad-roles>
 
 ## Microsoft Certified: Azure Solutions Architect Expert
 
