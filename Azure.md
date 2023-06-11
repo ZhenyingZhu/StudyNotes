@@ -486,7 +486,7 @@ Type of roles
 - Azure role-based access control (RBAC) roles
 - Azure Active Directory (Azure AD) administrator roles: manage Azure AD resources (users, groups, domains). [Build in roles](https://learn.microsoft.com/en-us/azure/active-directory/roles/permissions-reference)
 
-**HERE**: <https://learn.microsoft.com/en-us/training/modules/configure-role-based-access-control/8-simulation-role-based>
+**HERE**: <https://learn.microsoft.com/en-us/training/modules/create-users-and-groups-in-azure-active-directory/>
 
 ## Microsoft Certified: Azure Solutions Architect Expert
 
