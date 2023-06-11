@@ -220,3 +220,11 @@ Python system env needs
 ## ADB
 
 Pull the files to desktop `adb pull /sdcard/Movies .`
+
+## Change cell phone resolution
+
+Show the current resolution: `adb shell dumpsys display`
+
+- Look for "real 1080 x 2400, largest app 1080 x 2400,"
+
+Change it: `adb shell wm size 1080x1920`
