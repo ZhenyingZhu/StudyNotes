@@ -491,7 +491,7 @@ Azure AD Users
 - Member users vs. Guest users
 - Guest user: gets an invitation email that contains a redemption link or a direct link to an app you want to share
 
-**HERE**: <https://learn.microsoft.com/en-us/training/modules/create-users-and-groups-in-azure-active-directory/3-exercise-add-delete-users-azure-ad>
+**HERE**: <https://learn.microsoft.com/en-us/training/modules/create-users-and-groups-in-azure-active-directory/4-manage-app-resource-access-azure-ad-groups>
 
 ## Microsoft Certified: Azure Solutions Architect Expert
 
