@@ -483,15 +483,20 @@ Role definition
 Type of roles
 
 - Classic subscription administrator roles
-- Azure role-based access control (RBAC) roles
-- Azure Active Directory (Azure AD) administrator roles: manage Azure AD resources (users, groups, domains). [Build in roles](https://learn.microsoft.com/en-us/azure/active-directory/roles/permissions-reference)
+- Azure role-based access control (RBAC) roles: Azure resources (irtual machines, SQL databases, storage)
+- Azure Active Directory (Azure AD) administrator roles: manage Azure AD resources (users, groups, domains, billing, licensing, application registration). [Build in roles](https://learn.microsoft.com/en-us/azure/active-directory/roles/permissions-reference)
 
 Azure AD Users
 
 - Member users vs. Guest users
 - Guest user: gets an invitation email that contains a redemption link or a direct link to an app you want to share
 
-**HERE**: <https://learn.microsoft.com/en-us/training/modules/create-users-and-groups-in-azure-active-directory/4-manage-app-resource-access-azure-ad-groups>
+Azure AD Groups
+
+- can manage cloud-based/on-premises apps, resources within the tenant or external (Saas apps, Azure services, Sharepoint sites, etc.)
+- direct assign to a user, group assignment, rule based assignment
+
+**HERE**: <https://learn.microsoft.com/en-us/training/modules/create-users-and-groups-in-azure-active-directory/5-exercise-assign-users-azure-ad-groups>
 
 ## Microsoft Certified: Azure Solutions Architect Expert
 
