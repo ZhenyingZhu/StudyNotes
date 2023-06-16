@@ -496,7 +496,7 @@ Azure AD Groups
 - can manage cloud-based/on-premises apps, resources within the tenant or external (Saas apps, Azure services, Sharepoint sites, etc.)
 - direct assign to a user, group assignment, rule based assignment
 
-**HERE**: <https://learn.microsoft.com/en-us/training/modules/create-users-and-groups-in-azure-active-directory/5-exercise-assign-users-azure-ad-groups>
+**HERE**: <https://learn.microsoft.com/en-us/training/modules/create-users-and-groups-in-azure-active-directory/6-collaborate-guest-accounts-azure-ad-b2b>
 
 ## Microsoft Certified: Azure Solutions Architect Expert
 
