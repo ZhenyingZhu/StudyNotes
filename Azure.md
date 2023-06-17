@@ -496,7 +496,12 @@ Azure AD Groups
 - can manage cloud-based/on-premises apps, resources within the tenant or external (Saas apps, Azure services, Sharepoint sites, etc.)
 - direct assign to a user, group assignment, rule based assignment
 
-**HERE**: <https://learn.microsoft.com/en-us/training/modules/create-users-and-groups-in-azure-active-directory/6-collaborate-guest-accounts-azure-ad-b2b>
+Azure AD B2B
+
+- The guest can get the invitation through email. Or you can share the invitation to an application by using a direct link. The guest then redeems their invitation to access the resources.
+- Giving access to external users is much easier than in a federation. A federation is where you have a trust established with another organization, or a collection of domains, for shared access to a set of resources.
+
+**HERE**: <https://learn.microsoft.com/en-us/training/modules/create-users-and-groups-in-azure-active-directory/7-exercise-guest-user-access-azure-ad-b2b>
 
 ## Microsoft Certified: Azure Solutions Architect Expert
 
