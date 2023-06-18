@@ -501,7 +501,12 @@ Azure AD B2B
 - The guest can get the invitation through email. Or you can share the invitation to an application by using a direct link. The guest then redeems their invitation to access the resources.
 - Giving access to external users is much easier than in a federation. A federation is where you have a trust established with another organization, or a collection of domains, for shared access to a set of resources.
 
-**HERE**: <https://learn.microsoft.com/en-us/training/modules/create-users-and-groups-in-azure-active-directory/7-exercise-guest-user-access-azure-ad-b2b>
+Application
+
+- [Azure AD organization > Manage > Enterprise applications](https://portal.azure.com/#view/Microsoft_AAD_IAM/StartboardApplicationsMenuBlade/~/AppAppsPreview/menuId~/null)
+- For Azure AD P2 users, can add user/group
+
+**HERE**: <https://learn.microsoft.com/en-us/training/modules/secure-azure-resources-with-rbac/>
 
 ## Microsoft Certified: Azure Solutions Architect Expert
 
