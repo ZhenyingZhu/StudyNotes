@@ -506,7 +506,10 @@ Application
 - [Azure AD organization > Manage > Enterprise applications](https://portal.azure.com/#view/Microsoft_AAD_IAM/StartboardApplicationsMenuBlade/~/AppAppsPreview/menuId~/null)
 - For Azure AD P2 users, can add user/group
 
-**HERE**: <https://learn.microsoft.com/en-us/training/modules/secure-azure-resources-with-rbac/>
+Azure RBAC
+
+
+**HERE**: <https://learn.microsoft.com/en-us/training/modules/secure-azure-resources-with-rbac/2-rbac-overview>
 
 ## Microsoft Certified: Azure Solutions Architect Expert
 
