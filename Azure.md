@@ -508,6 +508,9 @@ Application
 
 Azure RBAC
 
+- grant access by assigning the appropriate Azure role to users, groups, and applications at a certain scope.
+- The scope of a role assignment can be a management group, subscription, a resource group, or a single resource
+- role assignment at a parent scope also grants access to the child scopes
 
 **HERE**: <https://learn.microsoft.com/en-us/training/modules/secure-azure-resources-with-rbac/2-rbac-overview>
 
