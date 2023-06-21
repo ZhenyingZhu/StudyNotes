@@ -511,8 +511,10 @@ Azure RBAC
 - grant access by assigning the appropriate Azure role to users, groups, and applications at a certain scope.
 - The scope of a role assignment can be a management group, subscription, a resource group, or a single resource
 - role assignment at a parent scope also grants access to the child scopes
+- Access control/identity and access management (IAM)
+- Azure RBAC is an allow model, but has `NotActions` permissions for subtract.
 
-**HERE**: <https://learn.microsoft.com/en-us/training/modules/secure-azure-resources-with-rbac/2-rbac-overview>
+**HERE**: <https://learn.microsoft.com/en-us/training/modules/secure-azure-resources-with-rbac/3-knowledge-check-rbac-overview>
 
 ## Microsoft Certified: Azure Solutions Architect Expert
 
