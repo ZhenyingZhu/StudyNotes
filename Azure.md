@@ -514,7 +514,7 @@ Azure RBAC
 - Access control/identity and access management (IAM)
 - Azure RBAC is an allow model, but has `NotActions` permissions for subtract.
 
-**HERE**: <https://learn.microsoft.com/en-us/training/modules/secure-azure-resources-with-rbac/3-knowledge-check-rbac-overview>
+**HERE**: <https://learn.microsoft.com/en-us/training/modules/secure-azure-resources-with-rbac/4-list-access>
 
 ## Microsoft Certified: Azure Solutions Architect Expert
 
