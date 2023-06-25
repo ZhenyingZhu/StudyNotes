@@ -513,8 +513,9 @@ Azure RBAC
 - role assignment at a parent scope also grants access to the child scopes
 - Access control/identity and access management (IAM)
 - Azure RBAC is an allow model, but has `NotActions` permissions for subtract.
+- In Activity logs service, can see RBAC audit logs.
 
-**HERE**: <https://learn.microsoft.com/en-us/training/modules/secure-azure-resources-with-rbac/6-view-activity-logs>
+**HERE**: <https://learn.microsoft.com/en-us/training/modules/allow-users-reset-their-password/>
 
 ## Microsoft Certified: Azure Solutions Architect Expert
 
