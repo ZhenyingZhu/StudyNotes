@@ -515,7 +515,17 @@ Azure RBAC
 - Azure RBAC is an allow model, but has `NotActions` permissions for subtract.
 - In Activity logs service, can see RBAC audit logs.
 
-**HERE**: <https://learn.microsoft.com/en-us/training/modules/allow-users-reset-their-password/>
+SSPR
+
+- Authentication: The user enters the required data to authenticate their identity. Can enforce at least n methods together.
+  - Mobile app notification
+  - Mobile app code
+  - Email
+  - Mobile phone
+  - Office phone
+  - Security questions
+
+**HERE**: <https://learn.microsoft.com/en-us/training/modules/allow-users-reset-their-password/3-implement-azure-ad-self-service-password-reset>
 
 ## Microsoft Certified: Azure Solutions Architect Expert
 
