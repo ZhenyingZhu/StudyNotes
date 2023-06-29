@@ -525,7 +525,7 @@ SSPR
   - Office phone
   - Security questions
 
-**HERE**: <https://learn.microsoft.com/en-us/training/modules/allow-users-reset-their-password/4-exercise-set-up-self-service-password-reset>
+**HERE**: <https://learn.microsoft.com/en-us/training/modules/allow-users-reset-their-password/5-exercise-customize-directory-branding>
 
 ## Microsoft Certified: Azure Solutions Architect Expert
 
