@@ -373,7 +373,7 @@ ARM parameters
   - value: `"value": "[reference(parameters('storageName')).primaryEndpoints]"`
   - copy: count, input when need to return more than 1
 
-### AZ-104: Manage identities and governance in Azure
+### Learning Path: AZ-104: Manage identities and governance in Azure
 
 <https://learn.microsoft.com/en-us/training/paths/az-104-manage-identities-governance/>
 
@@ -525,7 +525,9 @@ SSPR
   - Office phone
   - Security questions
 
-**HERE**: <https://learn.microsoft.com/en-us/training/modules/allow-users-reset-their-password/5-exercise-customize-directory-branding>
+### Learning Path: AZ-104: Implement and manage storage in Azure
+
+**HERE**: <https://learn.microsoft.com/en-us/training/modules/configure-storage-accounts/1-introduction>
 
 ## Microsoft Certified: Azure Solutions Architect Expert
 
