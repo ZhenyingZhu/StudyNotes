@@ -527,7 +527,15 @@ SSPR
 
 ### Learning Path: AZ-104: Implement and manage storage in Azure
 
-**HERE**: <https://learn.microsoft.com/en-us/training/modules/configure-storage-accounts/1-introduction>
+Azure Storage
+
+- 3 categories of storages:
+  - VM data: data disks
+  - Unstructured data: data lake storage, blob storage
+  - Structured data: Azure table, Cosmos DB, SQL
+- tiers: standard: HDD; premium: SSD
+
+**HERE**: <https://learn.microsoft.com/en-us/training/modules/configure-storage-accounts/3-explore-azure-storage-services>
 
 ## Microsoft Certified: Azure Solutions Architect Expert
 
