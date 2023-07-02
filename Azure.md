@@ -274,6 +274,10 @@ Microsoft Defender for Cloud
   - Secure: Zero Trust. **TODO**: See Azure Security Benchmark.
   - Defend
 
+### Learning Path: Azure Fundamentals: Describe Azure management and governance
+
+**TODO**: the cost.
+
 ## Microsoft Certified: Azure Administrator Associate
 
 <https://learn.microsoft.com/en-us/certifications/azure-administrator/>
@@ -373,7 +377,7 @@ ARM parameters
   - value: `"value": "[reference(parameters('storageName')).primaryEndpoints]"`
   - copy: count, input when need to return more than 1
 
-### AZ-104: Manage identities and governance in Azure
+### Learning Path: AZ-104: Manage identities and governance in Azure
 
 <https://learn.microsoft.com/en-us/training/paths/az-104-manage-identities-governance/>
 
@@ -533,7 +537,7 @@ SSPR
 
 [Required Skills](https://query.prod.cms.rt.microsoft.com/cms/api/am/binary/RE3VJUW)
 
-### Architect great solutions in Azure
+### Learning Path: Build great solutions with the Microsoft Azure Well-Architected Framework
 
 <https://docs.microsoft.com/en-us/learn/paths/architect-great-solutions-in-azure/>
 
