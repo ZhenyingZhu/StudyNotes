@@ -529,7 +529,22 @@ SSPR
   - Office phone
   - Security questions
 
-**HERE**: <https://learn.microsoft.com/en-us/training/modules/allow-users-reset-their-password/3-implement-azure-ad-self-service-password-reset>
+### Learning Path: AZ-104: Implement and manage storage in Azure
+
+Azure Storage
+
+- 3 categories of storages:
+  - VM data: data disks
+  - Unstructured data: data lake storage, blob storage
+  - Structured data: Azure table, Cosmos DB, SQL
+- 2 tiers: standard: HDD; premium: SSD
+- 4 data services:
+  - Azure Blob Storage (containers)
+  - Azure Files: for deployments. Server Message Block (SMB) protocol and the Network File System (NFS) protocol.
+  - Azure Queue Storage
+  - Azure Table Storage (part of Cosmos DB): NoSQL (structured non relational). throughput-optimized tables, global distribution, and automatic secondary indexes. Handles capacity management with cost-effective serverless and automatic scaling options.
+
+**HERE**: <https://learn.microsoft.com/en-us/training/modules/configure-storage-accounts/4-determine-storage-account-kinds>
 
 ## Microsoft Certified: Azure Solutions Architect Expert
 
