@@ -543,8 +543,19 @@ Azure Storage
   - Azure Files: for deployments. Server Message Block (SMB) protocol and the Network File System (NFS) protocol.
   - Azure Queue Storage
   - Azure Table Storage (part of Cosmos DB): NoSQL (structured non relational). throughput-optimized tables, global distribution, and automatic secondary indexes. Handles capacity management with cost-effective serverless and automatic scaling options.
+- storage account types:
+  - Standard general-purpose v2: supports blob, queue, table, azure files
+  - Premium block blobs: block storage
+  - Premium file shares: Azure Files
+  - Premium page blobs: Page blobs. storing index-based and sparse data structures, such as operating systems, data disks for virtual machines, and databases.
+- are encrypted by using Storage Service Encryption (SSE) for data at rest.
+- replication strategies:
+  - Locally redundant storage (LRS): within a DC.
+  - Zone redundant storage (ZRS): across 3 clusters in a region.
+  - Geo-redundant storage (GRS): secondary region. Whether secondary region can be read depends on the choice.
+  - Geo-zone-redundant storage (GZRS): 3 AZs in the primary region, and a seconary region.
 
-**HERE**: <https://learn.microsoft.com/en-us/training/modules/configure-storage-accounts/4-determine-storage-account-kinds>
+**HERE**: <https://learn.microsoft.com/en-us/training/modules/configure-storage-accounts/6-access-storage>
 
 ## Microsoft Certified: Azure Solutions Architect Expert
 
