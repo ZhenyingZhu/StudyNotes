@@ -33,6 +33,7 @@ heterogeneous system
 Review
 
 1. 9/2/2021
+2. 7/2/2023
 
 - databases: multiple apps can read and write
 - caches
@@ -44,8 +45,8 @@ Common services:
 
 - Redis: datastores that are also used as message queues. **[KEY]**
 - Apache Kafka: message queues with database-like durability guarantees. **[KEY]**
-- Memcached: application-managed caching layer. **[KEY]**
-- Elasticsearch/Solr: full-text search server. **[KEY]**
+- Memcached: application-managed caching layer.
+- Elasticsearch/Solr: full-text search server.
 
 3 concerns **[KEY]**:
 
@@ -53,27 +54,27 @@ Common services:
 - Scalability
 - Maintainability
 
-Netflix Chaos Monkey:  trigger fault deliberately. **[KEY]**
+Netflix Chaos Monkey:  trigger fault deliberately.
 
 ##### Reliability
 
 Common faults:
 
-MTTF: mean time to fail **[KEY]**
+MTTF: mean time to fail
 
 - Hardware: hard disk, RAM, power, network
   - add redundency: RAID, dual power supplies, hot swappable CPU, backup generators. Good for single machine. Downtime could be long.
   - software fault tolerance: for system prioritize flexibility and elasticity over single-machine reliability. No downtime for the whole system.
-- Software: bug, too much resource consumption, dependency failure, cascading failures (a fault triggers another fault)
-  - check the assumptions are still true
+- Software: bug, too much resource consumption, dependency failure, cascading failures (a fault triggers another fault) **[KEY]**
+  - check the assumptions are still true **[KEY]**
   - process isolation **[KEY]**
-  - watchdog
+  - watchdog **[KEY]**
 - Human error
-  - well designed API, UI
-  - sandbox
-  - auto tests: UT, intergration test, manual test
-  - easy recovery: rollback, gradually rollout, data integrity check.
-  - detailed and clear monitor/telemetry: performance metrics and error rates.
+  - well designed API, UI **[KEY]**
+  - sandbox **[KEY]**
+  - auto tests: UT, intergration test, manual test **[KEY]**
+  - easy recovery: rollback, gradually rollout, data integrity check. **[KEY]**
+  - detailed and clear monitor/telemetry: performance metrics and error rates. **[KEY]**
   - training people
 
 ##### Scalability
@@ -116,7 +117,7 @@ Handle load increase
 
 - scaling up (vertical scaling, moving to a more powerful machine)
 - scaling out (horizontal scaling, distributing the load across multiple smaller machines)
-- elastic: automatically add computing resources when they detect a load increase
+- elastic **[KEY]**: automatically add computing resources when they detect a load increase
 - distribute stateless system is easy, but stateful data system could be hard.
 - Early-stage should iterate quickly on product features than it is to scale to some hypothetical future load.
 
@@ -127,11 +128,11 @@ Handle load increase
   - track down system failures or degraded performance
   - keep software and platform up to date
   - keep check how different services affect each other, to avoid one service completely break another one
-  - anticipate future problem and solve them (e.g., cap planning)
+  - anticipate future problem and solve them (e.g., cap planning) **[KEY]**
   - establish good practice and tools for deploy, config
   - perform maintenance tasks, e.g., migrate platform
   - maintain security
-  - define process to make ops predictable
+  - define process to make ops predictable **[KEY]**
   - share knowledge
   - provide good default behavior for tooling, but also provide the flexibility
   - self-healing, but also allow admin control
