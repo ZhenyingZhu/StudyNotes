@@ -763,6 +763,10 @@ Next to look <https://docs.microsoft.com/en-us/azure/architecture/>
 
 ## Old notes
 
+### Azure Key Vault
+
+<https://learn.microsoft.com/en-us/azure/key-vault/general/tutorial-net-create-vault-azure-web-app>
+
 ### tutorialspoint Microsoft Azure Tutorial
 
 [Cloud Computing - Overview](https://www.tutorialspoint.com/microsoft_azure/cloud_computing_overview.htm)
