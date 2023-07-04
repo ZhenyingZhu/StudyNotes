@@ -554,8 +554,13 @@ Azure Storage
   - Zone redundant storage (ZRS): across 3 clusters in a region.
   - Geo-redundant storage (GRS): secondary region. Whether secondary region can be read depends on the choice.
   - Geo-zone-redundant storage (GZRS): 3 AZs in the primary region, and a seconary region.
+- storage URLs:
+  - container: `mystorageaccount.blob.core.windows.net`
+  - table: `mystorageaccount.table.core.windows.net`
+  - queue: `mystorageaccount.queue.core.windows.net`
+  - file: `mystorageaccount.file.core.windows.net`
 
-**HERE**: <https://learn.microsoft.com/en-us/training/modules/configure-storage-accounts/6-access-storage>
+**HERE**: <https://learn.microsoft.com/en-us/training/modules/configure-storage-accounts/7-secure-storage-endpoints>
 
 ## Microsoft Certified: Azure Solutions Architect Expert
 
