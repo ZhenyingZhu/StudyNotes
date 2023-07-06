@@ -560,7 +560,11 @@ Azure Storage
   - queue: `mystorageaccount.queue.core.windows.net`
   - file: `mystorageaccount.file.core.windows.net`
 
-**HERE**: <https://learn.microsoft.com/en-us/training/modules/configure-storage-accounts/7-secure-storage-endpoints>
+Secure storage endpoints
+
+- Firewalls & Virtual networks. Subnets and virtual networks must exist in the same Azure region or region pair as your storage account.
+
+**HERE**: <https://learn.microsoft.com/en-us/training/modules/configure-blob-storage/>
 
 ## Microsoft Certified: Azure Solutions Architect Expert
 
