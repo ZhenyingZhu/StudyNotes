@@ -97,6 +97,8 @@ Azure Function
 - an event driven, serverless compute option. No container is needed
 - via an event (REST request), timer, or message
 
+See logs: In the application insights > Logs
+
 Azure App Service
 
 - HTTP-based service for hosting web apps, REST APIs, WebJobs and mobile back ends
