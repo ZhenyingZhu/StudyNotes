@@ -1033,3 +1033,7 @@ Should not check in pfx.
 ### Azure Queue Storage
 
 <https://learn.microsoft.com/en-us/azure/storage/queues/storage-queues-introduction>
+
+<https://stackoverflow.com/questions/37428068/how-to-get-connection-string-to-existing-servicebus-without-old-azure-portal>
+
+- In the storage account, go to access keys, then the connection string and key are there.
