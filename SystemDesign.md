@@ -162,6 +162,7 @@ skew **[KEY]**: data not being spread evenly across worker processes
 Review
 
 1. 9/3/2021
+2. 7/6/2023
 
 Data models: how we think about the problem that we are solving
 
@@ -195,7 +196,7 @@ NoSQL **[KEY]**:
 Object-Relational Mismatch:
 
 - between SQL and OOD need to have a translation layer
-- Object-relational mapping (ORM) frameworks, e.g., ActiveRecord and Hibernate
+- Object-relational mapping (ORM) frameworks **[KEY]**, e.g., ActiveRecord and Hibernate
 - SQL supports structured datatypes and XML data now. This allowed multi-valued data to be stored within a single row, with support for querying and indexing inside those documents.
 - Document-oriented databases **[KEY]**: e.g., MongoDB, RethinkDB, CouchDB, and Espresso support document model (JSON), which is native to OOD.
 - Lack of schema is good in some cases.
@@ -238,6 +239,8 @@ Relational vs. Document databases:
 - concurrency handling
 - schema flexibility
 - performance
+
+**HERE**
 
 Doc model limitation:
 
