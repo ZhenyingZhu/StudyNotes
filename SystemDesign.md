@@ -230,7 +230,7 @@ Relational databases:
 Document databases:
 
 - hierarchical model: store nested records
-- use document reference (similar to foreign key) to represent many-to-one and many-to-many
+- use document reference (similar to foreign key) to represent many-to-one and many-to-many **[KEY]**
 - reference identifier is resolved at read time, using join or follow up queries
 
 Relational vs. Document databases:
@@ -240,9 +240,7 @@ Relational vs. Document databases:
 - schema flexibility
 - performance
 
-**HERE**
-
-Doc model limitation:
+Doc model limitation: **[KEY]**
 
 - cannot directly refer to a nested document. Need to first find its parent node. But unless it is deeply nested, it normally don't cause an issue.
 - join is not good supported. If really needed, would need to denormalize data consistent. Graph model is more nature for such case
@@ -253,7 +251,7 @@ document databases are schema-in-read: the structure of the data is implicit, an
 
 When need to update the schema:
 
-- Document database: start writing new data and let application deal with both old and new data
+- Document database: start writing new data and let application deal with both old and new data **[KEY]**
   - So if the data in a table could be different types, or structure is determined by external system, use schemaless DB is better
 - relational database: perform a migration.
   - most DBs can handle ALTER TABLE (to add a new field) quickly, but MySQL would copy the whole table so it is slow
@@ -292,7 +290,7 @@ Graph-Like Data Models
 - property graph model: Neo4j, Titan, and InfiniteGraph **[KEY]**
   - vertex: a uniq id, outgoing edges, incoming edges, properties (key-value pairs)
   - edge: a uniq id, tail vertex (start), head vertex (end), label (kind of the relationship), properties (key-value)
-  - use two relational DB tables to store vertex and edge.
+  - use two relational DB tables to store vertex and edge. **[KEY]**
   - can traverse both forward and backward
   - Neo4j use Cypher Query Language: declarative. define vertex name and its json properties, then use the names to create relations.
     - CREATE clause defines vertices and edges. MATCH clause finds vertices based on properties on vertices and edges.
