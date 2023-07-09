@@ -313,6 +313,10 @@ Graph-Like Data Models
 
 #### Chapter 3. Storage and Retrieval
 
+Review
+
+1. 7/9/2023
+
 Storage engines by purpose:
 
 - optimized for transactional workloads
