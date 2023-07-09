@@ -565,8 +565,20 @@ Azure Storage
 Secure storage endpoints
 
 - Firewalls & Virtual networks. Subnets and virtual networks must exist in the same Azure region or region pair as your storage account.
+- Go to access keys, then the connection string and key are there. It is same for queue.
 
-**HERE**: <https://learn.microsoft.com/en-us/training/modules/configure-blob-storage/>
+Azure Blob Storage
+
+- In container in a storage account.
+- options
+  - container
+  - type
+  - upload
+  - access tier
+  - lifecycle
+  - replication
+
+**HERE**: <https://learn.microsoft.com/en-us/training/modules/configure-blob-storage/3-create-blob-containers>
 
 ## Microsoft Certified: Azure Solutions Architect Expert
 
@@ -1035,5 +1047,3 @@ Should not check in pfx.
 <https://learn.microsoft.com/en-us/azure/storage/queues/storage-queues-introduction>
 
 <https://stackoverflow.com/questions/37428068/how-to-get-connection-string-to-existing-servicebus-without-old-azure-portal>
-
-- In the storage account, go to access keys, then the connection string and key are there.
