@@ -354,6 +354,8 @@ Hash indexes
     - key size
     - range queries not efficient
 
+**HERE**
+
 SSTables and LSM-Trees
 
 - sorted string table (SSTable): key value pairs sorted by key in each segment **[KEY]**
