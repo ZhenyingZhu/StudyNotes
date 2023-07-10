@@ -354,8 +354,6 @@ Hash indexes
     - key size
     - range queries not efficient
 
-**HERE**
-
 SSTables and LSM-Trees
 
 - sorted string table (SSTable): key value pairs sorted by key in each segment **[KEY]**
@@ -393,6 +391,8 @@ B-Trees
 - move pages with seq keys together on disk, so range search reads quicker **[KEY]**
 - create pointers to sibling pages, so scanning keys don't need to go back to parent page again and again **[KEY]**
 - fractal trees borrow some ideas from LSM trees.
+
+**[HERE]**
 
 Comparing B-Trees and LSM-Trees
 
