@@ -571,14 +571,14 @@ Azure Blob Storage
 
 - In container in a storage account.
 - options
-  - container
+  - container: public access level: private, access to blob, access to container.
   - type
   - upload
-  - access tier
+  - access tier: hot, cool (for backup), archive (several hours latency).
   - lifecycle
   - replication
 
-**HERE**: <https://learn.microsoft.com/en-us/training/modules/configure-blob-storage/3-create-blob-containers>
+**HERE**: <https://learn.microsoft.com/en-us/training/modules/configure-blob-storage/5-add-blob-lifecycle-management-rules>
 
 ## Microsoft Certified: Azure Solutions Architect Expert
 
