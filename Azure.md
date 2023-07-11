@@ -577,8 +577,9 @@ Azure Blob Storage
   - access tier: hot, cool (for backup), archive (several hours latency).
   - lifecycle
   - replication
+- data set lifecycle: auto check dates then move to different access tiers
 
-**HERE**: <https://learn.microsoft.com/en-us/training/modules/configure-blob-storage/5-add-blob-lifecycle-management-rules>
+**HERE**: <https://learn.microsoft.com/en-us/training/modules/configure-blob-storage/6-determine-blob-object-replication>
 
 ## Microsoft Certified: Azure Solutions Architect Expert
 
