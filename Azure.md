@@ -578,8 +578,9 @@ Azure Blob Storage
   - lifecycle
   - replication
 - data set lifecycle: auto check dates then move to different access tiers
+- Object replication: From a source to a destination account. Requires blob versioning is enabled on both.
 
-**HERE**: <https://learn.microsoft.com/en-us/training/modules/configure-blob-storage/6-determine-blob-object-replication>
+**HERE**: <https://learn.microsoft.com/en-us/training/modules/configure-blob-storage/7-upload-blobs>
 
 ## Microsoft Certified: Azure Solutions Architect Expert
 
