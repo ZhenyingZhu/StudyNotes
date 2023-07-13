@@ -572,15 +572,14 @@ Azure Blob Storage
 - In container in a storage account.
 - options
   - container: public access level: private, access to blob, access to container.
-  - type
+  - type: block (file), page (VM disks), append (log)
   - upload
   - access tier: hot, cool (for backup), archive (several hours latency).
-  - lifecycle
-  - replication
-- data set lifecycle: auto check dates then move to different access tiers
-- Object replication: From a source to a destination account. Requires blob versioning is enabled on both.
+  - data set lifecycle: auto check dates then move to different access tiers
+  - object replication: From a source to a destination account. Requires blob versioning is enabled on both.
+- upload tools: Azure Storage Explorer, AzCopy, Azure Data Box Disk (physical), Azure Import/Export
 
-**HERE**: <https://learn.microsoft.com/en-us/training/modules/configure-blob-storage/7-upload-blobs>
+**HERE**: <https://learn.microsoft.com/en-us/training/modules/configure-blob-storage/8-determine-storage-pricing>
 
 ## Microsoft Certified: Azure Solutions Architect Expert
 
