@@ -580,7 +580,7 @@ Azure Blob Storage
 - upload tools: Azure Storage Explorer, AzCopy, Azure Data Box Disk (physical), Azure Import/Export
 - pricing: Performance tiers, Access cost, transaction cost, Geo-replication transfer cost, Outbound data transfer costs, Changes to the storage tier.
 
-**HERE**: <https://learn.microsoft.com/en-us/training/modules/configure-blob-storage/8-determine-storage-pricing>
+**HERE**: <https://learn.microsoft.com/en-us/training/modules/configure-storage-security/>
 
 ## Microsoft Certified: Azure Solutions Architect Expert
 
