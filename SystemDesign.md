@@ -315,7 +315,7 @@ Graph-Like Data Models
 
 Review
 
-1. 7/9/2023
+1. 7/16/2023
 
 Storage engines by purpose:
 
@@ -392,8 +392,6 @@ B-Trees
 - create pointers to sibling pages, so scanning keys don't need to go back to parent page again and again **[KEY]**
 - fractal trees borrow some ideas from LSM trees.
 
-**[HERE]**
-
 Comparing B-Trees and LSM-Trees
 
 - In general: LSM tree fast for write, B-Tree fast for read. But need to test for the real workload since different data might have different characterics. **[KEY]**
@@ -414,6 +412,8 @@ Secondary index: **[KEY]**
 - index keys are not necessary uniq. The secondary index can be stored as key-value pairs:
   - Either make the values contain the list of all the matching entry ids
   - Or make each entry uniq by appending row ids to the key
+
+**[HERE]**
 
 Value store with the index:
 
