@@ -413,8 +413,6 @@ Secondary index: **[KEY]**
   - Either make the values contain the list of all the matching entry ids
   - Or make each entry uniq by appending row ids to the key
 
-**[HERE]**
-
 Value store with the index:
 
 - either store the index, or store the reference.
@@ -524,6 +522,8 @@ Aggregation: Data Cubes and Materialized Views
 - Data cube: a grid of aggregates grouped by different dimensions.
 
 #### Chapter 4. Encoding and Evolution
+
+**[HERE]**
 
 Client side app change: need to count in that users might not upgrade any time soon.
 
