@@ -580,7 +580,19 @@ Azure Blob Storage
 - upload tools: Azure Storage Explorer, AzCopy, Azure Data Box Disk (physical), Azure Import/Export
 - pricing: Performance tiers, Access cost, transaction cost, Geo-replication transfer cost, Outbound data transfer costs, Changes to the storage tier.
 
-**HERE**: <https://learn.microsoft.com/en-us/training/modules/configure-storage-security/2-review-strategies>
+Azure Storage security strategies
+
+- encryption: auto encrypted in the storage. Client-Side Encryption, HTTPS, or SMB 3.0.
+- authentication: Azure AD and RBAC
+- authorization
+- user access control with credentials
+- file permissions
+- private signatures
+- shared access signature (SAS): delegates access to a particular resource in your Azure storage account with specified permissions and for a specified time interval.
+- Shared Key authorization: relies on your Azure storage account access keys and other parameters to produce an encrypted signature string
+- Anonymous access to containers and blobs
+
+**HERE**: <https://learn.microsoft.com/en-us/training/modules/configure-storage-security/3-create-shared-access-signatures>
 
 ## Microsoft Certified: Azure Solutions Architect Expert
 
