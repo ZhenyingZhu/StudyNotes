@@ -588,11 +588,15 @@ Azure Storage security strategies
 - user access control with credentials
 - file permissions
 - private signatures
-- shared access signature (SAS): delegates access to a particular resource in your Azure storage account with specified permissions and for a specified time interval.
+- shared access signature (SAS): delegates access to a particular resource in your Azure storage account with specified permissions and for a specified time interval. A URI.
+  - Account level vs. Service level
+  - can also set store access policy
+  - can specify IP and protocol
+  - need to specify signing key
 - Shared Key authorization: relies on your Azure storage account access keys and other parameters to produce an encrypted signature string
 - Anonymous access to containers and blobs
 
-**HERE**: <https://learn.microsoft.com/en-us/training/modules/configure-storage-security/3-create-shared-access-signatures>
+**HERE**: <https://learn.microsoft.com/en-us/training/modules/configure-storage-security/4-identify-uri-sas-parameters>
 
 ## Microsoft Certified: Azure Solutions Architect Expert
 
