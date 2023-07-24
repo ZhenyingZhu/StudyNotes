@@ -523,7 +523,9 @@ Aggregation: Data Cubes and Materialized Views
 
 #### Chapter 4. Encoding and Evolution
 
-**[HERE]**
+Review
+
+1. 7/23/2023
 
 Client side app change: need to count in that users might not upgrade any time soon.
 
@@ -571,6 +573,8 @@ Thrift and Protocol Buffers: binary encoding libraries. require a schema. In the
   - changing a single-value property to multi-value property: old code reads the last one. **[KEY]**
 
 Avro: used in Hadoop. Also use a schema. When encoding, don't record which field but only value type and the order. **[KEY]**
+
+**[HERE]**: **[KEY]**
 
 - decode uses reader schema, which might be old. The writer schema should be compatible with old reader schema. Avro resolve the difference with both schema side by side. **[KEY]**
 - Can only add or remove a field that has default value.
