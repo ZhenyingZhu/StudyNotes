@@ -574,8 +574,6 @@ Thrift and Protocol Buffers: binary encoding libraries. require a schema. In the
 
 Avro: used in Hadoop. Also use a schema. When encoding, don't record which field but only value type and the order. **[KEY]**
 
-**[HERE]**: **[KEY]**
-
 - decode uses reader schema, which might be old. The writer schema should be compatible with old reader schema. Avro resolve the difference with both schema side by side. **[KEY]**
 - Can only add or remove a field that has default value.
 - null must be used only by field with value type `union { null, <value type> }`.
@@ -624,6 +622,8 @@ Dataflow Through Services: REST and RPC
   - REST: a design philosophy build upon HTTP principals. It emphasizes simple data formats, using URLs for identifying resources and using HTTP features for cache control, authentication, and content type negotiation. An API designed according to the principles of REST is called RESTful. **[KEY]**
   - Swagger, aka. OpenAPI, can be used to describe APIs and generate docs. **[KEY]**
   - SOAP is an XML-based protocol for making network API requests. It aims to be independent from HTTP. It uses Web Services Description Language(WSDL) to define APIs, and can auto generate codes. It relies on tools and IDEs so not friendly for simple apps. **[KEY]**
+
+**[HERE]**: **[KEY]**
 
 The problems with remote procedure calls (RPCs)
 
