@@ -623,12 +623,10 @@ Dataflow Through Services: REST and RPC
   - Swagger, aka. OpenAPI, can be used to describe APIs and generate docs. **[KEY]**
   - SOAP is an XML-based protocol for making network API requests. It aims to be independent from HTTP. It uses Web Services Description Language(WSDL) to define APIs, and can auto generate codes. It relies on tools and IDEs so not friendly for simple apps. **[KEY]**
 
-**[HERE]**: **[KEY]**
-
 The problems with remote procedure calls (RPCs)
 
 - Enterprise JavaBeans (EJB) and Java’s Remote Method Invocation (RMI) are limited to Java. The Distributed Component Object Model (DCOM) is limited to Microsoft platforms. **[KEY]**
-- RPC model tries to make a request to a remote network service look the same as calling a function or method in your programming language, within the same process (this abstraction is called location transparency).
+- RPC model tries to make a request to a remote network service look the same as calling a function or method in your programming language, within the same process (this abstraction is called location transparency). **[KEY]**
 - But not like local call, not all the parameters, like network, are predictable.
 - local call either return a result or throw exception, or not return in an inf loop. Network call can return without a result, for example timeout.
 - When retry a failed network call, the previous call could already go through. Need to maintain idempotence.
@@ -642,7 +640,7 @@ Current directions for RPC
 - Futures also simplify situations where you need to make requests to multiple services in parallel, and combine their results. **[KEY]**
 - gRPC supports streams, a series of requests and reponses over time.
 - service discovery: client to find which IP and which port for a service **[KEY]**
-- a RESTful API is good for experimentation and debugging because it is widely supported by standard tools, langs, platforms. So use REST for public APIs, while RPC for internal data transfer.
+- a RESTful API is good for experimentation and debugging because it is widely supported by standard tools, langs, platforms. So use REST for public APIs, while RPC for internal data transfer. **[KEY]**
 
 Data encoding and evolution for RPC
 
@@ -677,6 +675,8 @@ Distributed actor frameworks
 - used to scale an application across multiple nodes. No matter whether the clients are on the same node or not, use MQ to communicate.
 
 ### Part 2. Distributed Data
+
+**[HERE]**: **[KEY]**
 
 reasons to distribute a database across multiple machines
 
