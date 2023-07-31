@@ -1066,3 +1066,9 @@ Should not check in pfx.
 <https://learn.microsoft.com/en-us/azure/storage/queues/storage-queues-introduction>
 
 <https://stackoverflow.com/questions/37428068/how-to-get-connection-string-to-existing-servicebus-without-old-azure-portal>
+
+### Azure C# Client
+
+The old nuget Microsoft.Azure.Management.Fluent is replaced by [Azure.ResourceManager](https://learn.microsoft.com/en-us/dotnet/azure/sdk/resource-management?tabs=PowerShell) and [Azure.Identity](https://learn.microsoft.com/en-us/dotnet/api/overview/azure/identity-readme?view=azure-dotnet).
+
+The AzureCredentials is managed by the AzureCredentialsFactory.FromServicePrincipal().
