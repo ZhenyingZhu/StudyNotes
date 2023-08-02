@@ -582,7 +582,7 @@ Azure Blob Storage
 
 Azure Storage security strategies
 
-- encryption: auto encrypted in the storage. Client-Side Encryption, HTTPS, or SMB 3.0.
+- encryption: auto encrypted in the storage. Client-Side Encryption, HTTPS, or SMB 3.0. Can use microsoft-managed or customer managed keys.
 - authentication: Azure AD and RBAC
 - authorization
 - user access control with credentials
@@ -597,7 +597,7 @@ Azure Storage security strategies
 - Anonymous access to containers and blobs
 - URI: Resource URI + Storage version (sv) + Storage service (ss) + Start time (st) + Expiry time (se) + Resource (sr) + Permissions (sp) + IP range (sip) + Protocol (spr) + Signature (sig)
 
-**HERE**: <https://learn.microsoft.com/en-us/training/modules/configure-storage-security/5-determine-storage-service-encryption>
+**HERE**: <https://learn.microsoft.com/en-us/training/modules/configure-storage-security/6-create-customer-managed-keys>
 
 ## Microsoft Certified: Azure Solutions Architect Expert
 
