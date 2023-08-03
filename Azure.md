@@ -596,8 +596,9 @@ Azure Storage security strategies
 - Shared Key authorization: relies on your Azure storage account access keys and other parameters to produce an encrypted signature string
 - Anonymous access to containers and blobs
 - URI: Resource URI + Storage version (sv) + Storage service (ss) + Start time (st) + Expiry time (se) + Resource (sr) + Permissions (sp) + IP range (sip) + Protocol (spr) + Signature (sig)
+- The Azure storage account and the key vault must be in the same region.
 
-**HERE**: <https://learn.microsoft.com/en-us/training/modules/configure-storage-security/6-create-customer-managed-keys>
+**HERE**: <https://learn.microsoft.com/en-us/training/modules/configure-azure-files-file-sync/>
 
 ## Microsoft Certified: Azure Solutions Architect Expert
 
