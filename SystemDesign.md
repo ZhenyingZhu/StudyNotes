@@ -676,8 +676,6 @@ Distributed actor frameworks
 
 ### Part 2. Distributed Data
 
-**[HERE]**: **[KEY]**
-
 reasons to distribute a database across multiple machines
 
 - Scalability: volume, R/W load
@@ -693,7 +691,7 @@ horizontal scaling (shared-nothing architectures)
 
 - node: a virtual machine
 - coordination between nodes are done in software level, using conventional network
-- incurs additional complexity for applications and sometimes limits the expressiveness of the data models
+- incurs additional complexity for applications and sometimes limits the expressiveness of the data models **[KEY]**
 
 Replication Versus Partitioning
 
@@ -702,6 +700,8 @@ Replication Versus Partitioning
 - can be used together
 
 #### Chapter 5. Replication
+
+**[HERE]**: **[KEY]**
 
 The difficulty of replication: handling changes to replicated data. three popular algorithms:
 
