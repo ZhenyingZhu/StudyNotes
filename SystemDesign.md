@@ -701,8 +701,6 @@ Replication Versus Partitioning
 
 #### Chapter 5. Replication
 
-**[HERE]**: **[KEY]**
-
 The difficulty of replication: handling changes to replicated data. three popular algorithms:
 
 - single-leader
@@ -717,7 +715,7 @@ trade-offs to consider:
 eventual consistency issues:
 
 - read-your-writes
-- monotonic reads guarantees
+- monotonic reads guarantees **[KEY]**
 
 leader-based replication(active/passive or master–slave replication) **[KEY]**
 
@@ -742,6 +740,8 @@ Setting Up New Followers **[KEY]**
 - Follower requests changes after the snapshot from leader.
 - Each snapshot should associate with a position. It can be called as log sequence number, binlog coordinates.
 - follower is caught up
+
+**[HERE]**: **[KEY]**
 
 Handling Node Outages **[KEY]**
 
