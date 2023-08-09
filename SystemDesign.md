@@ -701,6 +701,10 @@ Replication Versus Partitioning
 
 #### Chapter 5. Replication
 
+Review
+
+1. 8/7/2023
+
 The difficulty of replication: handling changes to replicated data. three popular algorithms:
 
 - single-leader
@@ -740,8 +744,6 @@ Setting Up New Followers **[KEY]**
 - Follower requests changes after the snapshot from leader.
 - Each snapshot should associate with a position. It can be called as log sequence number, binlog coordinates.
 - follower is caught up
-
-**[HERE]**: **[KEY]**
 
 Handling Node Outages **[KEY]**
 
@@ -798,6 +800,8 @@ Problems with Replication Lag
   - Another solution: use algorithms to keep track of causal dependencies
 - Transaction is the DB provided solution to deal with replication lag **[KEY]**
   - Single-node transactions is a solution, but cannot be used in distributed system
+
+**[HERE]**: **[KEY]**
 
 Multi-Leader Replication
 
