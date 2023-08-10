@@ -808,8 +808,6 @@ Multi-Leader Replication
 - Single leader cons: all writes go through the same leader
 - multi-leader (active-active replication): each leader acts as others' follower
 
-Use cases for multi-leader **[KEY]**
-
 - multi-DC operation: each DC has a leader and some followers. Between leaders across DCs, there is a conflict resolver
   - performance is better from user point-of-view because cross DC replication is hidden from user
   - single DC outage won't affect other DCs
@@ -823,6 +821,8 @@ Use cases for multi-leader **[KEY]**
 - Collaborative editing: need auto conflict resolution algorithm
   - edits made to local replica and then async replicated to server.
   - to achieve fast collaborate, need make the change unit very small and avoid locking
+
+Use cases for multi-leader **[KEY]**
 
 Handling Write Conflicts
 
