@@ -801,12 +801,12 @@ Problems with Replication Lag
 - Transaction is the DB provided solution to deal with replication lag **[KEY]**
   - Single-node transactions is a solution, but cannot be used in distributed system
 
-**[HERE]**: **[KEY]**
-
 Multi-Leader Replication
 
 - Single leader cons: all writes go through the same leader
 - multi-leader (active-active replication): each leader acts as others' follower
+
+Use cases for multi-leader **[KEY]**
 
 - multi-DC operation: each DC has a leader and some followers. Between leaders across DCs, there is a conflict resolver
   - performance is better from user point-of-view because cross DC replication is hidden from user
@@ -821,8 +821,6 @@ Multi-Leader Replication
 - Collaborative editing: need auto conflict resolution algorithm
   - edits made to local replica and then async replicated to server.
   - to achieve fast collaborate, need make the change unit very small and avoid locking
-
-Use cases for multi-leader **[KEY]**
 
 Handling Write Conflicts
 
@@ -873,6 +871,8 @@ Leaderless Replication
     - if a node carrying the new write fails, and it restored from an old replica, then less than n - r nodes have the latest value
     - can have timing issue ?? Linearizability and quorums
   - Dynamo-style databases are generally optimized for use cases that can tolerate eventual consistency. Normally don't guarantee reading your writes, monotonic reads, or consistent prefix reads.
+
+**[HERE]**: **[KEY]**
 
 Monitoring staleness
 
