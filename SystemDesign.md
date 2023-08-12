@@ -872,8 +872,6 @@ Leaderless Replication
     - can have timing issue ?? Linearizability and quorums
   - Dynamo-style databases are generally optimized for use cases that can tolerate eventual consistency. Normally don't guarantee reading your writes, monotonic reads, or consistent prefix reads.
 
-**[HERE]**: **[KEY]**
-
 Monitoring staleness
 
 - even client can tolerate staleness, the service needs to aware of the replication health. **[KEY]**
@@ -889,6 +887,8 @@ Sloppy Quorums and Hinted Handoff
 - hinted handoff: after network interruption is fixed, the tempoary node writes the changes to the apporate node **[KEY]**
 - But when read, the stale data might return as the write can landed in a node outside n, until hinted handoff is complete
 - Multi-datacenter operation: Cassandra: n includes nodes in all DCs. When write, writes to all DCs, but client only waits for local DC quorum. **[KEY]**
+
+**[HERE]**: **[KEY]**
 
 Detecting Concurrent Writes
 
