@@ -888,8 +888,6 @@ Sloppy Quorums and Hinted Handoff
 - But when read, the stale data might return as the write can landed in a node outside n, until hinted handoff is complete
 - Multi-datacenter operation: Cassandra: n includes nodes in all DCs. When write, writes to all DCs, but client only waits for local DC quorum. **[KEY]**
 
-**[HERE]**: **[KEY]**
-
 Detecting Concurrent Writes
 
 - Dynamo-style DB allows clients to concurrently write. Conflicts could arise during read repair and hinted handoff.
@@ -919,6 +917,12 @@ Replication purpose:
 - Scalability
 
 #### Chapter 6. Partitioning
+
+Review
+
+1. 8/13/2023
+
+**[HERE]**: **[KEY]**
 
 each partition is a small database of its own, although the database may support operations that touch multiple partitions at the same time.
 
