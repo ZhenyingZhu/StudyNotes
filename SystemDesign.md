@@ -922,8 +922,6 @@ Review
 
 1. 8/13/2023
 
-**[HERE]**: **[KEY]**
-
 each partition is a small database of its own, although the database may support operations that touch multiple partitions at the same time.
 
 Different partitions can be placed on different nodes in a shared-nothing (node and node are all standalone) cluster.
@@ -970,6 +968,8 @@ Rebalancing Partitions **[KEY]**
 - After rebalancing, the load (data storage, read and write requests) should be shared fairly between the nodes in the cluster
 - While rebalancing is happening, the database should continue accepting reads and writes
 - No more data than necessary should be moved between nodes, to make rebalancing fast and to minimize the network and disk I/O load
+
+**[HERE]**: **[KEY]**
 
 Strategies for Rebalancing
 
