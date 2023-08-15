@@ -969,8 +969,6 @@ Rebalancing Partitions **[KEY]**
 - While rebalancing is happening, the database should continue accepting reads and writes
 - No more data than necessary should be moved between nodes, to make rebalancing fast and to minimize the network and disk I/O load
 
-**[HERE]**: **[KEY]**
-
 Strategies for Rebalancing
 
 - don't use hash mod N: when N changes, too much data needs to move
@@ -1019,6 +1017,12 @@ Parallel Query Execution
 - scaning over large dataset can be benefit
 
 #### Chapter 7. Transactions
+
+Review
+
+1. 7/23/2023
+
+**[HERE]**: **[KEY]**
 
 harsh reality of data systems **[KEY]**
 
