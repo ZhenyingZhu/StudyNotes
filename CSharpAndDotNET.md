@@ -833,6 +833,10 @@ FlowLayoutPanel: arranges its contents in a horizontal or vertical flow directio
 
 [Newtonsoft.Json.Schema](https://www.newtonsoft.com/jsonschema/help/html/LoadingSchemas.htm)
 
+## RPC client
+
+<https://learn.microsoft.com/en-us/aspnet/core/tutorials/grpc/grpc-start?view=aspnetcore-6.0&tabs=visual-studio>
+
 ## Miscellaneous
 
 ### Compare two lists
@@ -1274,3 +1278,4 @@ It is under `C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.6.
 ### Extend a method
 
 <https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/extension-methods>
+
