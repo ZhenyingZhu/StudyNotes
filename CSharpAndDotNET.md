@@ -837,6 +837,12 @@ FlowLayoutPanel: arranges its contents in a horizontal or vertical flow directio
 
 <https://learn.microsoft.com/en-us/aspnet/core/tutorials/grpc/grpc-start?view=aspnetcore-6.0&tabs=visual-studio>
 
+<https://grpc.io/docs/what-is-grpc/introduction/>
+
+<https://github.com/grpc/grpc-dotnet/tree/master/examples#mailer>
+
+<https://learn.microsoft.com/en-us/windows/win32/rpc/rpc-start-page>
+
 ## Miscellaneous
 
 ### Compare two lists
