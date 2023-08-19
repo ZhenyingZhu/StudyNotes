@@ -4508,3 +4508,7 @@ Service oriented: <https://docs.microsoft.com/en-us/dotnet/framework/wcf/whats-w
 <https://en.wikipedia.org/wiki/Single-page_application#:~:text=From%20Wikipedia%2C%20the%20free%20encyclopedia,browser%20loading%20entire%20new%20pages.>
 
 [React Router](https://reactrouter.com/web/guides/quick-start)
+
+## Roslyn csc
+
+<https://stackoverflow.com/questions/58154233/could-not-find-file-bin-roslyn-csc-exe>
