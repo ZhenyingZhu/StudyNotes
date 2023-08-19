@@ -1412,7 +1412,7 @@ AuthN Concepts
 - The project creates with folder `Area/Identity/Account` which refers to a Razor class library.
 - Need call `Update-Database` to let it take effect.
 - In `Views\Shared\` there is a `_LoginPartial.cshtml` which appears in `_Layout.cshtml` in the nav bar.
-- Username: zhenying@webapp.com, zhenying2@webapp.com, Password: `P@ssw0rd`
+- Username: <zhenying@webapp.com>, <zhenying2@webapp.com>s, Password: `P@ssw0rd`
 - Several tables are created: AspNetUsers, AspNetRoles, AspNetUserLogins, AspNetUserRoles, AspNetUserTokens
 - Now users can register and be added to DB.
 - Check `services.AddDefaultIdentity()` in `ConfigureServices`, should already be there.
@@ -1467,7 +1467,7 @@ Use `signInManager.PasswordSignInAsync` to get the login result. Don't need to a
 
 To add `ModelState.AddModelError("", "Failed to login");`, need add `<div asp-validation-summary="ModelOnly"></div>` in the cshtml.
 
-Username: zhenying@dutchtreat.com, Password: P@ssw0rd!
+Username: <zhenying@dutchtreat.com>, Password: P@ssw0rd!
 
 In the Layout.cshtml, add Login and Logout nav-link.
 
