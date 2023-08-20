@@ -4509,6 +4509,15 @@ Service oriented: <https://docs.microsoft.com/en-us/dotnet/framework/wcf/whats-w
 
 [React Router](https://reactrouter.com/web/guides/quick-start)
 
-## Roslyn csc
+## Issues
+
+### Roslyn csc
 
 <https://stackoverflow.com/questions/58154233/could-not-find-file-bin-roslyn-csc-exe>
+
+### local sqldb
+
+<https://javafun.github.io/localdb-logon-failed-for-login-due-to-trigger-execution/#:~:text=Luckily%2C%20this%20approach%20fixed%20my%20issue.%20Step%201,following%20command%20from%20your%20terminal%20sqllocaldb%20create%20MSSQLLocaldb>
+
+- `Update-Database -Verbose` to see details
+- `sqllocaldb create <DB name>` to create a DB
