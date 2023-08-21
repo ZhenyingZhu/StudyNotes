@@ -1020,9 +1020,7 @@ Parallel Query Execution
 
 Review
 
-1. 7/23/2023
-
-**[HERE]**: **[KEY]**
+1. 8/20/2023
 
 harsh reality of data systems **[KEY]**
 
@@ -1052,6 +1050,8 @@ The Meaning of ACID **[KEY]**
 - Consistency: certain statements about data must always be true. The data should be valid after the writes
 - Isolation: concurrently executing transactions are isolated from each other. One solution by introduce the serializability of the transactions have performance penalty. So a weaker guarantee snapshot isolation is used.
 - Durability: the promise that once a transaction has committed successfully, the data won't lose even if there is a hardware fault or the database crashes. Use write-ahead logs for recovery. Use replication.
+
+**[HERE]**: **[KEY]**
 
 Single-Object and Multi-Object Operations
 
