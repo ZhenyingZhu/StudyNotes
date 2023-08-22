@@ -1051,8 +1051,6 @@ The Meaning of ACID **[KEY]**
 - Isolation: concurrently executing transactions are isolated from each other. One solution by introduce the serializability of the transactions have performance penalty. So a weaker guarantee snapshot isolation is used.
 - Durability: the promise that once a transaction has committed successfully, the data won't lose even if there is a hardware fault or the database crashes. Use write-ahead logs for recovery. Use replication.
 
-**[HERE]**: **[KEY]**
-
 Single-Object and Multi-Object Operations
 
 - multi-object transactions are needed if several pieces of data need to be kept in sync
@@ -1068,7 +1066,7 @@ Single-object writes
 
 The need for multi-object transactions
 
-- it is challenging in distributed DB, because it needs acorss partitions, and could affect performance and high availbility
+- it is challenging in distributed DB, because it needs across partitions, and could affect performance and high availbility
 - transaction is useful for foreign reference **[KEY]**
 - in document data model, fields need to be update together should be within the same document, so it can be treated as single object write **[KEY]**
 - for denormalization, several documents might need to be updated for a single change, so transaction is useful **[KEY]**
@@ -1091,6 +1089,8 @@ Weak Isolation Levels
 - happened when two transactions update the same data
 - transaction isolation: isolate concurrency issues from application developers
 - serializable isolation: transactions have the same effect when run one at a time
+
+**[HERE]**: **[KEY]**
 
 Read Committed
 
