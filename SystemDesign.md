@@ -1090,8 +1090,6 @@ Weak Isolation Levels
 - transaction isolation: isolate concurrency issues from application developers
 - serializable isolation: transactions have the same effect when run one at a time
 
-**[HERE]**: **[KEY]**
-
 Read Committed
 
 - most basic level of transaction isolation
@@ -1118,6 +1116,8 @@ Snapshot Isolation and Repeatable Read
   - when a transaction starts, a unique, always-increasing transaction ID (txid) is assigned.
   - each row has a createdBy field, records the txid that insert it, and a deletedBy field records when the entry is marked as deleted.
   - an update is translated to a created and deleted record
+
+**[HERE]**: **[KEY]**
 
 Visibility rules for observing a consistent snapshot **[KEY]**
 
