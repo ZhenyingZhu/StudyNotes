@@ -1117,8 +1117,6 @@ Snapshot Isolation and Repeatable Read
   - each row has a createdBy field, records the txid that insert it, and a deletedBy field records when the entry is marked as deleted.
   - an update is translated to a created and deleted record
 
-**[HERE]**: **[KEY]**
-
 Visibility rules for observing a consistent snapshot **[KEY]**
 
 - at the start of each transaction, DB lists all the ongoing transactions, and ignore their writes
@@ -1143,6 +1141,8 @@ Preventing Lost Updates **[KEY]**
 - two transactions writing concurrently: dirty write is one of the write-write conflict
 - Lost update: two read-modify-write cycles happen concurrently, causing one writes lost
 - happened in scenarios: 1. increase counter/account balance, 2. making a local change to a complex value (need parse-change-write), 3. edit wiki page
+
+**[HERE]**: **[KEY]**
 
 Atomic write operations
 
