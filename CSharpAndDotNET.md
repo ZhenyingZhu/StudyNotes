@@ -847,6 +847,16 @@ FlowLayoutPanel: arranges its contents in a horizontal or vertical flow directio
 
 <https://opentelemetry.io/docs/instrumentation/net/getting-started/>
 
+## .NET Framework Difference
+
+<https://learn.microsoft.com/en-us/dotnet/framework/whats-new/>
+
+- Improvements to the JIT compiler.
+- cryptographic enhancements: Support for ephemeral keys
+- Additional collection APIs
+- Support for .NET Standard 2.0
+- Garbage collection performance improvements
+
 ## Miscellaneous
 
 ### Compare two lists
