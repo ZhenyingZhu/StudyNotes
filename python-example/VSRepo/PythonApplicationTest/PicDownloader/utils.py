@@ -6,6 +6,7 @@ import requests
 import shutil
 import ssl
 from pathlib import Path
+import chardet
 
 class Utils:
     def __init__(self, cookie):
@@ -28,9 +29,10 @@ class Utils:
                 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:95.0) Gecko/20100101 Firefox/95.0'
             }
 
-            req = requests.get(url, headers=hdr)
+            # response = requests.get(url, headers=hdr)
+            response = requests.get(url)
 
-            html_page = req.text
+            html_page = response.content.decode('utf-8')
 
             if (debug):
                 debug_file = open('html_page', 'w', encoding="utf-8")

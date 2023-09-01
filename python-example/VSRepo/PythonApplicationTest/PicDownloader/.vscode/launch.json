@@ -12,8 +12,9 @@
             "console": "integratedTerminal",
             "justMyCode": false,
             "args": [
-                "",
-                "temp"
+                "https://www.bing.com",
+                "temp",
+                ""
             ]
         },
         {
