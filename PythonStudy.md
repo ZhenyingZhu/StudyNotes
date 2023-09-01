@@ -665,6 +665,8 @@ datetime.strptime("2018-12-06 04:35:31.6808615"[:-1], "%Y-%m-%d %H:%M:%S.%f")
 
 In vscode: [creating environments](https://code.visualstudio.com/docs/python/environments)
 
+- Need to use latest version of VS code
+
 [src](https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/)
 
 - Install: `py -m pip install --user virtualenv`
