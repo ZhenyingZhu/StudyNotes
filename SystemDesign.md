@@ -1096,7 +1096,7 @@ Read Committed
 - when read, only data that has been committed is read **[KEY]**
 - when write, only overwrites committed data **[KEY]**
 - dirty reads: another transaction sees uncommitted data
-- 2 guarantees for no dirty reads: 1. before commit is done, no partitial change is returned; 2. if a transaction is abort, all changes are rolled back **[KEY]**
+- 2 guarantees for no dirty reads: 1. before commit is done, no partial change is returned; 2. if a transaction is abort, all changes are rolled back **[KEY]**
 - prevent dirty writes: delay the second transaction until the first is either committed or aborted **[KEY]**
 - read commit doesn't prevent race condition **[KEY]** between two counter increments (two writes in transaction 1 happens before and after two writes in transaction 2, causing transaction 2 totally lost, because transaction 2 doesn't see transaction 1 as it was not committed)
 - Implementing read committed: default in Oracle, PostgreSQL **[KEY]**
