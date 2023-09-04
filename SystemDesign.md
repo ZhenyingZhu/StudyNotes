@@ -1174,8 +1174,6 @@ Conflict resolution and replication **[KEY]**
 - allow conflict versions for the data, and use app code to resolve and merge the conflicts
 - if operations are commutative (excute in different orders can still get to the same result), DB can auto merge the changes to prevent lost update
 
-**[HERE]**: **[KEY]**
-
 Write Skew and Phantoms
 
 - two transactions are updating two different objects, but one has to be run after another (for example in the transaction there is a check for the latest statuses of those objects), then the race condition could cause write skew **[KEY]**
@@ -1184,6 +1182,8 @@ Write Skew and Phantoms
 - explicitly lock rows the transaction depends on can help in some cases, but if the requirement needs check the absense of some rows (like a user name is not taken), then it cannot lock those non-exist rows
 - pattern: a `SELECT` query check some requirements, then the app code decides whether to make a write. The write changes the pre-condition.
 - phantom: a write in one transaction changes the result of a search query in another transaction **[KEY]**
+
+**[HERE]**: **[KEY]**
 
 Materializing conflicts
 
