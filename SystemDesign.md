@@ -1142,15 +1142,13 @@ Preventing Lost Updates **[KEY]**
 - Lost update: two read-modify-write cycles happen concurrently, causing one writes lost
 - happened in scenarios: 1. increase counter/account balance, 2. making a local change to a complex value (need parse-change-write), 3. edit wiki page
 
-**[HERE]**: **[KEY]**
-
 Atomic write operations
 
 - DB provided function to avoid app needs to write the read-modify-write cycle. It is concurrently safe **[KEY]**
 - for SQL `UPDATE counters SET value = value + 1 WHERE key = 'foo';`
 - for MongoDB, supports atomic modify JSON; Redis for update data structure like priority queue
 - but wiki would be hard to support atomic write. So atomic write is not supported in all the scenarios
-- cursor stability: take an excluside lock on the object when it is read, until the update is applied
+- cursor stability: take an exclusive lock on the object when it is read, until the update is applied
 - another option is to force single thread update
 - But ORM (object-relational mapping) frameworks can accidently generate code that make read-modify-write cycle instead of using atomic operation. Without looking into the details it is a hard bug to detect
 
@@ -1175,6 +1173,8 @@ Conflict resolution and replication **[KEY]**
 - in replicated DB, the same data could be modified on different nodes. Lock or compare-and-set doesn't work here
 - allow conflict versions for the data, and use app code to resolve and merge the conflicts
 - if operations are commutative (excute in different orders can still get to the same result), DB can auto merge the changes to prevent lost update
+
+**[HERE]**: **[KEY]**
 
 Write Skew and Phantoms
 
