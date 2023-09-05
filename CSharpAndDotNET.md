@@ -833,7 +833,7 @@ FlowLayoutPanel: arranges its contents in a horizontal or vertical flow directio
 
 [Newtonsoft.Json.Schema](https://www.newtonsoft.com/jsonschema/help/html/LoadingSchemas.htm)
 
-## RPC client
+## gRPC
 
 <https://learn.microsoft.com/en-us/aspnet/core/tutorials/grpc/grpc-start?view=aspnetcore-6.0&tabs=visual-studio>
 
@@ -842,6 +842,8 @@ FlowLayoutPanel: arranges its contents in a horizontal or vertical flow directio
 <https://github.com/grpc/grpc-dotnet/tree/master/examples#mailer>
 
 <https://learn.microsoft.com/en-us/windows/win32/rpc/rpc-start-page>
+
+<https://learn.microsoft.com/en-us/aspnet/core/grpc/authn-and-authz?view=aspnetcore-6.0>
 
 ## Open Telemetry
 
@@ -1302,3 +1304,7 @@ It is under `C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.6.
 ### Transitive dependency
 
 <https://devblogs.microsoft.com/nuget/introducing-transitive-dependencies-in-visual-studio/#:~:text=There%20is%20now%20a%20new,level%20dependency%20at%20any%20time.>
+
+### Top Level Statement
+
+<https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/tutorials/top-level-statements>
