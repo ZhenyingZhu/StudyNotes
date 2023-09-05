@@ -1183,8 +1183,6 @@ Write Skew and Phantoms
 - pattern: a `SELECT` query check some requirements, then the app code decides whether to make a write. The write changes the pre-condition.
 - phantom: a write in one transaction changes the result of a search query in another transaction **[KEY]**
 
-**[HERE]**: **[KEY]**
-
 Materializing conflicts
 
 - artificially introduce locks for non-exist rows **[KEY]**
@@ -1212,7 +1210,7 @@ Actual Serial Execution
 
 Encapsulating transactions in stored procedures
 
-- to avoid a  transaction be idle when wait for human actions, normally let a transaction committed within a same HTTP request
+- to avoid a transaction be idle when wait for human actions, normally let a transaction committed within a same HTTP request
 - transactions normally are interactive style: app client query something, and use the result to decide what to do next. There are network delay between app and DB. The throughput would be dreadful if execute transactions one by one
 - single-threaded serial transaction processing don’t allow interactive multi-statement transactions **[KEY]**. App needs to submit the entire transaction code to DB as a stored proecdure
 
@@ -1222,6 +1220,8 @@ Pros and cons of stored procedures
 - hard to debug. No version control, no metrics
 - a bad stored procedure could impact all apps accessing the DB
 - to overcome the cons, modern DBs use Java or other standard langs
+
+**[HERE]**: **[KEY]**
 
 Partitioning **[KEY]**
 
