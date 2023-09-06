@@ -1221,8 +1221,6 @@ Pros and cons of stored procedures
 - a bad stored procedure could impact all apps accessing the DB
 - to overcome the cons, modern DBs use Java or other standard langs
 
-**[HERE]**: **[KEY]**
-
 Partitioning **[KEY]**
 
 - Since single-thread transaction processing only use single CPU core, to avoid waste resource, read-only transactions can be execute somewhere else use snapshot isolation
@@ -1254,6 +1252,8 @@ Performance of two-phase locking
 - transaction throughput and response time of quries are much worse than weak isolation
 - performance degrade due to wait time for acquiring the lock. There could be a queue for transactions on an object. The latency could be unstable
 - if deadlocks are happening quite often, transactions would need to be aborted and retry all the works they have already done. Causing long latency for high percentile
+
+**[HERE]**: **[KEY]**
 
 Predicate locks
 
