@@ -1253,8 +1253,6 @@ Performance of two-phase locking
 - performance degrade due to wait time for acquiring the lock. There could be a queue for transactions on an object. The latency could be unstable
 - if deadlocks are happening quite often, transactions would need to be aborted and retry all the works they have already done. Causing long latency for high percentile
 
-**[HERE]**: **[KEY]**
-
 Predicate locks
 
 - solve phantom problem
@@ -1272,6 +1270,8 @@ Index-range locks
 Serializable Snapshot Isolation (SSI) **[KEY]**
 
 - SSI provides full serializability but only small performance penalty.
+
+**[HERE]**: **[KEY]**
 
 Pessimistic versus optimistic concurrency control
 
