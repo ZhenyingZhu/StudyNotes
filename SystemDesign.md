@@ -1020,7 +1020,7 @@ Parallel Query Execution
 
 Review
 
-1. 8/20/2023
+1. 9/3/2023
 
 harsh reality of data systems **[KEY]**
 
@@ -1271,8 +1271,6 @@ Serializable Snapshot Isolation (SSI) **[KEY]**
 
 - SSI provides full serializability but only small performance penalty.
 
-**[HERE]**: **[KEY]**
-
 Pessimistic versus optimistic concurrency control
 
 - 2PL is pessimistic concurrency control mechanism: if anything might go wrong, wait until safe again
@@ -1285,7 +1283,7 @@ Pessimistic versus optimistic concurrency control
 
 Decisions based on an outdated premise
 
-- phantom transaction takes action based on a premise that is not longer true when commit **[KEY]**
+- phantom transaction takes action based on a premise that is no longer true when commit **[KEY]**
 - DB assumes if a transaction makes a query, when the premise changes, writes in the transaction are invalid and the transaction needs to abort
 - two cases when a query result could be changed **[KEY]**
   - Detecting reads of a stale MVCC object version (uncommitted write occurred before the read)
@@ -1313,6 +1311,12 @@ Summary
 - **TODO**: a good summary, better to revisit
 
 #### Chapter 8. The Trouble with Distributed Systems
+
+**[HERE]**: **[KEY]**
+
+Review
+
+1. 9/11/2023
 
 things that may go wrong in a distributed system
 
