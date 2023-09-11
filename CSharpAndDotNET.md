@@ -1308,3 +1308,5 @@ It is under `C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.6.
 ### Top Level Statement
 
 <https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/tutorials/top-level-statements>
+
+Define a namespace: <https://learn.microsoft.com/en-us/aspnet/core/fundamentals/apis?view=aspnetcore-6.0>

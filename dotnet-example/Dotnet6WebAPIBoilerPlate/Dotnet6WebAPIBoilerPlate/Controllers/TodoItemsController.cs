@@ -88,6 +88,21 @@ namespace Dotnet6WebAPIBoilerPlate.Controllers
             return CreatedAtAction("GetTodoItem", new { id = todoItem.Id }, todoItem);
         }
 
+        // POST: api/TodoItems
+        [HttpPost]
+        [Route("api/[controller]/default")]
+        public async Task<ActionResult<TodoItem>> PostTodoItem()
+        {
+            TodoItem todoItem = new()
+            {
+                Name = "Created by default template",
+            };
+            _context.TodoItem.Add(todoItem);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("GetTodoItem", new { id = todoItem.Id }, todoItem);
+        }
+
         // DELETE: api/TodoItems/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteTodoItem(long id)
