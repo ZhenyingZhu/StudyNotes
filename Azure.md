@@ -1073,3 +1073,8 @@ Should not check in pfx.
 The old nuget Microsoft.Azure.Management.Fluent is replaced by [Azure.ResourceManager](https://learn.microsoft.com/en-us/dotnet/azure/sdk/resource-management?tabs=PowerShell) and [Azure.Identity](https://learn.microsoft.com/en-us/dotnet/api/overview/azure/identity-readme?view=azure-dotnet).
 
 The AzureCredentials is managed by the AzureCredentialsFactory.FromServicePrincipal().
+
+### DNS
+
+- <https://learn.microsoft.com/en-us/azure/dns/dns-zones-records>
+- <https://learn.microsoft.com/en-us/powershell/module/dnsserver/get-dnsserverzone?view=windowsserver2022-ps>
