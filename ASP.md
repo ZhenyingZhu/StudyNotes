@@ -2039,6 +2039,8 @@ Restart VS in admin mode to connect to IIS.
 
 Choose `Web Deploy`, Server is localhost, Site name is dutchtreat, URL is `http://localhost:81`.
 
+<https://computingforgeeks.com/install-and-configure-iis-web-server-on-windows-server/#:~:text=Configure%20IIS%20Web%20Server%20on%20Windows%20Server%202019,the%20Web%20Server%20is%20running%20...%20More%20items>
+
 ### Publishing Using the CLI
 
 `dotnet build`, `dotnet run`, `dotnet publish`.
