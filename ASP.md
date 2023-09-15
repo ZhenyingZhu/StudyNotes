@@ -2041,6 +2041,8 @@ Choose `Web Deploy`, Server is localhost, Site name is dutchtreat, URL is `http:
 
 <https://computingforgeeks.com/install-and-configure-iis-web-server-on-windows-server/#:~:text=Configure%20IIS%20Web%20Server%20on%20Windows%20Server%202019,the%20Web%20Server%20is%20running%20...%20More%20items>
 
+<https://learn.microsoft.com/en-us/iis/get-started/planning-your-iis-architecture/understanding-sites-applications-and-virtual-directories-on-iis>
+
 ### Publishing Using the CLI
 
 `dotnet build`, `dotnet run`, `dotnet publish`.
