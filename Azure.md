@@ -1078,3 +1078,4 @@ The AzureCredentials is managed by the AzureCredentialsFactory.FromServicePrinci
 
 - <https://learn.microsoft.com/en-us/azure/dns/dns-zones-records>
 - <https://learn.microsoft.com/en-us/powershell/module/dnsserver/get-dnsserverzone?view=windowsserver2022-ps>
+- <https://learn.microsoft.com/en-us/windows-server/networking/dns/manage-dns-zones?tabs=powershell>
