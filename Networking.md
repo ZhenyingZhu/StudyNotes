@@ -130,7 +130,7 @@ Payload field.
 
 #### Chapter 1 Exercise
 
-Problem 16: traceroute -q 20 www.eurecom.fr
+Problem 16: `traceroute -q 20 www.eurecom.fr`
 
 Ethereal/ Wireshark: packet sniffer.
 
@@ -163,7 +163,7 @@ Application architecture:
 - SSL: TCP with security.
 - UDP: no connection, not reliable,
 - APP protocols.
-- IP address and port: to find process. www.iana.org
+- IP address and port: to find process. `www.iana.org`
 
 ##### 2.1.5
 
@@ -371,7 +371,7 @@ Segment
 - Demultiplexing: find the right socket.
 - Multiplexing: generate the head.
 - Port: 16 bit.
-- Well-known port: 0~1023. RFC 1700 and www.iana.org.
+- Well-known port: 0~1023. RFC 1700 and `www.iana.org`.
 - Source port is also include in the TCP segment to receive response.
 - UDP send two packets come from different source to one socket if they have same destination.
 - TCP send two packets to different sockets if they have different source.
@@ -749,3 +749,5 @@ Fiddler decrept HTTPS traffic:
 [Setting two routers](https://www.lifewire.com/connect-routers-on-a-home-network-818060)
 
 linux ephemeral ips
+
+[Route table](https://www.howtogeek.com/22/adding-a-tcpip-route-to-the-windows-routing-table/)
