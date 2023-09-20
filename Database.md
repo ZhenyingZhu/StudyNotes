@@ -163,6 +163,10 @@ Affinity Type:
 
 [SQLite Browser](http://sqlitebrowser.org/)
 
+## SQL
+
+`SELECT * FROM <table> WHERE Date > '2003-9-19'`
+
 ## miscellaneous
 
 [Schema vs Database](https://stackoverflow.com/questions/11618277/difference-between-schema-database-in-mysql)
