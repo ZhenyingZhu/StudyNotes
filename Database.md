@@ -167,6 +167,10 @@ Affinity Type:
 
 `SELECT * FROM <table> WHERE Date > '2003-9-19'`
 
+<https://www.w3schools.com/sql/sql_create_index.asp>
+
+- `CREATE INDEX index_name ON table_name (column1, column2, ...);`
+
 ## miscellaneous
 
 [Schema vs Database](https://stackoverflow.com/questions/11618277/difference-between-schema-database-in-mysql)
