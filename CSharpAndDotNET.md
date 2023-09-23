@@ -859,6 +859,15 @@ FlowLayoutPanel: arranges its contents in a horizontal or vertical flow directio
 - Support for .NET Standard 2.0
 - Garbage collection performance improvements
 
+### .NET Framework migration
+
+Changes to make
+
+- Target Framework version
+- Assembly Reference path
+- BindingRedirect
+- app/web Config File
+
 To upgrade, can use the upgrade assistant:
 
 - <https://devblogs.microsoft.com/dotnet/upgrade-assistant-now-in-visual-studio/>
