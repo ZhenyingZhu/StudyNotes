@@ -872,6 +872,7 @@ To upgrade, can use the upgrade assistant:
 
 - <https://devblogs.microsoft.com/dotnet/upgrade-assistant-now-in-visual-studio/>
 - <https://learn.microsoft.com/en-us/dotnet/core/porting/>
+- for project dependencies, need to start from the top layer
 
 ## Miscellaneous
 
