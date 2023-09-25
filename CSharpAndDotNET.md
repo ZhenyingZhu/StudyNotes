@@ -871,8 +871,9 @@ Changes to make
 To upgrade, can use the upgrade assistant:
 
 - <https://devblogs.microsoft.com/dotnet/upgrade-assistant-now-in-visual-studio/>
+  - ASP.NET from .NET Framework only support side-by-side incremental.
 - <https://learn.microsoft.com/en-us/dotnet/core/porting/>
-- for project dependencies, need to start from the top layer
+- for project dependencies, need to start from the top layer.
 
 ## Miscellaneous
 
