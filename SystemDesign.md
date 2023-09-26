@@ -3621,6 +3621,7 @@ Kafka
   - message is ordered in memory and stored on disk. Timestamp is stored in message
   - Offsets on a broker can be binary searched to get
   - Broker backup: Primary sync each message to slave
+- Consumer group
 
 Calendar
 
