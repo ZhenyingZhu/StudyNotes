@@ -221,6 +221,12 @@ Python system env needs
 
 Pull the files to desktop `adb pull /sdcard/Movies .`
 
+```powershell
+adb devices
+adb reboot bootloader
+fastboot oem unlock
+```
+
 ## Change cell phone resolution
 
 Show the current resolution: `adb shell dumpsys display`
