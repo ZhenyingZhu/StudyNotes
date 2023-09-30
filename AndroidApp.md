@@ -225,6 +225,9 @@ Pull the files to desktop `adb pull /sdcard/Movies .`
 adb devices
 adb reboot bootloader
 fastboot oem unlock
+fastboot flash recovery recovery.img
+fastboot flash boot boot.img
+fastboot reboot bootloader
 ```
 
 ## Change cell phone resolution
