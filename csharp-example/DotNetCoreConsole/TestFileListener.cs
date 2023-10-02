@@ -11,7 +11,7 @@ namespace DotNetCoreConsole
     {
         private const int RetryCount = 3;
 
-        private static bool ShouldStop = false;
+        // private static bool ShouldStop = false;
 
         public static void TestMain()
         {

@@ -13,7 +13,7 @@ namespace DotNetCoreConsole
         public static void TestMain()
         {
             // https://stackoverflow.com/questions/11654562/how-to-convert-byte-array-to-string
-            byte[] barray;
+            // byte[] barray;
         }
     }
 }
