@@ -1079,3 +1079,17 @@ The AzureCredentials is managed by the AzureCredentialsFactory.FromServicePrinci
 - <https://learn.microsoft.com/en-us/azure/dns/dns-zones-records>
 - <https://learn.microsoft.com/en-us/powershell/module/dnsserver/get-dnsserverzone?view=windowsserver2022-ps>
 - <https://learn.microsoft.com/en-us/windows-server/networking/dns/manage-dns-zones?tabs=powershell>
+
+### Acquire token
+
+```
+string uriString = "<service uri>";
+
+AADAuthURI = "https://login.microsoftonline.com/microsoft.com";
+AuthenticationContext authContext = new AuthenticationContext(AADAuthURI);
+ClientCredential applicationCredentials = new ClientCredential(clientAppID, appSecret);
+AuthenticationResult result = authContext.AcquireTokenAsync(uriString, applicationCredentials).GetAwaiter().GetResult();
+
+WebRequest request = WebRequest.Create(new Uri(uriString));
+request.Headers.Set(HttpRequestHeader.Authorization, string.Format(CultureInfo.InvariantCulture, "{0} {1}", "Bearer", bearerToken));
+```
