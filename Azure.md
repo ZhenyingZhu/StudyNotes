@@ -1082,7 +1082,7 @@ The AzureCredentials is managed by the AzureCredentialsFactory.FromServicePrinci
 
 ### Acquire token
 
-```
+```powershell
 string uriString = "<service uri>";
 
 AADAuthURI = "https://login.microsoftonline.com/microsoft.com";
