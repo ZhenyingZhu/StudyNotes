@@ -171,6 +171,14 @@ Affinity Type:
 
 - `CREATE INDEX index_name ON table_name (column1, column2, ...);`
 
+```sql
+SELECT TOP (1000) stats.last_execution_time AS Time, sqltext.TEXT AS "Query Text"
+FROM sys.dm_exec_query_stats AS stats
+CROSS APPLY sys.dm_exec_sql_text(stats.sql_handle) AS sqltext
+WHERE sqltext.TEXT LIKE '%<sql>%'
+ORDER BY stats.last_execution_time DESC
+```
+
 ## miscellaneous
 
 [Schema vs Database](https://stackoverflow.com/questions/11618277/difference-between-schema-database-in-mysql)
