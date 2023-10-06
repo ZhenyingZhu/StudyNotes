@@ -1080,6 +1080,10 @@ The AzureCredentials is managed by the AzureCredentialsFactory.FromServicePrinci
 - <https://learn.microsoft.com/en-us/powershell/module/dnsserver/get-dnsserverzone?view=windowsserver2022-ps>
 - <https://learn.microsoft.com/en-us/windows-server/networking/dns/manage-dns-zones?tabs=powershell>
 
+### DHCP
+
+- <https://www.linkedin.com/advice/0/how-do-you-disable-dhcp-network-interface#:~:text=You%20can%20do%20this%20by,DHCP%20on%2C%20and%20select%20Properties.>
+
 ### Acquire token
 
 ```C#
