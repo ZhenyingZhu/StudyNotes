@@ -1312,11 +1312,9 @@ Summary
 
 #### Chapter 8. The Trouble with Distributed Systems
 
-**[HERE]**: **[KEY]**
-
 Review
 
-1. 9/11/2023
+1. 10/06/2023
 
 things that may go wrong in a distributed system
 
@@ -1325,11 +1323,13 @@ things that may go wrong in a distributed system
 
 Faults and Partial Failures
 
-- single machine hardward problems can cause kernel panic
+- single machine hardware problems can cause kernel panic
 - good software either fully functional or entirely broken
 - distributed system has a wide range of things can go wrong
 - Datacenter backbone: A backbone connects local area networks (LAN) to wide area networks (WAN)
 - partial failures are nondeterministic but will happen
+
+**[HERE]**: **[KEY]**
 
 Cloud Computing and Supercomputing
 
