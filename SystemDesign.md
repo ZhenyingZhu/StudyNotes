@@ -1329,8 +1329,6 @@ Faults and Partial Failures
 - Datacenter backbone: A backbone connects local area networks (LAN) to wide area networks (WAN)
 - partial failures are nondeterministic but will happen
 
-**[HERE]**: **[KEY]**
-
 Cloud Computing and Supercomputing
 
 - high-performance computing (HPC) vs. cloud computing
@@ -1354,6 +1352,8 @@ Unreliable Networks
   - the response lost due to a network switch misconfigured
   - response delayed due to network congestion
 - timeout is the usual way to handle such issues **[KEY]**
+
+**[HERE]**: **[KEY]**
 
 Network Faults in Practice
 
