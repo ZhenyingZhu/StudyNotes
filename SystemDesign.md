@@ -1353,8 +1353,6 @@ Unreliable Networks
   - response delayed due to network congestion
 - timeout is the usual way to handle such issues **[KEY]**
 
-**[HERE]**: **[KEY]**
-
 Network Faults in Practice
 
 - adding redundant networking gear doesn’t reduce faults since it doesn’t guard against human error
@@ -1375,6 +1373,8 @@ Detecting Faults
 - negative feedback can help quicker fail over, but cannot be rely on it to detect faults. should assume no response at call when failure occurs **[KEY]**
 - to make sure a request is successful, need a positive response **[KEY]**
 - TCP retries automatically, app can also retry, until timeout
+
+**[HERE]**: **[KEY]**
 
 Timeouts and Unbounded Delays
 
