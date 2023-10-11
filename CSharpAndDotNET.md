@@ -1330,3 +1330,8 @@ Define a namespace: <https://learn.microsoft.com/en-us/aspnet/core/fundamentals/
 ### Powershell
 
 <https://stackoverflow.com/questions/34398023/get-powershell-commands-output-when-invoked-through-code>
+
+### Microsoft.Office.Interop
+
+- Import COM <https://stackoverflow.com/questions/19543279/microsoft-office-interop-excel-reference-cannot-be-found>
+- Excel R/W data <https://stackoverflow.com/questions/68666728/c-sharp-com-interop-excel-how-to-write-to-cells-from-c-sharp-using-interop-exce>
