@@ -1374,8 +1374,6 @@ Detecting Faults
 - to make sure a request is successful, need a positive response **[KEY]**
 - TCP retries automatically, app can also retry, until timeout
 
-**[HERE]**: **[KEY]**
-
 Timeouts and Unbounded Delays
 
 - if the timeout is too short, the node treated as dead might just processing some actions. If another node taken over, the actions might be processed twice **[KEY]**
@@ -1388,10 +1386,12 @@ Network congestion and queueing
 - virtual machine needs wait for the CPU cycle so it could increase the network delay
 - TCP performs flow control(i.e., congestion avoidance/backpressure) **[KEY]**: a node can limit its sending rate. There is a queue on the sender
 - If TCP doesn't get ack within a timeout (round trip time), it would retransmit and increase the delay **[KEY]**
-- if a packet loss is worthless, can use UDP that doesn't have flow conntrol
+- if a packet loss is worthless, can use UDP that doesn't have flow control
 - a noisy neighbor **[KEY]** can used up shared resources like network links and switches
-- can measure data points before setting out the timeout
+- can measure data points before setting the timeout
 - systems can continually measure response times and their variability (jitter), and automatically adjust timeouts **[KEY]**
+
+**[HERE]**: **[KEY]**
 
 Synchronous Versus Asynchronous Networks
 
