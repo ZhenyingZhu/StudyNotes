@@ -1335,3 +1335,7 @@ Define a namespace: <https://learn.microsoft.com/en-us/aspnet/core/fundamentals/
 
 - Import COM <https://stackoverflow.com/questions/19543279/microsoft-office-interop-excel-reference-cannot-be-found>
 - Excel R/W data <https://stackoverflow.com/questions/68666728/c-sharp-com-interop-excel-how-to-write-to-cells-from-c-sharp-using-interop-exce>
+
+If use admin permission to start excel, the autosave function is not working.
+
+- <https://stackoverflow.com/questions/2476070/how-to-specify-the-user-in-a-c-sharp-thread>
