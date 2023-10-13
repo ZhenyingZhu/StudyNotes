@@ -81,3 +81,15 @@ git stuck at auto packing the repository for optimum performance
 [Getting Git To Remember Your Username and Password](https://xp-dev.com/docs/user-guide/repositories/remember-username-password.html#:~:text=To%20get%20your%20Git%20client%20to%20remember%20your,you%20can%20do%20so%20by%20specifying%20a%20--timeout%3D%3A): not natively working on windows
 
 [Error fatal: credential-cache unavailable; no Unix socket support](https://stackoverflow.com/questions/67951554/error-fatal-credential-cache-unavailable-no-unix-socket-support)
+
+## Git RPC failure
+
+Error message:
+
+```powershell
+error: RPC failed; curl 56 HTTP/2 stream 7 was reset
+send-pack: unexpected disconnect while reading sideband packet
+fatal: the remote end hung up unexpectedly
+```
+
+Fix: <https://gist.github.com/daopk/0a95772d582cafb202142ff7871da2fc>
