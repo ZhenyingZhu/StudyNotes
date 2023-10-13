@@ -1391,8 +1391,6 @@ Network congestion and queueing
 - can measure data points before setting the timeout
 - systems can continually measure response times and their variability (jitter), and automatically adjust timeouts **[KEY]**
 
-**[HERE]**: **[KEY]**
-
 Synchronous Versus Asynchronous Networks
 
 - fixed line telephone network: a fixed, guaranteed amount of bandwidth is allocated. It is synchronous. It has bounded delay.
@@ -1403,6 +1401,8 @@ Can we not simply make network delays predictable?
 - ATM has hybrid network supports both circuit and packet switching **[KEY]**
 - Use quality of service (QoS, prioritization and scheduling of packets) and admission control (rate-limiting senders), can provide statistically bounded delay, but it is not used in multi-tenant DCs and public clouds
 - guaranteed latency vs. resource utilization is the key difference
+
+**[HERE]**: **[KEY]**
 
 Unreliable Clocks
 
