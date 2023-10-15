@@ -1402,8 +1402,6 @@ Can we not simply make network delays predictable?
 - Use quality of service (QoS, prioritization and scheduling of packets) and admission control (rate-limiting senders), can provide statistically bounded delay, but it is not used in multi-tenant DCs and public clouds
 - guaranteed latency vs. resource utilization is the key difference
 
-**[HERE]**: **[KEY]**
-
 Unreliable Clocks
 
 - In a distributed system, time is used to determine the order of requests/responses
@@ -1433,6 +1431,8 @@ Relying on Synchronized Clocks
 - robust software needs to be prepared to deal with incorrect clocks
 - clock issue is hard to detect and the system could have subtle data loss
 - need to carefully monitor the clock offsets between all the machines
+
+**[HERE]**: **[KEY]**
 
 Timestamps for ordering events
 
