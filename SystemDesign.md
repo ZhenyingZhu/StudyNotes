@@ -1432,8 +1432,6 @@ Relying on Synchronized Clocks
 - clock issue is hard to detect and the system could have subtle data loss
 - need to carefully monitor the clock offsets between all the machines
 
-**[HERE]**: **[KEY]**
-
 Timestamps for ordering events
 
 - multi-leader replication use the time-of-day on the node to determine where the write is originated
@@ -1453,6 +1451,8 @@ Synchronized clocks for global snapshots
 - since generating global transaction id needs coordinate across machines, it could be the bottleneck of the performance
 - Use google TrueTime API **[KEY]**, which returns the timestamp with a confident internal range, to get more accurate timestamps, and use them as the transaction ids
 - But timestamp ranges can overlap with each other and cause the order cannot be determined. So the DB needs to let read-write commits always after the confidence interval **[KEY]**
+
+**[HERE]**: **[KEY]**
 
 Process Pauses
 
