@@ -1452,8 +1452,6 @@ Synchronized clocks for global snapshots
 - Use google TrueTime API **[KEY]**, which returns the timestamp with a confident internal range, to get more accurate timestamps, and use them as the transaction ids
 - But timestamp ranges can overlap with each other and cause the order cannot be determined. So the DB needs to let read-write commits always after the confidence interval **[KEY]**
 
-**[HERE]**: **[KEY]**
-
 Process Pauses
 
 - In a single leader replication topology, how to determine which replica is the leader:
@@ -1469,6 +1467,8 @@ Process Pauses
     - Unix process can be stopped when it received `SIGSTOP` until `SIGCONT`
 - Get thread-safe on a single machine **[KEY]**: use mutexes, semaphores, atomic counters, lock-free data structures, blocking queues, etc.
 - distributed system doesn't have shared memory so those methods are not there. Distributed systems rely on messages send over unreliable network. So pause can happen any time while others still running. The paused node might wake up and not know it was asleep **[KEY]**
+
+**[HERE]**: **[KEY]**
 
 Response time guarantees
 
