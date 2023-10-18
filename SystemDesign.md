@@ -1468,13 +1468,13 @@ Process Pauses
 - Get thread-safe on a single machine **[KEY]**: use mutexes, semaphores, atomic counters, lock-free data structures, blocking queues, etc.
 - distributed system doesn't have shared memory so those methods are not there. Distributed systems rely on messages send over unreliable network. So pause can happen any time while others still running. The paused node might wake up and not know it was asleep **[KEY]**
 
-**[HERE]**: **[KEY]**
-
 Response time guarantees
 
 - hard real-time systems: carefully designed and tested to meet specified timing guarantees in all circumstances
 - real-time operating system (RTOS) **[KEY]**: allows processes to be scheduled with a guaranteed allocation of CPU time in specified intervals; lib functions doc their worst case exectuion times; dynamic memory allocation restricted
 - such system may has low throughput
+
+**[HERE]**: **[KEY]**
 
 Limiting the impact of garbage collection
 
