@@ -1474,13 +1474,13 @@ Response time guarantees
 - real-time operating system (RTOS) **[KEY]**: allows processes to be scheduled with a guaranteed allocation of CPU time in specified intervals; lib functions doc their worst case exectuion times; dynamic memory allocation restricted
 - such system may has low throughput
 
-**[HERE]**: **[KEY]**
-
 Limiting the impact of garbage collection
 
 - process pause can be mitigated without using RTOS
 - treat GC pause as a brief planned outage of a node **[KEY]**. let other nodes handle requests during the time. runtime needs to warn the app that it will do a GC soon
 - another idea, let GC only run for short lived objects that are fast to collect. Restart process periodically to avoid a full GC for long lived objects **[KEY]**. Other nodes handle requests like a rolling upgrade
+
+**[HERE]**: **[KEY]**
 
 Knowledge, Truth, and Lies
 
