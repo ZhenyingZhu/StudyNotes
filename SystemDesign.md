@@ -1480,8 +1480,6 @@ Limiting the impact of garbage collection
 - treat GC pause as a brief planned outage of a node **[KEY]**. let other nodes handle requests during the time. runtime needs to warn the app that it will do a GC soon
 - another idea, let GC only run for short lived objects that are fast to collect. Restart process periodically to avoid a full GC for long lived objects **[KEY]**. Other nodes handle requests like a rolling upgrade
 
-**[HERE]**: **[KEY]**
-
 Knowledge, Truth, and Lies
 
 - a node can only make guesses based on the messages it receives or doesn’t receive, but not for sure
@@ -1500,6 +1498,8 @@ The leader and the lock
 
 - uniq in distributed system needs to be agreed by a quorum of nodes **[KEY]**
 - a client gets a lock from a lock system, but before it writes the data, the process paused and lease expired. So when it start writes, other clients might get the lock **[KEY]**
+
+**[HERE]**: **[KEY]**
 
 Fencing tokens **[KEY]**
 
