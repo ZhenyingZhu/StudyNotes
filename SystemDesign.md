@@ -1499,8 +1499,6 @@ The leader and the lock
 - uniq in distributed system needs to be agreed by a quorum of nodes **[KEY]**
 - a client gets a lock from a lock system, but before it writes the data, the process paused and lease expired. So when it start writes, other clients might get the lock **[KEY]**
 
-**[HERE]**: **[KEY]**
-
 Fencing tokens **[KEY]**
 
 - when accquire a lock, it also returns a fencing token, which is a self-increasing number
@@ -1564,6 +1562,8 @@ Summary
 - some node can be still running but not healthy
 
 #### Chapter 9. Consistency and Consensus
+
+**[HERE]**: **[KEY]**
 
 tolerating faults: keeping the service functioning correctly, even if some internal component is faulty
 
