@@ -1097,3 +1097,7 @@ AuthenticationResult result = authContext.AcquireTokenAsync(uriString, applicati
 WebRequest request = WebRequest.Create(new Uri(uriString));
 request.Headers.Set(HttpRequestHeader.Authorization, string.Format(CultureInfo.InvariantCulture, "{0} {1}", "Bearer", bearerToken));
 ```
+
+## Azure Resource Manager
+
+<https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/resourcemanager/Azure.ResourceManager/docs/MigrationGuide.md>
