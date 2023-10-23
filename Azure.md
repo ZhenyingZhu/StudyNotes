@@ -1101,3 +1101,7 @@ request.Headers.Set(HttpRequestHeader.Authorization, string.Format(CultureInfo.I
 ## Azure Resource Manager
 
 <https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/resourcemanager/Azure.ResourceManager/docs/MigrationGuide.md>
+
+Microsoft.Azure.Management.Compute
+
+- <https://stackoverflow.com/questions/35228042/how-to-create-serviceclientcredential-to-be-used-with-microsoft-azure-management>
