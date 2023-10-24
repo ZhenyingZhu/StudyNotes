@@ -1339,3 +1339,9 @@ Define a namespace: <https://learn.microsoft.com/en-us/aspnet/core/fundamentals/
 If use admin permission to start excel, the autosave function is not working.
 
 - <https://stackoverflow.com/questions/2476070/how-to-specify-the-user-in-a-c-sharp-thread>
+
+### Build Warnings
+
+DLL conflicts: <https://learn.microsoft.com/en-us/visualstudio/msbuild/errors/msb3277?view=vs-2022>
+
+Suppress build warning: <https://stackoverflow.com/questions/49564022/suppressing-warnings-for-solution>
