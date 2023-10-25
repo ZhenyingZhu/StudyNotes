@@ -1345,3 +1345,5 @@ If use admin permission to start excel, the autosave function is not working.
 DLL conflicts: <https://learn.microsoft.com/en-us/visualstudio/msbuild/errors/msb3277?view=vs-2022>
 
 Suppress build warning: <https://stackoverflow.com/questions/49564022/suppressing-warnings-for-solution>
+
+The dotnet restore might fail when see nuget version downgrade.
