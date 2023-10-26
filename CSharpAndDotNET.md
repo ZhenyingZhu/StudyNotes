@@ -786,6 +786,8 @@ TryGetValue can test if key exist or not.
 
 <https://docs.microsoft.com/en-us/nuget/hosting-packages/local-feeds>
 
+Use NuSpec to create a nuget package: <https://stackoverflow.com/questions/40628116/how-to-specify-configuration-specific-folder-in-nuspec>
+
 ### CxCache
 
 It is folder to hold dependency packages. Maybe is related to <https://www.nuget.org/packages/xCache/> ?
