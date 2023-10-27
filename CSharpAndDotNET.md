@@ -1349,3 +1349,5 @@ DLL conflicts: <https://learn.microsoft.com/en-us/visualstudio/msbuild/errors/ms
 Suppress build warning: <https://stackoverflow.com/questions/49564022/suppressing-warnings-for-solution>
 
 The dotnet restore might fail when see nuget version downgrade.
+
+The target framework version in the nuget package also matters because otherwise it will throw exception saying dll not found.
