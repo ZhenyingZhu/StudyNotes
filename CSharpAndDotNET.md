@@ -1351,3 +1351,5 @@ Suppress build warning: <https://stackoverflow.com/questions/49564022/suppressin
 The dotnet restore might fail when see nuget version downgrade.
 
 The target framework version in the nuget package also matters because otherwise it will throw exception saying dll not found.
+
+Open binding redirect log: <https://stackoverflow.com/questions/255669/how-to-enable-assembly-bind-failure-logging-fusion-in-net>
