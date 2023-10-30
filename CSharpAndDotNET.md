@@ -1355,3 +1355,5 @@ The target framework version in the nuget package also matters because otherwise
 Open binding redirect log: <https://stackoverflow.com/questions/255669/how-to-enable-assembly-bind-failure-logging-fusion-in-net>
 
 ildasm
+
+Assembly version vs. nuget package version.
