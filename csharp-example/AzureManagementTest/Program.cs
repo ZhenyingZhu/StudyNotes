@@ -8,7 +8,11 @@ Console.WriteLine("Hello, World!");
 
 // Follow https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/identity/Azure.Identity/README.md#authenticate-via-visual-studio-code
 // Use Azure Account extension to sign in.
-ArmClient client = new ArmClient(new DefaultAzureCredential());
+ArmClient client = new ArmClient(new DefaultAzureCredential(true));
+
+SubscriptionCollection subscriptions = client.GetSubscriptions();
+SubscriptionResource sub = subscriptions.FirstOrDefault();
+
 SubscriptionResource subscription = client.GetDefaultSubscription();
 
 var resourceGroup = subscription.GetResourceGroup("WinServer2022VM");
