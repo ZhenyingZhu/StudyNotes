@@ -8,6 +8,7 @@ Console.WriteLine("Hello, World!");
 
 // Follow https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/identity/Azure.Identity/README.md#authenticate-via-visual-studio-code
 // Use Azure Account extension to sign in.
+// Seems like need to set env vars.
 ArmClient client = new ArmClient(new DefaultAzureCredential(true));
 
 SubscriptionCollection subscriptions = client.GetSubscriptions();
