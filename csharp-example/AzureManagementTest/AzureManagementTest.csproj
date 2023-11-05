@@ -8,9 +8,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Azure.Identity" Version="1.9.0" />
-    <PackageReference Include="Azure.ResourceManager" Version="1.7.0" />
-    <PackageReference Include="Azure.ResourceManager.Compute" Version="1.1.0" />
+    <PackageReference Include="Azure.Identity" Version="1.10.3" />
+    <PackageReference Include="Azure.ResourceManager" Version="1.8.0" />
+    <PackageReference Include="Azure.ResourceManager.Compute" Version="1.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="7.0.1" />
   </ItemGroup>
 
 </Project>
