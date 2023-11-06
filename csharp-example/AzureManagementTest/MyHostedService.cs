@@ -1,54 +1,43 @@
 ﻿namespace AzureManagementTest
 {
-    using Microsoft.Extensions.Hosting;
-    using Microsoft.Extensions.Logging;
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
     using System.Threading;
     using System.Threading.Tasks;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.Hosting;
+    using Microsoft.Extensions.Logging;
 
     internal sealed class MyHostedService : IHostedService
     {
         private readonly ILogger _logger;
+        private readonly IConfiguration _config;
+        private readonly AzureClient _client;
 
-        public MyHostedService(ILogger<MyHostedService> logger, IHostApplicationLifetime appLifetime)
+        public MyHostedService(ILogger<MyHostedService> logger, IConfiguration config, AzureClient azureClient)
         {
             _logger = logger;
+            _config = config;
+            _client = azureClient;
 
-            appLifetime.ApplicationStarted.Register(OnStarted);
-            appLifetime.ApplicationStopping.Register(OnStopping);
-            appLifetime.ApplicationStopped.Register(OnStopped);
+            _logger.LogInformation($"Resource Group Name: {_client.ResourceGroup.Data.Name}");
         }
 
         public Task StartAsync(CancellationToken cancellationToken)
         {
-            _logger.LogInformation("1. StartAsync has been called.");
+            _logger.LogInformation($"{this.GetType().Name} starts...");
 
             return Task.CompletedTask;
         }
 
         public Task StopAsync(CancellationToken cancellationToken)
         {
-            _logger.LogInformation("4. StopAsync has been called.");
+            _logger.LogInformation($"{this.GetType().Name} ends...");
 
             return Task.CompletedTask;
         }
 
-        private void OnStarted()
-        {
-            _logger.LogInformation("2. OnStarted has been called.");
-        }
-
-        private void OnStopping()
-        {
-            _logger.LogInformation("3. OnStopping has been called.");
-        }
-
-        private void OnStopped()
-        {
-            _logger.LogInformation("5. OnStopped has been called.");
-        }
     }
 }
