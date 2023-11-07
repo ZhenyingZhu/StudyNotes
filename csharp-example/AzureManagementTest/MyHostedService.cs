@@ -22,7 +22,7 @@
             _config = config;
             _client = azureClient;
 
-            _logger.LogInformation($"Resource Group Name: {_client.ResourceGroup.Data.Name}");
+            _logger.LogInformation($"Resource Group Name: {_client.ResourceGroup?.Data.Name}");
         }
 
         public Task StartAsync(CancellationToken cancellationToken)

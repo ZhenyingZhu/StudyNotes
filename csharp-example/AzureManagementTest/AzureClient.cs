@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
+    using System.Threading;
     using System.Threading.Tasks;
     using Azure;
     using Azure.Core;
@@ -18,16 +19,16 @@
         private readonly ILogger _logger;
         private readonly IConfiguration _config;
 
-        internal ArmClient ArmClient { get; }
-        internal SubscriptionResource Subscription { get; }
-        internal ResourceGroupResource ResourceGroup { get; }
+        internal ArmClient? ArmClient { get; private set; }
+        internal SubscriptionResource? Subscription { get; private set; }
+        internal ResourceGroupResource? ResourceGroup { get; private set; }
 
         public AzureClient(ILogger<MyHostedService> logger, IConfiguration config)
         {
             _logger = logger;
             _config = config;
 
-            string? tenantId = _config.GetValue<string>(Constants.TenantIdKey);
+            string? tenantId = _config.GetSection("Settings").GetValue<string>(Constants.TenantIdKey);
             if (tenantId == null)
             {
                 throw new ApplicationException($"{Constants.TenantIdKey} not found in {Constants.ConfigFile}!");
@@ -42,18 +43,17 @@
             Subscription = ArmClient.GetDefaultSubscription();
 
             // https://learn.microsoft.com/en-us/dotnet/api/overview/azure/resourcemanager-readme?view=azure-dotnet
-            string? resourceGroupName = _config.GetValue<string>(Constants.ResourceGroupNameKey);
-            ResourceGroupResource resourceGroup = Subscription.GetResourceGroup(resourceGroupName);
-            if (resourceGroup == null)
+            string? resourceGroupName = _config.GetSection("Settings").GetValue<string>(Constants.ResourceGroupNameKey);
+            ResourceGroupCollection groups = Subscription.GetResourceGroups();
+            var response = groups.GetIfExists(resourceGroupName);
+            if (!response.HasValue)
             {
                 ResourceGroupData groupData = new ResourceGroupData(AzureLocation.WestUS);
-
-                ResourceGroupCollection groups = Subscription.GetResourceGroups();
                 ResourceGroup = groups.CreateOrUpdate(WaitUntil.Completed, resourceGroupName, groupData).Value;
             }
             else
             {
-                ResourceGroup = resourceGroup;
+                ResourceGroup = response.Value;
             }
         }
     }
