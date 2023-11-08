@@ -11,6 +11,7 @@
     using Azure.Identity;
     using Azure.ResourceManager;
     using Azure.ResourceManager.Resources;
+    using Azure.Security.KeyVault.Certificates;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.Logging;
 
@@ -22,6 +23,7 @@
         internal ArmClient? ArmClient { get; private set; }
         internal SubscriptionResource? Subscription { get; private set; }
         internal ResourceGroupResource? ResourceGroup { get; private set; }
+        internal CertificateClient? CertClient { get; private set; }
 
         public AzureClient(ILogger<MyHostedService> logger, IConfiguration config)
         {
@@ -42,6 +44,8 @@
 
             Subscription = ArmClient.GetDefaultSubscription();
 
+            _logger.LogInformation($"Use the subscription {tenantId}.");
+
             // https://learn.microsoft.com/en-us/dotnet/api/overview/azure/resourcemanager-readme?view=azure-dotnet
             string? resourceGroupName = _config.GetSection("Settings").GetValue<string>(Constants.ResourceGroupNameKey);
             ResourceGroupCollection groups = Subscription.GetResourceGroups();
@@ -55,6 +59,15 @@
             {
                 ResourceGroup = response.Value;
             }
+
+            _logger.LogInformation($"Use the resource group {resourceGroupName}.");
+
+            string keyVaultEndpoint = "";
+            Uri keyVaultUri = new Uri(keyVaultEndpoint);
+            CertClient = new CertificateClient(keyVaultUri ,new VisualStudioCredential(new VisualStudioCredentialOptions()
+            {
+                TenantId = tenantId
+            }));
         }
     }
 }
