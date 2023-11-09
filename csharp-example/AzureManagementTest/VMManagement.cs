@@ -9,11 +9,11 @@
 
     internal class VMManagement
     {
-        private ArmClient AzureClient;
+        private AzureClient AzureClient;
 
-        public VMManagement(ArmClient armClient)
+        public VMManagement(AzureClient azClient)
         {
-            this.AzureClient = armClient;
+            this.AzureClient = azClient;
         }
 
         public void CreateVM()

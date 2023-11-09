@@ -62,7 +62,7 @@
 
             _logger.LogInformation($"Use the resource group {resourceGroupName}.");
 
-            string keyVaultEndpoint = "";
+            string keyVaultEndpoint = "https://zhenyingkeyvault.vault.azure.net/";
             Uri keyVaultUri = new Uri(keyVaultEndpoint);
             CertClient = new CertificateClient(keyVaultUri ,new VisualStudioCredential(new VisualStudioCredentialOptions()
             {
