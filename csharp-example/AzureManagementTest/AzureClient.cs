@@ -12,6 +12,8 @@
     using Azure.ResourceManager;
     using Azure.ResourceManager.Resources;
     using Azure.Security.KeyVault.Certificates;
+    using Azure.Security.KeyVault.Keys;
+    using Azure.Security.KeyVault.Secrets;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.Logging;
 
@@ -24,6 +26,8 @@
         internal SubscriptionResource? Subscription { get; private set; }
         internal ResourceGroupResource? ResourceGroup { get; private set; }
         internal CertificateClient? CertClient { get; private set; }
+        internal KeyClient? KeyClient { get; private set; }
+        internal SecretClient? SecretClient { get; private set; }
 
         public AzureClient(ILogger<MyHostedService> logger, IConfiguration config)
         {
@@ -37,10 +41,11 @@
             }
 
             // https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/identity/Azure.Identity/README.md
-            ArmClient = new ArmClient(new VisualStudioCredential(new VisualStudioCredentialOptions()
+            var vsCreds = new VisualStudioCredential(new VisualStudioCredentialOptions()
             {
                 TenantId = tenantId
-            }));
+            });
+            ArmClient = new ArmClient(vsCreds);
 
             Subscription = ArmClient.GetDefaultSubscription();
 
@@ -64,10 +69,9 @@
 
             string keyVaultEndpoint = "https://zhenyingkeyvault.vault.azure.net/";
             Uri keyVaultUri = new Uri(keyVaultEndpoint);
-            CertClient = new CertificateClient(keyVaultUri ,new VisualStudioCredential(new VisualStudioCredentialOptions()
-            {
-                TenantId = tenantId
-            }));
+            CertClient = new CertificateClient(keyVaultUri, vsCreds);
+            KeyClient = new KeyClient(keyVaultUri, vsCreds);
+            SecretClient = new SecretClient(keyVaultUri, vsCreds);
         }
     }
 }

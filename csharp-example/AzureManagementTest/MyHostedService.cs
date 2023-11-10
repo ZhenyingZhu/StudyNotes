@@ -30,6 +30,9 @@
         {
             _logger.LogInformation($"{this.GetType().Name} starts...");
 
+            var sec = _client.SecretClient?.GetSecret("TestSecret").Value;
+            _logger.LogInformation(sec?.ToString());
+
             return Task.CompletedTask;
         }
 
