@@ -16,7 +16,7 @@ IHost host = builder.Build();
 // Directly read config files: https://learn.microsoft.com/en-us/dotnet/core/extensions/configuration
 IConfiguration config = host.Services.GetRequiredService<IConfiguration>();
 //int? config1 = config.GetValue<int>(Constants.TenantIdKey);
-string? tenantId = config.GetSection("Settings").GetValue<string>(Constants.TenantIdKey);
+string? tenantId = config.GetSection("Settings").GetValue<string>(Configuration.TenantIdKey);
 
 host.Run();
 

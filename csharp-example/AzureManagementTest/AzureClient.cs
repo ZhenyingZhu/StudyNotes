@@ -34,25 +34,26 @@
             _logger = logger;
             _config = config;
 
-            string? tenantId = _config.GetSection("Settings").GetValue<string>(Constants.TenantIdKey);
-            if (tenantId == null)
-            {
-                throw new ApplicationException($"{Constants.TenantIdKey} not found in {Constants.ConfigFile}!");
-            }
-
             // https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/identity/Azure.Identity/README.md
             var vsCreds = new VisualStudioCredential(new VisualStudioCredentialOptions()
             {
-                TenantId = tenantId
+                TenantId = Configuration.GetConfigFromFile<string>(_config, Configuration.TenantIdKey)
             });
             ArmClient = new ArmClient(vsCreds);
 
+            string keyVaultName = Configuration.GetConfigFromFile<string>(_config, Configuration.KeyVaultNameKey);
+            string keyVaultEndpoint = $"https://{keyVaultName}.vault.azure.net/";
+            Uri keyVaultUri = new Uri(keyVaultEndpoint);
+            CertClient = new CertificateClient(keyVaultUri, vsCreds);
+            KeyClient = new KeyClient(keyVaultUri, vsCreds);
+            SecretClient = new SecretClient(keyVaultUri, vsCreds);
+
             Subscription = ArmClient.GetDefaultSubscription();
 
-            _logger.LogInformation($"Use the subscription {tenantId}.");
+            _logger.LogInformation($"Use the subscription {Subscription.Id}.");
 
             // https://learn.microsoft.com/en-us/dotnet/api/overview/azure/resourcemanager-readme?view=azure-dotnet
-            string? resourceGroupName = _config.GetSection("Settings").GetValue<string>(Constants.ResourceGroupNameKey);
+            string resourceGroupName = Configuration.GetConfigFromFile<string>(_config, Configuration.ResourceGroupNameKey);
             ResourceGroupCollection groups = Subscription.GetResourceGroups();
             var response = groups.GetIfExists(resourceGroupName);
             if (!response.HasValue)
@@ -66,12 +67,6 @@
             }
 
             _logger.LogInformation($"Use the resource group {resourceGroupName}.");
-
-            string keyVaultEndpoint = "https://zhenyingkeyvault.vault.azure.net/";
-            Uri keyVaultUri = new Uri(keyVaultEndpoint);
-            CertClient = new CertificateClient(keyVaultUri, vsCreds);
-            KeyClient = new KeyClient(keyVaultUri, vsCreds);
-            SecretClient = new SecretClient(keyVaultUri, vsCreds);
         }
     }
 }
