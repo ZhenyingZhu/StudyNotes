@@ -22,12 +22,13 @@
         private readonly ILogger _logger;
         private readonly IConfiguration _config;
 
-        internal ArmClient? ArmClient { get; private set; }
-        internal SubscriptionResource? Subscription { get; private set; }
-        internal ResourceGroupResource? ResourceGroup { get; private set; }
-        internal CertificateClient? CertClient { get; private set; }
-        internal KeyClient? KeyClient { get; private set; }
-        internal SecretClient? SecretClient { get; private set; }
+        internal ArmClient ArmClient { get; private set; }
+        internal CertificateClient CertClient { get; private set; }
+        internal KeyClient KeyClient { get; private set; }
+        internal SecretClient SecretClient { get; private set; }
+
+        internal SubscriptionResource Subscription { get; private set; }
+        internal ResourceGroupResource ResourceGroup { get; private set; }
 
         public AzureClient(ILogger<MyHostedService> logger, IConfiguration config)
         {
@@ -35,18 +36,24 @@
             _config = config;
 
             // https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/identity/Azure.Identity/README.md
+            string tenantId = Configuration.GetConfigFromFile<string>(_config, Configuration.TenantIdKey);
             var vsCreds = new VisualStudioCredential(new VisualStudioCredentialOptions()
             {
-                TenantId = Configuration.GetConfigFromFile<string>(_config, Configuration.TenantIdKey)
+                TenantId = tenantId
             });
             ArmClient = new ArmClient(vsCreds);
+            _logger.LogInformation($"Use the tenant {tenantId}.");
 
             string keyVaultName = Configuration.GetConfigFromFile<string>(_config, Configuration.KeyVaultNameKey);
             string keyVaultEndpoint = $"https://{keyVaultName}.vault.azure.net/";
+
             Uri keyVaultUri = new Uri(keyVaultEndpoint);
             CertClient = new CertificateClient(keyVaultUri, vsCreds);
             KeyClient = new KeyClient(keyVaultUri, vsCreds);
             SecretClient = new SecretClient(keyVaultUri, vsCreds);
+
+            _logger.LogInformation($"Use the key vault {keyVaultName}.");
+
 
             Subscription = ArmClient.GetDefaultSubscription();
 
@@ -56,17 +63,17 @@
             string resourceGroupName = Configuration.GetConfigFromFile<string>(_config, Configuration.ResourceGroupNameKey);
             ResourceGroupCollection groups = Subscription.GetResourceGroups();
             var response = groups.GetIfExists(resourceGroupName);
-            if (!response.HasValue)
+            if (response.HasValue && response.Value != null)
+            {
+                ResourceGroup = response.Value;
+            }
+            else
             {
                 ResourceGroupData groupData = new ResourceGroupData(AzureLocation.WestUS);
                 ResourceGroup = groups.CreateOrUpdate(WaitUntil.Completed, resourceGroupName, groupData).Value;
             }
-            else
-            {
-                ResourceGroup = response.Value;
-            }
 
-            _logger.LogInformation($"Use the resource group {resourceGroupName}.");
+            _logger.LogInformation($"Use the resource group {ResourceGroup.Id}.");
         }
     }
 }

@@ -1074,6 +1074,12 @@ The old nuget Microsoft.Azure.Management.Fluent is replaced by [Azure.ResourceMa
 
 The AzureCredentials is managed by the AzureCredentialsFactory.FromServicePrincipal().
 
+### Azure.Identity
+
+<https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/identity/Azure.Identity/README.md>
+
+- 
+
 ### DNS
 
 - <https://learn.microsoft.com/en-us/azure/dns/dns-zones-records>

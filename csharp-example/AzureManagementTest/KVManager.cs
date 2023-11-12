@@ -6,11 +6,11 @@
     using System.Text;
     using System.Threading.Tasks;
 
-    internal class KeyVaultManagement
+    internal class KVManager
     {
-        AzureClient _azureClient;
+        private readonly AzureClient _azureClient;
 
-        public KeyVaultManagement(AzureClient azClient)
+        public KVManager(AzureClient azClient)
         {
             // https://learn.microsoft.com/en-us/azure/key-vault/general/network-security?WT.mc_id=Portal-Microsoft_Azure_KeyVault
             // https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-overview

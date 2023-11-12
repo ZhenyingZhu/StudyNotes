@@ -7,13 +7,13 @@
     using System.Text;
     using System.Threading.Tasks;
 
-    internal class VMManagement
+    internal class VMManager
     {
-        private AzureClient AzureClient;
+        private readonly AzureClient _azureClient;
 
-        public VMManagement(AzureClient azClient)
+        public VMManager(AzureClient azClient)
         {
-            this.AzureClient = azClient;
+            this._azureClient = azClient;
         }
 
         public void CreateVM()
