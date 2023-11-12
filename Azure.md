@@ -1078,7 +1078,13 @@ The AzureCredentials is managed by the AzureCredentialsFactory.FromServicePrinci
 
 <https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/identity/Azure.Identity/README.md>
 
-- 
+- Credentials: client use creds to authN requests to service.
+- OAuth with Entra ID.
+- [Cred classes](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/identity/Azure.Identity/README.md#credential-classes)
+  - Azure-hosted apps: Chained, Env, MI
+  - SP: assert, cert, secret
+  - user
+  - 
 
 ### DNS
 
