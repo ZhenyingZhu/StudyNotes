@@ -1083,8 +1083,10 @@ The AzureCredentials is managed by the AzureCredentialsFactory.FromServicePrinci
 - [Cred classes](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/identity/Azure.Identity/README.md#credential-classes)
   - Azure-hosted apps: Chained, Env, MI
   - SP: assert, cert, secret
-  - user
-  - 
+  - user: AuthZ code, device code, interactive browser, on behalf of, username password
+- [Managed identity](https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/overview)
+  - System-assigned: can be used for VM. Creates a service principal.
+  - User-assigned
 
 ### DNS
 
