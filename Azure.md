@@ -1088,6 +1088,12 @@ The AzureCredentials is managed by the AzureCredentialsFactory.FromServicePrinci
   - System-assigned: can be used for VM. Creates a service principal.
   - User-assigned
 
+### VM
+
+The Azure Spot discount has limit SKUs available.
+
+To check SKU availability in region and zone, run `az vm list-skus --location centralus --size Standard_D --all --output table`
+
 ### DNS
 
 - <https://learn.microsoft.com/en-us/azure/dns/dns-zones-records>
