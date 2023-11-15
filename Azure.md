@@ -1087,6 +1087,8 @@ The AzureCredentials is managed by the AzureCredentialsFactory.FromServicePrinci
 - [Managed identity](https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/overview)
   - System-assigned: can be used for VM. Creates a service principal.
   - User-assigned
+  - [Use a Windows VM system-assigned managed identity to access Resource Manager](https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/tutorial-windows-vm-access-arm)
+  - `$response = Invoke-WebRequest -Uri 'http://169.254.169.254/metadata/identity/oauth2/token?api-version=2018-02-01&resource=https://management.azure.com/' -Method GET -Headers @{Metadata="true"}`
 
 ### VM
 
