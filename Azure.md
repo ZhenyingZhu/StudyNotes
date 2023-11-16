@@ -1076,6 +1076,16 @@ The AzureCredentials is managed by the AzureCredentialsFactory.FromServicePrinci
 
 ### Azure.Identity
 
+<https://learn.microsoft.com/en-us/entra/identity-platform/v2-overview>
+
+- Components:
+  - authentication service: OAuth 2.0/OpenID Connect standard-compliant
+  - auth lib: MSAL
+  - Application management portal: reg and config
+  - App config API/CLI
+  - developer content
+- <https://learn.microsoft.com/en-us/entra/identity-platform/scenario-web-app-call-api-overview>
+
 <https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/identity/Azure.Identity/README.md>
 
 - Credentials: client use creds to authN requests to service.
