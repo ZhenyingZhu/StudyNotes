@@ -1084,6 +1084,16 @@ The AzureCredentials is managed by the AzureCredentialsFactory.FromServicePrinci
   - Application management portal: reg and config
   - App config API/CLI
   - developer content
+- three types of identities:
+  - Human identities
+  - Workload identities
+  - Device identities
+- SSO: Once authenticated, the IAM system acts as the source of identity truth.
+- AuthN: info in an ID token; AuthZ: info in an access token.
+- AuthN: use OpenID Connect; AuthZ: use OAuth 2.0.
+- Identity provider: creates, maintains, and manages identity information while offering authentication, authorization, and auditing services.
+- [HERE]<https://learn.microsoft.com/en-us/entra/fundamentals/introduction-identity-access-management?toc=%2Fentra%2Fidentity-platform%2Ftoc.json&bc=%2Fentra%2Fidentity-platform%2Fbreadcrumb%2Ftoc.json>
+
 - <https://learn.microsoft.com/en-us/entra/identity-platform/scenario-web-app-call-api-overview>
 
 <https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/identity/Azure.Identity/README.md>
