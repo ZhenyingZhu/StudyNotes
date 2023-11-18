@@ -1092,6 +1092,15 @@ The AzureCredentials is managed by the AzureCredentialsFactory.FromServicePrinci
 - AuthN: info in an ID token; AuthZ: info in an access token.
 - AuthN: use OpenID Connect; AuthZ: use OAuth 2.0.
 - Identity provider: creates, maintains, and manages identity information while offering authentication, authorization, and auditing services.
+- identity and access management (IAM)
+  - Identity management
+  - Identity federation: SSO
+  - Provisioning and deprovisioning of users
+  - AuthN/AuthZ of users
+  - Access control
+  - Audit
+- ID token: when AuthZ pass
+- Access token: when consents are granted and AuthZ pass
 - [HERE]<https://learn.microsoft.com/en-us/entra/fundamentals/introduction-identity-access-management?toc=%2Fentra%2Fidentity-platform%2Ftoc.json&bc=%2Fentra%2Fidentity-platform%2Fbreadcrumb%2Ftoc.json>
 
 - <https://learn.microsoft.com/en-us/entra/identity-platform/scenario-web-app-call-api-overview>
