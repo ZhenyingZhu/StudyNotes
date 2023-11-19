@@ -1101,7 +1101,15 @@ The AzureCredentials is managed by the AzureCredentialsFactory.FromServicePrinci
   - Audit
 - ID token: when AuthZ pass
 - Access token: when consents are granted and AuthZ pass
-- [HERE]<https://learn.microsoft.com/en-us/entra/fundamentals/introduction-identity-access-management?toc=%2Fentra%2Fidentity-platform%2Ftoc.json&bc=%2Fentra%2Fidentity-platform%2Fbreadcrumb%2Ftoc.json>
+- [AuthN/AuthZ standard](https://learn.microsoft.com/en-us/entra/fundamentals/introduction-identity-access-management?toc=%2Fentra%2Fidentity-platform%2Ftoc.json&bc=%2Fentra%2Fidentity-platform%2Fbreadcrumb%2Ftoc.json#authentication-and-authorization-standards)
+  - OAuth 2.0: AuthZ
+  - OpenID Connect (OIDC): AuthN
+  - JSON web tokens (JWTs)
+  - Security Assertion Markup Language (SAML): AuthN
+  - System for Cross-Domain Identity Management (SCIM)
+  - Web Services Federation (WS-Fed)
+  - Active Directory Federation Services (AD FS): identity provider
+- [HERE]<https://learn.microsoft.com/en-us/entra/identity-platform/v2-protocols>
 
 - <https://learn.microsoft.com/en-us/entra/identity-platform/scenario-web-app-call-api-overview>
 
