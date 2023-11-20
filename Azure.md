@@ -1109,7 +1109,21 @@ The AzureCredentials is managed by the AzureCredentialsFactory.FromServicePrinci
   - System for Cross-Domain Identity Management (SCIM)
   - Web Services Federation (WS-Fed)
   - Active Directory Federation Services (AD FS): identity provider
-- [HERE]<https://learn.microsoft.com/en-us/entra/identity-platform/v2-protocols>
+- Auth flows: 4 parties
+  - Identity provider/AuthZ server
+  - Client
+  - Resource owner
+  - Resource server
+- principal: user/host/service
+- Bearer token: in entra, it is JWT standard. 3 types:
+  - Access: issued by id provider, pass to resource server
+  - ID: issued by id provider, signing in user and get user info
+  - Refresh: client send it to IdP for new tokens. Is sensitive.
+- App reg: needs below settings
+  - app id = client id
+  - redirect uri: idP use it
+  - endpoints: 1. AuthZ, 2. token
+- [HERE]<https://learn.microsoft.com/en-us/entra/identity-platform/authentication-flows-app-scenarios>
 
 - <https://learn.microsoft.com/en-us/entra/identity-platform/scenario-web-app-call-api-overview>
 
