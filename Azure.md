@@ -1123,7 +1123,12 @@ The AzureCredentials is managed by the AzureCredentialsFactory.FromServicePrinci
   - app id = client id
   - redirect uri: idP use it
   - endpoints: 1. AuthZ, 2. token
-- [HERE]<https://learn.microsoft.com/en-us/entra/identity-platform/authentication-flows-app-scenarios>
+- Sec token for app types: web app, mobile, desktop, web API, IoT
+  - SPA: token acquired by a JS app in browser.
+  - Public client app: with a user
+  - Confidential client applications: without a user
+- Sign-in audience: work/school or personal account
+- [HERE]<https://learn.microsoft.com/en-us/entra/identity-platform/authentication-flows-app-scenarios#desktop-app-that-calls-a-web-api-on-behalf-of-a-signed-in-user>
 
 - <https://learn.microsoft.com/en-us/entra/identity-platform/scenario-web-app-call-api-overview>
 
