@@ -1128,7 +1128,12 @@ The AzureCredentials is managed by the AzureCredentialsFactory.FromServicePrinci
   - Public client app: with a user
   - Confidential client applications: without a user
 - Sign-in audience: work/school or personal account
-- [HERE]<https://learn.microsoft.com/en-us/entra/identity-platform/authentication-flows-app-scenarios#desktop-app-that-calls-a-web-api-on-behalf-of-a-signed-in-user>
+- desktop app:
+  - interactive token-acquisition methods of MSAL: uses a web browser
+  - computers joined either to a Windows domain or by Microsoft Entra ID: integrated win authN
+  - a device without a browser: must sign in on another device that has a web browser
+  - if you want the token cache to persist, you can customize the token cache serialization.
+- [HERE]<https://learn.microsoft.com/en-us/entra/identity-platform/authentication-flows-app-scenarios#protected-web-api>
 
 - <https://learn.microsoft.com/en-us/entra/identity-platform/scenario-web-app-call-api-overview>
 
