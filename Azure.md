@@ -1133,7 +1133,11 @@ The AzureCredentials is managed by the AzureCredentialsFactory.FromServicePrinci
   - computers joined either to a Windows domain or by Microsoft Entra ID: integrated win authN
   - a device without a browser: must sign in on another device that has a web browser
   - if you want the token cache to persist, you can customize the token cache serialization.
-- [HERE]<https://learn.microsoft.com/en-us/entra/identity-platform/authentication-flows-app-scenarios#protected-web-api>
+- Protected web API:
+  - use access token to secure the API's data and authenticate incoming requests.
+  - appends an access token in the authorization header of an HTTP request.
+  - use the ASP.NET JWT middleware, i.e., IdentityModel extensions (not MSAL.NET) to validate the access token.
+- [HERE]<https://learn.microsoft.com/en-us/entra/identity-platform/authentication-flows-app-scenarios#web-api-that-calls-another-web-api-on-behalf-of-a-user>
 
 - <https://learn.microsoft.com/en-us/entra/identity-platform/scenario-web-app-call-api-overview>
 
