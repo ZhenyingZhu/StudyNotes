@@ -1137,7 +1137,9 @@ The AzureCredentials is managed by the AzureCredentialsFactory.FromServicePrinci
   - use access token to secure the API's data and authenticate incoming requests.
   - appends an access token in the authorization header of an HTTP request.
   - use the ASP.NET JWT middleware, i.e., IdentityModel extensions (not MSAL.NET) to validate the access token.
-- [HERE]<https://learn.microsoft.com/en-us/entra/identity-platform/authentication-flows-app-scenarios#web-api-that-calls-another-web-api-on-behalf-of-a-user>
+- Web API that calls another web API on behalf of a user: need to needs to acquire a token for the downstream web API and provide custom cache serialization.
+- Daemon app that calls a web API: app can authenticate and get tokens by using the app's identity. The app proves its identity by using a client secret or certificate add to the app registration in Microsoft Entra ID. such secrets include application passwords, certificate assertion, and client assertion. using the client credential acquisition methods in MSAL.
+- [HERE]<https://learn.microsoft.com/en-us/entra/identity-platform/security-tokens>
 
 - <https://learn.microsoft.com/en-us/entra/identity-platform/scenario-web-app-call-api-overview>
 
