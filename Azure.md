@@ -1143,7 +1143,9 @@ The AzureCredentials is managed by the AzureCredentialsFactory.FromServicePrinci
   - Access token: contains info about the user and the resource. Resource needs to validate token.
   - refresh token: client app exchange it with AuthZ servers
   - ID token: Client to AuthN the user.
-- [HERE]<https://learn.microsoft.com/en-us/entra/identity-platform/security-tokens#validate-tokens>
+- Validate token: the app validates the token. AuthZ server signs the token with a private key and publish a public key. App uses the public key to verify the signature.
+- JWTs and claims: AuthN. A claim provides assertions about 1 entity (e.g., client app, resource owner) to another entity (resource server). A bunch of facts.
+- [HERE]<https://learn.microsoft.com/en-us/entra/identity-platform/access-tokens>
 
 - <https://learn.microsoft.com/en-us/entra/identity-platform/scenario-web-app-call-api-overview>
 
