@@ -1151,7 +1151,7 @@ Access token
 - access tokens are opaque strings without a set format. Guid or encrypted blobs.
 - JWT: can be decoded using a site like jwt.ms. Access token is part of JWT.
 - Token ownership: resource is the audience (claim `aud`)
-- [HERE]<https://learn.microsoft.com/en-us/entra/identity-platform/access-tokens#token-lifetime>
+- [HERE]<https://learn.microsoft.com/en-us/entra/identity-platform/access-tokens#validate-tokens>
 
 - <https://learn.microsoft.com/en-us/entra/identity-platform/scenario-web-app-call-api-overview>
 
