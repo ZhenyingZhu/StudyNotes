@@ -1156,7 +1156,7 @@ Access token
   - Web apps must validate ID tokens sent to them by using the user's browser in the hybrid flow, before allowing access to a user's data or establishing a session.
   - Other scenarios don't need to validate token because they directly talk with IDP to make sure ID token is valid.
   - Validate an ID token or an access token, it should first validate the signature of the token and the issuer against the values in the OpenID discovery document.
-- [HERE]<https://learn.microsoft.com/en-us/entra/identity-platform/access-tokens#v10-and-v20-tokens>
+- [HERE]<https://learn.microsoft.com/en-us/entra/identity-platform/access-tokens#validate-the-issuer>
 
 - <https://learn.microsoft.com/en-us/entra/identity-platform/scenario-web-app-call-api-overview>
 
