@@ -1158,7 +1158,8 @@ Access token
   - Validate an ID token or an access token, it should first validate the signature of the token and the issuer against the values in the OpenID discovery document.
 - Validate the issuer: The Issuer Identifier MUST exactly match the value of the issuer Claim `iss` and `tid`
 - Validate the signature: JWT segment 1: header, 2: body, 3: signature. Header contains `alg` and `kid` for the public key
-- [HERE]<https://learn.microsoft.com/en-us/entra/identity-platform/access-tokens#validate-the-signing-key-issuer>
+- [code ref](https://learn.microsoft.com/en-us/entra/identity-platform/access-tokens#recap)
+- [HERE]<https://learn.microsoft.com/en-us/entra/identity-platform/schema-extensions>
 
 - <https://learn.microsoft.com/en-us/entra/identity-platform/scenario-web-app-call-api-overview>
 
