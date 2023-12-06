@@ -1159,7 +1159,12 @@ Access token
 - Validate the issuer: The Issuer Identifier MUST exactly match the value of the issuer Claim `iss` and `tid`
 - Validate the signature: JWT segment 1: header, 2: body, 3: signature. Header contains `alg` and `kid` for the public key
 - [code ref](https://learn.microsoft.com/en-us/entra/identity-platform/access-tokens#recap)
-- [HERE]<https://learn.microsoft.com/en-us/entra/identity-platform/schema-extensions>
+
+Scenarios:
+
+- all: reg app on [Entra admin center](https://entra.microsoft.com/#home), at Identity > Applications > App registrations
+- add login scopes that client use: prompt for user to consent. e.g., `User.Read`
+- SPA: use JS MSAL with Proof Key for Code Exchange (PKCE).
 
 - <https://learn.microsoft.com/en-us/entra/identity-platform/scenario-web-app-call-api-overview>
 
