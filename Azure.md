@@ -1165,8 +1165,8 @@ Scenarios:
 - all: reg app on [Entra admin center](https://entra.microsoft.com/#home), at Identity > Applications > App registrations
 - add login scopes that client use: prompt for user to consent. e.g., `User.Read`
 - SPA: use JS MSAL with Proof Key for Code Exchange (PKCE).
-
-- <https://learn.microsoft.com/en-us/entra/identity-platform/scenario-web-app-call-api-overview>
+- Web app: Use self signed cert.
+- [HERE]<https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-web-app-aspnet-core-sign-in>
 
 <https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/identity/Azure.Identity/README.md>
 
