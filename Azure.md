@@ -1166,6 +1166,7 @@ Scenarios:
 - add login scopes that client use: prompt for user to consent. e.g., `User.Read`
 - SPA: use JS MSAL with Proof Key for Code Exchange (PKCE).
 - Web app: Use self signed cert.
+  - Can create a test cert using `dotnet dev-certs https -ep ./certificate.crt --trust`. Details [Make a certificate for testing purposes](https://stackoverflow.com/questions/68948910/make-a-certificate-for-testing-purposes-but-not-self-signed)
 - [HERE]<https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-web-app-aspnet-core-sign-in>
 
 <https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/identity/Azure.Identity/README.md>
