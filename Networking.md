@@ -734,6 +734,14 @@ Fiddler decrept HTTPS traffic:
 
 [server certificate is not configured properly with HTTP.SYS in the HTTPS case](https://stackoverflow.com/questions/2013880/wcf-error-this-could-be-due-to-the-fact-that-the-server-certificate-is-not-conf)
 
+## Certificate
+
+[Make a certificate for testing purposes](https://stackoverflow.com/questions/68948910/make-a-certificate-for-testing-purposes-but-not-self-signed)
+
+- a real cert is associated with a domain.
+- a domain can have a subdomain with a cert for the subdomain.
+- local testing can use a self-signed cert.
+
 ## Other notes
 
 [No buffer space available](https://community.sophos.com/products/unified-threat-management/f/management-networking-logging-and-reporting/31186/105-no-buffer-space-available)
