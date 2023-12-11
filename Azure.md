@@ -1168,7 +1168,7 @@ Scenarios:
 - Web app: Use self signed cert.
   - Can create a test cert using `dotnet dev-certs https -ep ./certificate.crt --trust`.
   - In the appsettings.json, add info to use Azure AD.
-- [HERE]<https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-web-app-aspnet-core-sign-in>
+- [HERE]<https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-web-api-aspnet-core-protect-api>
 
 <https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/identity/Azure.Identity/README.md>
 
