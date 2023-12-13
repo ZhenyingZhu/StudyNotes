@@ -1169,6 +1169,7 @@ Scenarios:
   - Can create a test cert using `dotnet dev-certs https -ep ./certificate.crt --trust`.
   - In the appsettings.json, add info to use Azure AD.
 - Web API: Need to add a scope.
+  - In code, add `[RequiredScope]` annotation.
 - [HERE]<https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-web-api-aspnet-core-protect-api>
 
 <https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/identity/Azure.Identity/README.md>
