@@ -1169,7 +1169,7 @@ Scenarios:
   - Can create a test cert using `dotnet dev-certs https -ep ./certificate.crt --trust`.
   - In the appsettings.json, add info to use Azure AD.
 - Web API: Need to add a scope.
-  - In code, add `[RequiredScope]` annotation. Add `AddAuthentication` middleware.
+  - In code, add `[RequiredScope]` annotation. Add `AddAuthentication` middleware. `app.UseAuthentication(); app.UseAuthorization();`
   - [Auth Scheme](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication)
 - [HERE]<https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-web-api-aspnet-core-protect-api>
 
