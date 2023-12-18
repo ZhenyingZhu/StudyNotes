@@ -1172,8 +1172,8 @@ Scenarios:
   - In code, add `[RequiredScope]` annotation. Add `AddAuthentication` middleware. `app.UseAuthentication(); app.UseAuthorization();`
   - [Auth Scheme](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication)
 - Desktop app (electron): use JS
+  - Need middleware `AddAuthentication` and `AddMicrosoftIdentityWebApi(AzureAd)`
 - [HERE]<https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-web-api-aspnet-core-protect-api>
-
 
 <https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/identity/Azure.Identity/README.md>
 
