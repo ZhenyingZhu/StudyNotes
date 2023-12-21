@@ -1076,6 +1076,13 @@ The AzureCredentials is managed by the AzureCredentialsFactory.FromServicePrinci
 
 ### Azure.Identity
 
+[Auth Scheme](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication)
+
+- server: challenge a client request
+- client: provide authentication information
+- Flow: 1. server return 401 with a WWW-Authenticate response header, 2. client respond an Authorization request header with the credentials, 3. server returns 200 or 401
+- client can present a password prompt
+
 <https://learn.microsoft.com/en-us/entra/identity-platform/v2-overview>
 
 - Components:
@@ -1170,7 +1177,6 @@ Scenarios:
   - In the appsettings.json, add info to use Azure AD.
 - Web API: Need to add a scope.
   - In code, add `[RequiredScope]` annotation. Add `AddAuthentication` middleware. `app.UseAuthentication(); app.UseAuthorization();`
-  - [Auth Scheme](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication)
 - Desktop app (electron): use JS
   - Need middleware `AddAuthentication` and `AddMicrosoftIdentityWebApi(AzureAd)`
 - Andriod: Use Java and `vsts-maven-adal-android`
