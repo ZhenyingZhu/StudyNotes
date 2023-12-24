@@ -1082,8 +1082,8 @@ The AzureCredentials is managed by the AzureCredentialsFactory.FromServicePrinci
 - client: provide authentication information
 - Flow: 1. server return 401 with a WWW-Authenticate response header, 2. client respond an Authorization request header with the credentials, 3. server returns 200 or 401
 - client can present a password prompt
-- Proxy authentication: 407. `Proxy-Authenticate` response, `Proxy-Authorization` request headers
-- Access forbidden
+- Proxy authentication: send 407 and `Proxy-Authorization` request headers, and wait for client to provide `Proxy-Authenticate` response.
+- Access forbidden: return `401` for letting client provide AuthZ header, `403` after validation failed so client won't retry. `404` for hide the page.
 
 <https://learn.microsoft.com/en-us/entra/identity-platform/v2-overview>
 
