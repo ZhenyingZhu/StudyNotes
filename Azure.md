@@ -1084,6 +1084,10 @@ The AzureCredentials is managed by the AzureCredentialsFactory.FromServicePrinci
 - client can present a password prompt
 - Proxy authentication: send 407 and `Proxy-Authorization` request headers, and wait for client to provide `Proxy-Authenticate` response.
 - Access forbidden: return `401` for letting client provide AuthZ header, `403` after validation failed so client won't retry. `404` for hide the page.
+- In the header, specify `<scheme type> realm=<realm>` and `<type> <credentials>`
+- Schemes
+  - Basic: user ID/password pairs, encoded using base64. Must use with TLS. On the server side, use `.htaccess` under the directory to protect to define the username
+  - 
 
 <https://learn.microsoft.com/en-us/entra/identity-platform/v2-overview>
 
