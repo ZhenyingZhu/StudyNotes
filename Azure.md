@@ -1087,7 +1087,7 @@ The AzureCredentials is managed by the AzureCredentialsFactory.FromServicePrinci
 - In the header, specify `<scheme type> realm=<realm>` and `<type> <credentials>`
 - Schemes
   - Basic: user ID/password pairs, encoded using base64. Must use with TLS. On the server side, use `.htaccess` under the directory to protect to define the username
-  - 
+  - Bearer: access OAuth 2.0 protected resources with TLS. Tokens are issued to clients by an authorization server with the approval of the resource owner.
 
 <https://learn.microsoft.com/en-us/entra/identity-platform/v2-overview>
 
