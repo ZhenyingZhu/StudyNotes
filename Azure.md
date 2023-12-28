@@ -1076,7 +1076,7 @@ The AzureCredentials is managed by the AzureCredentialsFactory.FromServicePrinci
 
 ### Azure.Identity
 
-[Auth Scheme](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication)
+[AuthN Scheme](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication)
 
 - server: challenge a client request
 - client: provide authentication information
@@ -1084,7 +1084,8 @@ The AzureCredentials is managed by the AzureCredentialsFactory.FromServicePrinci
 - client can present a password prompt
 - Proxy authentication: send 407 and `Proxy-Authorization` request headers, and wait for client to provide `Proxy-Authenticate` response.
 - Access forbidden: return `401` for letting client provide AuthZ header, `403` after validation failed so client won't retry. `404` for hide the page.
-- In the header, specify `<scheme type> realm=<realm>` and `<type> <credentials>`
+- In the `Proxy-Authenticate` header, specify `<AuthN scheme type> realm=<realm>`. Realm is just a description.
+- In the `Proxy-Authorization` header, specify `<AuthN scheme type> <credentials>`. Creds is encoded in base64.
 - Schemes
   - Basic: user ID/password pairs, encoded using base64. Must use with TLS. On the server side, use `.htaccess` under the directory to protect to define the username
   - Bearer: access OAuth 2.0 protected resources with TLS. Tokens are issued to clients by an authorization server with the approval of the resource owner.
