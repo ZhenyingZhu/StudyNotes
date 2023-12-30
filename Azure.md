@@ -1091,6 +1091,7 @@ The AzureCredentials is managed by the AzureCredentialsFactory.FromServicePrinci
   - Bearer: access OAuth 2.0 protected resources with TLS. Tokens are issued to clients by an authorization server with the approval of the resource owner.
     - "before a client can access a protected resource, it must first obtain an authorization grant from the resource owner and then exchange the authorization grant for an access token.  The access token represents the grant's scope, duration, and other attributes granted by the authorization grant.  The client accesses the protected resource by presenting the access token to the resource server." From <https://datatracker.ietf.org/doc/html/rfc6750#section-1.1>
 - [OAuth 2.0 Authorization Framework](https://datatracker.ietf.org/doc/html/rfc6749)
+  - access token: a string denoting a specific scope, lifetime, and other access attributes.
 
 <https://learn.microsoft.com/en-us/entra/identity-platform/v2-overview>
 
