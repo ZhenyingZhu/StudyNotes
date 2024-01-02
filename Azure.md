@@ -1094,6 +1094,8 @@ The AzureCredentials is managed by the AzureCredentialsFactory.FromServicePrinci
   - access token: a string denoting a specific scope, lifetime, and other access attributes.
   - Roles: resource owner, resource server, client, authZ server (can be the same or different entity of resource server)
   - protocol flow: 1. client request authZ from the owner (preferable through authZ server), 2. client authZ grant from authZ server and get a token, 3. client use the token to get resource from resource server
+  - Grant: a credential representing the resource owner's authorization. 4 types: authZ code, implicit, owner password credentials, and client credentials
+  - [HERE](https://datatracker.ietf.org/doc/html/rfc6749#section-1.3)
 
 <https://learn.microsoft.com/en-us/entra/identity-platform/v2-overview>
 
