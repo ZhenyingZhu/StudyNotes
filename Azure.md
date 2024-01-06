@@ -1096,7 +1096,7 @@ The AzureCredentials is managed by the AzureCredentialsFactory.FromServicePrinci
   - protocol flow: 1. client request authZ from the owner (preferable through authZ server), 2. client authZ grant from authZ server and get a token, 3. client use the token to get resource from resource server
   - Grant: a credential representing the resource owner's authorization. 4 types: authZ code, implicit, owner password credentials, and client credentials
   - Code: the client directs the resource owner to an authorization server, which directs the resource owner back to the client with the authorization code (but not through owner's user agent). Resource owner only authN with authZ server.
-  - Implicit grant: simplified authZ code flow for JS.
+  - Implicit grant: simplified authZ code flow for JS. the authorization server does not authenticate the client.
   - [HERE](https://datatracker.ietf.org/doc/html/rfc6749#section-1.3)
 
 <https://learn.microsoft.com/en-us/entra/identity-platform/v2-overview>
