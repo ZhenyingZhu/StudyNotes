@@ -1090,14 +1090,25 @@ The AzureCredentials is managed by the AzureCredentialsFactory.FromServicePrinci
   - Basic: user ID/password pairs, encoded using base64. Must use with TLS. On the server side, use `.htaccess` under the directory to protect to define the username
   - Bearer: access OAuth 2.0 protected resources with TLS. Tokens are issued to clients by an authorization server with the approval of the resource owner.
     - "before a client can access a protected resource, it must first obtain an authorization grant from the resource owner and then exchange the authorization grant for an access token.  The access token represents the grant's scope, duration, and other attributes granted by the authorization grant.  The client accesses the protected resource by presenting the access token to the resource server." From <https://datatracker.ietf.org/doc/html/rfc6750#section-1.1>
-- [OAuth 2.0 Authorization Framework](https://datatracker.ietf.org/doc/html/rfc6749)
-  - access token: a string denoting a specific scope, lifetime, and other access attributes.
-  - Roles: resource owner, resource server, client, authZ server (can be the same or different entity of resource server)
-  - protocol flow: 1. client request authZ from the owner (preferable through authZ server), 2. client authZ grant from authZ server and get a token, 3. client use the token to get resource from resource server
-  - Grant: a credential representing the resource owner's authorization. 4 types: authZ code, implicit, owner password credentials, and client credentials
-  - Code: the client directs the resource owner to an authorization server, which directs the resource owner back to the client with the authorization code (but not through owner's user agent). Resource owner only authN with authZ server.
-  - Implicit grant: simplified authZ code flow for JS. the authorization server does not authenticate the client.
-  - [HERE](https://datatracker.ietf.org/doc/html/rfc6749#section-1.3)
+
+[OAuth 2.0 Authorization Framework](https://datatracker.ietf.org/doc/html/rfc6749)
+
+- access token: a string denoting a specific scope, lifetime, and other access attributes.
+- Roles: resource owner, resource server, client, authZ server (can be the same or different entity of resource server)
+
+protocol flow:
+
+1. client request authZ from the owner (preferable through authZ server)
+2. client receive an authZ grant
+3. client requests a token from authZ server by present the grant
+4. authZ server authN the client and validate the grant, then provide the token
+5. client use the token to get resource from resource server
+
+Grant: a credential representing the resource owner's authorization. 4 types: authZ code, implicit, owner password credentials, and client credentials
+
+- Code: the client directs the resource owner to an authorization server, which directs the resource owner back to the client with the authorization code (but not through owner's user agent). Resource owner only authN with authZ server.
+- Implicit grant: simplified authZ code flow for JS. Directly issue access token without authZ code. The authZ server does not authN the client so need to weight against the security implications.
+  - [HERE](https://datatracker.ietf.org/doc/html/rfc6749#section-1.3.3)
 
 <https://learn.microsoft.com/en-us/entra/identity-platform/v2-overview>
 
