@@ -1108,7 +1108,8 @@ Grant: a credential representing the resource owner's authorization. 4 types: au
 
 - Code: the client directs the resource owner to an authorization server, which directs the resource owner back to the client with the authorization code (but not through owner's user agent). Resource owner only authN with authZ server.
 - Implicit grant: simplified authZ code flow for JS. Directly issue access token without authZ code. The authZ server does not authN the client so need to weight against the security implications.
-  - [HERE](https://datatracker.ietf.org/doc/html/rfc6749#section-1.3.3)
+- owner password credentials: client shouldn't store it. Client should be on highly secured device.
+  - [HERE](https://datatracker.ietf.org/doc/html/rfc6749#section-1.3.4)
 
 <https://learn.microsoft.com/en-us/entra/identity-platform/v2-overview>
 
