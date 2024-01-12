@@ -1115,6 +1115,7 @@ Access Token
 
 - opaque to the client.
 - represent specific scopes and durations of access, granted by the resource owner, and enforced by the resource server and authorization server.
+- denote an id. self-contain the authZ info. In verifiable manner. Has additional
 - [HERE](https://datatracker.ietf.org/doc/html/rfc6749#section-1.4)
 
 <https://learn.microsoft.com/en-us/entra/identity-platform/v2-overview>
