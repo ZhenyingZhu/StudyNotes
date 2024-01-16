@@ -4561,9 +4561,14 @@ Stripe makes the customer no need to be PCI-DSS compliant
 - checkout session:
   - inputs: 1. mode: one time, recurring, future charge. 2. lineItemDetails: detail of the transaction
 
-## Redis pub sub model
+## System Design Interview The Big Archive
 
-<https://redis.com/glossary/pub-sub/#:~:text=How%20Pub%2FSub%20works,of%20their%20particular%20use%20cases.>
+### Data base isolation level
+
+- Serializable
+- Repeatable Read
+- Read committed
+- Read uncommitted
 
 ## Open Questions
 
@@ -4578,3 +4583,7 @@ Services: SignalR, Gossip
 How token works (OAuth2)
 
 OOD Design Patterns
+
+### Redis pub sub model
+
+<https://redis.com/glossary/pub-sub/#:~:text=How%20Pub%2FSub%20works,of%20their%20particular%20use%20cases.>
