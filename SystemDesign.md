@@ -4561,6 +4561,19 @@ Stripe makes the customer no need to be PCI-DSS compliant
 - checkout session:
   - inputs: 1. mode: one time, recurring, future charge. 2. lineItemDetails: detail of the transaction
 
+## System Design Interview: An insider's Guide
+
+### Ch1: Scale from Zero to Millions of users
+
+Mobile app: Use HTTP + JSON for API response.
+
+NoSQL: CouchDB, Neo4j, Cassandra, HBase, Amazon DynamoDB
+
+- Key-value stores
+- graph stores
+- column stores
+- document stores
+
 ## System Design Interview The Big Archive
 
 ### Data base isolation level
