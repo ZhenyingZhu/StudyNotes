@@ -4574,6 +4574,8 @@ NoSQL: CouchDB, Neo4j, Cassandra, HBase, Amazon DynamoDB
 - column stores
 - document stores
 
+Load balancer
+
 ## System Design Interview The Big Archive
 
 ### Data base isolation level
