@@ -4574,7 +4574,34 @@ NoSQL: CouchDB, Neo4j, Cassandra, HBase, Amazon DynamoDB
 - column stores
 - document stores
 
-Load balancer
+Load balancer + database replication
+
+- better performance
+- reliability: data persist
+- High availbility: single machine offline
+
+Cache (Memcached)
+
+- advantage
+  - better performance
+  - reduce DB workloads
+  - can scale cache tier independently
+- read-through: server reads from cache first, then read from DB and save to cache
+- considering
+  - Read heavy
+  - Expiration policy: not too short but not stale
+  - Consistency
+  - One cache server become SPOF
+  - Eviction policy
+
+CDN
+
+- cache static contents
+- Consideration
+  - cost: charged for IO
+  - cache expiry
+  - fallback
+  - Invalidating files by increase version
 
 ## System Design Interview The Big Archive
 
