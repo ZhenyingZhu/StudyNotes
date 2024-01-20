@@ -4602,6 +4602,9 @@ CDN
   - cache expiry
   - fallback
   - Invalidating files by increase version
+- Stateless web tier: move state out from web tier (user session data, etc.) to DB so all web server can access
+
+Data centers
 
 ## System Design Interview The Big Archive
 
