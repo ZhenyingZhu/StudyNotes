@@ -4606,6 +4606,29 @@ CDN
 
 Data centers
 
+- GeoDNS: split traffic based on geo. Challenges to solve are:
+  - Traffic redirection
+  - data sync
+  - test and deployment
+- Decouple components for scale up. Can use message queue.
+
+Message queue
+
+- can scale producer and consumer independently
+
+Logging, metrics, automation
+
+- error logs: use a centralized service or monitor at server level
+- metrics: CPU, Memory, disk I/O, DAU, retention, revenue
+- automation: CI
+
+Database scaling
+
+- shards challenges
+  - resharding data: consistent hashing
+  - celebrity problem: dedicate shard
+  - join: use de-normalization
+
 ## System Design Interview The Big Archive
 
 ### Data base isolation level
