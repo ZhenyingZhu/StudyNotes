@@ -4629,6 +4629,40 @@ Database scaling
   - celebrity problem: dedicate shard
   - join: use de-normalization
 
+### Ch2: Back-of-the-envelope Estimation
+
+Power of 2
+
+- 1 byte: 8 bits. 1 ASCII char.
+- 2^10: 1 KB
+- 2^20: 1 MB
+- 2^30: 1 GB/Billion
+- 2^40: 1 TB/Trillion
+- 2^50: 1 PB/Quadrillion
+
+Latencies
+
+- ns < us < ms
+- L1 cache ref: 0.5 ns
+- Branch mispredict: 5 ns
+- L2 cache ref: 7 ns
+- mutex lock/unlock: 100 ns
+- main mem ref: 100 ns
+- compress 1KB: 10 us
+- send 2KB through 1 Gbps network: 20 us
+- read 1MB from mem: 250 us
+- round trip in same DC: 500 us
+- disk seek: 10 ms
+- read 1MB from network: 10 ms
+- read 1MB from disk: 30 ms
+- send packet across DC in the same geo: 150 ms
+
+Conclusions from latencies
+
+- avoid disk seeks if possible
+- compression is quick so compress before send data through internet
+- cross region DC is slow
+
 ## System Design Interview The Big Archive
 
 ### Data base isolation level
