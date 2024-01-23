@@ -1,4 +1,4 @@
 # Sogou Crawler Demo V3
 requests==2.20.0
 lxml==4.6.5
-Pillow==9.0.1
+Pillow==10.2.0
