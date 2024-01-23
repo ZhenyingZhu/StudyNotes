@@ -4663,6 +4663,11 @@ Conclusions from latencies
 - compression is quick so compress before send data through internet
 - cross region DC is slow
 
+Availability numbers
+
+- 99% = 14.4 mins downtime per day
+- 99.99% = 8.64 sec
+
 ## System Design Interview The Big Archive
 
 ### Data base isolation level
