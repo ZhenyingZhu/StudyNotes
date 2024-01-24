@@ -4639,6 +4639,10 @@ Power of 2
 - 2^30: 1 GB/Billion
 - 2^40: 1 TB/Trillion
 - 2^50: 1 PB/Quadrillion
+- long: 4 bytes
+- float: 4 bytes
+- double: 8 bytes
+- Media: 1 MB
 
 Latencies
 
@@ -4667,6 +4671,7 @@ Availability numbers
 
 - 99% = 14.4 mins downtime per day
 - 99.99% = 8.64 sec
+- Peak QPS: 2 * normal QPS
 
 ## System Design Interview The Big Archive
 
