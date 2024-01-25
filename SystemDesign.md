@@ -4673,6 +4673,8 @@ Availability numbers
 - 99.99% = 8.64 sec
 - Peak QPS: 2 * normal QPS
 
+### Ch3: A Framework for system design interviews
+
 ## System Design Interview The Big Archive
 
 ### Data base isolation level
