@@ -4675,6 +4675,8 @@ Availability numbers
 
 ### Ch3: A Framework for system design interviews
 
+4 steps
+
 ## System Design Interview The Big Archive
 
 ### Data base isolation level
