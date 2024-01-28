@@ -4686,6 +4686,15 @@ Availability numbers
 - Read committed
 - Read uncommitted
 
+## CI/CD
+
+<https://about.gitlab.com/topics/ci-cd/>
+
+- Build
+- unit test, Integration test, Regression test
+- deploy
+- Need a version control system
+
 ## Open Questions
 
 How distributed lock works (ZooKeeper)
