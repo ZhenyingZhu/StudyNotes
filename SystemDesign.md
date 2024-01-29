@@ -4675,6 +4675,13 @@ Availability numbers
 
 ### Ch3: A Framework for system design interviews
 
+Avoid:
+
+- over engineering
+- ignore tradeoffs
+- narrow mindedness
+- stubbornness
+
 4 steps
 
 ## System Design Interview The Big Archive
