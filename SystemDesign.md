@@ -4684,6 +4684,14 @@ Avoid:
 
 4 steps
 
+1. Understand the problem and establish design scope:
+   1. can make assumption
+   2. what features?
+   3. how many users?
+   4. how fast to scale up?
+   5. what existing services to leverage?
+2. 
+
 ## System Design Interview The Big Archive
 
 ### Data base isolation level
