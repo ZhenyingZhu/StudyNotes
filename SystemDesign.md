@@ -4690,7 +4690,7 @@ Avoid:
    3. how many users?
    4. how fast to scale up?
    5. what existing services to leverage?
-2. 
+2. Propose high-level design and get buy-in
 
 ## System Design Interview The Big Archive
 
