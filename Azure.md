@@ -1105,8 +1105,9 @@ The AzureCredentials is managed by the AzureCredentialsFactory.FromServicePrinci
   2. User allows the grant
   3. User gets redirected to the API, with a response and the URI has `code=AUTH_CODE_HERE&state=1234zyx`
   4. API verify the state
-  5. API exchange the AuthA code to authZ server, with `grant_type=authorization_code`, `code=AUTH_CODE`, `redirect_uri=REDIRECT_URI`, `client_id=CLIENT_ID`, `client_secret=CLIENT_SECRET`
+  5. API exchange the AuthZ code to authZ server, with `grant_type=authorization_code`, `code=AUTH_CODE`, `redirect_uri=REDIRECT_URI`, `client_id=CLIENT_ID`, `client_secret=CLIENT_SECRET`
   6. AuthZ server replies `"access_token":"RsT5OjbzRn430zqMLgV3Ia"`, `"expires_in":3600` in the response body
+- Web server app vs. SPA/Mobile app: SPA/Mobile app logic is in the Web browser/device which are out-of-control by the service, so cannot store secrets.
 
 protocol flow:
 
