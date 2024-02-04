@@ -4691,6 +4691,10 @@ Avoid:
    4. how fast to scale up?
    5. what existing services to leverage?
 2. Propose high-level design and get buy-in
+3. Design deep dive
+4. Wrap up
+
+### Ch4: Design a rate limiter
 
 ## System Design Interview The Big Archive
 
