@@ -4696,6 +4696,13 @@ Avoid:
 
 ### Ch4: Design a rate limiter
 
+Requirements
+
+- server vs. client side
+- based on IP/userId
+- standalone service vs. baked in the app
+- inform throttled client?
+
 ## System Design Interview The Big Archive
 
 ### Data base isolation level
