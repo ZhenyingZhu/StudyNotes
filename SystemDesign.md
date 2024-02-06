@@ -4698,10 +4698,10 @@ Avoid:
 
 Requirements
 
-- server vs. client side
+- server vs. client side: client side is unreliable. Can also be a middleware.
 - based on IP/userId
 - standalone service vs. baked in the app
-- inform throttled client?
+- inform throttled client? return 429
 
 ## System Design Interview The Big Archive
 
