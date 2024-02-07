@@ -4698,10 +4698,14 @@ Avoid:
 
 Requirements
 
-- server vs. client side: client side is unreliable. Can also be a middleware.
+- server vs. client side: client side is unreliable. Can also be a middleware: API Gateway.
 - based on IP/userId
 - standalone service vs. baked in the app
 - inform throttled client? return 429
+
+Algorithms
+
+- token bucket: bucket size, refill rate/sec. Different bucket for different API
 
 ## System Design Interview The Big Archive
 
