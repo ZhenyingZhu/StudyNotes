@@ -4706,6 +4706,7 @@ Requirements
 Algorithms
 
 - token bucket: bucket size, refill rate/sec. Different bucket for different API
+- leaking bucket: bucket (queue) size, outflow rate (req/sec)
 
 ## System Design Interview The Big Archive
 
