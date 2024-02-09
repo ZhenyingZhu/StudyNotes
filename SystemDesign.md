@@ -4707,6 +4707,7 @@ Algorithms
 
 - token bucket: bucket size, refill rate/sec. Different bucket for different API
 - leaking bucket: bucket (queue) size, outflow rate (req/sec)
+- Fixed window counter: has edge burst problem.
 
 ## System Design Interview The Big Archive
 
