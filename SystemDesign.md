@@ -4708,6 +4708,7 @@ Algorithms
 - token bucket: bucket size, refill rate/sec. Different bucket for different API
 - leaking bucket: bucket (queue) size, outflow rate (req/sec)
 - Fixed window counter: has edge burst problem.
+- Sliding window log: log timestamp of the earlier request in the window. Consume a lot memory.
 
 ## System Design Interview The Big Archive
 
