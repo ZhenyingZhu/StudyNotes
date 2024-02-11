@@ -4709,6 +4709,7 @@ Algorithms
 - leaking bucket: bucket (queue) size, outflow rate (req/sec)
 - Fixed window counter: has edge burst problem.
 - Sliding window log: log timestamp of the earlier request in the window. Consume a lot memory.
+- Sliding window counter: use percentage. smooth out spike but not so precise.
 
 ## System Design Interview The Big Archive
 
