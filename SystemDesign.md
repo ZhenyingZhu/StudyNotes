@@ -4711,6 +4711,10 @@ Algorithms
 - Sliding window log: log timestamp of the earlier request in the window. Consume a lot memory.
 - Sliding window counter: use percentage. smooth out spike but not so precise.
 
+Design
+
+- Use in-mem cache (redis) to store counters for user + IP
+
 ## System Design Interview The Big Archive
 
 ### Data base isolation level
