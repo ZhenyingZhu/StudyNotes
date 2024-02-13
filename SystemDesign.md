@@ -4714,6 +4714,8 @@ Algorithms
 Design
 
 - Use in-mem cache (redis) to store counters for user + IP
+- when exceed rate limit: 1. return 429, 2. queue for process later
+- rate limiter header: X-Ratelimit-Remaining, X-Ratelimit-Limit, X-Ratelimit-Retry-After
 
 ## System Design Interview The Big Archive
 
