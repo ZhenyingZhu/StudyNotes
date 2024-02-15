@@ -4718,6 +4718,11 @@ Design
 - rate limiter header: X-Ratelimit-Remaining, X-Ratelimit-Limit, X-Ratelimit-Retry-After
 - Rules are stored on disk and loaded in cache
 
+Distributed env
+
+- race condition: can solved by Lua script or sorted set
+- sync issue: use centralized data store
+
 ## System Design Interview The Big Archive
 
 ### Data base isolation level
