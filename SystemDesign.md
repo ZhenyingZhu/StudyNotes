@@ -4723,6 +4723,21 @@ Distributed env
 - race condition: can solved by Lua script or sorted set
 - sync issue: use centralized data store
 
+Performance Optimization
+
+- multi-DC/edge server
+- eventual consistency
+
+Monitoring
+
+- rate limit algorithm effective but not too strict
+- rule effective
+
+Others
+
+- hard vs. soft rate limit: whether to allow exceed threshold for a short period
+- at different network stack levels
+
 ## System Design Interview The Big Archive
 
 ### Data base isolation level
