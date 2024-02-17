@@ -4738,6 +4738,10 @@ Others
 - hard vs. soft rate limit: whether to allow exceed threshold for a short period
 - at different network stack levels
 
+### Ch5: Design a consistent hashing
+
+
+
 ## System Design Interview The Big Archive
 
 ### Data base isolation level
