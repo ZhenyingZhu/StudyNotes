@@ -4740,7 +4740,7 @@ Others
 
 ### Ch5: Design a consistent hashing
 
-
+Consistent hashing: when a hash table is re-sized, only k/n keys need to be remapped
 
 ## System Design Interview The Big Archive
 
