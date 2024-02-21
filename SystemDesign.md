@@ -4742,6 +4742,8 @@ Others
 
 Consistent hashing: when a hash table is re-sized, only k/n keys need to be remapped
 
+- SHA-1’s hash space goes from 0 to 2^160 - 1
+
 ## System Design Interview The Big Archive
 
 ### Data base isolation level
