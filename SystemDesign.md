@@ -4743,6 +4743,8 @@ Others
 Consistent hashing: when a hash table is re-sized, only k/n keys need to be remapped
 
 - SHA-1’s hash space goes from 0 to 2^160 - 1
+- Hash server based on server metadata
+- Hash key, clockwise find the closest server to store the data
 
 ## System Design Interview The Big Archive
 
