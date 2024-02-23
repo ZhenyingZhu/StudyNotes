@@ -4746,6 +4746,10 @@ Consistent hashing: when a hash table is re-sized, only k/n keys need to be rema
 - Hash server based on server metadata
 - Hash key, clockwise find the closest server to store the data
 
+Virtual nodes
+
+- interleave virtual nodes for servers
+
 ## System Design Interview The Big Archive
 
 ### Data base isolation level
