@@ -1196,6 +1196,8 @@ using (XmlReader reader = XmlReader.Create(filePath))
 
 [Navigate the document tree](https://docs.microsoft.com/en-us/dotnet/api/system.xml.xmldocument?view=net-6.0#navigate-the-document-tree)
 
+[XPath](https://www.w3schools.com/xml/xpath_nodes.asp)
+
 ### Predicate
 
 [Doc](https://docs.microsoft.com/en-us/dotnet/api/system.predicate-1?view=netcore-3.1)
