@@ -4750,6 +4750,8 @@ Virtual nodes
 
 - interleave virtual nodes for servers
 
+### Ch6: Design a key-value store
+
 ## System Design Interview The Big Archive
 
 ### Data base isolation level
