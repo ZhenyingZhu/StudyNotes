@@ -4752,6 +4752,15 @@ Virtual nodes
 
 ### Ch6: Design a key-value store
 
+A short key works with better performance.
+
+Requirements
+
+- a key-value pair size: < 10KB
+- automatic scaling
+- Tunable consistency
+- High availability, high scalability, low latency
+
 ## System Design Interview The Big Archive
 
 ### Data base isolation level
