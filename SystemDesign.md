@@ -4761,6 +4761,11 @@ Requirements
 - Tunable consistency
 - High availability, high scalability, low latency
 
+Single server
+
+- Data compression
+- store freq used data in mem and others on disk
+
 ## System Design Interview The Big Archive
 
 ### Data base isolation level
