@@ -4766,6 +4766,10 @@ Single server
 - Data compression
 - store freq used data in mem and others on disk
 
+Distributed
+
+- CAP: Consistency, availability, partition tolerance
+
 ## System Design Interview The Big Archive
 
 ### Data base isolation level
