@@ -4769,6 +4769,7 @@ Single server
 Distributed
 
 - CAP: Consistency, availability, partition tolerance
+- choose C over A: block write when replication fail
 
 ## System Design Interview The Big Archive
 
