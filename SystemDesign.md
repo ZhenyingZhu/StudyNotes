@@ -4771,6 +4771,17 @@ Distributed
 - CAP: Consistency, availability, partition tolerance
 - choose C over A: block write when replication fail
 
+Components
+
+- Data partition
+- data replication
+- consistency
+- inconsistency resolution
+- handling failures
+- system architcture diagram
+- write path
+- read path
+
 ## System Design Interview The Big Archive
 
 ### Data base isolation level
