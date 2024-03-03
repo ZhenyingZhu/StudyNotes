@@ -3314,6 +3314,7 @@ Geohash [encode](https://github.com/ZhenyingZhu/CppAlgorithms/blob/master/src/li
 - Base32 hashcode
 - Split an area into 32 pieces
 - If the prefixes of two hashcode are same, they are in the nearby location
+- Use binary search to find closest locations
 
 Query prefix:
 
