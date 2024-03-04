@@ -4774,7 +4774,7 @@ Distributed
 
 Components
 
-- Data partition
+- Data partition: evenly and minimize data move.
 - data replication
 - consistency
 - inconsistency resolution
@@ -4782,6 +4782,11 @@ Components
 - system architcture diagram
 - write path
 - read path
+
+Consistent hashing adventages
+
+- capable with auto scaling
+- Heterogeneity: higher capability servers can have more virtual nodes
 
 ## System Design Interview The Big Archive
 
