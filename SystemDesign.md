@@ -4775,8 +4775,8 @@ Distributed
 Components
 
 - Data partition: evenly and minimize data move.
-- data replication
-- consistency
+- Data replication: use the next N servers to store replication
+- Consistency: quorum consensus: W+R>N guarantee strong consistency
 - inconsistency resolution
 - handling failures
 - system architcture diagram
@@ -4787,6 +4787,12 @@ Consistent hashing adventages
 
 - capable with auto scaling
 - Heterogeneity: higher capability servers can have more virtual nodes
+
+Consistency models
+
+- Strong consistency: never sees out-of-date data. a replica not to accept new R/W until every replica has agreed on current write
+- Weak consistency: subsequent read operations not see the most updated value
+- Eventual consistency: after all updates are propagated, and all replicas are consistent. Need reconcile inconsistent values
 
 ## System Design Interview The Big Archive
 
