@@ -4794,6 +4794,12 @@ Consistency models
 - Weak consistency: subsequent read operations not see the most updated value
 - Eventual consistency: after all updates are propagated, and all replicas are consistent. Need reconcile inconsistent values
 
+Vector clock
+
+- [server, version] pairs. D1([s1, v1]), D2([s2, v1]) reconcile on s1: D3([s1, v2], [s2, v1])
+- When no conflict == an ancestor when versions in a version clock are >= versions in another clock
+- has conflict == sibling when some versions > but some versions <.
+
 ## System Design Interview The Big Archive
 
 ### Data base isolation level
