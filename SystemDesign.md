@@ -4800,6 +4800,16 @@ Vector clock
 - When no conflict == an ancestor when versions in a version clock are >= versions in another clock
 - has conflict == sibling when some versions > but some versions <.
 
+Handle failures
+
+- failure detection: need at least 2 independent sources to mark a server down
+- Gossip protocol: each node maintain heartbeat table from other nodes, and send the table to a set of random nodes.
+- sloppy quorum: R/W on the first servers, offline servers are ignored.
+- hinted handoff: Another server process requests temporily until the offline server is back.
+- A hash/Merkle tree: non-leaf node has hash for all child nodes. Used for verify contents of large data structures.
+- anti-entropy protocol: 
+- 
+
 ## System Design Interview The Big Archive
 
 ### Data base isolation level
