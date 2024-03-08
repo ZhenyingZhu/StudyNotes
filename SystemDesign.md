@@ -4807,8 +4807,7 @@ Handle failures
 - sloppy quorum: R/W on the first servers, offline servers are ignored.
 - hinted handoff: Another server process requests temporily until the offline server is back.
 - A hash/Merkle tree: non-leaf node has hash for all child nodes. Used for verify contents of large data structures.
-- anti-entropy protocol: 
-- 
+- anti-entropy protocol: keep replica in sync. comparing each piece of data on replicas and updating.
 
 ## System Design Interview The Big Archive
 
