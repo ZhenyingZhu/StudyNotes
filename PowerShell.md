@@ -115,3 +115,11 @@ If there are files in the folder, then the error: "Remove-item : No PromptForCho
 ## PSSession
 
 <https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_pssessions?view=powershell-7.3>
+
+```powershell
+$s = New-PSSession -URI http://x.x.x.x:xxxx/WSMAN -Credential domain\Administrator -Authentication Negotiate
+
+Invoke-Command -Session $s -ScriptBlock {
+  C:\temp\script.ps1
+}
+```
