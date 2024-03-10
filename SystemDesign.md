@@ -4809,6 +4809,10 @@ Handle failures
 - A hash/Merkle tree: non-leaf node has hash for all child nodes. Used for verify contents of large data structures.
 - anti-entropy protocol: keep replica in sync. comparing each piece of data on replicas and updating.
 
+System architecture
+
+- Decentralized: A coordinator can be any node acts as a proxy between client and the service
+
 ## System Design Interview The Big Archive
 
 ### Data base isolation level
