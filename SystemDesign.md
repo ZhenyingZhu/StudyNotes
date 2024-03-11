@@ -4813,6 +4813,12 @@ System architecture
 
 - Decentralized: A coordinator can be any node acts as a proxy between client and the service
 
+Write Path
+
+- requests persist on a commit log file
+- data is saved in the mem cache
+- when mem cache is full, flush to SSTables on disk
+
 ## System Design Interview The Big Archive
 
 ### Data base isolation level
