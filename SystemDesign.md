@@ -4786,7 +4786,7 @@ Components
 Consistent hashing adventages
 
 - capable with auto scaling
-- Heterogeneity: higher capability servers can have more virtual nodes
+- Heterogeneity (not evenly distributed): higher capability servers can have more virtual nodes
 
 Consistency models
 
@@ -4818,6 +4818,13 @@ Write Path
 - requests persist on a commit log file
 - data is saved in the mem cache
 - when mem cache is full, flush to SSTables on disk
+
+Read Path
+
+- Check if data in mem cache
+- Use bloom filter to find which SSTable contains the data
+
+### Ch7: Design a unique id generator in distributed system
 
 ## System Design Interview The Big Archive
 
