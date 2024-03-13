@@ -4826,6 +4826,13 @@ Read Path
 
 ### Ch7: Design a unique id generator in distributed system
 
+Requirements
+
+- id needs to be uniq and sortable
+- id is num fits in 64-bit
+- id increase over time
+- 10k id generates per sec
+
 ## System Design Interview The Big Archive
 
 ### Data base isolation level
