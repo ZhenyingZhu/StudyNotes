@@ -4833,6 +4833,13 @@ Requirements
 - id increase over time
 - 10k id generates per sec
 
+Distributed systems
+
+- multi-master replication
+- universally uniq id
+- ticket server
+- twitter snowflake approach
+
 ## System Design Interview The Big Archive
 
 ### Data base isolation level
