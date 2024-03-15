@@ -4833,12 +4833,13 @@ Requirements
 - id increase over time
 - 10k id generates per sec
 
-Distributed systems
+multi-master replication: in total k servers, on a server, increase the generated id by k every request
 
-- multi-master replication
-- universally uniq id
-- ticket server
-- twitter snowflake approach
+universally uniq id
+
+ticket server
+
+twitter snowflake approach
 
 ## System Design Interview The Big Archive
 
