@@ -4835,7 +4835,7 @@ Requirements
 
 multi-master replication: in total k servers, on a server, increase the generated id by k every request
 
-universally uniq id
+universally uniq id: use 128-bit num to have low probability of collision
 
 ticket server
 
