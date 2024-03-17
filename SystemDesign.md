@@ -4833,13 +4833,12 @@ Requirements
 - id increase over time
 - 10k id generates per sec
 
-multi-master replication: in total k servers, on a server, increase the generated id by k every request
+Solutions:
 
-universally uniq id: use 128-bit num to have low probability of collision
-
-ticket server
-
-twitter snowflake approach
+- multi-master replication: in total k servers, on a server, increase the generated id by k every request
+- universally uniq id: use 128-bit num to have low probability of collision
+- ticket server: a single DB for auto_increment
+- twitter snowflake approach
 
 ## System Design Interview The Big Archive
 
