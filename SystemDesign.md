@@ -4838,7 +4838,7 @@ Solutions:
 - multi-master replication: in total k servers, on a server, increase the generated id by k every request
 - universally uniq id: use 128-bit num to have low probability of collision
 - ticket server: a single DB for auto_increment
-- twitter snowflake approach
+- twitter snowflake approach: composite of sign (1 bit) + timestamp (41 bits) + DC id (5 bits) + Machine id (5 bits) + seq num (12 bits)
 
 ## System Design Interview The Big Archive
 
