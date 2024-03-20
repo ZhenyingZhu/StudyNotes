@@ -4844,6 +4844,15 @@ twitter snowflake approach
 - composite of sign (1 bit) + timestamp (41 bits) + DC id (5 bits) + Machine id (5 bits) + seq num (12 bits)
 - Use NTP to solve clock sync differences
 
+### Ch8: Design a url shortener
+
+Requirements
+
+- QPS: 100M URLs generated per day
+- Read QPS: 10 times of write
+- shortened URLs don't delete or update
+- Run for 10 years, avg URL len is 100.
+
 ## System Design Interview The Big Archive
 
 ### Data base isolation level
