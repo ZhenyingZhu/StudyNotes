@@ -4853,6 +4853,11 @@ Requirements
 - shortened URLs don't delete or update
 - Run for 10 years, avg URL len is 100.
 
+APIs
+
+- POST `api/v1/data/shorten`
+- GET `api/v1/shortUrl`
+
 ## System Design Interview The Big Archive
 
 ### Data base isolation level
