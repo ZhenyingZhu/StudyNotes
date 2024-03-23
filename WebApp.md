@@ -490,3 +490,6 @@ How to use docker **??**
 RESTFul with Swagger can be used to generate Proxy files and used in Powershell
 
 <https://stackoverflow.com/questions/46650362/how-to-setup-iis-to-verify-a-client-certificate-and-pass-it-to-the-backend-as-an>
+
+<https://stackoverflow.com/questions/59290464/how-to-fix-the-http-request-was-forbidden-with-client-authentication-scheme-an>
+
