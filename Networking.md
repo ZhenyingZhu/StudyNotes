@@ -742,6 +742,8 @@ Fiddler decrept HTTPS traffic:
 - a domain can have a subdomain with a cert for the subdomain.
 - local testing can use a self-signed cert.
 
+<https://learn.microsoft.com/en-us/iis/configuration/system.webserver/security/authentication/clientcertificatemappingauthentication>
+
 ## Other notes
 
 [No buffer space available](https://community.sophos.com/products/unified-threat-management/f/management-networking-logging-and-reporting/31186/105-no-buffer-space-available)
