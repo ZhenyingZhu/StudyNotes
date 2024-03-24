@@ -300,7 +300,7 @@ DNS request and response packet:
 | Identification | Flags | Comment |
 |:---:|:---:|:---:|
 |Number of questions|Number of answer RRs| 12 bytes |
-|Number of authority RRs|Number of additional RRs|
+|Number of authority RRs|Number of additional RRs | |
 |Questions(variable number of questions)| | Name, type fields for a query |
 |Answers(variable number of resource records)| | RRs in response to query |
 |Authority(variable number of resource records)| | Records for authoritative servers |
