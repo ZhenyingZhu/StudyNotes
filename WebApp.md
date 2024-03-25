@@ -479,6 +479,10 @@ Controllers:
 
 ## Bootstrap
 
+## WCF
+
+<https://learn.microsoft.com/en-us/dotnet/framework/wcf/getting-started-tutorial>
+
 ## Azure
 
 <https://docs.microsoft.com/en-us/aspnet/core/tutorials/publish-to-azure-webapp-using-vs?view=aspnetcore-6.0>
