@@ -82,6 +82,8 @@ git stuck at auto packing the repository for optimum performance
 
 [Error fatal: credential-cache unavailable; no Unix socket support](https://stackoverflow.com/questions/67951554/error-fatal-credential-cache-unavailable-no-unix-socket-support)
 
+<https://stackoverflow.com/questions/77287038/how-to-manage-github-credentials-with-windows-10#:~:text=Run%20git%20config%20--get%20credential.helper%2C%20then%20depending%20on,erase%20wincred%3A%20run%20the%20following%20command%3A%20cmdkey%20%2Fdelete%3ALegacyGeneric%3Atarget%3Dgit%3Ahttps%3A%2F%2Fgithub.com>
+
 ## Git RPC failure
 
 Error message:
