@@ -1261,6 +1261,8 @@ To check SKU availability in region and zone, run `az vm list-skus --location ce
 - <https://www.cloudflare.com/learning/dns/what-is-dns/#:~:text=DNS%20translates%20domain%20names%20to%20IP%20addresses%20so,which%20other%20machines%20use%20to%20find%20the%20device.>
 - <https://docs.cleartax.in/cleartax-docs/general/how-to-check-dns-resolution>
 
+- <https://learn.microsoft.com/en-us/azure/virtual-network/concepts-and-best-practices>
+
 - DNS look-up request send through UDP on port 53.
 - Host -> Local DNS -> Root DNS -> TLD DNS -> Authoritative DNS.
 - Type: what name and value mean.
