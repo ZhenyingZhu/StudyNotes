@@ -462,3 +462,5 @@ Can use [LocalSigning](https://github.com/microsoft/service-fabric/blob/master/s
 <https://stackoverflow.com/questions/5124731/run-a-custom-msbuild-target-from-visualstudio>
 
 <https://learn.microsoft.com/en-us/visualstudio/ide/how-to-view-save-and-configure-build-log-files?view=vs-2022>
+
+The sln might currupt cause project cannot load properties.
