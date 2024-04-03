@@ -1300,3 +1300,15 @@ request.Headers.Set(HttpRequestHeader.Authorization, string.Format(CultureInfo.I
 Microsoft.Azure.Management.Compute
 
 - <https://stackoverflow.com/questions/35228042/how-to-create-serviceclientcredential-to-be-used-with-microsoft-azure-management>
+
+## Delete Azure endpoint
+
+Error: Cannot delete custom domain "xxx" because it is still directly or indirectly (using "cdnverify" prefix) CNAMEd to CDN endpoint "xxx". Please remove the DNS CNAME record and try again.
+
+<https://learn.microsoft.com/en-us/answers/questions/1102321/cannot-delete-custom-domain-because-it-is-still-di>
+
+- doesn't work
+
+you need to create a CNAME record with your DNS provider for
+
+<https://learn.microsoft.com/en-us/azure/cdn/cdn-map-content-to-custom-domain?tabs=azure-dns%2Cazure-portal%2Cazure-portal-cleanup>
