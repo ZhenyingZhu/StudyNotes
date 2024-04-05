@@ -1313,4 +1313,4 @@ you need to create a CNAME record with your DNS provider for
 
 <https://learn.microsoft.com/en-us/azure/cdn/cdn-map-content-to-custom-domain?tabs=azure-dns%2Cazure-portal%2Cazure-portal-cleanup>
 
-The endpoint is CDN endpoint here. Need `Microsoft.CDN` reged.
+- The endpoint is CDN endpoint here. Need `Microsoft.CDN` registered.
