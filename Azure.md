@@ -1301,6 +1301,10 @@ Microsoft.Azure.Management.Compute
 
 - <https://stackoverflow.com/questions/35228042/how-to-create-serviceclientcredential-to-be-used-with-microsoft-azure-management>
 
+## Azure services
+
+<https://learn.microsoft.com/en-us/dotnet/azure/key-azure-services>
+
 ## Delete Azure endpoint
 
 Error: Cannot delete custom domain "xxx" because it is still directly or indirectly (using "cdnverify" prefix) CNAMEd to CDN endpoint "xxx". Please remove the DNS CNAME record and try again.
