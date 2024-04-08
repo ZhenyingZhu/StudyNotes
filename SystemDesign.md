@@ -4867,6 +4867,14 @@ APIs
 - Read committed
 - Read uncommitted
 
+## System Design Interview: volume 2
+
+Ad events system
+
+- Use map reduce to do aggregation
+- use Kafka partitions as the map input
+- Kapa architecture: merge the streaming and batching processing
+
 ## CI/CD
 
 <https://about.gitlab.com/topics/ci-cd/>
