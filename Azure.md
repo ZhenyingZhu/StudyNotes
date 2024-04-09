@@ -1305,6 +1305,8 @@ Microsoft.Azure.Management.Compute
 
 <https://learn.microsoft.com/en-us/dotnet/azure/key-azure-services>
 
+<https://learn.microsoft.com/en-us/dotnet/azure/migration/app-service>
+
 ## Delete Azure endpoint
 
 Error: Cannot delete custom domain "xxx" because it is still directly or indirectly (using "cdnverify" prefix) CNAMEd to CDN endpoint "xxx". Please remove the DNS CNAME record and try again.
