@@ -1240,7 +1240,7 @@ Scenarios:
   - Azure-hosted apps: Chained, Env, MI
   - SP: assert, cert, secret
   - user: AuthZ code, device code, interactive browser, on behalf of, username password
-- [Managed identity](https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/overview)
+- [Managed identity](https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/overview) a.k.a, MSI
   - System-assigned: can be used for VM. Creates a service principal.
   - User-assigned
   - [Use a Windows VM system-assigned managed identity to access Resource Manager](https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/tutorial-windows-vm-access-arm)
