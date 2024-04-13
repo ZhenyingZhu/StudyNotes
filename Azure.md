@@ -1321,3 +1321,7 @@ you need to create a CNAME record with your DNS provider for
 
 - The endpoint is CDN endpoint here. Need `Microsoft.CDN` registered.
 - The domain is also appeared in the app service as a custome domain.
+
+## Managed Identity
+
+<https://learn.microsoft.com/en-us/azure/data-explorer/configure-managed-identities-cluster?tabs=portal>
