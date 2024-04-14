@@ -1363,3 +1363,7 @@ Assembly version vs. nuget package version.
 ### Shims
 
 A unit test framework.
+
+### TLS
+
+<https://stackoverflow.com/questions/30664566/authentication-failed-because-remote-party-has-closed-the-transport-stream>
