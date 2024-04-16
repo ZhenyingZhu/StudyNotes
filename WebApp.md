@@ -489,9 +489,13 @@ Controllers:
 
 How to use docker **??**
 
-## Docker
+## Owin
 
-<https://www.docker.com/get-started/>
+<https://learn.microsoft.com/en-us/aspnet/core/fundamentals/owin?view=aspnetcore-8.0>
+
+<https://stackoverflow.com/questions/59875531/upgrading-xproj-in-visual-studio-2019>
+
+<https://stackoverflow.com/questions/39429122/asp-net-core-middleware-or-owin-middleware>
 
 ## Others
 
