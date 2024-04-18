@@ -497,6 +497,8 @@ How to use docker **??**
 
 <https://stackoverflow.com/questions/39429122/asp-net-core-middleware-or-owin-middleware>
 
+<https://stackoverflow.com/questions/72022589/why-is-program-cs-no-longer-a-class>
+
 ## Others
 
 RESTFul with Swagger can be used to generate Proxy files and used in Powershell
