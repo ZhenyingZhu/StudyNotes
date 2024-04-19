@@ -499,6 +499,16 @@ How to use docker **??**
 
 <https://stackoverflow.com/questions/72022589/why-is-program-cs-no-longer-a-class>
 
+- App_start
+- Area\Api
+- Content
+- Controllers
+- React
+- Scripts
+- Views
+- Global.aspx
+- Startup.cs
+
 ## Others
 
 RESTFul with Swagger can be used to generate Proxy files and used in Powershell
