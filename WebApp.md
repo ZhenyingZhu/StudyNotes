@@ -483,9 +483,13 @@ Controllers:
 
 <https://learn.microsoft.com/en-us/dotnet/framework/wcf/getting-started-tutorial>
 
+<https://stackoverflow.com/questions/41127291/how-to-run-a-wcf-project-locally>
+
 ## Azure
 
 <https://docs.microsoft.com/en-us/aspnet/core/tutorials/publish-to-azure-webapp-using-vs?view=aspnetcore-6.0>
+
+<https://learn.microsoft.com/en-us/dotnet/azure/sdk/logging>
 
 How to use docker **??**
 
