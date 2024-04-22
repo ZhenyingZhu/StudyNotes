@@ -477,6 +477,10 @@ Controllers:
 - Form input validation?
 - what input pre-process? `parseInt`, `string.trim()`?
 
+<https://stackoverflow.com/questions/5614941/mix-razor-and-javascript-code>
+
+<https://learn.microsoft.com/en-us/visualstudio/javascript/tutorial-asp-net-core-with-react?view=vs-2022>
+
 ## Bootstrap
 
 ## WCF
@@ -512,6 +516,10 @@ How to use docker **??**
 - Views
 - Global.aspx
 - Startup.cs
+
+## Blazor
+
+<https://stackoverflow.com/questions/61142736/difference-between-web-application-and-blazor-server-app-in-asp-net-core-3-1>
 
 ## Others
 
