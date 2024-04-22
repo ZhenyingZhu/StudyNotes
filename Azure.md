@@ -810,6 +810,9 @@ Next to look <https://docs.microsoft.com/en-us/azure/architecture/>
 
 <https://learn.microsoft.com/en-us/azure/key-vault/general/tutorial-net-create-vault-azure-web-app>
 
+- `az account set --subscription <sub id>`
+- `az webapp identity assign --name "<app name>" --resource-group "<rg>"`
+
 ### tutorialspoint Microsoft Azure Tutorial
 
 [Cloud Computing - Overview](https://www.tutorialspoint.com/microsoft_azure/cloud_computing_overview.htm)
