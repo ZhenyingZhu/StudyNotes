@@ -810,6 +810,9 @@ Next to look <https://docs.microsoft.com/en-us/azure/architecture/>
 
 <https://learn.microsoft.com/en-us/azure/key-vault/general/tutorial-net-create-vault-azure-web-app>
 
+- `az account set --subscription <sub id>`
+- `az webapp identity assign --name "<app name>" --resource-group "<rg>"`
+
 <https://stackoverflow.com/questions/58313018/how-to-get-private-key-from-certificate-in-an-azure-key-vault>
 
 ### tutorialspoint Microsoft Azure Tutorial
