@@ -810,8 +810,21 @@ Next to look <https://docs.microsoft.com/en-us/azure/architecture/>
 
 <https://learn.microsoft.com/en-us/azure/key-vault/general/tutorial-net-create-vault-azure-web-app>
 
+- `az login --tenant <directory id>`
 - `az account set --subscription <sub id>`
-- `az webapp identity assign --name "<app name>" --resource-group "<rg>"`
+- `az group create --name "myResourceGroup" -l "EastUS"`
+- `az appservice plan create --name myAppServicePlan --resource-group myResourceGroup --sku FREE`
+- `az webapp create --resource-group "myResourceGroup" --plan "myAppServicePlan" --name "zhenyzhuakvwebapp" --deployment-local-git`, save the `deploymentLocalGitUrl`, something like <https://DeploymentUserZhenyzhu@zhenyzhuakvwebapp.scm.azurewebsites.net/zhenyzhuakvwebapp.git>.
+- `az webapp config appsettings set -g MyResourceGroup --name "zhenyzhuakvwebapp" --settings deployment_branch=main`
+- `az webapp config appsettings list -g MyResourceGroup --name zhenyzhuakvwebapp`: the app created in <https://zhenyzhuakvwebapp.azurewebsites.net>
+
+- `az webapp deployment user set --user-name "DeploymentUserZhenyzhu" --password "<pass>"` This user can use across tenants and is not a Azure AD user.
+- `git init --initial-branch=main` create a local git repo
+- `git remote add azure https://DeploymentUserZhenyzhu@zhenyzhuakvwebapp.scm.azurewebsites.net/zhenyzhuakvwebapp.git`
+- `git push azure main`
+
+- `az webapp identity assign --name "zhenyzhuakvwebapp" --resource-group "MyResourceGroup"`: [Creates a managed identity](https://portal.azure.com/#view/Microsoft_AAD_IAM/StartboardApplicationsMenuBlade/~/AppAppsPreview/menuId~/null), the object id is the principal id.
+- `az keyvault set-policy --name "ZhenyingKeyVault" --object-id "<principalId>" --secret-permissions get list`
 
 <https://stackoverflow.com/questions/58313018/how-to-get-private-key-from-certificate-in-an-azure-key-vault>
 
