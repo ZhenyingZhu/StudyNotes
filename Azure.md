@@ -810,6 +810,8 @@ Next to look <https://docs.microsoft.com/en-us/azure/architecture/>
 
 <https://learn.microsoft.com/en-us/azure/key-vault/general/tutorial-net-create-vault-azure-web-app>
 
+<https://stackoverflow.com/questions/58313018/how-to-get-private-key-from-certificate-in-an-azure-key-vault>
+
 ### tutorialspoint Microsoft Azure Tutorial
 
 [Cloud Computing - Overview](https://www.tutorialspoint.com/microsoft_azure/cloud_computing_overview.htm)
