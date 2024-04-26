@@ -4901,3 +4901,5 @@ OOD Design Patterns
 ### Redis pub sub model
 
 <https://redis.com/glossary/pub-sub/#:~:text=How%20Pub%2FSub%20works,of%20their%20particular%20use%20cases.>
+
+<https://github.com/donnemartin/system-design-primer>
