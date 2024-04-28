@@ -4898,6 +4898,8 @@ How token works (OAuth2)
 
 OOD Design Patterns
 
+Config system to control a feature to be on or off.
+
 ### Redis pub sub model
 
 <https://redis.com/glossary/pub-sub/#:~:text=How%20Pub%2FSub%20works,of%20their%20particular%20use%20cases.>
