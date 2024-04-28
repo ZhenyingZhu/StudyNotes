@@ -1345,3 +1345,9 @@ you need to create a CNAME record with your DNS provider for
 <https://learn.microsoft.com/en-us/azure/data-explorer/configure-managed-identities-cluster?tabs=portal>
 
 <https://learn.microsoft.com/en-us/entra/workload-id/workload-identity-federation>
+
+## Network
+
+<https://azure.microsoft.com/en-us/products/private-link>
+
+<https://learn.microsoft.com/en-us/azure-stack/hci/concepts/software-load-balancer>
