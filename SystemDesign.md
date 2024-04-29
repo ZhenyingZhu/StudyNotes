@@ -4904,4 +4904,8 @@ Config system to control a feature to be on or off.
 
 <https://redis.com/glossary/pub-sub/#:~:text=How%20Pub%2FSub%20works,of%20their%20particular%20use%20cases.>
 
+## Other Resources
+
+<https://www.geeksforgeeks.org/top-software-development-project-ideas>
+
 <https://github.com/donnemartin/system-design-primer>
