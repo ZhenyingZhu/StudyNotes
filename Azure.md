@@ -1351,3 +1351,7 @@ you need to create a CNAME record with your DNS provider for
 <https://azure.microsoft.com/en-us/products/private-link>
 
 <https://learn.microsoft.com/en-us/azure-stack/hci/concepts/software-load-balancer>
+
+## Azure Pipelines
+
+<https://learn.microsoft.com/en-us/azure/devops/pipelines/get-started/what-is-azure-pipelines?view=azure-devops>
