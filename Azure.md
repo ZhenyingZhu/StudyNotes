@@ -824,7 +824,11 @@ Next to look <https://docs.microsoft.com/en-us/azure/architecture/>
 - `git push azure main`
 
 - `az webapp identity assign --name "zhenyzhuakvwebapp" --resource-group "MyResourceGroup"`: [Creates a managed identity](https://portal.azure.com/#view/Microsoft_AAD_IAM/StartboardApplicationsMenuBlade/~/AppAppsPreview/menuId~/null), the object id is the principal id.
-- `az keyvault set-policy --name "ZhenyingKeyVault" --object-id "<principalId>" --secret-permissions get list`
+- `az keyvault set-policy --name "ZhenyingKeyVault" --object-id "<principalId>" --secret-permissions get list`: doesn't work. Error message: Cannot set policies to a vault with '--enable-rbac-authorization' specified. Use the IAM UI and select managed identity.
+
+- `dotnet add package Azure.Identity`
+- `dotnet add package Azure.Security.KeyVault.Secrets`
+- Use `DefaultAzureCredential`
 
 <https://stackoverflow.com/questions/58313018/how-to-get-private-key-from-certificate-in-an-azure-key-vault>
 
