@@ -828,7 +828,7 @@ Next to look <https://docs.microsoft.com/en-us/azure/architecture/>
 
 - `dotnet add package Azure.Identity`
 - `dotnet add package Azure.Security.KeyVault.Secrets`
-- Use `DefaultAzureCredential`
+- Use `DefaultAzureCredential`: works locally, but not remotely
 
 <https://stackoverflow.com/questions/58313018/how-to-get-private-key-from-certificate-in-an-azure-key-vault>
 
