@@ -825,6 +825,7 @@ Next to look <https://docs.microsoft.com/en-us/azure/architecture/>
 
 - `az webapp identity assign --name "zhenyzhuakvwebapp" --resource-group "MyResourceGroup"`: [Creates a managed identity](https://portal.azure.com/#view/Microsoft_AAD_IAM/StartboardApplicationsMenuBlade/~/AppAppsPreview/menuId~/null), the object id is the principal id.
 - `az keyvault set-policy --name "ZhenyingKeyVault" --object-id "<principalId>" --secret-permissions get list`: doesn't work. Error message: Cannot set policies to a vault with '--enable-rbac-authorization' specified. Use the IAM UI and select managed identity.
+- Seems like need to give the user admin permission. <https://stackoverflow.com/questions/69971341/unable-to-create-secrets-in-azure-key-vault-if-using-azure-role-based-access-con>
 
 - `dotnet add package Azure.Identity`
 - `dotnet add package Azure.Security.KeyVault.Secrets`
