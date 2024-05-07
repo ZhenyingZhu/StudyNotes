@@ -1362,3 +1362,7 @@ you need to create a CNAME record with your DNS provider for
 <https://learn.microsoft.com/en-us/azure/devops/pipelines/get-started/what-is-azure-pipelines?view=azure-devops>
 
 <https://learn.microsoft.com/en-us/azure/devops/pipelines/artifacts/pipeline-artifacts?view=azure-devops&tabs=yaml>
+
+## Service Tags
+
+<https://learn.microsoft.com/en-us/azure/virtual-network/service-tags-overview>
