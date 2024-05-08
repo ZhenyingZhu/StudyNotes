@@ -1365,4 +1365,6 @@ you need to create a CNAME record with your DNS provider for
 
 ## Service Tags
 
+<https://learn.microsoft.com/en-us/azure/virtual-network/vnet-integration-for-azure-services>
+
 <https://learn.microsoft.com/en-us/azure/virtual-network/service-tags-overview>
