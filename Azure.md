@@ -824,12 +824,14 @@ Next to look <https://docs.microsoft.com/en-us/azure/architecture/>
 - `git push azure main`
 
 - `az webapp identity assign --name "zhenyzhuakvwebapp" --resource-group "MyResourceGroup"`: [Creates a managed identity](https://portal.azure.com/#view/Microsoft_AAD_IAM/StartboardApplicationsMenuBlade/~/AppAppsPreview/menuId~/null), the object id is the principal id.
-- `az keyvault set-policy --name "ZhenyingKeyVault" --object-id "<principalId>" --secret-permissions get list`: doesn't work. Error message: Cannot set policies to a vault with '--enable-rbac-authorization' specified. Use the IAM UI and select managed identity. Need to change the access policy.
-- Seems like need to give the user admin permission. <https://stackoverflow.com/questions/69971341/unable-to-create-secrets-in-azure-key-vault-if-using-azure-role-based-access-con>
+- `az keyvault set-policy --name "ZhenyingKeyVault" --object-id "<principalId>" --secret-permissions get list`: doesn't work. Error message: Cannot set policies to a vault with '--enable-rbac-authorization' specified.Need to change the access policy to make it not use RBAC.
+- Or use the IAM UI and select managed identity. need to give the user admin permission. <https://stackoverflow.com/questions/69971341/unable-to-create-secrets-in-azure-key-vault-if-using-azure-role-based-access-con>
 
 - `dotnet add package Azure.Identity`
 - `dotnet add package Azure.Security.KeyVault.Secrets`
 - Use `DefaultAzureCredential`: works locally, but not remotely
+
+- Even in the same tenant, would need to use User assigned MI to use app auth
 
 <https://stackoverflow.com/questions/58313018/how-to-get-private-key-from-certificate-in-an-azure-key-vault>
 
