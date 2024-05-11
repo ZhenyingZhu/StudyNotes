@@ -831,6 +831,8 @@ Next to look <https://docs.microsoft.com/en-us/azure/architecture/>
 - `dotnet add package Azure.Security.KeyVault.Secrets`
 - Use `DefaultAzureCredential`: works locally, but not remotely
 
+- Key Vault can use app to access. App can use client id + cert or client key
+
 - Even in the same tenant, would need to use User assigned MI to use app auth
 
 <https://stackoverflow.com/questions/58313018/how-to-get-private-key-from-certificate-in-an-azure-key-vault>
