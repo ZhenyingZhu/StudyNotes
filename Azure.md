@@ -835,6 +835,8 @@ Next to look <https://docs.microsoft.com/en-us/azure/architecture/>
 
 - Even in the same tenant, would need to use User assigned MI to use app auth
 
+- For SQL: <https://learn.microsoft.com/en-us/azure/app-service/tutorial-connect-msi-sql-database?tabs=windowsclient%2Cefcore%2Cdotnet>
+
 <https://stackoverflow.com/questions/58313018/how-to-get-private-key-from-certificate-in-an-azure-key-vault>
 
 ### tutorialspoint Microsoft Azure Tutorial
