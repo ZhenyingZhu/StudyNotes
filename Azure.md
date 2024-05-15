@@ -836,6 +836,7 @@ Next to look <https://docs.microsoft.com/en-us/azure/architecture/>
 - Even in the same tenant, would need to use User assigned MI to use app auth
 
 - For SQL: <https://learn.microsoft.com/en-us/azure/app-service/tutorial-connect-msi-sql-database?tabs=windowsclient%2Cefcore%2Cdotnet>
+- For VM: <https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/qs-configure-portal-windows-vm>
 
 Need to add the identity to the User table.
 
