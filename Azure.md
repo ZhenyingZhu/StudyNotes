@@ -844,6 +844,8 @@ Need to add the identity to the User table.
 
 <https://stackoverflow.com/questions/3708348/the-execute-permission-was-denied-on-the-object-xxxxxxx-database-zzzzzzz-s>
 
+<https://stackoverflow.com/questions/31120912/how-to-view-the-roles-and-permissions-granted-to-any-database-user-in-azure-sql>
+
 ### tutorialspoint Microsoft Azure Tutorial
 
 [Cloud Computing - Overview](https://www.tutorialspoint.com/microsoft_azure/cloud_computing_overview.htm)
