@@ -842,6 +842,8 @@ Need to add the identity to the User table.
 
 <https://stackoverflow.com/questions/58313018/how-to-get-private-key-from-certificate-in-an-azure-key-vault>
 
+<https://stackoverflow.com/questions/3708348/the-execute-permission-was-denied-on-the-object-xxxxxxx-database-zzzzzzz-s>
+
 ### tutorialspoint Microsoft Azure Tutorial
 
 [Cloud Computing - Overview](https://www.tutorialspoint.com/microsoft_azure/cloud_computing_overview.htm)
