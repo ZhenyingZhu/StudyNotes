@@ -848,6 +848,8 @@ Need to add the identity to the User table.
 
 Local SQL: <https://stackoverflow.com/questions/66080953/unable-to-connect-to-localdb-mssqllocaldb-due-to-trigger-execution>
 
+SN+I: <https://github.com/Azure/azure-sdk-for-net/issues/26655>
+
 ### tutorialspoint Microsoft Azure Tutorial
 
 [Cloud Computing - Overview](https://www.tutorialspoint.com/microsoft_azure/cloud_computing_overview.htm)
