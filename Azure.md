@@ -1384,6 +1384,8 @@ you need to create a CNAME record with your DNS provider for
 
 <https://learn.microsoft.com/en-us/azure/devops/pipelines/artifacts/pipeline-artifacts?view=azure-devops&tabs=yaml>
 
+To deploy ARM, go to Automation > Export Template > Deploy.
+
 ## Service Tags
 
 <https://learn.microsoft.com/en-us/azure/virtual-network/vnet-integration-for-azure-services>
