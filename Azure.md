@@ -852,6 +852,8 @@ SN+I: <https://github.com/Azure/azure-sdk-for-net/issues/26655>
 
 <https://devblogs.microsoft.com/dotnet/introducing-the-new-microsoftdatasqlclient/>
 
+<https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/tutorial-windows-vm-access-nonaad>
+
 ### tutorialspoint Microsoft Azure Tutorial
 
 [Cloud Computing - Overview](https://www.tutorialspoint.com/microsoft_azure/cloud_computing_overview.htm)
