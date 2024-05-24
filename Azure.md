@@ -856,6 +856,8 @@ SN+I: <https://github.com/Azure/azure-sdk-for-net/issues/26655>
 
 <https://azure.microsoft.com/en-us/products/event-hubs>
 
+<https://learn.microsoft.com/en-us/virtualization/windowscontainers/manage-containers/container-base-images>
+
 ### tutorialspoint Microsoft Azure Tutorial
 
 [Cloud Computing - Overview](https://www.tutorialspoint.com/microsoft_azure/cloud_computing_overview.htm)
