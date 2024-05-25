@@ -858,6 +858,8 @@ SN+I: <https://github.com/Azure/azure-sdk-for-net/issues/26655>
 
 <https://learn.microsoft.com/en-us/virtualization/windowscontainers/manage-containers/container-base-images>
 
+- can use vhd
+
 ### tutorialspoint Microsoft Azure Tutorial
 
 [Cloud Computing - Overview](https://www.tutorialspoint.com/microsoft_azure/cloud_computing_overview.htm)
