@@ -860,6 +860,7 @@ SN+I: <https://github.com/Azure/azure-sdk-for-net/issues/26655>
 
 - can use vhd
 - <https://gist.github.com/jjmartres/177c68d3f44a4f8a82d9d0bc42a97637>
+- <https://docs.docker.com/get-started/overview/>
 
 ### tutorialspoint Microsoft Azure Tutorial
 
