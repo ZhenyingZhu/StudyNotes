@@ -861,6 +861,7 @@ SN+I: <https://github.com/Azure/azure-sdk-for-net/issues/26655>
 User Assigned Identity
 
 - Create a service principal (enterprise app) and then assign to an AAD app.
+- <https://learn.microsoft.com/en-us/entra/identity-platform/multi-service-web-app-access-storage?tabs=azure-portal%2Cprogramming-language-csharp>
 
 - can use vhd
 - <https://gist.github.com/jjmartres/177c68d3f44a4f8a82d9d0bc42a97637>
