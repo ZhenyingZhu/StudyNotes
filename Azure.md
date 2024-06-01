@@ -1389,6 +1389,8 @@ you need to create a CNAME record with your DNS provider for
 
 <https://learn.microsoft.com/en-us/entra/workload-id/workload-identity-federation>
 
+- Azure SDK can set the identity when login
+
 ## Network
 
 <https://azure.microsoft.com/en-us/products/private-link>
