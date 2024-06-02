@@ -1391,6 +1391,8 @@ you need to create a CNAME record with your DNS provider for
 
 - Azure SDK can set the identity when login
 
+Access policy and IAM, only 1 is needed.
+
 ## Network
 
 <https://azure.microsoft.com/en-us/products/private-link>
