@@ -1387,6 +1387,10 @@ you need to create a CNAME record with your DNS provider for
 
 Access policy and IAM, only 1 is needed.
 
+<https://learn.microsoft.com/en-us/azure/storage/files/authorize-data-operations-portal>
+
+<https://learn.microsoft.com/en-us/azure/azure-portal/azure-portal-safelist-urls?tabs=public-cloud>
+
 ## Network
 
 <https://azure.microsoft.com/en-us/products/private-link>
