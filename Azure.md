@@ -1387,6 +1387,8 @@ you need to create a CNAME record with your DNS provider for
 
 Access policy and IAM, only 1 is needed.
 
+Queue access: first create a queueServiceClient with the storage URI, then create a queueClient with the queue.
+
 ## Network
 
 <https://azure.microsoft.com/en-us/products/private-link>
