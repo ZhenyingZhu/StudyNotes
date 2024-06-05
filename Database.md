@@ -94,6 +94,12 @@ SELECT Questions.qid, Questions.url, Questions.difficulty, Metadata.priority, Me
 
 <https://www.geeksforgeeks.org/how-to-write-a-sql-query-for-a-specific-date-range-and-date-time/>
 
+Delete all rows in a table
+
+```sql
+TRUNCATE TABLE table_name
+```
+
 ## Memcached
 
 [Install](https://www.liquidweb.com/kb/how-to-install-memcached-on-ubuntu-14-04-lts/)
