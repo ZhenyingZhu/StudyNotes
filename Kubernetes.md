@@ -13,3 +13,14 @@
 - <https://docs.docker.com/get-started/overview/>
 - <https://docs.docker.com/guides/docker-concepts/the-basics/what-is-a-container/>
 - <https://hub.docker.com/_/microsoft-windows-base-os-images>
+
+Command
+
+```
+# build
+docker build --build-arg=DOTNET_EnableWriteXorExecute=0 -f client/Dockerfile -t k8s-client .
+
+# run
+export WORKSPACE=<path>
+ocker run -ti --platform=linux/amd64 --privileged --network=host --user root --volume $WORKSPACE:/k8s-infrastructure/ --volume $WORKSPACE/src/client/.azure:/root/.azure/ --volume $WORKSPACE/src/client/.kube/:/root/.kube --volume $WORKSPACE/src/client/.bashrc_local:/root/.bashrc_local --volume $WORKSPACE/src/client/.bash_history:/root/.bash_history --workdir /k8s-infrastructure/src/client k8s-client
+```

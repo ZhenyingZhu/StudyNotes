@@ -1389,6 +1389,23 @@ Access policy and IAM, only 1 is needed.
 
 Queue access: first create a queueServiceClient with the storage URI, then create a queueClient with the queue.
 
+<https://learn.microsoft.com/en-us/azure/storage/files/authorize-data-operations-portal>
+
+<https://learn.microsoft.com/en-us/azure/azure-portal/azure-portal-safelist-urls?tabs=public-cloud>
+
+To use the new Queue API while still compatible with the old API for `byte[]` message, need to first init the client with an option. Because the old Queue API auto encode string to Base64.
+
+```C#
+   QueueServiceClient queueServiceClient = new (
+      new Uri($"https://<queue name>.queue.core.windows.net/"),
+      new DefaultAzureCredential(),
+      new QueueClientOptions { MessageEncoding = QueueMessageEncoding.Base64 });
+```
+
+Then use `Convert.ToBase64String(byte[])` to create the message, and `byte[] message = Convert.FromBase64String(dequeueMessage.Body.ToString()))` to deserialize a message back.
+
+
+
 ## Network
 
 <https://azure.microsoft.com/en-us/products/private-link>
