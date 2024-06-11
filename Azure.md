@@ -1404,8 +1404,6 @@ To use the new Queue API while still compatible with the old API for `byte[]` me
 
 Then use `Convert.ToBase64String(byte[])` to create the message, and `byte[] message = Convert.FromBase64String(dequeueMessage.Body.ToString()))` to deserialize a message back.
 
-
-
 ## Network
 
 <https://azure.microsoft.com/en-us/products/private-link>

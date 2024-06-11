@@ -6,7 +6,7 @@
 
 ## Docker
 
-<https://www.docker.com/get-started/>
+<https://docs.docker.com/get-started/overview/>
 
 - can use vhd
 - <https://gist.github.com/jjmartres/177c68d3f44a4f8a82d9d0bc42a97637>
@@ -16,11 +16,13 @@
 
 Command
 
-```
+```powershell
 # build
 docker build --build-arg=DOTNET_EnableWriteXorExecute=0 -f client/Dockerfile -t k8s-client .
 
 # run
-export WORKSPACE=<path>
-ocker run -ti --platform=linux/amd64 --privileged --network=host --user root --volume $WORKSPACE:/k8s-infrastructure/ --volume $WORKSPACE/src/client/.azure:/root/.azure/ --volume $WORKSPACE/src/client/.kube/:/root/.kube --volume $WORKSPACE/src/client/.bashrc_local:/root/.bashrc_local --volume $WORKSPACE/src/client/.bash_history:/root/.bash_history --workdir /k8s-infrastructure/src/client k8s-client
+$WORKSPACE=<path>
+docker run -ti --platform=linux/amd64 --privileged --network=host --user root --volume $WORKSPACE/k8s-infrastructure/ --volume $WORKSPACE/src/client/.azure:/root/.azure/ --volume $WORKSPACE/src/client/.kube/:/root/.kube --volume $WORKSPACE/src/client/.bashrc_local:/root/.bashrc_local --volume $WORKSPACE/src/client/.bash_history:/root/.bash_history --workdir /k8s-infrastructure/src/client k8s-client
 ```
+
+<https://stackoverflow.com/questions/26028971/docker-container-ssl-certificates>
