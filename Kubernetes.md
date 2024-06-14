@@ -8,6 +8,18 @@
 
 <https://docs.docker.com/get-started/overview/>
 
+- daemon `dockerd`: listen for API requests
+- client `docker`: sending commands to `dockerd`
+- registries: stores images
+- images: read-only template. Build image: create a Dockerfile to define steps, seperated by layers to make it lightweight.
+- container: runnable instance of an image
+- `docker pull ubuntu`: 1st layer
+- `docker container create`: allocates a R/W file system. Final layer. Also creates a network interface
+- `docker run -i -t ubuntu /bin/bash`: starts the container, execute bash with iteractive mode and attached to the terminal
+- `exit`: stop the container
+
+- <https://docs.docker.com/guides/getting-started/develop-with-containers/>
+
 - can use vhd
 - <https://gist.github.com/jjmartres/177c68d3f44a4f8a82d9d0bc42a97637>
 - <https://docs.docker.com/get-started/overview/>
