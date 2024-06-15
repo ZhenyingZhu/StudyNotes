@@ -18,6 +18,8 @@
 - `docker run -i -t ubuntu /bin/bash`: starts the container, execute bash with iteractive mode and attached to the terminal
 - `exit`: stop the container
 
+Isolation level
+
 - <https://docs.docker.com/guides/getting-started/develop-with-containers/>
 
 - can use vhd
