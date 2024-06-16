@@ -1404,6 +1404,8 @@ To use the new Queue API while still compatible with the old API for `byte[]` me
 
 Then use `Convert.ToBase64String(byte[])` to create the message, and `byte[] message = Convert.FromBase64String(dequeueMessage.Body.ToString()))` to deserialize a message back.
 
+<https://learn.microsoft.com/en-us/azure/role-based-access-control/role-assignments-cli>
+
 ## Network
 
 <https://azure.microsoft.com/en-us/products/private-link>
