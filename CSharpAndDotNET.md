@@ -1367,3 +1367,7 @@ A unit test framework.
 ### TLS
 
 <https://stackoverflow.com/questions/30664566/authentication-failed-because-remote-party-has-closed-the-transport-stream>
+
+### csvhelper
+
+<https://joshclose.github.io/CsvHelper/getting-started/>
