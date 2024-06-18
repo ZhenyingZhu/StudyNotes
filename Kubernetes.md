@@ -28,6 +28,8 @@ Isolation level
 - <https://docs.docker.com/guides/docker-concepts/the-basics/what-is-a-container/>
 - <https://hub.docker.com/_/microsoft-windows-base-os-images>
 
+Docker node image: <https://hub.docker.com/_/node/>
+
 Command
 
 ```powershell
