@@ -521,6 +521,10 @@ How to use docker **??**
 
 <https://stackoverflow.com/questions/61142736/difference-between-web-application-and-blazor-server-app-in-asp-net-core-3-1>
 
+## Web.config
+
+system.webServer section in the web.config can define module to use. Modules are DLLs where a class inherits IHttpModule.
+
 ## Others
 
 RESTFul with Swagger can be used to generate Proxy files and used in Powershell
