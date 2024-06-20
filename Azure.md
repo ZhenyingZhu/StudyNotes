@@ -1425,3 +1425,5 @@ To deploy ARM, go to Automation > Export Template > Deploy.
 <https://learn.microsoft.com/en-us/azure/virtual-network/vnet-integration-for-azure-services>
 
 <https://learn.microsoft.com/en-us/azure/virtual-network/service-tags-overview>
+
+<https://learn.microsoft.com/en-us/azure/azure-web-pubsub/howto-service-tags?tabs=azure-portal>
