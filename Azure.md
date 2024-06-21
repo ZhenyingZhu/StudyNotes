@@ -1427,3 +1427,5 @@ To deploy ARM, go to Automation > Export Template > Deploy.
 <https://learn.microsoft.com/en-us/azure/virtual-network/service-tags-overview>
 
 <https://learn.microsoft.com/en-us/azure/azure-web-pubsub/howto-service-tags?tabs=azure-portal>
+
+<https://learn.microsoft.com/en-us/azure/virtual-network/network-security-groups-overview#security-rules>
