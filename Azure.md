@@ -1422,6 +1422,13 @@ To deploy ARM, go to Automation > Export Template > Deploy.
 
 ## Service Tags
 
+[What is Azure Virtual Network?](https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-overview)
+
+- to communicate outbound with the internet: public ip, NAT gateway, public load balancer
+- vnet service endpoint: limit traffic to storage/SQL to only a virtual network
+- net peering: connect vnets.
+- Network virtual appliances: a VM that performs a network function, such as a firewall or WAN optimization.
+
 <https://learn.microsoft.com/en-us/azure/virtual-network/vnet-integration-for-azure-services>
 
 <https://learn.microsoft.com/en-us/azure/virtual-network/service-tags-overview>
