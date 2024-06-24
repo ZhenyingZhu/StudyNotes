@@ -1429,6 +1429,18 @@ To deploy ARM, go to Automation > Export Template > Deploy.
 - net peering: connect vnets.
 - Network virtual appliances: a VM that performs a network function, such as a firewall or WAN optimization.
 
+[Filter network traffic](https://learn.microsoft.com/en-us/azure/virtual-network/tutorial-filter-network-traffic)
+
+- vnet: has subnets
+- application security group (ASGs): group together servers with similar functions
+- network security group (NSG): secures network traffic in your virtual network. Associate with subnet.
+- secuity rule: source, dest, service, port, protocol, action (allow, deny), priority
+- ASG can be used in security rules as service of a NSG
+- VM NIC associates with a subnet in the vnet + ASG
+- in the same subnet, traffic can always go through
+
+[Route network traffic](https://learn.microsoft.com/en-us/azure/virtual-network/tutorial-create-route-table-portal)
+
 <https://learn.microsoft.com/en-us/azure/virtual-network/vnet-integration-for-azure-services>
 
 <https://learn.microsoft.com/en-us/azure/virtual-network/service-tags-overview>
