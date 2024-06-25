@@ -1441,6 +1441,10 @@ To deploy ARM, go to Automation > Export Template > Deploy.
 
 [Route network traffic](https://learn.microsoft.com/en-us/azure/virtual-network/tutorial-create-route-table-portal)
 
+- Custom route: route traffic between subnets through a network virtual appliance (NVA).
+- IP forwarding: any traffic received by the NVA that's destined for a different IP address, isn't dropped and is forwarded to the correct destination.
+- resource in private subnet can directly go to public subnet
+
 <https://learn.microsoft.com/en-us/azure/virtual-network/vnet-integration-for-azure-services>
 
 <https://learn.microsoft.com/en-us/azure/virtual-network/service-tags-overview>
