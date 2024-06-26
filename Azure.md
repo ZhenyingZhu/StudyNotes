@@ -1445,6 +1445,8 @@ To deploy ARM, go to Automation > Export Template > Deploy.
 - IP forwarding: any traffic received by the NVA that's destined for a different IP address, isn't dropped and is forwarded to the correct destination.
 - resource in private subnet can directly go to public subnet
 
+[Restrict network access](https://learn.microsoft.com/en-us/azure/virtual-network/tutorial-restrict-network-access-to-resources)
+
 <https://learn.microsoft.com/en-us/azure/virtual-network/vnet-integration-for-azure-services>
 
 <https://learn.microsoft.com/en-us/azure/virtual-network/service-tags-overview>
