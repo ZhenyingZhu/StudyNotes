@@ -1447,6 +1447,8 @@ To deploy ARM, go to Automation > Export Template > Deploy.
 
 [Restrict network access](https://learn.microsoft.com/en-us/azure/virtual-network/tutorial-restrict-network-access-to-resources)
 
+- in the vnet, can enable service endpoint for azure resources
+
 <https://learn.microsoft.com/en-us/azure/virtual-network/vnet-integration-for-azure-services>
 
 <https://learn.microsoft.com/en-us/azure/virtual-network/service-tags-overview>
