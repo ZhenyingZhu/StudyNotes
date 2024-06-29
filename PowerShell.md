@@ -123,3 +123,15 @@ Invoke-Command -Session $s -ScriptBlock {
   C:\temp\script.ps1
 }
 ```
+
+## Use string with special characters
+
+```powershell
+powershell powershell-example\TryParams.ps1 -name "1-name-(1/5)"
+```
+
+Actually treats "()" as the next parameter. To make it work, need to use ```
+
+```powershell
+powershell C:\Users\zhenyzhu\Github\StudyNotes\powershell-example\TryParams.ps1 -name '1-name-`(1/5`)'
+```
