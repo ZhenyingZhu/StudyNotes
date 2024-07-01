@@ -1454,6 +1454,8 @@ To deploy ARM, go to Automation > Export Template > Deploy.
 
 [Connect virtual networks](https://learn.microsoft.com/en-us/azure/virtual-network/tutorial-connect-virtual-networks-portal)
 
+- create vnet peering by select Peering in the setting of vnet. Then 2 vnets are connected
+
 <https://learn.microsoft.com/en-us/azure/virtual-network/vnet-integration-for-azure-services>
 
 <https://learn.microsoft.com/en-us/azure/virtual-network/service-tags-overview>
