@@ -1456,6 +1456,13 @@ To deploy ARM, go to Automation > Export Template > Deploy.
 
 - create vnet peering by select Peering in the setting of vnet. Then 2 vnets are connected
 
+[Best practices](https://learn.microsoft.com/en-us/azure/virtual-network/concepts-and-best-practices)
+
+- Don't create subnets cover the entire address space of vnet, to plan for future.
+- fewer large virtual networks rather than multiple small virtual networks to prevent management overhead
+
+[Business Continuity](https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-disaster-recovery-guidance)
+
 <https://learn.microsoft.com/en-us/azure/virtual-network/vnet-integration-for-azure-services>
 
 <https://learn.microsoft.com/en-us/azure/virtual-network/service-tags-overview>
