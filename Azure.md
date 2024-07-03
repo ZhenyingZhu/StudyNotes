@@ -1463,6 +1463,11 @@ To deploy ARM, go to Automation > Export Template > Deploy.
 
 [Business Continuity](https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-disaster-recovery-guidance)
 
+- serve as a trust boundary
+- within the scope of a region
+
+[Routing](https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-udr-overview)
+
 <https://learn.microsoft.com/en-us/azure/virtual-network/vnet-integration-for-azure-services>
 
 <https://learn.microsoft.com/en-us/azure/virtual-network/service-tags-overview>
