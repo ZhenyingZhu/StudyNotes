@@ -1468,6 +1468,8 @@ To deploy ARM, go to Automation > Export Template > Deploy.
 
 [Routing](https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-udr-overview)
 
+- [BGP vs. DNS](https://www.enterprisenetworkingplanet.com/data-center/bgp-vs-dns/): BGP: how, DNS: where
+
 <https://learn.microsoft.com/en-us/azure/virtual-network/vnet-integration-for-azure-services>
 
 <https://learn.microsoft.com/en-us/azure/virtual-network/service-tags-overview>
