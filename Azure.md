@@ -1469,6 +1469,19 @@ To deploy ARM, go to Automation > Export Template > Deploy.
 [Routing](https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-udr-overview)
 
 - [BGP vs. DNS](https://www.enterprisenetworkingplanet.com/data-center/bgp-vs-dns/): BGP: how, DNS: where
+- Vnet peering: a route is auto created
+- vnet gateway: a next hop type
+- VirtualNetworkServiceEndpoint: when enabled, a route is added
+- next hop types:
+  - VirtualNetworkGateway
+  - VNetLocal
+  - Internet
+  - VirtualAppliance
+  - VNet peering
+  - VirtualNetworkServiceEndpoint
+  - None
+- On prem can use BGP to connect to Vnet using ExpressRoute or VPN
+- [Here](https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-udr-overview#default-route)
 
 <https://learn.microsoft.com/en-us/azure/virtual-network/vnet-integration-for-azure-services>
 
