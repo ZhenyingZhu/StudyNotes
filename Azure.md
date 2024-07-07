@@ -1482,6 +1482,7 @@ To deploy ARM, go to Automation > Export Template > Deploy.
   - None
 - On prem can use BGP to connect to Vnet using ExpressRoute or VPN
 - 0.0.0.0/0 address prefix is created as a default route with the Internet next hop type by Azure
+- [ExpressRoute vs. VPN](https://medium.com/awesome-azure/azure-difference-between-azure-expressroute-and-azure-vpn-gateway-comparison-azure-hybrid-connectivity-5f7ce02044f3): ExpressRoute go through private network, VPN go through public
 - [Here](https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-udr-overview#default-route)
 
 <https://learn.microsoft.com/en-us/azure/virtual-network/vnet-integration-for-azure-services>
