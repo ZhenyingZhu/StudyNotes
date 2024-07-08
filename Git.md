@@ -87,6 +87,8 @@ git stuck at auto packing the repository for optimum performance
 [git clone with different username/account](https://stackoverflow.com/questions/39644366/git-clone-with-different-username-account)
 
 - When cloning: `git clone https://ZhenyingZhu@github.com/ZhenyingZhu/StudyNotes.git`
+- `git config user.name "Zhenying Zhu"`
+- `git config user.email zhenying.zhu91@gmail.com`
 
 ## Git RPC failure
 
