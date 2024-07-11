@@ -1484,7 +1484,7 @@ To deploy ARM, go to Automation > Export Template > Deploy.
 - 0.0.0.0/0 address prefix is created as a default route with the Internet next hop type by Azure
 - [ExpressRoute vs. VPN](https://medium.com/awesome-azure/azure-difference-between-azure-expressroute-and-azure-vpn-gateway-comparison-azure-hybrid-connectivity-5f7ce02044f3): ExpressRoute go through private network, VPN go through public
 - Routes can be invalid if a same route is added
-- [Here](https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-udr-overview#implementation)
+- [Here](https://learn.microsoft.com/en-us/azure/virtual-network/container-networking-overview)
 
 <https://learn.microsoft.com/en-us/azure/virtual-network/vnet-integration-for-azure-services>
 
