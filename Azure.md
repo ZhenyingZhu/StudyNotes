@@ -1484,7 +1484,16 @@ To deploy ARM, go to Automation > Export Template > Deploy.
 - 0.0.0.0/0 address prefix is created as a default route with the Internet next hop type by Azure
 - [ExpressRoute vs. VPN](https://medium.com/awesome-azure/azure-difference-between-azure-expressroute-and-azure-vpn-gateway-comparison-azure-hybrid-connectivity-5f7ce02044f3): ExpressRoute go through private network, VPN go through public
 - Routes can be invalid if a same route is added
-- [Here](https://learn.microsoft.com/en-us/azure/virtual-network/container-networking-overview)
+
+[Enable containers to use Azure Virtual Network capabilities](https://learn.microsoft.com/en-us/azure/virtual-network/container-networking-overview)
+
+- A virtual network IP address is assigned to every Pod, which could consist of one or more containers.
+- Pods can connect to peered virtual networks and to on-premises over ExpressRoute or a site-to-site VPN. Pods are also reachable from peered and on-premises networks.
+- Pods can access services such as Azure Storage and Azure SQL Database that are protected by virtual network service endpoints.
+- Network security groups and routes can be applied directly to Pods.
+- Pods can be placed directly behind an Azure internal or public Load Balancer, just like virtual machines
+- Pods can be assigned a public IP address, which makes them directly accessible from the internet. Pods can also access the internet themselves.
+- Works seamlessly with Kubernetes resources such as Services, Ingress controllers, and Kube DNS. A Kubernetes Service can also be exposed internally or externally through the Azure Load Balancer.
 
 <https://learn.microsoft.com/en-us/azure/virtual-network/vnet-integration-for-azure-services>
 
