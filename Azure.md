@@ -1487,13 +1487,13 @@ To deploy ARM, go to Automation > Export Template > Deploy.
 
 [Enable containers to use Azure Virtual Network capabilities](https://learn.microsoft.com/en-us/azure/virtual-network/container-networking-overview)
 
-- A virtual network IP address is assigned to every Pod, which could consist of one or more containers.
-- Pods can connect to peered virtual networks and to on-premises over ExpressRoute or a site-to-site VPN. Pods are also reachable from peered and on-premises networks.
-- Pods can access services such as Azure Storage and Azure SQL Database that are protected by virtual network service endpoints.
-- Network security groups and routes can be applied directly to Pods.
-- Pods can be placed directly behind an Azure internal or public Load Balancer, just like virtual machines
-- Pods can be assigned a public IP address, which makes them directly accessible from the internet. Pods can also access the internet themselves.
-- Works seamlessly with Kubernetes resources such as Services, Ingress controllers, and Kube DNS. A Kubernetes Service can also be exposed internally or externally through the Azure Load Balancer.
+- A virtual network IP address is assigned to every Pod (one or more containers).
+- Pods can connect to peered vnet.
+- Pods can access services that are protected by vnet service endpoints.
+- NSGs and routes can be applied directly to Pods.
+- Pods can be placed directly behind an Azure internal or public LB, just like VMs
+- Pods can be assigned a public IP. Pods can also access the internet themselves.
+- Works seamlessly with K8s resources such as Services, Ingress controllers, and Kube DNS. A K8s Service can also be exposed internally or externally through the Azure LB.
 
 <https://learn.microsoft.com/en-us/azure/virtual-network/vnet-integration-for-azure-services>
 
