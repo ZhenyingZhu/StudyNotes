@@ -1495,6 +1495,10 @@ To deploy ARM, go to Automation > Export Template > Deploy.
 - Pods can be assigned a public IP. Pods can also access the internet themselves.
 - Works seamlessly with K8s resources such as Services, Ingress controllers, and Kube DNS. A K8s Service can also be exposed internally or externally through the Azure LB.
 
+[Peering](https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-peering-overview)
+
+- Global virtual network peering: Connecting virtual networks across Azure regions.
+
 <https://learn.microsoft.com/en-us/azure/virtual-network/vnet-integration-for-azure-services>
 
 <https://learn.microsoft.com/en-us/azure/virtual-network/service-tags-overview>
