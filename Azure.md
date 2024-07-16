@@ -1498,6 +1498,7 @@ To deploy ARM, go to Automation > Export Template > Deploy.
 [Peering](https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-peering-overview)
 
 - Global virtual network peering: Connecting virtual networks across Azure regions.
+- You can apply network security groups in either virtual network to block access to other virtual networks or subnets.
 
 <https://learn.microsoft.com/en-us/azure/virtual-network/vnet-integration-for-azure-services>
 
