@@ -1500,6 +1500,7 @@ To deploy ARM, go to Automation > Export Template > Deploy.
 - Global virtual network peering: Connecting virtual networks across Azure regions.
 - You can apply network security groups in either virtual network to block access to other virtual networks or subnets.
 - can resize the address space of Azure virtual networks that are peered without incurring any downtime
+- Service chaining enables you to direct traffic from one virtual network to a virtual appliance or gateway in a peered network through user-defined routes.
 
 <https://learn.microsoft.com/en-us/azure/virtual-network/vnet-integration-for-azure-services>
 
