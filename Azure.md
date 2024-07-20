@@ -1502,6 +1502,7 @@ To deploy ARM, go to Automation > Export Template > Deploy.
 - can resize the address space of Azure virtual networks that are peered without incurring any downtime
 - Service chaining enables you to direct traffic from one virtual network to a virtual appliance or gateway in a peered network through user-defined routes.
 - Each virtual network, including a peered virtual network, can have its own gateway to connect to an on-premises network.
+- Resources in one virtual network can't communicate with the front-end IP address of a basic load balancer (internal or public) in a globally peered virtual network.
 
 <https://learn.microsoft.com/en-us/azure/virtual-network/vnet-integration-for-azure-services>
 
