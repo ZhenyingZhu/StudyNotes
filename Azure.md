@@ -1504,7 +1504,7 @@ To deploy ARM, go to Automation > Export Template > Deploy.
 - Each virtual network, including a peered virtual network, can have its own gateway to connect to an on-premises network.
 - Resources in one virtual network can't communicate with the front-end IP address of a basic load balancer (internal or public) in a globally peered virtual network.
 
-<https://learn.microsoft.com/en-us/azure/virtual-network/vnet-integration-for-azure-services>
+[Integrate Azure services](https://learn.microsoft.com/en-us/azure/virtual-network/vnet-integration-for-azure-services)
 
 <https://learn.microsoft.com/en-us/azure/virtual-network/service-tags-overview>
 
