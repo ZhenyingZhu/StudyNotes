@@ -1508,6 +1508,7 @@ To deploy ARM, go to Automation > Export Template > Deploy.
 
 - Use Private Endpoint that connects you privately and securely to a service powered by Azure Private Link. Private Endpoint uses a private IP address from your virtual network, effectively bringing the service into your virtual network.
 - Accessing the service using public endpoints by extending a virtual network to the service, through service endpoints.
+- Using service tags to allow or deny traffic to your Azure resources to and from public IP endpoints.
 
 <https://learn.microsoft.com/en-us/azure/virtual-network/service-tags-overview>
 
