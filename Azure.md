@@ -1511,6 +1511,7 @@ To deploy ARM, go to Automation > Export Template > Deploy.
 - Using service tags to allow or deny traffic to your Azure resources to and from public IP endpoints.
 - The Azure service fully manages service instances in a virtual network. This management includes monitoring the health of the resources and scaling with load.
 - Certain services impose restrictions on the subnet they're deployed in. These restrictions limit the application of policies, routes, or combining VMs and service resources within the same subnet
+- ASE (App service Environment)
 
 <https://learn.microsoft.com/en-us/azure/virtual-network/service-tags-overview>
 
