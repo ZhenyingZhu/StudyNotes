@@ -1515,6 +1515,7 @@ To deploy ARM, go to Automation > Export Template > Deploy.
 - ASE (App service Environment)
 - require a delegated subnet as an explicit identifier
 - With service tags, you can define network access controls on network security groups or Azure Firewall.
+- ervice endpoints and private endpoints have characteristics in common.
 
 <https://learn.microsoft.com/en-us/azure/virtual-network/service-tags-overview>
 
