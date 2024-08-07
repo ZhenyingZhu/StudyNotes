@@ -1379,3 +1379,6 @@ A unit test framework.
 - <https://stackoverflow.com/questions/5134137/build-error-the-process-cannot-access-the-file-because-it-is-being-used-by-ano>
 - <https://stackoverflow.com/questions/6838779/msbuild-fails-with-the-process-cannot-access-the-file-xxxxx-because-it-is-being>
   
+### SDK style project differences
+
+<https://stackoverflow.com/questions/46709000/disable-transitive-project-reference-in-net-standard-2>
