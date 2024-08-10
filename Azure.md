@@ -1506,11 +1506,16 @@ To deploy ARM, go to Automation > Export Template > Deploy.
 
 [Integrate Azure services](https://learn.microsoft.com/en-us/azure/virtual-network/vnet-integration-for-azure-services)
 
-- Use Private Endpoint that connects you privately and securely to a service powered by Azure Private Link. Private Endpoint uses a private IP address from your virtual network, effectively bringing the service into your virtual network.
+- Use Private Endpoint that connects you privately and securely to a service powered by Azure Private Link. Private Endpoint uses a private IP address from your virtual network, effectively bringing the service into your virtual network. DNS resolution in the virtual network must be configured to resolve that same host name to the target resource's private IP address instead of the original public IP address
 - Accessing the service using public endpoints by extending a virtual network to the service, through service endpoints.
 - Using service tags to allow or deny traffic to your Azure resources to and from public IP endpoints.
 - The Azure service fully manages service instances in a virtual network. This management includes monitoring the health of the resources and scaling with load.
 - Certain services impose restrictions on the subnet they're deployed in. These restrictions limit the application of policies, routes, or combining VMs and service resources within the same subnet
+- The client application typically uses a DNS host name to reach the target service.
+- ASE (App service Environment)
+- require a delegated subnet as an explicit identifier
+- With service tags, you can define network access controls on network security groups or Azure Firewall.
+- Service endpoints and private endpoints have characteristics in common. Private endpoint is individual instance.
 
 <https://learn.microsoft.com/en-us/azure/virtual-network/service-tags-overview>
 
