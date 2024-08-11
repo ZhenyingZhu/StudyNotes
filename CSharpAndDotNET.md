@@ -1382,3 +1382,13 @@ A unit test framework.
 ### SDK style project differences
 
 <https://stackoverflow.com/questions/46709000/disable-transitive-project-reference-in-net-standard-2>
+
+<https://dansiegel.net/post/2018/08/21/demystifying-the-sdk-project>
+
+- Release builds need to be optimized, while Debug configurations need all of our debug symbols
+- [Well-Known Properties](https://learn.microsoft.com/en-us/previous-versions/visualstudio/visual-studio-2015/msbuild/msbuild-reserved-and-well-known-properties?view=vs-2015&redirectedfrom=MSDN)
+- ItemGroup grouping Items. Can be used with Condition
+
+<https://hermit.no/moving-to-sdk-style-projects-and-package-references-in-visual-studio-part-1/>
+
+<https://hermit.no/moving-to-sdk-style-projects-and-package-references-in-visual-studio-part-2/>
