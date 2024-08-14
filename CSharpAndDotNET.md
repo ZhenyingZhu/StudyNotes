@@ -1389,7 +1389,7 @@ A unit test framework.
 - [Well-Known Properties](https://learn.microsoft.com/en-us/previous-versions/visualstudio/visual-studio-2015/msbuild/msbuild-reserved-and-well-known-properties?view=vs-2015&redirectedfrom=MSDN)
 - ItemGroup grouping Items. Can be used with Condition
 - Supports multi-target frameworks.
-- HERE: Packaging
+- Common lib should be packed
 
 <https://hermit.no/moving-to-sdk-style-projects-and-package-references-in-visual-studio-part-1/>
 
