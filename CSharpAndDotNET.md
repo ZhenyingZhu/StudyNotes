@@ -1390,7 +1390,7 @@ A unit test framework.
 - ItemGroup grouping Items. Can be used with Condition
 - Supports multi-target frameworks.
 - Common lib should be packed because: 1. reduce build time, 2. versioning, 3. isolate rollout, 4. individual testing
-- using a nuspec
+- using a nuspec is not needed for SDK style projects
 
 <https://hermit.no/moving-to-sdk-style-projects-and-package-references-in-visual-studio-part-1/>
 
