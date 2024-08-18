@@ -78,7 +78,7 @@ git stuck at auto packing the repository for optimum performance
 
 ```powershell
 git config user.name "ZhenyingZhu"
-git config user.email zhenying.zhu91@email.com
+git config user.email zz2283@columbia.edu
 ```
 
 ## Git not remember user name
