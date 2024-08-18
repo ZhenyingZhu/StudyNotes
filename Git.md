@@ -74,6 +74,13 @@ git stuck at auto packing the repository for optimum performance
 
 `git clean -f -d` to stop pulling the packages.
 
+## Git repo setup
+
+```powershell
+git config user.name "ZhenyingZhu"
+git config user.email zhenying.zhu91@email.com
+```
+
 ## Git not remember user name
 
 [Git does not remember username and password on Windows](https://snede.net/git-does-not-remember-username-password/#:~:text=Git%20does%20not%20remember%20username%20and%20password%20on,%E2%80%9Crun%20command%E2%80%9D%20and%20open%20the%20key%20manager%20)
