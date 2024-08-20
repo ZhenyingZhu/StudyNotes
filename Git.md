@@ -43,9 +43,9 @@ Uncommit a local change
 - If need files in the last commit: `git reset --soft HEAD~1`
 - If don't need files: `git reset --hard HEAD~1`
 
-To sync a remote branch:
+To fix a remote branch that caused lock issue: `git update-ref -d refs/remotes/origin/<branch>`
 
-`git update-ref -d refs/remotes/origin/<branch>`
+[git Remote Prune explain](https://betterprogramming.pub/git-cleanup-git-remote-prune-explained-679fadc53ba7): `git remote prune origin`
 
 [Git Submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules)
 
