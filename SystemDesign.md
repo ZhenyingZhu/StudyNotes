@@ -4884,6 +4884,10 @@ Ad events system
 - deploy
 - Need a version control system
 
+Engineering System
+
+- An engineering system is comprised of infrastructure, tools, processes and automation integrated in a cohesive environment for teams to collaborate to deliver products and services, while complying with applicable constraints.​
+
 ## Open Questions
 
 How distributed lock works (ZooKeeper)
