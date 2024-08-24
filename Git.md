@@ -74,6 +74,8 @@ git stuck at auto packing the repository for optimum performance
 
 `git clean -f -d` to stop pulling the packages.
 
+`git log master..branchA` can see the commits in branchA that are not in master.
+
 ## Git repo setup
 
 ```powershell
