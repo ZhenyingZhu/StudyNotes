@@ -4517,10 +4517,20 @@ Service oriented: <https://docs.microsoft.com/en-us/dotnet/framework/wcf/whats-w
 
 <https://docs.microsoft.com/en-us/iis/extensions/introduction-to-iis-express/iis-express-overview>
 
+Install
+
+```powershell
+if ((Get-WindowsOptionalFeature -Online -Feature "IIS-ASPNET45").State -ne "Enabled") {
+  Enable-WindowsOptionalFeature -Online -FeatureName "IIS-ASPNET45" -All -NoRestart
+}
+```
+
 Commands
 
-- 
-
+- `Get-IISAppPool -Name $pool`
+- `New-WebAppPool -Name $pool`
+- `$website = New-WebSite -Name ${websitename -Port $port -PhysicalPath $path} -ApplicationPool $pool`
+- `New-WebApplication -Name $app -Site $website -PhysicalPath "$path2" -ApplicationPool $pool2`: doesn't work
 
 ## Issues
 
