@@ -1223,9 +1223,6 @@ https://www.xia1ge.com/yahei-consolas.html
 # Fiddler
 Windows mock http request
 
-# IIS
-https://docs.microsoft.com/en-us/iis/extensions/introduction-to-iis-express/iis-express-overview
-
 # windows search
 https://support.office.com/en-us/article/Tips-for-searching-notes-f4552a65-afd2-421f-9837-d7334d99abf4
 
