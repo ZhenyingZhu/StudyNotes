@@ -135,3 +135,9 @@ Actually treats "()" as the next parameter. To make it work, need to use ```
 ```powershell
 powershell C:\Users\zhenyzhu\Github\StudyNotes\powershell-example\TryParams.ps1 -name '1-name-`(1/5`)'
 ```
+
+## Check command runs from where
+
+```
+Get-Command 'nssm' -errorAction SilentlyContinue
+```
