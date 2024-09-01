@@ -4517,6 +4517,8 @@ Service oriented: <https://docs.microsoft.com/en-us/dotnet/framework/wcf/whats-w
 
 <https://docs.microsoft.com/en-us/iis/extensions/introduction-to-iis-express/iis-express-overview>
 
+<https://learn.microsoft.com/en-us/iis/get-started/planning-your-iis-architecture/understanding-sites-applications-and-virtual-directories-on-iis>
+
 Install
 
 ```powershell
