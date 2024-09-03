@@ -46,7 +46,7 @@ namespace DotNetCoreConsole
         {
             char[] passwordArray = new char[passwordLength];
 
-            using (RNGCryptoServiceProvider provider = new RNGCryptoServiceProvider())
+            using (RandomNumberGenerator provider = RandomNumberGenerator.Create())
             {
                 byte[] randomData = new byte[passwordLength];
                 provider.GetBytes(randomData);

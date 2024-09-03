@@ -19,8 +19,7 @@ namespace DotNetCoreConsole
             string serviceManifestFileName = "ServiceManifest.xml";
             string applicationTypeVersion = "1.0.16219.0";
 
-            string appFolder = Path.Combine(
-                connectionString.LocalPath, applicationName);
+            string appFolder = Path.Combine(connectionString.LocalPath, applicationName);
             string appManifestFilePath = Path.Combine(appFolder, applicationManifestFileName);
 
             string appManifestFileContent = File.ReadAllText(appManifestFilePath);
