@@ -4535,7 +4535,8 @@ Commands
 - `New-WebApplication -Name $app -Site $website -PhysicalPath "$path2" -ApplicationPool $pool2`: doesn't work. [New-WebApplication](https://learn.microsoft.com/en-us/powershell/module/webadministration/new-webapplication?view=windowsserver2022-ps)
 - <https://learn.microsoft.com/en-us/powershell/module/webadministration/convertto-webapplication?view=windowsserver2022-ps>
 - <https://serverfault.com/questions/102523/difference-between-application-and-virtual-directory>
--  An application root uses a different global.asax, bin folder and the other app.
+- An application root uses a different global.asax, bin folder and the other app.
+- A virtual directory is just a pointer to a different location on disk.
 
 ## Issues
 
