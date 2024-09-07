@@ -4887,6 +4887,13 @@ Ad events system
 Engineering System
 
 - An engineering system is comprised of infrastructure, tools, processes and automation integrated in a cohesive environment for teams to collaborate to deliver products and services, while complying with applicable constraints.​
+  - Version control
+  - Orchestrator
+  - Pipelines
+  - Infra
+  - Build env
+  - Build engine
+  - SDKs, compilers, linkers
 - [DevOps](https://about.gitlab.com/topics/devops/): enable software development (dev) and operations (ops) teams to accelerate delivery through automation, collaboration, fast feedback, and iterative improvement.
 
 ## Open Questions
