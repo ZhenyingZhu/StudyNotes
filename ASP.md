@@ -4538,6 +4538,11 @@ Commands
 - An application root uses a different global.asax, bin folder and the other app.
 - A virtual directory is just a pointer to a different location on disk.
 
+```powershell
+New-WebVirtualDirectory -Site "Default Web Site" -Name "ContosoVDir" -PhysicalPath "$Env:systemdrive\inetpub\Contoso" 
+ConvertTo-WebApplication -PSPath "IIS:\Sites\Default Web Site\ContosoVDir"
+```
+
 ## Issues
 
 ### Roslyn csc
