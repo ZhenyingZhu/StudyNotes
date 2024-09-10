@@ -88,6 +88,8 @@ Compile C# program:
 
 <https://docs.microsoft.com/en-us/dotnet/core/tutorials/with-visual-studio-code#debug>
 
+<https://code.visualstudio.com/docs/csharp/testing>
+
 ### Concepts
 
 `String.Empty` vs `null`
@@ -619,6 +621,8 @@ int sameNumCnt = list2.Select(x => x).Intersect(list1).Count;
 ## Unit Test
 
 ### Visual studio UT framework
+
+<https://learn.microsoft.com/en-us/dotnet/core/testing/unit-testing-with-mstest>
 
 [src](https://docs.microsoft.com/en-us/visualstudio/test/unit-test-basics)
 
