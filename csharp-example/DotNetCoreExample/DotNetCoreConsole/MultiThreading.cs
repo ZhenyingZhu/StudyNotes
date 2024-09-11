@@ -5,17 +5,17 @@ using System.Threading.Tasks;
 
 namespace DotNetCoreConsole
 {
-    public class ExceptionThrownFromTimer
+    public class MultiThreading
     {
         private System.Timers.Timer timer;
         private bool throwException = false;
 
-        public static void TestMain()
+        public static void ExceptionThrownFromTimer()
         {
             Console.WriteLine("Before setup timer");
             try
             {
-                ExceptionThrownFromTimer t = new ExceptionThrownFromTimer();
+                MultiThreading t = new MultiThreading();
                 Task.WaitAll(t.ThrowExInTimer());
             }
             catch (System.Exception)
