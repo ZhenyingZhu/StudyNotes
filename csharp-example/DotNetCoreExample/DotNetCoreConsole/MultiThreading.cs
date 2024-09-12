@@ -10,6 +10,34 @@ namespace DotNetCoreConsole
         private System.Timers.Timer timer;
         private bool throwException = false;
 
+        public static async Task<T> UnwrapTaskWithTimeout<T>(Task<Task<T>> task, TimeSpan? timeout)
+        {
+            if (timeout != null)
+            {
+                Task timeoutTask = Task.Delay(timeout.Value);
+
+                if (await Task.WhenAny(task, timeoutTask) != timeoutTask)
+                {
+                    // Outer task has finished before timeout. Use await to unwrap its result or exception.
+                    Task<T> innerTask = await task;
+
+                    if (await Task.WhenAny(innerTask, timeoutTask) != timeoutTask)
+                    {
+                        T result = await innerTask;
+                        return result;
+                    }
+                }
+
+                string message = "Task timed out";
+
+                throw new TimeoutException(message);
+            }
+            else
+            {
+                return await await task;
+            }
+        }
+
         public static void ExceptionThrownFromTimer()
         {
             Console.WriteLine("Before setup timer");
