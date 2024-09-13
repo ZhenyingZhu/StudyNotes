@@ -12,7 +12,7 @@ public class MultiThreadingTest
         TaskCompletionSource<int> testTaskSource = new TaskCompletionSource<int>();
         Task<Task<int>> wrappedTestTask = Task<int>.FromResult(testTaskSource.Task);
 
-        MultiThreading.UnwrapTaskWithTimeout<int>(wrappedTestTask,TimeSpan.Zero).Wait();
+        MultiThreading.UnwrapTaskWithTimeout<int>(wrappedTestTask, TimeSpan.Zero).Wait();
     }
 
     [TestMethod]

@@ -800,6 +800,12 @@ It is folder to hold dependency packages. Maybe is related to <https://www.nuget
 
 ## Multi-thread
 
+<https://devblogs.microsoft.com/pfxteam/>
+
+<https://learn.microsoft.com/en-us/dotnet/standard/threading/managed-threading-basics>
+
+- thread has a scheduling priority
+
 ### Dispose
 
 If an object is disposed, you cannot access it's field any more.
