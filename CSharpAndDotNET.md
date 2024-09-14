@@ -804,7 +804,10 @@ It is folder to hold dependency packages. Maybe is related to <https://www.nuget
 
 <https://learn.microsoft.com/en-us/dotnet/standard/threading/managed-threading-basics>
 
-- thread has a scheduling priority
+- thread has a scheduling priority.
+- threads share virtual address space of the process.
+- primary vs. worker threads
+- here: <https://learn.microsoft.com/en-us/dotnet/standard/threading/threads-and-threading>
 
 ### Dispose
 
