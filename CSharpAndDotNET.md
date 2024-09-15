@@ -807,6 +807,7 @@ It is folder to hold dependency packages. Maybe is related to <https://www.nuget
 - thread has a scheduling priority.
 - threads share virtual address space of the process.
 - primary vs. worker threads
+- Task Parallel Library (TPL)
 - here: <https://learn.microsoft.com/en-us/dotnet/standard/threading/threads-and-threading>
 
 ### Dispose
