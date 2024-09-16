@@ -808,8 +808,10 @@ It is folder to hold dependency packages. Maybe is related to <https://www.nuget
 - threads share virtual address space of the process.
 - primary vs. worker threads
 - Task Parallel Library (TPL) and Parallel LINQ (PLINQ): use ThreadPool threads.
-- Unhandled exceptions in threads generally terminate the process
-- here: <https://learn.microsoft.com/en-us/dotnet/standard/threading/threads-and-threading>
+- Most unhandled exceptions in threads generally terminate the process. Special ex: ThreadAbortException and AppDomainUnloadedException. [Test] If the worker thread throws an exception but primary thread doesn't listen, will the primary thread crash?
+- application domain: Common Language Infrastructure (CLI) to isolate executed software applications from one another.
+- managed code need to install an exception handler at a point.
+- here: <https://learn.microsoft.com/en-us/dotnet/standard/threading/synchronizing-data-for-multithreading>
 
 ### Dispose
 
