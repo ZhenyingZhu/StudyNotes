@@ -811,6 +811,7 @@ It is folder to hold dependency packages. Maybe is related to <https://www.nuget
 - Most unhandled exceptions in threads generally terminate the process. Special ex: ThreadAbortException and AppDomainUnloadedException. [Test] If the worker thread throws an exception but primary thread doesn't listen, will the primary thread crash?
 - application domain: Common Language Infrastructure (CLI) to isolate executed software applications from one another.
 - managed code need to install an exception handler at a point.
+- calls need to be synchronized to avoid get interrupted. A class whose members are protected from such interruptions is called thread-safe.
 - here: <https://learn.microsoft.com/en-us/dotnet/standard/threading/synchronizing-data-for-multithreading>
 
 ### Dispose
