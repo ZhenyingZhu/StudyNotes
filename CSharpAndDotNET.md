@@ -88,6 +88,8 @@ Compile C# program:
 
 <https://docs.microsoft.com/en-us/dotnet/core/tutorials/with-visual-studio-code#debug>
 
+<https://code.visualstudio.com/docs/csharp/testing>
+
 ### Concepts
 
 `String.Empty` vs `null`
@@ -620,6 +622,8 @@ int sameNumCnt = list2.Select(x => x).Intersect(list1).Count;
 
 ### Visual studio UT framework
 
+<https://learn.microsoft.com/en-us/dotnet/core/testing/unit-testing-with-mstest>
+
 [src](https://docs.microsoft.com/en-us/visualstudio/test/unit-test-basics)
 
 Add a test project to the solution and add reference.
@@ -786,11 +790,31 @@ TryGetValue can test if key exist or not.
 
 <https://docs.microsoft.com/en-us/nuget/hosting-packages/local-feeds>
 
+Use NuSpec to create a nuget package: <https://stackoverflow.com/questions/40628116/how-to-specify-configuration-specific-folder-in-nuspec>
+
+<https://stackoverflow.com/questions/16173568/build-nuget-package-automatically-including-referenced-dependencies>
+
 ### CxCache
 
 It is folder to hold dependency packages. Maybe is related to <https://www.nuget.org/packages/xCache/> ?
 
 ## Multi-thread
+
+<https://devblogs.microsoft.com/pfxteam/>
+
+<https://learn.microsoft.com/en-us/dotnet/standard/threading/managed-threading-basics>
+
+- thread has a scheduling priority.
+- threads share virtual address space of the process.
+- primary vs. worker threads
+- Task Parallel Library (TPL) and Parallel LINQ (PLINQ): use ThreadPool threads.
+- Most unhandled exceptions in threads generally terminate the process. Special ex: ThreadAbortException and AppDomainUnloadedException. [Test] If the worker thread throws an exception but primary thread doesn't listen, will the primary thread crash?
+- application domain: Common Language Infrastructure (CLI) to isolate executed software applications from one another.
+- managed code need to install an exception handler at a point.
+- calls need to be synchronized to avoid get interrupted. A class whose members are protected from such interruptions is called thread-safe.
+  - Manual synchronization: uses a signaling mechanism for thread interaction. classes inherit WaitHandle: Mutex, Semaphore, etc.
+  - for .NET Framework, use `SynchronizationAttribute`.
+- here: <https://learn.microsoft.com/en-us/dotnet/standard/threading/synchronizing-data-for-multithreading>
 
 ### Dispose
 
@@ -832,6 +856,48 @@ FlowLayoutPanel: arranges its contents in a horizontal or vertical flow directio
 ## Json Schema
 
 [Newtonsoft.Json.Schema](https://www.newtonsoft.com/jsonschema/help/html/LoadingSchemas.htm)
+
+## gRPC
+
+<https://learn.microsoft.com/en-us/aspnet/core/tutorials/grpc/grpc-start?view=aspnetcore-6.0&tabs=visual-studio>
+
+<https://grpc.io/docs/what-is-grpc/introduction/>
+
+<https://github.com/grpc/grpc-dotnet/tree/master/examples#mailer>
+
+<https://learn.microsoft.com/en-us/windows/win32/rpc/rpc-start-page>
+
+<https://learn.microsoft.com/en-us/aspnet/core/grpc/authn-and-authz?view=aspnetcore-6.0>
+
+## Open Telemetry
+
+<https://opentelemetry.io/docs/instrumentation/net/getting-started/>
+
+## .NET Framework Difference
+
+<https://learn.microsoft.com/en-us/dotnet/framework/whats-new/>
+
+- Improvements to the JIT compiler.
+- cryptographic enhancements: Support for ephemeral keys
+- Additional collection APIs
+- Support for .NET Standard 2.0
+- Garbage collection performance improvements
+
+### .NET Framework migration
+
+Changes to make
+
+- Target Framework version
+- Assembly Reference path
+- BindingRedirect
+- app/web Config File
+
+To upgrade, can use the upgrade assistant:
+
+- <https://devblogs.microsoft.com/dotnet/upgrade-assistant-now-in-visual-studio/>
+  - ASP.NET from .NET Framework only support side-by-side incremental.
+- <https://learn.microsoft.com/en-us/dotnet/core/porting/>
+- for project dependencies, need to start from the top layer.
 
 ## Miscellaneous
 
@@ -1152,6 +1218,8 @@ using (XmlReader reader = XmlReader.Create(filePath))
 
 [Navigate the document tree](https://docs.microsoft.com/en-us/dotnet/api/system.xml.xmldocument?view=net-6.0#navigate-the-document-tree)
 
+[XPath](https://www.w3schools.com/xml/xpath_nodes.asp)
+
 ### Predicate
 
 [Doc](https://docs.microsoft.com/en-us/dotnet/api/system.predicate-1?view=netcore-3.1)
@@ -1270,3 +1338,80 @@ It is under `C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.6.
 
 - Anonymous: request does not contain any authentication information
 - Negotiate: automatically selects between the Kerberos protocol and NTLM authentication, depending on availability
+
+### Extend a method
+
+<https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/extension-methods>
+
+### Transitive dependency
+
+<https://devblogs.microsoft.com/nuget/introducing-transitive-dependencies-in-visual-studio/#:~:text=There%20is%20now%20a%20new,level%20dependency%20at%20any%20time.>
+
+### Top Level Statement
+
+<https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/tutorials/top-level-statements>
+
+Define a namespace: <https://learn.microsoft.com/en-us/aspnet/core/fundamentals/apis?view=aspnetcore-6.0>
+
+### Powershell
+
+<https://stackoverflow.com/questions/34398023/get-powershell-commands-output-when-invoked-through-code>
+
+### Microsoft.Office.Interop
+
+- Import COM <https://stackoverflow.com/questions/19543279/microsoft-office-interop-excel-reference-cannot-be-found>
+- Excel R/W data <https://stackoverflow.com/questions/68666728/c-sharp-com-interop-excel-how-to-write-to-cells-from-c-sharp-using-interop-exce>
+
+If use admin permission to start excel, the autosave function is not working.
+
+- <https://stackoverflow.com/questions/2476070/how-to-specify-the-user-in-a-c-sharp-thread>
+
+### Build Warnings
+
+DLL conflicts: <https://learn.microsoft.com/en-us/visualstudio/msbuild/errors/msb3277?view=vs-2022>
+
+Suppress build warning: <https://stackoverflow.com/questions/49564022/suppressing-warnings-for-solution>
+
+The dotnet restore might fail when see nuget version downgrade.
+
+The target framework version in the nuget package also matters because otherwise it will throw exception saying dll not found.
+
+Open binding redirect log: <https://stackoverflow.com/questions/255669/how-to-enable-assembly-bind-failure-logging-fusion-in-net>
+
+ildasm
+
+Assembly version vs. nuget package version.
+
+### Shims
+
+A unit test framework.
+
+### TLS
+
+<https://stackoverflow.com/questions/30664566/authentication-failed-because-remote-party-has-closed-the-transport-stream>
+
+### csvhelper
+
+<https://joshclose.github.io/CsvHelper/getting-started/>
+
+### Build Race condition
+
+- <https://stackoverflow.com/questions/5134137/build-error-the-process-cannot-access-the-file-because-it-is-being-used-by-ano>
+- <https://stackoverflow.com/questions/6838779/msbuild-fails-with-the-process-cannot-access-the-file-xxxxx-because-it-is-being>
+  
+### SDK style project differences
+
+<https://stackoverflow.com/questions/46709000/disable-transitive-project-reference-in-net-standard-2>
+
+<https://dansiegel.net/post/2018/08/21/demystifying-the-sdk-project>
+
+- Release builds need to be optimized, while Debug configurations need all of our debug symbols
+- [Well-Known Properties](https://learn.microsoft.com/en-us/previous-versions/visualstudio/visual-studio-2015/msbuild/msbuild-reserved-and-well-known-properties?view=vs-2015&redirectedfrom=MSDN)
+- ItemGroup grouping Items. Can be used with Condition
+- Supports multi-target frameworks.
+- Common lib should be packed because: 1. reduce build time, 2. versioning, 3. isolate rollout, 4. individual testing
+- using a nuspec is not needed for SDK style projects. Can set `GeneratePackageOnBuild` to true in csproj
+
+<https://hermit.no/moving-to-sdk-style-projects-and-package-references-in-visual-studio-part-1/>
+
+<https://hermit.no/moving-to-sdk-style-projects-and-package-references-in-visual-studio-part-2/>

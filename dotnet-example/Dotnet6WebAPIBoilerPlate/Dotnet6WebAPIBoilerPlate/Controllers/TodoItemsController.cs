@@ -7,11 +7,15 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Dotnet6WebAPIBoilerPlate.Data;
+using Microsoft.Identity.Web.Resource;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Dotnet6WebAPIBoilerPlate.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/[controller]")]
+    [Authorize]
+    [RequiredScope(RequiredScopesConfigurationKey = "AzureAd:Scopes")]
     public class TodoItemsController : ControllerBase
     {
         private readonly TodoContext _context;
@@ -78,6 +82,21 @@ namespace Dotnet6WebAPIBoilerPlate.Controllers
         [HttpPost]
         public async Task<ActionResult<TodoItem>> PostTodoItem(TodoItem todoItem)
         {
+            _context.TodoItem.Add(todoItem);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("GetTodoItem", new { id = todoItem.Id }, todoItem);
+        }
+
+        // POST: api/TodoItems
+        [HttpPost]
+        [Route("api/[controller]/default")]
+        public async Task<ActionResult<TodoItem>> PostTodoItem()
+        {
+            TodoItem todoItem = new()
+            {
+                Name = "Created by default template",
+            };
             _context.TodoItem.Add(todoItem);
             await _context.SaveChangesAsync();
 
