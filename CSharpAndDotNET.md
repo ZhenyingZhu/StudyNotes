@@ -813,9 +813,11 @@ It is folder to hold dependency packages. Maybe is related to <https://www.nuget
 - managed code need to install an exception handler at a point.
 - calls need to be synchronized to avoid get interrupted. A class whose members are protected from such interruptions is called thread-safe.
   - Manual synchronization: uses a signaling mechanism for thread interaction. classes inherit WaitHandle: Mutex, Semaphore, etc.
-  - for .NET Framework, use `SynchronizationAttribute`.
-  - Collection classes in the System.Collections.Concurrent.
-- here: <https://learn.microsoft.com/en-us/dotnet/standard/threading/synchronizing-data-for-multithreading>
+  - Synchronized Context: for .NET Framework, use `SynchronizationAttribute` to sync all instance methods and fields.
+  - Collection classes in the `System.Collections.Concurrent`.
+  - Synchronized code regions: mark a code block as `lock`. Same as call `Monitor.Enter` and `Monitor.Exit`. If an exception is thrown inside the lock block, the finally handler runs to allow you to do any clean-up work.
+  - `Thread.Interrupt` can be used to break a thread.
+- here: <https://learn.microsoft.com/en-us/dotnet/standard/threading/foreground-and-background-threads>
 
 ### Dispose
 
