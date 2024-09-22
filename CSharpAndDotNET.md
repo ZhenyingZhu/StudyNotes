@@ -817,7 +817,12 @@ It is folder to hold dependency packages. Maybe is related to <https://www.nuget
   - Collection classes in the `System.Collections.Concurrent`.
   - Synchronized code regions: mark a code block as `lock`. Same as call `Monitor.Enter` and `Monitor.Exit`. If an exception is thrown inside the lock block, the finally handler runs to allow you to do any clean-up work.
   - `Thread.Interrupt` can be used to break a thread.
-- here: <https://learn.microsoft.com/en-us/dotnet/standard/threading/foreground-and-background-threads>
+- Foreground vs. background threads: a background thread does not keep the managed execution environment running. So when foreground threads finish, the application ends.
+  - `Thread.IsBackground` can check and set a thread to be background.
+  - threads in the managed thread pool (`IsThreadPoolThread`) are background threads.
+  - threads creating and starting a new thread are by default forground threads.
+- 
+- here: <https://learn.microsoft.com/en-us/dotnet/standard/threading/managed-and-unmanaged-threading-in-windows>
 
 ### Dispose
 
