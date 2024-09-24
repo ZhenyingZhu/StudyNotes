@@ -822,9 +822,12 @@ It is folder to hold dependency packages. Maybe is related to <https://www.nuget
   - threads in the managed thread pool (`IsThreadPoolThread`) are background threads.
   - threads creating and starting a new thread are by default forground threads.
 - Unmanaged thread can be found in the managed execution environment. Then a new thread object is created.
-- here: <https://www.c-sharpcorner.com/UploadFile/84c85b/multithreading-with-net/>
 - here: <https://learn.microsoft.com/en-us/dotnet/standard/threading/managed-and-unmanaged-threading-in-windows#managed-threads-and-com-apartments>
 - here: <https://learn.microsoft.com/en-us/windows/win32/com/processes--threads--and-apartments>
+
+[Multithreading With .NET](https://www.c-sharpcorner.com/UploadFile/84c85b/multithreading-with-net/)
+
+- The operating system schedules threads.
 
 ### Dispose
 
