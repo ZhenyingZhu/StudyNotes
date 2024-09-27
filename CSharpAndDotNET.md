@@ -828,14 +828,14 @@ It is folder to hold dependency packages. Maybe is related to <https://www.nuget
 [Multithreading With .NET](https://www.c-sharpcorner.com/UploadFile/84c85b/multithreading-with-net/)
 
 - The operating system schedules threads.
-- Thread: Sleep, GetDomain, CurrentContext, Start, Name, IsBackground.
+- Thread: Sleep, GetDomain, CurrentContext, Start, Name, IsBackground. new Thread(delegate);
 - Mutex
 - Monitor
 - Semaphore
 - Interlock
 - Threadpool
 - ThreadPriority
-- **HERE**: System.Threading.Thread class
+- **HERE**: Background Thread
 
 ### Dispose
 
