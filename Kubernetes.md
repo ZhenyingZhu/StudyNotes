@@ -44,3 +44,7 @@ docker run -ti --platform=linux/amd64 --privileged --network=host --user root --
 <https://stackoverflow.com/questions/26028971/docker-container-ssl-certificates>
 
 The registry needs to use Azure account to login.
+
+### Log
+
+<https://techcommunity.microsoft.com/t5/containers/windows-containers-log-monitor-opensource-release/ba-p/973947>
