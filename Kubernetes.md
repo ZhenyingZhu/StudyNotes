@@ -48,3 +48,7 @@ The registry needs to use Azure account to login.
 ### Log
 
 <https://techcommunity.microsoft.com/t5/containers/windows-containers-log-monitor-opensource-release/ba-p/973947>
+
+### ServiceMonitor
+
+<https://github.com/microsoft/IIS.ServiceMonitor>

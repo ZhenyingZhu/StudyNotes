@@ -138,6 +138,10 @@ powershell C:\Users\zhenyzhu\Github\StudyNotes\powershell-example\TryParams.ps1 
 
 ## Check command runs from where
 
-```
+```powershell
 Get-Command 'nssm' -errorAction SilentlyContinue
 ```
+
+## Check if admin
+
+<https://stackoverflow.com/questions/29129787/check-if-logged-on-user-is-an-administrator-when-non-elevated>
