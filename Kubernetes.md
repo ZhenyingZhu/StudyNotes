@@ -52,3 +52,7 @@ The registry needs to use Azure account to login.
 ### ServiceMonitor
 
 <https://github.com/microsoft/IIS.ServiceMonitor>
+
+### File lock issue
+
+<https://stackoverflow.com/questions/53836103/failed-to-create-endpoint-on-network-nat-hnscall-failed-in-win32-the-process-c>
