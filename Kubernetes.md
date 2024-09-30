@@ -56,3 +56,7 @@ The registry needs to use Azure account to login.
 ### File lock issue
 
 <https://stackoverflow.com/questions/53836103/failed-to-create-endpoint-on-network-nat-hnscall-failed-in-win32-the-process-c>
+
+### Copy files out
+
+<https://stackoverflow.com/questions/22049212/copying-files-from-docker-container-to-host>
