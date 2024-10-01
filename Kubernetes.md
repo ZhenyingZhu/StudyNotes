@@ -60,3 +60,29 @@ The registry needs to use Azure account to login.
 ### Copy files out
 
 <https://stackoverflow.com/questions/22049212/copying-files-from-docker-container-to-host>
+
+### Update hosts
+
+Only work for linux:
+
+```powershell
+docker run --add-host host1:ip1 --add-host host1:ip2 --isolation=process -d -p 4445:4445 -t buildlabel -p bootstrapper.json
+```
+
+In Windows, follow <https://stackoverflow.com/questions/53268105/how-to-use-the-arg-instruction-of-dockerfile-for-windows-image>
+
+In the Dockerfile
+
+```powershell
+ARG ip="1.1.1.1"
+ARG host="host"
+
+RUN ECHO %ip% %host% >> "C:\Windows\System32\drivers\etc\hosts"
+RUN ipconfig /flushdns
+```
+
+In the command, run
+
+```powershell
+docker build --build-arg ip=$ip --build-arg host=$host -t ${tag} $TargetPath
+```

@@ -1419,7 +1419,7 @@ A unit test framework.
 
 - <https://stackoverflow.com/questions/5134137/build-error-the-process-cannot-access-the-file-because-it-is-being-used-by-ano>
 - <https://stackoverflow.com/questions/6838779/msbuild-fails-with-the-process-cannot-access-the-file-xxxxx-because-it-is-being>
-  
+
 ### SDK style project differences
 
 <https://stackoverflow.com/questions/46709000/disable-transitive-project-reference-in-net-standard-2>
@@ -1436,3 +1436,13 @@ A unit test framework.
 <https://hermit.no/moving-to-sdk-style-projects-and-package-references-in-visual-studio-part-1/>
 
 <https://hermit.no/moving-to-sdk-style-projects-and-package-references-in-visual-studio-part-2/>
+
+### ConfigurationManager
+
+Read from dll.config vs. app.config:
+
+```C#
+Configuration config = ConfigurationManager.OpenExeConfiguration(Assembly.GetExecutingAssembly().Location);
+var configVal = config.AppSettings.Settings["key"].Value;
+configVal = ConfigurationManager.AppSettings["key"].Value;
+```
