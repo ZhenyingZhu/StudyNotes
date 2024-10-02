@@ -16,5 +16,14 @@ namespace DotNetCoreConsole
             
             Console.WriteLine(uriBuilder.Uri.ToString());
         }
+
+        public static string CraftUri()
+        {
+            Uri uri1 = new Uri("http://apple/banana");
+            Uri uri2 = new Uri(uri1, "api");
+
+            // banana is removed.
+            return uri2.AbsoluteUri;
+        }
     }
 }
