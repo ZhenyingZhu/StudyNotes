@@ -835,7 +835,8 @@ It is folder to hold dependency packages. Maybe is related to <https://www.nuget
 - Interlock
 - Threadpool
 - ThreadPriority
-- **HERE**: Background Thread
+- When foreground threads are still running, even `main()` method ends, process keeps running.
+- **HERE**: Race condition
 
 ### Dispose
 
