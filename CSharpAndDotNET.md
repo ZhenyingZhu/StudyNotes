@@ -794,6 +794,14 @@ Use NuSpec to create a nuget package: <https://stackoverflow.com/questions/40628
 
 <https://stackoverflow.com/questions/16173568/build-nuget-package-automatically-including-referenced-dependencies>
 
+Using the GeneratePackageOnBuild is better than nuproj/nuspec
+
+- <https://www.google.com/search?q=nuproj+is+deprecated&newwindow=1&sca_esv=3d0b5893383aa7ee&sxsrf=ADLYWIJ7vzWMfKkXeC_FVYmzzljTH0dtQg%3A1727916062630&ei=Huj9ZvSSJtzD0PEP66CQQA&ved=0ahUKEwj0mfX4_PCIAxXcITQIHWsQBAgQ4dUDCA8&uact=5&oq=nuproj+is+deprecated&gs_lp=Egxnd3Mtd2l6LXNlcnAiFG51cHJvaiBpcyBkZXByZWNhdGVkMgUQIRigATIFECEYoAEyBRAhGKABMgUQIRigAUj4F1AAWIgRcAB4AZABAJgBXaABigiqAQIxNLgBA8gBAPgBAZgCDqACqwjCAgQQIxgnwgIEEAAYHsICCBAAGIAEGKIEwgIGEAAYFhgewgILEAAYgAQYhgMYigXCAggQABiiBBiJBZgDAJIHAjE0oAe5MA&sclient=gws-wiz-serp>
+- <https://github.com/nuproj/nuproj>
+- <https://github.com/NuGet/Home/issues/8983>
+- <https://stackoverflow.com/questions/14797525/differences-between-nuget-packing-a-csproj-vs-nuspec>
+- <https://learn.microsoft.com/en-us/nuget/create-packages/creating-a-package-msbuild>
+
 ### CxCache
 
 It is folder to hold dependency packages. Maybe is related to <https://www.nuget.org/packages/xCache/> ?
@@ -1447,3 +1455,4 @@ Configuration config = ConfigurationManager.OpenExeConfiguration(Assembly.GetExe
 var configVal = config.AppSettings.Settings["key"].Value;
 configVal = ConfigurationManager.AppSettings["key"].Value;
 ```
+
