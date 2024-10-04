@@ -1455,4 +1455,3 @@ Configuration config = ConfigurationManager.OpenExeConfiguration(Assembly.GetExe
 var configVal = config.AppSettings.Settings["key"].Value;
 configVal = ConfigurationManager.AppSettings["key"].Value;
 ```
-
