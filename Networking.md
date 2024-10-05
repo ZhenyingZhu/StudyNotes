@@ -744,6 +744,8 @@ Fiddler decrept HTTPS traffic:
 
 <https://learn.microsoft.com/en-us/iis/configuration/system.webserver/security/authentication/clientcertificatemappingauthentication>
 
+<https://www.thewindowsclub.com/create-self-signed-ssl-certificates-in-windows-10>
+
 ## Other notes
 
 [No buffer space available](https://community.sophos.com/products/unified-threat-management/f/management-networking-logging-and-reporting/31186/105-no-buffer-space-available)
