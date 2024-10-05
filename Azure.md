@@ -1524,3 +1524,7 @@ To deploy ARM, go to Automation > Export Template > Deploy.
 <https://learn.microsoft.com/en-us/azure/virtual-network/network-security-groups-overview#security-rules>
 
 <https://learn.microsoft.com/en-us/azure/virtual-network/network-security-group-how-it-works>
+
+## Event Grid
+
+<https://learn.microsoft.com/en-us/azure/event-grid/overview>
