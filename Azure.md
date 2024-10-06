@@ -1528,3 +1528,10 @@ To deploy ARM, go to Automation > Export Template > Deploy.
 ## Event Grid
 
 <https://learn.microsoft.com/en-us/azure/event-grid/overview>
+
+## MFA
+
+<https://learn.microsoft.com/en-us/entra/identity/authentication/concept-mandatory-multifactor-authentication>
+
+- <https://entra.microsoft.com/#home>
+- <https://admin.microsoft.com/>: buy products
