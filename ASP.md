@@ -4543,6 +4543,16 @@ New-WebVirtualDirectory -Site "Default Web Site" -Name "ContosoVDir" -PhysicalPa
 ConvertTo-WebApplication -PSPath "IIS:\Sites\Default Web Site\ContosoVDir"
 ```
 
+## .NET Core App
+
+Use dotnet cli
+
+- <https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-new>
+
+Add logging
+
+- <https://learn.microsoft.com/en-us/aspnet/core/fundamentals/logging/?view=aspnetcore-8.0>
+
 ## Issues
 
 ### Roslyn csc

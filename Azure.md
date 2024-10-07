@@ -821,6 +821,7 @@ Next to look <https://docs.microsoft.com/en-us/azure/architecture/>
 - `az webapp deployment user set --user-name "DeploymentUserZhenyzhu" --password "<pass>"` This user can use across tenants and is not a Azure AD user.
 - `git init --initial-branch=main` create a local git repo
 - `git remote add azure https://DeploymentUserZhenyzhu@zhenyzhuakvwebapp.scm.azurewebsites.net/zhenyzhuakvwebapp.git`
+- `dotnet run` to confirm it can run locally
 - `git push azure main`
 
 - `az webapp identity assign --name "zhenyzhuakvwebapp" --resource-group "MyResourceGroup"`: [Creates a managed identity](https://portal.azure.com/#view/Microsoft_AAD_IAM/StartboardApplicationsMenuBlade/~/AppAppsPreview/menuId~/null), the object id is the principal id.
