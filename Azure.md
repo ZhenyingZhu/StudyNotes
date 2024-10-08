@@ -818,19 +818,21 @@ Next to look <https://docs.microsoft.com/en-us/azure/architecture/>
 - `az webapp config appsettings set -g MyResourceGroup --name "zhenyzhuakvwebapp" --settings deployment_branch=main`
 - `az webapp config appsettings list -g MyResourceGroup --name zhenyzhuakvwebapp`: the app created in <https://zhenyzhuakvwebapp.azurewebsites.net>
 
-- `az webapp deployment user set --user-name "DeploymentUserZhenyzhu" --password "<pass>"` This user can use across tenants and is not a Azure AD user.
-- `git init --initial-branch=main` create a local git repo
-- `git remote add azure https://DeploymentUserZhenyzhu@zhenyzhuakvwebapp.scm.azurewebsites.net/zhenyzhuakvwebapp.git`
-- `dotnet run` to confirm it can run locally
-- `git push azure main`
-
 - `az webapp identity assign --name "zhenyzhuakvwebapp" --resource-group "MyResourceGroup"`: [Creates a managed identity](https://portal.azure.com/#view/Microsoft_AAD_IAM/StartboardApplicationsMenuBlade/~/AppAppsPreview/menuId~/null), the object id is the principal id.
 - `az keyvault set-policy --name "ZhenyingKeyVault" --object-id "<principalId>" --secret-permissions get list`: doesn't work. Error message: Cannot set policies to a vault with '--enable-rbac-authorization' specified.Need to change the access policy to make it not use RBAC.
 - Or use the IAM UI and select managed identity. need to give the user admin permission. <https://stackoverflow.com/questions/69971341/unable-to-create-secrets-in-azure-key-vault-if-using-azure-role-based-access-con>
 
+- `az webapp deployment user set --user-name "DeploymentUserZhenyzhu" --password "<pass>"` This user can use across tenants and is not a Azure AD user.
+- `git init --initial-branch=main` create a local git repo
+- `git remote add azure https://DeploymentUserZhenyzhu@zhenyzhuakvwebapp.scm.azurewebsites.net/zhenyzhuakvwebapp.git`
+
+- `dotnet new web` create a empty .NET Core web app
 - `dotnet add package Azure.Identity`
 - `dotnet add package Azure.Security.KeyVault.Secrets`
-- Use `DefaultAzureCredential`: works locally, but not remotely
+- Use `DefaultAzureCredential` works both locally and remotely. Use `ManagedIdentityCredential` only remotely.
+- `dotnet run` to confirm it can run locally. Need to add the user running the app to the Key Vault Access Policies.
+- `git push azure main`
+- Afterwards, if the local repo is gone, run `git clone https://DeploymentUserZhenyzhu@zhenyzhuakvwebapp.scm.azurewebsites.net/zhenyzhuakvwebapp.git` to get it back.
 
 - Key Vault can use app to access. App can use client id + cert or client key
 

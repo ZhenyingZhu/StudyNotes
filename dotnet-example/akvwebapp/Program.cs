@@ -30,7 +30,8 @@ try
 
     SecretClient client = new SecretClient(
         new Uri("https://ZhenyingKeyVault.vault.azure.net/"),
-        new ManagedIdentityCredential(),
+        // new ManagedIdentityCredential(),
+        new DefaultAzureCredential(),
         options);
 
     app.Logger.LogInformation("AKV Client created.");
