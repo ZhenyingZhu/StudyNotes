@@ -885,6 +885,8 @@ Azure as IaaS: gives complete control of the operating systems and the applicati
 
 **TODO**: <https://learn.microsoft.com/en-us/azure/app-service/networking-features#regional-vnet-integration>
 
+**TODO**: <https://learn.microsoft.com/en-us/azure/azure-functions/functions-networking-options?tabs=azure-portal#virtual-network-integration>
+
 [Connect virtual networks](https://learn.microsoft.com/en-us/azure/virtual-network/tutorial-connect-virtual-networks-portal)
 
 - create vnet peering by select Peering in the setting of vnet. Then 2 vnets are connected
