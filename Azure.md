@@ -1216,8 +1216,9 @@ ADAL:
 
 Web app logs can be downloaded from <http://{mywebapp}.scm.azurewebsites.net/api/dump>. Resource: [Azure App Service Logging: How to Monitor Your Web Apps in Real-Time](https://techcommunity.microsoft.com/t5/apps-on-azure-blog/azure-app-service-logging-how-to-monitor-your-web-apps-in-real/ba-p/3800390).
 
-- <https://learn.microsoft.com/en-us/aspnet/core/fundamentals/logging/?view=aspnetcore-8.0>
-- <https://stackoverflow.com/questions/78059505/log-streams-in-azure-not-picking-up-my-logs>
+- Works: <https://stackoverflow.com/questions/74503796/should-i-use-for-net-logging-in-azure-addazurewebappdiagnostics-or-addapplicat>
+- How to fetch logs: <https://learn.microsoft.com/en-us/aspnet/core/fundamentals/logging/?view=aspnetcore-8.0>
+- Another approach: <https://stackoverflow.com/questions/78059505/log-streams-in-azure-not-picking-up-my-logs>
 
 ### Azure Template
 
@@ -1549,4 +1550,3 @@ To deploy ARM, go to Automation > Export Template > Deploy.
 ### Event Grid
 
 <https://learn.microsoft.com/en-us/azure/event-grid/overview>
-
