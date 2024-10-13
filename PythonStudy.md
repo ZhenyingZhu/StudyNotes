@@ -704,3 +704,7 @@ To make in python CLI, the move keys can actually move, [install libreadline](ht
 - `pip install pipenv`
 - `pipenv sync`
 - `pipenv install <package_name>`
+
+## PyAutoGUI
+
+Control mouse and keyboard: <https://pyautogui.readthedocs.io/en/latest/>

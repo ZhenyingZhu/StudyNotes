@@ -391,3 +391,9 @@ JPA: Java Persistence API
 Auto increase number? annotation `GeneratedValue` and `SequenceGenerator`
 
 Spring security
+
+## Maven
+
+<https://stackoverflow.com/questions/3342908/how-to-get-a-dependency-tree-for-an-artifact>
+
+<https://stackoverflow.com/questions/9518284/detecting-incompatible-dependencies-in-maven>
