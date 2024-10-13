@@ -1,11 +1,14 @@
-http://www.cyberciti.biz/faq/how-do-i-add-jobs-to-cron-under-linux-or-unix-oses/  
+# Cron
 
-`/etc/crontab file`, `/etc/cron.*/` and `/var/spool/cron/`  
+<http://www.cyberciti.biz/faq/how-do-i-add-jobs-to-cron-under-linux-or-unix-oses/>
 
-use `crontab -e` to create a cron job.  
+`/etc/crontab file`, `/etc/cron.*/` and `/var/spool/cron/`
 
-fields: 
-```
+use `crontab -e` to create a cron job.
+
+fields:
+
+```bash
 * * * * * command to be executed
 - - - - -
 | | | | |
@@ -16,12 +19,14 @@ fields:
 ------------- Minute (0 - 59)
 ```
 
-to disable emails: 
-```
+to disable emails:
+
+```bash
 0 3 * * * /root/backup.sh >/dev/null 2>&1
 ```
 
-to run as a user: 
-```
+to run as a user:
+
+```bash
 * * * * * username command
 ```

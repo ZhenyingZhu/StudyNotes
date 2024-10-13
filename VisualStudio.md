@@ -456,3 +456,15 @@ Can use [LocalSigning](https://github.com/microsoft/service-fabric/blob/master/s
 [Does not work with zip](https://superuser.com/questions/426337/is-it-possible-to-sign-archives)
 
 - zip should use a checksum instead
+
+## Custom Build Target
+
+<https://stackoverflow.com/questions/5124731/run-a-custom-msbuild-target-from-visualstudio>
+
+<https://learn.microsoft.com/en-us/visualstudio/ide/how-to-view-save-and-configure-build-log-files?view=vs-2022>
+
+The sln might currupt cause project cannot load properties.
+
+## AfterTargets doesn't work
+
+<https://stackoverflow.com/questions/2855713/what-is-the-difference-between-dependsontargets-and-aftertargets>
