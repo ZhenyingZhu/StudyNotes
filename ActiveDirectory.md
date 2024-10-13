@@ -269,6 +269,8 @@ LDP
   - Add: append a value to a multivalued attributed
   - Delete: clear an attribute or remove a specific value from a multivalued attribute
 - Can create, delete, rename, and view replication metadata, view the ACL/security descriptor
+- connection set to different port might talk to different DS.
+- Bind sets the username and password. The domain can be different.
 
 #### 3.2. Customizing the Active Directory Administrative Snap-ins
 

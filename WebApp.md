@@ -477,14 +477,58 @@ Controllers:
 - Form input validation?
 - what input pre-process? `parseInt`, `string.trim()`?
 
+<https://stackoverflow.com/questions/5614941/mix-razor-and-javascript-code>
+
+<https://learn.microsoft.com/en-us/visualstudio/javascript/tutorial-asp-net-core-with-react?view=vs-2022>
+
 ## Bootstrap
+
+## WCF
+
+<https://learn.microsoft.com/en-us/dotnet/framework/wcf/getting-started-tutorial>
+
+<https://stackoverflow.com/questions/41127291/how-to-run-a-wcf-project-locally>
 
 ## Azure
 
 <https://docs.microsoft.com/en-us/aspnet/core/tutorials/publish-to-azure-webapp-using-vs?view=aspnetcore-6.0>
 
+<https://learn.microsoft.com/en-us/dotnet/azure/sdk/logging>
+
 How to use docker **??**
+
+## Owin
+
+<https://learn.microsoft.com/en-us/aspnet/core/fundamentals/owin?view=aspnetcore-8.0>
+
+<https://stackoverflow.com/questions/59875531/upgrading-xproj-in-visual-studio-2019>
+
+<https://stackoverflow.com/questions/39429122/asp-net-core-middleware-or-owin-middleware>
+
+<https://stackoverflow.com/questions/72022589/why-is-program-cs-no-longer-a-class>
+
+- App_start
+- Area\Api
+- Content
+- Controllers
+- React
+- Scripts
+- Views
+- Global.aspx
+- Startup.cs
+
+## Blazor
+
+<https://stackoverflow.com/questions/61142736/difference-between-web-application-and-blazor-server-app-in-asp-net-core-3-1>
+
+## Web.config
+
+system.webServer section in the web.config can define module to use. Modules are DLLs where a class inherits IHttpModule.
 
 ## Others
 
 RESTFul with Swagger can be used to generate Proxy files and used in Powershell
+
+<https://stackoverflow.com/questions/46650362/how-to-setup-iis-to-verify-a-client-certificate-and-pass-it-to-the-backend-as-an>
+
+<https://stackoverflow.com/questions/59290464/how-to-fix-the-http-request-was-forbidden-with-client-authentication-scheme-an>
