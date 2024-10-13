@@ -375,6 +375,15 @@ Need to install the [MSBuildTasks](https://github.com/loresoft/msbuildtasks) nug
 
 [Write my own task](https://docs.microsoft.com/en-us/visualstudio/msbuild/task-writing?view=vs-2019)
 
+Different build tools VS uses: [How do I compile a Visual Studio project from the command-line?](https://stackoverflow.com/questions/498106/how-do-i-compile-a-visual-studio-project-from-the-command-line)
+
+- msbuild
+- devenv
+
+[slngen](https://microsoft.github.io/slngen/)
+
+- `for /f %c in ('dir /b *.csproj dirs.proj') do %PkgMicrosoft_VisualStudio_SlnGen%\tools\net472\slngen.exe -vs "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\devenv.exe" --folders true %c` to generate sln file and start VS2022.
+
 ## NuGet
 
 [NuGet intro](https://docs.microsoft.com/en-us/nuget/what-is-nuget)
@@ -447,3 +456,15 @@ Can use [LocalSigning](https://github.com/microsoft/service-fabric/blob/master/s
 [Does not work with zip](https://superuser.com/questions/426337/is-it-possible-to-sign-archives)
 
 - zip should use a checksum instead
+
+## Custom Build Target
+
+<https://stackoverflow.com/questions/5124731/run-a-custom-msbuild-target-from-visualstudio>
+
+<https://learn.microsoft.com/en-us/visualstudio/ide/how-to-view-save-and-configure-build-log-files?view=vs-2022>
+
+The sln might currupt cause project cannot load properties.
+
+## AfterTargets doesn't work
+
+<https://stackoverflow.com/questions/2855713/what-is-the-difference-between-dependsontargets-and-aftertargets>

@@ -75,3 +75,9 @@ Rhe XML Schema data model includes:
 [Wikipedia](https://en.wikipedia.org/wiki/Web_Services_Description_Language)
 
 an XML-based interface description language that is used for describing the functionality offered by a web service.
+
+## Others
+
+### Special char
+
+`&` needs to be escaped to `&amp;`

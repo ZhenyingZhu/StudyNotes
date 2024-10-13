@@ -2,6 +2,8 @@
 
 ## Grokking the low level design interview using OOD principles
 
+### Knowledges
+
 OOP principles
 
 - Encapsulation
@@ -97,6 +99,452 @@ Architectural design patterns
 - MVC
 - MVP
 - MVVM
+
+Real problem
+
+1. Collecting requirements
+2. scope down the problem
+3. SOLID: easy to extend
+
+Model the problem: establish the classes and their relationships
+
+### Parking lot
+
+1. payment flexibility
+2. parking spot type
+3. vehicle types
+4. pricing
+
+Requirements
+
+1. park 40k cars
+2. types of spots: hanicapped, compact, large, motorcycle
+3. multiple entrance and exit
+4. types of cars: car, truck, van, motorcycle
+5. a display board shows free parking spots
+6. customers collect a ticket from the entrance, pay at exit
+7. pay with either automated exit panel or pay the parking agent at exit
+8. payment is calculated at an hourly rate.
+9. payment made using either a credit/debit card or cash
+
+Actors
+
+1. customer: take/scan/pay ticket
+2. parking agent
+3. admin: add/remove/update a spot, agent, entry/exit panels. Modify hourly rate, view/update account (customer)
+4. system: giving details of parking spot. assigning parking spots to vehicles
+
+### Elevator System
+
+Consideration
+
+1. how many elevators
+2. wait time and running cost
+3. how passengers see the status of elevator
+
+Design pattern
+
+1. strategy
+2. state
+3. delegation
+
+Requirements
+
+1. 15 floors, 3 elevators
+2. move up or down or in idle state
+3. door open in idle state
+4. elevator passes through each floor
+5. a button to call elevator car, up and down
+6. panel inside elevator have buttons to go to every floor, and open/close doors
+7. display in and out shows the current floor and the direction
+8. inside display shows capacity
+
+Actors
+
+1. passengers
+2. system
+
+Use cases
+
+1. press panel button
+2. move/stop elevator
+3. dispatcher algorithm
+4. display
+5. open/close door
+6. request for elevator
+7. fllor request
+8. call emergency
+
+Dispatching algorithms
+
+1. First Come First Serve: 4 states: elevator idle; elevator moving towards passenger and same direction; moving towards and wrong direction; moving away. Use a queue to track which passenger comes first
+2. Shortest Seek Time First: passenger who is closest to the elevator gets it
+3. SCAN: always go up to the top then go down to bottom
+4. LOOK: advanced SCAN
+
+### Library management system
+
+Use cases
+
+1. book info: # of copies of a book, position, name + attributes
+2. renewal extend borrow
+3. fine
+4. book reservation
+5. barcode scanner
+
+Design pattern
+
+- facotry
+- delegation: delegate a task from one class to another
+- observer: notify after a book is available
+
+### Amazon locker service
+
+Considerations
+
+1. Locker size
+2. Locker selection: not double booked
+3. Lock status: time constraint for package kept in the locker
+4. return an item using a locker
+5. code
+
+Design patterns
+
+1. strategy
+2. repository
+
+actors
+
+1. customer
+2. delivery guy
+3. system
+
+### Vending Machine
+
+Points
+
+1. states of the vending machine: no money state, money inserted state, dispense state
+2. receive, caculate, return money
+3. racks
+
+Design patterns
+
+1. state
+
+Actors
+
+1. customer
+2. operator: collect cash
+3. system
+
+### Blackjack game
+
+rules
+
+1. A is 1 or 11
+2. 10, J, Q, K = 10
+3. hit or pat
+4. blackjack: A + 10
+
+Points
+
+1. how many players?
+2. can players play against each other?
+3. how many points can the player and the dealer hit the card
+4. what if dealer and player gets same points
+5. how many cards at max player can take
+
+Design patterns
+
+1. iterator
+2. state
+
+Actors
+
+1. player: resigns a game
+2. dealer: block member
+
+Classes
+
+1. card
+2. deck
+3. Shoe: shuffle
+4. hand: get score
+5. player: player + dealer
+6. controller
+
+### Meeting scheduler
+
+Expectations
+
+1. room + capacity
+2. book room
+3. attendees' availability
+4. meeting notification to the invitee
+5. accept or reject the invite
+6. a calendar
+
+pattern
+
+1. singleton
+
+actors
+
+1. scheduler
+2. user
+3. system
+
+### Movie Ticket Booking
+
+Expectations
+
+1. seat selection: do not double booked
+2. seat reservation timeout? First come first serve?
+3. Price of the booking: seat type? discount?
+4. multiple cinemas with multiple halls? same movie at different time?
+5. search movie
+6. users can select multiple searts
+7. notification
+
+Design pattern
+
+1. strategy
+
+Actors
+
+1. Systems
+2. Customer
+3. ticket agent
+
+### Car rental
+
+Expectations
+
+1. vehicle type
+2. search by name + location
+3. services: assign a driver, roadside assistant
+4. reservation + cancellation
+5. payment + fine with notification
+6. vehicle logs
+7. multiple branches + parking stalls
+
+design pattern
+
+1. decorate: discount, peak season, damaged fine, partially filled fuel tank fine
+
+Actors
+
+1. member
+2. receptionist
+3. worker
+4. system
+
+### ATM system
+
+Design patterns
+
+1. singleton
+2. state
+
+Requirements
+
+1. get account while insert card
+2. card reader, keypad, screen, cash dispenser, printer, network infrastructure
+3. PIN auth
+4. checking + saving
+5. cancel transaction before confirmation
+6. withdrawal limit
+
+### Chess game
+
+Requirements
+
+1. King, queen, rooks, knights, bishops, pawns
+2. player takes first turn
+3. undo
+
+Design pattern
+
+1. singleton
+2. command
+
+Objects
+
+1. box: piece, x, y
+2. Piece
+
+### Hotel management
+
+Requirements
+
+1. book room: not double booked
+2. search room
+3. payment: in advance, or JIT
+4. price: room size, time, duration
+5. booking cancelation
+6. housekeeper, receiptionist, guest, server
+7. standard, deluxe, family suite, business suite
+8. room service
+9. return key
+
+Design patterm
+
+1. strategy
+2. singleton
+3. factory
+
+## Amazon online shopping
+
+Requirements
+
+1. Discoverability
+2. cart and checkout
+3. payment
+4. product reviews and ratings
+5. guest user can view
+6. authN user can buy, sell
+7. shipping: address, tracking
+8. order can be cancelled before it is shipped
+9. notification
+10. order log
+11. coupon
+
+Design pattern
+
+1. factory
+2. strategy
+
+### Stack overflow
+
+Requirements
+
+1. question: view and search, post and answer
+2. comment on questions and answers
+3. reputation
+4. voting
+5. bounty
+6. notification
+
+Design pattern
+
+1. observer
+
+### Restaurant management
+
+Requirements
+
+1. branch
+2. cerate order
+3. menu item
+4. available table
+5. table reservation
+6. notification
+7. pay bills
+8. different table configs
+
+Design pattern
+
+1. singleton
+2. factory
+
+### Facebook
+
+Requirements
+
+1. privacy
+2. profile
+3. group
+4. search for users, groups, pages
+5. write a new post
+6. friend request
+7. like, share post
+8. notification
+9. alert
+10. send + receive message
+
+Design pattern
+
+1. observation
+
+### Online stock brokeerage system
+
+Requirements
+
+1. discoverability: search for stock
+2. visibility
+3. Multiplicity
+4. trade in
+5. watchlist
+6. different lots of the same stock
+7. notify user when a trade order is carried out
+8. trade types: market, limit, stop-loss, stop-limit
+
+Design pattern
+
+1. singleton
+2. observer
+
+### Jigsaw puzzle
+
+Requirements
+
+1. Puzzle board
+2. puzzle pieces: corner vs. edge vs. middle pieces
+3. puzzle solver: check if two pieces can matching up
+4. rotate piece
+
+Design pattern
+
+1. singleton
+
+### Airline management
+
+Requirements
+
+1. search flight
+2. flight reservation: multiple flights
+3. payment
+4. book
+5. flight cancellation
+6. seat
+7. airports
+8. pilots and crew members
+9. itineraries
+10. notification
+
+Design pattern
+
+1. singleton
+2. observer
+
+### Cricinfo
+
+- players, coaches, teams
+- stats
+- tournament
+- matches
+- points table
+- stadium
+
+### LinkedIn
+
+Requirements
+
+1. profile
+2. serach for a user/page
+3. connection
+4. follow
+5. stats: # of connections, profile views, post impressions, search appearance
+6. recommendations to other users
+7. write a new post
+8. react, share, comment on a post
+9. message
+10. notification
+11. company page
+12. open jobs
+13. groups
+14. follow vs. connect
+15. apply job
 
 ## The Advanced Object-Oriented Technology
 

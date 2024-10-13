@@ -130,7 +130,7 @@ Payload field.
 
 #### Chapter 1 Exercise
 
-Problem 16: traceroute -q 20 www.eurecom.fr
+Problem 16: `traceroute -q 20 www.eurecom.fr`
 
 Ethereal/ Wireshark: packet sniffer.
 
@@ -163,7 +163,7 @@ Application architecture:
 - SSL: TCP with security.
 - UDP: no connection, not reliable,
 - APP protocols.
-- IP address and port: to find process. www.iana.org
+- IP address and port: to find process. `www.iana.org`
 
 ##### 2.1.5
 
@@ -300,7 +300,7 @@ DNS request and response packet:
 | Identification | Flags | Comment |
 |:---:|:---:|:---:|
 |Number of questions|Number of answer RRs| 12 bytes |
-|Number of authority RRs|Number of additional RRs|
+|Number of authority RRs|Number of additional RRs | |
 |Questions(variable number of questions)| | Name, type fields for a query |
 |Answers(variable number of resource records)| | RRs in response to query |
 |Authority(variable number of resource records)| | Records for authoritative servers |
@@ -371,7 +371,7 @@ Segment
 - Demultiplexing: find the right socket.
 - Multiplexing: generate the head.
 - Port: 16 bit.
-- Well-known port: 0~1023. RFC 1700 and www.iana.org.
+- Well-known port: 0~1023. RFC 1700 and `www.iana.org`.
 - Source port is also include in the TCP segment to receive response.
 - UDP send two packets come from different source to one socket if they have same destination.
 - TCP send two packets to different sockets if they have different source.
@@ -734,6 +734,18 @@ Fiddler decrept HTTPS traffic:
 
 [server certificate is not configured properly with HTTP.SYS in the HTTPS case](https://stackoverflow.com/questions/2013880/wcf-error-this-could-be-due-to-the-fact-that-the-server-certificate-is-not-conf)
 
+## Certificate
+
+[Make a certificate for testing purposes](https://stackoverflow.com/questions/68948910/make-a-certificate-for-testing-purposes-but-not-self-signed)
+
+- a real cert is associated with a domain.
+- a domain can have a subdomain with a cert for the subdomain.
+- local testing can use a self-signed cert.
+
+<https://learn.microsoft.com/en-us/iis/configuration/system.webserver/security/authentication/clientcertificatemappingauthentication>
+
+<https://www.thewindowsclub.com/create-self-signed-ssl-certificates-in-windows-10>
+
 ## Other notes
 
 [No buffer space available](https://community.sophos.com/products/unified-threat-management/f/management-networking-logging-and-reporting/31186/105-no-buffer-space-available)
@@ -749,3 +761,5 @@ Fiddler decrept HTTPS traffic:
 [Setting two routers](https://www.lifewire.com/connect-routers-on-a-home-network-818060)
 
 linux ephemeral ips
+
+[Route table](https://www.howtogeek.com/22/adding-a-tcpip-route-to-the-windows-routing-table/)

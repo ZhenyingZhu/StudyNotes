@@ -953,5 +953,4 @@ Define how admin sees a schema:
 HERE: <https://docs.djangoproject.com/en/2.0/intro/tutorial07/>
 Adding related objects
 
-
 HERE <https://docs.djangoproject.com/en/2.0/intro/tutorial05/>
