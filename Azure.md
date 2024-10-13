@@ -883,8 +883,6 @@ Azure as IaaS: gives complete control of the operating systems and the applicati
 - deny internet traffic
 - storage add Firewall limit network access from internet
 
-**TODO**: <https://learn.microsoft.com/en-us/azure/app-service/networking-features#regional-vnet-integration>
-
 **TODO**: <https://learn.microsoft.com/en-us/azure/azure-functions/functions-networking-options?tabs=azure-portal#virtual-network-integration>
 
 [Connect virtual networks](https://learn.microsoft.com/en-us/azure/virtual-network/tutorial-connect-virtual-networks-portal)
@@ -951,6 +949,11 @@ Azure as IaaS: gives complete control of the operating systems and the applicati
 - require a delegated subnet as an explicit identifier
 - With service tags, you can define network access controls on network security groups or Azure Firewall.
 - Service endpoints and private endpoints have characteristics in common. Private endpoint is individual instance.
+
+[App Service networking features/Virtual network integration](https://learn.microsoft.com/en-us/azure/app-service/networking-features#regional-vnet-integration)
+
+- 1st option: App Service Environment. Already in a vnet.
+- 2nd option: dedicated compute pricing tiers (standard and above). In the network config
 
 <https://azure.microsoft.com/en-us/products/private-link>
 
