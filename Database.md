@@ -92,6 +92,14 @@ SELECT Questions.qid, Questions.url, Questions.difficulty, Metadata.priority, Me
     WHERE priority=5 ORDER BY qid LIMIT 10;
 ```
 
+<https://www.geeksforgeeks.org/how-to-write-a-sql-query-for-a-specific-date-range-and-date-time/>
+
+Delete all rows in a table
+
+```sql
+TRUNCATE TABLE table_name
+```
+
 ## Memcached
 
 [Install](https://www.liquidweb.com/kb/how-to-install-memcached-on-ubuntu-14-04-lts/)
@@ -162,6 +170,22 @@ Affinity Type:
 ### Tools
 
 [SQLite Browser](http://sqlitebrowser.org/)
+
+## SQL
+
+`SELECT * FROM <table> WHERE Date > '2003-9-19'`
+
+<https://www.w3schools.com/sql/sql_create_index.asp>
+
+- `CREATE INDEX index_name ON table_name (column1, column2, ...);`
+
+```sql
+SELECT TOP (1000) stats.last_execution_time AS Time, sqltext.TEXT AS "Query Text"
+FROM sys.dm_exec_query_stats AS stats
+CROSS APPLY sys.dm_exec_sql_text(stats.sql_handle) AS sqltext
+WHERE sqltext.TEXT LIKE '%<sql>%'
+ORDER BY stats.last_execution_time DESC
+```
 
 ## miscellaneous
 

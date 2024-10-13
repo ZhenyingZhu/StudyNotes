@@ -1412,7 +1412,7 @@ AuthN Concepts
 - The project creates with folder `Area/Identity/Account` which refers to a Razor class library.
 - Need call `Update-Database` to let it take effect.
 - In `Views\Shared\` there is a `_LoginPartial.cshtml` which appears in `_Layout.cshtml` in the nav bar.
-- Username: zhenying@webapp.com, zhenying2@webapp.com, Password: `P@ssw0rd`
+- Username: <zhenying@webapp.com>, <zhenying2@webapp.com>s, Password: `P@ssw0rd`
 - Several tables are created: AspNetUsers, AspNetRoles, AspNetUserLogins, AspNetUserRoles, AspNetUserTokens
 - Now users can register and be added to DB.
 - Check `services.AddDefaultIdentity()` in `ConfigureServices`, should already be there.
@@ -1467,7 +1467,7 @@ Use `signInManager.PasswordSignInAsync` to get the login result. Don't need to a
 
 To add `ModelState.AddModelError("", "Failed to login");`, need add `<div asp-validation-summary="ModelOnly"></div>` in the cshtml.
 
-Username: zhenying@dutchtreat.com, Password: P@ssw0rd!
+Username: <zhenying@dutchtreat.com>, Password: P@ssw0rd!
 
 In the Layout.cshtml, add Login and Logout nav-link.
 
@@ -2038,6 +2038,10 @@ In the `C:\inetpub`, create a new folder `dutchtreat`.
 Restart VS in admin mode to connect to IIS.
 
 Choose `Web Deploy`, Server is localhost, Site name is dutchtreat, URL is `http://localhost:81`.
+
+<https://computingforgeeks.com/install-and-configure-iis-web-server-on-windows-server/#:~:text=Configure%20IIS%20Web%20Server%20on%20Windows%20Server%202019,the%20Web%20Server%20is%20running%20...%20More%20items>
+
+<https://learn.microsoft.com/en-us/iis/get-started/planning-your-iis-architecture/understanding-sites-applications-and-virtual-directories-on-iis>
 
 ### Publishing Using the CLI
 
@@ -4508,3 +4512,56 @@ Service oriented: <https://docs.microsoft.com/en-us/dotnet/framework/wcf/whats-w
 <https://en.wikipedia.org/wiki/Single-page_application#:~:text=From%20Wikipedia%2C%20the%20free%20encyclopedia,browser%20loading%20entire%20new%20pages.>
 
 [React Router](https://reactrouter.com/web/guides/quick-start)
+
+## IIS
+
+<https://docs.microsoft.com/en-us/iis/extensions/introduction-to-iis-express/iis-express-overview>
+
+<https://learn.microsoft.com/en-us/iis/get-started/planning-your-iis-architecture/understanding-sites-applications-and-virtual-directories-on-iis>
+
+Install
+
+```powershell
+if ((Get-WindowsOptionalFeature -Online -Feature "IIS-ASPNET45").State -ne "Enabled") {
+  Enable-WindowsOptionalFeature -Online -FeatureName "IIS-ASPNET45" -All -NoRestart
+}
+```
+
+Commands
+
+- `Get-IISAppPool -Name $pool`
+- `New-WebAppPool -Name $pool`
+- `$website = New-WebSite -Name ${websitename -Port $port -PhysicalPath $path} -ApplicationPool $pool`
+- `New-WebApplication -Name $app -Site $website -PhysicalPath "$path2" -ApplicationPool $pool2`: doesn't work. [New-WebApplication](https://learn.microsoft.com/en-us/powershell/module/webadministration/new-webapplication?view=windowsserver2022-ps)
+- <https://learn.microsoft.com/en-us/powershell/module/webadministration/convertto-webapplication?view=windowsserver2022-ps>
+- <https://serverfault.com/questions/102523/difference-between-application-and-virtual-directory>
+- An application root uses a different global.asax, bin folder and the other app.
+- A virtual directory is just a pointer to a different location on disk.
+
+```powershell
+New-WebVirtualDirectory -Site "Default Web Site" -Name "ContosoVDir" -PhysicalPath "$Env:systemdrive\inetpub\Contoso" 
+ConvertTo-WebApplication -PSPath "IIS:\Sites\Default Web Site\ContosoVDir"
+```
+
+## .NET Core App
+
+Use dotnet cli
+
+- <https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-new>
+
+Add logging
+
+- <https://learn.microsoft.com/en-us/aspnet/core/fundamentals/logging/?view=aspnetcore-8.0>
+
+## Issues
+
+### Roslyn csc
+
+<https://stackoverflow.com/questions/58154233/could-not-find-file-bin-roslyn-csc-exe>
+
+### local sqldb
+
+<https://javafun.github.io/localdb-logon-failed-for-login-due-to-trigger-execution/#:~:text=Luckily%2C%20this%20approach%20fixed%20my%20issue.%20Step%201,following%20command%20from%20your%20terminal%20sqllocaldb%20create%20MSSQLLocaldb>
+
+- `Update-Database -Verbose` to see details
+- `sqllocaldb create <DB name>` to create a DB

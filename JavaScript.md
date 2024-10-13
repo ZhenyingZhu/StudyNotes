@@ -2474,3 +2474,5 @@ HERE: Chaining
 <https://www.sitepoint.com/delay-sleep-pause-wait/>
 
 <https://masteringjs.io/tutorials/fundamentals/foreach-break#:~:text=How%20to%20Break%20Out%20of%20a%20JavaScript%20forEach,Local%20Variable%204%204.%20Modify%20the%20array%20length>
+
+[Error: TypeError: 'process.env' only accepts a configurable whileinstall windows-build-tools](https://stackoverflow.com/questions/74227892/error-typeerror-process-env-only-accepts-a-configurable-whileinstall-windows)
