@@ -3314,6 +3314,7 @@ Geohash [encode](https://github.com/ZhenyingZhu/CppAlgorithms/blob/master/src/li
 - Base32 hashcode
 - Split an area into 32 pieces
 - If the prefixes of two hashcode are same, they are in the nearby location
+- Use binary search to find closest locations
 
 Query prefix:
 
@@ -4743,6 +4744,119 @@ Others
 Consistent hashing: when a hash table is re-sized, only k/n keys need to be remapped
 
 - SHA-1’s hash space goes from 0 to 2^160 - 1
+- Hash server based on server metadata
+- Hash key, clockwise find the closest server to store the data
+
+Virtual nodes
+
+- interleave virtual nodes for servers
+
+### Ch6: Design a key-value store
+
+A short key works with better performance.
+
+Requirements
+
+- a key-value pair size: < 10KB
+- automatic scaling
+- Tunable consistency
+- High availability, high scalability, low latency
+
+Single server
+
+- Data compression
+- store freq used data in mem and others on disk
+
+Distributed
+
+- CAP: Consistency, availability, partition tolerance
+- choose C over A: block write when replication fail
+
+Components
+
+- Data partition: evenly and minimize data move.
+- Data replication: use the next N servers to store replication
+- Consistency: quorum consensus: W+R>N guarantee strong consistency
+- inconsistency resolution
+- handling failures
+- system architcture diagram
+- write path
+- read path
+
+Consistent hashing adventages
+
+- capable with auto scaling
+- Heterogeneity (not evenly distributed): higher capability servers can have more virtual nodes
+
+Consistency models
+
+- Strong consistency: never sees out-of-date data. a replica not to accept new R/W until every replica has agreed on current write
+- Weak consistency: subsequent read operations not see the most updated value
+- Eventual consistency: after all updates are propagated, and all replicas are consistent. Need reconcile inconsistent values
+
+Vector clock
+
+- [server, version] pairs. D1([s1, v1]), D2([s2, v1]) reconcile on s1: D3([s1, v2], [s2, v1])
+- When no conflict == an ancestor when versions in a version clock are >= versions in another clock
+- has conflict == sibling when some versions > but some versions <.
+
+Handle failures
+
+- failure detection: need at least 2 independent sources to mark a server down
+- Gossip protocol: each node maintain heartbeat table from other nodes, and send the table to a set of random nodes.
+- sloppy quorum: R/W on the first servers, offline servers are ignored.
+- hinted handoff: Another server process requests temporily until the offline server is back.
+- A hash/Merkle tree: non-leaf node has hash for all child nodes. Used for verify contents of large data structures.
+- anti-entropy protocol: keep replica in sync. comparing each piece of data on replicas and updating.
+
+System architecture
+
+- Decentralized: A coordinator can be any node acts as a proxy between client and the service
+
+Write Path
+
+- requests persist on a commit log file
+- data is saved in the mem cache
+- when mem cache is full, flush to SSTables on disk
+
+Read Path
+
+- Check if data in mem cache
+- Use bloom filter to find which SSTable contains the data
+
+### Ch7: Design a unique id generator in distributed system
+
+Requirements
+
+- id needs to be uniq and sortable
+- id is num fits in 64-bit
+- id increase over time
+- 10k id generates per sec
+
+Solutions:
+
+- multi-master replication: in total k servers, on a server, increase the generated id by k every request
+- universally uniq id: use 128-bit num to have low probability of collision
+- ticket server: a single DB for auto_increment
+
+twitter snowflake approach
+
+- composite of sign (1 bit) + timestamp (41 bits) + DC id (5 bits) + Machine id (5 bits) + seq num (12 bits)
+- Use NTP to solve clock sync differences
+
+### Ch8: Design a url shortener
+
+Requirements
+
+- QPS: 100M URLs generated per day
+- Read QPS: 10 times of write
+- shortened URLs don't delete or update
+- Run for 10 years, avg URL len is 100.
+
+APIs
+
+- POST `api/v1/data/shorten`
+- GET `api/v1/shortUrl`
 
 ## System Design Interview The Big Archive
 
@@ -4753,6 +4867,14 @@ Consistent hashing: when a hash table is re-sized, only k/n keys need to be rema
 - Read committed
 - Read uncommitted
 
+## System Design Interview: volume 2
+
+Ad events system
+
+- Use map reduce to do aggregation
+- use Kafka partitions as the map input
+- Kapa architecture: merge the streaming and batching processing
+
 ## CI/CD
 
 <https://about.gitlab.com/topics/ci-cd/>
@@ -4761,6 +4883,18 @@ Consistent hashing: when a hash table is re-sized, only k/n keys need to be rema
 - unit test, Integration test, Regression test
 - deploy
 - Need a version control system
+
+Engineering System
+
+- An engineering system is comprised of infrastructure, tools, processes and automation integrated in a cohesive environment for teams to collaborate to deliver products and services, while complying with applicable constraints.​
+  - Version control
+  - Orchestrator
+  - Pipelines
+  - Infra
+  - Build env
+  - Build engine
+  - SDKs, compilers, linkers
+- [DevOps](https://about.gitlab.com/topics/devops/): enable software development (dev) and operations (ops) teams to accelerate delivery through automation, collaboration, fast feedback, and iterative improvement.
 
 ## Open Questions
 
@@ -4776,6 +4910,14 @@ How token works (OAuth2)
 
 OOD Design Patterns
 
+Config system to control a feature to be on or off.
+
 ### Redis pub sub model
 
 <https://redis.com/glossary/pub-sub/#:~:text=How%20Pub%2FSub%20works,of%20their%20particular%20use%20cases.>
+
+## Other Resources
+
+<https://www.geeksforgeeks.org/top-software-development-project-ideas>
+
+<https://github.com/donnemartin/system-design-primer>

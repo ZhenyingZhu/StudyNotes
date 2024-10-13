@@ -115,3 +115,33 @@ If there are files in the folder, then the error: "Remove-item : No PromptForCho
 ## PSSession
 
 <https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_pssessions?view=powershell-7.3>
+
+```powershell
+$s = New-PSSession -URI http://x.x.x.x:xxxx/WSMAN -Credential domain\Administrator -Authentication Negotiate
+
+Invoke-Command -Session $s -ScriptBlock {
+  C:\temp\script.ps1
+}
+```
+
+## Use string with special characters
+
+```powershell
+powershell powershell-example\TryParams.ps1 -name "1-name-(1/5)"
+```
+
+Actually treats "()" as the next parameter. To make it work, need to use ```
+
+```powershell
+powershell C:\Users\zhenyzhu\Github\StudyNotes\powershell-example\TryParams.ps1 -name '1-name-`(1/5`)'
+```
+
+## Check command runs from where
+
+```powershell
+Get-Command 'nssm' -errorAction SilentlyContinue
+```
+
+## Check if admin
+
+<https://stackoverflow.com/questions/29129787/check-if-logged-on-user-is-an-administrator-when-non-elevated>

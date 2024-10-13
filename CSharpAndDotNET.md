@@ -88,6 +88,8 @@ Compile C# program:
 
 <https://docs.microsoft.com/en-us/dotnet/core/tutorials/with-visual-studio-code#debug>
 
+<https://code.visualstudio.com/docs/csharp/testing>
+
 ### Concepts
 
 `String.Empty` vs `null`
@@ -620,6 +622,8 @@ int sameNumCnt = list2.Select(x => x).Intersect(list1).Count;
 
 ### Visual studio UT framework
 
+<https://learn.microsoft.com/en-us/dotnet/core/testing/unit-testing-with-mstest>
+
 [src](https://docs.microsoft.com/en-us/visualstudio/test/unit-test-basics)
 
 Add a test project to the solution and add reference.
@@ -788,11 +792,61 @@ TryGetValue can test if key exist or not.
 
 Use NuSpec to create a nuget package: <https://stackoverflow.com/questions/40628116/how-to-specify-configuration-specific-folder-in-nuspec>
 
+<https://stackoverflow.com/questions/16173568/build-nuget-package-automatically-including-referenced-dependencies>
+
+Using the GeneratePackageOnBuild is better than nuproj/nuspec
+
+- <https://www.google.com/search?q=nuproj+is+deprecated&newwindow=1&sca_esv=3d0b5893383aa7ee&sxsrf=ADLYWIJ7vzWMfKkXeC_FVYmzzljTH0dtQg%3A1727916062630&ei=Huj9ZvSSJtzD0PEP66CQQA&ved=0ahUKEwj0mfX4_PCIAxXcITQIHWsQBAgQ4dUDCA8&uact=5&oq=nuproj+is+deprecated&gs_lp=Egxnd3Mtd2l6LXNlcnAiFG51cHJvaiBpcyBkZXByZWNhdGVkMgUQIRigATIFECEYoAEyBRAhGKABMgUQIRigAUj4F1AAWIgRcAB4AZABAJgBXaABigiqAQIxNLgBA8gBAPgBAZgCDqACqwjCAgQQIxgnwgIEEAAYHsICCBAAGIAEGKIEwgIGEAAYFhgewgILEAAYgAQYhgMYigXCAggQABiiBBiJBZgDAJIHAjE0oAe5MA&sclient=gws-wiz-serp>
+- <https://github.com/nuproj/nuproj>
+- <https://github.com/NuGet/Home/issues/8983>
+- <https://stackoverflow.com/questions/14797525/differences-between-nuget-packing-a-csproj-vs-nuspec>
+- <https://learn.microsoft.com/en-us/nuget/create-packages/creating-a-package-msbuild>
+
+`dotnet add package {package}` can either add a new package or upgrade the package version.
+
 ### CxCache
 
 It is folder to hold dependency packages. Maybe is related to <https://www.nuget.org/packages/xCache/> ?
 
 ## Multi-thread
+
+<https://devblogs.microsoft.com/pfxteam/>
+
+<https://learn.microsoft.com/en-us/dotnet/standard/threading/managed-threading-basics>
+
+- thread has a scheduling priority.
+- threads share virtual address space of the process.
+- primary vs. worker threads
+- Task Parallel Library (TPL) and Parallel LINQ (PLINQ): use ThreadPool threads.
+- Most unhandled exceptions in threads generally terminate the process. Special ex: ThreadAbortException and AppDomainUnloadedException. [Test] If the worker thread throws an exception but primary thread doesn't listen, will the primary thread crash?
+- application domain: Common Language Infrastructure (CLI) to isolate executed software applications from one another.
+- managed code need to install an exception handler at a point.
+- calls need to be synchronized to avoid get interrupted. A class whose members are protected from such interruptions is called thread-safe.
+  - Manual synchronization: uses a signaling mechanism for thread interaction. classes inherit WaitHandle: Mutex, Semaphore, etc.
+  - Synchronized Context: for .NET Framework, use `SynchronizationAttribute` to sync all instance methods and fields.
+  - Collection classes in the `System.Collections.Concurrent`.
+  - Synchronized code regions: mark a code block as `lock`. Same as call `Monitor.Enter` and `Monitor.Exit`. If an exception is thrown inside the lock block, the finally handler runs to allow you to do any clean-up work.
+  - `Thread.Interrupt` can be used to break a thread.
+- Foreground vs. background threads: a background thread does not keep the managed execution environment running. So when foreground threads finish, the application ends.
+  - `Thread.IsBackground` can check and set a thread to be background.
+  - threads in the managed thread pool (`IsThreadPoolThread`) are background threads.
+  - threads creating and starting a new thread are by default forground threads.
+- Unmanaged thread can be found in the managed execution environment. Then a new thread object is created.
+- here: <https://learn.microsoft.com/en-us/dotnet/standard/threading/managed-and-unmanaged-threading-in-windows#managed-threads-and-com-apartments>
+- here: <https://learn.microsoft.com/en-us/windows/win32/com/processes--threads--and-apartments>
+
+[Multithreading With .NET](https://www.c-sharpcorner.com/UploadFile/84c85b/multithreading-with-net/)
+
+- The operating system schedules threads.
+- Thread: Sleep, GetDomain, CurrentContext, Start, Name, IsBackground. new Thread(delegate);
+- Mutex
+- Monitor
+- Semaphore
+- Interlock
+- Threadpool
+- ThreadPriority
+- When foreground threads are still running, even `main()` method ends, process keeps running.
+- **HERE**: Race condition
 
 ### Dispose
 
@@ -1196,6 +1250,8 @@ using (XmlReader reader = XmlReader.Create(filePath))
 
 [Navigate the document tree](https://docs.microsoft.com/en-us/dotnet/api/system.xml.xmldocument?view=net-6.0#navigate-the-document-tree)
 
+[XPath](https://www.w3schools.com/xml/xpath_nodes.asp)
+
 ### Predicate
 
 [Doc](https://docs.microsoft.com/en-us/dotnet/api/system.predicate-1?view=netcore-3.1)
@@ -1361,3 +1417,43 @@ Assembly version vs. nuget package version.
 ### Shims
 
 A unit test framework.
+
+### TLS
+
+<https://stackoverflow.com/questions/30664566/authentication-failed-because-remote-party-has-closed-the-transport-stream>
+
+### csvhelper
+
+<https://joshclose.github.io/CsvHelper/getting-started/>
+
+### Build Race condition
+
+- <https://stackoverflow.com/questions/5134137/build-error-the-process-cannot-access-the-file-because-it-is-being-used-by-ano>
+- <https://stackoverflow.com/questions/6838779/msbuild-fails-with-the-process-cannot-access-the-file-xxxxx-because-it-is-being>
+
+### SDK style project differences
+
+<https://stackoverflow.com/questions/46709000/disable-transitive-project-reference-in-net-standard-2>
+
+<https://dansiegel.net/post/2018/08/21/demystifying-the-sdk-project>
+
+- Release builds need to be optimized, while Debug configurations need all of our debug symbols
+- [Well-Known Properties](https://learn.microsoft.com/en-us/previous-versions/visualstudio/visual-studio-2015/msbuild/msbuild-reserved-and-well-known-properties?view=vs-2015&redirectedfrom=MSDN)
+- ItemGroup grouping Items. Can be used with Condition
+- Supports multi-target frameworks.
+- Common lib should be packed because: 1. reduce build time, 2. versioning, 3. isolate rollout, 4. individual testing
+- using a nuspec is not needed for SDK style projects. Can set `GeneratePackageOnBuild` to true in csproj
+
+<https://hermit.no/moving-to-sdk-style-projects-and-package-references-in-visual-studio-part-1/>
+
+<https://hermit.no/moving-to-sdk-style-projects-and-package-references-in-visual-studio-part-2/>
+
+### ConfigurationManager
+
+Read from dll.config vs. app.config:
+
+```C#
+Configuration config = ConfigurationManager.OpenExeConfiguration(Assembly.GetExecutingAssembly().Location);
+var configVal = config.AppSettings.Settings["key"].Value;
+configVal = ConfigurationManager.AppSettings["key"].Value;
+```

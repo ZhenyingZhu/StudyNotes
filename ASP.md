@@ -4513,6 +4513,46 @@ Service oriented: <https://docs.microsoft.com/en-us/dotnet/framework/wcf/whats-w
 
 [React Router](https://reactrouter.com/web/guides/quick-start)
 
+## IIS
+
+<https://docs.microsoft.com/en-us/iis/extensions/introduction-to-iis-express/iis-express-overview>
+
+<https://learn.microsoft.com/en-us/iis/get-started/planning-your-iis-architecture/understanding-sites-applications-and-virtual-directories-on-iis>
+
+Install
+
+```powershell
+if ((Get-WindowsOptionalFeature -Online -Feature "IIS-ASPNET45").State -ne "Enabled") {
+  Enable-WindowsOptionalFeature -Online -FeatureName "IIS-ASPNET45" -All -NoRestart
+}
+```
+
+Commands
+
+- `Get-IISAppPool -Name $pool`
+- `New-WebAppPool -Name $pool`
+- `$website = New-WebSite -Name ${websitename -Port $port -PhysicalPath $path} -ApplicationPool $pool`
+- `New-WebApplication -Name $app -Site $website -PhysicalPath "$path2" -ApplicationPool $pool2`: doesn't work. [New-WebApplication](https://learn.microsoft.com/en-us/powershell/module/webadministration/new-webapplication?view=windowsserver2022-ps)
+- <https://learn.microsoft.com/en-us/powershell/module/webadministration/convertto-webapplication?view=windowsserver2022-ps>
+- <https://serverfault.com/questions/102523/difference-between-application-and-virtual-directory>
+- An application root uses a different global.asax, bin folder and the other app.
+- A virtual directory is just a pointer to a different location on disk.
+
+```powershell
+New-WebVirtualDirectory -Site "Default Web Site" -Name "ContosoVDir" -PhysicalPath "$Env:systemdrive\inetpub\Contoso" 
+ConvertTo-WebApplication -PSPath "IIS:\Sites\Default Web Site\ContosoVDir"
+```
+
+## .NET Core App
+
+Use dotnet cli
+
+- <https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-new>
+
+Add logging
+
+- <https://learn.microsoft.com/en-us/aspnet/core/fundamentals/logging/?view=aspnetcore-8.0>
+
 ## Issues
 
 ### Roslyn csc

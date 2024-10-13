@@ -300,7 +300,7 @@ DNS request and response packet:
 | Identification | Flags | Comment |
 |:---:|:---:|:---:|
 |Number of questions|Number of answer RRs| 12 bytes |
-|Number of authority RRs|Number of additional RRs|
+|Number of authority RRs|Number of additional RRs | |
 |Questions(variable number of questions)| | Name, type fields for a query |
 |Answers(variable number of resource records)| | RRs in response to query |
 |Authority(variable number of resource records)| | Records for authoritative servers |
@@ -741,6 +741,10 @@ Fiddler decrept HTTPS traffic:
 - a real cert is associated with a domain.
 - a domain can have a subdomain with a cert for the subdomain.
 - local testing can use a self-signed cert.
+
+<https://learn.microsoft.com/en-us/iis/configuration/system.webserver/security/authentication/clientcertificatemappingauthentication>
+
+<https://www.thewindowsclub.com/create-self-signed-ssl-certificates-in-windows-10>
 
 ## Other notes
 
