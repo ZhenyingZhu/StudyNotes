@@ -6,6 +6,7 @@ import requests
 import shutil
 import ssl
 from pathlib import Path
+import chardet
 
 class Utils:
     def __init__(self, cookie):
@@ -14,23 +15,23 @@ class Utils:
     def get_page_from_url(self, url, debug=False):
         try:
             hdr = {
-                'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8Accept-Encoding',
-                'Accept-Encoding': 'gzip, deflate, br',
+                'Content-Type': 'text/html; charset=utf-8',
+                # 'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
+                # 'Accept-Encoding': 'gzip, deflate, br',
                 'Accept-Language': 'en-US,en;q=0.5',
-                'Cache-Control': 'max-age=0',
                 'Connection': 'keep-alive',
                 'Cookie': self.cookie,
                 'Sec-Fetch-Dest': 'document',
                 'Sec-Fetch-Mode': 'navigate',
-                'Sec-Fetch-Site': 'same-origin',
+                'Sec-Fetch-Site': 'none',
                 'Sec-Fetch-User': '?1',
+                'TE': 'trailers',
                 'Upgrade-Insecure-Requests': '1',
-                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:95.0) Gecko/20100101 Firefox/95.0'
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/116.0'
             }
 
-            req = requests.get(url, headers=hdr)
-
-            html_page = req.text
+            response = requests.get(url, headers=hdr)
+            html_page = response.content.decode('utf-8')
 
             if (debug):
                 debug_file = open('html_page', 'w', encoding="utf-8")
@@ -90,7 +91,7 @@ class Utils:
 def main():
     utils = Utils("")
 
-    html_page = utils.get_page_from_url("https://www.google.com/")
+    html_page = utils.get_page_from_url("https://www.google.com")
     print(html_page)
 
     # Under Windows, the downloads folder could be moved.

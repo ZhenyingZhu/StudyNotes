@@ -18,6 +18,8 @@
 
 ## Official Documents
 
+<https://react.dev/>
+
 <https://reactjs.org/docs/getting-started.html>
 
 [React concepts](https://reactjs.org/docs/hello-world.html)
@@ -323,3 +325,10 @@ class NameForm extends React.Component {
 [A good example](https://reactjs.org/docs/thinking-in-react.html)
 
 [Tester](https://codepen.io/pen?&editable=true&editors=0010)
+
+## Npm feed
+
+- `npm install -g vsts-npm-auth`
+- `npm config set registry https://.../npm/registry/` [npm config set registry](https://stackoverflow.com/questions/22385092/npm-config-set-registry-https-registry-npmjs-org-is-not-working-in-windows)
+- create a .npmrc file and add the registry=https://.../npm/registry/` and `always-auth=true`
+- run `npm install`

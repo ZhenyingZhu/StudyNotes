@@ -217,6 +217,28 @@ Python system env needs
 - PATH: `C:\Program Files\Python39\Scripts\`, `C:\Program Files\Python39\`, `C:\Users\<username>\AppData\Roaming\Python\Python39\Scripts`
 - PYTHONPATH: `C:\Program Files\Python39\`, `C:\Program Files\Python39\\Lib`
 
-## ADB
+## ADB and fastboot
 
 Pull the files to desktop `adb pull /sdcard/Movies .`
+
+```powershell
+adb devices
+adb reboot bootloader
+```
+
+fastboot commands
+
+```powershell
+fastboot oem unlock # unlock the boot loader.
+fastboot flash recovery recovery.img # the recovery mode image
+fastboot flash boot boot.img # the boot image
+fastboot reboot bootloader # reboot back to boot loader
+```
+
+## Change cell phone resolution
+
+Show the current resolution: `adb shell dumpsys display`
+
+- Look for "real 1080 x 2400, largest app 1080 x 2400,"
+
+Change it: `adb shell wm size 1080x1920`

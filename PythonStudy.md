@@ -315,13 +315,15 @@ sys.version
 write()函数不会自动换行。
 PEP(Python Enhancement Proposal)： 用以增加新特性。[PEP](http://python.org/dev/peps)。
 
-```
+```python
 if __name__ == "__main__":
 main()
 ```
+
 Is a way to run the script with self defined function
 
-### 内建函数：
+### 内建函数
+
 `dir(obj)`：显示对象的属性。不提供参数则显示全局对象名称。
 `help(ojb)`：显示帮助。
 `int(obj)`：转换为整型。
@@ -330,9 +332,10 @@ Is a way to run the script with self defined function
 `type(obj)`：返回对象类型。返回值为type 类的实例。
 `obj.__doc__`：显示帮助文档。
 
-# 九章算法
+## 九章算法
 
-## Class
+### Class
+
 Attributes: `hasattr`, `getattr`, `setattr`.
 
 `_xxx`: protected. `__xxx`: private. `__xx__`: special methods.
@@ -341,8 +344,9 @@ Attributes: `hasattr`, `getattr`, `setattr`.
 
 `isinstance(obj, type)`: check if obj is an obj of type or a child type.
 
-## Except
-```
+### Except
+
+```python
 try:
 except:
 else:
@@ -354,28 +358,32 @@ else:
 - TypeError
 - NameError
 
-# [Web Spider](http://blog.csdn.net/column/details/why-bug.html)
+## [Web Spider](http://blog.csdn.net/column/details/why-bug.html)
 
-## Introduction
-Universal Resource Identifier URL是URI的一个子集。它是Uniform Resource Locator的缩写 
+### Introduction
+
+Universal Resource Identifier URL是URI的一个子集。它是Uniform Resource Locator的缩写
 URL format: `protocol :// hostname[:port] / path / [;parameters][?query]#fragment`
 
-## urllib2
+### urllib2
+
 Get html stream:
-```
+
+```python
 import urllib2
 response = urllib2.urlopen('http://www.baidu.com/')
 html = response.read()
 print html
 ```
+
 用你要请求的地址创建一个Request对象, 通过调用urlopen并传入Request对象，将返回一个相关请求response对象.
 
-Interact with HTML: 
-发送一些数据到URL(通常URL与CGI`[通用网关接口]`脚本，或其他WEB应用程序挂接)。在HTTP中,这个经常使用熟知的POST请求发送。
+Interact with HTML:
 
-一般的HTML表单，data需要编码成标准形式。然后做为data参数传到Request对象。
+- 发送一些数据到URL(通常URL与CGI`[通用网关接口]`脚本，或其他WEB应用程序挂接)。在HTTP中,这个经常使用熟知的POST请求发送。
+- 一般的HTML表单，data需要编码成标准形式。然后做为data参数传到Request对象。
 
-```
+```python
 values = {'name' : 'WHY',
 'language' : 'Python' }
 data = urllib2.urlencode(values)
@@ -393,30 +401,32 @@ Data同样可以通过在Get请求的URL本身上面编码来传送。
 
 有一些站点不喜欢被程序（非人为访问）访问，或者发送不同版本的内容到不同的浏览器。默认的urllib2把自己作为“Python-urllib/x.y”(x和y是Python主版本和次版本号,例如Python-urllib/2.7), 这个身份可能会让站点迷惑，或者干脆不工作。浏览器确认自己身份是通过User-Agent头，当你创建了一个请求对象，你可以给他一个包含头数据的字典。
 
-### ERRORs:
+### ERRORs
+
 - URLError
 - HTTPError: a subset of URLError.
-- HTTP Code 401 means unauthorized. content in header is `Www-authenticate: SCHEME realm="REALM"`. Can instance a `HTTPBasicAuthHandler` to deal with it. 
+- HTTP Code 401 means unauthorized. content in header is `Www-authenticate: SCHEME realm="REALM"`. Can instance a `HTTPBasicAuthHandler` to deal with it.
 
 服务器上每一个HTTP 应答对象response包含一个数字"状态码"。
 有时状态码指出服务器无法完成请求。默认的处理器会为你处理一部分这种应答。例如:假如response是一个"重定向"，需要客户端从别的地址获取文档，urllib2将为你处理。其他不能处理的，urlopen会产生一个HTTPError。典型的错误包含"404"(页面无法找到)，"403"(请求禁止)，和"401"(带验证请求)。
-- 200：请求成功. 处理方式：获得响应的内容，进行处理 
-- 201：请求完成，结果是创建了新资源。新创建资源的URI可在响应的实体中得到. 处理方式：爬虫中不会遇到 
-- 202：请求被接受，但处理尚未完成. 处理方式：阻塞等待 
+
+- 200：请求成功. 处理方式：获得响应的内容，进行处理
+- 201：请求完成，结果是创建了新资源。新创建资源的URI可在响应的实体中得到. 处理方式：爬虫中不会遇到
+- 202：请求被接受，但处理尚未完成. 处理方式：阻塞等待
 - 204：服务器端已经实现了请求，但是没有返回新的信息。如果客户是用户代理，则无须为此更新自身的文档视图。处理方式：丢弃
 - 300：该状态码不被HTTP/1.0的应用程序直接使用，只是作为3XX类型回应的默认解释。存在多个可用的被请求资源。处理方式：若程序中能够处理，则进行进一步处理，如果程序中不能处理，则丢弃
 - 301：请求到的资源都会分配一个永久的URL，这样就可以在将来通过该URL来访问此资源. 处理方式：重定向到分配的URL
 - 302：请求到的资源在一个不同的URL处临时保存. 处理方式：重定向到临时的URL
-- 304 请求的资源未更新. 处理方式：丢弃 
-- 400 非法请求. 处理方式：丢弃 
-- 401 未授权. 处理方式：丢弃 
-- 403 禁止. 处理方式：丢弃 
-- 404 没有找到. 处理方式：丢弃 
+- 304 请求的资源未更新. 处理方式：丢弃
+- 400 非法请求. 处理方式：丢弃
+- 401 未授权. 处理方式：丢弃
+- 403 禁止. 处理方式：丢弃
+- 404 没有找到. 处理方式：丢弃
 - 5XX 回应代码以“5”开头的状态码表示服务器端发现自己出现错误，不能继续执行请求. 处理方式：丢弃
 
 `BaseHTTPServer.BaseHTTPRequestHandler.response`是一个很有用的应答号码字典，显示了HTTP协议使用的所有的应答号。当一个错误号产生后，服务器返回一个HTTP错误号，和一个错误页面。可以使用`HTTPError`实例作为页面返回的应答对象response。这表示和错误属性一样，它同样包含了read,geturl,和info方法。
 
-```
+```python
 from urllib2 import Request, urlopen, URLError, HTTPError 
 req = Request('http://bbs.csdn.net/callmewhy') 
 try: 
@@ -430,15 +440,17 @@ else:
 print 'No exception was raised.' # everything is fine 
 ```
 
-Get the true URL: 
-```
+Get the true URL:
+
+```python
 req = Request(shorten_url) 
 response = urlopen(req)
 real_url = response.geturl()
 ```
 
-Get the page header: 
-```
+Get the page header:
+
+```python
 response.info()
 ```
 
@@ -446,19 +458,22 @@ response.info()
 
 [Stop here](http://blog.csdn.net/pleasecallmewhy/article/details/8925978)
 
-# Queue
+## Queue
+
 encap concurrent condition behaviour.
 
-```
+```python
 queue = Queue(size)
 queue.put(item)# will wait until the queue size is less than the max size
 item = queue.get()# will wait until the queue is not empty
 queue.task_done()# inform that the get op is done
 ```
 
-# Other tips
+## Other tips
+
 Python import path:
-```
+
+```python
 import os
 from os.path import *
 import sys 
@@ -470,37 +485,28 @@ sys.path.append(src_path)
 
 [Python simulate web browser](http://stackoverflow.com/questions/14516590/how-to-save-complete-webpage-not-just-basic-html-using-python)
 
-# os environ
+## os environment
+
 `os.putenv` actually set a copy of sys env. So that if it call a script, the script has that env. But the main script doesn't have that env.
 
 Can do a deep copy like this: `env = copy.deepcopy(os.environ)`
 
-# install second python
-https://github.com/yyuu/pyenv
+## inspect
 
-- `pyenv install 2.7.8` to install a new python
-- `pyenv versions` to find all versions
-- `pyenv local 2.7.8` to change local python version
-
-The main python install libs under `/usr/lib/python2.7`
-
-`pyenv` installed everything under `~/.pyenv/versions/2.7.8/lib/`
-
-To make in python CLI, the move keys can actually move, [install libreadline](http://stackoverflow.com/questions/10765441/python3-2-can-not-recognize-up-down-left-right-keys-in-interpreter)
-
-# inspect
 To see all the members of an instance
 
-```
+```python
 import inspect
 from pprint import pprint
 
 pprint(inspect.getmembers(my_instance))
 ```
 
-# Star operator
+## Star operator
+
 `*` unpack a seq/collection to make it fit arguments:
-```
+
+```python
 def sum(a, b):
 return a + b
 
@@ -510,7 +516,7 @@ return sum(*values)
 
 `**` unpack a dict
 
-```
+```python
 def sum(a, b, c, d):
 return a + b + c + d
 
@@ -518,19 +524,22 @@ values1 = (1, 2)
 values2 = { 'c': 10, 'd': 15 }
 s = sum(*values1, **values2)
 ```
+
 will execute as:
-```
+
+```python
 s = sum(1, 2, c=10, d=15)
 ```
 
 In arg list, `*args` means it accept arbitrary number of arguments, `**args` accepts dict
-```
+
+```python
 def foo(*args):
 for a in args:
 print a
 ```
 
-```
+```python
 def bar(**kwargs):
 for a in kwargs:
 print a, kwargs[a]
@@ -538,49 +547,55 @@ print a, kwargs[a]
 bar(name='one', age=27)
 ```
 
-# Unicode does not work
-```
+## Unicode does not work
+
+```python
 u.topic.encode('ascii','ignore').startswith("something")
 ```
 
-# swap two elements in a list
-```
+## swap two elements in a list
+
+```python
 lst = [1,2,3]
 lst[0], lst[2] = lst[2], lst[0]
 ```
 
+## Element tree
 
-# Element tree
 [API](https://docs.python.org/2/library/xml.etree.elementtree.html)
 
 Notice there is a namespace when search for element.
 
-# API to modify PDF
-https://www.binpress.com/tutorial/manipulating-pdfs-with-python/167
+## API to modify PDF
 
-# UPS Crawler
-https://stackoverflow.com/questions/5879953/tracking-api-for-fedex-and-ups
+<https://www.binpress.com/tutorial/manipulating-pdfs-with-python/167>
 
-https://stackoverflow.com/questions/46614788/python-ups-xml-tracking
+## UPS Crawler
 
-https://www.ups.com/upsdeveloperkit?loc
+<https://stackoverflow.com/questions/5879953/tracking-api-for-fedex-and-ups>
 
+<https://stackoverflow.com/questions/46614788/python-ups-xml-tracking>
 
-# Setting python on windows
-https://docs.python.org/3/using/windows.html
+<https://www.ups.com/upsdeveloperkit?loc>
 
-```
+## Setting python on windows
+
+<https://docs.python.org/3/using/windows.html>
+
+```cmd
 PATH=C:\Python 3.6;C:\Python 3.6\Scripts\
 PYTHONPATH=C:\Python 3.6;C:\Python 3.6\Lib
 ```
 
 If python is installed in "Program files", need change the permission of python folder to be write and readable by all users.
 
-# Python import
+## Python import
+
 import from local path??
 
-# Python CSV coding
-```
+## Python CSV coding
+
+```python
 try:
 with open(path, 'r') as csv_file:
 dict_reader = csv.DictReader(csv_file)
@@ -591,10 +606,12 @@ except FileNotFoundError:
 print("File not found.")
 ```
 
-# Scrapy Crawler
-https://medium.com/python-pandemonium/develop-your-first-web-crawler-in-python-scrapy-6b2ee4baf954
+## Scrapy Crawler
 
-https://wiki.python.org/moin/WindowsCompilers
+<https://medium.com/python-pandemonium/develop-your-first-web-crawler-in-python-scrapy-6b2ee4baf954>
+
+<https://wiki.python.org/moin/WindowsCompilers>
+
 - `pip install scrapy`
 
 - Install VS C++.
@@ -611,24 +628,28 @@ https://wiki.python.org/moin/WindowsCompilers
 Rule: if set follow to True, it will continue to run until the rule is no mean.
 
 To test
-```
+
+```python
 scrapy shell [url]
 response.css('h1::text').extract()[0].strip()
 ```
 
 To store with different JSON files: change setting.py
-```
+
+```python
 FEED_URI = 'data/%(name)s/%(time)s.json' # name: crawler name. time: timestamp.
 FEED_FORMAT = 'json'
 ```
+
 Then run `scrapy crawl electronics`.
 
-# CSV
+## CSV
+
 [Merge CSV files](https://stackoverflow.com/questions/2512386/how-to-merge-200-csv-files-in-python)
 
 [python move file](https://stackoverflow.com/questions/8858008/how-to-move-a-file-in-python)
 
-# Datetime
+## Datetime
 
 strptime with microsecond can only deal with 6 decimals.
 
@@ -636,10 +657,54 @@ strptime with microsecond can only deal with 6 decimals.
 datetime.strptime("2018-12-06 04:35:31.6808615"[:-1], "%Y-%m-%d %H:%M:%S.%f")
 ```
 
-# Virtual Env
+## Virtual Env
+
+[venv](https://docs.python.org/3/library/venv.html)
+
+- `python -m venv`
+
+In vscode: [creating environments](https://code.visualstudio.com/docs/python/environments)
+
+- Need to use latest version of VS code
 
 [src](https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/)
 
 - Install: `py -m pip install --user virtualenv`
 - Add the scripts path to `$PATH`. On windows its `%USERPROFILE%\AppData\Roaming\Python\Python37\Scripts`.
 - Avtivate: `.\env\Scripts\activate`
+
+pyenv-virtualenv: <https://github.com/pyenv/pyenv-virtualenv>
+
+For windows: [Install virtualenv and virtualenvwrapper](https://docs.djangoproject.com/en/2.0/howto/windows/)
+
+```python
+pip install virtualenvwrapper-win
+virtualenv -p "D:\Python3\python.exe" venv
+workon venv
+```
+
+### install second python
+
+<https://github.com/yyuu/pyenv>
+
+- `pyenv install 2.7.8` to install a new python
+- `pyenv versions` to find all versions
+- `pyenv local 2.7.8` to change local python version
+
+The main python install libs under `/usr/lib/python2.7`
+
+`pyenv` installed everything under `~/.pyenv/versions/2.7.8/lib/`
+
+To make in python CLI, the move keys can actually move, [install libreadline](http://stackoverflow.com/questions/10765441/python3-2-can-not-recognize-up-down-left-right-keys-in-interpreter)
+
+### Pipfile
+
+<https://pipenv.pypa.io/en/stable/>
+
+- `pip install pipenv`
+- `pipenv sync`
+- `pipenv install <package_name>`
+
+## PyAutoGUI
+
+Control mouse and keyboard: <https://pyautogui.readthedocs.io/en/latest/>
