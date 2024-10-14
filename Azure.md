@@ -1223,6 +1223,14 @@ Web app logs can be downloaded from <http://{mywebapp}.scm.azurewebsites.net/api
 - How to fetch logs: <https://learn.microsoft.com/en-us/aspnet/core/fundamentals/logging/?view=aspnetcore-8.0>
 - Another approach: <https://stackoverflow.com/questions/78059505/log-streams-in-azure-not-picking-up-my-logs>
 
+### Azure Function
+
+<https://learn.microsoft.com/en-us/azure/azure-functions/functions-overview?pivots=programming-language-csharp>
+
+- Install the Azure Functions Core Tools
+
+The latest Azure Account extension is not working: <https://stackoverflow.com/questions/77535144/azure-resources-not-visible-in-vs-code>
+
 ### Azure Template
 
 <https://github.com/Azure/azure-quickstart-templates>
