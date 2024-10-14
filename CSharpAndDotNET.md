@@ -1455,3 +1455,7 @@ Configuration config = ConfigurationManager.OpenExeConfiguration(Assembly.GetExe
 var configVal = config.AppSettings.Settings["key"].Value;
 configVal = ConfigurationManager.AppSettings["key"].Value;
 ```
+
+### DLL Binding Redirect AutoUnify
+
+<https://stackoverflow.com/questions/33256071/what-is-autounify-and-why-is-it-causing-working-tests-to-fail-in-tfs-2015>
