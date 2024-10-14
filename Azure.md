@@ -804,66 +804,7 @@ Application security
 
 Next to look <https://docs.microsoft.com/en-us/azure/architecture/>
 
-## Old notes
-
-### Azure Key Vault
-
-<https://learn.microsoft.com/en-us/azure/key-vault/general/tutorial-net-create-vault-azure-web-app>
-
-- `az login --tenant <directory id>`
-- `az account set --subscription <sub id>`
-- `az group create --name "myResourceGroup" -l "EastUS"`
-- `az appservice plan create --name myAppServicePlan --resource-group myResourceGroup --sku FREE`
-- `az webapp create --resource-group "myResourceGroup" --plan "myAppServicePlan" --name "zhenyzhuakvwebapp" --deployment-local-git`, save the `deploymentLocalGitUrl`, something like <https://DeploymentUserZhenyzhu@zhenyzhuakvwebapp.scm.azurewebsites.net/zhenyzhuakvwebapp.git>.
-- `az webapp config appsettings set -g MyResourceGroup --name "zhenyzhuakvwebapp" --settings deployment_branch=main`
-- `az webapp config appsettings list -g MyResourceGroup --name zhenyzhuakvwebapp`: the app created in <https://zhenyzhuakvwebapp.azurewebsites.net>
-
-- `az webapp deployment user set --user-name "DeploymentUserZhenyzhu" --password "<pass>"` This user can use across tenants and is not a Azure AD user.
-- `git init --initial-branch=main` create a local git repo
-- `git remote add azure https://DeploymentUserZhenyzhu@zhenyzhuakvwebapp.scm.azurewebsites.net/zhenyzhuakvwebapp.git`
-- `git push azure main`
-
-- `az webapp identity assign --name "zhenyzhuakvwebapp" --resource-group "MyResourceGroup"`: [Creates a managed identity](https://portal.azure.com/#view/Microsoft_AAD_IAM/StartboardApplicationsMenuBlade/~/AppAppsPreview/menuId~/null), the object id is the principal id.
-- `az keyvault set-policy --name "ZhenyingKeyVault" --object-id "<principalId>" --secret-permissions get list`: doesn't work. Error message: Cannot set policies to a vault with '--enable-rbac-authorization' specified.Need to change the access policy to make it not use RBAC.
-- Or use the IAM UI and select managed identity. need to give the user admin permission. <https://stackoverflow.com/questions/69971341/unable-to-create-secrets-in-azure-key-vault-if-using-azure-role-based-access-con>
-
-- `dotnet add package Azure.Identity`
-- `dotnet add package Azure.Security.KeyVault.Secrets`
-- Use `DefaultAzureCredential`: works locally, but not remotely
-
-- Key Vault can use app to access. App can use client id + cert or client key
-
-- Even in the same tenant, would need to use User assigned MI to use app auth
-
-- For SQL: <https://learn.microsoft.com/en-us/azure/app-service/tutorial-connect-msi-sql-database?tabs=windowsclient%2Cefcore%2Cdotnet>
-- For VM: <https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/qs-configure-portal-windows-vm>
-
-Need to add the identity to the User table.
-
-<https://stackoverflow.com/questions/58313018/how-to-get-private-key-from-certificate-in-an-azure-key-vault>
-
-<https://stackoverflow.com/questions/3708348/the-execute-permission-was-denied-on-the-object-xxxxxxx-database-zzzzzzz-s>
-
-<https://stackoverflow.com/questions/31120912/how-to-view-the-roles-and-permissions-granted-to-any-database-user-in-azure-sql>
-
-Local SQL: <https://stackoverflow.com/questions/66080953/unable-to-connect-to-localdb-mssqllocaldb-due-to-trigger-execution>
-
-SN+I: <https://github.com/Azure/azure-sdk-for-net/issues/26655>
-
-<https://devblogs.microsoft.com/dotnet/introducing-the-new-microsoftdatasqlclient/>
-
-<https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/tutorial-windows-vm-access-nonaad>
-
-<https://azure.microsoft.com/en-us/products/event-hubs>
-
-<https://learn.microsoft.com/en-us/virtualization/windowscontainers/manage-containers/container-base-images>
-
-User Assigned Identity
-
-- Create a service principal (enterprise app) and then assign to an AAD app.
-- <https://learn.microsoft.com/en-us/entra/identity-platform/multi-service-web-app-access-storage?tabs=azure-portal%2Cprogramming-language-csharp>
-
-### tutorialspoint Microsoft Azure Tutorial
+## tutorialspoint Microsoft Azure Tutorial
 
 [Cloud Computing - Overview](https://www.tutorialspoint.com/microsoft_azure/cloud_computing_overview.htm)
 
@@ -901,6 +842,263 @@ Azure as PaaS: The clients can focus on the application development rather than 
 Azure as IaaS: gives complete control of the operating systems and the application platform stack to the application developers.
 
 [Microsoft Azure - Components](https://www.tutorialspoint.com/microsoft_azure/microsoft_azure_components.htm): **TODO**
+
+## Old notes
+
+### Azure services
+
+<https://learn.microsoft.com/en-us/dotnet/azure/key-azure-services>
+
+<https://learn.microsoft.com/en-us/dotnet/azure/migration/app-service>
+
+### Network
+
+[What is Azure Virtual Network?](https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-overview)
+
+- to communicate outbound with the internet: public ip, NAT gateway, public load balancer
+- vnet service endpoint: limit traffic to storage/SQL to only a virtual network
+- net peering: connect vnets.
+- Network virtual appliances: a VM that performs a network function, such as a firewall or WAN optimization.
+
+[Filter network traffic](https://learn.microsoft.com/en-us/azure/virtual-network/tutorial-filter-network-traffic)
+
+- vnet: has subnets
+- application security group (ASGs): group together servers with similar functions
+- network security group (NSG): secures network traffic in your virtual network. Associate with subnet.
+- secuity rule: source, dest, service, port, protocol, action (allow, deny), priority
+- ASG can be used in security rules as service of a NSG
+- VM NIC associates with a subnet in the vnet + ASG
+- in the same subnet, traffic can always go through
+
+[Route network traffic](https://learn.microsoft.com/en-us/azure/virtual-network/tutorial-create-route-table-portal)
+
+- Custom route: route traffic between subnets through a network virtual appliance (NVA).
+- IP forwarding: any traffic received by the NVA that's destined for a different IP address, isn't dropped and is forwarded to the correct destination.
+- resource in private subnet can directly go to public subnet
+
+[Restrict network access](https://learn.microsoft.com/en-us/azure/virtual-network/tutorial-restrict-network-access-to-resources)
+
+- in the vnet, can enable service endpoint for azure resources, for example the storage
+- NSG add dist for the storage service tag
+- deny internet traffic
+- storage add Firewall limit network access from internet
+
+**TODO**: <https://learn.microsoft.com/en-us/azure/azure-functions/functions-networking-options?tabs=azure-portal#virtual-network-integration>
+
+[Connect virtual networks](https://learn.microsoft.com/en-us/azure/virtual-network/tutorial-connect-virtual-networks-portal)
+
+- create vnet peering by select Peering in the setting of vnet. Then 2 vnets are connected
+
+[Best practices](https://learn.microsoft.com/en-us/azure/virtual-network/concepts-and-best-practices)
+
+- Don't create subnets cover the entire address space of vnet, to plan for future.
+- fewer large virtual networks rather than multiple small virtual networks to prevent management overhead
+
+[Business Continuity](https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-disaster-recovery-guidance)
+
+- serve as a trust boundary
+- within the scope of a region
+
+[Routing](https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-udr-overview)
+
+- [BGP vs. DNS](https://www.enterprisenetworkingplanet.com/data-center/bgp-vs-dns/): BGP: how, DNS: where
+- Vnet peering: a route is auto created
+- vnet gateway: a next hop type
+- VirtualNetworkServiceEndpoint: when enabled, a route is added
+- next hop types:
+  - VirtualNetworkGateway
+  - VNetLocal
+  - Internet
+  - VirtualAppliance
+  - VNet peering
+  - VirtualNetworkServiceEndpoint
+  - None
+- On prem can use BGP to connect to Vnet using ExpressRoute or VPN
+- 0.0.0.0/0 address prefix is created as a default route with the Internet next hop type by Azure
+- [ExpressRoute vs. VPN](https://medium.com/awesome-azure/azure-difference-between-azure-expressroute-and-azure-vpn-gateway-comparison-azure-hybrid-connectivity-5f7ce02044f3): ExpressRoute go through private network, VPN go through public
+- Routes can be invalid if a same route is added
+
+[Enable containers to use Azure Virtual Network capabilities](https://learn.microsoft.com/en-us/azure/virtual-network/container-networking-overview)
+
+- A virtual network IP address is assigned to every Pod (one or more containers).
+- Pods can connect to peered vnet.
+- Pods can access services that are protected by vnet service endpoints.
+- NSGs and routes can be applied directly to Pods.
+- Pods can be placed directly behind an Azure internal or public LB, just like VMs
+- Pods can be assigned a public IP. Pods can also access the internet themselves.
+- Works seamlessly with K8s resources such as Services, Ingress controllers, and Kube DNS. A K8s Service can also be exposed internally or externally through the Azure LB.
+
+[Peering](https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-peering-overview)
+
+- Global virtual network peering: Connecting virtual networks across Azure regions.
+- You can apply network security groups in either virtual network to block access to other virtual networks or subnets.
+- can resize the address space of Azure virtual networks that are peered without incurring any downtime
+- Service chaining enables you to direct traffic from one virtual network to a virtual appliance or gateway in a peered network through user-defined routes.
+- Each virtual network, including a peered virtual network, can have its own gateway to connect to an on-premises network.
+- Resources in one virtual network can't communicate with the front-end IP address of a basic load balancer (internal or public) in a globally peered virtual network.
+
+[Integrate Azure services](https://learn.microsoft.com/en-us/azure/virtual-network/vnet-integration-for-azure-services)
+
+- Use Private Endpoint that connects you privately and securely to a service powered by Azure Private Link. Private Endpoint uses a private IP address from your virtual network, effectively bringing the service into your virtual network. DNS resolution in the virtual network must be configured to resolve that same host name to the target resource's private IP address instead of the original public IP address
+- Accessing the service using public endpoints by extending a virtual network to the service, through service endpoints.
+- Using service tags to allow or deny traffic to your Azure resources to and from public IP endpoints.
+- The Azure service fully manages service instances in a virtual network. This management includes monitoring the health of the resources and scaling with load.
+- Certain services impose restrictions on the subnet they're deployed in. These restrictions limit the application of policies, routes, or combining VMs and service resources within the same subnet
+- The client application typically uses a DNS host name to reach the target service.
+- ASE (App service Environment)
+- require a delegated subnet as an explicit identifier
+- With service tags, you can define network access controls on network security groups or Azure Firewall.
+- Service endpoints and private endpoints have characteristics in common. Private endpoint is individual instance.
+
+[App Service networking features/Virtual network integration](https://learn.microsoft.com/en-us/azure/app-service/networking-features#regional-vnet-integration)
+
+- 1st option: App Service Environment. Already in a vnet.
+- 2nd option: dedicated compute pricing tiers (standard and above). In the network config
+
+<https://azure.microsoft.com/en-us/products/private-link>
+
+<https://learn.microsoft.com/en-us/azure-stack/hci/concepts/software-load-balancer>
+
+<https://learn.microsoft.com/en-us/azure/virtual-network/network-security-groups-overview#security-rules>
+
+<https://learn.microsoft.com/en-us/azure/virtual-network/network-security-group-how-it-works>
+
+### Service Tags
+
+<https://learn.microsoft.com/en-us/azure/virtual-network/service-tags-overview>
+
+<https://learn.microsoft.com/en-us/azure/azure-web-pubsub/howto-service-tags?tabs=azure-portal>
+
+### DNS
+
+- <https://learn.microsoft.com/en-us/azure/dns/dns-zones-records>
+- <https://learn.microsoft.com/en-us/powershell/module/dnsserver/get-dnsserverzone?view=windowsserver2022-ps>
+- <https://learn.microsoft.com/en-us/windows-server/networking/dns/manage-dns-zones?tabs=powershell>
+- <https://medium.com/tech-jobs-academy/dns-forwarding-and-conditional-forwarding-f3118bc93984>
+- <https://www.cloudflare.com/learning/dns/what-is-dns/#:~:text=DNS%20translates%20domain%20names%20to%20IP%20addresses%20so,which%20other%20machines%20use%20to%20find%20the%20device.>
+- <https://docs.cleartax.in/cleartax-docs/general/how-to-check-dns-resolution>
+
+- <https://learn.microsoft.com/en-us/azure/virtual-network/concepts-and-best-practices>
+
+- DNS look-up request send through UDP on port 53.
+- Host -> Local DNS -> Root DNS -> TLD DNS -> Authoritative DNS.
+- Type: what name and value mean.
+  - A: relay1.bar.foo.com 145.37.93.126, A
+  - NS: foo.com dns.foo.com, NS. Also contain a A RR for the dns.
+  - CNAME: foo.com relay1.bar.foo.com, CNAME. The canonical hostname.
+  - MX: foo.com mail.bar.foo.com, MX. Canonical name for mail service.
+
+On WinServer 2022
+
+- Need to first add a static IP before enabling DNS
+
+### DHCP
+
+- <https://www.linkedin.com/advice/0/how-do-you-disable-dhcp-network-interface#:~:text=You%20can%20do%20this%20by,DHCP%20on%2C%20and%20select%20Properties.>
+
+### Delete Azure endpoint
+
+Error: Cannot delete custom domain "xxx" because it is still directly or indirectly (using "cdnverify" prefix) CNAMEd to CDN endpoint "xxx". Please remove the DNS CNAME record and try again.
+
+<https://learn.microsoft.com/en-us/answers/questions/1102321/cannot-delete-custom-domain-because-it-is-still-di>
+
+- doesn't work
+
+you need to create a CNAME record with your DNS provider for
+
+<https://learn.microsoft.com/en-us/azure/cdn/cdn-map-content-to-custom-domain?tabs=azure-dns%2Cazure-portal%2Cazure-portal-cleanup>
+
+- The endpoint is CDN endpoint here. Need `Microsoft.CDN` registered.
+- The domain is also appeared in the app service as a custome domain.
+
+### Managed Identity
+
+<https://learn.microsoft.com/en-us/azure/data-explorer/configure-managed-identities-cluster?tabs=portal>
+
+<https://learn.microsoft.com/en-us/entra/workload-id/workload-identity-federation>
+
+- Azure SDK can set the identity when login
+
+Access policy and IAM, only 1 is needed.
+
+Queue access: first create a queueServiceClient with the storage URI, then create a queueClient with the queue.
+
+<https://learn.microsoft.com/en-us/azure/storage/files/authorize-data-operations-portal>
+
+<https://learn.microsoft.com/en-us/azure/azure-portal/azure-portal-safelist-urls?tabs=public-cloud>
+
+To use the new Queue API while still compatible with the old API for `byte[]` message, need to first init the client with an option. Because the old Queue API auto encode string to Base64.
+
+```C#
+   QueueServiceClient queueServiceClient = new (
+      new Uri($"https://<queue name>.queue.core.windows.net/"),
+      new DefaultAzureCredential(),
+      new QueueClientOptions { MessageEncoding = QueueMessageEncoding.Base64 });
+```
+
+Then use `Convert.ToBase64String(byte[])` to create the message, and `byte[] message = Convert.FromBase64String(dequeueMessage.Body.ToString()))` to deserialize a message back.
+
+<https://learn.microsoft.com/en-us/azure/role-based-access-control/role-assignments-cli>
+
+### Azure Key Vault
+
+<https://learn.microsoft.com/en-us/azure/key-vault/general/tutorial-net-create-vault-azure-web-app>
+
+- `az login --tenant <directory id>`
+- `az account set --subscription <sub id>`
+- `az group create --name "myResourceGroup" -l "EastUS"`
+- `az appservice plan create --name myAppServicePlan --resource-group myResourceGroup --sku FREE`
+- `az webapp create --resource-group "myResourceGroup" --plan "myAppServicePlan" --name "zhenyzhuakvwebapp" --deployment-local-git`, save the `deploymentLocalGitUrl`, something like <https://DeploymentUserZhenyzhu@zhenyzhuakvwebapp.scm.azurewebsites.net/zhenyzhuakvwebapp.git>.
+- `az webapp config appsettings set -g MyResourceGroup --name "zhenyzhuakvwebapp" --settings deployment_branch=main`
+- `az webapp config appsettings list -g MyResourceGroup --name zhenyzhuakvwebapp`: the app created in <https://zhenyzhuakvwebapp.azurewebsites.net>
+
+- `az webapp identity assign --name "zhenyzhuakvwebapp" --resource-group "MyResourceGroup"`: [Creates a managed identity](https://portal.azure.com/#view/Microsoft_AAD_IAM/StartboardApplicationsMenuBlade/~/AppAppsPreview/menuId~/null), the object id is the principal id.
+- `az keyvault set-policy --name "ZhenyingKeyVault" --object-id "<principalId>" --secret-permissions get list`: doesn't work. Error message: Cannot set policies to a vault with '--enable-rbac-authorization' specified.Need to change the access policy to make it not use RBAC.
+- Or use the IAM UI and select managed identity. need to give the user admin permission. <https://stackoverflow.com/questions/69971341/unable-to-create-secrets-in-azure-key-vault-if-using-azure-role-based-access-con>
+
+- `az webapp deployment user set --user-name "DeploymentUserZhenyzhu" --password "<pass>"` This user can use across tenants and is not a Azure AD user.
+- `git init --initial-branch=main` create a local git repo
+- `git remote add azure https://DeploymentUserZhenyzhu@zhenyzhuakvwebapp.scm.azurewebsites.net/zhenyzhuakvwebapp.git`
+
+- `dotnet new web` create a empty .NET Core web app
+- `dotnet add package Azure.Identity`
+- `dotnet add package Azure.Security.KeyVault.Secrets`
+- Use `DefaultAzureCredential` works both locally and remotely. Use `ManagedIdentityCredential` only remotely.
+- `dotnet run` to confirm it can run locally. Need to add the user running the app to the Key Vault Access Policies.
+- `git push azure main`
+- Afterwards, if the local repo is gone, run `git clone https://DeploymentUserZhenyzhu@zhenyzhuakvwebapp.scm.azurewebsites.net/zhenyzhuakvwebapp.git` to get it back.
+
+- Key Vault can use app to access. App can use client id + cert or client key
+
+- Even in the same tenant, would need to use User assigned MI to use app auth
+
+- For SQL: <https://learn.microsoft.com/en-us/azure/app-service/tutorial-connect-msi-sql-database?tabs=windowsclient%2Cefcore%2Cdotnet>
+- For VM: <https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/qs-configure-portal-windows-vm>
+
+Need to add the identity to the User table.
+
+<https://stackoverflow.com/questions/58313018/how-to-get-private-key-from-certificate-in-an-azure-key-vault>
+
+<https://stackoverflow.com/questions/3708348/the-execute-permission-was-denied-on-the-object-xxxxxxx-database-zzzzzzz-s>
+
+<https://stackoverflow.com/questions/31120912/how-to-view-the-roles-and-permissions-granted-to-any-database-user-in-azure-sql>
+
+Local SQL: <https://stackoverflow.com/questions/66080953/unable-to-connect-to-localdb-mssqllocaldb-due-to-trigger-execution>
+
+SN+I: <https://github.com/Azure/azure-sdk-for-net/issues/26655>
+
+<https://devblogs.microsoft.com/dotnet/introducing-the-new-microsoftdatasqlclient/>
+
+<https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/tutorial-windows-vm-access-nonaad>
+
+<https://azure.microsoft.com/en-us/products/event-hubs>
+
+<https://learn.microsoft.com/en-us/virtualization/windowscontainers/manage-containers/container-base-images>
+
+User Assigned Identity
+
+- Create a service principal (enterprise app) and then assign to an AAD app.
+- <https://learn.microsoft.com/en-us/entra/identity-platform/multi-service-web-app-access-storage?tabs=azure-portal%2Cprogramming-language-csharp>
 
 ### Active directory
 
@@ -980,7 +1178,7 @@ The security principal defines the access policy and permissions for the user/ap
 
 [Terms](https://docs.microsoft.com/en-us/azure/active-directory/develop/developer-glossary)
 
-### Get start
+### Web App Get start
 
 1. get Azure AD tenant
 
@@ -1016,6 +1214,22 @@ ADAL:
 - PCL: core
 - WinRT: Windows Store
 - CoreCLR: Core CLR
+
+#### Logs
+
+Web app logs can be downloaded from <http://{mywebapp}.scm.azurewebsites.net/api/dump>. Resource: [Azure App Service Logging: How to Monitor Your Web Apps in Real-Time](https://techcommunity.microsoft.com/t5/apps-on-azure-blog/azure-app-service-logging-how-to-monitor-your-web-apps-in-real/ba-p/3800390).
+
+- Works: <https://stackoverflow.com/questions/74503796/should-i-use-for-net-logging-in-azure-addazurewebappdiagnostics-or-addapplicat>
+- How to fetch logs: <https://learn.microsoft.com/en-us/aspnet/core/fundamentals/logging/?view=aspnetcore-8.0>
+- Another approach: <https://stackoverflow.com/questions/78059505/log-streams-in-azure-not-picking-up-my-logs>
+
+### Azure Function
+
+<https://learn.microsoft.com/en-us/azure/azure-functions/functions-overview?pivots=programming-language-csharp>
+
+- Install the Azure Functions Core Tools
+
+The latest Azure Account extension is not working: <https://stackoverflow.com/questions/77535144/azure-resources-not-visible-in-vs-code>
 
 ### Azure Template
 
@@ -1299,39 +1513,6 @@ Scenarios:
   - [Use a Windows VM system-assigned managed identity to access Resource Manager](https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/tutorial-windows-vm-access-arm)
   - `$response = Invoke-WebRequest -Uri 'http://169.254.169.254/metadata/identity/oauth2/token?api-version=2018-02-01&resource=https://management.azure.com/' -Method GET -Headers @{Metadata="true"}`
 
-### VM
-
-The Azure Spot discount has limit SKUs available.
-
-To check SKU availability in region and zone, run `az vm list-skus --location centralus --size Standard_D --all --output table`
-
-### DNS
-
-- <https://learn.microsoft.com/en-us/azure/dns/dns-zones-records>
-- <https://learn.microsoft.com/en-us/powershell/module/dnsserver/get-dnsserverzone?view=windowsserver2022-ps>
-- <https://learn.microsoft.com/en-us/windows-server/networking/dns/manage-dns-zones?tabs=powershell>
-- <https://medium.com/tech-jobs-academy/dns-forwarding-and-conditional-forwarding-f3118bc93984>
-- <https://www.cloudflare.com/learning/dns/what-is-dns/#:~:text=DNS%20translates%20domain%20names%20to%20IP%20addresses%20so,which%20other%20machines%20use%20to%20find%20the%20device.>
-- <https://docs.cleartax.in/cleartax-docs/general/how-to-check-dns-resolution>
-
-- <https://learn.microsoft.com/en-us/azure/virtual-network/concepts-and-best-practices>
-
-- DNS look-up request send through UDP on port 53.
-- Host -> Local DNS -> Root DNS -> TLD DNS -> Authoritative DNS.
-- Type: what name and value mean.
-  - A: relay1.bar.foo.com 145.37.93.126, A
-  - NS: foo.com dns.foo.com, NS. Also contain a A RR for the dns.
-  - CNAME: foo.com relay1.bar.foo.com, CNAME. The canonical hostname.
-  - MX: foo.com mail.bar.foo.com, MX. Canonical name for mail service.
-
-On WinServer 2022
-
-- Need to first add a static IP before enabling DNS
-
-### DHCP
-
-- <https://www.linkedin.com/advice/0/how-do-you-disable-dhcp-network-interface#:~:text=You%20can%20do%20this%20by,DHCP%20on%2C%20and%20select%20Properties.>
-
 ### Acquire token
 
 ```C#
@@ -1348,7 +1529,20 @@ request.Headers.Set(HttpRequestHeader.Authorization, string.Format(CultureInfo.I
 
 <https://learn.microsoft.com/en-us/entra/identity-platform/msal-acquire-cache-tokens>
 
-## Azure Resource Manager
+### MFA
+
+<https://learn.microsoft.com/en-us/entra/identity/authentication/concept-mandatory-multifactor-authentication>
+
+- <https://entra.microsoft.com/#home>
+- <https://admin.microsoft.com/>: buy products
+
+### VM
+
+The Azure Spot discount has limit SKUs available.
+
+To check SKU availability in region and zone, run `az vm list-skus --location centralus --size Standard_D --all --output table`
+
+### Azure Resource Manager
 
 <https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/resourcemanager/Azure.ResourceManager/docs/MigrationGuide.md>
 
@@ -1356,63 +1550,7 @@ Microsoft.Azure.Management.Compute
 
 - <https://stackoverflow.com/questions/35228042/how-to-create-serviceclientcredential-to-be-used-with-microsoft-azure-management>
 
-## Azure services
-
-<https://learn.microsoft.com/en-us/dotnet/azure/key-azure-services>
-
-<https://learn.microsoft.com/en-us/dotnet/azure/migration/app-service>
-
-## Delete Azure endpoint
-
-Error: Cannot delete custom domain "xxx" because it is still directly or indirectly (using "cdnverify" prefix) CNAMEd to CDN endpoint "xxx". Please remove the DNS CNAME record and try again.
-
-<https://learn.microsoft.com/en-us/answers/questions/1102321/cannot-delete-custom-domain-because-it-is-still-di>
-
-- doesn't work
-
-you need to create a CNAME record with your DNS provider for
-
-<https://learn.microsoft.com/en-us/azure/cdn/cdn-map-content-to-custom-domain?tabs=azure-dns%2Cazure-portal%2Cazure-portal-cleanup>
-
-- The endpoint is CDN endpoint here. Need `Microsoft.CDN` registered.
-- The domain is also appeared in the app service as a custome domain.
-
-## Managed Identity
-
-<https://learn.microsoft.com/en-us/azure/data-explorer/configure-managed-identities-cluster?tabs=portal>
-
-<https://learn.microsoft.com/en-us/entra/workload-id/workload-identity-federation>
-
-- Azure SDK can set the identity when login
-
-Access policy and IAM, only 1 is needed.
-
-Queue access: first create a queueServiceClient with the storage URI, then create a queueClient with the queue.
-
-<https://learn.microsoft.com/en-us/azure/storage/files/authorize-data-operations-portal>
-
-<https://learn.microsoft.com/en-us/azure/azure-portal/azure-portal-safelist-urls?tabs=public-cloud>
-
-To use the new Queue API while still compatible with the old API for `byte[]` message, need to first init the client with an option. Because the old Queue API auto encode string to Base64.
-
-```C#
-   QueueServiceClient queueServiceClient = new (
-      new Uri($"https://<queue name>.queue.core.windows.net/"),
-      new DefaultAzureCredential(),
-      new QueueClientOptions { MessageEncoding = QueueMessageEncoding.Base64 });
-```
-
-Then use `Convert.ToBase64String(byte[])` to create the message, and `byte[] message = Convert.FromBase64String(dequeueMessage.Body.ToString()))` to deserialize a message back.
-
-<https://learn.microsoft.com/en-us/azure/role-based-access-control/role-assignments-cli>
-
-## Network
-
-<https://azure.microsoft.com/en-us/products/private-link>
-
-<https://learn.microsoft.com/en-us/azure-stack/hci/concepts/software-load-balancer>
-
-## Azure Pipelines
+### Azure Pipelines
 
 <https://learn.microsoft.com/en-us/azure/devops/pipelines/get-started/what-is-azure-pipelines?view=azure-devops>
 
@@ -1420,111 +1558,6 @@ Then use `Convert.ToBase64String(byte[])` to create the message, and `byte[] mes
 
 To deploy ARM, go to Automation > Export Template > Deploy.
 
-## Service Tags
-
-[What is Azure Virtual Network?](https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-overview)
-
-- to communicate outbound with the internet: public ip, NAT gateway, public load balancer
-- vnet service endpoint: limit traffic to storage/SQL to only a virtual network
-- net peering: connect vnets.
-- Network virtual appliances: a VM that performs a network function, such as a firewall or WAN optimization.
-
-[Filter network traffic](https://learn.microsoft.com/en-us/azure/virtual-network/tutorial-filter-network-traffic)
-
-- vnet: has subnets
-- application security group (ASGs): group together servers with similar functions
-- network security group (NSG): secures network traffic in your virtual network. Associate with subnet.
-- secuity rule: source, dest, service, port, protocol, action (allow, deny), priority
-- ASG can be used in security rules as service of a NSG
-- VM NIC associates with a subnet in the vnet + ASG
-- in the same subnet, traffic can always go through
-
-[Route network traffic](https://learn.microsoft.com/en-us/azure/virtual-network/tutorial-create-route-table-portal)
-
-- Custom route: route traffic between subnets through a network virtual appliance (NVA).
-- IP forwarding: any traffic received by the NVA that's destined for a different IP address, isn't dropped and is forwarded to the correct destination.
-- resource in private subnet can directly go to public subnet
-
-[Restrict network access](https://learn.microsoft.com/en-us/azure/virtual-network/tutorial-restrict-network-access-to-resources)
-
-- in the vnet, can enable service endpoint for azure resources, for example the storage
-- NSG add dist for the storage service tag
-- deny internet traffic
-- storage add Firewall limit network access from internet
-
-[Connect virtual networks](https://learn.microsoft.com/en-us/azure/virtual-network/tutorial-connect-virtual-networks-portal)
-
-- create vnet peering by select Peering in the setting of vnet. Then 2 vnets are connected
-
-[Best practices](https://learn.microsoft.com/en-us/azure/virtual-network/concepts-and-best-practices)
-
-- Don't create subnets cover the entire address space of vnet, to plan for future.
-- fewer large virtual networks rather than multiple small virtual networks to prevent management overhead
-
-[Business Continuity](https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-disaster-recovery-guidance)
-
-- serve as a trust boundary
-- within the scope of a region
-
-[Routing](https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-udr-overview)
-
-- [BGP vs. DNS](https://www.enterprisenetworkingplanet.com/data-center/bgp-vs-dns/): BGP: how, DNS: where
-- Vnet peering: a route is auto created
-- vnet gateway: a next hop type
-- VirtualNetworkServiceEndpoint: when enabled, a route is added
-- next hop types:
-  - VirtualNetworkGateway
-  - VNetLocal
-  - Internet
-  - VirtualAppliance
-  - VNet peering
-  - VirtualNetworkServiceEndpoint
-  - None
-- On prem can use BGP to connect to Vnet using ExpressRoute or VPN
-- 0.0.0.0/0 address prefix is created as a default route with the Internet next hop type by Azure
-- [ExpressRoute vs. VPN](https://medium.com/awesome-azure/azure-difference-between-azure-expressroute-and-azure-vpn-gateway-comparison-azure-hybrid-connectivity-5f7ce02044f3): ExpressRoute go through private network, VPN go through public
-- Routes can be invalid if a same route is added
-
-[Enable containers to use Azure Virtual Network capabilities](https://learn.microsoft.com/en-us/azure/virtual-network/container-networking-overview)
-
-- A virtual network IP address is assigned to every Pod (one or more containers).
-- Pods can connect to peered vnet.
-- Pods can access services that are protected by vnet service endpoints.
-- NSGs and routes can be applied directly to Pods.
-- Pods can be placed directly behind an Azure internal or public LB, just like VMs
-- Pods can be assigned a public IP. Pods can also access the internet themselves.
-- Works seamlessly with K8s resources such as Services, Ingress controllers, and Kube DNS. A K8s Service can also be exposed internally or externally through the Azure LB.
-
-[Peering](https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-peering-overview)
-
-- Global virtual network peering: Connecting virtual networks across Azure regions.
-- You can apply network security groups in either virtual network to block access to other virtual networks or subnets.
-- can resize the address space of Azure virtual networks that are peered without incurring any downtime
-- Service chaining enables you to direct traffic from one virtual network to a virtual appliance or gateway in a peered network through user-defined routes.
-- Each virtual network, including a peered virtual network, can have its own gateway to connect to an on-premises network.
-- Resources in one virtual network can't communicate with the front-end IP address of a basic load balancer (internal or public) in a globally peered virtual network.
-
-[Integrate Azure services](https://learn.microsoft.com/en-us/azure/virtual-network/vnet-integration-for-azure-services)
-
-- Use Private Endpoint that connects you privately and securely to a service powered by Azure Private Link. Private Endpoint uses a private IP address from your virtual network, effectively bringing the service into your virtual network. DNS resolution in the virtual network must be configured to resolve that same host name to the target resource's private IP address instead of the original public IP address
-- Accessing the service using public endpoints by extending a virtual network to the service, through service endpoints.
-- Using service tags to allow or deny traffic to your Azure resources to and from public IP endpoints.
-- The Azure service fully manages service instances in a virtual network. This management includes monitoring the health of the resources and scaling with load.
-- Certain services impose restrictions on the subnet they're deployed in. These restrictions limit the application of policies, routes, or combining VMs and service resources within the same subnet
-- The client application typically uses a DNS host name to reach the target service.
-- ASE (App service Environment)
-- require a delegated subnet as an explicit identifier
-- With service tags, you can define network access controls on network security groups or Azure Firewall.
-- Service endpoints and private endpoints have characteristics in common. Private endpoint is individual instance.
-
-<https://learn.microsoft.com/en-us/azure/virtual-network/service-tags-overview>
-
-<https://learn.microsoft.com/en-us/azure/azure-web-pubsub/howto-service-tags?tabs=azure-portal>
-
-<https://learn.microsoft.com/en-us/azure/virtual-network/network-security-groups-overview#security-rules>
-
-<https://learn.microsoft.com/en-us/azure/virtual-network/network-security-group-how-it-works>
-
-## Event Grid
+### Event Grid
 
 <https://learn.microsoft.com/en-us/azure/event-grid/overview>

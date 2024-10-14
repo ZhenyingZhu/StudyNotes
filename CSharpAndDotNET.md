@@ -802,6 +802,8 @@ Using the GeneratePackageOnBuild is better than nuproj/nuspec
 - <https://stackoverflow.com/questions/14797525/differences-between-nuget-packing-a-csproj-vs-nuspec>
 - <https://learn.microsoft.com/en-us/nuget/create-packages/creating-a-package-msbuild>
 
+`dotnet add package {package}` can either add a new package or upgrade the package version.
+
 ### CxCache
 
 It is folder to hold dependency packages. Maybe is related to <https://www.nuget.org/packages/xCache/> ?
