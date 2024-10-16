@@ -1227,7 +1227,8 @@ Web app logs can be downloaded from <http://{mywebapp}.scm.azurewebsites.net/api
 
 <https://learn.microsoft.com/en-us/azure/azure-functions/functions-overview?pivots=programming-language-csharp>
 
-- Install the Azure Functions Core Tools
+- Install Azure Developer CLI (azd)
+- `azd init --template functions-quickstart-dotnet-azd -e flexquickstart-dotnet`: `-e` flag sets a name for the current environment
 
 The latest Azure Account extension is not working: <https://stackoverflow.com/questions/77535144/azure-resources-not-visible-in-vs-code>
 
