@@ -1230,6 +1230,7 @@ Web app logs can be downloaded from <http://{mywebapp}.scm.azurewebsites.net/api
 - Install Azure Developer CLI (azd)
 - `azd init --template functions-quickstart-dotnet-azd -e flexquickstart-dotnet`: `-e` flag sets a name for the current environment
 - Select HTTP trigger
+- In the http folder, add a `local.settings.json`. Then run `func start`
 
 The latest Azure Account extension is not working: <https://stackoverflow.com/questions/77535144/azure-resources-not-visible-in-vs-code>
 
