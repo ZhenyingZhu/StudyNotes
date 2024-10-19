@@ -1231,6 +1231,7 @@ Web app logs can be downloaded from <http://{mywebapp}.scm.azurewebsites.net/api
 - `azd init --template functions-quickstart-dotnet-azd -e flexquickstart-dotnet`: `-e` flag sets a name for the current environment
 - Select HTTP trigger
 - In the http folder, add a `local.settings.json`. Then run `func start`
+- To call the post endpoint, run in cmd: `curl -i http://localhost:7071/api/httppost -H "Content-Type: text/json" -d @testdata.json`
 
 The latest Azure Account extension is not working: <https://stackoverflow.com/questions/77535144/azure-resources-not-visible-in-vs-code>
 
