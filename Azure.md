@@ -1232,6 +1232,9 @@ Web app logs can be downloaded from <http://{mywebapp}.scm.azurewebsites.net/api
 - Select HTTP trigger
 - In the http folder, add a `local.settings.json`. Then run `func start`
 - To call the post endpoint, run in cmd: `curl -i http://localhost:7071/api/httppost -H "Content-Type: text/json" -d @testdata.json`
+- `azd auth login` to login to azure, and run `azd up` to deploy
+
+- [here](https://learn.microsoft.com/en-us/azure/azure-functions/create-first-function-azure-developer-cli?pivots=programming-language-csharp&tabs=linux%2Cget%2Cbash%2Cpowershell)
 
 The latest Azure Account extension is not working: <https://stackoverflow.com/questions/77535144/azure-resources-not-visible-in-vs-code>
 
