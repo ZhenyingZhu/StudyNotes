@@ -1230,9 +1230,9 @@ Web app logs can be downloaded from <http://{mywebapp}.scm.azurewebsites.net/api
 - Install Azure Developer CLI (azd)
 - `azd init --template functions-quickstart-dotnet-azd -e flexquickstart-dotnet`: `-e` flag sets a name for the current environment
 - Select HTTP trigger
-- In the http folder, add a `local.settings.json`. Then run `func start`
+- In the http folder, add a `local.settings.json` to define `FUNCTIONS_WORKER_RUNTIME`. Then run `func start`
 - To call the post endpoint, run in cmd: `curl -i http://localhost:7071/api/httppost -H "Content-Type: text/json" -d @testdata.json`
-- `azd auth login` to login to azure, and run `azd up` to deploy
+- `azd auth login` to login to azure, and run `azd up` to deploy. It keeps running into internal server error. Need to try VS2022.
 
 - [here](https://learn.microsoft.com/en-us/azure/azure-functions/create-first-function-azure-developer-cli?pivots=programming-language-csharp&tabs=linux%2Cget%2Cbash%2Cpowershell)
 
