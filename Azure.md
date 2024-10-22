@@ -878,6 +878,7 @@ Azure as IaaS: gives complete control of the operating systems and the applicati
 
 [Restrict network access](https://learn.microsoft.com/en-us/azure/virtual-network/tutorial-restrict-network-access-to-resources)
 
+- Access Config: Vault access policy vs. Azure RBAC.
 - in the vnet, can enable service endpoint for azure resources, for example the storage
 - NSG add dist for the storage service tag
 - deny internet traffic
@@ -888,6 +889,7 @@ Azure as IaaS: gives complete control of the operating systems and the applicati
 [Connect virtual networks](https://learn.microsoft.com/en-us/azure/virtual-network/tutorial-connect-virtual-networks-portal)
 
 - create vnet peering by select Peering in the setting of vnet. Then 2 vnets are connected
+- Networking: Firewalls + Vnet vs. Private endpoint connections
 
 [Best practices](https://learn.microsoft.com/en-us/azure/virtual-network/concepts-and-best-practices)
 
