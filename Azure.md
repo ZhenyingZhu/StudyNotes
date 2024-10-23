@@ -957,6 +957,11 @@ Azure as IaaS: gives complete control of the operating systems and the applicati
 - 1st option: App Service Environment. Already in a vnet.
 - 2nd option: dedicated compute pricing tiers (standard and above). In the network config
 
+[Azure VPN Gateway](https://learn.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-about-vpngateways)
+
+- Create a gateway subnet in the vnet.
+- <https://learn.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-howto-point-to-site-resource-manager-portal>
+
 <https://azure.microsoft.com/en-us/products/private-link>
 
 <https://learn.microsoft.com/en-us/azure-stack/hci/concepts/software-load-balancer>
