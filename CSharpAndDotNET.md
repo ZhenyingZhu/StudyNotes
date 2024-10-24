@@ -1468,3 +1468,7 @@ msbuild sometimes don't re-restore before build: <https://github.com/NuGet/Home/
     <MSBuild Projects="$(MSBuildProjectFile)" Targets="Restore" />
   </Target>
 ```
+
+### DLL Binding Redirect AutoUnify
+
+<https://stackoverflow.com/questions/33256071/what-is-autounify-and-why-is-it-causing-working-tests-to-fail-in-tfs-2015>

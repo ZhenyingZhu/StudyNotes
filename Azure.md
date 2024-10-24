@@ -878,6 +878,7 @@ Azure as IaaS: gives complete control of the operating systems and the applicati
 
 [Restrict network access](https://learn.microsoft.com/en-us/azure/virtual-network/tutorial-restrict-network-access-to-resources)
 
+- Access Config: Vault access policy vs. Azure RBAC.
 - in the vnet, can enable service endpoint for azure resources, for example the storage
 - NSG add dist for the storage service tag
 - deny internet traffic
@@ -888,6 +889,7 @@ Azure as IaaS: gives complete control of the operating systems and the applicati
 [Connect virtual networks](https://learn.microsoft.com/en-us/azure/virtual-network/tutorial-connect-virtual-networks-portal)
 
 - create vnet peering by select Peering in the setting of vnet. Then 2 vnets are connected
+- Networking: Firewalls + Vnet vs. Private endpoint connections
 
 [Best practices](https://learn.microsoft.com/en-us/azure/virtual-network/concepts-and-best-practices)
 
@@ -954,6 +956,11 @@ Azure as IaaS: gives complete control of the operating systems and the applicati
 
 - 1st option: App Service Environment. Already in a vnet.
 - 2nd option: dedicated compute pricing tiers (standard and above). In the network config
+
+[Azure VPN Gateway](https://learn.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-about-vpngateways)
+
+- Create a gateway subnet in the vnet.
+- <https://learn.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-howto-point-to-site-resource-manager-portal>
 
 <https://azure.microsoft.com/en-us/products/private-link>
 
@@ -1222,6 +1229,21 @@ Web app logs can be downloaded from <http://{mywebapp}.scm.azurewebsites.net/api
 - Works: <https://stackoverflow.com/questions/74503796/should-i-use-for-net-logging-in-azure-addazurewebappdiagnostics-or-addapplicat>
 - How to fetch logs: <https://learn.microsoft.com/en-us/aspnet/core/fundamentals/logging/?view=aspnetcore-8.0>
 - Another approach: <https://stackoverflow.com/questions/78059505/log-streams-in-azure-not-picking-up-my-logs>
+
+### Azure Function
+
+<https://learn.microsoft.com/en-us/azure/azure-functions/functions-overview?pivots=programming-language-csharp>
+
+- Install Azure Developer CLI (azd)
+- `azd init --template functions-quickstart-dotnet-azd -e flexquickstart-dotnet`: `-e` flag sets a name for the current environment
+- Select HTTP trigger
+- In the http folder, add a `local.settings.json` to define `FUNCTIONS_WORKER_RUNTIME`. Then run `func start`
+- To call the post endpoint, run in cmd: `curl -i http://localhost:7071/api/httppost -H "Content-Type: text/json" -d @testdata.json`
+- `azd auth login` to login to azure, and run `azd up` to deploy. It keeps running into internal server error. Need to try VS2022.
+
+- [here](https://learn.microsoft.com/en-us/azure/azure-functions/create-first-function-azure-developer-cli?pivots=programming-language-csharp&tabs=linux%2Cget%2Cbash%2Cpowershell)
+
+The latest Azure Account extension is not working: <https://stackoverflow.com/questions/77535144/azure-resources-not-visible-in-vs-code>
 
 ### Azure Template
 
