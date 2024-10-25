@@ -1458,6 +1458,17 @@ var configVal = config.AppSettings.Settings["key"].Value;
 configVal = ConfigurationManager.AppSettings["key"].Value;
 ```
 
+### Enforce target to run
+
+msbuild sometimes don't re-restore before build: <https://github.com/NuGet/Home/issues/12437>. The `objd` folder contains some info and if it is deleted, seems like msbuild can mess up. To enforce the restore, can add below target to csproj:
+
+```xml
+  <!-- Custom target that enforces restore before building -->
+  <Target Name="EnsureRestoreBeforeBuild" BeforeTargets="BeforeBuild">
+    <MSBuild Projects="$(MSBuildProjectFile)" Targets="Restore" />
+  </Target>
+```
+
 ### DLL Binding Redirect AutoUnify
 
 <https://stackoverflow.com/questions/33256071/what-is-autounify-and-why-is-it-causing-working-tests-to-fail-in-tfs-2015>
