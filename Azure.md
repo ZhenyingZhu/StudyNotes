@@ -961,6 +961,13 @@ Azure as IaaS: gives complete control of the operating systems and the applicati
 
 - Create a gateway subnet in the vnet.
 - <https://learn.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-howto-point-to-site-resource-manager-portal>
+- NSGs on the gateway subnet are not supported.
+- Generate enterprise/self-signed root+client certs, and upload the public key of the root cert.
+- Root cert: `$cert = New-SelfSignedCertificate @params` [Create a self-signed root certificate](https://learn.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-certificates-point-to-site#rootcert)
+- Client cert: `New-SelfSignedCertificate @params` with `Signer = $cert`
+- gateway Point-to-site configuration:
+  - Address pool: don't use ip range overlap with vnet. Client will get an IP from it. `172.16.201.0/24`
+  - Tunnel type: OpenVPN (SSL) can be used by Azure VPN Client
 
 <https://azure.microsoft.com/en-us/products/private-link>
 
