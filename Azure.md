@@ -977,6 +977,8 @@ Azure as IaaS: gives complete control of the operating systems and the applicati
 
 <https://learn.microsoft.com/en-us/azure/virtual-network/network-security-group-how-it-works>
 
+<https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/azure-best-practices/perimeter-networks>
+
 ### Service Tags
 
 <https://learn.microsoft.com/en-us/azure/virtual-network/service-tags-overview>
