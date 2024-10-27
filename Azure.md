@@ -968,6 +968,8 @@ Azure as IaaS: gives complete control of the operating systems and the applicati
 - gateway Point-to-site configuration:
   - Address pool: don't use ip range overlap with vnet. Client will get an IP from it. `172.16.201.0/24`
   - Tunnel type: OpenVPN (SSL) can be used by Azure VPN Client
+  - Download the client
+- Install Azure VPN Client and import the client. Use client cert.
 
 <https://azure.microsoft.com/en-us/products/private-link>
 
