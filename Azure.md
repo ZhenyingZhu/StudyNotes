@@ -970,8 +970,12 @@ Azure as IaaS: gives complete control of the operating systems and the applicati
   - Tunnel type: OpenVPN (SSL) can be used by Azure VPN Client
   - Download the client
 - Install Azure VPN Client and import the client. Use client cert.
+- <https://superuser.com/questions/1354894/change-my-ip-address-using-azure-vpn>
+- <https://stackoverflow.com/questions/72438266/access-azure-private-endpoint-using-azure-vpn>
 
 <https://azure.microsoft.com/en-us/products/private-link>
+
+- doesn't work with VM
 
 <https://learn.microsoft.com/en-us/azure-stack/hci/concepts/software-load-balancer>
 
