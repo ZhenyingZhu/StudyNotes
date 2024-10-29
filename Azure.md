@@ -976,6 +976,7 @@ Azure as IaaS: gives complete control of the operating systems and the applicati
 <https://azure.microsoft.com/en-us/products/private-link>
 
 - doesn't work with VM
+- can change DNS Zone config
 
 <https://learn.microsoft.com/en-us/azure-stack/hci/concepts/software-load-balancer>
 
