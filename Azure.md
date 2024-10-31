@@ -972,7 +972,7 @@ Azure as IaaS: gives complete control of the operating systems and the applicati
 - Install Azure VPN Client and import the client. Use client cert.
 - <https://superuser.com/questions/1354894/change-my-ip-address-using-azure-vpn>
 - <https://stackoverflow.com/questions/72438266/access-azure-private-endpoint-using-azure-vpn>
-- Get error: `The selected subnet has a delegation and cannot be used with a private endpoint.`
+- Get error: `The selected subnet has a delegation and cannot be used with a private endpoint.`. Seems like I need a different subnet: <https://learn.microsoft.com/en-us/answers/questions/1528559/cant-create-private-endpoint-because-of-subnet-del>
 
 <https://azure.microsoft.com/en-us/products/private-link>
 
