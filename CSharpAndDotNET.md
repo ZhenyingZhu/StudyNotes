@@ -848,6 +848,8 @@ It is folder to hold dependency packages. Maybe is related to <https://www.nuget
 - When foreground threads are still running, even `main()` method ends, process keeps running.
 - **HERE**: Race condition
 
+<https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task.run?view=net-8.0>
+
 ### Dispose
 
 If an object is disposed, you cannot access it's field any more.
