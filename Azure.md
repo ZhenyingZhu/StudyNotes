@@ -1589,6 +1589,12 @@ Microsoft.Azure.Management.Compute
 
 To deploy ARM, go to Automation > Export Template > Deploy.
 
+Create ADO pipeline
+
+- <https://learn.microsoft.com/en-us/azure/devops/pipelines/process/pipeline-triggers?view=azure-devops#branch-considerations>
+- Need to set the default branch for auto trigger pipelines: <https://learn.microsoft.com/en-us/azure/devops/pipelines/process/pipeline-default-branch?view=azure-devops>
+- <https://github.com/microsoft/azure-pipelines-yaml/blob/master/design/pipeline-triggers.md>
+
 ### Event Grid
 
 <https://learn.microsoft.com/en-us/azure/event-grid/overview>

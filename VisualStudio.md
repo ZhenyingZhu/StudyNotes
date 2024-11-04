@@ -405,7 +405,17 @@ Different build tools VS uses: [How do I compile a Visual Studio project from th
 
 The file `nuget.config` is actually in the parent folder of the sln. If see any nuget not accessiable, check if the source defined in this config is wrong.
 
-If dotnet restore failed with 401, install `https://github.com/Microsoft/artifacts-credprovider`
+If dotnet restore failed with 401, install `https://github.com/Microsoft/artifacts-credprovider`, <https://github.com/Microsoft/artifacts-credprovider?tab=readme-ov-file#azure-devops-pipelines>
+
+- <https://github.com/dotnet/sdk/issues/10189>
+
+NuGet package testing
+
+- <https://stackoverflow.com/questions/46349547/where-is-nuget-exe>
+- <https://learn.microsoft.com/en-us/nuget/reference/nuget-exe-cli-reference?tabs=windows#installing-nugetexe>
+- <https://stackoverflow.com/questions/10240029/how-do-i-install-a-nuget-package-nupkg-file-locally-to-visual-studio>
+- <https://www.bing.com/search?pglt=129&q=GeneratePackageOnBuild+make+project+reference+also+become+nuget&cvid=71cf4fec864549228de74406c4a8e2c2&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIICAEQ6QcY_FXSAQkxNDA2N2owajGoAgCwAgA&FORM=ANNAB1&PC=U531>
+- <https://stackoverflow.com/questions/54871290/changing-a-project-reference-to-a-nuget-package-reference-on-build>
 
 ## Unit test
 
