@@ -1480,3 +1480,5 @@ msbuild sometimes don't re-restore before build: <https://github.com/NuGet/Home/
 <https://learn.microsoft.com/en-us/nuget/consume-packages/package-references-in-project-files#generatepathproperty>
 
 <https://learn.microsoft.com/en-us/nuget/consume-packages/package-references-in-project-files>
+
+<https://learn.microsoft.com/en-us/nuget/consume-packages/migrate-packages-config-to-package-reference>
