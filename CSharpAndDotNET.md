@@ -1482,3 +1482,7 @@ msbuild sometimes don't re-restore before build: <https://github.com/NuGet/Home/
 <https://learn.microsoft.com/en-us/nuget/consume-packages/package-references-in-project-files>
 
 <https://learn.microsoft.com/en-us/nuget/consume-packages/migrate-packages-config-to-package-reference>
+
+<https://stackoverflow.com/questions/24022134/how-exactly-does-the-specific-version-property-of-an-assembly-reference-work-i>
+
+<https://learn.microsoft.com/en-us/nuget/consume-packages/package-references-in-project-files#controlling-dependency-assets>
