@@ -38,6 +38,10 @@ Run it:
 dotnet HelloWorld.dll
 ```
 
+<https://learn.microsoft.com/en-us/dotnet/core/install/how-to-detect-installed-versions?pivots=os-windows>
+
+- `dotnet --list-sdks`
+
 ### Console
 
 [src](https://docs.microsoft.com/en-us/dotnet/articles/csharp/getting-started/getting-started-with-csharp)
@@ -1486,3 +1490,11 @@ msbuild sometimes don't re-restore before build: <https://github.com/NuGet/Home/
 <https://stackoverflow.com/questions/24022134/how-exactly-does-the-specific-version-property-of-an-assembly-reference-work-i>
 
 <https://learn.microsoft.com/en-us/nuget/consume-packages/package-references-in-project-files#controlling-dependency-assets>
+
+### .NET Version upgrade
+
+Error: CSC : warning CS9057: The analyzer assembly 'Microsoft.CodeAnalysis.CodeStyle.dll' references version '4.11.0.0' of the compiler, which is newer than the currently running version '4.3.0.0'.
+
+- <https://stackoverflow.com/questions/77513481/net-8-build-issue-the-analyzer-assembly-references-version-4-8-0-0-of-the-co>
+- <https://stackoverflow.com/questions/76740942/how-to-fix-the-analyzer-assembly-references-version-4-7-0-0-of-the-compiler>
+- <https://learn.microsoft.com/en-us/previous-versions/visualstudio/visual-studio-2017/msbuild/how-to-use-project-sdk?view=vs-2017#how-project-sdks-are-resolved>
