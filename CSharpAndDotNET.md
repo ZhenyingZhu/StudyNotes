@@ -1498,3 +1498,5 @@ Error: CSC : warning CS9057: The analyzer assembly 'Microsoft.CodeAnalysis.CodeS
 - <https://stackoverflow.com/questions/77513481/net-8-build-issue-the-analyzer-assembly-references-version-4-8-0-0-of-the-co>
 - <https://stackoverflow.com/questions/76740942/how-to-fix-the-analyzer-assembly-references-version-4-7-0-0-of-the-compiler>
 - <https://learn.microsoft.com/en-us/previous-versions/visualstudio/visual-studio-2017/msbuild/how-to-use-project-sdk?view=vs-2017#how-project-sdks-are-resolved>
+
+<https://stackoverflow.com/questions/76740942/how-to-fix-the-analyzer-assembly-references-version-4-7-0-0-of-the-compiler>
