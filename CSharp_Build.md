@@ -1,11 +1,5 @@
 # C# Build
 
-## Dotnet SDK
-
-<https://learn.microsoft.com/en-us/dotnet/core/install/how-to-detect-installed-versions?pivots=os-windows>
-
-- `dotnet --list-sdks`
-
 ## .NET Framework Difference
 
 <https://learn.microsoft.com/en-us/dotnet/framework/whats-new/>
@@ -103,7 +97,15 @@ If tests failed. Check if the arch is changed to x64
 
 Change the build configuration from Debug to Release, then build solution.
 
+## Dotnet SDK
+
+<https://learn.microsoft.com/en-us/dotnet/core/install/how-to-detect-installed-versions?pivots=os-windows>
+
+- `dotnet --list-sdks`
+
 ## MSBuild
+
+<https://learn.microsoft.com/en-us/visualstudio/msbuild/msbuild?view=vs-2022>
 
 [Doc](https://docs.microsoft.com/en-us/visualstudio/msbuild/msbuild-concepts?view=vs-2019)
 
@@ -162,6 +164,27 @@ Different build tools VS uses: [How do I compile a Visual Studio project from th
 
 - `for /f %c in ('dir /b *.csproj dirs.proj') do %PkgMicrosoft_VisualStudio_SlnGen%\tools\net472\slngen.exe -vs "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\devenv.exe" --folders true %c` to generate sln file and start VS2022.
 
+### Custom Build Target
+
+<https://stackoverflow.com/questions/5124731/run-a-custom-msbuild-target-from-visualstudio>
+
+<https://learn.microsoft.com/en-us/visualstudio/ide/how-to-view-save-and-configure-build-log-files?view=vs-2022>
+
+The sln might currupt cause project cannot load properties.
+
+## Sign files
+
+Can use [LocalSigning](https://github.com/microsoft/service-fabric/blob/master/src/packages.ossbuild.config)
+
+- `<package id="LocalSigning" version="2.0.9.3" allowedVersions="[2,3)" autoUpgrade="true" />`
+- This is a nuget that sign the file with a cert so others can use it to know that the content has not been changed by someone not the author
+- To use it: `<Import Project="$(PkgLocalSigning)\LocalSigning.targets" />`
+- Need to define an item group: `<FilesToSign Include="**\*.zip" />`
+
+[Does not work with zip](https://superuser.com/questions/426337/is-it-possible-to-sign-archives)
+
+- zip should use a checksum instead
+
 ## NuGet
 
 [NuGet intro](https://docs.microsoft.com/en-us/nuget/what-is-nuget)
@@ -195,7 +218,45 @@ NuGet package testing
 - <https://www.bing.com/search?pglt=129&q=GeneratePackageOnBuild+make+project+reference+also+become+nuget&cvid=71cf4fec864549228de74406c4a8e2c2&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIICAEQ6QcY_FXSAQkxNDA2N2owajGoAgCwAgA&FORM=ANNAB1&PC=U531>
 - <https://stackoverflow.com/questions/54871290/changing-a-project-reference-to-a-nuget-package-reference-on-build>
 
-## Some Really Weird Build Issue
+<https://stackoverflow.com/questions/7015149/multiperson-team-using-nuget-and-source-control>
+
+<https://stackoverflow.com/questions/7018913/where-does-nuget-put-the-dll>
+
+<https://docs.microsoft.com/en-us/nuget/concepts/package-versioning#version-ranges>
+
+- `<package id="{package}" version="{this will be updated every build}" allowedVersions="[1,2)" autoUpgrade="true" />`
+
+[Quickstart: Create and publish a package (dotnet CLI)](https://docs.microsoft.com/en-us/nuget/quickstart/create-and-publish-a-package-using-the-dotnet-cli)
+
+[Nuget sources command (NuGet CLI)](https://docs.microsoft.com/en-us/nuget/reference/cli-reference/cli-ref-sources)
+
+- Create a local source: `nuget sources add -name foo.bar -source C:\NuGet\local -username foo -password bar -StorePasswordInClearText -configfile %AppData%\NuGet\my.config`
+
+[Specify a nuget config](https://stackoverflow.com/questions/46795035/project-specific-nuget-config-with-net-core-code#:~:text=Project-specific%20NuGet.Config%20files%20located%20in%20any%20folder%20from,file%20to%20give%20that%20project%20a%20specific%20configuration.)
+
+<https://docs.microsoft.com/en-us/nuget/hosting-packages/local-feeds>
+
+Use NuSpec to create a nuget package: <https://stackoverflow.com/questions/40628116/how-to-specify-configuration-specific-folder-in-nuspec>
+
+<https://stackoverflow.com/questions/16173568/build-nuget-package-automatically-including-referenced-dependencies>
+
+Using the GeneratePackageOnBuild is better than nuproj/nuspec
+
+- <https://www.google.com/search?q=nuproj+is+deprecated&newwindow=1&sca_esv=3d0b5893383aa7ee&sxsrf=ADLYWIJ7vzWMfKkXeC_FVYmzzljTH0dtQg%3A1727916062630&ei=Huj9ZvSSJtzD0PEP66CQQA&ved=0ahUKEwj0mfX4_PCIAxXcITQIHWsQBAgQ4dUDCA8&uact=5&oq=nuproj+is+deprecated&gs_lp=Egxnd3Mtd2l6LXNlcnAiFG51cHJvaiBpcyBkZXByZWNhdGVkMgUQIRigATIFECEYoAEyBRAhGKABMgUQIRigAUj4F1AAWIgRcAB4AZABAJgBXaABigiqAQIxNLgBA8gBAPgBAZgCDqACqwjCAgQQIxgnwgIEEAAYHsICCBAAGIAEGKIEwgIGEAAYFhgewgILEAAYgAQYhgMYigXCAggQABiiBBiJBZgDAJIHAjE0oAe5MA&sclient=gws-wiz-serp>
+- <https://github.com/nuproj/nuproj>
+- <https://github.com/NuGet/Home/issues/8983>
+- <https://stackoverflow.com/questions/14797525/differences-between-nuget-packing-a-csproj-vs-nuspec>
+- <https://learn.microsoft.com/en-us/nuget/create-packages/creating-a-package-msbuild>
+
+`dotnet add package {package}` can either add a new package or upgrade the package version.
+
+### CxCache
+
+It is folder to hold dependency packages. Maybe is related to <https://www.nuget.org/packages/xCache/> ?
+
+## Misc
+
+### Some Really Weird Build Issue
 
 <https://stackoverflow.com/questions/42867434/could-not-load-file-or-assembly-system-valuetuple>
 
@@ -212,28 +273,7 @@ Use `C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.6.2 Tools\
 
 `[Reflection.AssemblyName]::GetAssemblyName( (Get-Item .\System.ValueTuple.dll).FullName).Version`
 
-## Sign files
-
-Can use [LocalSigning](https://github.com/microsoft/service-fabric/blob/master/src/packages.ossbuild.config)
-
-- `<package id="LocalSigning" version="2.0.9.3" allowedVersions="[2,3)" autoUpgrade="true" />`
-- This is a nuget that sign the file with a cert so others can use it to know that the content has not been changed by someone not the author
-- To use it: `<Import Project="$(PkgLocalSigning)\LocalSigning.targets" />`
-- Need to define an item group: `<FilesToSign Include="**\*.zip" />`
-
-[Does not work with zip](https://superuser.com/questions/426337/is-it-possible-to-sign-archives)
-
-- zip should use a checksum instead
-
-## Custom Build Target
-
-<https://stackoverflow.com/questions/5124731/run-a-custom-msbuild-target-from-visualstudio>
-
-<https://learn.microsoft.com/en-us/visualstudio/ide/how-to-view-save-and-configure-build-log-files?view=vs-2022>
-
-The sln might currupt cause project cannot load properties.
-
-## AfterTargets doesn't work
+### AfterTargets doesn't work
 
 <https://stackoverflow.com/questions/2855713/what-is-the-difference-between-dependsontargets-and-aftertargets>
 
@@ -290,41 +330,3 @@ It is under `C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.6.
 [including package references and then private assets in csproj](https://forums.asp.net/t/2162896.aspx?including+package+references+and+then+private+assets+in+csproj#:~:text=By%20default%2C%20all%20package%20assets%20are%20included.%20%60PrivateAssets%60,by%20default%20when%20this%20attribute%20is%20not%20present.)
 
 - `IncludeAssets` attribute specifies which assets belonging to the package specified by `<PackageReference>` should be consumed. By default, all package assets are included. `PrivateAssets` attribute specifies which assets belonging to the package specified by `<PackageReference>` should be consumed but not flow to the next project. The Analyzers, Build and ContentFiles assets are private by default when this attribute is not present.
-
-## NuGet
-
-<https://stackoverflow.com/questions/7015149/multiperson-team-using-nuget-and-source-control>
-
-<https://stackoverflow.com/questions/7018913/where-does-nuget-put-the-dll>
-
-<https://docs.microsoft.com/en-us/nuget/concepts/package-versioning#version-ranges>
-
-- `<package id="{package}" version="{this will be updated every build}" allowedVersions="[1,2)" autoUpgrade="true" />`
-
-[Quickstart: Create and publish a package (dotnet CLI)](https://docs.microsoft.com/en-us/nuget/quickstart/create-and-publish-a-package-using-the-dotnet-cli)
-
-[Nuget sources command (NuGet CLI)](https://docs.microsoft.com/en-us/nuget/reference/cli-reference/cli-ref-sources)
-
-- Create a local source: `nuget sources add -name foo.bar -source C:\NuGet\local -username foo -password bar -StorePasswordInClearText -configfile %AppData%\NuGet\my.config`
-
-[Specify a nuget config](https://stackoverflow.com/questions/46795035/project-specific-nuget-config-with-net-core-code#:~:text=Project-specific%20NuGet.Config%20files%20located%20in%20any%20folder%20from,file%20to%20give%20that%20project%20a%20specific%20configuration.)
-
-<https://docs.microsoft.com/en-us/nuget/hosting-packages/local-feeds>
-
-Use NuSpec to create a nuget package: <https://stackoverflow.com/questions/40628116/how-to-specify-configuration-specific-folder-in-nuspec>
-
-<https://stackoverflow.com/questions/16173568/build-nuget-package-automatically-including-referenced-dependencies>
-
-Using the GeneratePackageOnBuild is better than nuproj/nuspec
-
-- <https://www.google.com/search?q=nuproj+is+deprecated&newwindow=1&sca_esv=3d0b5893383aa7ee&sxsrf=ADLYWIJ7vzWMfKkXeC_FVYmzzljTH0dtQg%3A1727916062630&ei=Huj9ZvSSJtzD0PEP66CQQA&ved=0ahUKEwj0mfX4_PCIAxXcITQIHWsQBAgQ4dUDCA8&uact=5&oq=nuproj+is+deprecated&gs_lp=Egxnd3Mtd2l6LXNlcnAiFG51cHJvaiBpcyBkZXByZWNhdGVkMgUQIRigATIFECEYoAEyBRAhGKABMgUQIRigAUj4F1AAWIgRcAB4AZABAJgBXaABigiqAQIxNLgBA8gBAPgBAZgCDqACqwjCAgQQIxgnwgIEEAAYHsICCBAAGIAEGKIEwgIGEAAYFhgewgILEAAYgAQYhgMYigXCAggQABiiBBiJBZgDAJIHAjE0oAe5MA&sclient=gws-wiz-serp>
-- <https://github.com/nuproj/nuproj>
-- <https://github.com/NuGet/Home/issues/8983>
-- <https://stackoverflow.com/questions/14797525/differences-between-nuget-packing-a-csproj-vs-nuspec>
-- <https://learn.microsoft.com/en-us/nuget/create-packages/creating-a-package-msbuild>
-
-`dotnet add package {package}` can either add a new package or upgrade the package version.
-
-### CxCache
-
-It is folder to hold dependency packages. Maybe is related to <https://www.nuget.org/packages/xCache/> ?
