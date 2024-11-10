@@ -1,6 +1,12 @@
-# Big Data
+# Artificial Intelligence and Big Data
 
-## Map Reduce
+## Machine Learning
+
+<http://open.163.com/special/opencourse/machinelearning.html>
+
+## Big Data
+
+### Map Reduce
 
 Map:
 
@@ -17,7 +23,7 @@ void Map::map(Key key, Value value, OutputCollector<ReduceKey, ReduceValue> outp
 void Reduce::reduce(ReduceKey key, Iterator<ReduceValue> values, OutputCollector<OutputKey, OutputValue> output);
 ```
 
-### Simple example
+#### Simple example
 
 <http://www.jiuzhang.com/solutions/word-count/>
 
@@ -25,7 +31,7 @@ void Reduce::reduce(ReduceKey key, Iterator<ReduceValue> values, OutputCollector
 
 <http://www.jiuzhang.com/solutions/anagram-map-reduce/>
 
-### BFS
+#### BFS
 
 <http://www.johnandcailin.com/blog/cailin/breadth-first-graph-search-using-iterative-map-reduce-algorithm>
 
@@ -57,6 +63,6 @@ void reducer(int nodeID, Iterator<string> nodeStructs, OutputCollector<int, stri
 }
 ```
 
-## Spark
+### Spark
 
 <https://timilearning.com/posts/mit-6.824/lecture-15-spark/>

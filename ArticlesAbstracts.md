@@ -1,7 +1,6 @@
+## 技术
 
-# 技术
-
-## 编程可以教给你的 6 个生活习惯
+### 编程可以教给你的 6 个生活习惯
 
 - 流程图能够帮助你以一种可视化形式跟随这个逻辑
 - 自动化是成功的关键，所以如果你能找到方法来自动化工作中需要重复完成的任务，
@@ -9,14 +8,14 @@
 - 每当你创建一个需要消耗大量CPU资源的循环来执行某种任务时，引入各种各样的跳出机制是非常重要的。
 - 一个干净的程序，是能够及时关闭输出流并清空已经用完的数组的程序。
 
-## 被Linus批评过的11种技术
+### 被Linus批评过的11种技术
 
 - uEmacs
 - gnome,Xfce 和 KDE
 - C++有 C 的速度和效率，并有类似 Simula 语言一样的程序组织。
 - 像 MINIX 的微内核
 
-## 2015年在线教育十问十答
+### 2015年在线教育十问十答
 
 - Khan Academy、Udacity，Coursera，Codecademy，Codeschool，edX,  其中Linda课程
 - 工作背景有来自Google, Facebook, Linkedin,  Twitter,  Netflix等高技术公司。在2015年2月，谷歌、Instagram  等多家大型企业与Coursera  及其合作大学达成合作，帮助网络学习者更好地学以致用。全世界已经有数十万人参与了Coursera专项课程，而这些合作企业的专家顾问将成为第一批指导专项课程结业项目（Capstone Project）的合作伙伴希望能帮助大家更好找到工作机会。
@@ -25,13 +24,13 @@
 - 产品组：play Framework，Javascript的Backbone作为控制中枢。
 - 架构组主要是维护底层存储，通用服务，性能和稳定性。我在的数据组一部分是对商业产品，核心增长指标做监控，挖掘和改进。另一部分是搭建数据仓库完善跟各个部门的无缝数据流动，也用到很多技术例如使用Scalding编写MapReduce程序，也有人做AB testing框架,推荐系统，尽可能用最少人力做影响力的事情。其实除了开源世界，我们也积极使用第三方的产品，比如Sumologic做日志错误分析，Redshift作为大数据分析平台，Slack做内部通讯。
 
-## 20年的老程序员对新入行的朋友的一些建议
+### 20年的老程序员对新入行的朋友的一些建议
 
 - josephg
 - 有些工具虽然不是很常用，但他们更擅长解决一些特定的问题（例如，二叉树数据结构、A*、Valgrind、调试器等等）
 - 大多数编程领域（游戏开发、Web开发、数据库）都有自己特有的一系列解决问题的模式。所以掌握的工具越多对你越有利。
 
-## 十二种黑客
+### 十二种黑客
 
 - ASS，Stylus，CoffeeScript，JavaScript
 - Smalltalk，Lisp，Ruby，Ember任何优于约定的配置制定规范
@@ -45,7 +44,7 @@
 - BDD测试技术 Cucumber， RSpec，RCov，Capybara，anything  BDD
 - Zepto，Backbone，Sinatra，Node
 
-## 麦子学院IT课程
+### 麦子学院IT课程
 
 - <http://www.maiziedu.com>
 - 三节课了解Android L-你不得不听的技巧
@@ -54,7 +53,7 @@
 - jQuery入门课程
 - AJAX初步入门
 
-## 有哪些实用的计算机技能，可以在一天内学会？
+### 有哪些实用的计算机技能，可以在一天内学会？
 
 <http://blog.jobbole.com/82633/>
 
@@ -100,7 +99,7 @@
 - 23个设计模式的简明教程
 - 树莓派板子深入研究
 
-## 阅读源码，推荐 10 个 C 语言开源项目
+### 阅读源码，推荐 10 个 C 语言开源项目
 
 <http://blog.jobbole.com/79023/>
 
@@ -115,15 +114,15 @@
 - [UNIX v6](http://minnie.tuhs.org/cgi-bin/utree.pl?file=V6)
 - [NETBSD](http://www.netbsd.org/)
 
-## C 语言进阶有哪些优秀的代码可以阅读？
+### C 语言进阶有哪些优秀的代码可以阅读？
 
 C 语言进阶有哪些优秀的代码可以阅读？ <http://top.jobbole.com/14814/>
 
-## 阅读优秀代码是提高开发人员修为的一种捷径
+### 阅读优秀代码是提高开发人员修为的一种捷径
 
 阅读优秀代码是提高开发人员修为的一种捷径 <http://blog.jobbole.com/471/>
 
-## “10倍效率”程序员_开发人员的习惯
+### “10倍效率”程序员_开发人员的习惯
 
 <http://adamloving.com/internet-programming/10x-developers>
 
@@ -141,17 +140,7 @@ C 语言进阶有哪些优秀的代码可以阅读？ <http://top.jobbole.com/14
 
 聪明的人善于从自己的错误中学习，而智慧的人善于从别人的错误中学习。
 
-## 15分钟的效率法则
-
-1. 选出一件自己要做的正事(这会让你很明确地清楚目标)
-2. 把所有干扰项都关掉 15 分钟，不要让它们在这个时间段打扰你
-3. 没有干扰没有中断地做正事 15 分钟
-4. 15 分钟后，如果我坚持不住，那我就放弃或是做其他事情
-
-- 先直接写出一个草稿，而不要想太多，后续再一版一版地迭代。
-- 头脑风暴来替代“动手”。但必须是写出想法或是画思维导图的形式
-
-## Amazon S3宕机4个小时
+### Amazon S3宕机4个小时
 
 ["打错一个字母，瘫痪半个互联网" 是怎样的感受？](https://mp.weixin.qq.com/s/b5hAUagtifnHNyupwcau1g)
 
@@ -168,13 +157,68 @@ C 语言进阶有哪些优秀的代码可以阅读？ <http://top.jobbole.com/14
 - Amazon.com
 - Nasdaq
 
-## "Java之父"高斯林加盟亚马逊云计算
+## 软技能
+
+### 15分钟的效率法则
+
+1. 选出一件自己要做的正事(这会让你很明确地清楚目标)
+2. 把所有干扰项都关掉 15 分钟，不要让它们在这个时间段打扰你
+3. 没有干扰没有中断地做正事 15 分钟
+4. 15 分钟后，如果我坚持不住，那我就放弃或是做其他事情
+
+- 先直接写出一个草稿，而不要想太多，后续再一版一版地迭代。
+- 头脑风暴来替代“动手”。但必须是写出想法或是画思维导图的形式
+
+### How to Learn
+
+<https://www.coursera.org/learn/learning-how-to-learn/>
+
+#### Week 1
+
+Two ways of Thinking:
+
+- Focused: use already familiar thought pathes.
+- Diffuse
+
+Changing between two modes:
+
+- When learn some thing difficult.
+- Relax until almost sleep, then wake at once and gather the mind.  
+
+<www.brainfacts.org>
+
+Procrastination:
+
+- Pomodoro: Set a timer to 25 mins. Focuse during this. A few minutes reward after done.
+
+Practice:
+
+- practice a way of thinking or its similar thinking if it is hard.
+- When solve a problem, start from the begining without look the solution.
+- After first time solve the problem, relax for a while, so turn to diffuse mode, then do that again.
+- Keep learning everyday is better than learn all a time.
+
+Memory:
+
+- Long term memory: Can keep many things, but hard to find. Need practice a few times.
+- Working memory: At most 4 chunks.
+- Spaced repetition: Repeat on Monday, Tuesday, Wednesday, Friday, Sunday.
+
+Sleeping:
+
+- Keep brain clean.
+- Run through things that learning. Forget useless memory and stonger those things that need to remember.
+- Learning just before sleep can dream about these things.
+
+## 信息
+
+### "Java之父"高斯林加盟亚马逊云计算
 
 James Gosling.
 
 高斯林共事的还有很多技术大牛，他们包括：微服务架构专家阿德里安-考克罗夫（Adrian Cockroft）、人工智能副总裁斯瓦米-西瓦苏布拉马尼娜（Swami Sivasubramanian）和首席技术官沃纳-威格尔（Verner Vogels）.
 
-## 《财富》公布2017年全美百大最适宜工作公司
+### 《财富》公布2017年全美百大最适宜工作公司
 
 <https://mp.weixin.qq.com/s/VTyF3VU_LGP85xEeflZ9cg?>
 
@@ -189,7 +233,7 @@ James Gosling.
 7. NA
 8. 赛富时（Salesforce），地点：加州旧金山（SanFrancisco, CA），行业：IT。
 
-## Google, Facebook, Amazon and Microsoft Salaries
+### Google, Facebook, Amazon and Microsoft Salaries
 
 <https://www.cnblogs.com/kungfupanda/p/6578112.html>
 

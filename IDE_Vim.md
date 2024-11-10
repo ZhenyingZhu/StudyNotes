@@ -3,7 +3,8 @@
 ## Turtorial
 
 ### Hard Way
-http://learnvimscriptthehardway.stevelosh.com/chapters/00.html
+
+<http://learnvimscriptthehardway.stevelosh.com/chapters/00.html>
 
 `:echo` and `:echom`: `:messages` can see `echom` but not `echo`
 
@@ -12,6 +13,7 @@ comment: start with `"`
 `:set <field>?` to check, `:set <field>!` or `:set no<field>` to toggle
 
 #### Map
+
 [map keys](http://learnvimscriptthehardway.stevelosh.com/chapters/03.html)
 
 `:vsplit` and `:split`
@@ -21,7 +23,8 @@ comment: start with `"`
 `:setlocal` perbuff
 
 #### Auto command
-```
+
+```vim
 :edit foo " open file
 :quit
 ```
@@ -29,24 +32,28 @@ comment: start with `"`
 `:help autocmd-events` see all events
 
 To execute a command when "BufNewFile" event happened on the pattern ".txt"
-```
+
+```vim
 :autocmd BufNewFile *.txt :write
 ```
 
 For now, let's take it as vim will reindent the current file
-```
+
+```vim
 :normal gg=G
 ```
 
 A common idiom in vim scripting is to pair the "BufRead" and "BufNewFile" events together
 
 "FileType" is fired whenever Vim sets a buffer's "filetype".
-```
+
+```vim
 :autocmd FileType python nnoremap <buffer> <localleader>c I#<esc>
 ```
 
 To avoid autocmd defined multiple times
-```
+
+```vim
 augroup filetype_html
     autocmd!
     autocmd FileType html nnoremap <buffer> <localleader>f Vatzf
@@ -54,28 +61,33 @@ augroup END
 ```
 
 #### Operator
+
 `d`, `y`, `c` are operators that wait for a movement
 
 [operator mapping](http://learnvimscriptthehardway.stevelosh.com/chapters/15.html)
 
 #### Status line
+
 [format status line](http://learnvimscriptthehardway.stevelosh.com/chapters/17.html)
+
 - `%f`: Path to the file
 - `%y`: Filetype of the file
 
 #### Write VIM scripts
-[Responsible Coding](http://learnvimscriptthehardway.stevelosh.com/chapters/18.html)
 
+[Responsible Coding](http://learnvimscriptthehardway.stevelosh.com/chapters/18.html)
 
 ## Config
 
 ### location
+
 - `~/.vimrc`
 - `~/.viminfo`
 - `/etc/vim/vimrc`
 - `~/.vim/indent/python.vim` contains filetype indent.
 
 ### options
+
 See Command mode section as well.
 
 ## VIM Modes
@@ -83,6 +95,7 @@ See Command mode section as well.
 ### Normal mode
 
 #### Visual block
+
 - `v`: characters select
 - `V`: lines select
 - `^v`: block select
@@ -90,11 +103,13 @@ See Command mode section as well.
 - `%`: fast jump to the close of the partheses
 
 #### gf
+
 Quick open file that under cursor in another window
 
 `ctrl+w` then `ctrl+f`
 
 #### folding
+
 [Intro](http://vim.wikia.com/wiki/Folding)
 
 `:set fdm=syntax` to enable folding.
@@ -103,19 +118,17 @@ Quick open file that under cursor in another window
 
 `:set fdm=marker` use more than three `{{{}}}` to define folding. First type `}` can avoid affect following folding
 
-
 ### Visual Mode
-
 
 ### Insert Mode
 
-
 ### Command mode
+
 [cmds](http://vim.wikia.com/wiki/Displaying_the_current_Vim_environment)
 
 - `:help cmd`
 - `:reg`: show paste board
-- `:let`: show all variables<b>?</b>
+- `:let`: show all variables**?**
 - `:set all`: show all setting. If some settings are not enable, there are "no" before them.
 - `:set nu`, `:set nu!`
 - `:set showcmd`: in visual mode, show more information at the right down corner.
@@ -125,7 +138,8 @@ Quick open file that under cursor in another window
 - `:set incsearch`: search when char are type in
 - `:set mouse=a`, `:set mouse=`: enable/disable mouse mode. After enabled, cannot copy by `ctrl+shift+c`.
 
-#### Multi-doc editiing
+#### Multi-doc editing
+
 `vim $file1 $file2`
 
 - `:n`/`:N`: next/prev doc.
@@ -133,53 +147,58 @@ Quick open file that under cursor in another window
 - `:sp file`: split the window vertically, and open the file. `^w+k`/`^w+j` switch between files.
 
 #### Search and replace
-[vim search](http://vim.wikia.com/wiki/Search_and_replace>Replease and search tutorial)
+
+[vim search](http://vim.wikia.com/wiki/Search_and_replace): Replease and search tutorial
 
 - `:%s/old/new/g`: `%` means all lines. `g` means replace all apperances of pattern old in the line.
 
-
-
 ## plugin
+
 [如何将Vim打造成一个成熟的IDE](https://linux.cn/article-3314-1.html)
 
 ### Pathogen
+
 [Intro](https://github.com/tpope/vim-pathogen)
 
 Install plugins
-```
+
+```bash
 cd ~/.vim/bundle && git clone git://github.com/tpope/vim-sensible.git
 ```
 
 Run `:Helptags` to load help docs. Then `:help $plugin_name`
 
-
 ### SuperTab
+
 [Intro](https://github.com/ervandew/supertab)
 
 After press `tab`, a list of choices shows up. `ctrl+n` and `ctrl+p` switch between them, and then keep typing.
 
-
 ### syntastic
+
 [Intro](https://github.com/scrooloose/syntastic)
 
 [C++11 support](http://stackoverflow.com/questions/18158772/how-to-add-c11-support-to-syntastic-vim-plugin): add to `vimrc`
-```
+
+```vim
 let g:syntastic_cpp_compiler = 'clang++'
 let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
 ```
 
-<b>Need some other plugins to make it fully work. Not finish yet</b>
-
+Need some other plugins to make it fully work. Not finish yet.
 
 ### NERDTree
+
 [Intro](https://github.com/scrooloose/nerdtree)
 
 Add to `vimrc`
-```
+
+```vim
 autocmd vimenter * NERDTree
 ```
 
 Shortcuts:
+
 - `t`: Open the selected file in a new tab
 - `i`: Open the selected file in a horizontal split window
 - `s`: Open the selected file in a vertical split window
@@ -189,26 +208,30 @@ Shortcuts:
 - `?`: Toggle NERD Tree's quick help
 
 ### undotree
+
 [info](https://github.com/mbbill/undotree)
 
 ### vim-markdown
+
 [Info](https://github.com/tpope/vim-markdown)
 
-
 ## Tool chain
+
 [Linux 平台下阅读源码的工具链](http://blog.jobbole.com/101322/)
 
 ### ctags
+
 At the src root folder, call `ctags -R`, a `tags` file will be generated. Then use vim to open src files from root folder.
 
 - `ctrl+]`: goto
 - `ctrl+t`: return back
 
-
 ### cscope for C
+
 Src root folder, `cscope -Rbq`, a `cscope.out` database will be generated.
 
-In vim, 
+In vim,
+
 - `:cs add cscope.out`: add datebase
 - `:cs find [mode] $var`. mode:
   - `s`: Find this C symbol
@@ -220,17 +243,19 @@ In vim,
   - `f`: Find this file
   - `i`: Find files #including this file
 
-
 ### doxygen for C++
+
 To create documents and draw structure graphs.
 
 Install:
+
 - `sudo apt install doxygen`
 - `sudo apt install graphviz` to install dot
 
 Src root folder, `doxygen -g`. Will generate `Doxyfile`, which is a config.
 
 Configuration: edit `Doxyfile`
+
 - `HAVE_DOT` set to yes, which is used to draw graph
 - `RECURSIVE = YES`
 - `CALL_GRAPH`, `CALLER_GRAPH`: generate function graphs
@@ -238,23 +263,21 @@ Configuration: edit `Doxyfile`
 
 Then call `doxygen Doxyfile`. Will create html and latex two folders.
 
+## Miscellaneous
 
+Run shell cmd in vim: <https://www.linux.com/learn/tutorials/442419-vim-tips-working-with-external-commands>
 
+<http://vimdoc.sourceforge.net/htmldoc/filetype.html>
 
+[Vundle](https://github.com/gmarik/Vundle.vim)
 
-
-## tmp
-Run shell cmd in vim: https://www.linux.com/learn/tutorials/442419-vim-tips-working-with-external-commands  
-
-http://vimdoc.sourceforge.net/htmldoc/filetype.html  
-
-[Vundle](https://github.com/gmarik/Vundle.vim)  
-```
+```vim
 Plugin 'scrooloose/nerdtree'
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 ```
-```
+
+```vim
 :so ~/.vimrc
 :PluginInstall
 ```
@@ -262,7 +285,8 @@ Plugin 'plasticboy/vim-markdown'
 [vim plugin](http://joelhooks.com/blog/2013/04/23/5-essential-vim-plugins/)  
 
 Add in the last line of a plain text file.
-```
+
+```vim
 # vim: set ts=4 sw=4 sts=4 et:
 ```
 
@@ -281,8 +305,8 @@ Add in the last line of a plain text file.
 copy /usr/share/vim/vim74/syntax/markdown.vim to ~/.vim/syntax, and remove `_` from markdownError in it
 
 [Keep undo history](https://askubuntu.com/questions/292/how-do-i-get-vim-to-keep-its-undo-history)
-```
+
+```vim
 set undofile
 set undodir=/home/yourname/.vimundo/
 ```
-
