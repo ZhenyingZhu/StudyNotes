@@ -1,5 +1,7 @@
 # C# and .NET
 
+TODO: Move notes between IDE_VisualStudio.md and here.
+
 ## Resources
 
 - <https://www.microsoft.com/net/learn/dotnet/what-is-dotnet>
@@ -17,30 +19,6 @@
       - <https://docs.microsoft.com/en-us/dotnet/csharp/tour-of-csharp/arrays>
 
 <https://www.microsoft.com/net/tutorials/csharp/getting-started/>
-
-### IDE
-
-[Visual Studio](https://docs.microsoft.com/en-us/dotnet/articles/csharp/getting-started/with-visual-studio)
-
-`Debug > Windows > Immediate` open a cmd which can interact with the app
-
-F5 debug, F11 stepping
-
-Condition break point
-
-Debug vs Release: Release version incorporates compiler optimizations
-
-`Build > Publish {projectname}`
-
-Run it:
-
-```cmd
-dotnet HelloWorld.dll
-```
-
-<https://learn.microsoft.com/en-us/dotnet/core/install/how-to-detect-installed-versions?pivots=os-windows>
-
-- `dotnet --list-sdks`
 
 ### Console
 
@@ -87,12 +65,6 @@ Compile C# program:
 - `csc /r:acme.dll example.cs`
 - When a multi-file C# program is compiled, all of the source files are processed together, and the source files can freely reference each other
 - `dotnet` also manage dependencies and then invoke `csc`
-
-#### VS Code
-
-<https://docs.microsoft.com/en-us/dotnet/core/tutorials/with-visual-studio-code#debug>
-
-<https://code.visualstudio.com/docs/csharp/testing>
 
 ### Concepts
 
@@ -624,8 +596,6 @@ int sameNumCnt = list2.Select(x => x).Intersect(list1).Count;
 
 ## Unit Test
 
-### Visual studio UT framework
-
 <https://learn.microsoft.com/en-us/dotnet/core/testing/unit-testing-with-mstest>
 
 [src](https://docs.microsoft.com/en-us/visualstudio/test/unit-test-basics)
@@ -643,6 +613,24 @@ public void TestFoo() {
     Assert.AreEqual(expected, actual);
 }
 ```
+
+MSTest vs. NUnit
+
+Solving UT not found issue
+
+```text
+Warning: No test is available in UnitTest.dll. Make sure that installed test discoverers & executors, platform & framework version settings are appropriate and try again.
+```
+
+[vstest.console.exe not discovering any of the tests](https://social.msdn.microsoft.com/Forums/vstudio/en-US/f44db2d5-61ae-428b-8412-5a3fc739daf7/vstestconsoleexe-not-discovering-any-of-the-tests?forum=vstest)
+
+[No test found. Make sure that installed test discoverers & executors, platform & framework version settings are appropriate and try again](https://stackoverflow.com/questions/34790339/no-test-found-make-sure-that-installed-test-discoverers-executors-platform)
+
+- [unit test doc](https://docs.microsoft.com/en-us/visualstudio/test/run-a-unit-test-as-a-64-bit-process?view=vs-2019) `<TargetPlatform>x64</TargetPlatform>`.
+
+MSBuild has so many weird errors!
+
+In the UT, if use Console.WriteLine, it logs in the trx.
 
 ### Rhino mocks
 
@@ -774,44 +762,6 @@ TryGetValue can test if key exist or not.
 
 <https://msdn.microsoft.com/en-us/library/bb460136(v=vs.110).aspx>
 
-## NuGet
-
-<https://stackoverflow.com/questions/7015149/multiperson-team-using-nuget-and-source-control>
-
-<https://stackoverflow.com/questions/7018913/where-does-nuget-put-the-dll>
-
-<https://docs.microsoft.com/en-us/nuget/concepts/package-versioning#version-ranges>
-
-- `<package id="{package}" version="{this will be updated every build}" allowedVersions="[1,2)" autoUpgrade="true" />`
-
-[Quickstart: Create and publish a package (dotnet CLI)](https://docs.microsoft.com/en-us/nuget/quickstart/create-and-publish-a-package-using-the-dotnet-cli)
-
-[Nuget sources command (NuGet CLI)](https://docs.microsoft.com/en-us/nuget/reference/cli-reference/cli-ref-sources)
-
-- Create a local source: `nuget sources add -name foo.bar -source C:\NuGet\local -username foo -password bar -StorePasswordInClearText -configfile %AppData%\NuGet\my.config`
-
-[Specify a nuget config](https://stackoverflow.com/questions/46795035/project-specific-nuget-config-with-net-core-code#:~:text=Project-specific%20NuGet.Config%20files%20located%20in%20any%20folder%20from,file%20to%20give%20that%20project%20a%20specific%20configuration.)
-
-<https://docs.microsoft.com/en-us/nuget/hosting-packages/local-feeds>
-
-Use NuSpec to create a nuget package: <https://stackoverflow.com/questions/40628116/how-to-specify-configuration-specific-folder-in-nuspec>
-
-<https://stackoverflow.com/questions/16173568/build-nuget-package-automatically-including-referenced-dependencies>
-
-Using the GeneratePackageOnBuild is better than nuproj/nuspec
-
-- <https://www.google.com/search?q=nuproj+is+deprecated&newwindow=1&sca_esv=3d0b5893383aa7ee&sxsrf=ADLYWIJ7vzWMfKkXeC_FVYmzzljTH0dtQg%3A1727916062630&ei=Huj9ZvSSJtzD0PEP66CQQA&ved=0ahUKEwj0mfX4_PCIAxXcITQIHWsQBAgQ4dUDCA8&uact=5&oq=nuproj+is+deprecated&gs_lp=Egxnd3Mtd2l6LXNlcnAiFG51cHJvaiBpcyBkZXByZWNhdGVkMgUQIRigATIFECEYoAEyBRAhGKABMgUQIRigAUj4F1AAWIgRcAB4AZABAJgBXaABigiqAQIxNLgBA8gBAPgBAZgCDqACqwjCAgQQIxgnwgIEEAAYHsICCBAAGIAEGKIEwgIGEAAYFhgewgILEAAYgAQYhgMYigXCAggQABiiBBiJBZgDAJIHAjE0oAe5MA&sclient=gws-wiz-serp>
-- <https://github.com/nuproj/nuproj>
-- <https://github.com/NuGet/Home/issues/8983>
-- <https://stackoverflow.com/questions/14797525/differences-between-nuget-packing-a-csproj-vs-nuspec>
-- <https://learn.microsoft.com/en-us/nuget/create-packages/creating-a-package-msbuild>
-
-`dotnet add package {package}` can either add a new package or upgrade the package version.
-
-### CxCache
-
-It is folder to hold dependency packages. Maybe is related to <https://www.nuget.org/packages/xCache/> ?
-
 ## Multi-thread
 
 <https://devblogs.microsoft.com/pfxteam/>
@@ -885,7 +835,7 @@ Project
 
 ## UI
 
-See VisualStudio.md
+See IDE_VisualStudio.md
 
 Choose Windows Application.
 
@@ -910,32 +860,6 @@ FlowLayoutPanel: arranges its contents in a horizontal or vertical flow directio
 ## Open Telemetry
 
 <https://opentelemetry.io/docs/instrumentation/net/getting-started/>
-
-## .NET Framework Difference
-
-<https://learn.microsoft.com/en-us/dotnet/framework/whats-new/>
-
-- Improvements to the JIT compiler.
-- cryptographic enhancements: Support for ephemeral keys
-- Additional collection APIs
-- Support for .NET Standard 2.0
-- Garbage collection performance improvements
-
-### .NET Framework migration
-
-Changes to make
-
-- Target Framework version
-- Assembly Reference path
-- BindingRedirect
-- app/web Config File
-
-To upgrade, can use the upgrade assistant:
-
-- <https://devblogs.microsoft.com/dotnet/upgrade-assistant-now-in-visual-studio/>
-  - ASP.NET from .NET Framework only support side-by-side incremental.
-- <https://learn.microsoft.com/en-us/dotnet/core/porting/>
-- for project dependencies, need to start from the top layer.
 
 ## Miscellaneous
 
@@ -1350,18 +1274,6 @@ File used by another process:
 
 <https://www.freecodecamp.org/news/how-to-turn-your-website-into-a-mobile-app-with-7-lines-of-json-631c9c9895f5/>
 
-### Check DLL info
-
-`ildasm.exe *.dll`
-
-It is under `C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.6.2 Tools\`
-
-### PackageReference Private
-
-[including package references and then private assets in csproj](https://forums.asp.net/t/2162896.aspx?including+package+references+and+then+private+assets+in+csproj#:~:text=By%20default%2C%20all%20package%20assets%20are%20included.%20%60PrivateAssets%60,by%20default%20when%20this%20attribute%20is%20not%20present.)
-
-- `IncludeAssets` attribute specifies which assets belonging to the package specified by `<PackageReference>` should be consumed. By default, all package assets are included. `PrivateAssets` attribute specifies which assets belonging to the package specified by `<PackageReference>` should be consumed but not flow to the next project. The Analyzers, Build and ContentFiles assets are private by default when this attribute is not present.
-
 ### Interlock
 
 <https://docs.microsoft.com/en-us/dotnet/api/system.threading.interlocked?view=net-5.0>
@@ -1381,16 +1293,6 @@ It is under `C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.6.
 
 <https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/extension-methods>
 
-### Transitive dependency
-
-<https://devblogs.microsoft.com/nuget/introducing-transitive-dependencies-in-visual-studio/#:~:text=There%20is%20now%20a%20new,level%20dependency%20at%20any%20time.>
-
-### Top Level Statement
-
-<https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/tutorials/top-level-statements>
-
-Define a namespace: <https://learn.microsoft.com/en-us/aspnet/core/fundamentals/apis?view=aspnetcore-6.0>
-
 ### Powershell
 
 <https://stackoverflow.com/questions/34398023/get-powershell-commands-output-when-invoked-through-code>
@@ -1404,22 +1306,6 @@ If use admin permission to start excel, the autosave function is not working.
 
 - <https://stackoverflow.com/questions/2476070/how-to-specify-the-user-in-a-c-sharp-thread>
 
-### Build Warnings
-
-DLL conflicts: <https://learn.microsoft.com/en-us/visualstudio/msbuild/errors/msb3277?view=vs-2022>
-
-Suppress build warning: <https://stackoverflow.com/questions/49564022/suppressing-warnings-for-solution>
-
-The dotnet restore might fail when see nuget version downgrade.
-
-The target framework version in the nuget package also matters because otherwise it will throw exception saying dll not found.
-
-Open binding redirect log: <https://stackoverflow.com/questions/255669/how-to-enable-assembly-bind-failure-logging-fusion-in-net>
-
-ildasm
-
-Assembly version vs. nuget package version.
-
 ### Shims
 
 A unit test framework.
@@ -1432,28 +1318,6 @@ A unit test framework.
 
 <https://joshclose.github.io/CsvHelper/getting-started/>
 
-### Build Race condition
-
-- <https://stackoverflow.com/questions/5134137/build-error-the-process-cannot-access-the-file-because-it-is-being-used-by-ano>
-- <https://stackoverflow.com/questions/6838779/msbuild-fails-with-the-process-cannot-access-the-file-xxxxx-because-it-is-being>
-
-### SDK style project differences
-
-<https://stackoverflow.com/questions/46709000/disable-transitive-project-reference-in-net-standard-2>
-
-<https://dansiegel.net/post/2018/08/21/demystifying-the-sdk-project>
-
-- Release builds need to be optimized, while Debug configurations need all of our debug symbols
-- [Well-Known Properties](https://learn.microsoft.com/en-us/previous-versions/visualstudio/visual-studio-2015/msbuild/msbuild-reserved-and-well-known-properties?view=vs-2015&redirectedfrom=MSDN)
-- ItemGroup grouping Items. Can be used with Condition
-- Supports multi-target frameworks.
-- Common lib should be packed because: 1. reduce build time, 2. versioning, 3. isolate rollout, 4. individual testing
-- using a nuspec is not needed for SDK style projects. Can set `GeneratePackageOnBuild` to true in csproj
-
-<https://hermit.no/moving-to-sdk-style-projects-and-package-references-in-visual-studio-part-1/>
-
-<https://hermit.no/moving-to-sdk-style-projects-and-package-references-in-visual-studio-part-2/>
-
 ### ConfigurationManager
 
 Read from dll.config vs. app.config:
@@ -1464,41 +1328,10 @@ var configVal = config.AppSettings.Settings["key"].Value;
 configVal = ConfigurationManager.AppSettings["key"].Value;
 ```
 
-### Enforce target to run
+### Timed quiz
 
-msbuild sometimes don't re-restore before build: <https://github.com/NuGet/Home/issues/12437>. The `objd` folder contains some info and if it is deleted, seems like msbuild can mess up. To enforce the restore, can add below target to csproj:
+<ttps://docs.microsoft.com/en-us/visualstudio/ide/tutorial-2-create-a-timed-math-quiz>
 
-```xml
-  <!-- Custom target that enforces restore before building -->
-  <Target Name="EnsureRestoreBeforeBuild" BeforeTargets="BeforeBuild">
-    <MSBuild Projects="$(MSBuildProjectFile)" Targets="Restore" />
-  </Target>
-```
+Add an event for a component and create an event handler.
 
-### DLL Binding Redirect AutoUnify
-
-<https://stackoverflow.com/questions/33256071/what-is-autounify-and-why-is-it-causing-working-tests-to-fail-in-tfs-2015>
-
-### Nuget path
-
-<https://learn.microsoft.com/en-us/nuget/consume-packages/package-references-in-project-files#generatepathproperty>
-
-<https://learn.microsoft.com/en-us/nuget/consume-packages/package-references-in-project-files>
-
-<https://learn.microsoft.com/en-us/nuget/consume-packages/migrate-packages-config-to-package-reference>
-
-<https://stackoverflow.com/questions/24022134/how-exactly-does-the-specific-version-property-of-an-assembly-reference-work-i>
-
-<https://learn.microsoft.com/en-us/nuget/consume-packages/package-references-in-project-files#controlling-dependency-assets>
-
-### .NET Version upgrade
-
-Error: CSC : warning CS9057: The analyzer assembly 'Microsoft.CodeAnalysis.CodeStyle.dll' references version '4.11.0.0' of the compiler, which is newer than the currently running version '4.3.0.0'.
-
-- <https://stackoverflow.com/questions/77513481/net-8-build-issue-the-analyzer-assembly-references-version-4-8-0-0-of-the-co>
-- <https://stackoverflow.com/questions/76740942/how-to-fix-the-analyzer-assembly-references-version-4-7-0-0-of-the-compiler>
-- <https://learn.microsoft.com/en-us/previous-versions/visualstudio/visual-studio-2017/msbuild/how-to-use-project-sdk?view=vs-2017#how-project-sdks-are-resolved>
-
-<https://stackoverflow.com/questions/76740942/how-to-fix-the-analyzer-assembly-references-version-4-7-0-0-of-the-compiler>
-
-<https://learn.microsoft.com/en-us/dotnet/core/tools/global-json>
+**TODO**: <https://docs.microsoft.com/en-us/visualstudio/ide/step-9-try-other-features>
