@@ -2,6 +2,12 @@
 
 ## Dotnet SDK
 
+- Runtime: executes application code.
+- Libraries: provides utility functionality like JSON parsing.
+- Compiler: compiles C# (and other languages) source code into (runtime) executable code.
+- SDK and other tools: enable building and monitoring apps with modern workflows.
+- App stacks: like ASP.NET Core and Windows Forms, that enable writing apps.
+
 <https://learn.microsoft.com/en-us/dotnet/core/install/how-to-detect-installed-versions?pivots=os-windows>
 
 - `dotnet --list-sdks`
@@ -86,6 +92,7 @@ Run it:
 ```cmd
 dotnet HelloWorld.dll
 ```
+
 ### VS build
 
 <https://docs.microsoft.com/zh-CN/visualstudio/ide/get-started-with-visual-studio>
