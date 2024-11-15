@@ -632,6 +632,10 @@ MSBuild has so many weird errors!
 
 In the UT, if use Console.WriteLine, it logs in the trx.
 
+### Moq
+
+<https://brunopeeters.com/blog/moving-from-rhinomocks-to-moq/>
+
 ### Rhino mocks
 
 [src](https://hibernatingrhinos.com/oss/rhino-mocks)
