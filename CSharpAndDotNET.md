@@ -747,6 +747,10 @@ obj..Stub(serv => serv.IsLoginValid(
 .Return(false);
 ```
 
+## SDL
+
+CodeQL: <https://learn.microsoft.com/en-us/training/modules/codebase-representation-codeql/1-introduction>
+
 ## Collection
 
 ### Init a Directory
