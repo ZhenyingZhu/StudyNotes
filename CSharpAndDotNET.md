@@ -751,6 +751,8 @@ obj..Stub(serv => serv.IsLoginValid(
 
 CodeQL: <https://learn.microsoft.com/en-us/training/modules/codebase-representation-codeql/1-introduction>
 
+<https://docs.github.com/en/code-security/codeql-cli/getting-started-with-the-codeql-cli/about-the-codeql-cli>
+
 ## Collection
 
 ### Init a Directory
