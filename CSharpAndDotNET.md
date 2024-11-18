@@ -749,9 +749,15 @@ obj..Stub(serv => serv.IsLoginValid(
 
 ## SDL
 
-CodeQL: <https://learn.microsoft.com/en-us/training/modules/codebase-representation-codeql/1-introduction>
+### CodeQL
 
-<https://docs.github.com/en/code-security/codeql-cli/getting-started-with-the-codeql-cli/about-the-codeql-cli>
+[https://docs.github.com/en/code-security/code-scanning/introduction-to-code-scanning/about-code-scanning-with-codeql](Intro)
+
+- CodeQL is a programming language
+- Treat code like data. Generate a CodeQL database to represent your codebase
+- Run the CodeQL CLI directly
+
+[https://learn.microsoft.com/en-us/training/modules/codebase-representation-codeql/1-introduction](ADO Onboarding)
 
 ## Collection
 
