@@ -851,6 +851,11 @@ Azure as IaaS: gives complete control of the operating systems and the applicati
 
 <https://learn.microsoft.com/en-us/dotnet/azure/migration/app-service>
 
+### Azure features
+
+- `az feature show --name InGuestPatchVMPreview --namespace Microsoft.Compute`
+- `az feature register --name InGuestPatchVMPreview --namespace Microsoft.Compute`
+
 ### Network
 
 [What is Azure Virtual Network?](https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-overview)
