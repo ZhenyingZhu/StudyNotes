@@ -759,6 +759,10 @@ obj..Stub(serv => serv.IsLoginValid(
 
 [https://learn.microsoft.com/en-us/training/modules/codebase-representation-codeql/1-introduction](ADO Onboarding)
 
+### BinSkim
+
+<https://github.com/microsoft/binskim/blob/main/docs/UserGuide.md>
+
 ## Collection
 
 ### Init a Directory
