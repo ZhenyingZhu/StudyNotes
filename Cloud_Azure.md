@@ -891,27 +891,14 @@ Azure as IaaS: gives complete control of the operating systems and the applicati
 
 **TODO**: <https://learn.microsoft.com/en-us/azure/azure-functions/functions-networking-options?tabs=azure-portal#virtual-network-integration>
 
-Scenario:
+Terms
 
-Resource Group: OneboxVmRg-PPE
-
-KeyVault: OneboxKeyvault-PPE
-
-- Private Endpoint: OneboxKeyvault-PPEVnet
-
-Private Endpoint: OneboxKeyvault-PPEVnet
-
-App: MsodsOnebox-ppe
-
-- Outbound traffic vnet: oneboxwebsitestorageVnet/subnet1
-- Outbound DNS: Inherited (from virtual network)
-- NSG: VNet2-AzureBastionSubnet-NRMS
-
-Vnet: oneboxwebsitestorageVnet
-
-- address space: 10.9.0.0/16
-- subnet1: 10.9.1.0 - 10.9.1.255 delegated to Microsoft.Web/serverfarms
-- subnet2: 10.9.2.0 - 10.9.2.255
+- Virtual Network
+- Subnet
+- Private endpoint
+- PaaS
+- Web App
+- Private DNS zone (Private link)
 
 [Connect virtual networks](https://learn.microsoft.com/en-us/azure/virtual-network/tutorial-connect-virtual-networks-portal)
 
