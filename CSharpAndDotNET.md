@@ -632,17 +632,24 @@ MSBuild has so many weird errors!
 
 In the UT, if use Console.WriteLine, it logs in the trx.
 
-### Moq
+### Test Frameworks
+
+- [MSTest](https://learn.microsoft.com/en-us/dotnet/core/testing/unit-testing-mstest-getting-started): for running tests
+- Microsoft.NET.Test.SDK: The MSbuild targets and properties for building .NET test projects.
+
+### Mocks
+
+#### Moq
 
 <https://brunopeeters.com/blog/moving-from-rhinomocks-to-moq/>
 
-### Rhino mocks
+#### Rhino mocks
 
 [src](https://hibernatingrhinos.com/oss/rhino-mocks)
 
 [wiki](http://www.ayende.com/wiki/Rhino+Mocks.ashx?AspxAutoDetectCookieSupport=1)
 
-#### Defination
+##### Defination
 
 - Mock object
 - Interaction based testing
@@ -662,14 +669,14 @@ Stub
 - `MockRepository.GenerateStub<T>`
 - Mock the thing you are testing, Stub the thing that are just involved.
 
-#### Rhino Mock Examples
+##### Rhino Mock Examples
 
 <https://github.com/hibernating-rhinos/rhino-mocks/tree/master/Rhino.Mocks.GettingStarted>
 
 - `var foo = MockRepository.GenerateStub<IFoo>();`: Create a stub instance foo of the interface IFoo.
 - `foo.Stub(x => x.ID).Return(123);`: Set a property of the stub instance.
 
-#### Mock a method
+##### Mock a method
 
 ```C#
 class MyClass {
@@ -725,15 +732,15 @@ If not a repeat, it only call once.
 [src](https://stackoverflow.com/questions/2764929/rhino-mocks-partial-mock)
 Partial mock needs work on virtual methods.
 
-#### Create a mock object
+##### Create a mock object
 
 [src](https://stackoverflow.com/questions/7831404/can-you-explain-difference-between-strictmock-and-partialmock)
 
-#### Arg Matches
+##### Arg Matches
 
 [src](https://stackoverflow.com/questions/3520911/rhino-mocks-using-arg-matches)
 
-#### Out Parameter
+##### Out Parameter
 
 <https://en.wikibooks.org/wiki/How_to_Use_Rhino_Mocks/Out_and_Ref_Parameters>
 
