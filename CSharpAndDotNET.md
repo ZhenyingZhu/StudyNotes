@@ -636,6 +636,7 @@ In the UT, if use Console.WriteLine, it logs in the trx.
 
 - [MSTest](https://learn.microsoft.com/en-us/dotnet/core/testing/unit-testing-mstest-getting-started): for running tests
 - Microsoft.NET.Test.SDK: The MSbuild targets and properties for building .NET test projects.
+- `Microsoft.VisualStudio.TestTools.UnitTesting` has `[TestClass()]`, `[TestClassAttribute()]`, `[TestClass]`, `[TestClassAttribute]`
 
 ### Mocks
 
