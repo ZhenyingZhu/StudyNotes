@@ -10,6 +10,8 @@
 
 [Java bean vs POJO vs Spring bean](http://www.shaunabram.com/beans-vs-pojos/)
 
+spring vs. spring boot
+
 ## Prerequist
 
 1. [SDKMAN!](http://sdkman.io/install.html)
