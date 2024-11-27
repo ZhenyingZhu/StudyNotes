@@ -738,6 +738,11 @@ Partial mock needs work on virtual methods.
 
 [src](https://stackoverflow.com/questions/7831404/can-you-explain-difference-between-strictmock-and-partialmock)
 
+```C#
+var mock = MockRepository.GenerateStrictMock<IMyService>();
+mock.Expect(x => x.SomeMethod()).Return("ExpectedResult");
+```
+
 ##### Arg Matches
 
 [src](https://stackoverflow.com/questions/3520911/rhino-mocks-using-arg-matches)
