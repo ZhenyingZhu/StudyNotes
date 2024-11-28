@@ -851,6 +851,10 @@ Azure as IaaS: gives complete control of the operating systems and the applicati
 
 <https://learn.microsoft.com/en-us/dotnet/azure/migration/app-service>
 
+### Azure resources
+
+<https://stackoverflow.com/questions/49864953/can-azure-cli-get-a-list-of-all-resources-running-in-a-tenant>
+
 ### Azure features
 
 - `az feature show --name InGuestPatchVMPreview --namespace Microsoft.Compute`
