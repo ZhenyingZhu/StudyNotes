@@ -895,7 +895,7 @@ Azure as IaaS: gives complete control of the operating systems and the applicati
 
 **TODO**: <https://learn.microsoft.com/en-us/azure/azure-functions/functions-networking-options?tabs=azure-portal#virtual-network-integration>
 
-
+Web app inbound traffic: the public IP.
 
 Terms
 
