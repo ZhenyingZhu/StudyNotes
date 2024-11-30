@@ -897,6 +897,8 @@ Azure as IaaS: gives complete control of the operating systems and the applicati
 
 Web app inbound traffic: the public IP.
 
+The different regions need different Vnets.
+
 Terms
 
 - Virtual Network
