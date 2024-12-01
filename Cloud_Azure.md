@@ -899,6 +899,8 @@ Web app inbound traffic: the public IP.
 
 The different regions need different Vnets.
 
+Storage account access need retest
+
 Terms
 
 - Virtual Network
