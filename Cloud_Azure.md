@@ -1622,3 +1622,7 @@ Create ADO pipeline
 ### Event Grid
 
 <https://learn.microsoft.com/en-us/azure/event-grid/overview>
+
+## Temp
+
+Private endpoint needs to associate with a private link. Each PE can connect to the private link only in one resource group, because the ip can conflict.
