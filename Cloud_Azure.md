@@ -899,7 +899,7 @@ Web app inbound traffic: the public IP.
 
 The different regions need different Vnets.
 
-Storage account access need retest
+Logic app has connections but not have outbound traffic.
 
 Terms
 
