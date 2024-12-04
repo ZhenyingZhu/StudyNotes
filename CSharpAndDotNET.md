@@ -1369,3 +1369,7 @@ configVal = ConfigurationManager.AppSettings["key"].Value;
 Add an event for a component and create an event handler.
 
 **TODO**: <https://docs.microsoft.com/en-us/visualstudio/ide/step-9-try-other-features>
+
+### HTTP Client
+
+Http binding can config timeouts.
