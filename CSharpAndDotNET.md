@@ -632,6 +632,8 @@ MSBuild has so many weird errors!
 
 In the UT, if use Console.WriteLine, it logs in the trx.
 
+Use `<SignAssembly>true</SignAssembly>` can sign artifacts
+
 ### Test Frameworks
 
 - [MSTest](https://learn.microsoft.com/en-us/dotnet/core/testing/unit-testing-mstest-getting-started): for running tests
