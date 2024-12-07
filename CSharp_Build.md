@@ -338,3 +338,9 @@ It is under `C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.6.
 
 - `IncludeAssets` attribute specifies which assets belonging to the package specified by `<PackageReference>` should be consumed. By default, all package assets are included.
 - `PrivateAssets` attribute specifies which assets belonging to the package specified by `<PackageReference>` should be consumed but not flow to the next project. The Analyzers, Build and ContentFiles assets are private by default when this attribute is not present. But with it, the DLLs are not auto copied to the output folder so cannot be referenced.
+
+### GlobalPackageReference
+
+```xml
+<GlobalPackageReference Include="PRSSign" Version="1.0.109" GeneratePathProperty="true" PrivateAssets="All" Condition="'$(EnableCodeSign)' != 'false'" />
+```
