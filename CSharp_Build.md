@@ -344,3 +344,7 @@ It is under `C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.6.
 ```xml
 <GlobalPackageReference Include="PRSSign" Version="1.0.109" GeneratePathProperty="true" PrivateAssets="All" Condition="'$(EnableCodeSign)' != 'false'" />
 ```
+
+### AspNetCompiler
+
+<https://learn.microsoft.com/en-us/previous-versions/aspnet/ms227972(v=vs.100)>
