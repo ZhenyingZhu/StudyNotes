@@ -64,6 +64,8 @@ class Utils:
                 ssl._create_default_https_context = ssl._create_unverified_context
 
             local_filename, headers = urllib.request.urlretrieve(pic_url)
+            if os.path.exists(save_position):
+                save_position = os.path.normpath(os.path.join(base_save_path, "dup" + filename))
             shutil.move(local_filename, save_position)
             
             return True
