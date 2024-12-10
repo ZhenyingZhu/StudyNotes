@@ -51,7 +51,7 @@ class Crawler:
         try:
             # Doesn't work when there is a warning message. In this case pass in "/?nw=always" to the end of the url
             # gdtm_class = re.findall('div class="gdt(.*?)</a>', main_html_page)[0]
-            gdtm_class = re.findall('class="gt200">(.*?)<', main_html_page)[0]
+            gdtm_class = re.findall('class="gt200">(.*)<', main_html_page)[0]
             first_page_url = re.findall('<a href="(.*?)">', gdtm_class)[0]
             return first_page_url
         except IndexError:
