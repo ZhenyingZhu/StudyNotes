@@ -1375,3 +1375,7 @@ Add an event for a component and create an event handler.
 ### HTTP Client
 
 Http binding can config timeouts.
+
+### Targets
+
+`Import project="my.targets"`
