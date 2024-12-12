@@ -227,7 +227,7 @@ Azure authentication methods
 
 - authN methods: standard passwords, single sign-on (SSO), multifactor authentication (MFA), and passwordless
 - SSO: only as secure as the initial authenticator
-- MFA: authenticate elements fall into three categories: knows, has, is
+- MFA: authenticate elements fall into three categories: knows, has, is [Tutorial: Secure user sign-in events with Microsoft Entra multifactor authentication](https://learn.microsoft.com/en-us/entra/identity/authentication/tutorial-enable-azure-mfa)
 - Passwordless: a device associated with an ID, plus knows and is.
 
 External identities
@@ -894,6 +894,8 @@ Azure as IaaS: gives complete control of the operating systems and the applicati
 - storage add Firewall limit network access from internet
 
 **TODO**: <https://learn.microsoft.com/en-us/azure/azure-functions/functions-networking-options?tabs=azure-portal#virtual-network-integration>
+
+<https://learn.microsoft.com/en-us/azure/network-watcher/traffic-analytics>
 
 Web app inbound traffic: the public IP.
 
