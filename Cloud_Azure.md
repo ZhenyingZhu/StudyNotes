@@ -1013,6 +1013,8 @@ Terms
 
 <https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/azure-best-practices/perimeter-networks>
 
+<https://learn.microsoft.com/en-us/azure/network-watcher/nsg-flow-logs-overview>
+
 ### Service Tags
 
 <https://learn.microsoft.com/en-us/azure/virtual-network/service-tags-overview>
