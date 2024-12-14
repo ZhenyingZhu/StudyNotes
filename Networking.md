@@ -763,3 +763,7 @@ Fiddler decrept HTTPS traffic:
 linux ephemeral ips
 
 [Route table](https://www.howtogeek.com/22/adding-a-tcpip-route-to-the-windows-routing-table/)
+
+<https://communityforums.atmeta.com/t5/Get-Help/My-Oculus-Quest-2-won-t-connect-to-my-5GHz-wifi/td-p/1117790>
+
+- Wifi 6 frequency can causing Quest 2 not working
