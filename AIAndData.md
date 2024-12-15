@@ -66,3 +66,7 @@ void reducer(int nodeID, Iterator<string> nodeStructs, OutputCollector<int, stri
 ### Spark
 
 <https://timilearning.com/posts/mit-6.824/lecture-15-spark/>
+
+## Chat GPT
+
+<https://platform.openai.com/docs/quickstart>
