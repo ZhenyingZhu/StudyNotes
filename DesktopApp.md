@@ -29,3 +29,7 @@ Reset OneDrive: <https://support.microsoft.com/en-us/office/reset-onedrive-34701
 ### [OneDrive Explorer](https://github.com/OneDrive/onedrive-sample-apibrowser-dotnet)
 
 `OneDriveApiBrowser\FormBrowser.cs` simpleUploadToolStripMenuItem_Click contains the logic to upload a file.
+
+## Windows download symlinks
+
+<https://stackoverflow.com/questions/229643/how-do-i-overcome-the-the-symbolic-link-cannot-be-followed-because-its-type-is/>
