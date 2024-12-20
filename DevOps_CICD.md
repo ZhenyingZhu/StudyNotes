@@ -9,3 +9,5 @@
 <https://www.jenkins.io/doc/book/getting-started/>
 
 - Blue Ocean as it stands provides easy-to-use Pipeline visualization
+
+<https://www.jenkins.io/doc/book/pipeline/>
