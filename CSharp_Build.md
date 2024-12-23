@@ -114,6 +114,8 @@ Change the build configuration from Debug to Release, then build solution.
 
 <https://learn.microsoft.com/en-us/visualstudio/msbuild/msbuild?view=vs-2022>
 
+<https://www.pluralsight.com/courses/msbuild>
+
 [Doc](https://docs.microsoft.com/en-us/visualstudio/msbuild/msbuild-concepts?view=vs-2019)
 
 - Property: key/value pairs to config build
