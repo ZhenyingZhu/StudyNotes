@@ -110,6 +110,10 @@ If tests failed. Check if the arch is changed to x64
 
 Change the build configuration from Debug to Release, then build solution.
 
+<https://learn.microsoft.com/en-us/visualstudio/ide/msbuild-logs?view=vs-2022>
+
+- the [Project System Tools](https://github.com/dotnet/project-system-tools) can see build logs.
+
 ## MSBuild
 
 <https://learn.microsoft.com/en-us/visualstudio/msbuild/msbuild?view=vs-2022>
