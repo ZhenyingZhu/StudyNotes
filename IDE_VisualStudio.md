@@ -10,6 +10,10 @@ See CPP.md, CSharp.md and Database.md
 
 <https://code.visualstudio.com/docs/csharp/testing>
 
+Open with VS Code
+
+- <https://stackoverflow.com/questions/64461301/open-folder-in-vs-code-from-windows-explorer>
+
 ## VS tutorial
 
 [Visual Studio](https://docs.microsoft.com/en-us/dotnet/articles/csharp/getting-started/with-visual-studio)
