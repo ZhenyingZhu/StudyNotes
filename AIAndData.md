@@ -70,3 +70,9 @@ void reducer(int nodeID, Iterator<string> nodeStructs, OutputCollector<int, stri
 ## Chat GPT
 
 <https://platform.openai.com/docs/quickstart>
+
+## Github Copilot
+
+<https://github.com/features/copilot>
+
+- /tests Generate unit tests for this function. Validate both success and failure, and include edge cases.
