@@ -13,6 +13,10 @@ See CPP.md, CSharp.md and Database.md
 Open with VS Code
 
 - <https://stackoverflow.com/questions/64461301/open-folder-in-vs-code-from-windows-explorer>
+- [HKEY_CLASSES_ROOT\Directory\shell\VSCode]
+- [HKEY_CLASSES_ROOT\Directory\shell\VSCode\command]
+- [HKEY_CLASSES_ROOT\Directory\background\shell\VSCode]
+- [HKEY_CLASSES_ROOT\Directory\background\shell\VSCode\command]
 
 ## VS tutorial
 
