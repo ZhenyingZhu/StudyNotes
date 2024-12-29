@@ -10,13 +10,17 @@ See CPP.md, CSharp.md and Database.md
 
 <https://code.visualstudio.com/docs/csharp/testing>
 
-Open with VS Code
+[Open with VS Code](https://stackoverflow.com/questions/64461301/open-folder-in-vs-code-from-windows-explorer)
 
-- <https://stackoverflow.com/questions/64461301/open-folder-in-vs-code-from-windows-explorer>
-- [HKEY_CLASSES_ROOT\Directory\shell\VSCode]
-- [HKEY_CLASSES_ROOT\Directory\shell\VSCode\command]
-- [HKEY_CLASSES_ROOT\Directory\background\shell\VSCode]
-- [HKEY_CLASSES_ROOT\Directory\background\shell\VSCode\command]
+- `[HKEY_CLASSES_ROOT\Directory\shell\VSCode]`: defines the display name and the icon when click a directory
+- `[HKEY_CLASSES_ROOT\Directory\shell\VSCode\command]`: the command
+- `[HKEY_CLASSES_ROOT\Directory\background\shell\VSCode]`: when click the background
+- `[HKEY_CLASSES_ROOT\Directory\background\shell\VSCode\command]`
+
+```Powershell
+$registryKeyPath = "HKEY_CLASSES_ROOT\Directory\shell\VSCode\command"
+REG EXPORT $registryKeyPath C:\val.txt /reg:64
+```
 
 ## VS tutorial
 
