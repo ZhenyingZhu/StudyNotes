@@ -113,4 +113,5 @@ Fix: <https://gist.github.com/daopk/0a95772d582cafb202142ff7871da2fc>
 
 ## CRLF cannot commit
 
-<https://stackoverflow.com/questions/15467507/trying-to-commit-git-files-but-getting-fatal-lf-would-be-replaced-by-crlf-in>
+- <https://stackoverflow.com/questions/15467507/trying-to-commit-git-files-but-getting-fatal-lf-would-be-replaced-by-crlf-in>
+- `git config core.safecrlf false`
