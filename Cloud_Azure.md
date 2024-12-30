@@ -1092,6 +1092,10 @@ Then use `Convert.ToBase64String(byte[])` to create the message, and `byte[] mes
 
 <https://learn.microsoft.com/en-us/azure/role-based-access-control/role-assignments-cli>
 
+### Storage Account
+
+<https://learn.microsoft.com/en-us/azure/frontdoor/migrate-cdn-to-front-door>
+
 ### Azure Key Vault
 
 <https://learn.microsoft.com/en-us/azure/key-vault/general/tutorial-net-create-vault-azure-web-app>
