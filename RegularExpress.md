@@ -112,3 +112,9 @@ e.g. `This is a <EM>first</EM> test`
 ### Not start with a sequence
 
 <https://stackoverflow.com/questions/899422/regular-expression-for-a-string-that-does-not-start-with-a-sequence>
+
+### Replace
+
+<https://stackoverflow.com/questions/14458160/while-replacing-using-regex-how-to-keep-a-part-of-matched-string>
+
+- Use () to find the string not to replace and $1 to keep the value
