@@ -1379,3 +1379,7 @@ Http binding can config timeouts.
 ### Targets
 
 `Import project="my.targets"`
+
+### Type Initialize Exception
+
+See if in the ctor/fields there is a property inited.
