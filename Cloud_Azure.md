@@ -1015,6 +1015,12 @@ Terms
 
 <https://learn.microsoft.com/en-us/azure/network-watcher/nsg-flow-logs-overview>
 
+### Azure Front Door
+
+<https://learn.microsoft.com/en-us/azure/frontdoor/front-door-overview>
+
+- anycast network
+
 ### Service Tags
 
 <https://learn.microsoft.com/en-us/azure/virtual-network/service-tags-overview>
