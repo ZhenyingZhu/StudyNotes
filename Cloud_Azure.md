@@ -1020,6 +1020,7 @@ Terms
 <https://learn.microsoft.com/en-us/azure/frontdoor/front-door-overview>
 
 - anycast network
+- Need get DNS record approved
 
 ### Service Tags
 
