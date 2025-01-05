@@ -80,3 +80,10 @@ How to install java
 
 - but can install 21
 
+Install web browser
+
+`sudo apt install chromium-browser`
+
+Install VS code
+
+<https://code.visualstudio.com/docs/setup/linux>
