@@ -87,3 +87,7 @@ Install web browser
 Install VS code
 
 <https://code.visualstudio.com/docs/setup/linux>
+
+For Virtual box
+
+<https://askubuntu.com/questions/661414/how-to-install-virtualbox-extension-pack>
