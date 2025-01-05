@@ -70,5 +70,13 @@ How to install language
 How to config RDP
 
 <https://learn.microsoft.com/en-us/azure/virtual-machines/linux/use-remote-desktop?tabs=azure-cli>
+<https://askubuntu.com/questions/1308551/xrdp-disconnects-immediately-after-correct-credentials>
 
-Don't need to use SSH Key. Just ssh username@ip address with the password works.
+- Don't need to use SSH Key. Just ssh username@ip address with the password works.
+
+How to install java
+
+<https://linuxcapable.com/how-to-install-openjdk-17-on-ubuntu-linux/>
+
+- but can install 21
+
