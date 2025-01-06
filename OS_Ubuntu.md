@@ -91,3 +91,15 @@ Install VS code
 For Virtual box
 
 <https://askubuntu.com/questions/661414/how-to-install-virtualbox-extension-pack>
+
+<https://superuser.com/questions/42134/how-do-i-enable-the-shared-clipboard-in-virtualbox>
+
+- Run as software
+
+<https://superuser.com/questions/1318231/why-doesnt-clipboard-sharing-work-with-ubuntu-18-04-lts-inside-virtualbox-5-1-2>
+
+Default username: vboxuser, changeme
+
+Install Wine
+
+<https://phoenixnap.com/kb/how-to-install-wine-on-ubuntu>
