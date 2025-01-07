@@ -1641,3 +1641,5 @@ Create ADO pipeline
 ## Temp
 
 Private endpoint needs to associate with a private link. Each PE can connect to the private link only in one resource group, because the ip can conflict.
+
+VMSS: <https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-deploy-app>
