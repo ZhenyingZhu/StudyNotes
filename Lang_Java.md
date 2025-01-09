@@ -270,3 +270,7 @@ When there could be multiple session objects are created by the same session fac
 Compile 2 linked files:
 
 - <https://stackoverflow.com/questions/29412502/how-do-i-link-to-classes-together-on-java>
+
+# Java unsigned int
+
+<https://stackoverflow.com/questions/9854166/declaring-an-unsigned-int-in-java>
