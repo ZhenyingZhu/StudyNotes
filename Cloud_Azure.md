@@ -1645,3 +1645,4 @@ Private endpoint needs to associate with a private link. Each PE can connect to 
 VMSS: <https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-deploy-app>
 
 - Need to use the same image and password
+- the image needs to be standard
