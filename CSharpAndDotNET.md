@@ -779,6 +779,8 @@ obj..Stub(serv => serv.IsLoginValid(
 
 <https://github.com/microsoft/binskim/blob/main/docs/UserGuide.md>
 
+<https://learn.microsoft.com/en-us/azure/defender-for-cloud/azure-devops-extension>
+
 ## Collection
 
 ### Init a Directory
