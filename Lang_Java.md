@@ -271,6 +271,10 @@ Compile 2 linked files:
 
 - <https://stackoverflow.com/questions/29412502/how-do-i-link-to-classes-together-on-java>
 
+```bash
+javac <file1>.java <file2>.java
+```
+
 # Java unsigned int
 
 <https://stackoverflow.com/questions/9854166/declaring-an-unsigned-int-in-java>
