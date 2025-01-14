@@ -1646,3 +1646,5 @@ VMSS: <https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtua
 
 - Need to use the same image and password
 - the image needs to be standard
+
+Cert id: <https://trainingsupport.microsoft.com/en-us/mcp/forum/all/credential-id-or-certification-number>
