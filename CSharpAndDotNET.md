@@ -1392,6 +1392,10 @@ StringUtil cannot be found in "System.Web": due to not using NewtonSoft.
 
 ## Visual Studio skip build non-changed projects
 
+Turn on build log Level
+
+- Tools > Options > Projects and Solutions > Build and Run > MSBuild project build log file verborsity
+
 <https://stackoverflow.com/questions/71038929/preventing-vs-2019-from-rebuilding-a-solution-though-no-source-has-changed>
 
 <https://stackoverflow.com/questions/14916729/visual-studio-rebuilds-unmodified-projects>
