@@ -1400,4 +1400,6 @@ Turn on build log Level
 
 <https://stackoverflow.com/questions/14916729/visual-studio-rebuilds-unmodified-projects>
 
+- Looking for log `Input file "Program.cs" is newer than output file "obj\Debug\net8.0\ParentConsoleApp.pdb".`
+
 <https://developercommunity.visualstudio.com/t/there-is-no-easy-way-to-tell-why-a-project-rebuild/185102>
