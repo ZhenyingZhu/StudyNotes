@@ -1389,17 +1389,3 @@ See if in the ctor/fields there is a property inited.
 ### Json util errors
 
 StringUtil cannot be found in "System.Web": due to not using NewtonSoft.
-
-## Visual Studio skip build non-changed projects
-
-Turn on build log Level
-
-- Tools > Options > Projects and Solutions > Build and Run > MSBuild project build log file verborsity
-
-<https://stackoverflow.com/questions/71038929/preventing-vs-2019-from-rebuilding-a-solution-though-no-source-has-changed>
-
-<https://stackoverflow.com/questions/14916729/visual-studio-rebuilds-unmodified-projects>
-
-- Looking for log `Input file "Program.cs" is newer than output file "obj\Debug\net8.0\ParentConsoleApp.pdb".`
-
-<https://developercommunity.visualstudio.com/t/there-is-no-easy-way-to-tell-why-a-project-rebuild/185102>

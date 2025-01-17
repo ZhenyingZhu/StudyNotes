@@ -88,3 +88,23 @@ Reshapper plugin: for stycop tool
 `PATH=.\node_modules\.bin;C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\MSBuild\Microsoft\VisualStudio\NodeJs\win-x64;C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\MSBuild\Microsoft\VisualStudio\NodeJs;C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\Web\External;%PATH%;C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\CommonExtensions\Microsoft\TeamFoundation\Team Explorer\Git\cmd;C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\CommonExtensions\Microsoft\TeamFoundation\Team Explorer\Git\mingw32\bin`
 
 "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\MSBuild\Microsoft\VisualStudio\NodeJs\npm.CMD" install
+
+## Troubleshooting
+
+If build failed but the log doesn't help, try to use the Tools -> Command Line -> Developer Command Prompt to build the project.
+
+### Visual Studio skip building non-changed projects
+
+Turn on build log Level
+
+- Tools > Options > Projects and Solutions > Build and Run > MSBuild project build log file verborsity
+
+<https://stackoverflow.com/questions/71038929/preventing-vs-2019-from-rebuilding-a-solution-though-no-source-has-changed>
+
+<https://stackoverflow.com/questions/14916729/visual-studio-rebuilds-unmodified-projects>
+
+- Looking for log `Input file "Program.cs" is newer than output file "obj\Debug\net8.0\ParentConsoleApp.pdb".`
+
+<https://developercommunity.visualstudio.com/t/there-is-no-easy-way-to-tell-why-a-project-rebuild/185102>
+
+<https://stackoverflow.com/questions/1480008/why-does-vs-have-to-rebuild-all-of-my-projects-every-time-i-hit-play>
