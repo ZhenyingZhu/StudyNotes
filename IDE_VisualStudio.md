@@ -108,3 +108,7 @@ Turn on build log Level
 <https://developercommunity.visualstudio.com/t/there-is-no-easy-way-to-tell-why-a-project-rebuild/185102>
 
 <https://stackoverflow.com/questions/1480008/why-does-vs-have-to-rebuild-all-of-my-projects-every-time-i-hit-play>
+
+### Bad Image
+
+Needs to unselect perfer 32 bit.
