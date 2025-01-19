@@ -1389,3 +1389,7 @@ See if in the ctor/fields there is a property inited.
 ### Json util errors
 
 StringUtil cannot be found in "System.Web": due to not using NewtonSoft.
+
+## CoreXT
+
+<https://imperfect.work/2022/06/17/corext-package-management/>
