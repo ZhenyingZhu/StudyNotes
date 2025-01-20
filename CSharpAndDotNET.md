@@ -1393,3 +1393,5 @@ StringUtil cannot be found in "System.Web": due to not using NewtonSoft.
 ## CoreXT
 
 <https://imperfect.work/2022/06/17/corext-package-management/>
+
+<https://github.com/NuGet/Home/issues/9314>
