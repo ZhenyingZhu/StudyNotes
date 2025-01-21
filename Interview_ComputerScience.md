@@ -47,6 +47,8 @@ Recursion
 - O(n) space where n is the depth of the recursive call
 - can be implmented iteratively
 
+Lexicographical order vs. numerical order
+
 ### Linked Lists
 
 Singly vs. doubly linked list
