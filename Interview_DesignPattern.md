@@ -1,15 +1,17 @@
 # Design pattern
+
 [Intro](https://en.wikipedia.org/wiki/Software_design_pattern)
 
+## Creational patterns
 
 ### Messaging pattern
+
 Use a communication protocol to establish a communication channel between two different parts of a message passing system
 
 - reuqest-response pattern
 - one-way pattern
 
 SOAP(Simple Object Access protocol)
-
 
 ### Observer pattern
 - subject maintains a list of dependents/observers
