@@ -4,6 +4,28 @@
 
 ## Creational patterns
 
+### Abstract factory
+
+### Builder
+
+### Dependency Injection
+
+### Factory method
+
+### Lazy initialization
+
+### Multiton
+
+### Object pool
+
+### Prototype
+
+### Resource acquisition is initialization (RAII)
+
+### Singleton
+
+## Structural patterns
+
 ### Messaging pattern
 
 Use a communication protocol to establish a communication channel between two different parts of a message passing system
