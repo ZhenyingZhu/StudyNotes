@@ -26,6 +26,33 @@
 
 ## Structural patterns
 
+### Adapter, Wrapper, or Translator
+
+### Bridge
+
+### Composite
+
+### Decorator
+
+### Delegation
+
+### Extension object
+
+### Facade
+
+### Flyweight
+
+### Front controller
+
+### Marker
+
+### Module
+
+### Proxy
+
+### Twin
+
+
 ### Messaging pattern
 
 Use a communication protocol to establish a communication channel between two different parts of a message passing system
