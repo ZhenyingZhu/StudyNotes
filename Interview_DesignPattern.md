@@ -52,24 +52,32 @@
 
 ### Twin
 
+## Behavioral patterns
 
-### Messaging pattern
+### Blackboard
 
-Use a communication protocol to establish a communication channel between two different parts of a message passing system
+### Chain of responsibility
 
-- reuqest-response pattern
-- one-way pattern
+### Command
 
-SOAP(Simple Object Access protocol)
+### Fluent interface
 
-### Observer pattern
+### Interpreter
+
+### Iterator
+
+### Mediator
+
+### Memento
+
+### Null object
+
+### Observer or Publish/subscribe
 
 - subject maintains a list of dependents/observers
 - subject notifies observers when state changes
 - used to implement distributed event handling system
 - a key part in the familiar MVC(model-view-controller) architectural pattern
-
-### Pub/sub pattern
 
 [src](https://en.wikipedia.org/wiki/Publish%E2%80%93subscribe_pattern)
 
@@ -89,12 +97,73 @@ topologies
 - subscribers register subscriptions with the broker
 - broker perform the filtering. It have a store and forward function and prioritize messages
 
+Use a communication protocol to establish a communication channel between two different parts of a message passing system
+
+- reuqest-response pattern
+- one-way pattern
+
+SOAP(Simple Object Access protocol)
+
 #### Event bus
 
 One of publish/subscribe pattern.
 
 [src](http://timnew.me/blog/2014/12/06/typical-eventbus-design-patterns/)
 enable message to be delivered between components without requiring the components to register itself to others.
+
+### Servant
+
+### Specification
+
+### State
+
+### Strategy
+
+### Template method
+
+### Visitor
+
+## Concurrency patterns
+
+### Active Object
+
+### Balking
+
+### Binding properties
+
+### Compute kernel
+
+### Double-checked locking
+
+### Event-based asynchronous
+
+### Guarded suspension
+
+### Join
+
+### Lock
+
+### Messaging design pattern (MDP)
+
+### Monitor object
+
+### Reactor
+
+### Read-write lock
+
+### Scheduler
+
+### Service handler pattern
+
+### Thread pool
+
+### Thread-specific storage
+
+### Safe Concurrency with Exclusive Ownership
+
+### CPU atomic operation
+
+# Old notes
 
 ### Producer-consumer
 
