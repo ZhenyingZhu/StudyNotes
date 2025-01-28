@@ -1395,3 +1395,14 @@ StringUtil cannot be found in "System.Web": due to not using NewtonSoft.
 <https://imperfect.work/2022/06/17/corext-package-management/>
 
 <https://github.com/NuGet/Home/issues/9314>
+
+## NuProj vs. csproj
+
+<https://learn.microsoft.com/en-us/nuget/reference/msbuild-targets>
+
+```xml
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageOutputPath>$(BinariesDirectory)\packages\</PackageOutputPath>
+    <NuspecFile>package.nuspec</NuspecFile>
+    <NuspecProperties>$(NuspecProperties);pkgversion=$(BuildVersion);servicebinpath=$(ServiceBinPath)</NuspecProperties>
+```
