@@ -1406,3 +1406,5 @@ StringUtil cannot be found in "System.Web": due to not using NewtonSoft.
     <NuspecFile>package.nuspec</NuspecFile>
     <NuspecProperties>$(NuspecProperties);pkgversion=$(BuildVersion);servicebinpath=$(ServiceBinPath)</NuspecProperties>
 ```
+
+`msbuild -t:pack`
