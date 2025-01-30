@@ -163,7 +163,7 @@ enable message to be delivered between components without requiring the componen
 
 ### CPU atomic operation
 
-# Old notes
+## Old notes
 
 ### Producer-consumer
 
