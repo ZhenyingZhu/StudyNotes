@@ -1648,3 +1648,5 @@ VMSS: <https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtua
 - the image needs to be standard
 
 Cert id: <https://trainingsupport.microsoft.com/en-us/mcp/forum/all/credential-id-or-certification-number>
+
+<https://learn.microsoft.com/en-us/azure/event-hubs/overview-emulator>
