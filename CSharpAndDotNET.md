@@ -1396,6 +1396,8 @@ StringUtil cannot be found in "System.Web": due to not using NewtonSoft.
 
 <https://github.com/NuGet/Home/issues/9314>
 
+An NET SDK project reference a CoreXT project is fine. If a CoreXT project reference a NET SDK project, the SDK project won't restore.
+
 ## NuProj vs. csproj
 
 <https://learn.microsoft.com/en-us/nuget/reference/msbuild-targets>
@@ -1408,3 +1410,9 @@ StringUtil cannot be found in "System.Web": due to not using NewtonSoft.
 ```
 
 `msbuild -t:pack`
+
+`dotnet pack --no-build`
+
+## Docfx
+
+<https://dotnet.github.io/docfx/?WT.mc_id=ondotnet-c9-cephilli>
