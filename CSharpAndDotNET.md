@@ -1413,6 +1413,8 @@ An NET SDK project reference a CoreXT project is fine. If a CoreXT project refer
 
 `dotnet pack --no-build`
 
+<https://learn.microsoft.com/en-us/dotnet/core/project-sdk/overview>
+
 ## Docfx
 
 <https://dotnet.github.io/docfx/?WT.mc_id=ondotnet-c9-cephilli>
