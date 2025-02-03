@@ -4846,6 +4846,8 @@ twitter snowflake approach
 
 ### Ch8: Design a url shortener
 
+Review: 2/2/2025
+
 Requirements
 
 - QPS: 100M URLs generated per day
