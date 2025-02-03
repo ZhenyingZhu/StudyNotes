@@ -4846,17 +4846,31 @@ twitter snowflake approach
 
 ### Ch8: Design a url shortener
 
+Review: 2/2/2025
+
 Requirements
 
 - QPS: 100M URLs generated per day
 - Read QPS: 10 times of write
 - shortened URLs don't delete or update
 - Run for 10 years, avg URL len is 100.
+- R/W ratio: 10:1.
 
 APIs
 
 - POST `api/v1/data/shorten`
 - GET `api/v1/shortUrl`
+- Use 301 to redirect URL. 301 vs. 302: permanently or temporarily meaning can cache or not.
+
+Data model
+
+- SQL table: id (auto inc), short url, long url
+
+Hash
+
+- 0-9a-zA-Z in total 62. 62^n >= 365 billion.
+- opt1: CRC32/MD5/SHA-1. Use bloom filter to detect if collsion, and append some pre-defined chars.
+- opt2: base 62 conversion. Need a uniq id generator. Security concern: can guess the next one.
 
 ## System Design Interview The Big Archive
 
