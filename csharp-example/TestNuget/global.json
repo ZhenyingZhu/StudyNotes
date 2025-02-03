@@ -1,0 +1,11 @@
+{
+    "sdk": {
+      "version": "8.0.405",
+      "rollforward": "major"
+    },
+    "msbuild-sdks": {
+        "Microsoft.Build.NoTargets": "3.5.6",
+        "Microsoft.Build.Traversal": "3.2.0"
+    }
+  }
+  

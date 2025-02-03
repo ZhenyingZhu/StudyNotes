@@ -1389,38 +1389,3 @@ See if in the ctor/fields there is a property inited.
 ### Json util errors
 
 StringUtil cannot be found in "System.Web": due to not using NewtonSoft.
-
-## CoreXT
-
-<https://imperfect.work/2022/06/17/corext-package-management/>
-
-<https://github.com/NuGet/Home/issues/9314>
-
-An NET SDK project reference a CoreXT project is fine. If a CoreXT project reference a NET SDK project, the SDK project won't restore.
-
-## NuProj vs. csproj
-
-<https://learn.microsoft.com/en-us/nuget/reference/msbuild-targets>
-
-```xml
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageOutputPath>$(BinariesDirectory)\packages\</PackageOutputPath>
-    <NuspecFile>package.nuspec</NuspecFile>
-    <NuspecProperties>$(NuspecProperties);pkgversion=$(BuildVersion);servicebinpath=$(ServiceBinPath)</NuspecProperties>
-```
-
-`msbuild -t:pack`
-
-`dotnet pack --no-build`
-
-<https://learn.microsoft.com/en-us/dotnet/core/project-sdk/overview>
-
-## Docfx
-
-<https://dotnet.github.io/docfx/?WT.mc_id=ondotnet-c9-cephilli>
-
-<https://learn.microsoft.com/en-us/dotnet/core/versions/selection>
-<https://stackoverflow.com/questions/42077229/switch-between-dotnet-core-sdk-versions>
-
-- `dotnet --info`
-- `dotnet new globaljson --sdk-version 8.0.405 --force`

@@ -2,11 +2,11 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="TestNugetLibZhenying" Version="1.0.0" />
+    <PackageReference Include="TestNugetLibPackage" Version="1.0.1" />
   </ItemGroup>
 
 </Project>

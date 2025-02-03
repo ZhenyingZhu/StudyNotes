@@ -42,6 +42,23 @@ To upgrade, can use the upgrade assistant:
 
 <https://stackoverflow.com/questions/46709000/disable-transitive-project-reference-in-net-standard-2>
 
+If no DLLs to build: <https://github.com/microsoft/MSBuildSdks/blob/main/src/NoTargets/README.md>
+
+To use those SDKs, the global.json needs to have
+
+```json
+{
+    "sdk": {
+      "version": "8.0.405",
+      "rollforward": "major"
+    },
+    "msbuild-sdks": {
+        "Microsoft.Build.NoTargets": "3.5.6",
+        "Microsoft.Build.Traversal": "3.2.0"
+    }
+  }
+```
+
 <https://dansiegel.net/post/2018/08/21/demystifying-the-sdk-project>
 
 - Release builds need to be optimized, while Debug configurations need all of our debug symbols
@@ -58,18 +75,6 @@ To upgrade, can use the upgrade assistant:
 ### DLL Binding Redirect AutoUnify
 
 <https://stackoverflow.com/questions/33256071/what-is-autounify-and-why-is-it-causing-working-tests-to-fail-in-tfs-2015>
-
-### Nuget path
-
-<https://learn.microsoft.com/en-us/nuget/consume-packages/package-references-in-project-files#generatepathproperty>
-
-<https://learn.microsoft.com/en-us/nuget/consume-packages/package-references-in-project-files>
-
-<https://learn.microsoft.com/en-us/nuget/consume-packages/migrate-packages-config-to-package-reference>
-
-<https://stackoverflow.com/questions/24022134/how-exactly-does-the-specific-version-property-of-an-assembly-reference-work-i>
-
-<https://learn.microsoft.com/en-us/nuget/consume-packages/package-references-in-project-files#controlling-dependency-assets>
 
 ### .NET Version upgrade
 
@@ -263,6 +268,83 @@ Using the GeneratePackageOnBuild is better than nuproj/nuspec
 
 `dotnet add package {package}` can either add a new package or upgrade the package version.
 
+### Local testing
+
+Created a Nuget source/feed foo.bar: `nuget sources add -name foo.bar -source C:\NuGet\local -username foo -password bar -StorePasswordInClearText -configfile Nuget.config`
+
+Save it in a NuGet.config file and place it under the project folders using the source/feed.
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <packageSources>
+    <add key="foo.bar" value="C:\NuGet\local" />
+  </packageSources>
+  <packageSourceCredentials>
+    <foo.bar>
+        <add key="Username" value="foo" />
+        <add key="ClearTextPassword" value="bar" />
+      </foo.bar>
+  </packageSourceCredentials>
+</configuration>
+```
+
+Build the project with retail and then publish the package [doc](https://learn.microsoft.com/en-us/azure/devops/artifacts/nuget/publish?view=azure-devops):
+
+```powershell
+dotnet pack
+dotnet nuget push --source foo.bar --api-key az <package-path>
+# or
+nuget add .\bin\Release\TestNugetLibPackage.1.0.1.nupkg -source C:\NuGet\local
+```
+
+Find all the packages used in a project: `dotnet list package --include-transitive`
+
+### NuProj vs. csproj
+
+<https://learn.microsoft.com/en-us/nuget/reference/msbuild-targets>
+
+Is it in SDK style project only?
+
+```xml
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageOutputPath>$(BinariesDirectory)\packages\</PackageOutputPath>
+    <NuspecFile>package.nuspec</NuspecFile>
+    <NuspecProperties>$(NuspecProperties);pkgversion=$(BuildVersion);servicebinpath=$(ServiceBinPath)</NuspecProperties>
+```
+
+`msbuild -t:pack`
+
+`dotnet pack --no-build`
+
+<https://learn.microsoft.com/en-us/dotnet/core/project-sdk/overview>
+
+<https://stackoverflow.com/questions/62773638/dotnet-build-with-generatepackageonbuild-and-contentfiles>
+
+### Nuget path
+
+<https://learn.microsoft.com/en-us/nuget/consume-packages/package-references-in-project-files#generatepathproperty>
+
+<https://learn.microsoft.com/en-us/nuget/consume-packages/package-references-in-project-files>
+
+<https://learn.microsoft.com/en-us/nuget/consume-packages/migrate-packages-config-to-package-reference>
+
+<https://stackoverflow.com/questions/24022134/how-exactly-does-the-specific-version-property-of-an-assembly-reference-work-i>
+
+<https://learn.microsoft.com/en-us/nuget/consume-packages/package-references-in-project-files#controlling-dependency-assets>
+
+### Transitive dependency
+
+<https://devblogs.microsoft.com/nuget/introducing-transitive-dependencies-in-visual-studio/#:~:text=There%20is%20now%20a%20new,level%20dependency%20at%20any%20time.>
+
+## CoreXT
+
+<https://imperfect.work/2022/06/17/corext-package-management/>
+
+<https://github.com/NuGet/Home/issues/9314>
+
+An NET SDK project reference a CoreXT project is fine. If a CoreXT project reference a NET SDK project, the SDK project won't restore.
+
 ### CxCache
 
 It is folder to hold dependency packages. Maybe is related to <https://www.nuget.org/packages/xCache/> ?
@@ -321,10 +403,6 @@ Open binding redirect log: <https://stackoverflow.com/questions/255669/how-to-en
 ildasm
 
 Assembly version vs. nuget package version.
-
-### Transitive dependency
-
-<https://devblogs.microsoft.com/nuget/introducing-transitive-dependencies-in-visual-studio/#:~:text=There%20is%20now%20a%20new,level%20dependency%20at%20any%20time.>
 
 ### Top Level Statement
 

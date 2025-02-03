@@ -1412,6 +1412,16 @@ goto :eof
 - <https://stackoverflow.com/questions/9188574/append-to-xml-file-using-xmlwriter>
 - <https://stackoverflow.com/questions/2369119/error-in-process-start-the-system-cannot-find-the-file-specified>
 
+# Docfx
+
+<https://dotnet.github.io/docfx/?WT.mc_id=ondotnet-c9-cephilli>
+
+<https://learn.microsoft.com/en-us/dotnet/core/versions/selection>
+<https://stackoverflow.com/questions/42077229/switch-between-dotnet-core-sdk-versions>
+
+- `dotnet --info`
+- `dotnet new globaljson --sdk-version 8.0.405 --force`
+
 # timestamp section
 Sep 11 2016
 Nov 18 2016

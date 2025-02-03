@@ -1,0 +1,35 @@
+<Project Sdk="Microsoft.Build.NoTargets">
+
+  <PropertyGroup>
+    <!-- Define target framework -->
+    <TargetFramework>net48</TargetFramework>
+
+    <!-- NuGet packaging properties -->
+    <PackageId>TestNugetBinPlacePackage</PackageId>
+    <Version>1.0.0</Version>
+    <Authors>your_name</Authors>
+    <Company>your_company</Company>
+
+    <!-- Enable NuGet package generation -->
+    <IsPackable>true</IsPackable>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+
+    <!-- Let MSBuild know this project doesn't generate a DLL -->
+    <OutputType>None</OutputType>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+
+    <!-- Output directory for the generated package -->
+    <!-- <NupkgOutputPath>$(BinariesDirectory)\packages</NupkgOutputPath> -->
+  </PropertyGroup>
+
+  
+  <ItemGroup>
+    <!-- Project reference
+    <ProjectReference Include="..\EditDistanceChecker.csproj" />
+    -->
+
+    <!-- Additional files to include in the package -->
+    <None Include=".\ReadMe.txt" Pack="true" PackagePath="ReadMe.txt"/>
+  </ItemGroup>
+
+</Project>
