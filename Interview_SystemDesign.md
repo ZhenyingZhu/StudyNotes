@@ -4872,6 +4872,41 @@ Hash
 - opt1: CRC32/MD5/SHA-1. Use bloom filter to detect if collsion, and append some pre-defined chars.
 - opt2: base 62 conversion. Need a uniq id generator. Security concern: can guess the next one.
 
+### Chp10: Design a notification system
+
+Review: 2/4/2025
+
+Requirements
+
+- 10 million mobile push notifications, 1 million SMS messages, and 5 million emails per day
+- soft real-time system
+- triggered by client applications + scheduled on the server-side
+- can opt-out
+
+Push notifications: need a provider to sends requests. Data: 1. device token as the uid, 2. JSON payload
+
+- iOS: Apple Push Notification Service
+- Android: Firebase Cloud Messaging
+- SMS: Twilio, Nexmo
+- Email: Sendgrid, Mailchimp
+
+Contact info gathering flow
+
+- gather mobile device tokens, phone numbers, or email addresses when app install/sign up
+- DB: user and device tables. 1-to-many relationship
+
+Notification sending/receiving flow
+
+- Input can come from multiple services. A service can be a micro-service, a cron job, or a distributed system.
+- Notification system: basic validation, build payload. Only called by internal to avoid spam. Distributed to solve SPOF, scaling, and perf bottleneck in the downstream.
+- Cache: User info, device info, notification templates that not changed often
+- DB: fetch user data, notification, settings
+- MQ: parallel processing. remove dependencies between components. serve as a buffer
+- Workers: pull from MQ and send to 3rd party. Can retry
+- Third-party services: good extensibility. Can switch to diff 3rd party services
+
+(here)
+
 ## System Design Interview The Big Archive
 
 ### Data base isolation level
