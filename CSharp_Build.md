@@ -321,6 +321,43 @@ Is it in SDK style project only?
 
 <https://stackoverflow.com/questions/62773638/dotnet-build-with-generatepackageonbuild-and-contentfiles>
 
+```xml
+<Project Sdk="Microsoft.Build.NoTargets">
+
+  <PropertyGroup>
+    <!-- Define target framework -->
+    <TargetFramework>net48</TargetFramework>
+
+    <!-- NuGet packaging properties -->
+    <PackageId>mypackage</PackageId>
+    <Title>MyPackage</Title>
+
+    <!-- Enable NuGet package generation -->
+    <IsPackable>true</IsPackable>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+
+    <!-- Output directory for the generated package -->
+    <NupkgOutputPath>$(BinariesDirectory)\packages</NupkgOutputPath>
+
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Project reference -->
+    <ProjectReference Include="..\myproject.csproj" />
+
+    <!-- Project artifact path -->
+    <PackageContents Include="$(BinariesDirectory)\$(BuildType)\myprojectnamespace\Amd64\**\*.*" />
+
+    <!-- Additional files to include in the package -->
+    <None Include="@(PackageContents)" Pack="true" PackagePath="lib\net48"/>
+  </ItemGroup>
+
+  <Import Project="$(MsoBuildSettingsPath)\Microsoft.Online.Build.Settings" />
+  <Target Name="CoreCompile" />
+
+</Project>
+```
+
 ### Nuget path
 
 <https://learn.microsoft.com/en-us/nuget/consume-packages/package-references-in-project-files#generatepathproperty>
