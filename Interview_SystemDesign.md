@@ -4905,7 +4905,11 @@ Notification sending/receiving flow
 - Workers: pull from MQ and send to 3rd party. Can retry
 - Third-party services: good extensibility. Can switch to diff 3rd party services
 
-(here)
+Reliability: prevent data loss
+
+- The notification log database is included for data persistence
+
+(here Will recipients receive a notification exactly once?)
 
 ## System Design Interview The Big Archive
 
