@@ -4913,6 +4913,7 @@ Reliability:
 Other considerations
 
 - Notification template
+- Notification setting: for a user, opt in/out for which channel
 
 (here P161)
 
