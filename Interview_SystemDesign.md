@@ -4914,8 +4914,12 @@ Other considerations
 
 - Notification template
 - Notification setting: for a user, opt in/out for which channel
+- Rate limiting
+- Retry mechanism
+- Security in push notifications: need to provide appKey and appSecret
+- Monitor queued notifications: the total number of queued notifications
 
-(here P161)
+(here P162)
 
 ## System Design Interview The Big Archive
 
