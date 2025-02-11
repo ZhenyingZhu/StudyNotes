@@ -4918,6 +4918,7 @@ Other considerations
 - Retry mechanism
 - Security in push notifications: need to provide appKey and appSecret
 - Monitor queued notifications: the total number of queued notifications
+- Event tracking: for analytics service
 
 (here P162)
 
