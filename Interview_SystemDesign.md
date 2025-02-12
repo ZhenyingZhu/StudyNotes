@@ -4912,15 +4912,23 @@ Reliability:
 
 Other considerations
 
-- Notification template
-- Notification setting: for a user, opt in/out for which channel
-- Rate limiting
+- Notification servers
+  - Rate limiting
+  - Authentication
+- cache + DB
+  - connect to notification servers
+  - Notification setting: for a user, opt in/out for which channel
+
+  - Notification template
+
 - Retry mechanism
 - Security in push notifications: need to provide appKey and appSecret
 - Monitor queued notifications: the total number of queued notifications
 - Event tracking: for analytics service
 
-(here P162)
+
+
+(here P163)
 
 ## System Design Interview The Big Archive
 
