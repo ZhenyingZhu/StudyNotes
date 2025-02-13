@@ -4914,19 +4914,18 @@ Other considerations
 
 - Notification servers
   - Rate limiting
-  - Authentication
+  - Authentication: Security in push notifications: need to provide appKey and appSecret
 - cache + DB
   - connect to notification servers
   - Notification setting: for a user, opt in/out for which channel
-
+  - user + device info
+- Push notification queue: one per device type. Connect to Notification servers
+- Workers: the service push notification
   - Notification template
-
-- Retry mechanism
-- Security in push notifications: need to provide appKey and appSecret
-- Monitor queued notifications: the total number of queued notifications
-- Event tracking: for analytics service
-
-
+  - Monitor queued notifications: the total number of queued notifications
+  - Retry mechanism
+- analytics service
+  - Event tracking: for analytics service
 
 (here P163)
 
