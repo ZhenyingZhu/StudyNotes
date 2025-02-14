@@ -4923,11 +4923,11 @@ Other considerations
 - Workers: the service push notification
   - Notification template
   - Monitor queued notifications: the total number of queued notifications
-  - Retry mechanism
+  - Retry mechanism: put back in to the MQ
 - analytics service
   - Event tracking: for analytics service
 
-(here P163)
+(here P164)
 
 ## System Design Interview The Big Archive
 
