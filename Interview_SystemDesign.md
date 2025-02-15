@@ -4927,8 +4927,6 @@ Other considerations
 - analytics service
   - Event tracking: for analytics service
 
-(here P164)
-
 ## System Design Interview The Big Archive
 
 ### Data base isolation level
