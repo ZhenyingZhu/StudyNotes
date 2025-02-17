@@ -1606,6 +1606,13 @@ request.Headers.Set(HttpRequestHeader.Authorization, string.Format(CultureInfo.I
 - <https://entra.microsoft.com/#home>
 - <https://admin.microsoft.com/>: buy products
 
+<https://azuread.github.io/MSIdentityTools/commands/Export-MsIdAzureMfaReport/>
+
+- Need to install [Powershell 7](https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell-on-windows?view=powershell-7.5): `winget install --id Microsoft.PowerShell --source winget`
+- Due to <https://github.com/AzureAD/MSIdentityTools/issues/64>, need to first uninstall `Get-InstalledModule Microsoft.Graph.* | Uninstall-Module -AllVersions`
+- Cannot use the Guest user account. Must use an user with the tenant domain.
+- Sign-in to <https://entra.microsoft.com>, Identity → Monitoring & health → Sign-in logs, 'Add filters' → 'Application' for AzurePortal, and download the Json. Then run `Export-MsIdAzureMfaReport .\report.xlsx -SignInsJsonPath .\signins.json`
+
 ### VM
 
 The Azure Spot discount has limit SKUs available.
