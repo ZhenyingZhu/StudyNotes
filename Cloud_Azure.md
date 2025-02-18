@@ -1015,6 +1015,10 @@ Terms
 
 <https://learn.microsoft.com/en-us/azure/network-watcher/nsg-flow-logs-overview>
 
+#### Private endpoint
+
+Private endpoint needs to associate with a private link. Each PE can connect to the private link only in one resource group, because the ip can conflict.
+
 ### Azure Front Door
 
 <https://learn.microsoft.com/en-us/azure/frontdoor/front-door-overview>
@@ -1619,6 +1623,13 @@ The Azure Spot discount has limit SKUs available.
 
 To check SKU availability in region and zone, run `az vm list-skus --location centralus --size Standard_D --all --output table`
 
+### VMSS
+
+VMSS: <https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-deploy-app>
+
+- Need to use the same image and password
+- the image needs to be standard
+
 ### Azure Resource Manager
 
 <https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/resourcemanager/Azure.ResourceManager/docs/MigrationGuide.md>
@@ -1645,15 +1656,16 @@ Create ADO pipeline
 
 <https://learn.microsoft.com/en-us/azure/event-grid/overview>
 
-## Temp
-
-Private endpoint needs to associate with a private link. Each PE can connect to the private link only in one resource group, because the ip can conflict.
-
-VMSS: <https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-deploy-app>
-
-- Need to use the same image and password
-- the image needs to be standard
-
-Cert id: <https://trainingsupport.microsoft.com/en-us/mcp/forum/all/credential-id-or-certification-number>
+### Event Hub
 
 <https://learn.microsoft.com/en-us/azure/event-hubs/overview-emulator>
+
+### Entra App
+
+- Create the client secret
+- API permission, add delegated permissions
+- Grant admin consent
+
+## Temp
+
+Cert id: <https://trainingsupport.microsoft.com/en-us/mcp/forum/all/credential-id-or-certification-number>
