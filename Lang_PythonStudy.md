@@ -661,7 +661,7 @@ datetime.strptime("2018-12-06 04:35:31.6808615"[:-1], "%Y-%m-%d %H:%M:%S.%f")
 
 [venv](https://docs.python.org/3/library/venv.html)
 
-- `python -m venv`
+- `python -m venv` or `python -m venv <envname>`
 
 In vscode: [creating environments](https://code.visualstudio.com/docs/python/environments)
 
