@@ -3,7 +3,8 @@ import json
 import os
 
 CLIENT_ID = "56dbe56c-b961-49b9-824b-204abc45bfe3"
-CLIENT_SECRET = os.getenv("azureclientsecret") # doesn't work yet
+# CLIENT_SECRET = os.getenv("azureclientsecret") # doesn't work yet
+CLIENT_SECRET = os.environ["azureclientsecret"] # doesn't work yet
 TENANT_ID = "c74a24d8-2986-4739-aec1-36b4c9934ed3"
 GRAPH_API_ENDPOINT = "https://graph.microsoft.com/v1.0/me/onenote/pages"
 
@@ -22,6 +23,7 @@ def get_access_token():
 
 # Get all OneNote pages
 def get_onenote_pages():
+    # me request is only valid with delegated authentication flow.
     access_token = get_access_token()
     headers = {"Authorization": f"Bearer {access_token}"}
     response = requests.get(GRAPH_API_ENDPOINT, headers=headers)
