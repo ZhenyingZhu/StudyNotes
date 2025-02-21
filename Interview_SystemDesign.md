@@ -4927,6 +4927,20 @@ Other considerations
 - analytics service
   - Event tracking: for analytics service
 
+### Chp11: News feed
+
+Review: 2/20/2025
+
+- can post a feed
+- see friends' posts: status updates, photos, videos, links, app activity, and likes from people, pages, and groups that you follow.
+- mobile + web app
+- sorted by reverse chronological order
+- at max 5k friends
+- 10M DAU
+- 
+
+P168
+
 ## System Design Interview The Big Archive
 
 ### Data base isolation level
