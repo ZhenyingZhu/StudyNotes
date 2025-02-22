@@ -4931,15 +4931,24 @@ Other considerations
 
 Review: 2/20/2025
 
+Requirements
+
 - can post a feed
 - see friends' posts: status updates, photos, videos, links, app activity, and likes from people, pages, and groups that you follow.
 - mobile + web app
 - sorted by reverse chronological order
 - at max 5k friends
 - 10M DAU
-- 
 
-P168
+Design: feed publishing
+
+- HTTP POST request /v1/me/feed: content, auth_token
+
+Design: feed building
+
+- HTTP GET request /v1/me/feed: auth_token
+
+P169
 
 ## System Design Interview The Big Archive
 
