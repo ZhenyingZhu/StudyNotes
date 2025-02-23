@@ -4948,6 +4948,16 @@ Design: feed building
 
 - HTTP GET request /v1/me/feed: auth_token
 
+Design
+
+- DNS
+- Clients: Web + Mobile
+- Load balancer
+- Web servers
+- Post service: cache, DB
+- Fanout service: cache
+- Notification service
+
 P169
 
 ## System Design Interview The Big Archive
