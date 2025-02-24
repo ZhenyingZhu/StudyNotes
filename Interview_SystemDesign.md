@@ -4948,15 +4948,23 @@ Design: feed building
 
 - HTTP GET request /v1/me/feed: auth_token
 
-Design
+Feed publishing design
 
 - DNS
 - Clients: Web + Mobile
 - Load balancer
-- Web servers
+- Web servers: distribute traffic to the right services below
 - Post service: cache, DB
-- Fanout service: cache
+- Fanout service: push contents to friends' news feed. cache
 - Notification service
+
+News feed buidling design
+
+- DNS
+- Clients: Web + Mobile
+- Load balancer
+- Web servers: 
+- Cache
 
 P169
 
