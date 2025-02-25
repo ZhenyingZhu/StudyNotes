@@ -4953,9 +4953,9 @@ Feed publishing design
 - DNS
 - Clients: Web + Mobile
 - Load balancer
-- Web servers: distribute traffic to the right services below
-- Post service: cache, DB
-- Fanout service: push contents to friends' news feed. cache
+- Web servers: distribute traffic to the right services below. Implement auth and rate limiting.
+- Post service: cache, DB.
+- Fanout service: push contents to friends' news feed. cache. Get friend ids from a Graph DB, friend data from user cache/db.
 - Notification service
 
 News feed buidling design
@@ -4966,7 +4966,7 @@ News feed buidling design
 - Web servers: 
 - Cache
 
-P169
+P172
 
 ## System Design Interview The Big Archive
 
