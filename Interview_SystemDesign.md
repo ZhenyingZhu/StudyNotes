@@ -4958,6 +4958,12 @@ Feed publishing design
 - Fanout service: push contents to friends' news feed. cache. Get friend ids from a Graph DB, friend data from user cache/db.
 - Notification service
 
+Fanout models:
+
+1. push model: fan out on write. Hotkey problem: use consistent hashing to mitigate; inactive users.
+2. pull model: on read.
+3. hybrid
+
 News feed buidling design
 
 - DNS
