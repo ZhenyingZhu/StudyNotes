@@ -4955,7 +4955,11 @@ Feed publishing design
 - Load balancer
 - Web servers: distribute traffic to the right services below. Implement auth and rate limiting.
 - Post service: cache, DB.
-- Fanout service: push contents to friends' news feed. cache. Get friend ids from a Graph DB, friend data from user cache/db.
+- Fanout service: push contents to friends' news feed.
+  - Get friend ids from a Graph DB
+  - friend data from user cache/db. support filtering after fetching the user data: mute, visible to only certain friends
+  - queue
+  - fanout worker put posts to news feed cache: only store post id and user id to keep memory usage low. pagination.
 - Notification service
 
 Fanout models:
@@ -4972,7 +4976,7 @@ News feed buidling design
 - Web servers: 
 - Cache
 
-P172
+P174
 
 ## System Design Interview The Big Archive
 
