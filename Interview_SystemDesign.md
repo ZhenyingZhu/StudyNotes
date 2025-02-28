@@ -4968,13 +4968,16 @@ Fanout models:
 2. pull model: on read.
 3. hybrid
 
-News feed buidling design
+News feed buidling/retrieval design
 
 - DNS
 - Clients: Web + Mobile
 - Load balancer
-- Web servers: 
-- Cache
+- Web servers: (auth, rate limiting)
+- News feed service:
+  - User cache/DB
+  - Post cache/DB
+  - News feed cache
 
 P174
 
