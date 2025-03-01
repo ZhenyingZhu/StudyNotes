@@ -4972,6 +4972,7 @@ News feed buidling/retrieval design
 
 - DNS
 - Clients: Web + Mobile
+- CDN: store media data
 - Load balancer
 - Web servers: (auth, rate limiting)
 - News feed service:
