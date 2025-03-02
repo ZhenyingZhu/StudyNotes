@@ -4978,9 +4978,15 @@ News feed buidling/retrieval design
 - News feed service:
   - User cache/DB
   - Post cache/DB
-  - News feed cache
+  - News feed cache: construct the fully hydrated news feed by fetching user details and post details
 
-P174
+Cache architecture
+
+- News feed: IDs of news feeds
+- Content: popular contents store in hot cache, other post data stores in normal cache
+- Social graph: user relationship data
+- Action: info about actions: like a post, reply, etc.
+- Counters: like, reply, follower, following, etc.
 
 ## System Design Interview The Big Archive
 
