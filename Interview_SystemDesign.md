@@ -4929,7 +4929,7 @@ Other considerations
 - analytics service
   - Event tracking: for analytics service
 
-### Chp11: News feed
+### Ch11: News feed
 
 Review: 2/20/2025
 
