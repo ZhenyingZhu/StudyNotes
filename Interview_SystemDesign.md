@@ -4872,7 +4872,9 @@ Hash
 - opt1: CRC32/MD5/SHA-1. Use bloom filter to detect if collsion, and append some pre-defined chars.
 - opt2: base 62 conversion. Need a uniq id generator. Security concern: can guess the next one.
 
-### Chp10: Design a notification system
+### Ch9: Design a web crawler
+
+### Ch10: Design a notification system
 
 Review: 2/4/2025
 
