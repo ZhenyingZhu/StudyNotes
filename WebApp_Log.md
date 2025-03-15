@@ -11,4 +11,6 @@
 
 [OTEL Console](https://github.com/open-telemetry/opentelemetry-dotnet/blob/main/docs/logs/getting-started-console/README.md)
 
-- logging pipeline by instantiating a LoggerFactory instance, with OpenTelemetry added as a logging provider.
+- Add OpenTelemetry as a logging provider.
+- instantiating a LoggerFactory instance
+- create a logging pipeline
