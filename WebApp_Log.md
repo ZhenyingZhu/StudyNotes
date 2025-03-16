@@ -14,3 +14,4 @@
 - Add OpenTelemetry as a logging provider.
 - instantiating a LoggerFactory instance
 - create a logging pipeline
+- this is to console, which is not for prod
