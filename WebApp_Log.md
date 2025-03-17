@@ -15,3 +15,5 @@
 - instantiating a LoggerFactory instance
 - create a logging pipeline
 - this is to console, which is not for prod
+
+[Compile-time logging source generation](https://learn.microsoft.com/en-us/dotnet/core/extensions/logger-message-generator)
