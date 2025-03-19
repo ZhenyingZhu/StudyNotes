@@ -1666,6 +1666,10 @@ Create ADO pipeline
 - API permission, add delegated permissions
 - Grant admin consent
 
+### ADO
+
+<https://learn.microsoft.com/en-us/azure/devops/integrate/get-started/authentication/service-principal-managed-identity?view=azure-devops>
+
 ## Temp
 
 Cert id: <https://trainingsupport.microsoft.com/en-us/mcp/forum/all/credential-id-or-certification-number>
