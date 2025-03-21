@@ -21,3 +21,5 @@
 - `LoggerMessageAttribute`
 
 [OTEL .Net Core](https://github.com/open-telemetry/opentelemetry-dotnet/blob/main/docs/logs/getting-started-aspnetcore/README.md)
+
+- OTLP Exporter is used
