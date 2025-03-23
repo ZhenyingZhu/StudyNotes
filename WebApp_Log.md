@@ -18,9 +18,8 @@
 
 [Compile-time logging source generation](https://learn.microsoft.com/en-us/dotnet/core/extensions/logger-message-generator)
 
-- `LoggerMessageAttribute`
+- `LoggerMessageAttribute`: [LoggerMessage()]`
 
 [OTEL .Net Core](https://github.com/open-telemetry/opentelemetry-dotnet/blob/main/docs/logs/getting-started-aspnetcore/README.md)
 
 - OTLP Exporter is used. Paired with a batch processor
-
