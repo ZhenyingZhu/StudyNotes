@@ -18,7 +18,7 @@
 
 [Compile-time logging source generation](https://learn.microsoft.com/en-us/dotnet/core/extensions/logger-message-generator)
 
-- `LoggerMessageAttribute`: [LoggerMessage()]`
+- `LoggerMessageAttribute`: `[LoggerMessage()]`
 
 [OTEL .Net Core](https://github.com/open-telemetry/opentelemetry-dotnet/blob/main/docs/logs/getting-started-aspnetcore/README.md)
 
