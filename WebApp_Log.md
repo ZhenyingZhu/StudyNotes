@@ -23,3 +23,4 @@
 [OTEL .Net Core](https://github.com/open-telemetry/opentelemetry-dotnet/blob/main/docs/logs/getting-started-aspnetcore/README.md)
 
 - OTLP Exporter is used. Paired with a batch processor
+- `app.Logger.StartingApp();`
