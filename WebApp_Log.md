@@ -24,3 +24,15 @@
 
 - OTLP Exporter is used. Paired with a batch processor
 - `app.Logger.StartingApp();`
+
+Need to understand the builder pattern
+
+```C#
+var loggerFactory = LoggerFactory.Create(builder =>
+{
+    builder.AddOpenTelemetry(logging =>
+    {
+        logging.AddConsoleExporter();
+    });
+});
+```
