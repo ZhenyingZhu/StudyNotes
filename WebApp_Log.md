@@ -36,3 +36,5 @@ var loggerFactory = LoggerFactory.Create(builder =>
     });
 });
 ```
+
+Using builder pattern.
