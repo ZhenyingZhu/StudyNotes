@@ -37,4 +37,6 @@ var loggerFactory = LoggerFactory.Create(builder =>
 });
 ```
 
-Using builder pattern.
+Using builder pattern
+
+- Instead of dumping all the configuration into a constructor (which can get messy), you use a builder object to gradually configure the final object, and then call a method to produce it.
