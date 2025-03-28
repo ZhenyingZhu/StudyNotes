@@ -77,3 +77,8 @@ void reducer(int nodeID, Iterator<string> nodeStructs, OutputCollector<int, stri
 
 - /tests Generate unit tests for this function. Validate both success and failure, and include edge cases.
 - Improve the variable names in this function. Can use copilot edits
+
+## Translate
+
+- <https://www.youtube.com/watch?v=B3SZCV0IwHU>
+- <https://docs.2sj.ai/draw/nono>
