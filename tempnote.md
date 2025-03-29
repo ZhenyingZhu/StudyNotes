@@ -1422,6 +1422,10 @@ goto :eof
 - `dotnet --info`
 - `dotnet new globaljson --sdk-version 8.0.405 --force`
 
+# Unit test guidance
+
+No multiple cases
+
 # timestamp section
 Sep 11 2016
 Nov 18 2016
