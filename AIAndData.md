@@ -67,6 +67,32 @@ void reducer(int nodeID, Iterator<string> nodeStructs, OutputCollector<int, stri
 
 <https://timilearning.com/posts/mit-6.824/lecture-15-spark/>
 
+## AI
+
+Generative AI
+
+- Language model: encapsulate semantic relationships between language elements. large language models vs. SLM
+
+Computer vision
+
+- Image classification
+- Object detection: OCR
+- Image segmentation
+
+Speech
+
+- Speech recognition
+- Speech synthesis: text-to-voice
+
+Natural language processing
+
+- not necessarily using GenAI
+- entity extraction
+- Text classification
+- Sentiment analysis
+
+<https://learningpath.microsoft.com/8523/6de4a674-2336-4ebb-8998-faf7eacb1d23>
+
 ## Chat GPT
 
 <https://platform.openai.com/docs/quickstart>
