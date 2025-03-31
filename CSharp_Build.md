@@ -72,10 +72,6 @@ To use those SDKs, the global.json needs to have
 
 <https://hermit.no/moving-to-sdk-style-projects-and-package-references-in-visual-studio-part-2/>
 
-### DLL Binding Redirect AutoUnify
-
-<https://stackoverflow.com/questions/33256071/what-is-autounify-and-why-is-it-causing-working-tests-to-fail-in-tfs-2015>
-
 ### .NET Version upgrade
 
 Error: CSC : warning CS9057: The analyzer assembly 'Microsoft.CodeAnalysis.CodeStyle.dll' references version '4.11.0.0' of the compiler, which is newer than the currently running version '4.3.0.0'.
@@ -385,6 +381,27 @@ An NET SDK project reference a CoreXT project is fine. If a CoreXT project refer
 ### CxCache
 
 It is folder to hold dependency packages. Maybe is related to <https://www.nuget.org/packages/xCache/> ?
+
+## DLL Version
+
+<https://learn.microsoft.com/en-us/dotnet/framework/configure-apps/redirect-assembly-versions>
+
+- Only for .NET Framework
+- assembly unification: based on the runtime .NET Framework version, find the .NET Framework DLLs.
+- For 3rd-party assemblies, since cannot make sure all packages are building against versions of the dependencies.
+- publisher policy: set by vendors of assemblies (package owner)
+- automatic binding redirection: the runtime automatically adds a binding redirection to the newer version of the assembly.
+
+For .NET Core: <https://learn.microsoft.com/en-us/dotnet/core/dependency-loading/overview>
+
+- Managed assembly loading: compiler inserted a static assembly reference whenever code uses a type defined in another assembly.
+- Satellite assembly: store localized resources
+- Unmanaged lib:
+- AssemblyLoadContext
+
+### DLL Binding Redirect AutoUnify
+
+<https://stackoverflow.com/questions/33256071/what-is-autounify-and-why-is-it-causing-working-tests-to-fail-in-tfs-2015>
 
 ## Misc
 
