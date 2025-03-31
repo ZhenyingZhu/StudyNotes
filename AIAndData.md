@@ -104,6 +104,14 @@ Natural language processing
 - /tests Generate unit tests for this function. Validate both success and failure, and include edge cases.
 - Improve the variable names in this function. Can use copilot edits
 
+<https://docs.github.com/en/copilot/quickstart?tool=vscode>
+
+- Ask Copilot for help using the command line
+- knowledge bases: Create and manage collections of documentation
+- Code completion: next edit suggestions
+- Copilot Edits: across multiple files directly from a single Copilot Chat prompt
+  - Edit mode vs. agent mode
+
 ## Translate
 
 - <https://www.youtube.com/watch?v=B3SZCV0IwHU>
