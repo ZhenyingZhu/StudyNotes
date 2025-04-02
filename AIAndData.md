@@ -112,6 +112,8 @@ Natural language processing
 - Copilot Edits: across multiple files directly from a single Copilot Chat prompt
   - Edit mode vs. agent mode
 
+<https://docs.github.com/en/copilot/using-github-copilot/best-practices-for-using-github-copilot>
+
 ## Translate
 
 - <https://www.youtube.com/watch?v=B3SZCV0IwHU>
