@@ -114,6 +114,10 @@ Natural language processing
 
 <https://docs.github.com/en/copilot/using-github-copilot/best-practices-for-using-github-copilot>
 
+- Code completions
+- built-in keywords
+- tell Copilot Chat that it is a Senior C++ Developer who cares greatly about code quality, readability, and efficiency, then ask it to review your code
+
 ## Translate
 
 - <https://www.youtube.com/watch?v=B3SZCV0IwHU>
