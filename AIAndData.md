@@ -122,3 +122,4 @@ Natural language processing
 
 - <https://www.youtube.com/watch?v=B3SZCV0IwHU>
 - <https://docs.2sj.ai/draw/nono>
+- <https://arxiv.org/abs/1706.03762>
