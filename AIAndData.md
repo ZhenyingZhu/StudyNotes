@@ -69,6 +69,13 @@ void reducer(int nodeID, Iterator<string> nodeStructs, OutputCollector<int, stri
 
 ## AI
 
+techniques:
+
+- machine learning
+- deep learning
+- neural networks
+- natural language processing
+
 Generative AI
 
 - Language model: encapsulate semantic relationships between language elements. large language models vs. SLM
