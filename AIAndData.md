@@ -98,6 +98,14 @@ Natural language processing
 - Text classification
 - Sentiment analysis
 
+Products:
+
+- Udio: From composing music based on a couple of quick prompts
+- Obsidian: taking notes and organizing your thoughts
+- Tray.ai: automating and connecting services
+- Cursor: dedicated programs
+- M365 Copilot: sensitive internal corp information
+
 <https://learningpath.microsoft.com/8523/6de4a674-2336-4ebb-8998-faf7eacb1d23>
 
 ## Chat GPT
