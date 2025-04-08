@@ -132,6 +132,10 @@ Products:
 - Code completions
 - built-in keywords
 - tell Copilot Chat that it is a Senior C++ Developer who cares greatly about code quality, readability, and efficiency, then ask it to review your code
+- Break down complex tasks.
+- Be specific about your requirements.
+- Provide examples of things like input data, outputs, and implementations.
+- Follow good coding practices.
 
 ## Translate
 
