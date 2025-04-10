@@ -137,6 +137,7 @@ Products:
 - Provide examples of things like input data, outputs, and implementations.
 - Follow good coding practices.
 - Review suggestion.
+- open relevant files and close irrelevant files.
 
 ## Translate
 
