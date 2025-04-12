@@ -139,6 +139,8 @@ Products:
 - Review suggestion.
 - open relevant files and close irrelevant files.
 
+<https://code.visualstudio.com/blogs/2025/02/24/introducing-copilot-agent-mode>
+
 ## A2A
 
 <https://github.com/google/A2A>
