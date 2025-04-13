@@ -141,6 +141,8 @@ Products:
 
 <https://code.visualstudio.com/blogs/2025/02/24/introducing-copilot-agent-mode>
 
+<https://github.com/modelcontextprotocol/servers>
+
 ## A2A
 
 <https://github.com/google/A2A>
