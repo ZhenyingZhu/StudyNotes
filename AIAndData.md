@@ -143,6 +143,11 @@ Products:
 
 <https://github.com/modelcontextprotocol/servers>
 
+- MCP hosts: IDEs, programs
+- MCP clients: protocol clients maintaining connections
+- MCP servers: ?
+- Local resources/internet services
+
 ## A2A
 
 <https://github.com/google/A2A>
