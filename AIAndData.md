@@ -141,6 +141,8 @@ Products:
 
 <https://code.visualstudio.com/blogs/2025/02/24/introducing-copilot-agent-mode>
 
+- `.github/copilot-instructions.md` file to let AI understand about the project
+
 <https://github.com/modelcontextprotocol/servers>
 
 - MCP hosts: IDEs, programs
