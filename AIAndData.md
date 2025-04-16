@@ -147,7 +147,7 @@ Products:
 
 - MCP hosts: IDEs, programs
 - MCP clients: protocol clients maintaining connections
-- MCP servers: ?
+- MCP servers: services work with MCP like git
 - Local resources/internet services
 
 ## A2A
