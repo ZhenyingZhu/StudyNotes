@@ -150,6 +150,8 @@ Products:
 - MCP servers: services work with MCP like git
 - Local resources/internet services
 
+<https://github.com/modelcontextprotocol/python-sdk?tab=readme-ov-file>
+
 ## A2A
 
 <https://github.com/google/A2A>
