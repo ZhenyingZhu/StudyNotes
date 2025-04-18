@@ -152,6 +152,8 @@ Products:
 
 <https://github.com/modelcontextprotocol/python-sdk?tab=readme-ov-file>
 
+<https://docs.astral.sh/uv/>
+
 ## A2A
 
 <https://github.com/google/A2A>
