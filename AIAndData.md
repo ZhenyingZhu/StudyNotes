@@ -154,6 +154,10 @@ Products:
 
 <https://docs.astral.sh/uv/>
 
+Here
+
+- <https://code.visualstudio.com/docs/getstarted/getting-started#_configure-vs-code-settings>
+
 ## A2A
 
 <https://github.com/google/A2A>
