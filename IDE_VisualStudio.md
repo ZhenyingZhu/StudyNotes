@@ -50,51 +50,51 @@ Windows Forms Application project
 - Add Container, FlowLayoutPanel to the TableLayoutPanel.
 - Add Common controls, Button to the FlowLayoutPanel.
 
-## Show white spaces
+### Show white spaces
 
 ctrl+R and ctrl+w to toggle.
 
-## Jump between braces
+### Jump between braces
 
 `ctrl+[` jump to the defination of the method. `ctrl+]` jump between braces.
 
-## Connect to MySQL
+### Connect to MySQL
 
 1. Install connector and MySQL for VS: See Database.md
 2. For VS 2013, Add reference, Assembiles, Extensions, MySQL.Data.
 
 <https://stackoverflow.com/questions/21618015/how-to-connect-to-mysql-database>
 
-## Plugins
+### Plugins
 
 VS plugin: [Funel](https://marketplace.visualstudio.com/items?itemName=DimitriDering.Funnel)
 
 Reshapper plugin: for stycop tool
 
-## Wildcard search
+### Wildcard search
 
 <https://docs.microsoft.com/en-us/sql/relational-databases/scripting/search-text-with-wildcards>
 
-## tab management
+### tab management
 
 <https://stackoverflow.com/questions/14254005/let-visual-studio-2012-2013-open-files-to-the-right-instead-of-to-the-left>
 
-## Visual studio intellisense
+### Visual studio intellisense
 
 [Bootstrap 4 Autocomplete in Visual Studio 2017](https://stackoverflow.com/questions/48629436/bootstrap-4-autocomplete-in-visual-studio-2017)
 
-## Visual studio version
+### Visual studio version
 
 - Visual studio 2013: v12
 - Visual studio 2017: v15
 
-## npm
+### npm
 
 `PATH=.\node_modules\.bin;C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\MSBuild\Microsoft\VisualStudio\NodeJs\win-x64;C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\MSBuild\Microsoft\VisualStudio\NodeJs;C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\Web\External;%PATH%;C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\CommonExtensions\Microsoft\TeamFoundation\Team Explorer\Git\cmd;C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\CommonExtensions\Microsoft\TeamFoundation\Team Explorer\Git\mingw32\bin`
 
 "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\MSBuild\Microsoft\VisualStudio\NodeJs\npm.CMD" install
 
-## Troubleshooting
+### Troubleshooting
 
 If build failed but the log doesn't help, try to use the Tools -> Command Line -> Developer Command Prompt to build the project.
 
