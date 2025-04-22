@@ -25,7 +25,7 @@ REG EXPORT $registryKeyPath C:\val.txt /reg:64
 <https://code.visualstudio.com/docs/getstarted/getting-started#_configure-vs-code-settings>
 
 - Workspace Trust: whether code in the folder can be executed
-- 
+- Can have user vs. workspace settings
 
 ## VS tutorial
 
