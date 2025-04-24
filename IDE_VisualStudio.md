@@ -22,7 +22,7 @@ $registryKeyPath = "HKEY_CLASSES_ROOT\Directory\shell\VSCode\command"
 REG EXPORT $registryKeyPath C:\val.txt /reg:64
 ```
 
-<https://code.visualstudio.com/docs/getstarted/getting-started#_configure-vs-code-settings>
+<https://code.visualstudio.com/docs/getstarted/getting-started#_enhance-your-coding-with-ai-and-github-copilot>
 
 - Workspace Trust: whether code in the folder can be executed
 - Can have user vs. workspace settings. `File > Preferences > Settings`
