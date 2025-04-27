@@ -27,6 +27,7 @@ REG EXPORT $registryKeyPath C:\val.txt /reg:64
 - Workspace Trust: whether code in the folder can be executed
 - Can have user vs. workspace settings. `File > Preferences > Settings`
 - lightbulb icon, and then select Fix with Copilot.
+- `Ctrl + I`
 
 ## VS tutorial
 
