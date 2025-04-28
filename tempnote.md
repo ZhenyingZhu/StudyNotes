@@ -1426,6 +1426,58 @@ goto :eof
 
 No multiple cases
 
+# Logger class
+
+```C#
+namespace TraversalProjDependency
+{
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+
+    /// <summary>
+    /// A logger.
+    /// </summary>
+    public class Logger : IDisposable
+    {
+        /// <summary>
+        /// A log writter.
+        /// </summary>
+        private readonly StreamWriter fileWriter;
+
+        /// <summary>
+        /// Define the logger path.
+        /// </summary>
+        /// <param name="filePath">The path</param>
+        public Logger(string filePath)
+        {
+            this.fileWriter = new StreamWriter(filePath, append: true)
+            {
+                AutoFlush = true
+            };
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="message"></param>
+        public void Log(string message)
+        {
+            Console.WriteLine(message);
+            this.fileWriter.WriteLine(message);
+        }
+
+        public void Dispose()
+        {
+            this.fileWriter?.Dispose();
+        }
+    }
+}
+```
+
 # timestamp section
 Sep 11 2016
 Nov 18 2016
