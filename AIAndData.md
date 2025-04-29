@@ -156,6 +156,10 @@ Products:
 
 Here
 
+## Cline
+
+<https://docs.cline.bot/getting-started/for-new-coders>
+
 ## A2A
 
 <https://github.com/google/A2A>
