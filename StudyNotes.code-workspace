@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../Cline"
+		}
+	],
+	"settings": {
+		"dotnet.defaultSolution": "disable"
+	}
+}

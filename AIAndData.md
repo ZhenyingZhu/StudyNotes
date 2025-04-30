@@ -160,6 +160,8 @@ Here
 
 <https://docs.cline.bot/getting-started/for-new-coders>
 
+- `Cline: Open In New Tab`
+
 ## A2A
 
 <https://github.com/google/A2A>
