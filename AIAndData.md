@@ -161,6 +161,7 @@ Here
 <https://docs.cline.bot/getting-started/for-new-coders>
 
 - `Cline: Open In New Tab`
+- `Hello Cline! I need help setting up my Windows PC for software development. Could you please help me install the essential development tools like Node.js, Git, and any other core utilities that are commonly needed for coding? I'd like you to guide me through the process step-by-step.`
 
 ## A2A
 
