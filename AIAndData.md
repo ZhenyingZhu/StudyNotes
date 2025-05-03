@@ -163,6 +163,8 @@ Here
 - `Cline: Open In New Tab`
 - `Hello Cline! I need help setting up my Windows PC for software development. Could you please help me install the essential development tools like Node.js, Git, and any other core utilities that are commonly needed for coding? I'd like you to guide me through the process step-by-step.`
 
+<https://docs.cline.bot/improving-your-prompting-skills/prompting>
+
 ## A2A
 
 <https://github.com/google/A2A>
