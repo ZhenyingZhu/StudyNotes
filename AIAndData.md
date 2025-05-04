@@ -165,6 +165,8 @@ Here
 
 <https://docs.cline.bot/improving-your-prompting-skills/prompting>
 
+- `.clinerules` file
+
 ## A2A
 
 <https://github.com/google/A2A>
