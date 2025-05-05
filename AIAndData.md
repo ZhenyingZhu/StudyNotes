@@ -132,6 +132,46 @@ Products:
 - Code completions
 - built-in keywords
 - tell Copilot Chat that it is a Senior C++ Developer who cares greatly about code quality, readability, and efficiency, then ask it to review your code
+- Break down complex tasks.
+- Be specific about your requirements.
+- Provide examples of things like input data, outputs, and implementations.
+- Follow good coding practices.
+- Review suggestion.
+- open relevant files and close irrelevant files.
+
+<https://code.visualstudio.com/blogs/2025/02/24/introducing-copilot-agent-mode>
+
+- `.github/copilot-instructions.md` file to let AI understand about the project
+
+<https://github.com/modelcontextprotocol/servers>
+
+- MCP hosts: IDEs, programs
+- MCP clients: protocol clients maintaining connections
+- MCP servers: services work with MCP like git
+- Local resources/internet services
+
+<https://github.com/modelcontextprotocol/python-sdk?tab=readme-ov-file>
+
+<https://docs.astral.sh/uv/>
+
+Here
+
+## Cline
+
+<https://docs.cline.bot/getting-started/for-new-coders>
+
+- `Cline: Open In New Tab`
+- `Hello Cline! I need help setting up my Windows PC for software development. Could you please help me install the essential development tools like Node.js, Git, and any other core utilities that are commonly needed for coding? I'd like you to guide me through the process step-by-step.`
+
+<https://docs.cline.bot/improving-your-prompting-skills/prompting>
+
+- `.clinerules` file
+
+<https://docs.cline.bot/improving-your-prompting-skills/cline-memory-bank>
+
+## A2A
+
+<https://github.com/google/A2A>
 
 ## Translate
 
