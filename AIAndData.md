@@ -169,6 +169,8 @@ Here
 
 <https://docs.cline.bot/improving-your-prompting-skills/cline-memory-bank>
 
+Can let it create a MCP server.
+
 ## A2A
 
 <https://github.com/google/A2A>
