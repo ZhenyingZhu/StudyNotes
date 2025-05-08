@@ -180,3 +180,7 @@ Can let it create a MCP server.
 - <https://www.youtube.com/watch?v=B3SZCV0IwHU>
 - <https://docs.2sj.ai/draw/nono>
 - <https://arxiv.org/abs/1706.03762>
+
+## Use counter.dev
+
+<https://counter.dev/>
