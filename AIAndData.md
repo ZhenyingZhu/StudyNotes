@@ -184,3 +184,5 @@ Can let it create a MCP server.
 ## Use counter.dev
 
 <https://counter.dev/>
+
+<https://counter.dev/help/integration.html>
