@@ -171,6 +171,8 @@ Here
 
 Can let it create a MCP server.
 
+FastAPI is a modern, high-performance web framework for building APIs with Python 3.7+ based on standard Python type hints.
+
 ## A2A
 
 <https://github.com/google/A2A>
