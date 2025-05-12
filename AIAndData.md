@@ -183,6 +183,8 @@ FastAPI is a modern, high-performance web framework for building APIs with Pytho
 - <https://docs.2sj.ai/draw/nono>
 - <https://arxiv.org/abs/1706.03762>
 
+Ask it to avoid community rules.
+
 ## Use counter.dev
 
 <https://counter.dev/>
