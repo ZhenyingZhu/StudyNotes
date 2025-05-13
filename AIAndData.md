@@ -173,6 +173,8 @@ Can let it create a MCP server.
 
 FastAPI is a modern, high-performance web framework for building APIs with Python 3.7+ based on standard Python type hints.
 
+Create a powershell script is easy.
+
 ## A2A
 
 <https://github.com/google/A2A>
