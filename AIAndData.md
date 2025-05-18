@@ -177,6 +177,8 @@ Create a powershell script is easy, but need to be specific on what methods to u
 
 PS 7 and PS 5 cannot compatible.
 
+vs code task can config to run powershell.
+
 ## A2A
 
 <https://github.com/google/A2A>
