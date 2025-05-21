@@ -181,7 +181,7 @@ vs code task can config to run powershell.
 
 See how can hook msbuild logs to vstest.
 
-build tasks
+build tasks run exe
 
 ## A2A
 
