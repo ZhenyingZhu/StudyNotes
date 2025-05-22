@@ -183,6 +183,8 @@ See how can hook msbuild logs to vstest.
 
 build tasks run exe
 
+depends task on run. before task doesn't run.
+
 ## A2A
 
 <https://github.com/google/A2A>
