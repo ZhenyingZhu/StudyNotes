@@ -185,6 +185,8 @@ build tasks run exe
 
 depends task on run. before task doesn't run.
 
+Can create MCP server to access anything else.
+
 ## A2A
 
 <https://github.com/google/A2A>
