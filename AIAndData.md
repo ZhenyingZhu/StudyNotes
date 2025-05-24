@@ -173,19 +173,7 @@ Can let it create a MCP server.
 
 FastAPI is a modern, high-performance web framework for building APIs with Python 3.7+ based on standard Python type hints.
 
-Create a powershell script is easy, but need to be specific on what methods to use. Some times can stuck.
-
-PS 7 and PS 5 cannot compatible.
-
-vs code task can config to run powershell.
-
-See how can hook msbuild logs to vstest.
-
-build tasks run exe
-
-depends task on run. before task doesn't run.
-
-Can create MCP server to access anything else.
+Any AI tools for Outlook? Copilot is very stupid.
 
 ## A2A
 
@@ -196,8 +184,6 @@ Can create MCP server to access anything else.
 - <https://www.youtube.com/watch?v=B3SZCV0IwHU>
 - <https://docs.2sj.ai/draw/nono>
 - <https://arxiv.org/abs/1706.03762>
-
-Ask it to avoid community rules.
 
 ## Use counter.dev
 
