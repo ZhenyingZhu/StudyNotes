@@ -175,6 +175,8 @@ FastAPI is a modern, high-performance web framework for building APIs with Pytho
 
 Any AI tools for Outlook? Copilot is very stupid.
 
+Use Microsoft Graph API + Python/OpenAI/GPT to extract and classify emails.
+
 ## A2A
 
 <https://github.com/google/A2A>
