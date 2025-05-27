@@ -177,6 +177,8 @@ Any AI tools for Outlook? Copilot is very stupid.
 
 Use Microsoft Graph API + Python/OpenAI/GPT to extract and classify emails.
 
+AI for writting doc
+
 ## A2A
 
 <https://github.com/google/A2A>
