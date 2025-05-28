@@ -179,6 +179,8 @@ Use Microsoft Graph API + Python/OpenAI/GPT to extract and classify emails.
 
 AI for writting doc
 
+AI genetate build target
+
 ## A2A
 
 <https://github.com/google/A2A>
