@@ -169,6 +169,18 @@ Here
 
 <https://docs.cline.bot/improving-your-prompting-skills/cline-memory-bank>
 
+Can let it create a MCP server.
+
+FastAPI is a modern, high-performance web framework for building APIs with Python 3.7+ based on standard Python type hints.
+
+Any AI tools for Outlook? Copilot is very stupid.
+
+Use Microsoft Graph API + Python/OpenAI/GPT to extract and classify emails.
+
+AI for writting doc
+
+AI genetate build target
+
 ## A2A
 
 <https://github.com/google/A2A>
@@ -178,3 +190,9 @@ Here
 - <https://www.youtube.com/watch?v=B3SZCV0IwHU>
 - <https://docs.2sj.ai/draw/nono>
 - <https://arxiv.org/abs/1706.03762>
+
+## Use counter.dev
+
+<https://counter.dev/>
+
+<https://counter.dev/help/integration.html>
