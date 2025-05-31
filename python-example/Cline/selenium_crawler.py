@@ -81,7 +81,7 @@ class WebCrawler:
             html (str): The HTML content
             
         Returns:
-            str: The extracted text
+            str: The extracted text with line breaks for each paragraph
         """
         if not html:
             return ""
@@ -92,14 +92,31 @@ class WebCrawler:
         for script_or_style in soup(["script", "style"]):
             script_or_style.decompose()
         
-        # Get text
-        text = soup.get_text()
+        # Process paragraphs to add line breaks
+        paragraphs = []
         
-        # Clean text
-        lines = (line.strip() for line in text.splitlines())
-        chunks = (phrase.strip() for line in lines for phrase in line.split("  "))
-        text = '\n'.join(chunk for chunk in chunks if chunk)
+        # First, handle actual <p> tags
+        p_tags = soup.find_all('p')
+        if p_tags:
+            for p in p_tags:
+                # Get text from this paragraph and clean it
+                p_text = p.get_text().strip()
+                if p_text:  # Only add non-empty paragraphs
+                    paragraphs.append(p_text)
         
+        # If no <p> tags were found, fall back to the original method
+        if not paragraphs:
+            # Get all text
+            text = soup.get_text()
+            
+            # Clean text
+            lines = (line.strip() for line in text.splitlines())
+            chunks = (phrase.strip() for line in lines for phrase in line.split("  "))
+            text = '\n'.join(chunk for chunk in chunks if chunk)
+            return text
+        
+        # Join paragraphs with double line breaks
+        text = '\n\n'.join(paragraphs)
         return text
     
     def find_next_page_link(self, html, current_url):
@@ -137,12 +154,20 @@ class WebCrawler:
             next_elements = soup.find_all(pattern)
             for element in next_elements:
                 if element.name == 'a' and element.get('href'):
-                    return urljoin(current_url, element.get('href'))
+                    href = element.get('href')
+                    # Check if the href is a JavaScript function call
+                    if href.startswith('javascript:'):
+                        print(f"Found JavaScript link: {href}")
+                        return None  # Skip JavaScript links as they can't be directly navigated to
+                    return urljoin(current_url, href)
         
         # If we couldn't find a clear "next" link, look for any link that might be a pagination link
         pagination_links = soup.find_all('a', href=True)
         for link in pagination_links:
             href = link.get('href')
+            # Skip JavaScript links
+            if href.startswith('javascript:'):
+                continue
             # Check if the link looks like a pagination link
             if re.search(r'page=\d+|p=\d+|/page/\d+|/p/\d+', href):
                 return urljoin(current_url, href)
@@ -191,40 +216,72 @@ class WebCrawler:
                 # Save text to file
                 self.save_text_to_file(text, self.page_count)
                 
-                # Find the next page link
-                next_url = self.find_next_page_link(html, current_url)
-                
-                if next_url:
-                    print(f"Found next page link: {next_url}")
-                else:
-                    print("No next page link found. Trying to debug...")
-                    # Print some links for debugging
-                    soup = BeautifulSoup(html, 'html.parser')
-                    links = soup.find_all('a', href=True)
-                    print(f"Found {len(links)} links on the page")
-                    for i, link in enumerate(links[:5]):  # Print first 5 links for debugging
-                        print(f"Link {i+1}: Text='{link.text.strip()}', href='{link.get('href')}'")
+                # Try to find the next page link
+                # First, check for JavaScript links that might be the next page
+                try:
+                    # Look for links with text that suggests "next page"
+                    next_links = self.driver.find_elements(By.XPATH, "//a[contains(text(), '下一章') or contains(text(), '下一页') or contains(text(), 'next')]")
                     
-                    # Try to find links directly with Selenium
-                    print("Trying to find links with Selenium...")
-                    try:
-                        selenium_links = self.driver.find_elements(By.TAG_NAME, "a")
-                        print(f"Found {len(selenium_links)} links with Selenium")
-                        for i, link in enumerate(selenium_links[:5]):  # Print first 5 links
-                            try:
-                                href = link.get_attribute("href")
-                                text = link.text.strip()
-                                print(f"Selenium Link {i+1}: Text='{text}', href='{href}'")
-                                
-                                # If we find a link with "下一章" (Next Chapter), use it
-                                if "下一章" in text:
-                                    next_url = href
-                                    print(f"Found next chapter link with Selenium: {next_url}")
-                                    break
-                            except Exception as e:
-                                print(f"Error getting link details: {e}")
-                    except Exception as e:
-                        print(f"Error finding links with Selenium: {e}")
+                    if next_links:
+                        # Found a next page link with Selenium
+                        next_link = next_links[0]
+                        next_text = next_link.text.strip()
+                        next_href = next_link.get_attribute("href")
+                        print(f"Found next page link with Selenium: Text='{next_text}', href='{next_href}'")
+                        
+                        # Check if it's a JavaScript link
+                        if next_href and next_href.startswith("javascript:"):
+                            print(f"Executing JavaScript: {next_href}")
+                            # Click the link instead of navigating to the JavaScript URL
+                            next_link.click()
+                            # Wait for the page to update
+                            time.sleep(3)
+                            # Get the new URL after JavaScript execution
+                            new_url = self.driver.current_url
+                            print(f"New URL after JavaScript execution: {new_url}")
+                            # If the URL changed, use it as the next URL
+                            if new_url != current_url:
+                                next_url = new_url
+                            else:
+                                # If URL didn't change, we're still on the same page
+                                # Try to find content changes that indicate we're on a new page
+                                print("URL didn't change, checking for content changes...")
+                                # Get the new page source
+                                new_html = self.driver.page_source
+                                # Extract text from the new page
+                                new_text = self.extract_text(new_html)
+                                # If the text is different, we're on a new page
+                                if new_text != text:
+                                    print("Content changed, treating as a new page")
+                                    html = new_html
+                                    text = new_text
+                                    # Save the new content
+                                    self.page_count += 1
+                                    self.save_text_to_file(text, self.page_count)
+                                    continue  # Skip to the next iteration
+                                else:
+                                    print("Content didn't change, no next page found")
+                                    next_url = None
+                        else:
+                            # Regular URL, use it directly
+                            next_url = next_href
+                    else:
+                        # Fall back to the original method
+                        next_url = self.find_next_page_link(html, current_url)
+                        
+                        if next_url:
+                            print(f"Found next page link: {next_url}")
+                        else:
+                            print("No next page link found. Trying to debug...")
+                            # Print some links for debugging
+                            soup = BeautifulSoup(html, 'html.parser')
+                            links = soup.find_all('a', href=True)
+                            print(f"Found {len(links)} links on the page")
+                            for i, link in enumerate(links[:5]):  # Print first 5 links for debugging
+                                print(f"Link {i+1}: Text='{link.text.strip()}', href='{link.get('href')}'")
+                except Exception as e:
+                    print(f"Error finding next page link: {e}")
+                    next_url = None
                 
                 # Add a small delay to avoid overloading the server
                 time.sleep(1)

@@ -188,7 +188,7 @@ class WebCrawler:
 
 if __name__ == "__main__":
     # URL to start crawling from
-    start_url = "https://www.poyi.cc/load.html?v1#7026829-32953279-342544188-1"
+    start_url = ""
     
     # Create and run the crawler
     crawler = WebCrawler(start_url, max_pages=2)
