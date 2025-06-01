@@ -22,7 +22,7 @@ class WebCrawler:
         self.start_url = start_url
         self.max_pages = max_pages
         self.visited_urls = set()
-        self.page_count = 0
+        self.page_count = 210
         
         # Create output directory if it doesn't exist
         self.output_dir = "downloaded_pages"
@@ -57,18 +57,23 @@ class WebCrawler:
             str: The HTML content of the page
         """
         try:
+            print(f"Attempting to fetch URL: {url}")
             self.driver.get(url)
             
+            print("Waiting for page to load...")
             # Wait for the page to load (adjust timeout as needed)
             WebDriverWait(self.driver, 10).until(
                 EC.presence_of_element_located((By.TAG_NAME, "body"))
             )
             
             # Wait a bit more for any JavaScript to execute
+            print("Waiting for JavaScript to execute...")
             time.sleep(3)
             
             # Get the page source after JavaScript execution
-            return self.driver.page_source
+            page_source = self.driver.page_source
+            print(f"Page source length: {len(page_source)} characters")
+            return page_source
         except Exception as e:
             print(f"Error fetching {url}: {e}")
             return None
@@ -232,35 +237,77 @@ class WebCrawler:
                         # Check if it's a JavaScript link
                         if next_href and next_href.startswith("javascript:"):
                             print(f"Executing JavaScript: {next_href}")
-                            # Click the link instead of navigating to the JavaScript URL
-                            next_link.click()
-                            # Wait for the page to update
-                            time.sleep(3)
-                            # Get the new URL after JavaScript execution
-                            new_url = self.driver.current_url
-                            print(f"New URL after JavaScript execution: {new_url}")
-                            # If the URL changed, use it as the next URL
-                            if new_url != current_url:
-                                next_url = new_url
-                            else:
-                                # If URL didn't change, we're still on the same page
-                                # Try to find content changes that indicate we're on a new page
-                                print("URL didn't change, checking for content changes...")
-                                # Get the new page source
-                                new_html = self.driver.page_source
-                                # Extract text from the new page
-                                new_text = self.extract_text(new_html)
-                                # If the text is different, we're on a new page
-                                if new_text != text:
-                                    print("Content changed, treating as a new page")
-                                    html = new_html
-                                    text = new_text
-                                    # Save the new content
-                                    self.page_count += 1
-                                    self.save_text_to_file(text, self.page_count)
-                                    continue  # Skip to the next iteration
+                            try:
+                                # Extract the JavaScript function name from the href
+                                js_function = next_href.replace("javascript:", "")
+                                print(f"Extracted JavaScript function: {js_function}")
+                                
+                                # Try to execute the JavaScript directly
+                                print("Executing JavaScript directly...")
+                                self.driver.execute_script(js_function)
+                                
+                                # Wait for the page to update
+                                print("Waiting for page to update...")
+                                time.sleep(3)
+                                
+                                # Get the new URL after JavaScript execution
+                                new_url = self.driver.current_url
+                                print(f"New URL after JavaScript execution: {new_url}")
+                                
+                                # If the URL changed, use it as the next URL
+                                if new_url != current_url:
+                                    next_url = new_url
                                 else:
-                                    print("Content didn't change, no next page found")
+                                    # If URL didn't change, we're still on the same page
+                                    # Try to find content changes that indicate we're on a new page
+                                    print("URL didn't change, checking for content changes...")
+                                    # Get the new page source
+                                    new_html = self.driver.page_source
+                                    # Extract text from the new page
+                                    new_text = self.extract_text(new_html)
+                                    # If the text is different, we're on a new page
+                                    if new_text != text:
+                                        print("Content changed, treating as a new page")
+                                        html = new_html
+                                        text = new_text
+                                        # Save the new content
+                                        self.page_count += 1
+                                        self.save_text_to_file(text, self.page_count)
+                                        continue  # Skip to the next iteration
+                                    else:
+                                        print("Content didn't change, no next page found")
+                                        next_url = None
+                            except Exception as e:
+                                print(f"Error executing JavaScript: {e}")
+                                # Try an alternative approach - scroll to the element and click
+                                try:
+                                    print("Trying alternative approach - scrolling to element...")
+                                    # Scroll to the element
+                                    self.driver.execute_script("arguments[0].scrollIntoView(true);", next_link)
+                                    time.sleep(1)  # Wait for scroll to complete
+                                    
+                                    # Try to click again
+                                    print("Attempting to click after scrolling...")
+                                    next_link.click()
+                                    
+                                    # Wait for the page to update
+                                    time.sleep(3)
+                                    
+                                    # Check for content changes
+                                    new_html = self.driver.page_source
+                                    new_text = self.extract_text(new_html)
+                                    if new_text != text:
+                                        print("Content changed after alternative approach")
+                                        html = new_html
+                                        text = new_text
+                                        self.page_count += 1
+                                        self.save_text_to_file(text, self.page_count)
+                                        continue  # Skip to the next iteration
+                                    else:
+                                        print("Content didn't change after alternative approach")
+                                        next_url = None
+                                except Exception as e2:
+                                    print(f"Alternative approach failed: {e2}")
                                     next_url = None
                         else:
                             # Regular URL, use it directly
@@ -300,5 +347,5 @@ if __name__ == "__main__":
     start_url = ""
     
     # Create and run the crawler
-    crawler = WebCrawler(start_url, max_pages=2)
+    crawler = WebCrawler(start_url, max_pages=214)
     crawler.crawl()

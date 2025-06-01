@@ -65,7 +65,7 @@ python web_crawler.py
 1. Open `selenium_crawler.py` and modify the `start_url` if needed:
 
 ```python
-start_url = "https://www.poyi.cc/load.html?v1#7026829-32953279-342544188-1"
+start_url = ""
 ```
 
 2. You can also change the maximum number of pages to crawl (default is 2):
