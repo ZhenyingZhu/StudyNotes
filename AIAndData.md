@@ -181,6 +181,8 @@ AI for writting doc
 
 AI genetate build target
 
+CLine rules
+
 ## A2A
 
 <https://github.com/google/A2A>
