@@ -181,7 +181,7 @@ AI for writting doc
 
 AI genetate build target
 
-CLine rules
+CLine rules: create a file.
 
 ## A2A
 
