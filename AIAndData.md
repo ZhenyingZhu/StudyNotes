@@ -145,6 +145,8 @@ Products:
 
 <https://github.com/modelcontextprotocol/servers>
 
+<https://modelcontextprotocol.io/introduction>
+
 - MCP hosts: IDEs, programs
 - MCP clients: protocol clients maintaining connections
 - MCP servers: services work with MCP like git
@@ -153,8 +155,6 @@ Products:
 <https://github.com/modelcontextprotocol/python-sdk?tab=readme-ov-file>
 
 <https://docs.astral.sh/uv/>
-
-Here
 
 ## Cline
 
@@ -170,6 +170,11 @@ Here
 <https://docs.cline.bot/improving-your-prompting-skills/cline-memory-bank>
 
 Can let it create a MCP server.
+
+- Define core MCP server functionality
+- Create basic server structure
+- Implement protocol handling
+- Add context management
 
 FastAPI is a modern, high-performance web framework for building APIs with Python 3.7+ based on standard Python type hints.
 
