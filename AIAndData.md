@@ -162,6 +162,7 @@ Products:
 
 - `Cline: Open In New Tab`
 - `Hello Cline! I need help setting up my Windows PC for software development. Could you please help me install the essential development tools like Node.js, Git, and any other core utilities that are commonly needed for coding? I'd like you to guide me through the process step-by-step.`
+- token: 3/4 of a word in English
 
 <https://docs.cline.bot/improving-your-prompting-skills/prompting>
 
@@ -186,7 +187,7 @@ AI for writting doc
 
 AI genetate build target
 
-CLine rules
+CLine rules: create a file.
 
 ## A2A
 
