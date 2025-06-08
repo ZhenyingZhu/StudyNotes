@@ -370,6 +370,17 @@ Is it in SDK style project only?
 
 <https://devblogs.microsoft.com/nuget/introducing-transitive-dependencies-in-visual-studio/#:~:text=There%20is%20now%20a%20new,level%20dependency%20at%20any%20time.>
 
+### PackageReference
+
+<https://dfederm.com/how-does-packagereference-work/#google_vignette>
+
+- packages downloads to repository-relative path configured in the `NuGet.Config` file (normally /packages)
+- Conventions of package paths in the `<Import>`, `<Reference>`, and `<Content>` elements are codified
+- No need to copy packages from global package cache (by default %UserProfile%\.nuget\packages) to /packages directory
+- Generate files describe the restored packages in `$(RestoreOutputPath)`: `project.assets.json`, `<project-file>.nuget.g.props`, and `<project-file>.nuget.g.targets`.
+- PackageReference items are only used during the restore. During the build, any package related information comes from the generated files.
+- `project.assets.json`: dep graph of the packages, and the contents. The `ResolvePackageAssets` target reads them.
+
 ## CoreXT
 
 <https://imperfect.work/2022/06/17/corext-package-management/>
