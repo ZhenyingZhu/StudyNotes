@@ -437,6 +437,8 @@ Use `C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.6.2 Tools\
 
 <https://stackoverflow.com/questions/2855713/what-is-the-difference-between-dependsontargets-and-aftertargets>
 
+- DependsOnTargets: Defines the targets that must be executed before the target can be executed.
+
 ### Enforce target to run
 
 msbuild sometimes don't re-restore before build: <https://github.com/NuGet/Home/issues/12437>. The `objd` folder contains some info and if it is deleted, seems like msbuild can mess up. To enforce the restore, can add below target to csproj:
