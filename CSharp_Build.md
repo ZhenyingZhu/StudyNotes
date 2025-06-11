@@ -178,6 +178,10 @@ Different build tools VS uses: [How do I compile a Visual Studio project from th
 
 - `for /f %c in ('dir /b *.csproj dirs.proj') do %PkgMicrosoft_VisualStudio_SlnGen%\tools\net472\slngen.exe -vs "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\devenv.exe" --folders true %c` to generate sln file and start VS2022.
 
+### Solution Item
+
+Show in VS.
+
 ### Custom Build Target
 
 <https://stackoverflow.com/questions/5124731/run-a-custom-msbuild-target-from-visualstudio>
