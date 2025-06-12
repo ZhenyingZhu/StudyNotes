@@ -190,6 +190,10 @@ Show in VS.
 
 The sln might currupt cause project cannot load properties.
 
+### CopyOutputFromProject
+
+Seems like post build operation.
+
 ## Sign files
 
 Can use [LocalSigning](https://github.com/microsoft/service-fabric/blob/master/src/packages.ossbuild.config)
