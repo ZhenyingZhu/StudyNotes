@@ -194,6 +194,8 @@ The sln might currupt cause project cannot load properties.
 
 Seems like post build operation.
 
+If nuget package changed, DLL might not be found.
+
 ## Sign files
 
 Can use [LocalSigning](https://github.com/microsoft/service-fabric/blob/master/src/packages.ossbuild.config)
