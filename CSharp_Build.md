@@ -201,6 +201,10 @@ If nuget package changed, DLL might not be found.
 
 Include other projects.
 
+### Repo root
+
+<https://stackoverflow.com/questions/56284850/is-there-an-msbuild-property-providing-the-repository-root>
+
 ## Sign files
 
 Can use [LocalSigning](https://github.com/microsoft/service-fabric/blob/master/src/packages.ossbuild.config)
