@@ -115,6 +115,7 @@ Change the build configuration from Debug to Release, then build solution.
 
 - the [Project System Tools](https://github.com/dotnet/project-system-tools) can see build logs.
 
+
 ## MSBuild
 
 <https://learn.microsoft.com/en-us/visualstudio/msbuild/msbuild?view=vs-2022>
@@ -195,6 +196,10 @@ The sln might currupt cause project cannot load properties.
 Seems like post build operation.
 
 If nuget package changed, DLL might not be found.
+
+### Traversal target
+
+Include other projects.
 
 ## Sign files
 
