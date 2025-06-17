@@ -115,7 +115,6 @@ Change the build configuration from Debug to Release, then build solution.
 
 - the [Project System Tools](https://github.com/dotnet/project-system-tools) can see build logs.
 
-
 ## MSBuild
 
 <https://learn.microsoft.com/en-us/visualstudio/msbuild/msbuild?view=vs-2022>
