@@ -517,3 +517,12 @@ It is under `C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.6.
 ### AspNetCompiler
 
 <https://learn.microsoft.com/en-us/previous-versions/aspnet/ms227972(v=vs.100)>
+
+## temp
+
+```log
+[06/17/2025 - 11:18:41PM] Error: Cannot add None to a container
+stack:
+	[ (050017FB)].defaultonloadremoveweapons.RemoveItem() - "<native>" Line ?
+	[ (050017FB)].defaultonloadremoveweapons.OnLoad() - "defaultOnLoadRemoveWeapons.psc" Line 41
+```
