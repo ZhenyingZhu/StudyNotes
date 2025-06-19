@@ -526,3 +526,5 @@ stack:
 	[ (050017FB)].defaultonloadremoveweapons.RemoveItem() - "<native>" Line ?
 	[ (050017FB)].defaultonloadremoveweapons.OnLoad() - "defaultOnLoadRemoveWeapons.psc" Line 41
 ```
+
+Traversal projects will be restored
