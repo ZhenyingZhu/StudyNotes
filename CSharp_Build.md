@@ -525,6 +525,17 @@ It is under `C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.6.
 stack:
 	[ (050017FB)].defaultonloadremoveweapons.RemoveItem() - "<native>" Line ?
 	[ (050017FB)].defaultonloadremoveweapons.OnLoad() - "defaultOnLoadRemoveWeapons.psc" Line 41
+
+Unattached instances
+There are 499 script instances that are not attached to anything in-game. This is usually caused by uninstalling mods, or by updating mods that are not safe to update. 
+Undefined elements
+There are 123 elements whose definition is missing. This is usually caused by updating or uninstalling mods. 
+Missing parents
+There are 51 scripts with missing parents. This is usually caused by updating a mod to a new version that has major script changes. 
+No parents
+There are 51 scripts with no parent script. This is usually caused by updating a mod to a new version that has major script changes. 
+
+Papyrus is the scripting lang for Skyrim. Stored in .pex
 ```
 
 Traversal projects will be restored
