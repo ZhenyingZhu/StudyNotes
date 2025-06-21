@@ -523,8 +523,8 @@ It is under `C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.6.
 ```log
 [06/17/2025 - 11:18:41PM] Error: Cannot add None to a container
 stack:
-	[ (050017FB)].defaultonloadremoveweapons.RemoveItem() - "<native>" Line ?
-	[ (050017FB)].defaultonloadremoveweapons.OnLoad() - "defaultOnLoadRemoveWeapons.psc" Line 41
+  [ (050017FB)].defaultonloadremoveweapons.RemoveItem() - "<native>" Line ?
+  [ (050017FB)].defaultonloadremoveweapons.OnLoad() - "defaultOnLoadRemoveWeapons.psc" Line 41
 
 Unattached instances
 There are 499 script instances that are not attached to anything in-game. This is usually caused by uninstalling mods, or by updating mods that are not safe to update. 
