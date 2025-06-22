@@ -534,3 +534,9 @@ RESTFul with Swagger can be used to generate Proxy files and used in Powershell
 <https://stackoverflow.com/questions/59290464/how-to-fix-the-http-request-was-forbidden-with-client-authentication-scheme-an>
 
 For Finantial accounts: <https://plaid.com/>
+
+### Use counter.dev for visit count
+
+<https://counter.dev/>
+
+<https://counter.dev/help/integration.html>

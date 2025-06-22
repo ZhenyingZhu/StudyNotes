@@ -72,6 +72,8 @@ To use those SDKs, the global.json needs to have
 
 <https://hermit.no/moving-to-sdk-style-projects-and-package-references-in-visual-studio-part-2/>
 
+First restore packages then build. Only projects references in the traversal projects will be restored.
+
 ### .NET Version upgrade
 
 Error: CSC : warning CS9057: The analyzer assembly 'Microsoft.CodeAnalysis.CodeStyle.dll' references version '4.11.0.0' of the compiler, which is newer than the currently running version '4.3.0.0'.
@@ -518,24 +520,3 @@ It is under `C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.6.
 
 <https://learn.microsoft.com/en-us/previous-versions/aspnet/ms227972(v=vs.100)>
 
-## temp
-
-```log
-[06/17/2025 - 11:18:41PM] Error: Cannot add None to a container
-stack:
-  [ (050017FB)].defaultonloadremoveweapons.RemoveItem() - "<native>" Line ?
-  [ (050017FB)].defaultonloadremoveweapons.OnLoad() - "defaultOnLoadRemoveWeapons.psc" Line 41
-
-Unattached instances
-There are 499 script instances that are not attached to anything in-game. This is usually caused by uninstalling mods, or by updating mods that are not safe to update. 
-Undefined elements
-There are 123 elements whose definition is missing. This is usually caused by updating or uninstalling mods. 
-Missing parents
-There are 51 scripts with missing parents. This is usually caused by updating a mod to a new version that has major script changes. 
-No parents
-There are 51 scripts with no parent script. This is usually caused by updating a mod to a new version that has major script changes. 
-
-Papyrus is the scripting lang for Skyrim. Stored in .pex
-```
-
-Traversal projects will be restored
