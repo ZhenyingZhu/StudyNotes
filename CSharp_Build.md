@@ -520,3 +520,20 @@ It is under `C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.6.
 
 <https://learn.microsoft.com/en-us/previous-versions/aspnet/ms227972(v=vs.100)>
 
+```xml
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <UseWPP_CopyWebApplication>true</UseWPP_CopyWebApplication>
+    <UseWebCompiler>true</UseWebCompiler>
+  </PropertyGroup>
+
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="Exists('$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets')" />
+</Project>
+```
+
+or
+
+```xml
+<Project Sdk="Microsoft.NET.Sdk.Web">
+```
