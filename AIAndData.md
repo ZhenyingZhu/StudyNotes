@@ -189,6 +189,27 @@ AI genetate build target
 
 CLine rules: create a file.
 
+When using CLine (or any LLM-based tool like it) with a multi-step prompt, it may miss steps due to several common reasons:
+
+Token Limitations or Prompt Truncation: If the prompt is too long or complex, parts of it may be ignored or truncated internally. This can lead to steps being skipped, especially near the end of the prompt.
+
+Lack of State Tracking: CLine doesn’t inherently track progress or maintain a checklist of what it has completed. If multiple instructions are given without enforcing sequential execution, it may selectively execute or ignore some.
+
+Ambiguity or Overload: Prompts that include too many actions or vague instructions (e.g., "migrate this project to SDK style") can lead the model to interpret the intent broadly and miss specific tasks. The model might consider some steps implied or unnecessary based on its interpretation.
+
+Execution Environment Side Effects: Sometimes the tool may appear to skip a step because the command silently failed or had no effect in the actual environment. The model might proceed under the assumption that it succeeded.
+
+Heuristic Prioritization: LLMs sometimes prioritize what they believe to be the "core" or "most relevant" actions based on pattern recognition and training. This can cause lower-priority or less common steps to be dropped.
+
+How to Mitigate
+Break large prompts into smaller, focused ones, each handling 1–3 steps.
+
+Include explicit checklist-style instructions: “Step 1: … Step 2: … Step 3: …”
+
+Ask CLine to echo or log each step it performs (echo "Starting step 1...") to detect omissions.
+
+Add verification checks at the end (e.g., test builds) to confirm the steps were executed.
+
 ## A2A
 
 <https://github.com/google/A2A>
