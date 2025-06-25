@@ -537,3 +537,17 @@ or
 ```xml
 <Project Sdk="Microsoft.NET.Sdk.Web">
 ```
+
+### Transitive DLL copy
+
+In MSBuild, if project A references project B, and project B uses DLLs from a NuGet package C, then yes, by default:
+
+The DLLs from package C used by project B will be transitively copied into project A’s output folder — but only if:
+
+Project B marks the references as copy-local (i.e., Private=true), which is the default behavior for package references.
+
+The referenced DLLs are used at runtime, not just at compile time.
+
+There are no PrivateAssets or ExcludeAssets flags set to suppress propagation.
+
+So under normal circumstances with no suppression metadata in the .csproj or .nuspec, you will find DLLs from package C in project A's bin\ output folder, alongside project A and B’s compiled assemblies.
