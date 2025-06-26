@@ -551,3 +551,5 @@ The referenced DLLs are used at runtime, not just at compile time.
 There are no PrivateAssets or ExcludeAssets flags set to suppress propagation.
 
 So under normal circumstances with no suppression metadata in the .csproj or .nuspec, you will find DLLs from package C in project A's bin\ output folder, alongside project A and B’s compiled assemblies.
+
+If using statement is added, SDK style project copies the DLL.
