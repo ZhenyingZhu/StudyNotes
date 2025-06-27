@@ -219,3 +219,7 @@ Add verification checks at the end (e.g., test builds) to confirm the steps were
 - <https://www.youtube.com/watch?v=B3SZCV0IwHU>
 - <https://docs.2sj.ai/draw/nono>
 - <https://arxiv.org/abs/1706.03762>
+
+## Model difference
+
+Cloude 4 seems the best.
