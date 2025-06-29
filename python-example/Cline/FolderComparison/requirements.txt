@@ -1,0 +1,14 @@
+# No external dependencies required
+# This tool uses only Python standard library modules:
+# - os
+# - sqlite3
+# - threading
+# - concurrent.futures
+# - argparse
+# - sys
+# - time
+# - datetime
+# - dataclasses
+# - typing
+# - queue
+# - zlib
