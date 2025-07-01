@@ -553,3 +553,26 @@ There are no PrivateAssets or ExcludeAssets flags set to suppress propagation.
 So under normal circumstances with no suppression metadata in the .csproj or .nuspec, you will find DLLs from package C in project A's bin\ output folder, alongside project A and B’s compiled assemblies.
 
 If using statement is added, SDK style project copies the DLL.
+
+### Traversal
+
+```xml
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.Build.Traversal.1.0.0\build\Microsoft.Build.Traversal.targets" />
+  <ItemGroup>
+    <ProjectReference Include="..\ProjA\ProjA.csproj" />
+    <ProjectReference Include="..\ProjB\ProjB.csproj" />
+  </ItemGroup>
+</Project>
+```
+
+vs. SDK style
+
+```xml
+<Project Sdk="Microsoft.Build.Traversal/3.0.3">
+  <ItemGroup>
+    <ProjectReference Include="..\ProjA\ProjA.csproj" />
+    <ProjectReference Include="..\ProjB\ProjB.csproj" />
+  </ItemGroup>
+</Project>
+```
