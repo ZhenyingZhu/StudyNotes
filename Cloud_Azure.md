@@ -1673,3 +1673,5 @@ Create ADO pipeline
 ## Temp
 
 Cert id: <https://trainingsupport.microsoft.com/en-us/mcp/forum/all/credential-id-or-certification-number>
+
+Use KeyVault to store secret, but use SQL to record the metadata and key id.
