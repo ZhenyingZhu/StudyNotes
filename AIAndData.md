@@ -223,3 +223,10 @@ Add verification checks at the end (e.g., test builds) to confirm the steps were
 ## Model difference
 
 Cloude 4 seems the best.
+
+## AI Training
+
+NVIDIA CUDA
+
+- A parallel computing platform for using NVIDIA GPUs.
+- Used with deep learning frameworks like PyTorch or TensorFlow.
