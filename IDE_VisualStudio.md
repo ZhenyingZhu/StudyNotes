@@ -29,6 +29,10 @@ REG EXPORT $registryKeyPath C:\val.txt /reg:64
 - lightbulb icon, and then select Fix with Copilot.
 - `Ctrl + I`
 
+### .NET Install Tool
+
+It can auto install the latest dotnet SDK which is annoying.
+
 ## VS tutorial
 
 [Visual Studio](https://docs.microsoft.com/en-us/dotnet/articles/csharp/getting-started/with-visual-studio)
