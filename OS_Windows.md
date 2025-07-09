@@ -9,3 +9,7 @@
 <https://www.howtogeek.com/763271/how-to-view-a-list-of-symbolic-links-on-windows-11/>
 
 - `dir /AL /S <path>`
+
+## Anti Virus
+
+Windows defender: signture and agent versions are different.
