@@ -13,3 +13,7 @@
 ## Anti Virus
 
 Windows defender: signture and agent versions are different.
+
+## CPU-Z
+
+PCE/IE socket is a key to check.
