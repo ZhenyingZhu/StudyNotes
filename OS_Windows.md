@@ -17,3 +17,9 @@ Windows defender: signture and agent versions are different.
 ## CPU-Z
 
 PCE/IE socket is a key to check.
+
+## VMWare
+
+The vmx file can be updated. It records the file paths.
+
+- Add `mks.enableVulkanRenderer = "FALSE"` can solve the WinXP cannot use 3D acclerate issue. [Workstation 17.6.0: Windows XP starts to a black screen after boot screen](https://www.reddit.com/r/vmware/comments/1fb86d5/workstation_1760_windows_xp_starts_to_a_black/)
