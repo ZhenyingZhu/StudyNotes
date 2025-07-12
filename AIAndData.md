@@ -230,3 +230,7 @@ NVIDIA CUDA
 
 - A parallel computing platform for using NVIDIA GPUs.
 - Used with deep learning frameworks like PyTorch or TensorFlow.
+
+## Agent Id
+
+<https://techcommunity.microsoft.com/blog/microsoft-entra-blog/announcing-microsoft-entra-agent-id-secure-and-manage-your-ai-agents/3827392>
