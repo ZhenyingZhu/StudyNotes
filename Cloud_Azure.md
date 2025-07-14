@@ -1670,6 +1670,10 @@ Create ADO pipeline
 
 <https://learn.microsoft.com/en-us/azure/devops/integrate/get-started/authentication/service-principal-managed-identity?view=azure-devops>
 
+### MSAL
+
+MSAL stands for Microsoft Authentication Library. It’s a library provided by Microsoft to simplify the process of authenticating users and acquiring access tokens to call Microsoft-protected APIs.
+
 ## Temp
 
 Cert id: <https://trainingsupport.microsoft.com/en-us/mcp/forum/all/credential-id-or-certification-number>
