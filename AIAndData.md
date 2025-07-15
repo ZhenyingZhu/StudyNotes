@@ -234,3 +234,7 @@ NVIDIA CUDA
 ## Agent Id
 
 <https://techcommunity.microsoft.com/blog/microsoft-entra-blog/announcing-microsoft-entra-agent-id-secure-and-manage-your-ai-agents/3827392>
+
+## LLM
+
+Use LLaMA 3 8B for translate.
