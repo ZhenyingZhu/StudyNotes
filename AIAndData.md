@@ -257,3 +257,5 @@ pipe = pipeline("text-generation", model=model, tokenizer=tokenizer)
 response = pipe("Translate Japanese to Chinese: 日本では、春になると桜が咲きます。", max_new_tokens=100)
 print(response[0]["generated_text"])
 ```
+
+Need request access first.
