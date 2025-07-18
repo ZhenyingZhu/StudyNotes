@@ -239,7 +239,15 @@ NVIDIA CUDA
 
 Use LLaMA 3 8B for translate. Hugging Face + bitsandbytes (GPU + CPU hybrid).
 
-`pip install torch transformers accelerate bitsandbytes`
+```bash
+pip install torch transformers accelerate bitsandbytes
+pip install huggingface_hub
+python -m venv llama3env
+.\llama3env\Scripts\activate
+pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+```
+
+Need request access to the repo first, then run `huggingface-cli login`
 
 ```python
 from transformers import AutoTokenizer, AutoModelForCausalLM, pipeline
@@ -257,5 +265,3 @@ pipe = pipeline("text-generation", model=model, tokenizer=tokenizer)
 response = pipe("Translate Japanese to Chinese: 日本では、春になると桜が咲きます。", max_new_tokens=100)
 print(response[0]["generated_text"])
 ```
-
-Need request access first.
