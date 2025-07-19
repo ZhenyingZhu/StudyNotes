@@ -249,6 +249,8 @@ pip install torch torchvision torchaudio --index-url https://download.pytorch.or
 
 Need request access to the repo first, then run `huggingface-cli login`
 
+Can check if CUDA is enabled
+
 ```python
 from transformers import AutoTokenizer, AutoModelForCausalLM, pipeline
 
