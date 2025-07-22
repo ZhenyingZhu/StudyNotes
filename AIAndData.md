@@ -244,7 +244,7 @@ pip install torch transformers accelerate bitsandbytes
 pip install huggingface_hub
 python -m venv llama3env
 .\llama3env\Scripts\activate
-pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128
 ```
 
 On Windows, bitsandbytes might not work natively.
@@ -285,3 +285,5 @@ print(response[0]["generated_text"])
 ```
 
 <https://pytorch.org/get-started/locally/>
+
+`max_new_tokens=1000` can make a big difference.

@@ -18,6 +18,9 @@ model = AutoModelForCausalLM.from_pretrained(
     use_auth_token=True
 )
 
-pipe = pipeline("text-generation", model=model, tokenizer=tokenizer)
-response = pipe("Translate Japanese to Chinese: 日本では、春になると桜が咲きます。", max_new_tokens=100)
-print(response[0]["generated_text"])
+input_text = "Translate Japanese to Chinese: 日本では、春になると桜が咲きます。"
+inputs = tokenizer(input_text, return_tensors="pt").to("cuda")
+output_ids = model.generate(**inputs, max_new_tokens=100)
+
+for i in range(len(output_ids)):
+    print(tokenizer.decode(output_ids[i], skip_special_tokens=True))
