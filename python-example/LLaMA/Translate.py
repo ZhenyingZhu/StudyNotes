@@ -1,6 +1,6 @@
 from transformers import AutoTokenizer, AutoModelForCausalLM, pipeline, BitsAndBytesConfig
 
-model_id = "meta-llama/Meta-Llama-3-8B-Instruct"
+model_id = "deepseek-ai/DeepSeek-R1-Distill-Qwen-7B"
 
 bnb_config = BitsAndBytesConfig(
     load_in_4bit=True, # quantized loading
@@ -18,9 +18,12 @@ model = AutoModelForCausalLM.from_pretrained(
     use_auth_token=True
 )
 
-input_text = "Translate Japanese to Chinese: 日本では、春になると桜が咲きます。"
-inputs = tokenizer(input_text, return_tensors="pt").to("cuda")
-output_ids = model.generate(**inputs, max_new_tokens=100)
+messages = [
+    {"role": "system", "content": "你是一个擅长中日翻译的AI助手。"},
+    {"role": "user", "content": "请把这句日文翻译成中文:\n日本では、春になると桜が咲きます。"}
+]
 
-for i in range(len(output_ids)):
-    print(tokenizer.decode(output_ids[i], skip_special_tokens=True))
+input_ids = tokenizer.apply_chat_template(messages, return_tensors="pt").to("cuda")
+output_ids = model.generate(input_ids, max_new_tokens=1000)
+response = tokenizer.decode(output_ids[0], skip_special_tokens=True)
+print(response)

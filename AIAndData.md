@@ -287,3 +287,19 @@ print(response[0]["generated_text"])
 <https://pytorch.org/get-started/locally/>
 
 `max_new_tokens=1000` can make a big difference.
+
+Difference between deepseek-ai/DeepSeek-R1-Distill-Llama-8B and deepseek-ai/DeepSeek-R1-Distill-Qwen-7B
+
+- Architecture between Meta’s LLaMA 3 or Alibaba’s Qwen (stronger in Chinese)
+
+```python
+messages = [
+    {"role": "user", "content": "请把这句日文翻译成中文:\n日本では、春になると桜が咲きます。"}
+]
+
+input_ids = tokenizer.apply_chat_template(messages, return_tensors="pt").to("cuda")
+output_ids = model.generate(input_ids, max_new_tokens=100)
+response = tokenizer.decode(output_ids[0], skip_special_tokens=True)
+```
+
+Cache folder: `C:\Users\<user>\.cache\huggingface\hub\`
