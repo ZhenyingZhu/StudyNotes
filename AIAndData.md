@@ -298,7 +298,7 @@ messages = [
 ]
 
 input_ids = tokenizer.apply_chat_template(messages, return_tensors="pt").to("cuda")
-output_ids = model.generate(input_ids, max_new_tokens=100)
+output_ids = model.generate(input_ids, max_new_tokens=5000)
 response = tokenizer.decode(output_ids[0], skip_special_tokens=True)
 ```
 
