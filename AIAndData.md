@@ -235,7 +235,7 @@ NVIDIA CUDA
 
 <https://techcommunity.microsoft.com/blog/microsoft-entra-blog/announcing-microsoft-entra-agent-id-secure-and-manage-your-ai-agents/3827392>
 
-## LLM
+## Use case
 
 Use LLaMA 3 8B for translate. Hugging Face + bitsandbytes (GPU + CPU hybrid).
 
@@ -303,3 +303,12 @@ response = tokenizer.decode(output_ids[0], skip_special_tokens=True)
 ```
 
 Cache folder: `C:\Users\<user>\.cache\huggingface\hub\`
+
+## Concept
+
+A model is a large mathematical function trained to understand and generate data.
+
+- LLaMA and GPT are 2 models
+- A giant neural network with billions of parameters, that learns probabilities of sequences of words/tokens
+- training data saved in .bin, .safetensors, or .gguf
+- The blueprint: how many layers, attention heads, embedding size, etc.

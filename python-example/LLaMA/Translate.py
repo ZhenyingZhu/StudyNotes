@@ -1,6 +1,6 @@
 from transformers import AutoTokenizer, AutoModelForCausalLM, pipeline, BitsAndBytesConfig
 
-model_id = "meta-llama/Meta-Llama-3-8B-Instruct"
+model_id = "facebook/nllb-200-distilled-600M"
 
 bnb_config = BitsAndBytesConfig(
     load_in_4bit=True, # quantized loading
