@@ -145,3 +145,7 @@ Get-Command 'nssm' -errorAction SilentlyContinue
 ## Check if admin
 
 <https://stackoverflow.com/questions/29129787/check-if-logged-on-user-is-an-administrator-when-non-elevated>
+
+## Exclude
+
+`$allList | Where-Object { $item = $_ -not $excludeList.Where{ $item -match $_ }`
