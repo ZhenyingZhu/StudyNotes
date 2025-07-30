@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <RootNamespace>SDKStyle</RootNamespace>
+    <AssemblyName>SDKStyle</AssemblyName>
+    <AssemblyClsCompliant>true</AssemblyClsCompliant>
+    <TargetFramework>net48</TargetFramework>
+    <OutputPath>$(BaseOutputPath)\$(AssemblyName)</OutputPath>
+    <OutDir>$(OutputPath)\$(BuildArchitecture)</OutDir>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System">
+      <HintPath>$(PkgNET_Framework_48_TargetingPack)\tools\v4.0.30319\reference_assemblies\v4.8\System.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Core">
+      <HintPath>$(PkgNET_Framework_48_TargetingPack)\tools\v4.0.30319\reference_assemblies\v4.8\System.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xaml">
+      <HintPath>$(PkgNET_Framework_48_TargetingPack)\tools\v4.0.30319\reference_assemblies\v4.8\System.Xaml.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml">
+      <HintPath>$(PkgNET_Framework_48_TargetingPack)\tools\v4.0.30319\reference_assemblies\v4.8\System.Xml.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <!-- Always get Overriding target "AfterBuild" in project "SDKStyle\SDKStyle.csproj" with target "AfterBuild" from project "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\Current\Bin\Microsoft.Common.CurrentVersion.targets". -->
+  <Target Name="AfterBuild">
+    <Message Text="AfterBuild I define is run." Importance="high" />
+    <Copy SkipUnchangedFiles="true" SourceFiles="@(Content)" Condition="%(Content.CopyToOutputDirectory) != ''" DestinationFolder="$(OutputPath)" />
+  </Target>
+  <PropertyGroup>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+</Project>
