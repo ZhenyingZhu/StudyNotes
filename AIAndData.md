@@ -145,6 +145,8 @@ Products:
 
 <https://github.com/modelcontextprotocol/servers>
 
+<https://modelcontextprotocol.io/introduction>
+
 - MCP hosts: IDEs, programs
 - MCP clients: protocol clients maintaining connections
 - MCP servers: services work with MCP like git
@@ -154,20 +156,59 @@ Products:
 
 <https://docs.astral.sh/uv/>
 
-Here
-
 ## Cline
 
 <https://docs.cline.bot/getting-started/for-new-coders>
 
 - `Cline: Open In New Tab`
 - `Hello Cline! I need help setting up my Windows PC for software development. Could you please help me install the essential development tools like Node.js, Git, and any other core utilities that are commonly needed for coding? I'd like you to guide me through the process step-by-step.`
+- token: 3/4 of a word in English
 
 <https://docs.cline.bot/improving-your-prompting-skills/prompting>
 
 - `.clinerules` file
 
 <https://docs.cline.bot/improving-your-prompting-skills/cline-memory-bank>
+
+Can let it create a MCP server.
+
+- Define core MCP server functionality
+- Create basic server structure
+- Implement protocol handling
+- Add context management
+
+FastAPI is a modern, high-performance web framework for building APIs with Python 3.7+ based on standard Python type hints.
+
+Any AI tools for Outlook? Copilot is very stupid.
+
+Use Microsoft Graph API + Python/OpenAI/GPT to extract and classify emails.
+
+AI for writting doc
+
+AI genetate build target
+
+CLine rules: create a file.
+
+When using CLine (or any LLM-based tool like it) with a multi-step prompt, it may miss steps due to several common reasons:
+
+Token Limitations or Prompt Truncation: If the prompt is too long or complex, parts of it may be ignored or truncated internally. This can lead to steps being skipped, especially near the end of the prompt.
+
+Lack of State Tracking: CLine doesn’t inherently track progress or maintain a checklist of what it has completed. If multiple instructions are given without enforcing sequential execution, it may selectively execute or ignore some.
+
+Ambiguity or Overload: Prompts that include too many actions or vague instructions (e.g., "migrate this project to SDK style") can lead the model to interpret the intent broadly and miss specific tasks. The model might consider some steps implied or unnecessary based on its interpretation.
+
+Execution Environment Side Effects: Sometimes the tool may appear to skip a step because the command silently failed or had no effect in the actual environment. The model might proceed under the assumption that it succeeded.
+
+Heuristic Prioritization: LLMs sometimes prioritize what they believe to be the "core" or "most relevant" actions based on pattern recognition and training. This can cause lower-priority or less common steps to be dropped.
+
+How to Mitigate
+Break large prompts into smaller, focused ones, each handling 1–3 steps.
+
+Include explicit checklist-style instructions: “Step 1: … Step 2: … Step 3: …”
+
+Ask CLine to echo or log each step it performs (echo "Starting step 1...") to detect omissions.
+
+Add verification checks at the end (e.g., test builds) to confirm the steps were executed.
 
 ## A2A
 
@@ -178,3 +219,96 @@ Here
 - <https://www.youtube.com/watch?v=B3SZCV0IwHU>
 - <https://docs.2sj.ai/draw/nono>
 - <https://arxiv.org/abs/1706.03762>
+
+## Model difference
+
+Cloude 4 seems the best.
+
+## AI Training
+
+NVIDIA CUDA
+
+- A parallel computing platform for using NVIDIA GPUs.
+- Used with deep learning frameworks like PyTorch or TensorFlow.
+
+## Agent Id
+
+<https://techcommunity.microsoft.com/blog/microsoft-entra-blog/announcing-microsoft-entra-agent-id-secure-and-manage-your-ai-agents/3827392>
+
+## Use case
+
+Use LLaMA 3 8B for translate. Hugging Face + bitsandbytes (GPU + CPU hybrid).
+
+```bash
+pip install torch transformers accelerate bitsandbytes
+pip install huggingface_hub
+python -m venv llama3env
+.\llama3env\Scripts\activate
+pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128
+```
+
+On Windows, bitsandbytes might not work natively.
+
+Need request access to the repo first, then run `huggingface-cli login`
+
+Can check if CUDA is enabled
+
+```python
+import torch
+print(torch.cuda.is_available())
+```
+
+```python
+from transformers import AutoTokenizer, AutoModelForCausalLM, pipeline, BitsAndBytesConfig
+
+model_id = "meta-llama/Meta-Llama-3-8B-Instruct"
+
+bnb_config = BitsAndBytesConfig(
+    load_in_4bit=True, # quantized loading
+    bnb_4bit_quant_type="fp4",  # for GPU
+    bnb_4bit_compute_dtype="float16",
+    bnb_4bit_use_double_quant=True
+)
+
+tokenizer = AutoTokenizer.from_pretrained(model_id, use_auth_token=True)
+
+model = AutoModelForCausalLM.from_pretrained(
+    model_id,
+    quantization_config=bnb_config,
+    device_map="auto",        # offload to available devices
+    use_auth_token=True
+)
+
+pipe = pipeline("text-generation", model=model, tokenizer=tokenizer)
+response = pipe("Translate Japanese to Chinese: 日本では、春になると桜が咲きます。", max_new_tokens=100)
+print(response[0]["generated_text"])
+```
+
+<https://pytorch.org/get-started/locally/>
+
+`max_new_tokens=1000` can make a big difference.
+
+Difference between deepseek-ai/DeepSeek-R1-Distill-Llama-8B and deepseek-ai/DeepSeek-R1-Distill-Qwen-7B
+
+- Architecture between Meta’s LLaMA 3 or Alibaba’s Qwen (stronger in Chinese)
+
+```python
+messages = [
+    {"role": "user", "content": "请把这句日文翻译成中文:\n日本では、春になると桜が咲きます。"}
+]
+
+input_ids = tokenizer.apply_chat_template(messages, return_tensors="pt").to("cuda")
+output_ids = model.generate(input_ids, max_new_tokens=5000)
+response = tokenizer.decode(output_ids[0], skip_special_tokens=True)
+```
+
+Cache folder: `C:\Users\<user>\.cache\huggingface\hub\`
+
+## Concept
+
+A model is a large mathematical function trained to understand and generate data.
+
+- LLaMA and GPT are 2 models
+- A giant neural network with billions of parameters, that learns probabilities of sequences of words/tokens
+- training data saved in .bin, .safetensors, or .gguf
+- The blueprint: how many layers, attention heads, embedding size, etc.

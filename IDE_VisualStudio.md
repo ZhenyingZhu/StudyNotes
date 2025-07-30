@@ -29,6 +29,10 @@ REG EXPORT $registryKeyPath C:\val.txt /reg:64
 - lightbulb icon, and then select Fix with Copilot.
 - `Ctrl + I`
 
+### .NET Install Tool
+
+It can auto install the latest dotnet SDK which is annoying.
+
 ## VS tutorial
 
 [Visual Studio](https://docs.microsoft.com/en-us/dotnet/articles/csharp/getting-started/with-visual-studio)
@@ -123,3 +127,19 @@ Turn on build log Level
 ### Bad Image
 
 Needs to unselect perfer 32 bit.
+
+## VS Test
+
+`& "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\Extensions\TestPlatform\vstest.console.exe" xx.UnitTest.dll /Settings:mysettings.runsettings /TestAdapterPath:"C:\.tools\.nuget\packages\mstest.testadapter\2.0.0\build\net45" /Diag:vstest-log.txt`
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<RunSettings>
+  <!-- Configures the test run -->
+  <RunConfiguration>
+   <TargetFrameworkVersion>.NETFramework,Version=v4.8</TargetFrameworkVersion>
+   <TargetPlatform>x64</TargetPlatform>
+   <DisableAppDomain>true</DisableAppDomain>
+  </RunConfiguration>
+</RunSettings>
+```

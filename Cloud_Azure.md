@@ -1471,7 +1471,7 @@ Access Token
 - represent specific scopes and durations of access, granted by the resource owner, and enforced by the resource server and authorization server.
 - denote an id. self-contain the authZ info. In verifiable manner. Has additional
 
-- [HERE](https://datatracker.ietf.org/doc/html/rfc6749#section-1.5)
+- [HERE](https://datatracker.ietf.org/doc/html/rfc6749#section-1.5), <https://github.com/Azure-Samples/ms-identity-docs-code-dotnet>, <https://github.com/dotnet/AspNetCore.Docs>
 
 <https://learn.microsoft.com/en-us/entra/identity-platform/v2-overview>
 
@@ -1670,6 +1670,12 @@ Create ADO pipeline
 
 <https://learn.microsoft.com/en-us/azure/devops/integrate/get-started/authentication/service-principal-managed-identity?view=azure-devops>
 
+### MSAL
+
+MSAL stands for Microsoft Authentication Library. It’s a library provided by Microsoft to simplify the process of authenticating users and acquiring access tokens to call Microsoft-protected APIs.
+
 ## Temp
 
 Cert id: <https://trainingsupport.microsoft.com/en-us/mcp/forum/all/credential-id-or-certification-number>
+
+Use KeyVault to store secret, but use SQL to record the metadata and key id.

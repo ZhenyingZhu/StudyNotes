@@ -1,10 +1,10 @@
 {
 	"folders": [
 		{
-			"path": "."
+			"path": "./csharp-example/DotNetCoreExample"
 		},
 		{
-			"path": "../Cline"
+			"path": "."
 		}
 	],
 	"settings": {

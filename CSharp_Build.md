@@ -72,6 +72,8 @@ To use those SDKs, the global.json needs to have
 
 <https://hermit.no/moving-to-sdk-style-projects-and-package-references-in-visual-studio-part-2/>
 
+First restore packages then build. Only projects references in the traversal projects will be restored.
+
 ### .NET Version upgrade
 
 Error: CSC : warning CS9057: The analyzer assembly 'Microsoft.CodeAnalysis.CodeStyle.dll' references version '4.11.0.0' of the compiler, which is newer than the currently running version '4.3.0.0'.
@@ -178,6 +180,10 @@ Different build tools VS uses: [How do I compile a Visual Studio project from th
 
 - `for /f %c in ('dir /b *.csproj dirs.proj') do %PkgMicrosoft_VisualStudio_SlnGen%\tools\net472\slngen.exe -vs "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\devenv.exe" --folders true %c` to generate sln file and start VS2022.
 
+### Solution Item
+
+Show in VS.
+
 ### Custom Build Target
 
 <https://stackoverflow.com/questions/5124731/run-a-custom-msbuild-target-from-visualstudio>
@@ -185,6 +191,20 @@ Different build tools VS uses: [How do I compile a Visual Studio project from th
 <https://learn.microsoft.com/en-us/visualstudio/ide/how-to-view-save-and-configure-build-log-files?view=vs-2022>
 
 The sln might currupt cause project cannot load properties.
+
+### CopyOutputFromProject
+
+Seems like post build operation.
+
+If nuget package changed, DLL might not be found.
+
+### Traversal target
+
+Include other projects.
+
+### Repo root
+
+<https://stackoverflow.com/questions/56284850/is-there-an-msbuild-property-providing-the-repository-root>
 
 ## Sign files
 
@@ -370,6 +390,17 @@ Is it in SDK style project only?
 
 <https://devblogs.microsoft.com/nuget/introducing-transitive-dependencies-in-visual-studio/#:~:text=There%20is%20now%20a%20new,level%20dependency%20at%20any%20time.>
 
+### PackageReference
+
+<https://dfederm.com/how-does-packagereference-work/#google_vignette>
+
+- packages downloads to repository-relative path configured in the `NuGet.Config` file (normally /packages)
+- Conventions of package paths in the `<Import>`, `<Reference>`, and `<Content>` elements are codified
+- No need to copy packages from global package cache (by default %UserProfile%\.nuget\packages) to /packages directory
+- Generate files describe the restored packages in `$(RestoreOutputPath)`: `project.assets.json`, `<project-file>.nuget.g.props`, and `<project-file>.nuget.g.targets`.
+- PackageReference items are only used during the restore. During the build, any package related information comes from the generated files.
+- `project.assets.json`: dep graph of the packages, and the contents. The `ResolvePackageAssets` target reads them.
+
 ## CoreXT
 
 <https://imperfect.work/2022/06/17/corext-package-management/>
@@ -425,6 +456,8 @@ Use `C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.6.2 Tools\
 ### AfterTargets doesn't work
 
 <https://stackoverflow.com/questions/2855713/what-is-the-difference-between-dependsontargets-and-aftertargets>
+
+- DependsOnTargets: Defines the targets that must be executed before the target can be executed.
 
 ### Enforce target to run
 
@@ -486,3 +519,60 @@ It is under `C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.6.
 ### AspNetCompiler
 
 <https://learn.microsoft.com/en-us/previous-versions/aspnet/ms227972(v=vs.100)>
+
+```xml
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <UseWPP_CopyWebApplication>true</UseWPP_CopyWebApplication>
+    <UseWebCompiler>true</UseWebCompiler>
+  </PropertyGroup>
+
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="Exists('$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets')" />
+</Project>
+```
+
+or
+
+```xml
+<Project Sdk="Microsoft.NET.Sdk.Web">
+```
+
+### Transitive DLL copy
+
+In MSBuild, if project A references project B, and project B uses DLLs from a NuGet package C, then yes, by default:
+
+The DLLs from package C used by project B will be transitively copied into project A’s output folder — but only if:
+
+Project B marks the references as copy-local (i.e., Private=true), which is the default behavior for package references.
+
+The referenced DLLs are used at runtime, not just at compile time.
+
+There are no PrivateAssets or ExcludeAssets flags set to suppress propagation.
+
+So under normal circumstances with no suppression metadata in the .csproj or .nuspec, you will find DLLs from package C in project A's bin\ output folder, alongside project A and B’s compiled assemblies.
+
+If using statement is added, SDK style project copies the DLL.
+
+### Traversal
+
+```xml
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.Build.Traversal.1.0.0\build\Microsoft.Build.Traversal.targets" />
+  <ItemGroup>
+    <ProjectReference Include="..\ProjA\ProjA.csproj" />
+    <ProjectReference Include="..\ProjB\ProjB.csproj" />
+  </ItemGroup>
+</Project>
+```
+
+vs. SDK style
+
+```xml
+<Project Sdk="Microsoft.Build.Traversal/3.0.3">
+  <ItemGroup>
+    <ProjectReference Include="..\ProjA\ProjA.csproj" />
+    <ProjectReference Include="..\ProjB\ProjB.csproj" />
+  </ItemGroup>
+</Project>
+```

@@ -1389,3 +1389,7 @@ See if in the ctor/fields there is a property inited.
 ### Json util errors
 
 StringUtil cannot be found in "System.Web": due to not using NewtonSoft.
+
+### Precompile
+
+<https://docs.veracode.com/r/c_precomp_MS>
