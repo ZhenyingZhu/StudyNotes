@@ -304,6 +304,8 @@ response = tokenizer.decode(output_ids[0], skip_special_tokens=True)
 
 Cache folder: `C:\Users\<user>\.cache\huggingface\hub\`
 
+Got error: `ValueError: Unrecognized configuration class <class 'transformers.models.m2m_100.configuration_m2m_100.M2M100Config'> for this kind of AutoModel: AutoModelForCausalLM.`
+
 ## Concept
 
 A model is a large mathematical function trained to understand and generate data.
