@@ -576,3 +576,7 @@ vs. SDK style
   </ItemGroup>
 </Project>
 ```
+
+### Restore
+
+SDK style projects restore packages and the transitive packages based on what the package declares, so some un-necessary packages might be restored.
