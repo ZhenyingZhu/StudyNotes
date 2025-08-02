@@ -306,6 +306,8 @@ Cache folder: `C:\Users\<user>\.cache\huggingface\hub\`
 
 Got error: `ValueError: Unrecognized configuration class <class 'transformers.models.m2m_100.configuration_m2m_100.M2M100Config'> for this kind of AutoModel: AutoModelForCausalLM.`
 
+To use it, `pip install sentencepiece`, `python -m pip install --upgrade pip setuptools wheel`
+
 ## Concept
 
 A model is a large mathematical function trained to understand and generate data.
