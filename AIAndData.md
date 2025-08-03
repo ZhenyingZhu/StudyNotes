@@ -304,9 +304,17 @@ response = tokenizer.decode(output_ids[0], skip_special_tokens=True)
 
 Cache folder: `C:\Users\<user>\.cache\huggingface\hub\`
 
+Trying model `facebook/nllb-200-distilled-600M`
+
 Got error: `ValueError: Unrecognized configuration class <class 'transformers.models.m2m_100.configuration_m2m_100.M2M100Config'> for this kind of AutoModel: AutoModelForCausalLM.`
 
 To use it, `pip install sentencepiece`, `python -m pip install --upgrade pip setuptools wheel`
+
+## Azure
+
+Use Azure Machine Learning.
+
+`When using identity-based authentication, "Storage Blob Data Contributor" and "Storage File Privileged Contributor" roles must be granted to individual users that need access on the storage account.`
 
 ## Concept
 
