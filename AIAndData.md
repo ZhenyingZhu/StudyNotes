@@ -316,6 +316,8 @@ Use Azure Machine Learning.
 
 `When using identity-based authentication, "Storage Blob Data Contributor" and "Storage File Privileged Contributor" roles must be granted to individual users that need access on the storage account.`
 
+<https://learn.microsoft.com/en-us/azure/machine-learning/overview-what-is-azure-machine-learning?view=azureml-api-2>
+
 ## Concept
 
 A model is a large mathematical function trained to understand and generate data.
