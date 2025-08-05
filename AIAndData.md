@@ -326,3 +326,7 @@ A model is a large mathematical function trained to understand and generate data
 - A giant neural network with billions of parameters, that learns probabilities of sequences of words/tokens
 - training data saved in .bin, .safetensors, or .gguf
 - The blueprint: how many layers, attention heads, embedding size, etc.
+
+## Code
+
+<https://dotnet.microsoft.com/en-us/platform/upgrade>
