@@ -310,6 +310,10 @@ Got error: `ValueError: Unrecognized configuration class <class 'transformers.mo
 
 To use it, `pip install sentencepiece`, `python -m pip install --upgrade pip setuptools wheel`
 
+The SentencePiece need to be built.
+
+`pip install huggingface_hub[hf_xet]` or `pip install hf_xet`
+
 ## Azure
 
 Use Azure Machine Learning.

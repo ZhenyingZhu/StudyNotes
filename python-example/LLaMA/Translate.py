@@ -1,29 +1,22 @@
-from transformers import AutoTokenizer, AutoModelForCausalLM, pipeline, BitsAndBytesConfig
+from transformers import NllbTokenizer, AutoModelForSeq2SeqLM
 
-model_id = "facebook/nllb-200-distilled-600M"
+model_name = "facebook/nllb-200-distilled-600M"
+tokenizer = NllbTokenizer.from_pretrained(model_name)
+model = AutoModelForSeq2SeqLM.from_pretrained(model_name)
 
-bnb_config = BitsAndBytesConfig(
-    load_in_4bit=True, # quantized loading
-    bnb_4bit_quant_type="fp4",  # for GPU
-    bnb_4bit_compute_dtype="float16",
-    bnb_4bit_use_double_quant=True
-)
+text = "日本では、春になると桜が咲きます。"
+source_lang = "jpn_Jpan"
+target_lang = "zho_Hans"
 
-tokenizer = AutoTokenizer.from_pretrained(model_id, use_auth_token=True)
+# Set source language
+tokenizer.src_lang = source_lang
+inputs = tokenizer(text, return_tensors="pt")
 
-model = AutoModelForCausalLM.from_pretrained(
-    model_id,
-    quantization_config=bnb_config,
-    device_map="auto",        # offload to available devices
-    use_auth_token=True
-)
+# Set target language via forced_bos_token_id
+inputs["forced_bos_token_id"] = tokenizer.lang_code_to_id[target_lang]
 
-messages = [
-    {"role": "system", "content": "你是一个擅长中日翻译的AI助手。"},
-    {"role": "user", "content": "请把这句日文翻译成中文:\nアッチは"}
-]
+# Generate
+outputs = model.generate(**inputs)
+translated_text = tokenizer.batch_decode(outputs, skip_special_tokens=True)[0]
 
-input_ids = tokenizer.apply_chat_template(messages, return_tensors="pt").to("cuda")
-output_ids = model.generate(input_ids, max_new_tokens=1000)
-response = tokenizer.decode(output_ids[0], skip_special_tokens=True)
-print(response)
+print(translated_text)
