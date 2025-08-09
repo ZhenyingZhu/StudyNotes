@@ -336,5 +336,3 @@ A model is a large mathematical function trained to understand and generate data
 <https://dotnet.microsoft.com/en-us/platform/upgrade>
 
 - Agent mode in VS.
-
-`bGamepadEnable=1`
