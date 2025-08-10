@@ -331,6 +331,8 @@ A model is a large mathematical function trained to understand and generate data
 - training data saved in .bin, .safetensors, or .gguf
 - The blueprint: how many layers, attention heads, embedding size, etc.
 
+Thinking model
+
 ## Code
 
 <https://dotnet.microsoft.com/en-us/platform/upgrade>
