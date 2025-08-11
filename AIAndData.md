@@ -331,7 +331,9 @@ A model is a large mathematical function trained to understand and generate data
 - training data saved in .bin, .safetensors, or .gguf
 - The blueprint: how many layers, attention heads, embedding size, etc.
 
-Thinking model
+GPT 5: Thinking model
+
+- Fell like it is less smart than 4o. Ask it to rephrase. It becomes very short.
 
 ## Code
 
