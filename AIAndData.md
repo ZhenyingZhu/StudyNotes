@@ -334,6 +334,7 @@ A model is a large mathematical function trained to understand and generate data
 GPT 5: Thinking model
 
 - Fell like it is less smart than 4o. Ask it to rephrase. It becomes very short.
+- But if open thinking mode, it is much better
 
 ## Code
 
