@@ -336,6 +336,7 @@ GPT 5: Thinking model
 - Fell like it is less smart than 4o. Ask it to rephrase. It becomes very short.
 - But if open thinking mode, it is much better
 - Can switch back to 4o
+- How large is the context?
 
 ## Code
 
