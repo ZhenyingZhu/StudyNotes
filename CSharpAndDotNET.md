@@ -1393,3 +1393,7 @@ StringUtil cannot be found in "System.Web": due to not using NewtonSoft.
 ### Precompile
 
 <https://docs.veracode.com/r/c_precomp_MS>
+
+### Dotnet SDK
+
+desktop runtime and dotnet core runtime are different
