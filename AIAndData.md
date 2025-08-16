@@ -324,3 +324,37 @@ A model is a large mathematical function trained to understand and generate data
 - A giant neural network with billions of parameters, that learns probabilities of sequences of words/tokens
 - training data saved in .bin, .safetensors, or .gguf
 - The blueprint: how many layers, attention heads, embedding size, etc.
+
+## Problem statement
+
+xxx
+?xx
+?xx
+x?x
+xxx
+xD?
+xxx
+OEx
+
+Split
+Next
+Portal*2
+
+```
+Here is a puzzle. Below is a board. s means start. x is a normal cell. ? needs to be filled with a special cell in each step, but it can be replaced in the next step. D means a door. O means the opener of the door. E is exit.
+sxx
+?xx
+?xx
+x?x
+xxx
+xD?
+xxx
+OEx
+
+Special cells are
+1. split: a ball split into 2, 1 ball goes down. 1 ball goes right (or disappear if it is the last column).
+2. next: just go forward
+3. portal * 2: go from one portal to another.
+
+A ball start from s, every step it moves 1 cell down if the cell is a normal cell, or trigger a special cell. If it moves to the door but the door is closed, it 
+```
