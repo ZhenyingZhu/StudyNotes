@@ -310,11 +310,19 @@ Got error: `ValueError: Unrecognized configuration class <class 'transformers.mo
 
 To use it, `pip install sentencepiece`, `python -m pip install --upgrade pip setuptools wheel`
 
+The SentencePiece need to be built.
+
+`pip install huggingface_hub[hf_xet]` or `pip install hf_xet`
+
+Need to install MSVC to compile C++.
+
 ## Azure
 
 Use Azure Machine Learning.
 
 `When using identity-based authentication, "Storage Blob Data Contributor" and "Storage File Privileged Contributor" roles must be granted to individual users that need access on the storage account.`
+
+<https://learn.microsoft.com/en-us/azure/machine-learning/overview-what-is-azure-machine-learning?view=azureml-api-2>
 
 ## Concept
 
@@ -358,3 +366,16 @@ Special cells are
 
 A ball start from s, every step it moves 1 cell down if the cell is a normal cell, or trigger a special cell. If it moves to the door but the door is closed, it 
 ```
+
+## GPT 5: Thinking model
+
+- Fell like it is less smart than 4o. Ask it to rephrase. It becomes very short.
+- But if open thinking mode, it is much better
+- Can switch back to 4o
+- How large is the context?
+
+## Code
+
+<https://dotnet.microsoft.com/en-us/platform/upgrade>
+
+- Agent mode in VS.
