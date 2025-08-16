@@ -314,6 +314,8 @@ The SentencePiece need to be built.
 
 `pip install huggingface_hub[hf_xet]` or `pip install hf_xet`
 
+Need to install MSVC to compile C++.
+
 ## Azure
 
 Use Azure Machine Learning.
