@@ -360,11 +360,11 @@ xxx
 OEx
 
 Special cells are
-1. split: a ball split into 2, 1 ball goes down. 1 ball goes right (or disappear if it is the last column).
+1. split: a ball split into 2, the original ball goes down. and the new ball goes right (or disappear if it is the last column).
 2. next: just go forward
 3. portal * 2: go from one portal to another.
 
-A ball start from s, every step it moves 1 cell down if the cell is a normal cell, or trigger a special cell. If it moves to the door but the door is closed, it 
+A ball start from s, every step it moves 1 cell down if the cell is a normal cell, or trigger a special cell. If it moves to the door but the door is closed, and if the ball is the original ball, then it start over. Otherwise it disappear.
 ```
 
 ## GPT 5: Thinking model
