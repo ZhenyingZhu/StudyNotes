@@ -170,6 +170,8 @@ Products:
 
 <https://docs.cline.bot/improving-your-prompting-skills/cline-memory-bank>
 
+- basically a rule file with more structured docs
+
 Can let it create a MCP server.
 
 - Define core MCP server functionality
