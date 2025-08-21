@@ -326,6 +326,8 @@ Use Azure Machine Learning.
 
 <https://learn.microsoft.com/en-us/azure/machine-learning/overview-what-is-azure-machine-learning?view=azureml-api-2>
 
+<https://ml.azure.com/fileexplorerAzNB?wsid=/subscriptions/7c8fdcf0-3edf-4ff4-bacb-ebab965e3d92/resourcegroups/ML-Translate/providers/Microsoft.MachineLearningServices/workspaces/ML-Translate&tid=c74a24d8-2986-4739-aec1-36b4c9934ed3&activeFilePath=Samples/SDK%20v2/tutorials/get-started-notebooks/quickstart.ipynb&notebookPivot=1>
+
 ## Concept
 
 A model is a large mathematical function trained to understand and generate data.
