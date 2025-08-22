@@ -1168,6 +1168,8 @@ using (StringWriter textWriter = new StringWriter())
 }
 ```
 
+Note: XML is case sensitive!
+
 ### System.CodeDom
 
 Used to generate C# code
