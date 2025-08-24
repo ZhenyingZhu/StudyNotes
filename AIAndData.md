@@ -384,3 +384,7 @@ Claude Opus is better for large scale, Sonnet is for shorter.
 <https://dotnet.microsoft.com/en-us/platform/upgrade>
 
 - Agent mode in VS.
+
+## K8s
+
+Kubernetes can use Docker as the container runtime (though today, containerd or CRI-O are more common).
