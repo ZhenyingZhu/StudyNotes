@@ -377,6 +377,8 @@ A ball start from s, every step it moves 1 cell down if the cell is a normal cel
 - Can switch back to 4o
 - How large is the context?
 
+when going through a big list, it can lie. Thinking mode seems much better.
+
 Claude Opus is better for large scale, Sonnet is for shorter.
 
 ## Code
