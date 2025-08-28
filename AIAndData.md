@@ -387,6 +387,8 @@ Claude Opus is better for large scale, Sonnet is for shorter.
 
 - Agent mode in VS.
 
+Powershell is something AI never able to get it right.
+
 ## K8s
 
 Kubernetes can use Docker as the container runtime (though today, containerd or CRI-O are more common).
