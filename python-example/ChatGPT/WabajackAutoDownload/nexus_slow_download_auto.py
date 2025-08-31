@@ -52,7 +52,7 @@ if not TEMPLATE_TITLE.exists():
 
 def screenshot_bgr():
     """Take a screenshot and return as a BGR numpy array for OpenCV."""
-    shot = pyautogui.screenshot()
+    shot = pyautogui.screenshot("screen.png")
     img = cv2.cvtColor(np.array(shot), cv2.COLOR_RGB2BGR)
     return img
 
@@ -97,6 +97,7 @@ def center_of_bbox(bbox):
 
 def find_and_click_slow_button():
     """Try to find and click the 'Slow download' button. Returns True if clicked."""
+    print(f"[INFO] Taking screenshot...")
     hay = screenshot_bgr()
 
     # Load templates
@@ -109,30 +110,37 @@ def find_and_click_slow_button():
         title = cv2.imread(str(TEMPLATE_TITLE))
 
     # Optional: check if we're on the download page
+    print(f"[INFO] Checking if on download page...")
     on_page = True
     if title is not None:
         page_hit = match_template_multi_scale(hay, title, threshold=0.80)
         on_page = page_hit is not None
 
     if not on_page:
+        print(f"[WARN] Not on download page.")
         return False
 
     # Try to locate button directly. If not found, scroll and try again.
-    for attempt in range(6):  # up to ~6 scrolls
+    print(f"[INFO] Finding 'Slow download' button...")
+    for attempt in range(2):  # up to ~6 scrolls
         hay = screenshot_bgr()
         hit = match_template_multi_scale(hay, slow, threshold=0.87)
         if hit:
             cx, cy = center_of_bbox(hit)
+            print(f"[INFO] 'Slow download' button found at ({cx},{cy})")
+
             # Move and click
             pyautogui.moveTo(cx, cy, duration=0.15)
             pyautogui.click()
             print(f"[OK] Clicked 'Slow download' at ({cx},{cy})")
             return True
+
         # if not found, scroll a bit and try again
-        scroll_page_down(steps=1, amount=-700)
+        print(f"[INFO] 'Slow download' button not found, scrolling...(attempt {attempt})")
+        scroll_page_down(steps=1, amount=-50)
 
+    print(f"[WARN] 'Slow download' button not found after scrolling.")
     return False
-
 
 def main():
     print("NexusMods 'Slow download' auto-clicker started.")
