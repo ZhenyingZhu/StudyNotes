@@ -683,6 +683,12 @@ virtualenv -p "D:\Python3\python.exe" venv
 workon venv
 ```
 
+### Debug with VSCode
+
+- Use `ctrl+shift+p` to open the command palette. Select the python interpreter.
+- Install python debugger extention.
+- Create a launch.json file.
+
 ### install second python
 
 <https://github.com/yyuu/pyenv>
