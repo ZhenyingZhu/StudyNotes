@@ -436,6 +436,14 @@ For .NET Core: <https://learn.microsoft.com/en-us/dotnet/core/dependency-loading
 
 <https://stackoverflow.com/questions/33256071/what-is-autounify-and-why-is-it-causing-working-tests-to-fail-in-tfs-2015>
 
+## Incremental build
+
+Visual Studio msbuild: `C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\Current\Bin\MSBuild.exe`.
+
+- `msbuild RebuildProjectsSample.sln /m:16 /p:Configuration=Debug /bl:LogFile=msbuild.binlog /fl "/flp:Verbosity=diagnostic;LogFile=msbuild.log"`
+
+Dotnet SDK also has msbuild but not an exe: `C:\Program Files\dotnet\sdk\[version]\MSBuild.dll`
+
 ## Misc
 
 ### Some Really Weird Build Issue
