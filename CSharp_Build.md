@@ -446,6 +446,8 @@ Dotnet SDK also has msbuild but not an exe: `C:\Program Files\dotnet\sdk\[versio
 
 Should see the message `Skipping target "GenerateBuildDependencyFile" because all output files are up-to-date with respect to the input files.` and `Target "_ComputePackageReferencePublish" skipped. Previously built successfully.`
 
+See message `Input file "source file" is newer than output file "target file"` to identify why build updates
+
 ## Misc
 
 ### Some Really Weird Build Issue
