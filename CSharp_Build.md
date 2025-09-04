@@ -444,6 +444,8 @@ Visual Studio msbuild: `C:\Program Files\Microsoft Visual Studio\2022\Enterprise
 
 Dotnet SDK also has msbuild but not an exe: `C:\Program Files\dotnet\sdk\[version]\MSBuild.dll`
 
+Should see the message `Skipping target "GenerateBuildDependencyFile" because all output files are up-to-date with respect to the input files.` and `Target "_ComputePackageReferencePublish" skipped. Previously built successfully.`
+
 ## Misc
 
 ### Some Really Weird Build Issue
