@@ -422,3 +422,5 @@ Command: "D:\Github\stable-diffusion-webui\venv\Scripts\python.exe" -m pip insta
 Error code: 1
 Press any key to continue . . .
 ```
+
+Need to follow <https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Install-and-Run-on-NVidia-GPUs>
