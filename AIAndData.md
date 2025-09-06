@@ -392,3 +392,33 @@ Powershell is something AI never able to get it right.
 ## K8s
 
 Kubernetes can use Docker as the container runtime (though today, containerd or CRI-O are more common).
+
+## Stable diffusion
+
+Torch cannot be installed. Maybe related to python version?
+
+```log
+Python 3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]
+Version: v1.10.1
+Commit hash: 82a973c04367123ae98bd9abdf80d9eda9b910e2
+Installing torch and torchvision
+Looking in indexes: https://pypi.org/simple, https://download.pytorch.org/whl/cu121
+ERROR: Could not find a version that satisfies the requirement torch==2.1.2 (from versions: 2.6.0, 2.7.0, 2.7.1, 2.8.0)
+ERROR: No matching distribution found for torch==2.1.2
+Traceback (most recent call last):
+  File "D:\Github\stable-diffusion-webui\launch.py", line 48, in <module>
+    main()
+    ~~~~^^
+  File "D:\Github\stable-diffusion-webui\launch.py", line 39, in main
+    prepare_environment()
+    ~~~~~~~~~~~~~~~~~~~^^
+  File "D:\Github\stable-diffusion-webui\modules\launch_utils.py", line 381, in prepare_environment
+    run(f'"{python}" -m {torch_command}', "Installing torch and torchvision", "Couldn't install torch", live=True)
+    ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Github\stable-diffusion-webui\modules\launch_utils.py", line 116, in run
+    raise RuntimeError("\n".join(error_bits))
+RuntimeError: Couldn't install torch.
+Command: "D:\Github\stable-diffusion-webui\venv\Scripts\python.exe" -m pip install torch==2.1.2 torchvision==0.16.2 --extra-index-url https://download.pytorch.org/whl/cu121
+Error code: 1
+Press any key to continue . . .
+```
