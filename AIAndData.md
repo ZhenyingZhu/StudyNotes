@@ -424,3 +424,7 @@ Press any key to continue . . .
 ```
 
 Need to follow <https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Install-and-Run-on-NVidia-GPUs>
+
+## Skillup AI
+
+<https://skilluplabforhackathon.azurewebsites.net/speedskills/researcher/performance>
