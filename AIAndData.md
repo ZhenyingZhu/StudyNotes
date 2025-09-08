@@ -428,3 +428,5 @@ Need to follow <https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Ins
 ## Skillup AI
 
 <https://skilluplabforhackathon.azurewebsites.net/speedskills/researcher/performance>
+
+- Researcher?
