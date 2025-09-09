@@ -430,3 +430,5 @@ Need to follow <https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Ins
 <https://skilluplabforhackathon.azurewebsites.net/speedskills/researcher/performance>
 
 - Researcher?
+
+RAG: Retrieval-Augmented Generation
