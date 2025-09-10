@@ -432,3 +432,8 @@ Need to follow <https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Ins
 - Researcher?
 
 RAG: Retrieval-Augmented Generation
+
+- Chunking
+- embeddings
+- Store to FAISS, Chroma, Pinecone etc.
+
