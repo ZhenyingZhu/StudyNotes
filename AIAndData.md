@@ -437,3 +437,109 @@ RAG: Retrieval-Augmented Generation
 - embeddings
 - Store to FAISS, Chroma, Pinecone etc.
 
+1) What to learn (order matters)
+
+Programming + tooling you’ll actually use: Python 3.11, NumPy, Pandas, PyTorch, Jupyter/VS Code, Git.
+
+Core ML: supervised learning, train/val/test, bias/variance, regularization.
+
+Deep Learning: backprop, CNNs, RNNs/Transformers, optimization tricks.
+
+NLP & LLMs: tokenization, attention, pretraining vs finetuning, LoRA, RAG.
+
+MLOps & Systems: experiment tracking, data/versioning, deployment, inference/serving, quantization.
+
+2) A 12-week plan (5–8 hrs/week)
+
+Weeks 1–3 — ML foundations
+
+Follow Andrew Ng’s Machine Learning Specialization for fundamentals. 
+Coursera
+DeepLearning.ai
+
+Deliverable: implement linear/logistic regression and a simple cross-validation pipeline in PyTorch.
+
+Weeks 4–6 — Deep Learning
+
+Do fast.ai Practical Deep Learning for Coders (free, code-first). 
+Practical Deep Learning for Coders
++1
+
+Deliverable: train a small image classifier; write a short readme on overfitting fixes you used.
+
+Weeks 7–8 — NLP basics
+
+Skim Stanford CS224n lectures/notes for modern NLP intuition. 
+Stanford University
+YouTube
+
+Deliverable: train a tiny seq model (or use a pretrained one) for text classification.
+
+Weeks 9–10 — LLMs in practice
+
+Work through the Hugging Face LLM course (Transformers/Datasets/Accelerate). 
+Hugging Face
++2
+Hugging Face
++2
+
+Deliverable: finetune a small model with LoRA on a curated dataset; evaluate with a held-out set.
+
+Weeks 11–12 — Ship something
+
+Build a RAG app (your docs → vector DB → retriever → LLM → citations).
+
+Stretch: add a reranker and eval harness (faithfulness, groundedness).
+
+3) Fast 10-day jumpstart (if you want momentum now)
+
+Day 1–2: Set up env (Python, PyTorch CUDA; Jupyter; Hugging Face CLI).
+Day 3–4: Train a baseline classifier on a tabular dataset.
+Day 5–6: Finetune a small LLM with LoRA on a tiny dataset; compare to zero-shot.
+Day 7–8: Build minimal RAG (Chroma/FAISS, top-k=8, cite sources).
+Day 9–10: Add evals + a single-file API (FastAPI) and run basic load tests.
+
+4) Projects that teach the right muscles
+
+Doc QA (RAG): index your own notes/docs and answer questions with citations.
+
+Build-log anomaly detector: classify failure types from logs; surface top tokens/spans.
+
+Code-search: embed code/comments; semantic search + keyword fallback.
+
+Latency-aware LLM serving: compare FP16 vs INT8 vs 4-bit; graph throughput vs latency.
+
+5) Reference tracks (pick what fits your style)
+
+Vision track: Stanford CS231n (notes + assignments). 
+CS231n
++1
+CS231n
+
+NLP/LLMs track: Stanford CS224n + Hugging Face LLM course. 
+Stanford University
+YouTube
+Hugging Face
+
+Practical, code-first: fast.ai. 
+Practical Deep Learning for Coders
+
+6) Tooling (minimum viable stack)
+
+Python 3.11, PyTorch (CUDA build), VS Code, Jupyter.
+
+Libraries: PyTorch, scikit-learn, transformers/datasets/accelerate, faiss-cpu or Chroma, FastAPI.
+
+Optional for serving: vLLM or TGI, ONNX/TensorRT for speed, MLflow or Weights & Biases for tracking.
+
+7) How to study (so it sticks)
+
+Tight loop: watch/skim → implement from scratch (tiny version) → use a library → write 5-10 bullet “learnings.”
+
+Benchmark yourself: keep a simple leaderboard (accuracy/F1/latency/cost).
+
+Portfolio first: every lesson ends with a commit, a README, and a demo (Colab/Spaces/local).
+
+Evaluate rigorously: build small checklists for data leakage, eval splits, prompt safety.
+
+If you want, tell me your available time each week and the kind of project you’re excited to ship first—I’ll tailor this plan (and give you a focused resource list + step-by-step tasks for the next 14 days).
