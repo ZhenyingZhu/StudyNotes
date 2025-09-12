@@ -437,7 +437,7 @@ RAG: Retrieval-Augmented Generation
 - embeddings
 - Store to FAISS, Chroma, Pinecone etc.
 
-1) What to learn (order matters)
+### What to learn (order matters)
 
 Programming + tooling you’ll actually use: Python 3.11, NumPy, Pandas, PyTorch, Jupyter/VS Code, Git.
 
@@ -449,7 +449,7 @@ NLP & LLMs: tokenization, attention, pretraining vs finetuning, LoRA, RAG.
 
 MLOps & Systems: experiment tracking, data/versioning, deployment, inference/serving, quantization.
 
-2) A 12-week plan (5–8 hrs/week)
+### A 12-week plan (5–8 hrs/week)
 
 Weeks 1–3 — ML foundations
 
@@ -491,7 +491,7 @@ Build a RAG app (your docs → vector DB → retriever → LLM → citations).
 
 Stretch: add a reranker and eval harness (faithfulness, groundedness).
 
-3) Fast 10-day jumpstart (if you want momentum now)
+### Fast 10-day jumpstart (if you want momentum now)
 
 Day 1–2: Set up env (Python, PyTorch CUDA; Jupyter; Hugging Face CLI).
 Day 3–4: Train a baseline classifier on a tabular dataset.
@@ -499,7 +499,7 @@ Day 5–6: Finetune a small LLM with LoRA on a tiny dataset; compare to zero-sho
 Day 7–8: Build minimal RAG (Chroma/FAISS, top-k=8, cite sources).
 Day 9–10: Add evals + a single-file API (FastAPI) and run basic load tests.
 
-4) Projects that teach the right muscles
+### Projects that teach the right muscles
 
 Doc QA (RAG): index your own notes/docs and answer questions with citations.
 
@@ -509,7 +509,7 @@ Code-search: embed code/comments; semantic search + keyword fallback.
 
 Latency-aware LLM serving: compare FP16 vs INT8 vs 4-bit; graph throughput vs latency.
 
-5) Reference tracks (pick what fits your style)
+### Reference tracks (pick what fits your style)
 
 Vision track: Stanford CS231n (notes + assignments). 
 CS231n
@@ -524,7 +524,7 @@ Hugging Face
 Practical, code-first: fast.ai. 
 Practical Deep Learning for Coders
 
-6) Tooling (minimum viable stack)
+### Tooling (minimum viable stack)
 
 Python 3.11, PyTorch (CUDA build), VS Code, Jupyter.
 
@@ -532,7 +532,7 @@ Libraries: PyTorch, scikit-learn, transformers/datasets/accelerate, faiss-cpu or
 
 Optional for serving: vLLM or TGI, ONNX/TensorRT for speed, MLflow or Weights & Biases for tracking.
 
-7) How to study (so it sticks)
+### How to study (so it sticks)
 
 Tight loop: watch/skim → implement from scratch (tiny version) → use a library → write 5-10 bullet “learnings.”
 
