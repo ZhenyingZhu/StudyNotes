@@ -453,43 +453,41 @@ MLOps & Systems: experiment tracking, data/versioning, deployment, inference/ser
 
 Weeks 1–3 — ML foundations
 
-Follow Andrew Ng’s Machine Learning Specialization for fundamentals. 
-Coursera
-DeepLearning.ai
+Follow Andrew Ng’s Machine Learning Specialization for fundamentals.
+
+- Coursera
+- DeepLearning.ai
 
 Deliverable: implement linear/logistic regression and a simple cross-validation pipeline in PyTorch.
 
 Weeks 4–6 — Deep Learning
 
-Do fast.ai Practical Deep Learning for Coders (free, code-first). 
-Practical Deep Learning for Coders
-+1
+- Do fast.ai Practical Deep Learning for Coders (free, code-first).
+- Practical Deep Learning for Coders
 
 Deliverable: train a small image classifier; write a short readme on overfitting fixes you used.
 
 Weeks 7–8 — NLP basics
 
-Skim Stanford CS224n lectures/notes for modern NLP intuition. 
-Stanford University
-YouTube
+- Skim Stanford CS224n lectures/notes for modern NLP intuition.
+- Stanford University
+- YouTube
 
 Deliverable: train a tiny seq model (or use a pretrained one) for text classification.
 
 Weeks 9–10 — LLMs in practice
 
-Work through the Hugging Face LLM course (Transformers/Datasets/Accelerate). 
-Hugging Face
-+2
-Hugging Face
-+2
+- Work through the Hugging Face LLM course (Transformers/Datasets/Accelerate).
+- Hugging Face
+- Hugging Face
 
 Deliverable: finetune a small model with LoRA on a curated dataset; evaluate with a held-out set.
 
 Weeks 11–12 — Ship something
 
-Build a RAG app (your docs → vector DB → retriever → LLM → citations).
+- Build a RAG app (your docs → vector DB → retriever → LLM → citations).
 
-Stretch: add a reranker and eval harness (faithfulness, groundedness).
+- Stretch: add a reranker and eval harness (faithfulness, groundedness).
 
 ### Fast 10-day jumpstart (if you want momentum now)
 
