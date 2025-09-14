@@ -431,34 +431,30 @@ Need to follow <https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Ins
 
 - Researcher?
 
+## What is RAG
+
 RAG: Retrieval-Augmented Generation
 
 - Chunking
 - embeddings
 - Store to FAISS, Chroma, Pinecone etc.
 
-### What to learn (order matters)
+## ChatGPT Learn AI suggestion
 
-Programming + tooling you’ll actually use: Python 3.11, NumPy, Pandas, PyTorch, Jupyter/VS Code, Git.
+### 1. What to learn (order matters)
 
-Core ML: supervised learning, train/val/test, bias/variance, regularization.
+1. Programming + tooling you’ll actually use: Python 3.11, NumPy, Pandas, PyTorch, Jupyter/VS Code, Git.
+1. Core ML: supervised learning, train/val/test, bias/variance, regularization.
+1. Deep Learning: backprop, CNNs, RNNs/Transformers, optimization tricks.
+1. NLP & LLMs: tokenization, attention, pretraining vs finetuning, LoRA, RAG.
+1. MLOps & Systems: experiment tracking, data/versioning, deployment, inference/serving, quantization.
 
-Deep Learning: backprop, CNNs, RNNs/Transformers, optimization tricks.
-
-NLP & LLMs: tokenization, attention, pretraining vs finetuning, LoRA, RAG.
-
-MLOps & Systems: experiment tracking, data/versioning, deployment, inference/serving, quantization.
-
-### A 12-week plan (5–8 hrs/week)
+### 2. A 12-week plan (5–8 hrs/week)
 
 Weeks 1–3 — ML foundations
 
-Follow Andrew Ng’s Machine Learning Specialization for fundamentals.
-
-- Coursera
-- DeepLearning.ai
-
-Deliverable: implement linear/logistic regression and a simple cross-validation pipeline in PyTorch.
+- Follow Andrew Ng’s Machine Learning Specialization for fundamentals. [Coursera](https://www.coursera.org/specializations/machine-learning-introduction?utm_source=chatgpt.com), [DeepLearning.ai](https://www.deeplearning.ai/courses/machine-learning-specialization/?utm_source=chatgpt.com).
+- Deliverable: implement linear/logistic regression and a simple cross-validation pipeline in PyTorch.
 
 Weeks 4–6 — Deep Learning
 
