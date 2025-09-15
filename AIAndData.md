@@ -458,7 +458,7 @@ Weeks 1–3 — ML foundations
 
 Weeks 4–6 — Deep Learning
 
-- Do fast.ai Practical Deep Learning for Coders (free, code-first).
+- Do fast.ai Practical Deep Learning for Coders (free, code-first). [Practical Deep Learning](https://course.fast.ai/?utm_source=chatgpt.com), [Getting started](https://course.fast.ai/Lessons/lesson1.html?utm_source=chatgpt.com)
 - Practical Deep Learning for Coders
 
 Deliverable: train a small image classifier; write a short readme on overfitting fixes you used.
