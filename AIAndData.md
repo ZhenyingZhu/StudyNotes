@@ -459,17 +459,12 @@ Weeks 1–3 — ML foundations
 Weeks 4–6 — Deep Learning
 
 - Do fast.ai Practical Deep Learning for Coders (free, code-first). [Practical Deep Learning](https://course.fast.ai/?utm_source=chatgpt.com), [Getting started](https://course.fast.ai/Lessons/lesson1.html?utm_source=chatgpt.com)
-- Practical Deep Learning for Coders
-
-Deliverable: train a small image classifier; write a short readme on overfitting fixes you used.
+- Deliverable: train a small image classifier; write a short readme on overfitting fixes you used.
 
 Weeks 7–8 — NLP basics
 
-- Skim Stanford CS224n lectures/notes for modern NLP intuition.
-- Stanford University
-- YouTube
-
-Deliverable: train a tiny seq model (or use a pretrained one) for text classification.
+- Skim Stanford CS224n lectures/notes for modern NLP intuition. [Stanford University](https://web.stanford.edu/class/cs224n/?utm_source=chatgpt.com), [YouTube](https://www.youtube.com/playlist?list=PLoROMvodv4rMFqRtEuo6SGjY4XbRIVRd4)
+- Deliverable: train a tiny seq model (or use a pretrained one) for text classification.
 
 Weeks 9–10 — LLMs in practice
 
