@@ -456,6 +456,12 @@ Weeks 1–3 — ML foundations
 - Follow Andrew Ng’s Machine Learning Specialization for fundamentals. [Coursera](https://www.coursera.org/specializations/machine-learning-introduction?utm_source=chatgpt.com), [DeepLearning.ai](https://www.deeplearning.ai/courses/machine-learning-specialization/?utm_source=chatgpt.com).
 - Deliverable: implement linear/logistic regression and a simple cross-validation pipeline in PyTorch.
 
+Linear regression:
+
+- inputs x0 - xd, weights w0 - wd, expected value y. Choose w and b to make predictions close to observed y.
+- ŷ = w0​ + w1​*x1 ​+ ⋯ + wd*​xd​ = XW + b;
+- optimize MSE.
+
 Weeks 4–6 — Deep Learning
 
 - Do fast.ai Practical Deep Learning for Coders (free, code-first). [Practical Deep Learning](https://course.fast.ai/?utm_source=chatgpt.com), [Getting started](https://course.fast.ai/Lessons/lesson1.html?utm_source=chatgpt.com)
