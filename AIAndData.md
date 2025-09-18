@@ -459,8 +459,9 @@ Weeks 1–3 — ML foundations
 Linear regression:
 
 - inputs x0 - xd, weights w0 - wd, expected value y. Choose w and b to make predictions close to observed y.
-- ŷ = w0​ + w1​*x1 ​+ ⋯ + wd*​xd​ = XW + b;
-- optimize MSE.
+- ŷ = w0​ + w1​*x1 ​+ ⋯ + wd*​xd​ = XW + b; optimize MSE (less error).
+
+cross-validation pipeline:
 
 Weeks 4–6 — Deep Learning
 
