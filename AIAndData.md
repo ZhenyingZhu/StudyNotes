@@ -461,7 +461,7 @@ Linear regression:
 - inputs x0 - xd, weights w0 - wd, expected value y. Choose w and b to make predictions close to observed y.
 - ŷ = w0​ + w1​*x1 ​+ ⋯ + wd*​xd​ = XW + b; optimize MSE (less error).
 
-cross-validation pipeline:
+cross-validation pipeline: a repeatable procedure that splits data into multiple train/validation folds, fits your model on the train part of each fold (including all preprocessing), evaluates on the held-out part, and aggregates the scores. It estimates generalization performance and helps pick hyperparameters while avoiding leakage.
 
 Weeks 4–6 — Deep Learning
 
