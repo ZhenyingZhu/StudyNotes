@@ -1676,7 +1676,10 @@ MSAL stands for Microsoft Authentication Library. It’s a library provided by M
 
 ## Game VM
 
-<https://github.com/theonemule/azure-gaming-pc>
+[Gaming on Azure](https://www.youtube.com/watch?v=UbB5YzzxvWc&list=WL&index=56)
+
+- ARM template: <https://github.com/theonemule/azure-gaming-pc>
+- The SKU is GPU purpose SKU. Not available in all regions.
 
 ## Temp
 
