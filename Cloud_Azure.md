@@ -1674,6 +1674,10 @@ Create ADO pipeline
 
 MSAL stands for Microsoft Authentication Library. It’s a library provided by Microsoft to simplify the process of authenticating users and acquiring access tokens to call Microsoft-protected APIs.
 
+## Game VM
+
+<https://github.com/theonemule/azure-gaming-pc>
+
 ## Temp
 
 Cert id: <https://trainingsupport.microsoft.com/en-us/mcp/forum/all/credential-id-or-certification-number>
