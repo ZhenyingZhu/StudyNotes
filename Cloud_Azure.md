@@ -1301,7 +1301,7 @@ Web app logs can be downloaded from <http://{mywebapp}.scm.azurewebsites.net/api
 - To call the post endpoint, run in cmd: `curl -i http://localhost:7071/api/httppost -H "Content-Type: text/json" -d @testdata.json`
 - `azd auth login` to login to azure, and run `azd up` to deploy. It keeps running into internal server error. Need to try VS2022.
 
-- [here](https://learn.microsoft.com/en-us/azure/azure-functions/create-first-function-azure-developer-cli?pivots=programming-language-csharp&tabs=linux%2Cget%2Cbash%2Cpowershell)
+- [here CLI](https://learn.microsoft.com/en-us/azure/azure-functions/create-first-function-azure-developer-cli?pivots=programming-language-csharp&tabs=linux%2Cget%2Cbash%2Cpowershell)
 
 The latest Azure Account extension is not working: <https://stackoverflow.com/questions/77535144/azure-resources-not-visible-in-vs-code>
 
@@ -1471,7 +1471,7 @@ Access Token
 - represent specific scopes and durations of access, granted by the resource owner, and enforced by the resource server and authorization server.
 - denote an id. self-contain the authZ info. In verifiable manner. Has additional
 
-- [HERE](https://datatracker.ietf.org/doc/html/rfc6749#section-1.5), <https://github.com/Azure-Samples/ms-identity-docs-code-dotnet>, <https://github.com/dotnet/AspNetCore.Docs>
+- [HERE OAuth](https://datatracker.ietf.org/doc/html/rfc6749#section-1.5), <https://github.com/Azure-Samples/ms-identity-docs-code-dotnet>, <https://github.com/dotnet/AspNetCore.Docs>
 
 <https://learn.microsoft.com/en-us/entra/identity-platform/v2-overview>
 
@@ -1681,6 +1681,8 @@ MSAL stands for Microsoft Authentication Library. It’s a library provided by M
 - ARM template: <https://github.com/theonemule/azure-gaming-pc>
 - The SKU N series is GPU purpose SKU. Not available in any US regions.
 - The image, AZ and security type can make a difference if the subscription should need to remove the spending limit.
+
+<https://www.howtogeek.com/192642/how-to-remotely-turn-on-your-pc-over-the-internet/>
 
 ## Temp
 
