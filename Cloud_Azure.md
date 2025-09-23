@@ -1689,3 +1689,9 @@ MSAL stands for Microsoft Authentication Library. It’s a library provided by M
 Cert id: <https://trainingsupport.microsoft.com/en-us/mcp/forum/all/credential-id-or-certification-number>
 
 Use KeyVault to store secret, but use SQL to record the metadata and key id.
+
+<https://learn.microsoft.com/en-us/troubleshoot/windows-client/setup-upgrade-and-drivers/wake-on-lan-feature>
+
+<https://www.windowscentral.com/how-enable-and-use-wake-lan-wol-windows-10>
+
+<https://play.google.com/store/apps/details?id=co.uk.mrwebb.wakeonlan&hl=en_US>
