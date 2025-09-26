@@ -1699,3 +1699,6 @@ Use KeyVault to store secret, but use SQL to record the metadata and key id.
 <https://www.windowscentral.com/how-enable-and-use-wake-lan-wol-windows-10>
 
 <https://play.google.com/store/apps/details?id=co.uk.mrwebb.wakeonlan&hl=en_US>
+
+- install WLAN PCIE driver and turn on power management.
+- stop fast start.
