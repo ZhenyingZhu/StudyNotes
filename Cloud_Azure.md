@@ -1678,8 +1678,8 @@ MSAL stands for Microsoft Authentication Library. It’s a library provided by M
 
 <https://learn.microsoft.com/en-us/entra/msal/dotnet/getting-started/initializing-client-applications#initializing-a-confidential-client-application-from-code>
 
-- PublicClientApplicationBuilder
-- ConfidentialClientApplicationBuilder
+- PublicClientApplicationBuilder: used for mobile and desktop apps
+- ConfidentialClientApplicationBuilder: 
 
 ## Game VM
 
