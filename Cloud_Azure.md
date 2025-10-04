@@ -1678,7 +1678,13 @@ MSAL stands for Microsoft Authentication Library. It’s a library provided by M
 
 <https://learn.microsoft.com/en-us/entra/msal/dotnet/getting-started/initializing-client-applications#initializing-a-confidential-client-application-from-code>
 
-- Microsoft Identity Web: include MSAL.NET. For web app
+Microsoft Identity Web: include MSAL.NET. For web app
+
+- Validates the issuer (including in-multi-tenant apps, any cloud)
+- supports token decrypt certificates in Web APIs
+- Validates Scope and app role in Web APIs
+- Generates WWW-authenticate headers in APIs (CA, CAE)
+- Protect gRPC services and Azure functions
 
 - PublicClientApplicationBuilder: used for mobile and desktop apps
 - ConfidentialClientApplicationBuilder:
