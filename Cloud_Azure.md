@@ -1686,6 +1686,8 @@ Microsoft Identity Web: include MSAL.NET. For web app
 - Generates WWW-authenticate headers in APIs (CA, CAE)
 - Protect gRPC services and Azure functions
 
+<https://github.com/AzureAD/microsoft-identity-web/wiki/web-app-template>
+
 - PublicClientApplicationBuilder: used for mobile and desktop apps
 - ConfidentialClientApplicationBuilder:
 - need use [WAM](https://learn.microsoft.com/en-us/entra/msal/dotnet/acquiring-tokens/desktop-mobile/wam) for desktop or mobile app.
