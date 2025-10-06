@@ -1680,11 +1680,14 @@ MSAL stands for Microsoft Authentication Library. It’s a library provided by M
 
 Microsoft Identity Web: include MSAL.NET. For web app
 
+- Sign users in
+- Incremental consent and conditional access in web apps
 - Validates the issuer (including in-multi-tenant apps, any cloud)
 - supports token decrypt certificates in Web APIs
 - Validates Scope and app role in Web APIs
 - Generates WWW-authenticate headers in APIs (CA, CAE)
 - Protect gRPC services and Azure functions
+- Blazor: Web app UI framework
 
 <https://github.com/AzureAD/microsoft-identity-web/wiki/web-app-template>
 
