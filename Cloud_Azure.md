@@ -1688,6 +1688,7 @@ Microsoft Identity Web: include MSAL.NET. For web app
 - Generates WWW-authenticate headers in APIs (CA, CAE)
 - Protect gRPC services and Azure functions
 - Blazor: Web app UI framework
+- confidential client applications (web app/api) vs. public client applications (desktop/mobile app): Identity Web vs. MSAL.NET. a distributed cache + a token cache serializer vs. in memory token cache
 
 <https://github.com/AzureAD/microsoft-identity-web/wiki/web-app-template>
 
