@@ -1691,6 +1691,7 @@ Microsoft Identity Web: include MSAL.NET. For web app
 - confidential client applications (web app/api) vs. public client applications (desktop/mobile app): Identity Web vs. MSAL.NET. a distributed cache + a token cache serializer vs. in memory token cache
 - MSAL.NET is used to acquire tokens. It's not used to protect a Web API.
 - <https://learn.microsoft.com/en-us/entra/msal/dotnet/getting-started/scenarios>: web api is called without user. Desktop app is with user and with browser.
+- <https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-register-app>
 
 <https://github.com/AzureAD/microsoft-identity-web/wiki/web-app-template>
 
