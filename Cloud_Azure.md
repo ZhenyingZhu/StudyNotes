@@ -1700,6 +1700,8 @@ Microsoft Identity Web: include MSAL.NET. For web app
 - need use [WAM](https://learn.microsoft.com/en-us/entra/msal/dotnet/acquiring-tokens/desktop-mobile/wam) for desktop or mobile app.
 - For web app, use <https://learn.microsoft.com/en-us/entra/msal/dotnet/acquiring-tokens/web-apps-apis/client-credential-flows>
 
+What is my owned app vs. my apps in the directory?
+
 ## Game VM
 
 [Gaming on Azure](https://www.youtube.com/watch?v=UbB5YzzxvWc&list=WL&index=56)
