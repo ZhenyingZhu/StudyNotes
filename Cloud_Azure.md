@@ -1704,6 +1704,8 @@ What is my owned app vs. my apps in the directory?
 
 <https://learn.microsoft.com/en-us/entra/msal/dotnet/getting-started/initializing-client-applications>
 
+- what is builder pattern?
+
 ## Game VM
 
 [Gaming on Azure](https://www.youtube.com/watch?v=UbB5YzzxvWc&list=WL&index=56)
