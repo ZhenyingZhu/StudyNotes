@@ -1704,7 +1704,7 @@ What is my owned app vs. my apps in the directory?
 
 <https://learn.microsoft.com/en-us/entra/msal/dotnet/getting-started/initializing-client-applications>
 
-- what is builder pattern?
+- what is builder pattern: The Builder pattern is a creational design pattern that separates the construction of a complex object from its representation.
 
 Azure Doc is really a mess. Try just follow <https://learn.microsoft.com/en-us/entra/msal/dotnet/acquiring-tokens/desktop-mobile/wam>
 
