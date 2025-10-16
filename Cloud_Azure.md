@@ -1699,6 +1699,7 @@ Microsoft Identity Web: include MSAL.NET. For web app
 - ConfidentialClientApplicationBuilder:
 - need use [WAM](https://learn.microsoft.com/en-us/entra/msal/dotnet/acquiring-tokens/desktop-mobile/wam) for desktop or mobile app.
 - For web app, use <https://learn.microsoft.com/en-us/entra/msal/dotnet/acquiring-tokens/web-apps-apis/client-credential-flows>
+- Windows handle is really a mess
 
 What is my owned app vs. my apps in the directory?
 
