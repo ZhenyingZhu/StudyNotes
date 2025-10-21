@@ -594,3 +594,7 @@ vs. SDK style
 ### Restore
 
 SDK style projects restore packages and the transitive packages based on what the package declares, so some un-necessary packages might be restored.
+
+### props vs. csproj
+
+The package import logic is different?!
