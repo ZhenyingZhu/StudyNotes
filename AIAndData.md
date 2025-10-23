@@ -539,3 +539,7 @@ Portfolio first: every lesson ends with a commit, a README, and a demo (Colab/Sp
 Evaluate rigorously: build small checklists for data leakage, eval splits, prompt safety.
 
 If you want, tell me your available time each week and the kind of project you’re excited to ship first—I’ll tailor this plan (and give you a focused resource list + step-by-step tasks for the next 14 days).
+
+## MCP
+
+MCP is an open protocol that standardizes how applications provide context to LLMs.​
