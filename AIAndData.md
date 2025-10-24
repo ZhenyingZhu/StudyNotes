@@ -507,17 +507,17 @@ Latency-aware LLM serving: compare FP16 vs INT8 vs 4-bit; graph throughput vs la
 
 ### Reference tracks (pick what fits your style)
 
-Vision track: Stanford CS231n (notes + assignments). 
+Vision track: Stanford CS231n (notes + assignments).
 CS231n
 +1
 CS231n
 
-NLP/LLMs track: Stanford CS224n + Hugging Face LLM course. 
+NLP/LLMs track: Stanford CS224n + Hugging Face LLM course.
 Stanford University
 YouTube
 Hugging Face
 
-Practical, code-first: fast.ai. 
+Practical, code-first: fast.ai.
 Practical Deep Learning for Coders
 
 ### Tooling (minimum viable stack)
@@ -542,4 +542,7 @@ If you want, tell me your available time each week and the kind of project you�
 
 ## MCP
 
-MCP is an open protocol that standardizes how applications provide context to LLMs.​
+<https://modelcontextprotocol.io/docs/getting-started/intro>
+
+- MCP is an open protocol that standardizes how applications provide context to LLMs.​
+- Agent mode can actually use MCP
