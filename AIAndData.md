@@ -546,4 +546,9 @@ If you want, tell me your available time each week and the kind of project youâ€
 
 - MCP is an open protocol that standardizes how applications provide context to LLMs.â€‹
 - Agent mode can actually use MCP
-- how to define server
+
+server:
+
+- Resources, Tools: LLM functions, Prompts
+- STDIO-based servers vs. HTTP-based servers
+- uses the [uv](https://github.com/astral-sh/uv/) tool for Python
