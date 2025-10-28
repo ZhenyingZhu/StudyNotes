@@ -552,3 +552,10 @@ server:
 - Resources, Tools: LLM functions, Prompts
 - STDIO-based servers vs. HTTP-based servers
 - uses the [uv](https://github.com/astral-sh/uv/) tool for Python
+
+## AI ideas
+
+- Show the manual ops
+- Show the challenges
+- AI options and comparation
+- the option we choose and a demo
