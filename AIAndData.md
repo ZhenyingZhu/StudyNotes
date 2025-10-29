@@ -558,4 +558,6 @@ server:
 - Show the manual ops
 - Show the challenges
 - AI options and comparation
+  - illustration
 - the option we choose and a demo
+- future
