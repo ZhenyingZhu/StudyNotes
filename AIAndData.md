@@ -559,5 +559,6 @@ server:
 - Show the challenges
 - AI options and comparation
   - illustration
+  - not able to follow
 - the option we choose and a demo
 - future
