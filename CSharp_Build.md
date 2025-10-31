@@ -448,6 +448,8 @@ Should see the message `Skipping target "GenerateBuildDependencyFile" because al
 
 See message `Input file "source file" is newer than output file "target file"` to identify why build updates
 
+<https://github.com/dotnet/project-system/blob/main/docs/build-acceleration.md>
+
 ## Misc
 
 ### Some Really Weird Build Issue
