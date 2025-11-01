@@ -103,3 +103,28 @@ Default username: vboxuser, changeme
 Install Wine
 
 <https://phoenixnap.com/kb/how-to-install-wine-on-ubuntu>
+
+## Gaming
+
+Linux Mint XFCE Edition
+
+- Base: Ubuntu LTS
+- Why it’s great: Stable, very light on RAM, and has Ubuntu’s driver and package ecosystem (easy Steam setup).
+- Performance: Excellent on CPUs from 2010s onward (even dual-core i3s or older AMD A-series).
+- Ease of use: Very beginner-friendly.
+- Install Steam Play: `sudo apt install steam`
+- Then enable “Steam Play for all titles” in Steam’s settings.
+
+Xubuntu (Ubuntu + XFCE)
+
+- Very similar to Mint XFCE but a bit closer to “pure” Ubuntu.
+- You get the same Proton/Steam package support, Ubuntu PPAs, and community help.
+- Great balance of simplicity and modern driver support
+
+Lubuntu: As an official, lightweight variant of Ubuntu, Lubuntu uses the LXQt desktop environment to run efficiently on machines with as little as 1GB of RAM. It still provides access to the vast Ubuntu software repositories, making it a good choice for gaming. You may need to manually install lib32 packages for Proton compatibility.
+
+MX Linux: Based on Debian, MX Linux is known for its stability and user-friendliness. It uses a lightweight XFCE desktop by default and is often recommended for older computers due to its low resource usage. Comes with good tools for managing old hardware. Steam can be installed via MX Package Installer. Slightly less “plug-and-play” for gaming than Ubuntu-based ones, but very fast.
+
+Zorin OS Lite: This distribution is specifically designed to be fast on older hardware with as little as 2 GB of RAM. It uses the XFCE desktop environment and offers a polished, familiar interface that can mimic Windows, which is helpful for new users.
+
+<https://www.protondb.com/>
