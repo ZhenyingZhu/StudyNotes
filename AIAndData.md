@@ -562,3 +562,9 @@ server:
   - not able to follow
 - the option we choose and a demo
 - future
+
+SWE Agent: Integrate with ADO
+
+Github Copilot CLI: <https://github.com/features/copilot/cli/>
+
+8/27, 10/16,
