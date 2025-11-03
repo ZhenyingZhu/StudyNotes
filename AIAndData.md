@@ -563,8 +563,8 @@ server:
 - the option we choose and a demo
 - future
 
-SWE Agent: Integrate with ADO
-
 Github Copilot CLI: <https://github.com/features/copilot/cli/>
 
-8/27, 10/16,
+using just one agent for a extensive problem will be infeasible. Communication will overload its context producing unreliable/inconsistent results.
+
+9/4 - 10/24,
