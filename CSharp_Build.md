@@ -450,6 +450,8 @@ See message `Input file "source file" is newer than output file "target file"` t
 
 <https://github.com/dotnet/project-system/blob/main/docs/build-acceleration.md>
 
+<https://stackoverflow.com/questions/23062116/unnecessary-project-rebuilds-when-unit-testing-in-visual-studio>
+
 ## Misc
 
 ### Some Really Weird Build Issue
