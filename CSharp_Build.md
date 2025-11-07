@@ -602,3 +602,7 @@ SDK style projects restore packages and the transitive packages based on what th
 ### props vs. csproj
 
 The package import logic is different?!
+
+## ILSpy
+
+Show the target framework.
