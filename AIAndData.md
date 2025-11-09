@@ -567,6 +567,6 @@ Github Copilot CLI: <https://github.com/features/copilot/cli/>
 
 using just one agent for a extensive problem will be infeasible. Communication will overload its context producing unreliable/inconsistent results.
 
-Can build a quiz agent to learn Python differences
+Can build a quiz agent to learn Python differences in M365
 
 9/4 - 10/24,
