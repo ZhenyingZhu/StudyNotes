@@ -569,4 +569,6 @@ using just one agent for a extensive problem will be infeasible. Communication w
 
 Can build a quiz agent to learn Python differences in M365
 
+Prompting engineering has been shifted to MCP/Agent-to-Agent/Agentic system.
+
 9/4 - 10/24,
