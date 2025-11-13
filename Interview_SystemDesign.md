@@ -5053,3 +5053,7 @@ Config system to control a feature to be on or off.
 <https://www.geeksforgeeks.org/top-software-development-project-ideas>
 
 <https://github.com/donnemartin/system-design-primer>
+
+### HDD
+
+The chip can be replaced with the metadata stored.
