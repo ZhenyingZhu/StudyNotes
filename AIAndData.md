@@ -571,4 +571,6 @@ Can build a quiz agent to learn Python differences in M365
 
 Prompting engineering has been shifted to MCP/Agent-to-Agent/Agentic system.
 
+Agent has access to other services.
+
 9/4 - 10/24,
