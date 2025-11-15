@@ -5057,3 +5057,7 @@ Config system to control a feature to be on or off.
 ### HDD
 
 The chip can be replaced with the metadata stored.
+
+The place of the disks matter.
+
+CMR is good. Don't buy SMR.
