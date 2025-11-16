@@ -447,6 +447,12 @@ Write-Host "=" * 60
 $highestVersions | Sort-Object Name | ForEach-Object { Write-Host "  $($_.Name) ($($_.Version))" }
 ```
 
+Get assembly versions
+
+```powershell
+Get-ChildItem -Filter *.dll | ForEach-Object { $assembly = [System.Reflection.AssemblyName]::GetAssemblyName($_.FullName); "$($assembly.Name) $($assembly.Version)" } | Sort-Object
+```
+
 ### PackageReference
 
 <https://dfederm.com/how-does-packagereference-work/#google_vignette>
