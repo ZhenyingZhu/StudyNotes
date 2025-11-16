@@ -392,6 +392,61 @@ Is it in SDK style project only?
 
 <https://devblogs.microsoft.com/nuget/introducing-transitive-dependencies-in-visual-studio/#:~:text=There%20is%20now%20a%20new,level%20dependency%20at%20any%20time.>
 
+An automation:
+
+```powershell
+function Get-AllDependencies {
+    param(
+        [string]$PackageName,
+        [string]$Version,
+        [hashtable]$Visited = @{}
+    )
+    
+    $key = "$PackageName/$Version"
+    if ($Visited.ContainsKey($key)) {
+        return @()
+    }
+    
+    $Visited[$key] = $true
+    $allDeps = @()
+    
+    try {
+        $pkg = Find-Package -Name $PackageName -RequiredVersion $Version -Source "https://api.nuget.org/v3/index.json" -ErrorAction SilentlyContinue
+        if ($pkg -and $pkg.Dependencies) {
+            foreach ($dep in $pkg.Dependencies) {
+                $depParts = $dep -split '/'
+                $depName = $depParts[0] -replace 'nuget:', ''
+                $depVersion = $depParts[1]
+                
+                $allDeps += [PSCustomObject]@{
+                    Name = $depName
+                    Version = $depVersion
+                    Parent = $PackageName
+                }
+                
+                # Recursively get dependencies of this dependency
+                $subDeps = Get-AllDependencies -PackageName $depName -Version $depVersion -Visited $Visited
+                $allDeps += $subDeps
+            }
+        }
+    }
+    catch {
+        Write-Warning "Could not get dependencies for $PackageName $Version"
+    }
+    
+    return $allDeps
+}
+
+$allDependencies = Get-AllDependencies -PackageName "Microsoft.AspNetCore" -Version "2.3.0"
+$uniqueDependencies = $allDependencies | Sort-Object Name -Unique
+$highestVersions = $uniqueDependencies | Group-Object Name | ForEach-Object {
+    $_.Group | Sort-Object { [Version]$_.Version } | Select-Object -Last 1
+}
+Write-Host "Unique dependencies with highest versions - Total: $($highestVersions.Count)"
+Write-Host "=" * 60
+$highestVersions | Sort-Object Name | ForEach-Object { Write-Host "  $($_.Name) ($($_.Version))" }
+```
+
 ### PackageReference
 
 <https://dfederm.com/how-does-packagereference-work/#google_vignette>
