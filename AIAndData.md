@@ -108,6 +108,16 @@ Products:
 
 <https://learningpath.microsoft.com/8523/6de4a674-2336-4ebb-8998-faf7eacb1d23>
 
+Large Language Models: GPT-4, ChatGPT.
+
+AI model architecture: Transformer.
+
+Training components:
+
+- supervised fine-tuning: labeler give output
+- Reinforcement learning from human feedback: labeler rate the output, go to reward model
+- Use proximal policy optimization algorithm
+
 ## Chat GPT
 
 <https://platform.openai.com/docs/quickstart>
