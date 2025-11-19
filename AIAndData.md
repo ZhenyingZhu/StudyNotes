@@ -563,6 +563,10 @@ server:
 - STDIO-based servers vs. HTTP-based servers
 - uses the [uv](https://github.com/astral-sh/uv/) tool for Python. It is new tool developed for Python use AI.
 
+## Models
+
+LLM vs. SLM vs. Nano
+
 ## AI ideas
 
 - Show the manual ops
