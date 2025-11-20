@@ -588,3 +588,9 @@ Prompting engineering has been shifted to MCP/Agent-to-Agent/Agentic system.
 Agent has access to other services.
 
 9/4 - 10/24,
+
+## AI Foundary
+
+<https://ai.azure.com/>
+
+- GPT are models, Translate are services.
