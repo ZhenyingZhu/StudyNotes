@@ -1,73 +1,6 @@
 # Artificial Intelligence and Big Data
 
-## Machine Learning
-
-<http://open.163.com/special/opencourse/machinelearning.html>
-
-## Big Data
-
-### Map Reduce
-
-Map:
-
-- Key: file location
-- Value: file content
-
-Reduce:
-
-- Key, value: OutputCollector returned by Map, which values are already sorted, and only for this key.
-
-```java
-void Map::map(Key key, Value value, OutputCollector<ReduceKey, ReduceValue> output);
-
-void Reduce::reduce(ReduceKey key, Iterator<ReduceValue> values, OutputCollector<OutputKey, OutputValue> output);
-```
-
-#### Simple example
-
-<http://www.jiuzhang.com/solutions/word-count/>
-
-<http://www.jiuzhang.com/solutions/inverted-index-map-reduce/>
-
-<http://www.jiuzhang.com/solutions/anagram-map-reduce/>
-
-#### BFS
-
-<http://www.johnandcailin.com/blog/cailin/breadth-first-graph-search-using-iterative-map-reduce-algorithm>
-
-```java
-void map(int nodeID, string nodeStruct, OutputCollector<int, string> output) {
-    Node node = parseStruct(nodeStruct); // edges|dist|status
-    if (node.status == visiting) {
-        for (int neiID : node.edges) {
-            Node nei = {NULL, node.dist + 1, visiting};
-            output.collect(neiID, nei.to_string());
-        }
-        node.status= visited;
-    }
-    output.collect(nodeID, node.to_string());
-}
-
-void reducer(int nodeID, Iterator<string> nodeStructs, OutputCollector<int, string> output) {
-    Node node;
-    for (string structStr : nodeStructs) {
-        Node nodeStruct = parseStruct(structStr);
-        if (nodeStruct.edges != NULL)
-            node.edges = nodeStruct.edges;
-        if (nodeStruct.dist < node.dist) // default is INT_MAX
-            node.dist = nodeStruct.dist;
-        if (nodeStruct.status > node.status) // visited > visiting > none
-            node.status = nodeStruct.status;
-    }
-    output.collect(nodeID, node.to_string());
-}
-```
-
-### Spark
-
-<https://timilearning.com/posts/mit-6.824/lecture-15-spark/>
-
-## AI
+## AI Introduction
 
 techniques:
 
@@ -118,11 +51,149 @@ Training components:
 - Reinforcement learning from human feedback: labeler rate the output, go to reward model
 - Use proximal policy optimization algorithm
 
-## Chat GPT
+### Prompt
+
+Prompt with 4 elements
+
+1. Goal
+2. Context
+3. Source
+4. Expectations
+
+### AI ideas
+
+- Show the manual ops
+- Show the challenges
+- AI options and comparation
+  - illustration
+  - not able to follow
+- the option we choose and a demo
+- future
+
+9/4 - 10/24,
+
+### Skillup AI
+
+<https://skilluplabforhackathon.azurewebsites.net/speedskills/researcher/performance>
+
+- Researcher?
+
+### RAG
+
+RAG: Retrieval-Augmented Generation
+
+- Chunking
+- embeddings
+- Store to FAISS, Chroma, Pinecone etc.
+
+### ChatGPT Learn AI suggestion
+
+#### What to learn (order matters)
+
+1. Programming + tooling you’ll actually use: Python 3.11, NumPy, Pandas, PyTorch, Jupyter/VS Code, Git.
+1. Core ML: supervised learning, train/val/test, bias/variance, regularization.
+1. Deep Learning: backprop, CNNs, RNNs/Transformers, optimization tricks.
+1. NLP & LLMs: tokenization, attention, pretraining vs finetuning, LoRA, RAG.
+1. MLOps & Systems: experiment tracking, data/versioning, deployment, inference/serving, quantization.
+
+#### A 12-week plan (5–8 hrs/week)
+
+Weeks 1–3 — ML foundations
+
+- Follow Andrew Ng’s Machine Learning Specialization for fundamentals. [Coursera](https://www.coursera.org/specializations/machine-learning-introduction?utm_source=chatgpt.com), [DeepLearning.ai](https://www.deeplearning.ai/courses/machine-learning-specialization/?utm_source=chatgpt.com).
+- Deliverable: implement linear/logistic regression and a simple cross-validation pipeline in PyTorch.
+
+Linear regression:
+
+- inputs x0 - xd, weights w0 - wd, expected value y. Choose w and b to make predictions close to observed y.
+- ŷ = w0​ + w1​*x1 ​+ ⋯ + wd*​xd​ = XW + b; optimize MSE (less error).
+
+cross-validation pipeline: a repeatable procedure that splits data into multiple train/validation folds, fits your model on the train part of each fold (including all preprocessing), evaluates on the held-out part, and aggregates the scores. It estimates generalization performance and helps pick hyperparameters while avoiding leakage.
+
+Weeks 4–6 — Deep Learning
+
+- Do fast.ai Practical Deep Learning for Coders (free, code-first). [Practical Deep Learning](https://course.fast.ai/?utm_source=chatgpt.com), [Getting started](https://course.fast.ai/Lessons/lesson1.html?utm_source=chatgpt.com)
+- Deliverable: train a small image classifier; write a short readme on overfitting fixes you used.
+
+Weeks 7–8 — NLP basics
+
+- Skim Stanford CS224n lectures/notes for modern NLP intuition. [Stanford University](https://web.stanford.edu/class/cs224n/?utm_source=chatgpt.com), [YouTube](https://www.youtube.com/playlist?list=PLoROMvodv4rMFqRtEuo6SGjY4XbRIVRd4)
+- Deliverable: train a tiny seq model (or use a pretrained one) for text classification.
+
+Weeks 9–10 — LLMs in practice
+
+- Work through the Hugging Face LLM course (Transformers/Datasets/Accelerate).
+- Hugging Face
+- Hugging Face
+
+Deliverable: finetune a small model with LoRA on a curated dataset; evaluate with a held-out set.
+
+Weeks 11–12 — Ship something
+
+- Build a RAG app (your docs → vector DB → retriever → LLM → citations).
+
+- Stretch: add a reranker and eval harness (faithfulness, groundedness).
+
+#### Fast 10-day jumpstart (if you want momentum now)
+
+Day 1–2: Set up env (Python, PyTorch CUDA; Jupyter; Hugging Face CLI).
+Day 3–4: Train a baseline classifier on a tabular dataset.
+Day 5–6: Finetune a small LLM with LoRA on a tiny dataset; compare to zero-shot.
+Day 7–8: Build minimal RAG (Chroma/FAISS, top-k=8, cite sources).
+Day 9–10: Add evals + a single-file API (FastAPI) and run basic load tests.
+
+#### Projects that teach the right muscles
+
+Doc QA (RAG): index your own notes/docs and answer questions with citations.
+
+Build-log anomaly detector: classify failure types from logs; surface top tokens/spans.
+
+Code-search: embed code/comments; semantic search + keyword fallback.
+
+Latency-aware LLM serving: compare FP16 vs INT8 vs 4-bit; graph throughput vs latency.
+
+#### Reference tracks (pick what fits your style)
+
+Vision track: Stanford CS231n (notes + assignments).
+CS231n
++1
+CS231n
+
+NLP/LLMs track: Stanford CS224n + Hugging Face LLM course.
+Stanford University
+YouTube
+Hugging Face
+
+Practical, code-first: fast.ai.
+Practical Deep Learning for Coders
+
+#### Tooling (minimum viable stack)
+
+Python 3.11, PyTorch (CUDA build), VS Code, Jupyter.
+
+Libraries: PyTorch, scikit-learn, transformers/datasets/accelerate, faiss-cpu or Chroma, FastAPI.
+
+Optional for serving: vLLM or TGI, ONNX/TensorRT for speed, MLflow or Weights & Biases for tracking.
+
+#### How to study (so it sticks)
+
+Tight loop: watch/skim → implement from scratch (tiny version) → use a library → write 5-10 bullet “learnings.”
+
+Benchmark yourself: keep a simple leaderboard (accuracy/F1/latency/cost).
+
+Portfolio first: every lesson ends with a commit, a README, and a demo (Colab/Spaces/local).
+
+Evaluate rigorously: build small checklists for data leakage, eval splits, prompt safety.
+
+If you want, tell me your available time each week and the kind of project you’re excited to ship first—I’ll tailor this plan (and give you a focused resource list + step-by-step tasks for the next 14 days).
+
+## Tools
+
+### ChatGPT
 
 <https://platform.openai.com/docs/quickstart>
 
-## Github Copilot
+### Github Copilot
 
 <https://github.com/features/copilot>
 
@@ -166,7 +237,11 @@ Training components:
 
 <https://docs.astral.sh/uv/>
 
-## Cline
+- Agent mode in VS.
+
+Github Copilot CLI: <https://github.com/features/copilot/cli/>
+
+### Cline
 
 <https://docs.cline.bot/getting-started/for-new-coders>
 
@@ -222,30 +297,126 @@ Ask CLine to echo or log each step it performs (echo "Starting step 1...") to de
 
 Add verification checks at the end (e.g., test builds) to confirm the steps were executed.
 
-## A2A
+### M365 Copilot
+
+Researcher agent: use reasoning models. Better to do data intense investigation. Takes very long.
+
+
+
+
+### Stable diffusion
+
+Torch cannot be installed. Maybe related to python version?
+
+```log
+Python 3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]
+Version: v1.10.1
+Commit hash: 82a973c04367123ae98bd9abdf80d9eda9b910e2
+Installing torch and torchvision
+Looking in indexes: https://pypi.org/simple, https://download.pytorch.org/whl/cu121
+ERROR: Could not find a version that satisfies the requirement torch==2.1.2 (from versions: 2.6.0, 2.7.0, 2.7.1, 2.8.0)
+ERROR: No matching distribution found for torch==2.1.2
+Traceback (most recent call last):
+  File "D:\Github\stable-diffusion-webui\launch.py", line 48, in <module>
+    main()
+    ~~~~^^
+  File "D:\Github\stable-diffusion-webui\launch.py", line 39, in main
+    prepare_environment()
+    ~~~~~~~~~~~~~~~~~~~^^
+  File "D:\Github\stable-diffusion-webui\modules\launch_utils.py", line 381, in prepare_environment
+    run(f'"{python}" -m {torch_command}', "Installing torch and torchvision", "Couldn't install torch", live=True)
+    ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Github\stable-diffusion-webui\modules\launch_utils.py", line 116, in run
+    raise RuntimeError("\n".join(error_bits))
+RuntimeError: Couldn't install torch.
+Command: "D:\Github\stable-diffusion-webui\venv\Scripts\python.exe" -m pip install torch==2.1.2 torchvision==0.16.2 --extra-index-url https://download.pytorch.org/whl/cu121
+Error code: 1
+Press any key to continue . . .
+```
+
+Need to follow <https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Install-and-Run-on-NVidia-GPUs>
+
+## Agent
+
+using just one agent for a extensive problem will be infeasible. Communication will overload its context producing unreliable/inconsistent results.
+
+Can build a quiz agent to learn Python differences in M365
+
+Prompting engineering has been shifted to MCP/Agent-to-Agent/Agentic system.
+
+Agent has access to other services.
+
+### MCP
+
+<https://modelcontextprotocol.io/docs/getting-started/intro>
+
+- MCP is an open protocol that standardizes how applications provide context to LLMs.​
+- Agent mode can actually use MCP
+
+server:
+
+- Resources, Tools: LLM functions, Prompts
+- STDIO-based servers vs. HTTP-based servers
+- uses the [uv](https://github.com/astral-sh/uv/) tool for Python. It is new tool developed for Python use AI.
+
+### Agent2Agent (A2A) Protocol
 
 <https://github.com/google/A2A>
 
-## Translate
+### Agent Id
 
-- <https://www.youtube.com/watch?v=B3SZCV0IwHU>
-- <https://docs.2sj.ai/draw/nono>
-- <https://arxiv.org/abs/1706.03762>
+<https://techcommunity.microsoft.com/blog/microsoft-entra-blog/announcing-microsoft-entra-agent-id-secure-and-manage-your-ai-agents/3827392>
 
-## Model difference
+## Models
+
+### Concept
+
+A model is a large mathematical function trained to understand and generate data.
+
+- LLaMA and GPT are 2 models
+- A giant neural network with billions of parameters, that learns probabilities of sequences of words/tokens
+- training data saved in .bin, .safetensors, or .gguf
+- The blueprint: how many layers, attention heads, embedding size, etc.
+
+LLM vs. SLM vs. Nano
+
+### GPT 5: Thinking model
+
+- Fell like it is less smart than 4o. Ask it to rephrase. It becomes very short.
+- But if open thinking mode, it is much better
+- Can switch back to 4o
+- How large is the context?
+
+when going through a big list, it can lie. Thinking mode seems much better.
+
+Claude Opus is better for large scale, Sonnet is for shorter.
+
+### Model difference
 
 Cloude 4 seems the best.
 
-## AI Training
+### AI Foundary
+
+<https://ai.azure.com/>
+
+- GPT are models, Translate are services.
+
+### Azure Machine Learning
+
+Use Azure Machine Learning
+
+`When using identity-based authentication, "Storage Blob Data Contributor" and "Storage File Privileged Contributor" roles must be granted to individual users that need access on the storage account.`
+
+<https://learn.microsoft.com/en-us/azure/machine-learning/overview-what-is-azure-machine-learning?view=azureml-api-2>
+
+<https://ml.azure.com/fileexplorerAzNB?wsid=/subscriptions/7c8fdcf0-3edf-4ff4-bacb-ebab965e3d92/resourcegroups/ML-Translate/providers/Microsoft.MachineLearningServices/workspaces/ML-Translate&tid=c74a24d8-2986-4739-aec1-36b4c9934ed3&activeFilePath=Samples/SDK%20v2/tutorials/get-started-notebooks/quickstart.ipynb&notebookPivot=1>
+
+### Local Training
 
 NVIDIA CUDA
 
 - A parallel computing platform for using NVIDIA GPUs.
 - Used with deep learning frameworks like PyTorch or TensorFlow.
-
-## Agent Id
-
-<https://techcommunity.microsoft.com/blog/microsoft-entra-blog/announcing-microsoft-entra-agent-id-secure-and-manage-your-ai-agents/3827392>
 
 ## Use case
 
@@ -328,26 +499,13 @@ The SentencePiece need to be built.
 
 Need to install MSVC to compile C++.
 
-## Azure
+### Translate
 
-Use Azure Machine Learning.
+- <https://www.youtube.com/watch?v=B3SZCV0IwHU>
+- <https://docs.2sj.ai/draw/nono>
+- <https://arxiv.org/abs/1706.03762>
 
-`When using identity-based authentication, "Storage Blob Data Contributor" and "Storage File Privileged Contributor" roles must be granted to individual users that need access on the storage account.`
-
-<https://learn.microsoft.com/en-us/azure/machine-learning/overview-what-is-azure-machine-learning?view=azureml-api-2>
-
-<https://ml.azure.com/fileexplorerAzNB?wsid=/subscriptions/7c8fdcf0-3edf-4ff4-bacb-ebab965e3d92/resourcegroups/ML-Translate/providers/Microsoft.MachineLearningServices/workspaces/ML-Translate&tid=c74a24d8-2986-4739-aec1-36b4c9934ed3&activeFilePath=Samples/SDK%20v2/tutorials/get-started-notebooks/quickstart.ipynb&notebookPivot=1>
-
-## Concept
-
-A model is a large mathematical function trained to understand and generate data.
-
-- LLaMA and GPT are 2 models
-- A giant neural network with billions of parameters, that learns probabilities of sequences of words/tokens
-- training data saved in .bin, .safetensors, or .gguf
-- The blueprint: how many layers, attention heads, embedding size, etc.
-
-## Problem statement
+### Solve game challenge
 
 xxx
 ?xx
@@ -380,217 +538,73 @@ Special cells are
 
 A ball start from s, every step it moves 1 cell down if the cell is a normal cell, or trigger a special cell. If it moves to the door but the door is closed, and if the ball is the original ball, then it start over. Otherwise it disappear.
 
-## GPT 5: Thinking model
-
-- Fell like it is less smart than 4o. Ask it to rephrase. It becomes very short.
-- But if open thinking mode, it is much better
-- Can switch back to 4o
-- How large is the context?
-
-when going through a big list, it can lie. Thinking mode seems much better.
-
-Claude Opus is better for large scale, Sonnet is for shorter.
-
-## Code
+### Dotnet Core Migration
 
 <https://dotnet.microsoft.com/en-us/platform/upgrade>
 
-- Agent mode in VS.
+## Big Data
 
-Powershell is something AI never able to get it right.
+### Map Reduce
 
-## K8s
+Map:
 
-Kubernetes can use Docker as the container runtime (though today, containerd or CRI-O are more common).
+- Key: file location
+- Value: file content
 
-## Stable diffusion
+Reduce:
 
-Torch cannot be installed. Maybe related to python version?
+- Key, value: OutputCollector returned by Map, which values are already sorted, and only for this key.
 
-```log
-Python 3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]
-Version: v1.10.1
-Commit hash: 82a973c04367123ae98bd9abdf80d9eda9b910e2
-Installing torch and torchvision
-Looking in indexes: https://pypi.org/simple, https://download.pytorch.org/whl/cu121
-ERROR: Could not find a version that satisfies the requirement torch==2.1.2 (from versions: 2.6.0, 2.7.0, 2.7.1, 2.8.0)
-ERROR: No matching distribution found for torch==2.1.2
-Traceback (most recent call last):
-  File "D:\Github\stable-diffusion-webui\launch.py", line 48, in <module>
-    main()
-    ~~~~^^
-  File "D:\Github\stable-diffusion-webui\launch.py", line 39, in main
-    prepare_environment()
-    ~~~~~~~~~~~~~~~~~~~^^
-  File "D:\Github\stable-diffusion-webui\modules\launch_utils.py", line 381, in prepare_environment
-    run(f'"{python}" -m {torch_command}', "Installing torch and torchvision", "Couldn't install torch", live=True)
-    ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "D:\Github\stable-diffusion-webui\modules\launch_utils.py", line 116, in run
-    raise RuntimeError("\n".join(error_bits))
-RuntimeError: Couldn't install torch.
-Command: "D:\Github\stable-diffusion-webui\venv\Scripts\python.exe" -m pip install torch==2.1.2 torchvision==0.16.2 --extra-index-url https://download.pytorch.org/whl/cu121
-Error code: 1
-Press any key to continue . . .
+```java
+void Map::map(Key key, Value value, OutputCollector<ReduceKey, ReduceValue> output);
+
+void Reduce::reduce(ReduceKey key, Iterator<ReduceValue> values, OutputCollector<OutputKey, OutputValue> output);
 ```
 
-Need to follow <https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Install-and-Run-on-NVidia-GPUs>
-
-## Skillup AI
-
-<https://skilluplabforhackathon.azurewebsites.net/speedskills/researcher/performance>
-
-- Researcher?
-
-## What is RAG
-
-RAG: Retrieval-Augmented Generation
-
-- Chunking
-- embeddings
-- Store to FAISS, Chroma, Pinecone etc.
-
-## ChatGPT Learn AI suggestion
-
-### 1. What to learn (order matters)
-
-1. Programming + tooling you’ll actually use: Python 3.11, NumPy, Pandas, PyTorch, Jupyter/VS Code, Git.
-1. Core ML: supervised learning, train/val/test, bias/variance, regularization.
-1. Deep Learning: backprop, CNNs, RNNs/Transformers, optimization tricks.
-1. NLP & LLMs: tokenization, attention, pretraining vs finetuning, LoRA, RAG.
-1. MLOps & Systems: experiment tracking, data/versioning, deployment, inference/serving, quantization.
-
-### 2. A 12-week plan (5–8 hrs/week)
-
-Weeks 1–3 — ML foundations
-
-- Follow Andrew Ng’s Machine Learning Specialization for fundamentals. [Coursera](https://www.coursera.org/specializations/machine-learning-introduction?utm_source=chatgpt.com), [DeepLearning.ai](https://www.deeplearning.ai/courses/machine-learning-specialization/?utm_source=chatgpt.com).
-- Deliverable: implement linear/logistic regression and a simple cross-validation pipeline in PyTorch.
-
-Linear regression:
-
-- inputs x0 - xd, weights w0 - wd, expected value y. Choose w and b to make predictions close to observed y.
-- ŷ = w0​ + w1​*x1 ​+ ⋯ + wd*​xd​ = XW + b; optimize MSE (less error).
-
-cross-validation pipeline: a repeatable procedure that splits data into multiple train/validation folds, fits your model on the train part of each fold (including all preprocessing), evaluates on the held-out part, and aggregates the scores. It estimates generalization performance and helps pick hyperparameters while avoiding leakage.
-
-Weeks 4–6 — Deep Learning
-
-- Do fast.ai Practical Deep Learning for Coders (free, code-first). [Practical Deep Learning](https://course.fast.ai/?utm_source=chatgpt.com), [Getting started](https://course.fast.ai/Lessons/lesson1.html?utm_source=chatgpt.com)
-- Deliverable: train a small image classifier; write a short readme on overfitting fixes you used.
-
-Weeks 7–8 — NLP basics
-
-- Skim Stanford CS224n lectures/notes for modern NLP intuition. [Stanford University](https://web.stanford.edu/class/cs224n/?utm_source=chatgpt.com), [YouTube](https://www.youtube.com/playlist?list=PLoROMvodv4rMFqRtEuo6SGjY4XbRIVRd4)
-- Deliverable: train a tiny seq model (or use a pretrained one) for text classification.
-
-Weeks 9–10 — LLMs in practice
-
-- Work through the Hugging Face LLM course (Transformers/Datasets/Accelerate).
-- Hugging Face
-- Hugging Face
-
-Deliverable: finetune a small model with LoRA on a curated dataset; evaluate with a held-out set.
-
-Weeks 11–12 — Ship something
-
-- Build a RAG app (your docs → vector DB → retriever → LLM → citations).
-
-- Stretch: add a reranker and eval harness (faithfulness, groundedness).
-
-### Fast 10-day jumpstart (if you want momentum now)
-
-Day 1–2: Set up env (Python, PyTorch CUDA; Jupyter; Hugging Face CLI).
-Day 3–4: Train a baseline classifier on a tabular dataset.
-Day 5–6: Finetune a small LLM with LoRA on a tiny dataset; compare to zero-shot.
-Day 7–8: Build minimal RAG (Chroma/FAISS, top-k=8, cite sources).
-Day 9–10: Add evals + a single-file API (FastAPI) and run basic load tests.
-
-### Projects that teach the right muscles
-
-Doc QA (RAG): index your own notes/docs and answer questions with citations.
-
-Build-log anomaly detector: classify failure types from logs; surface top tokens/spans.
-
-Code-search: embed code/comments; semantic search + keyword fallback.
-
-Latency-aware LLM serving: compare FP16 vs INT8 vs 4-bit; graph throughput vs latency.
-
-### Reference tracks (pick what fits your style)
-
-Vision track: Stanford CS231n (notes + assignments).
-CS231n
-+1
-CS231n
-
-NLP/LLMs track: Stanford CS224n + Hugging Face LLM course.
-Stanford University
-YouTube
-Hugging Face
-
-Practical, code-first: fast.ai.
-Practical Deep Learning for Coders
-
-### Tooling (minimum viable stack)
-
-Python 3.11, PyTorch (CUDA build), VS Code, Jupyter.
-
-Libraries: PyTorch, scikit-learn, transformers/datasets/accelerate, faiss-cpu or Chroma, FastAPI.
-
-Optional for serving: vLLM or TGI, ONNX/TensorRT for speed, MLflow or Weights & Biases for tracking.
-
-### How to study (so it sticks)
-
-Tight loop: watch/skim → implement from scratch (tiny version) → use a library → write 5-10 bullet “learnings.”
-
-Benchmark yourself: keep a simple leaderboard (accuracy/F1/latency/cost).
-
-Portfolio first: every lesson ends with a commit, a README, and a demo (Colab/Spaces/local).
-
-Evaluate rigorously: build small checklists for data leakage, eval splits, prompt safety.
-
-If you want, tell me your available time each week and the kind of project you’re excited to ship first—I’ll tailor this plan (and give you a focused resource list + step-by-step tasks for the next 14 days).
-
-## MCP
-
-<https://modelcontextprotocol.io/docs/getting-started/intro>
-
-- MCP is an open protocol that standardizes how applications provide context to LLMs.​
-- Agent mode can actually use MCP
-
-server:
-
-- Resources, Tools: LLM functions, Prompts
-- STDIO-based servers vs. HTTP-based servers
-- uses the [uv](https://github.com/astral-sh/uv/) tool for Python. It is new tool developed for Python use AI.
-
-## Models
-
-LLM vs. SLM vs. Nano
-
-## AI ideas
-
-- Show the manual ops
-- Show the challenges
-- AI options and comparation
-  - illustration
-  - not able to follow
-- the option we choose and a demo
-- future
-
-Github Copilot CLI: <https://github.com/features/copilot/cli/>
-
-using just one agent for a extensive problem will be infeasible. Communication will overload its context producing unreliable/inconsistent results.
-
-Can build a quiz agent to learn Python differences in M365
-
-Prompting engineering has been shifted to MCP/Agent-to-Agent/Agentic system.
-
-Agent has access to other services.
-
-9/4 - 10/24,
-
-## AI Foundary
-
-<https://ai.azure.com/>
-
-- GPT are models, Translate are services.
+#### Simple example
+
+<http://www.jiuzhang.com/solutions/word-count/>
+
+<http://www.jiuzhang.com/solutions/inverted-index-map-reduce/>
+
+<http://www.jiuzhang.com/solutions/anagram-map-reduce/>
+
+#### BFS
+
+<http://www.johnandcailin.com/blog/cailin/breadth-first-graph-search-using-iterative-map-reduce-algorithm>
+
+```java
+void map(int nodeID, string nodeStruct, OutputCollector<int, string> output) {
+    Node node = parseStruct(nodeStruct); // edges|dist|status
+    if (node.status == visiting) {
+        for (int neiID : node.edges) {
+            Node nei = {NULL, node.dist + 1, visiting};
+            output.collect(neiID, nei.to_string());
+        }
+        node.status= visited;
+    }
+    output.collect(nodeID, node.to_string());
+}
+
+void reducer(int nodeID, Iterator<string> nodeStructs, OutputCollector<int, string> output) {
+    Node node;
+    for (string structStr : nodeStructs) {
+        Node nodeStruct = parseStruct(structStr);
+        if (nodeStruct.edges != NULL)
+            node.edges = nodeStruct.edges;
+        if (nodeStruct.dist < node.dist) // default is INT_MAX
+            node.dist = nodeStruct.dist;
+        if (nodeStruct.status > node.status) // visited > visiting > none
+            node.status = nodeStruct.status;
+    }
+    output.collect(nodeID, node.to_string());
+}
+```
+
+### Spark
+
+<https://timilearning.com/posts/mit-6.824/lecture-15-spark/>
+
+## Machine Learning
+
+<http://open.163.com/special/opencourse/machinelearning.html>
