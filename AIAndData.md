@@ -301,8 +301,7 @@ Add verification checks at the end (e.g., test builds) to confirm the steps were
 
 Researcher agent: use reasoning models. Better to do data intense investigation. Takes very long.
 
-
-
+Build your own agent
 
 ### Stable diffusion
 
