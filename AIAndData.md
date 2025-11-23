@@ -303,6 +303,8 @@ Researcher agent: use reasoning models. Better to do data intense investigation.
 
 Build your own agent
 
+`/` can attach files and show commands.
+
 ### Stable diffusion
 
 Torch cannot be installed. Maybe related to python version?
