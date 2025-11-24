@@ -305,6 +305,8 @@ Build your own agent
 
 `/` can attach files and show commands.
 
+Copilot memory: if prefer something, can say it in a prompty. THen it will say the memory is updated. See in Setting: personalization > saved memories
+
 ### Stable diffusion
 
 Torch cannot be installed. Maybe related to python version?
