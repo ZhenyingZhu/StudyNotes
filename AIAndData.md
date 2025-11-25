@@ -241,6 +241,23 @@ If you want, tell me your available time each week and the kind of project youâ€
 
 Github Copilot CLI: <https://github.com/features/copilot/cli/>
 
+MCP:
+
+```
+import subprocess
+
+def build_project(project_path):
+    command = ["dotnet", "build", project_path]
+    result = subprocess.run(command, capture_output=True, text=True)
+    print(result.stdout)
+    if result.returncode != 0:
+        print("Build failed:", result.stderr)
+
+if __name__ == "__main__":
+    project_path = input("Enter C# project path: ")
+    build_project(project_path)
+```
+
 ### Cline
 
 <https://docs.cline.bot/getting-started/for-new-coders>
