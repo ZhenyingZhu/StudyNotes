@@ -258,6 +258,13 @@ if __name__ == "__main__":
     build_project(project_path)
 ```
 
+TODO: How to build an agent infra?
+
+```
+I am a C# developer trying to leverage AI. How to build an infra to let an agent develop code, an agent build project and an agent run the test, then let the agent fix the test failures?
+```
+
+
 ### Cline
 
 <https://docs.cline.bot/getting-started/for-new-coders>
