@@ -373,6 +373,12 @@ Prompting engineering has been shifted to MCP/Agent-to-Agent/Agentic system.
 
 Agent has access to other services.
 
+- Pick your host: GitHub Copilot Agent Mode in VS Code, Copilot Studio, or Azure AI Agent Service.
+- List/enable MCP servers in the host (e.g., mcp.json in VS Code; verify Graph/Kusto/custom servers show up).
+- Publish your repetitive steps as MCP tools (wrap scripts/APIs for build, test, PR, telemetry).
+- Author prompts/instructions (task recipes) that call the right tools, with guardrails (required checks, timeouts, dry‑run mode).
+- Secure and observe: Use Entra app registrations/permission scopes; monitor tool usage and errors
+
 ### MCP
 
 <https://modelcontextprotocol.io/docs/getting-started/intro>
