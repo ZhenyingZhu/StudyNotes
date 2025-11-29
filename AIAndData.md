@@ -274,9 +274,11 @@ Orchestration Models
 Tools:
 
 - Semantic Kernel: framework
-- Azure AI Foundry: service
-- Copilot Studio: agents
+- Azure AI Foundry: service. Provides runtime and SDK for developing prod grate agent. Supports connected agents, long running multi-agent workflows.
+- Copilot Studio: low code for building agents: Declarative agents (run on M365) vs. Custom engine agents. Has ADO integration.
 - Microsoft Agent Framework: Provide orchestration patterns <https://learn.microsoft.com/en-us/training/modules/orchestrate-semantic-kernel-multi-agent-solution/>
+- M365 Copilot Chat: personal productivity. Not same as M365 Copilot
+- M365 Copilot: enterprise productivity, access to all Office data
 
 Best Practices
 
