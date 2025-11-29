@@ -423,6 +423,10 @@ server:
 
 <https://techcommunity.microsoft.com/blog/microsoft-entra-blog/announcing-microsoft-entra-agent-id-secure-and-manage-your-ai-agents/3827392>
 
+### Microsoft Fabric
+
+<https://learn.microsoft.com/en-us/fabric/real-time-intelligence/>
+
 ## Models
 
 ### Concept
