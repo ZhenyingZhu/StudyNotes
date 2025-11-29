@@ -264,6 +264,27 @@ TODO: How to build an agent infra?
 I am a C# developer trying to leverage AI. How to build an infra to let an agent develop code, an agent build project and an agent run the test, then let the agent fix the test failures?
 ```
 
+Orchestration Models
+
+- Orchestrator: A controller agent or framework that assigns tasks and manages flow.
+- Agents: Specialized units with clear roles (e.g., planner, executor, evaluator).
+- Communication Protocols: Standards like A2A (Agent-to-Agent) and MCP (Model Context Protocol) enable agents to share context and collaborate across systems.
+- Shared Memory Layer: Maintains state across agents without overwriting each other’s work.
+
+Tools:
+
+- Semantic Kernel: framework
+- Azure AI Foundry: service
+- Copilot Studio: agents
+- Microsoft Agent Framework: Provide orchestration patterns <https://learn.microsoft.com/en-us/training/modules/orchestrate-semantic-kernel-multi-agent-solution/>
+
+Best Practices
+
+- Define Clear Roles: Each agent should have a narrow, well-defined responsibility.
+- Use Context Engineering: Persist relevant state across agents to avoid coordination failures.
+- Monitor & Iterate: Track task states separately from conversation history for easier debugging.
+- Start Small: Begin with two agents and scale gradually, adding orchestration logic as complexity grows.
+- Ensure Governance: Apply compliance and audit standards consistently across agents.
 
 ### Cline
 
