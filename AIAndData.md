@@ -413,6 +413,41 @@ server:
 - STDIO-based servers vs. HTTP-based servers
 - uses the [uv](https://github.com/astral-sh/uv/) tool for Python. It is new tool developed for Python use AI.
 
+```python
+
+# server.py
+from mcp.server.fastmcp import FastMCP
+import pandas as pd
+
+# Create an MCP server instance
+mcp = FastMCP("DemoServer")
+
+# Tool 1: Simple addition
+@mcp.tool()
+def add(a: int, b: int) -> int:
+       """Add two numbers."""
+    return a + b
+
+# Tool 2: Calculate days between two dates
+@mcp.tool()
+def calculate_days_between(date1: str, date2: str) -> int:
+    """
+    Calculate the number of days between two dates.
+    Args:
+        date1: First date in YYYY-MM-DD format
+        date2: Second date in YYYY-MM-DD format
+    Returns:
+        Number of days between the two dates
+    """
+    d1 = pd.to_datetime(date1)
+    d2 = pd.to_datetime(date2)
+    return abs((d2 - d1).days)
+
+# Start the MCP server
+if __name__ == "__main__":
+    mcp.run()
+```
+
 ### Agent2Agent (A2A) Protocol
 
 <https://github.com/google/A2A>
