@@ -1719,6 +1719,10 @@ Azure Doc is really a mess. Try just follow <https://learn.microsoft.com/en-us/e
 
 <https://www.howtogeek.com/192642/how-to-remotely-turn-on-your-pc-over-the-internet/>
 
+## SQL
+
+<https://learn.microsoft.com/en-us/sql/connect/oledb/features/using-azure-active-directory?view=sql-server-ver17>
+
 ## Temp
 
 Cert id: <https://trainingsupport.microsoft.com/en-us/mcp/forum/all/credential-id-or-certification-number>
