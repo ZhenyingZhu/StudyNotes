@@ -243,7 +243,22 @@ Github Copilot CLI: <https://github.com/features/copilot/cli/>
 
 MCP:
 
-```
+Bootstrap
+
+1. `pip install uv`
+1. `uvx create-mcp-server --path . --name mcp-powershell-msbuild --version 0.1.0 --description "MCP server that runs admin PowerShell and msbuild for a given csproj on Windows"`
+1. `uv sync --dev --all-extras`
+
+Alternate
+
+1. `.venv/Scripts/python.exe -m create_mcp_server --path . --no-claudeapp --name mcp-powershell-msbuild --version 0.1.0 --description "MCP server that runs admin PowerShell and msbuild for a given csproj on Windows"`
+
+Start
+
+1. `python -m src.mcp_powershell_msbuild.server` or `.venv\Scripts\python.exe -m src.mcp_powershell_msbuild.server`
+
+
+```python
 import subprocess
 
 def build_project(project_path):
@@ -260,9 +275,10 @@ if __name__ == "__main__":
 
 TODO: How to build an agent infra?
 
-```
-I am a C# developer trying to leverage AI. How to build an infra to let an agent develop code, an agent build project and an agent run the test, then let the agent fix the test failures?
-```
+Prompts:
+
+- I am a C# developer trying to leverage AI. How to build an infra to let an agent develop code, an agent build project and an agent run the test, then let the agent fix the test failures?
+- Create a mcp server use python in this folder. The mcp server runs on Windows. It starts an admin previleged powershell session, and runs msbuild for a given csproj. Use venv for the environment.
 
 Orchestration Models
 

@@ -1,0 +1,17 @@
+[project]
+name = "mcp-powershell-msbuild"
+version = "0.1.0"
+description = "MCP server that runs admin PowerShell and msbuild for a given csproj on Windows"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [ "mcp>=1.22.0",]
+[[project.authors]]
+name = "Zhenying Zhu"
+email = "zhenying.zhu91@gmail.com"
+
+[build-system]
+requires = [ "uv_build>=0.9.14,<0.10.0",]
+build-backend = "uv_build"
+
+[project.scripts]
+mcp-powershell-msbuild = "mcp_powershell_msbuild:main"
