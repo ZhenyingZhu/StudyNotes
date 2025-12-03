@@ -128,3 +128,5 @@ MX Linux: Based on Debian, MX Linux is known for its stability and user-friendli
 Zorin OS Lite: This distribution is specifically designed to be fast on older hardware with as little as 2 GB of RAM. It uses the XFCE desktop environment and offers a polished, familiar interface that can mimic Windows, which is helpful for new users.
 
 <https://www.protondb.com/>
+
+Steam can add game and select Proton. It creates a folder with a windows drive.
