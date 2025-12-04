@@ -466,6 +466,30 @@ if __name__ == "__main__":
     mcp.run()
 ```
 
+Steps
+
+1. install uv to use python
+2. `uv init my_mcp_server`
+3. `uv venv`
+4. `.\.venv\Scripts\activate`
+5. `uv add "mcp[cli]"`: add mcp dependencies with cli (node.js needs to be installed)
+6. `mcp dev server.py`: it starts MCP inspector
+7. Add "my_mcp_server\.venv/Scripts\python.exe" "my_mcp_server\server.py"
+
+```json
+"mcp": {
+    "servers": {
+        "my-mcp-server-f5bdcd25": {
+            "type": "stdio",
+            "command": "my_mcp_server\\.venv/Scripts\\python.exe",
+            "args": [
+                "mcp_first_server\\my_mcp_server\\server.py"
+            ]
+        }
+    }
+},
+```
+
 ### Agent2Agent (A2A) Protocol
 
 <https://github.com/google/A2A>
