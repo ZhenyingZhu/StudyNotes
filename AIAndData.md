@@ -257,7 +257,6 @@ Start
 
 1. `python -m src.mcp_powershell_msbuild.server` or `.venv\Scripts\python.exe -m src.mcp_powershell_msbuild.server`
 
-
 ```python
 import subprocess
 
@@ -271,6 +270,19 @@ def build_project(project_path):
 if __name__ == "__main__":
     project_path = input("Enter C# project path: ")
     build_project(project_path)
+```
+
+A mcp server with a prompt
+
+```python
+@mcp.prompt()
+def initial_prompt() -> list[base.Message]:
+    """
+    This prompt defines the initial instructions for the AI assistant.
+    """
+    return [
+        base.UserMessage("You are a helpful assistant that specializes in mathematics and can use the provided calculator tools to solve problems."),
+    ]
 ```
 
 TODO: How to build an agent infra?
