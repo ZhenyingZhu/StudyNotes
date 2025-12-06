@@ -272,7 +272,7 @@ if __name__ == "__main__":
     build_project(project_path)
 ```
 
-A mcp server with a prompt
+A mcp server with a prompt. Can use `/mcp.my_first_server.initial_prompt` to call it
 
 ```python
 @mcp.prompt()
