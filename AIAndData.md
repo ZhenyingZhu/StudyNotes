@@ -285,6 +285,8 @@ def initial_prompt() -> list[base.Message]:
     ]
 ```
 
+call_tool to invoke a tool.
+
 TODO: How to build an agent infra?
 
 Prompts:
