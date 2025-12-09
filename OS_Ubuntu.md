@@ -130,3 +130,9 @@ Zorin OS Lite: This distribution is specifically designed to be fast on older ha
 <https://www.protondb.com/>
 
 Steam can add game and select Proton. It creates a folder with a windows drive.
+
+## Tips
+
+Ubuntu user name lower case work
+
+sudo systemctl restart gdm3 to restart GUI
