@@ -52,6 +52,11 @@ def build_project(csproj_path: str) -> str:
     ]
 
 
+def main():
+    """Entry point for the MCP server."""
+    mcp.run(transport="stdio")
+
+
 if __name__ == "__main__":
     # Run the server using the standard input/output transport
-    mcp.run(transport="stdio")
+    main()

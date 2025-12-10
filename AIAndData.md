@@ -443,7 +443,38 @@ server:
 
 - Resources, Tools: LLM functions, Prompts
 - STDIO-based servers vs. HTTP-based servers
+- Server can run anywhere: local machine, cloud VM, container, serverless function
 - uses the [uv](https://github.com/astral-sh/uv/) tool for Python. It is new tool developed for Python use AI.
+
+Steps
+
+1. install uv to use python
+2. `uv init my_mcp_server`
+3. `uv venv`
+4. `.\.venv\Scripts\activate`
+5. `uv add "mcp[cli]"`: add mcp dependencies with cli (node.js needs to be installed)
+6. `mcp dev server.py`: it starts MCP inspector
+7. Add "my_mcp_server\.venv/Scripts\python.exe" "my_mcp_server\server.py"
+
+The config for VS Code MCP client is under `C:\Users\<username>\AppData\Roaming\Code\User\mcp.json`:
+
+```json
+"mcp": {
+    "servers": {
+        "my-mcp-server-f5bdcd25": {
+            "type": "stdio",
+            "command": "my_mcp_server\\.venv/Scripts\\python.exe",
+            "args": [
+                "mcp_first_server\\my_mcp_server\\server.py"
+            ]
+        }
+    }
+},
+```
+
+If the server is a package, can start it with `uvx microsoft-fabric-rti-mcp`
+
+Implementation:
 
 ```python
 
@@ -478,30 +509,6 @@ def calculate_days_between(date1: str, date2: str) -> int:
 # Start the MCP server
 if __name__ == "__main__":
     mcp.run()
-```
-
-Steps
-
-1. install uv to use python
-2. `uv init my_mcp_server`
-3. `uv venv`
-4. `.\.venv\Scripts\activate`
-5. `uv add "mcp[cli]"`: add mcp dependencies with cli (node.js needs to be installed)
-6. `mcp dev server.py`: it starts MCP inspector
-7. Add "my_mcp_server\.venv/Scripts\python.exe" "my_mcp_server\server.py"
-
-```json
-"mcp": {
-    "servers": {
-        "my-mcp-server-f5bdcd25": {
-            "type": "stdio",
-            "command": "my_mcp_server\\.venv/Scripts\\python.exe",
-            "args": [
-                "mcp_first_server\\my_mcp_server\\server.py"
-            ]
-        }
-    }
-},
 ```
 
 ### Agent2Agent (A2A) Protocol
