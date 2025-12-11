@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Project Dependency Graph</title>
+    <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+    <style type="text/css">
+        #mynetwork {
+            width: 100%;
+            height: 90vh;
+            border: 1px solid lightgray;
+        }
+        body {
+            font-family: sans-serif;
+        }
+    </style>
+</head>
+<body>
+<h2>Project Dependency Graph</h2>
+<div style="margin-bottom: 10px;">
+    <input type="text" id="search-input" placeholder="Search project..." style="padding: 5px; width: 300px;">
+    <button onclick="searchNode()" style="padding: 5px;">Search</button>
+</div>
+<div id="mynetwork"></div>
+<script type="text/javascript">
+    // Embedded CSV Data
+    const csvData = `ProjectName,ProjectFile,DirectDependencies
+projectname1,\\path1\\projectname1.csproj,\\path2\\projectname2.csproj;\\path3\\projectname3.csproj;\\path4\\projectname4.csproj;
+projectname2,\\path2\\projectname2.csproj,\\path3\\projectname3.csproj;
+projectname3,\\path3\\projectname3.csproj,;
+projectname4,\\path4\\projectname4.csproj,;`;
+
+    // Parse CSV
+    const lines = csvData.trim().split('\n');
+    const nodes = [];
+    const edges = [];
+    const nodeMap = new Map(); // path -> id
+
+    // First pass: create nodes
+    for (let i = 1; i < lines.length; i++) {
+        const line = lines[i].trim();
+        if (!line) continue;
+        
+        const parts = line.split(',');
+        const projectName = parts[0];
+        const projectFile = parts[1];
+        
+        if (!nodeMap.has(projectFile)) {
+            nodes.push({ id: projectFile, label: projectName, title: projectFile });
+            nodeMap.set(projectFile, true);
+        }
+    }
+
+    // Second pass: create edges
+    for (let i = 1; i < lines.length; i++) {
+        const line = lines[i].trim();
+        if (!line) continue;
+        const parts = line.split(',');
+        const projectFile = parts[1];
+        const dependencies = parts[2] ? parts[2].split(';') : [];
+
+        dependencies.forEach(dep => {
+            if (dep) {
+                // Check if dep exists as a node, if not, add it
+                if (!nodeMap.has(dep)) {
+                     const depName = dep.split('\\').pop();
+                     nodes.push({ id: dep, label: depName, title: dep });
+                     nodeMap.set(dep, true);
+                }
+                edges.push({ from: projectFile, to: dep, arrows: 'to' });
+            }
+        });
+    }
+
+    // create a network
+    var container = document.getElementById('mynetwork');
+    var data = {
+        nodes: new vis.DataSet(nodes),
+        edges: new vis.DataSet(edges)
+    };
+    var options = {
+        layout: {
+            hierarchical: {
+                direction: "UD",
+                sortMethod: "directed",
+                nodeSpacing: 200,
+                levelSeparation: 200
+            }
+        },
+        nodes: {
+            shape: 'box',
+            font: {
+                size: 14
+            },
+            color: {
+                background: '#97C2FC',
+                border: '#2B7CE9'
+            }
+        },
+        edges: {
+            color: 'lightgray',
+            smooth: {
+                type: 'cubicBezier',
+                forceDirection: 'vertical',
+                roundness: 0.4
+            }
+        },
+        physics: false,
+        interaction: {
+            tooltipDelay: 200,
+            hideEdgesOnDrag: true
+        }
+    };
+    var network = new vis.Network(container, data, options);
+
+    function highlightNode(nodeId) {
+        var connectedEdgeIds = network.getConnectedEdges(nodeId);
+        var allEdges = data.edges.get();
+        var updates = [];
+        
+        allEdges.forEach(function(edge) {
+            var isConnected = connectedEdgeIds.includes(edge.id);
+            if (isConnected && edge.color !== 'red') {
+                updates.push({id: edge.id, color: 'red'});
+            } else if (!isConnected && edge.color !== 'lightgray') {
+                updates.push({id: edge.id, color: 'lightgray'});
+            }
+        });
+        
+        if (updates.length > 0) {
+            data.edges.update(updates);
+        }
+    }
+
+    function resetEdges() {
+        var allEdges = data.edges.get();
+        var updates = [];
+        allEdges.forEach(function(edge) {
+            if (edge.color !== 'lightgray') {
+                updates.push({id: edge.id, color: 'lightgray'});
+            }
+        });
+        if (updates.length > 0) {
+            data.edges.update(updates);
+        }
+    }
+
+    network.on("selectNode", function (params) {
+        if (params.nodes.length > 0) {
+            highlightNode(params.nodes[0]);
+        }
+    });
+
+    network.on("deselectNode", function (params) {
+        if (params.nodes.length === 0) {
+            resetEdges();
+        }
+    });
+
+    function searchNode() {
+        const query = document.getElementById('search-input').value.toLowerCase();
+        if (!query) return;
+        
+        const allNodes = data.nodes.get();
+        const foundNode = allNodes.find(n => n.label.toLowerCase().includes(query));
+        
+        if (foundNode) {
+            network.selectNodes([foundNode.id]);
+            highlightNode(foundNode.id);
+            network.focus(foundNode.id, {
+                scale: 1.2,
+                animation: {
+                    duration: 1000,
+                    easingFunction: 'easeInOutQuad'
+                }
+            });
+        } else {
+            alert('Project not found');
+        }
+    }
+
+    document.getElementById('search-input').addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') {
+            searchNode();
+        }
+    });
+</script>
+</body>
+</html>
