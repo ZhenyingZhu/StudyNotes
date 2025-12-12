@@ -511,6 +511,8 @@ if __name__ == "__main__":
     mcp.run()
 ```
 
+<https://learn.microsoft.com/en-us/dotnet/ai/quickstarts/build-mcp-server>
+
 ### Agent2Agent (A2A) Protocol
 
 <https://github.com/google/A2A>
