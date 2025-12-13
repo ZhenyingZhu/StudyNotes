@@ -525,6 +525,8 @@ if __name__ == "__main__":
 
 <https://learn.microsoft.com/en-us/fabric/real-time-intelligence/>
 
+Handling data
+
 ## Models
 
 ### Concept
