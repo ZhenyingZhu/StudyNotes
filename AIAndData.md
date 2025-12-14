@@ -193,6 +193,8 @@ If you want, tell me your available time each week and the kind of project youâ€
 
 <https://platform.openai.com/docs/quickstart>
 
+<https://platform.openai.com/docs/guides/latest-model>
+
 ### Github Copilot
 
 <https://github.com/features/copilot>
