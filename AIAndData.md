@@ -420,6 +420,10 @@ Need to follow <https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Ins
 
 ## Agent
 
+An AI agent is an entity that observes its environment, reasons about what to do next, and takes actions to maximize a goal or utility over time.
+
+- It maintains state & memory. Acts in multiple steps. Can call tools / APIs. Proactive. Goal-driven.
+
 using just one agent for a extensive problem will be infeasible. Communication will overload its context producing unreliable/inconsistent results.
 
 Can build a quiz agent to learn Python differences in M365
