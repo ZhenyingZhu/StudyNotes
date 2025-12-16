@@ -438,6 +438,26 @@ Agent has access to other services.
 - Author prompts/instructions (task recipes) that call the right tools, with guardrails (required checks, timeouts, dry‑run mode).
 - Secure and observe: Use Entra app registrations/permission scopes; monitor tool usage and errors
 
+```C#
+using Microsoft.Extensions.AI;
+using Microsoft.Extensions.DependencyInjection;
+
+var services = new ServiceCollection();
+
+// Configure Azure OpenAI provider
+services.AddAIClient(sp =>
+    new AzureOpenAIClient(
+        new Uri("https://YOUR-RESOURCE.openai.azure.com/"),
+        new AzureKeyCredential("YOUR-API-KEY"),
+        "gpt-4o-mini") // model deployment name
+);
+
+var provider = services.BuildServiceProvider();
+var client = provider.GetRequiredService<IAIClient>();
+```
+
+<https://learn.microsoft.com/en-us/samples/dotnet/ai-samples/ai-samples/>
+
 ### MCP
 
 <https://modelcontextprotocol.io/docs/getting-started/intro>
