@@ -581,6 +581,10 @@ Claude Opus is better for large scale, Sonnet is for shorter.
 
 Cloude 4 seems the best.
 
+Cloude 4.5 can follow each steps in a prompt, but GPT-5.1-Codex cannot.
+
+Is running in Cline vs. Github Copilot makes a difference?
+
 ### AI Foundary
 
 <https://ai.azure.com/>
