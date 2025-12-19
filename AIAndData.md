@@ -539,6 +539,8 @@ if __name__ == "__main__":
 
 <https://learn.microsoft.com/en-us/dotnet/ai/quickstarts/build-mcp-server>
 
+<https://learn.microsoft.com/en-us/semantic-kernel/frameworks/agent/agent-types/chat-completion-agent?pivots=programming-language-csharp>
+
 ### Agent2Agent (A2A) Protocol
 
 <https://github.com/google/A2A>
