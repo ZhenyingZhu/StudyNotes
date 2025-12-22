@@ -459,6 +459,7 @@ var client = provider.GetRequiredService<IAIClient>();
 <https://learn.microsoft.com/en-us/samples/dotnet/ai-samples/ai-samples/>
 
 - Need a github token from <https://github.com/settings/personal-access-tokens>. Grant models access.
+- Can also use github credential manager
 
 ### MCP
 
