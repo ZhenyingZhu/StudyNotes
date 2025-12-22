@@ -458,6 +458,9 @@ var client = provider.GetRequiredService<IAIClient>();
 
 <https://learn.microsoft.com/en-us/samples/dotnet/ai-samples/ai-samples/>
 
+- Need a github token from <https://github.com/settings/personal-access-tokens>. Grant models access.
+- Can also use github credential manager
+
 ### MCP
 
 <https://modelcontextprotocol.io/docs/getting-started/intro>
@@ -538,6 +541,8 @@ if __name__ == "__main__":
 ```
 
 <https://learn.microsoft.com/en-us/dotnet/ai/quickstarts/build-mcp-server>
+
+<https://learn.microsoft.com/en-us/semantic-kernel/frameworks/agent/agent-types/chat-completion-agent?pivots=programming-language-csharp>
 
 ### Agent2Agent (A2A) Protocol
 
