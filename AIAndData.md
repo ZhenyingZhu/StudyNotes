@@ -555,6 +555,8 @@ Handling data
 
 ## Models
 
+The model I can use: `curl -H "Authorization: Bearer $env:GITHUB_TOKEN" https://models.inference.ai.azure.com/models`
+
 ### Concept
 
 A model is a large mathematical function trained to understand and generate data.
