@@ -544,6 +544,8 @@ if __name__ == "__main__":
 
 <https://learn.microsoft.com/en-us/semantic-kernel/frameworks/agent/agent-types/chat-completion-agent?pivots=programming-language-csharp>
 
+Seems like MCP is only helpful when AI drives the progress.
+
 ### Agent2Agent (A2A) Protocol
 
 <https://github.com/google/A2A>
