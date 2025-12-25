@@ -546,6 +546,34 @@ if __name__ == "__main__":
 
 Seems like MCP is only helpful when AI drives the progress.
 
+```C#
+var client = new OpenAIClient(
+    new ApiKeyCredential(gitHubToken),
+    new OpenAIClientOptions
+    {
+        Endpoint = new Uri("https://models.inference.ai.azure.com")
+    });
+
+var tools = new List<AITool>
+{
+    AIFunctionFactory.Create(MyClass.MyMethod)
+};
+
+IChatClient chatClient = client.GetChatClient(ModelId).AsIChatClient();
+var agent = chatClient.CreateAIAgent(AgentInstructions, AgentName, tools: tools);
+
+var thread = agent.GetNewThread();
+
+var prompt = "a prompt";
+await foreach (var update in agent.RunStreamingAsync(prompt, thread))
+{
+    if (!string.IsNullOrEmpty(update.Text))
+    {
+        Console.Write(update.Text);
+    }
+}
+```
+
 ### Agent2Agent (A2A) Protocol
 
 <https://github.com/google/A2A>
