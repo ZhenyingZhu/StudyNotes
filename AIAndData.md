@@ -574,6 +574,8 @@ await foreach (var update in agent.RunStreamingAsync(prompt, thread))
 }
 ```
 
+The agent has a rate limit of 15 requests per min. Need to handle 429.
+
 ### Agent2Agent (A2A) Protocol
 
 <https://github.com/google/A2A>
