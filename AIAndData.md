@@ -576,6 +576,10 @@ await foreach (var update in agent.RunStreamingAsync(prompt, thread))
 
 The agent has a rate limit of 15 requests per min. Need to handle 429.
 
+Create my own model
+
+- <https://ai.azure.com>
+
 ### Agent2Agent (A2A) Protocol
 
 <https://github.com/google/A2A>
