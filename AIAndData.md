@@ -580,6 +580,46 @@ Create my own model
 
 - <https://ai.azure.com>
 
+Code ref
+
+```C#
+// dotnet add package Azure.AI.Projects --version 1.2.*-*
+using Azure.AI.Projects;
+using Azure.AI.Projects.OpenAI;
+using Azure.Identity;
+using OpenAI;
+using OpenAI.Responses;
+
+#pragma warning disable OPENAI001
+
+const string projectEndpoint = "https://projectname-resource.services.ai.azure.com/api/projects/projectname";
+const string modelDeploymentName = "<your-model-deployment-name>";
+const string agentName = "<your-agent-name>";
+
+// Connect to your project using the endpoint from your project page
+// The AzureCliCredential will use your logged-in Azure CLI identity, make sure to run `az login` first
+AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: new DefaultAzureCredential());
+
+// Create your agent
+PromptAgentDefinition agentDefinition = new(model: modelDeploymentName)
+{
+    Instructions = "You are a storytelling agent. You craft engaging one-line stories based on user prompts and context.",
+};
+
+// Creates an agent or bumps the existing agent version if parameters have changed
+AgentVersion agentVersion = projectClient.Agents.CreateAgentVersion(
+    agentName: agentName,
+    options: new(agentDefinition));
+Console.WriteLine($"Agent created (id: {agentVersion.Id}, name: {agentVersion.Name}, version: {agentVersion.Version})");
+
+OpenAIResponseClient responseClient = projectClient.OpenAI.GetProjectResponsesClientForAgent(agentVersion);
+// Use the agent to generate a response
+OpenAIResponse response = responseClient.CreateResponse("Hello! Tell me a joke.");
+
+Console.WriteLine(response.GetOutputText());
+
+```
+
 ### Agent2Agent (A2A) Protocol
 
 <https://github.com/google/A2A>
