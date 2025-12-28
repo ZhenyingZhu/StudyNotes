@@ -386,6 +386,8 @@ Build your own agent
 
 Copilot memory: if prefer something, can say it in a prompty. THen it will say the memory is updated. See in Setting: personalization > saved memories
 
+Prompt lib: <https://learn.microsoft.com/en-us/microsoft-copilot-studio/prompt-library>
+
 ### Stable diffusion
 
 Torch cannot be installed. Maybe related to python version?
@@ -542,6 +544,8 @@ if __name__ == "__main__":
 <https://learn.microsoft.com/en-us/dotnet/ai/quickstarts/build-mcp-server>
 
 <https://learn.microsoft.com/en-us/semantic-kernel/frameworks/agent/agent-types/chat-completion-agent?pivots=programming-language-csharp>
+
+Not all the models can be called: <https://learn.microsoft.com/en-us/azure/ai-foundry/foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic&tabs=global-standard-aoai%2Cstandard-chat-completions%2Cglobal-standard&pivots=azure-openai>
 
 ### Agent2Agent (A2A) Protocol
 
