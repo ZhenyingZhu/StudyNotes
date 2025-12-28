@@ -461,6 +461,7 @@ var client = provider.GetRequiredService<IAIClient>();
 <https://learn.microsoft.com/en-us/samples/dotnet/ai-samples/ai-samples/>
 
 - Need a github token from <https://github.com/settings/personal-access-tokens>. Grant models access.
+- Can also use github credential manager
 
 ### MCP
 
@@ -545,6 +546,82 @@ if __name__ == "__main__":
 
 <https://learn.microsoft.com/en-us/semantic-kernel/frameworks/agent/agent-types/chat-completion-agent?pivots=programming-language-csharp>
 
+Seems like MCP is only helpful when AI drives the progress.
+
+```C#
+var client = new OpenAIClient(
+    new ApiKeyCredential(gitHubToken),
+    new OpenAIClientOptions
+    {
+        Endpoint = new Uri("https://models.inference.ai.azure.com")
+    });
+
+var tools = new List<AITool>
+{
+    AIFunctionFactory.Create(MyClass.MyMethod)
+};
+
+IChatClient chatClient = client.GetChatClient(ModelId).AsIChatClient();
+var agent = chatClient.CreateAIAgent(AgentInstructions, AgentName, tools: tools);
+
+var thread = agent.GetNewThread();
+
+var prompt = "a prompt";
+await foreach (var update in agent.RunStreamingAsync(prompt, thread))
+{
+    if (!string.IsNullOrEmpty(update.Text))
+    {
+        Console.Write(update.Text);
+    }
+}
+```
+
+The agent has a rate limit of 15 requests per min. Need to handle 429.
+
+Create my own model
+
+- <https://ai.azure.com>
+
+Code ref
+
+```C#
+// dotnet add package Azure.AI.Projects --version 1.2.*-*
+using Azure.AI.Projects;
+using Azure.AI.Projects.OpenAI;
+using Azure.Identity;
+using OpenAI;
+using OpenAI.Responses;
+
+#pragma warning disable OPENAI001
+
+const string projectEndpoint = "https://projectname-resource.services.ai.azure.com/api/projects/projectname";
+const string modelDeploymentName = "<your-model-deployment-name>";
+const string agentName = "<your-agent-name>";
+
+// Connect to your project using the endpoint from your project page
+// The AzureCliCredential will use your logged-in Azure CLI identity, make sure to run `az login` first
+AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: new DefaultAzureCredential());
+
+// Create your agent
+PromptAgentDefinition agentDefinition = new(model: modelDeploymentName)
+{
+    Instructions = "You are a storytelling agent. You craft engaging one-line stories based on user prompts and context.",
+};
+
+// Creates an agent or bumps the existing agent version if parameters have changed
+AgentVersion agentVersion = projectClient.Agents.CreateAgentVersion(
+    agentName: agentName,
+    options: new(agentDefinition));
+Console.WriteLine($"Agent created (id: {agentVersion.Id}, name: {agentVersion.Name}, version: {agentVersion.Version})");
+
+OpenAIResponseClient responseClient = projectClient.OpenAI.GetProjectResponsesClientForAgent(agentVersion);
+// Use the agent to generate a response
+OpenAIResponse response = responseClient.CreateResponse("Hello! Tell me a joke.");
+
+Console.WriteLine(response.GetOutputText());
+
+```
+
 Not all the models can be called: <https://learn.microsoft.com/en-us/azure/ai-foundry/foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic&tabs=global-standard-aoai%2Cstandard-chat-completions%2Cglobal-standard&pivots=azure-openai>
 
 ### Agent2Agent (A2A) Protocol
@@ -562,6 +639,8 @@ Not all the models can be called: <https://learn.microsoft.com/en-us/azure/ai-fo
 Handling data
 
 ## Models
+
+The model I can use: `curl -H "Authorization: Bearer $env:GITHUB_TOKEN" https://models.inference.ai.azure.com/models`
 
 ### Concept
 
