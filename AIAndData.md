@@ -624,6 +624,8 @@ Console.WriteLine(response.GetOutputText());
 
 Not all the models can be called: <https://learn.microsoft.com/en-us/azure/ai-foundry/foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic&tabs=global-standard-aoai%2Cstandard-chat-completions%2Cglobal-standard&pivots=azure-openai>
 
+The page [Model Quota](https://ai.azure.com/resource/quota) can be used for requesting quota.
+
 ### Agent2Agent (A2A) Protocol
 
 <https://github.com/google/A2A>
