@@ -320,6 +320,13 @@ Best Practices
 - Start Small: Begin with two agents and scale gradually, adding orchestration logic as complexity grows.
 - Ensure Governance: Apply compliance and audit standards consistently across agents.
 
+Try Github Copilot CLI
+
+```powershell
+npm install -g @github/copilot
+copilot /login
+```
+
 ### Cline
 
 <https://docs.cline.bot/getting-started/for-new-coders>
