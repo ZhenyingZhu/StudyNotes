@@ -1,0 +1,5 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <Target Name="MyTestImportedTarget" AfterTargets="Build;CustomAfterBuild">
+        <Message Text="MyTestTarget executed after CustomAfterBuild." Importance="high" />
+    </Target>
+</Project>

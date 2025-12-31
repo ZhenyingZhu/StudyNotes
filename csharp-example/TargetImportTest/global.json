@@ -1,0 +1,12 @@
+{
+    "comment": "Defines version of MSBuild project SDKs to use https://docs.microsoft.com/en-us/visualstudio/msbuild/how-to-use-project-sdk?view=vs-2017#how-project-sdks-are-resolved",
+    "msbuild-sdks": {
+      "Microsoft.Build.NoTargets": "3.5.6",
+      "Microsoft.Build.Traversal": "3.2.0"
+    },
+    "sdk": {
+       "comment": "Specifies the version of .NET Core SDK to use to ensure consistency across machines no matter what SDK versions they have installed.",
+       "version": "8.0.401",
+       "rollForward": "major"
+    }
+}

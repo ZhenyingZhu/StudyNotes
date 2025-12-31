@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.Build.NoTargets">
+  <PropertyGroup>
+    <AssemblyName>MyTestBinPlace</AssemblyName>  
+    <TargetFramework>net48</TargetFramework>
+      <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+      <OutputType>NoTarget</OutputType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="MyTest.xml">
+      <DestinationFolder>$(AssemblyName)</DestinationFolder>
+    </Content>
+  </ItemGroup>
+
+  <Target Name="CustomAfterBuild" AfterTargets="Build">
+    <Copy SourceFiles="@(Content)"
+          DestinationFiles="@(Content->'$(AssemblyName)\%(RecursiveDir)%(Filename)%(Extension)')"
+          SkipUnchangedFiles="true" />
+    <Message Text="CustomAfterBuild executed: Copied MyTest.xml to output directory." Importance="high" />
+  </Target>
+
+  <Import Project="MyTest.targets" />
+</Project>
