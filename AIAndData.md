@@ -324,7 +324,9 @@ Try Github Copilot CLI
 
 ```powershell
 npm install -g @github/copilot
-copilot /login
+copilot --allow-all-paths
+copilot --allow-all-tools
+copilot --model claude-sonnet-4.5 -p "prompt" -s
 ```
 
 ### Cline
