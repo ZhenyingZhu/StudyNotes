@@ -243,6 +243,10 @@ If you want, tell me your available time each week and the kind of project youâ€
 
 Github Copilot CLI: <https://github.com/features/copilot/cli/>
 
+
+- `copilot --model gpt-4o -p -s`
+- `copilot` then `login`
+
 MCP:
 
 Bootstrap
