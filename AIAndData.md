@@ -241,11 +241,11 @@ If you want, tell me your available time each week and the kind of project youâ€
 
 - Agent mode in VS.
 
-Github Copilot CLI: <https://github.com/features/copilot/cli/>
-
+Github Copilot CLI: <https://github.com/features/copilot/cli/>, <https://docs.github.com/en/copilot/how-tos/use-copilot-agents/use-copilot-cli>
 
 - `copilot --model gpt-4o -p -s`
 - `copilot` then `login`
+- Uses Github
 
 MCP:
 
