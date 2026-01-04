@@ -226,6 +226,8 @@ If you want, tell me your available time each week and the kind of project youâ€
 
 - `.github/copilot-instructions.md` file to let AI understand about the project
 
+<https://developer.microsoft.com/blog/spec-driven-development-spec-kit>
+
 <https://github.com/modelcontextprotocol/servers>
 
 <https://modelcontextprotocol.io/introduction>
