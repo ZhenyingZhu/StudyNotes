@@ -297,6 +297,8 @@ call_tool to invoke a tool.
 
 TODO: How to build an agent infra?
 
+MCP protocol: <https://modelcontextprotocol.io/docs/develop/build-client>
+
 Prompts:
 
 - I am a C# developer trying to leverage AI. How to build an infra to let an agent develop code, an agent build project and an agent run the test, then let the agent fix the test failures?
