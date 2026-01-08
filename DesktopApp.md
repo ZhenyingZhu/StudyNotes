@@ -33,3 +33,7 @@ Reset OneDrive: <https://support.microsoft.com/en-us/office/reset-onedrive-34701
 ## Windows download symlinks
 
 <https://stackoverflow.com/questions/229643/how-do-i-overcome-the-the-symbolic-link-cannot-be-followed-because-its-type-is/>
+
+## Powershell Escape Characters
+
+"`" is the escape character in Powershell, but it doesn't work on "<".
