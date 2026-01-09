@@ -1399,3 +1399,7 @@ StringUtil cannot be found in "System.Web": due to not using NewtonSoft.
 ### Dotnet SDK
 
 desktop runtime and dotnet core runtime are different
+
+### Path
+
+`Path.Combine(a, b)` doesn't work when path `b` starts with `\`, then it become only b.
