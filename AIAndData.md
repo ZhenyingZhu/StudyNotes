@@ -243,17 +243,16 @@ If you want, tell me your available time each week and the kind of project youâ€
 
 Github Copilot CLI: <https://github.com/features/copilot/cli/>
 
-
-- `copilot --model gpt-4o -p -s`
 - `copilot` then `login`
+- `$promptText = Get-Content -Path '{promptFilePath}' -Raw; copilot --model claude-sonnet-4.5 --allow-all-paths --allow-all-tools -p $promptText`
 
 MCP:
 
 Bootstrap
 
 1. `pip install uv`
-1. `uvx create-mcp-server --path . --name mcp-powershell-msbuild --version 0.1.0 --description "MCP server that runs admin PowerShell and msbuild for a given csproj on Windows"`
-1. `uv sync --dev --all-extras`
+2. `uvx create-mcp-server --path . --name mcp-powershell-msbuild --version 0.1.0 --description "MCP server that runs admin PowerShell and msbuild for a given csproj on Windows"`
+3. `uv sync --dev --all-extras`
 
 Alternate
 
