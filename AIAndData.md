@@ -226,6 +226,8 @@ If you want, tell me your available time each week and the kind of project youâ€
 
 - `.github/copilot-instructions.md` file to let AI understand about the project
 
+<https://developer.microsoft.com/blog/spec-driven-development-spec-kit>
+
 <https://github.com/modelcontextprotocol/servers>
 
 <https://modelcontextprotocol.io/introduction>
@@ -241,9 +243,10 @@ If you want, tell me your available time each week and the kind of project youâ€
 
 - Agent mode in VS.
 
-Github Copilot CLI: <https://github.com/features/copilot/cli/>
+Github Copilot CLI: <https://github.com/features/copilot/cli/>, <https://docs.github.com/en/copilot/how-tos/use-copilot-agents/use-copilot-cli>
 
-- `copilot` then `login`
+- `copilot` then `/login` It can reuse the token from Github CLI
+- Simple: `copilot --model gpt-4o -p -s`
 - `$promptText = Get-Content -Path '{promptFilePath}' -Raw; copilot --model claude-sonnet-4.5 --allow-all-paths --allow-all-tools -p $promptText`
 
 MCP:
@@ -293,6 +296,8 @@ def initial_prompt() -> list[base.Message]:
 call_tool to invoke a tool.
 
 TODO: How to build an agent infra?
+
+MCP protocol: <https://modelcontextprotocol.io/docs/develop/build-client>
 
 Prompts:
 
