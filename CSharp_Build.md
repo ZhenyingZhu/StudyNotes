@@ -286,6 +286,11 @@ Using the GeneratePackageOnBuild is better than nuproj/nuspec
 
 `dotnet add package {package}` can either add a new package or upgrade the package version.
 
+### Private feed
+
+- Install a cred provider: `iex "& { $(irm https://aka.ms/install-artifacts-credprovider.ps1) } -AddNetfx"`
+- Run restore `$env:NUGET_CREDENTIALPROVIDER_SESSIONTOKENCACHE_ENABLED = "true"; dotnet restore --interactive`
+
 ### Local testing
 
 Created a Nuget source/feed foo.bar: `nuget sources add -name foo.bar -source C:\NuGet\local -username foo -password bar -StorePasswordInClearText -configfile Nuget.config`
