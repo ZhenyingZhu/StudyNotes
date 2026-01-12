@@ -337,6 +337,8 @@ copilot --allow-all-tools
 copilot --model claude-sonnet-4.5 -p "prompt" -s
 ```
 
+AI is able to handle long running tasks.
+
 ### Cline
 
 <https://docs.cline.bot/getting-started/for-new-coders>
