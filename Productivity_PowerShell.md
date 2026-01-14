@@ -149,3 +149,9 @@ Get-Command 'nssm' -errorAction SilentlyContinue
 ## Exclude
 
 `$allList | Where-Object { $item = $_ -not $excludeList.Where{ $item -match $_ }`
+
+## Select-string
+
+`select-String -Path '*pattern*.txt' -Pattern 'string\\string' | Select-Object -First 1`
+
+`Get-Content -Path "large file" -Tail 10`
