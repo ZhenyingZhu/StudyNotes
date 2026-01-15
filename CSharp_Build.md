@@ -669,6 +669,10 @@ SDK style projects restore packages and the transitive packages based on what th
 
 The package import logic is different?!
 
+### Dual Target
+
+If a project is dual targetted, when the upper layer project references it, the ProjectReference cannot be duplicated, otherwise the project will fail to build, saying namespace cannot be found.
+
 ## ILSpy
 
 Show the target framework.
