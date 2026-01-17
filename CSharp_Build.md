@@ -676,3 +676,7 @@ If a project is dual targetted, when the upper layer project references it, the 
 ## ILSpy
 
 Show the target framework.
+
+## Create Symlinks
+
+Can reduce build size. When reading Symlink files, it can actually read the tarrget file.
