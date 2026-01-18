@@ -663,6 +663,8 @@ Handling data
 
 The model I can use: `curl -H "Authorization: Bearer $env:GITHUB_TOKEN" https://models.inference.ai.azure.com/models`
 
+GPT 5.2 is good at long running planning.
+
 ### Concept
 
 A model is a large mathematical function trained to understand and generate data.
