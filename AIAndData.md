@@ -337,7 +337,7 @@ copilot --allow-all-tools
 copilot --model claude-sonnet-4.5 -p "prompt" -s
 ```
 
-AI is able to handle long running tasks.
+AI is able to handle long running tasks. But need to find a way to prevent it from over designing.
 
 ### Cline
 
