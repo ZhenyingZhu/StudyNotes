@@ -1403,3 +1403,15 @@ desktop runtime and dotnet core runtime are different
 ### Path
 
 `Path.Combine(a, b)` doesn't work when path `b` starts with `\`, then it become only b.
+
+## DI
+
+As long as using `Microsoft.Extensions.Hosting`, a program can use DI.
+
+```C#
+var builder = Host.CreateApplicationBuilder(args);
+builder.Services.AddSingleton<IFileSystem, FileSystemAdapter>();
+var host = builder.Build();
+var app = host.Services.GetRequiredService<AppService>();
+await app.RunAsync(args).ConfigureAwait(false);
+```
