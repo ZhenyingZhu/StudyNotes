@@ -657,7 +657,7 @@ The page [Model Quota](https://ai.azure.com/resource/quota) can be used for requ
 
 <https://learn.microsoft.com/en-us/fabric/real-time-intelligence/>
 
-Handling data
+Handling data for AI
 
 ## Models
 
