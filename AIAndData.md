@@ -665,6 +665,8 @@ The model I can use: `curl -H "Authorization: Bearer $env:GITHUB_TOKEN" https://
 
 GPT 5.2 is good at long running planning.
 
+The official doc is okay to be written by GPT 5.2
+
 ### Concept
 
 A model is a large mathematical function trained to understand and generate data.
