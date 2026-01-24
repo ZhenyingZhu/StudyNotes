@@ -640,12 +640,13 @@ OpenAIResponseClient responseClient = projectClient.OpenAI.GetProjectResponsesCl
 OpenAIResponse response = responseClient.CreateResponse("Hello! Tell me a joke.");
 
 Console.WriteLine(response.GetOutputText());
-
 ```
 
 Not all the models can be called: <https://learn.microsoft.com/en-us/azure/ai-foundry/foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic&tabs=global-standard-aoai%2Cstandard-chat-completions%2Cglobal-standard&pivots=azure-openai>
 
 The page [Model Quota](https://ai.azure.com/resource/quota) can be used for requesting quota.
+
+<https://developer.microsoft.com/blog/bringing-work-context-to-your-code-in-github-copilot>
 
 ### Agent2Agent (A2A) Protocol
 
