@@ -222,6 +222,13 @@ If you want, tell me your available time each week and the kind of project youâ€
 - Review suggestion.
 - open relevant files and close irrelevant files.
 
+<https://developer.microsoft.com/blog/bringing-work-context-to-your-code-in-github-copilot>
+
+- Finding the right owner for a piece of code
+- Creating an architecture diagram from a meeting transcript
+- Comparing an implementation to the original design spec
+- Bringing work context into your own apps
+
 <https://code.visualstudio.com/blogs/2025/02/24/introducing-copilot-agent-mode>
 
 - `.github/copilot-instructions.md` file to let AI understand about the project
@@ -645,8 +652,6 @@ Console.WriteLine(response.GetOutputText());
 Not all the models can be called: <https://learn.microsoft.com/en-us/azure/ai-foundry/foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic&tabs=global-standard-aoai%2Cstandard-chat-completions%2Cglobal-standard&pivots=azure-openai>
 
 The page [Model Quota](https://ai.azure.com/resource/quota) can be used for requesting quota.
-
-<https://developer.microsoft.com/blog/bringing-work-context-to-your-code-in-github-copilot>
 
 ### Agent2Agent (A2A) Protocol
 
