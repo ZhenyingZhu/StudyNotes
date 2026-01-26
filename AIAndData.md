@@ -222,6 +222,10 @@ If you want, tell me your available time each week and the kind of project youâ€
 - Review suggestion.
 - open relevant files and close irrelevant files.
 
+WorkIQ: Provides engineering leaders aggregated, privacy-preserving analytics about developer workflows and team productivity across repositories
+
+- A MCP server
+
 <https://developer.microsoft.com/blog/bringing-work-context-to-your-code-in-github-copilot>
 
 - Finding the right owner for a piece of code
