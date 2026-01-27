@@ -420,6 +420,8 @@ Copilot memory: if prefer something, can say it in a prompty. THen it will say t
 
 Prompt lib: <https://learn.microsoft.com/en-us/microsoft-copilot-studio/prompt-library>
 
+Is it good at creating PPT?
+
 ### Stable diffusion
 
 Torch cannot be installed. Maybe related to python version?
