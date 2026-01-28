@@ -1415,3 +1415,7 @@ var host = builder.Build();
 var app = host.Services.GetRequiredService<AppService>();
 await app.RunAsync(args).ConfigureAwait(false);
 ```
+
+### System.Net.Http
+
+What the heck! It is running different versions in .NET Core and .NET Framework, and cause warning everywhere!
