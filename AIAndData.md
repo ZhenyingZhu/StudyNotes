@@ -352,6 +352,8 @@ AI is able to handle long running tasks. But need to find a way to prevent it fr
 
 Seems like now able to handle multiple files
 
+Need to see how AI can root cause unit tests
+
 ### Cline
 
 <https://docs.cline.bot/getting-started/for-new-coders>
