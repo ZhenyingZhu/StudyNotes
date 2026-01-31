@@ -356,6 +356,7 @@ Need to see how AI can root cause unit tests
 
 - Don't trust it! Ask it to explain
 - Give it as many logs as possible
+- Ask it to add logs
 
 ### Cline
 
