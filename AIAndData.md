@@ -460,6 +460,12 @@ Press any key to continue . . .
 
 Need to follow <https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Install-and-Run-on-NVidia-GPUs>
 
+### OpenClaw
+
+<https://openclaw.ai/>
+
+- `iwr -useb https://openclaw.ai/install.ps1 | iex`
+
 ## Agent
 
 An AI agent is an entity that observes its environment, reasons about what to do next, and takes actions to maximize a goal or utility over time.
