@@ -719,6 +719,8 @@ Claude Opus is better for large scale, Sonnet is for shorter.
 
 AI is very untrustworthy when dealing with complicate code base. It will make up stuff and go in circles when it is deeper.
 
+AI can get dumb when using too much?!
+
 ### Model difference
 
 Cloude 4 seems the best.
