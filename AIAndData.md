@@ -721,6 +721,8 @@ AI is very untrustworthy when dealing with complicate code base. It will make up
 
 AI can get dumb when using too much?!
 
+Don't let AI fix tests. Ask it to find root cause first, then add logs to verify. Otherwise it can go in circles.
+
 ### Model difference
 
 Cloude 4 seems the best.
