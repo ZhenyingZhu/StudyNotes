@@ -723,6 +723,8 @@ AI can get dumb when using too much?!
 
 Don't let AI fix tests. Ask it to find root cause first, then add logs to verify. Otherwise it can go in circles.
 
+Asking AI to add logs seems okay, but need to understand what it is doing. Sometimes asking it to explain make it redo the work.
+
 ### Model difference
 
 Cloude 4 seems the best.
