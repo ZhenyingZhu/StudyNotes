@@ -358,6 +358,8 @@ Need to see how AI can root cause unit tests
 - Give it as many logs as possible
 - Ask it to add logs
 
+Skills: wrap up common operations
+
 ### Cline
 
 <https://docs.cline.bot/getting-started/for-new-coders>
