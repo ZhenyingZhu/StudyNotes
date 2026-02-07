@@ -468,6 +468,10 @@ Need to follow <https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Ins
 
 - `iwr -useb https://openclaw.ai/install.ps1 | iex`
 
+### Claude
+
+<https://howborisusesclaudecode.com/>
+
 ## Agent
 
 An AI agent is an entity that observes its environment, reasons about what to do next, and takes actions to maximize a goal or utility over time.
