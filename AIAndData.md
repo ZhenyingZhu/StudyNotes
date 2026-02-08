@@ -515,6 +515,10 @@ var client = provider.GetRequiredService<IAIClient>();
 - Need a github token from <https://github.com/settings/personal-access-tokens>. Grant models access.
 - Can also use github credential manager
 
+### Skills
+
+<https://code.visualstudio.com/docs/copilot/customization/agent-skills>
+
 ### MCP
 
 <https://modelcontextprotocol.io/docs/getting-started/intro>
