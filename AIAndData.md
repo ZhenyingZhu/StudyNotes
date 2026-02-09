@@ -60,6 +60,8 @@ Prompt with 4 elements
 3. Source
 4. Expectations
 
+<https://ykdojo.github.io/claude-code-tips/content/boris-claude-code-tips>
+
 ### AI ideas
 
 - Show the manual ops
