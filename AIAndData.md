@@ -62,6 +62,8 @@ Prompt with 4 elements
 
 <https://ykdojo.github.io/claude-code-tips/content/boris-claude-code-tips>
 
+- `git worktrees add`
+
 ### AI ideas
 
 - Show the manual ops
