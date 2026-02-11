@@ -62,7 +62,7 @@ Prompt with 4 elements
 
 <https://ykdojo.github.io/claude-code-tips/content/boris-claude-code-tips>
 
-- `git worktrees add`
+- `git worktrees add <path> <branch>` or `git worktrees add -b <branch> <path>`
 
 ### AI ideas
 
