@@ -65,6 +65,7 @@ Prompt with 4 elements
 - `git worktrees add <path> <branch>` or `git worktrees add -b <branch> <path>`
 - `Update your CLAUDE.md so you don’t make that mistake again.`
 - Let AI write its own prompt
+- accept AI code when it works
 
 ### AI ideas
 
