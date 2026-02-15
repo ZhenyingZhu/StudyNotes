@@ -66,6 +66,7 @@ Prompt with 4 elements
 - `Update your CLAUDE.md so you don’t make that mistake again.`
 - Let AI write its own prompt
 - accept AI code when it works
+- use `/techdebt` prompt
 
 ### AI ideas
 
