@@ -131,6 +131,16 @@ Zorin OS Lite: This distribution is specifically designed to be fast on older ha
 
 Steam can add game and select Proton. It creates a folder with a windows drive.
 
+## Cloud Drive
+
+rclone can be used for mounting OneDrive
+
+```bash
+sudo -v ; curl https://rclone.org/install.sh | sudo bash
+rclone config
+rclone mount onedrive: ~/OneDrive --vfs-cache-mode writes &
+```
+
 ## Tips
 
 Ubuntu user name lower case work
