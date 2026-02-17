@@ -62,7 +62,7 @@ Prompt with 4 elements
 
 <https://ykdojo.github.io/claude-code-tips/content/boris-claude-code-tips>
 
-- `git worktrees add <path> <branch>` or `git worktrees add -b <branch> <path>`
+- Use git worktree
 - `Update your CLAUDE.md so you don’t make that mistake again.`
 - Let AI write its own prompt
 - accept AI code when it works
