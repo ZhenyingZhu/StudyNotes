@@ -141,6 +141,10 @@ rclone config
 rclone mount onedrive: ~/OneDrive --vfs-cache-mode writes &
 ```
 
+## Startup Application
+
+Don't use `~`: `sh -c "sleep 10 && rclone mount onedrive: /home/USER_NAME/OneDrive --vfs-cache-mode writes"`
+
 ## Tips
 
 Ubuntu user name lower case work
