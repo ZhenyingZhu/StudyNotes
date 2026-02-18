@@ -145,6 +145,16 @@ rclone mount onedrive: ~/OneDrive --vfs-cache-mode writes &
 
 Don't use `~`: `sh -c "sleep 10 && rclone mount onedrive: /home/USER_NAME/OneDrive --vfs-cache-mode writes"`
 
+## Tool chains
+
+- `sudo apt install -y dotnet-sdk-8.0`
+- `sudo apt install python3`
+
+## Mount Driver
+
+- `lsblk` see the list of mount drivers
+- `mountpoint /mnt/sdc1` confirm a mountpoint. It can be left over.
+
 ## Tips
 
 Ubuntu user name lower case work
