@@ -475,6 +475,7 @@ Need to follow <https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Ins
 <https://openclaw.ai/>
 
 - `iwr -useb https://openclaw.ai/install.ps1 | iex`
+- `curl -fsSL https://openclaw.ai/install.sh | bash`
 
 ### Claude
 
