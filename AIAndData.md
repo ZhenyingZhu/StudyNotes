@@ -474,8 +474,13 @@ Need to follow <https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Ins
 
 <https://openclaw.ai/>
 
-- `iwr -useb https://openclaw.ai/install.ps1 | iex`
-- `curl -fsSL https://openclaw.ai/install.sh | bash`
+- Windows: `iwr -useb https://openclaw.ai/install.ps1 | iex`
+- Linux: `curl -fsSL https://openclaw.ai/install.sh | bash`
+- `openclaw --version`, `openclaw --help`
+- `openclaw gateway`
+- `openclaw dashboard`
+- `openclaw models list 2>/dev/null || openclaw models --help`
+- `openclaw skills --help`
 
 ### Claude
 
