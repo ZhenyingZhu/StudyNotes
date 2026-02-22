@@ -480,7 +480,7 @@ Need to follow <https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Ins
 - `openclaw gateway`
 - `openclaw dashboard`
 - `openclaw models list 2>/dev/null || openclaw models --help`
-- `openclaw skills --help`
+- `openclaw skills list` to find a skill, then `openclaw skills <skillName> --help`
 
 ### Claude
 
