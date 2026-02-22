@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'">
+  <title>Folder Rating Viewer</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="app">
+    <!-- Header / Toolbar -->
+    <header class="toolbar">
+      <h1>Folder Rating Viewer</h1>
+      <div class="toolbar-actions">
+        <button id="btn-select-folder" title="Select folder to index">
+          📁 Select Folder
+        </button>
+        <button id="btn-rescan" title="Rescan current folder" disabled>
+          🔄 Rescan
+        </button>
+        <span id="folder-path" class="folder-path">No folder selected</span>
+      </div>
+    </header>
+
+    <!-- Status bar -->
+    <div id="status-bar" class="status-bar hidden">
+      <span id="status-text">Scanning...</span>
+      <span id="status-count"></span>
+    </div>
+
+    <!-- Search & filter bar -->
+    <div class="filter-bar">
+      <input type="text" id="search-input" placeholder="Search by name, path, or type..." />
+      <span id="result-count" class="result-count"></span>
+    </div>
+
+    <!-- File table -->
+    <div class="table-container">
+      <table id="file-table">
+        <thead>
+          <tr>
+            <th class="sortable" data-sort="file_name">Name <span class="sort-arrow"></span></th>
+            <th class="sortable" data-sort="file_type">Type <span class="sort-arrow"></span></th>
+            <th class="sortable" data-sort="file_size">Size <span class="sort-arrow"></span></th>
+            <th class="sortable" data-sort="file_path">Path <span class="sort-arrow"></span></th>
+            <th class="sortable" data-sort="rating">Rating <span class="sort-arrow"></span></th>
+          </tr>
+        </thead>
+        <tbody id="file-tbody">
+          <tr class="empty-row">
+            <td colspan="5">Select a folder to get started</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Pagination -->
+    <div class="pagination" id="pagination">
+      <button id="btn-prev" disabled>← Previous</button>
+      <span id="page-info">Page 1</span>
+      <button id="btn-next" disabled>Next →</button>
+    </div>
+  </div>
+
+  <script src="renderer.js"></script>
+</body>
+</html>

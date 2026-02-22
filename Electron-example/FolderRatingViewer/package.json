@@ -1,0 +1,43 @@
+{
+  "name": "folder-rating-viewer",
+  "version": "1.0.0",
+  "description": "Desktop app to index files in a folder and rate them",
+  "main": "dist/main/index.js",
+  "scripts": {
+    "build:ts": "tsc",
+    "start": "npm run build:ts && electron .",
+    "dist:linux": "npm run build:ts && electron-builder --linux",
+    "dist:win": "npm run build:ts && electron-builder --win",
+    "dist": "npm run build:ts && electron-builder --linux --win"
+  },
+  "keywords": ["electron", "file-indexer", "rating"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "better-sqlite3": "^12.6.2",
+    "electron": "^40.6.0"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.13",
+    "electron-builder": "^26.8.1",
+    "typescript": "^5.9.3"
+  },
+  "build": {
+    "appId": "com.folderratingviewer.app",
+    "productName": "Folder Rating Viewer",
+    "files": [
+      "dist/**/*",
+      "src/renderer/**/*"
+    ],
+    "directories": {
+      "output": "release"
+    },
+    "linux": {
+      "target": ["AppImage", "deb"],
+      "category": "Utility"
+    },
+    "win": {
+      "target": ["nsis", "portable"]
+    }
+  }
+}
