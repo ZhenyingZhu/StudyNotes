@@ -76,7 +76,22 @@ export async function scanFolder(folderPath: string): Promise<void> {
         if (entry.isDirectory()) {
           // Skip hidden directories and common unneeded dirs
           if (!entry.name.startsWith('.') && entry.name !== 'node_modules') {
-            walkDir(fullPath);
+            batch.push({
+              filePath: fullPath,
+              fileName: entry.name,
+              fileType: 'Folder',
+              fileSize: 0,
+              folderPath: folderPath,
+            });
+            scanState.scannedCount++;
+
+            if (batch.length >= 1000) {
+              upsertFiles([...batch]);
+              batch.length = 0;
+            }
+
+            // To avoid spend a long time to go into sub folders.
+            // walkDir(fullPath);
           }
         } else if (entry.isFile()) {
           try {
