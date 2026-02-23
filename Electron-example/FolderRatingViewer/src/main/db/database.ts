@@ -5,6 +5,7 @@ import { app } from 'electron';
 let db: Database.Database | null = null;
 
 export function initDatabase(): void {
+  // On linux, it is under ~/.config/folder-rating-viewer
   const dbPath = path.join(app.getPath('userData'), 'file-indexer.db');
   db = new Database(dbPath);
 
