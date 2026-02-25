@@ -16,7 +16,8 @@ A cross-platform desktop app (Windows & Ubuntu) that indexes all files in a sele
 
 ### Prerequisites
 
-- Node.js 18+ and npm. Run `npm install -g npm@latest`. For windows, `npm install -g npm-windows-upgrade` in admin powershell, then `npm-windows-upgrade`
+- Node.js 18+ and npm. Run `npm install -g npm@latest`. For windows, `npm install -g npm-windows-upgrade` in admin powershell, then `npm-windows-upgrade`? Didn't work
+- Ran `npm install --save-dev @electron/rebuild` and `npm electron-rebuild`
 
 ### Install
 
