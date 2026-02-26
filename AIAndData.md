@@ -486,6 +486,8 @@ Need to follow <https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Ins
 
 <https://howborisusesclaudecode.com/>
 
+VS Code has Claude mode, but the conversation is not able to see.
+
 ## Agent
 
 An AI agent is an entity that observes its environment, reasons about what to do next, and takes actions to maximize a goal or utility over time.
