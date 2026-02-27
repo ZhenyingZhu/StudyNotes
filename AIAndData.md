@@ -751,6 +751,8 @@ Don't let AI fix tests. Ask it to find root cause first, then add logs to verify
 
 Asking AI to add logs seems okay, but need to understand what it is doing. Sometimes asking it to explain make it redo the work.
 
+When reading a large code base, AI keep confidently assuming some nonsense. Let it add logs to prove.
+
 ### Model difference
 
 Cloude 4 seems the best.
