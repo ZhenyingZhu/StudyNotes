@@ -51,24 +51,15 @@ Training components:
 - Reinforcement learning from human feedback: labeler rate the output, go to reward model
 - Use proximal policy optimization algorithm
 
-### Prompt
+### RAG
 
-Prompt with 4 elements
+RAG: Retrieval-Augmented Generation
 
-1. Goal
-2. Context
-3. Source
-4. Expectations
+- Chunking
+- embeddings
+- Store to FAISS, Chroma, Pinecone etc.
 
-<https://ykdojo.github.io/claude-code-tips/content/boris-claude-code-tips>
-
-- Use git worktree
-- `Update your CLAUDE.md so you don’t make that mistake again.`
-- Let AI write its own prompt
-- accept AI code when it works
-- use `/techdebt` prompt
-
-### AI ideas
+## Ideas
 
 - Show the manual ops
 - Show the challenges
@@ -77,22 +68,6 @@ Prompt with 4 elements
   - not able to follow
 - the option we choose and a demo
 - future
-
-9/4 - 10/24,
-
-### Skillup AI
-
-<https://skilluplabforhackathon.azurewebsites.net/speedskills/researcher/performance>
-
-- Researcher?
-
-### RAG
-
-RAG: Retrieval-Augmented Generation
-
-- Chunking
-- embeddings
-- Store to FAISS, Chroma, Pinecone etc.
 
 ### ChatGPT Learn AI suggestion
 
@@ -194,6 +169,37 @@ Portfolio first: every lesson ends with a commit, a README, and a demo (Colab/Sp
 Evaluate rigorously: build small checklists for data leakage, eval splits, prompt safety.
 
 If you want, tell me your available time each week and the kind of project you’re excited to ship first—I’ll tailor this plan (and give you a focused resource list + step-by-step tasks for the next 14 days).
+
+Team Channel Progress
+
+9/4 - 10/24,
+
+## Skills
+
+### Prompt
+
+Prompt with 4 elements
+
+1. Goal
+2. Context
+3. Source
+4. Expectations
+
+### Code tips
+
+<https://ykdojo.github.io/claude-code-tips/content/boris-claude-code-tips>
+
+- Use git worktree
+- `Update your CLAUDE.md so you don’t make that mistake again.`
+- Let AI write its own prompt
+- accept AI code when it works
+- use `/techdebt` prompt
+
+### Researcher
+
+<https://skilluplabforhackathon.azurewebsites.net/speedskills/researcher/performance>
+
+- Researcher?
 
 ## Tools
 
