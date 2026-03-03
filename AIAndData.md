@@ -2,12 +2,14 @@
 
 ## AI Introduction
 
-techniques:
+### Techniques
 
 - machine learning
 - deep learning
 - neural networks
 - natural language processing
+
+### Areas
 
 Generative AI
 
@@ -31,7 +33,7 @@ Natural language processing
 - Text classification
 - Sentiment analysis
 
-Products:
+### Products
 
 - Udio: From composing music based on a couple of quick prompts
 - Obsidian: taking notes and organizing your thoughts
@@ -53,7 +55,7 @@ Training components:
 
 ### RAG
 
-RAG: Retrieval-Augmented Generation
+RAG: Retrieval-Augmented Generation. Search for text quickly.
 
 - Chunking
 - embeddings
