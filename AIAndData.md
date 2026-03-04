@@ -55,7 +55,7 @@ Training components:
 
 ### RAG
 
-RAG: Retrieval-Augmented Generation. Search for text quickly.
+RAG: Retrieval-Augmented Generation. a technique that provides large language models (LLMs) with access to specific, up-to-date, or proprietary data that was not part of their original training.
 
 - Chunking
 - embeddings
