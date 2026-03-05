@@ -495,6 +495,12 @@ Concepts
 - Identity.md
 - Soul.md
 
+Skills
+
+- GOG
+- Summarize
+- n8n
+
 ### Claude
 
 <https://howborisusesclaudecode.com/>
