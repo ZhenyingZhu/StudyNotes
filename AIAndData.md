@@ -509,6 +509,8 @@ VS Code has Claude mode, but the conversation is not able to see.
 
 Opus is stronger than Sonnet, but cost more. Still have illution.
 
+Using AI to install git and python
+
 ## Agent
 
 An AI agent is an entity that observes its environment, reasons about what to do next, and takes actions to maximize a goal or utility over time.
