@@ -283,6 +283,8 @@ Bootstrap
 1. `pip install uv`
 2. `uvx create-mcp-server --path . --name mcp-powershell-msbuild --version 0.1.0 --description "MCP server that runs admin PowerShell and msbuild for a given csproj on Windows"`
 3. `uv sync --dev --all-extras`
+4. `uv python find`
+5. `uv venv .venv --python 3.12`
 
 Alternate
 
