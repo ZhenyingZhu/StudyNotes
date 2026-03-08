@@ -491,7 +491,7 @@ Need to follow <https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Ins
 - `openclaw dashboard`
 - `openclaw models list 2>/dev/null || openclaw models --help`
 - `openclaw skills list` to find a skill, then `openclaw skills <skillName> --help`
-
+- `openclaw agent --local --session-id organize-downloads --message "Look at the files in /home/zhu91/Downloads, read their content, and move them into appropriate subfolders based on what the content is about."`
 Concepts
 
 - Identity.md
