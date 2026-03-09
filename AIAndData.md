@@ -503,6 +503,8 @@ Skills
 - Summarize
 - n8n
 
+<https://www.bilibili.com/video/BV1rHNuzoEsb>
+
 ### Claude
 
 <https://howborisusesclaudecode.com/>
