@@ -37,3 +37,7 @@ Reset OneDrive: <https://support.microsoft.com/en-us/office/reset-onedrive-34701
 ## Powershell Escape Characters
 
 "`" is the escape character in Powershell, but it doesn't work on "<".
+
+## Windows Credential Manager
+
+Apps store tokens there, for example Microsoft Office. How about the git cred manager?
