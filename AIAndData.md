@@ -176,8 +176,6 @@ Team Channel Progress
 
 9/4 - 10/24,
 
-## Skills
-
 ### Prompt
 
 Prompt with 4 elements
@@ -502,6 +500,12 @@ Skills
 - GOG
 - Summarize
 - n8n
+
+Protection
+
+- `openclaw config set gateway.port <PORT_NUMBER>`
+- `openclaw gateway restart`
+- `openclaw gateway status`
 
 <https://www.bilibili.com/video/BV1rHNuzoEsb>
 
