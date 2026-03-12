@@ -9,17 +9,22 @@ namespace DotNetCoreConsole
     {
         public static void TestMain()
         {
-            Console.WriteLine("Type input and field");
-            string input = Console.ReadLine();
+            Console.WriteLine("Type regex and input");
+            string regex = Console.ReadLine();
 
-            string field = string.Empty;
-            while (field != "exit")
+            string input = string.Empty;
+            while (input != "exit")
             {
-                field = Console.ReadLine();
+                input = Console.ReadLine();
 
-                // Console.WriteLine(GetField(input, field));
+                Console.WriteLine("Match result: " + MatchResult(input, regex));
                 Console.WriteLine(Replace(input));
             }
+        }
+
+        private static bool MatchResult(string input, string pattern)
+        {
+            return Regex.IsMatch(input, pattern, RegexOptions.IgnoreCase);
         }
 
         private static string GetField(string input, string field)
