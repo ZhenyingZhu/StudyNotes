@@ -87,7 +87,7 @@ export function removeStaleFiles(folderPath: string, currentScanTime: string): n
 }
 
 export function getFiles(options: {
-  folderPath: string;
+  folderPath?: string;
   sortBy?: string;
   sortOrder?: string;
   search?: string;
@@ -109,8 +109,8 @@ export function getFiles(options: {
   const sortCol = allowedSortColumns[sortBy] || 'f.file_name';
   const order = sortOrder === 'DESC' ? 'DESC' : 'ASC';
 
-  let whereClause = 'WHERE f.folder_path = ?';
-  const params: any[] = [folderPath];
+  let whereClause = folderPath ? 'WHERE f.folder_path = ?' : 'WHERE 1=1';
+  const params: any[] = folderPath ? [folderPath] : [];
 
   if (search) {
     whereClause += ' AND (f.file_name LIKE ? OR f.file_path LIKE ? OR f.file_type LIKE ?)';
