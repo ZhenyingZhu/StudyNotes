@@ -20,6 +20,10 @@ Resource: <https://github.com/sweetwxh/Alpha-Translation>
 
 Encoding: UTF8、ShiftJIS
 
+### [PSP](https://www.scribd.com/document/966878533/Tutorial-Translation-of-PSP-Games)
+
+CrystalTile2
+
 ## Resource 2
 
 <https://www.cxyzjd.com/article/madonghyu/90029001>
