@@ -14,6 +14,8 @@ Tampermonkey for chrome and Greasemonkey for firefox.
 
 For android: <https://github.com/OpenUserJs/OpenUserJS.org/wiki/Tampermonkey-for-Android>
 
+Need to turn on developer mode and allow user scripts
+
 ## Turtorial
 
 [Tempermonkey welcome](https://tampermonkey.net/index.php?version=4.7&ext=dhdg&updated=true)

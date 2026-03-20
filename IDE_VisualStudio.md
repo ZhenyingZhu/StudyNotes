@@ -29,6 +29,8 @@ REG EXPORT $registryKeyPath C:\val.txt /reg:64
 - lightbulb icon, and then select Fix with Copilot.
 - `Ctrl + I`
 
+Allow having 2 accounts log in together, and each has its own trusted extension
+
 ### .NET Install Tool
 
 It can auto install the latest dotnet SDK which is annoying.

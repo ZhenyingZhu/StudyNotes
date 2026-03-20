@@ -1430,6 +1430,13 @@ No multiple cases
 
 `ffmpeg -i video.mp4 -i audio.mp4 -c:v copy -map 0:v:0 -map 1:a:0 -shortest output.mp4`
 
+# Set cookies
+
+Go to the page, open browser Dev console,
+
+1. Application
+1. Storage > Cookies
+1. Add Name, Value pairs
 
 # Logger class
 

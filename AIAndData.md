@@ -485,11 +485,28 @@ Need to follow <https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Ins
 - Windows: `iwr -useb https://openclaw.ai/install.ps1 | iex`
 - Linux: `curl -fsSL https://openclaw.ai/install.sh | bash`
 - `openclaw --version`, `openclaw --help`
+- `openclaw dashboard`: show the Web UI
 - `openclaw gateway`
-- `openclaw dashboard`: show everything
+- `openclaw config`
 - `openclaw models list 2>/dev/null || openclaw models --help`
+- `openclaw models status`: auth overview and usage status
 - `openclaw skills list` to find a skill, then `openclaw skills <skillName> --help`
 - `openclaw agent --local --session-id organize-downloads --message "Look at the files in /home/zhu91/Downloads, read their content, and move them into appropriate subfolders based on what the content is about."`
+
+Settings
+
+- Gateway port
+- Model: auth provider, 
+- Channel: talk to cellphone
+- Skills: use homebrew to install
+- node manager: for installing skills, by default npm
+- API keys
+- hooks: boot, log, memory
+- Systemd
+- hatch bot: through TUI (terminal) or [Web UI](http://127.0.0.1:18789/)
+- Web Search: needs an API key
+- shell completion script
+
 Concepts
 
 - Identity.md

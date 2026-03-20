@@ -54,8 +54,6 @@ function renderStars(filePath, rating) {
 
 // ── Load Files ─────────────────────────────────────────────
 async function loadFiles() {
-  if (!currentFolder) return;
-
   const result = await window.api.getFiles({
     folderPath: currentFolder,
     sortBy,
@@ -212,3 +210,6 @@ btnNext.addEventListener('click', () => {
     loadFiles();
   }
 });
+
+// Load existing DB files on startup
+loadFiles();
