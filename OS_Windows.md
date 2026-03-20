@@ -27,3 +27,7 @@ The vmx file can be updated. It records the file paths.
 ## Login
 
 To allow remote desktop connection, `settings > Accounts > Sign-in options`, turn off "Require WIndows Hello Sign-in for Microsoft accounts"
+
+## Group Policy
+
+`gpedit.msc` find configs. For example, `Computer Configuration > Administrative Templates > Windows Components > Remote Desktop Services > Remote Desktop Session Host > Device and Resource Redirection`

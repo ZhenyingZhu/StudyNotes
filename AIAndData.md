@@ -519,6 +519,10 @@ Opus is stronger than Sonnet, but cost more. Still have illution.
 
 Using AI to install git and python
 
+### Agency
+
+<https://eng.ms/docs/coreai/devdiv/one-engineering-system-1es/1es-jacekcz/startrightgitops/agency>
+
 ## Agent
 
 An AI agent is an entity that observes its environment, reasons about what to do next, and takes actions to maximize a goal or utility over time.
