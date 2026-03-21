@@ -496,7 +496,7 @@ Need to follow <https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Ins
 Settings
 
 - Gateway port
-- Model: auth provider, 
+- Model: auth provider
 - Channel: talk to cellphone
 - Skills: use homebrew to install
 - node manager: for installing skills, by default npm
@@ -539,6 +539,9 @@ Using AI to install git and python
 ### Agency
 
 <https://eng.ms/docs/coreai/devdiv/one-engineering-system-1es/1es-jacekcz/startrightgitops/agency>
+
+- `agency copilot`
+- nodejs is installed to `~\.agency\nodejs`
 
 ## Agent
 
