@@ -129,7 +129,8 @@ Zorin OS Lite: This distribution is specifically designed to be fast on older ha
 
 <https://www.protondb.com/>
 
-Steam can add game and select Proton. It creates a folder with a windows drive.
+- Steam can add game and select Proton. It creates a folder with a windows drive.
+- On Ubuntu, if installed by snap, files are under `~/snap/steam/common/` instead of `~`, for example `~/snap/steam/common/.local/share` have saves
 
 ## Cloud Drive
 
@@ -154,6 +155,10 @@ Don't use `~`: `sh -c "sleep 10 && rclone mount onedrive: /home/USER_NAME/OneDri
 
 - `lsblk` see the list of mount drivers
 - `mountpoint /mnt/sdc1` confirm a mountpoint. It can be left over.
+
+## Check file handler
+
+- `lsof -p $(pgrep {process name})`
 
 ## Tips
 
