@@ -160,6 +160,12 @@ Don't use `~`: `sh -c "sleep 10 && rclone mount onedrive: /home/USER_NAME/OneDri
 
 - `lsof -p $(pgrep {process name})`
 
+## Game controller
+
+- Find PS4 controller in devices `sudo dmesg | grep -i sony`
+- Install a tester `sudo apt install joystick`, 
+- `ls /dev/input/js*` to see devices, `jstest /dev/input/js1` to run it
+
 ## Tips
 
 Ubuntu user name lower case work
