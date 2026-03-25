@@ -591,6 +591,14 @@ var client = provider.GetRequiredService<IAIClient>();
 
 <https://code.visualstudio.com/docs/copilot/customization/agent-skills>
 
+1. Narrow, well-defined responsibility
+1. Wrap repetitive operations
+1. Clear tool contracts
+1. Scope: Handle 1–3 steps max
+1. Documentation: Descriptive docstrings (LLM uses these to decide when to call the tool)
+1. Error handling: Return clear errors, not silent failures
+1. Verification: Include output validation (e.g., test builds)
+
 ### MCP
 
 <https://modelcontextprotocol.io/docs/getting-started/intro>
