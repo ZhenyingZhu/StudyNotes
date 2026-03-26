@@ -599,6 +599,8 @@ var client = provider.GetRequiredService<IAIClient>();
 1. Error handling: Return clear errors, not silent failures
 1. Verification: Include output validation (e.g., test builds)
 
+AI can keep trying again and again but not getting the right answer.
+
 ### MCP
 
 <https://modelcontextprotocol.io/docs/getting-started/intro>
