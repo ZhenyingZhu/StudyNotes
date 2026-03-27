@@ -238,7 +238,10 @@ Prompt with 4 elements
 
 WorkIQ: Provides engineering leaders aggregated, privacy-preserving analytics about developer workflows and team productivity across repositories
 
-- A MCP server
+- A MCP server to access M365 Copilot
+- `copilot`, `/login`
+- /plugin marketplace add github/copilot-plugins` then `/plugin install workiq@copilot-plugins`
+- `/exit` then `copilot` to restart it
 
 <https://developer.microsoft.com/blog/bringing-work-context-to-your-code-in-github-copilot>
 
