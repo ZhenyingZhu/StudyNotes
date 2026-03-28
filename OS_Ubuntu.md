@@ -165,6 +165,13 @@ Don't use `~`: `sh -c "sleep 10 && rclone mount onedrive: /home/USER_NAME/OneDri
 - Find PS4 controller in devices `sudo dmesg | grep -i sony`
 - Install a tester `sudo apt install joystick`, 
 - `ls /dev/input/js*` to see devices, `jstest /dev/input/js1` to run it
+- Actually don't use the app store version and it works
+
+## AppImage
+
+- `chmod +x /path/to/your_app.AppImage`
+- shortcut creates on both `~/Desktop/appname.desktop` and `~/.local/share/applications/`
+- can use AppImageLauncher
 
 ## Tips
 
