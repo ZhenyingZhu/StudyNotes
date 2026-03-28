@@ -604,6 +604,8 @@ var client = provider.GetRequiredService<IAIClient>();
 
 AI can keep trying again and again but not getting the right answer.
 
+Market place
+
 ### MCP
 
 <https://modelcontextprotocol.io/docs/getting-started/intro>
