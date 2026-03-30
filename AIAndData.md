@@ -546,6 +546,7 @@ Using AI to install git and python
 - `agency copilot`
 - nodejs is installed to `~\.agency\nodejs`
 - Has 2 modes: autopilot vs. planning
+- `C:\Users\<username>\.copilot\mcp-config.json` defines the MCP servers
 
 ## Agent
 
