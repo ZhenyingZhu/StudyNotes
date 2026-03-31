@@ -769,6 +769,10 @@ Not all the models can be called: <https://learn.microsoft.com/en-us/azure/ai-fo
 
 The page [Model Quota](https://ai.azure.com/resource/quota) can be used for requesting quota.
 
+<https://github.com/mcp?utm_source=vscode-website&utm_campaign=mcp-registry-server-launch-2025>
+
+- Find useful MCPs
+
 ### Agent2Agent (A2A) Protocol
 
 <https://github.com/google/A2A>
