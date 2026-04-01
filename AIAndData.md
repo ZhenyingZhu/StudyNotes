@@ -777,6 +777,8 @@ The page [Model Quota](https://ai.azure.com/resource/quota) can be used for requ
 
 <https://github.com/google/A2A>
 
+<https://github.com/JackChen-me/open-multi-agent>
+
 ### Agent Id
 
 <https://techcommunity.microsoft.com/blog/microsoft-entra-blog/announcing-microsoft-entra-agent-id-secure-and-manage-your-ai-agents/3827392>
