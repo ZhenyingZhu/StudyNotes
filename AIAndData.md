@@ -591,6 +591,14 @@ var client = provider.GetRequiredService<IAIClient>();
 - Need a github token from <https://github.com/settings/personal-access-tokens>. Grant models access.
 - Can also use github credential manager
 
+[Andrew Ng Agentic AI](https://www.bilibili.com/video/BV1DfrdByE2H/?vd_source=a5283ff66bce6d0309893182ed38d04a)
+
+- drive a disciplined development process, evals and error analysis
+- LLM based app execute multiple steps to complete a task. iterate thinking/research and revise
+- decompose the tasks, build components to execute steps
+
+[Here](https://www.bilibili.com/video/BV1DfrdByE2H?spm_id_from=333.788.player.switch&vd_source=a5283ff66bce6d0309893182ed38d04a&p=3)
+
 ### Skills
 
 <https://code.visualstudio.com/docs/copilot/customization/agent-skills>
