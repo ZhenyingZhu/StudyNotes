@@ -599,6 +599,7 @@ var client = provider.GetRequiredService<IAIClient>();
 - less autonomous: fully determinitic sequence of steps
 - more autonomous: let LLM decides what to do
 - agentic workflows: 1. better performance, 2. paralyze some tasks, 3. modular with different tools and models
+- let LLM decide when to query database
 
 [Here](https://www.bilibili.com/video/BV1DfrdByE2H?vd_source=a5283ff66bce6d0309893182ed38d04a&spm_id_from=333.788.player.switch&p=5)
 
