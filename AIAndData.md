@@ -619,6 +619,8 @@ AI can keep trying again and again but not getting the right answer.
 
 Market place
 
+Seems like Github Copilot Agent Mode can auto switch to different models.
+
 ### MCP
 
 <https://modelcontextprotocol.io/docs/getting-started/intro>
