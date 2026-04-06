@@ -621,6 +621,8 @@ Market place
 
 Seems like Github Copilot Agent Mode can auto switch to different models.
 
+Under the skills folder, can have a reference folder containing more skills
+
 ### MCP
 
 <https://modelcontextprotocol.io/docs/getting-started/intro>
