@@ -548,6 +548,8 @@ Using AI to install git and python
 - Has 2 modes: autopilot vs. planning
 - `C:\Users\<username>\.copilot\mcp-config.json` defines the MCP servers
 
+Plugin can be un-official.
+
 ## Agent
 
 An AI agent is an entity that observes its environment, reasons about what to do next, and takes actions to maximize a goal or utility over time.
