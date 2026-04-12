@@ -550,7 +550,7 @@ Using AI to install git and python
 
 Plugin is a set of skills as a package, can be un-official. What if there are conflicts in the skills? Can be manually overload.
 
-How to prevent AI doing things wrong
+How to prevent AI doing things wrong? Need feedback loop.
 
 ## Agent
 
