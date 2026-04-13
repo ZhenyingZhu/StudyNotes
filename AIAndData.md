@@ -859,6 +859,12 @@ Cloude 4.5 can follow each steps in a prompt, but GPT-5.1-Codex cannot.
 
 Is running in Cline vs. Github Copilot makes a difference?
 
+Qwen3.5 9b can match year 24 top models, 27b can match 25 top models。35b-a3b is fast which can process 80tokens/s.
+
+[Google gemma 4](https://deepmind.google/models/gemma/gemma-4/)
+
+- E2B/E4B can run locally with 12 GB VRAM
+
 ### AI Foundary
 
 <https://ai.azure.com/>
