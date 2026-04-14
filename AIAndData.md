@@ -621,7 +621,7 @@ var client = provider.GetRequiredService<IAIClient>();
 
 AI can keep trying again and again but not getting the right answer.
 
-Market place
+Marketplace: find plugins, MCP servers
 
 Seems like Github Copilot Agent Mode can auto switch to different models.
 
