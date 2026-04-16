@@ -851,6 +851,8 @@ Asking AI to add logs seems okay, but need to understand what it is doing. Somet
 
 When reading a large code base, AI keep confidently assuming some nonsense. Let it add logs to prove.
 
+Very painful when it takes decision without confirming, even the decision has been rejected by me earlier
+
 ### Model difference
 
 Cloude 4 seems the best.
