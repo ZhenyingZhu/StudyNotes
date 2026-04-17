@@ -853,6 +853,9 @@ When reading a large code base, AI keep confidently assuming some nonsense. Let 
 
 Very painful when it takes decision without confirming, even the decision has been rejected by me earlier
 
+- Claude Sonnet 4.6 might be having the issue. 4.5 is better.
+- Claude Opus 4.6 is very slow
+
 ### Model difference
 
 Cloude 4 seems the best.
