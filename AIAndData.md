@@ -856,6 +856,8 @@ Very painful when it takes decision without confirming, even the decision has be
 - Claude Sonnet 4.6 might be having the issue. 4.5 is better.
 - Claude Opus 4.6 is very slow
 
+AI got dumb when the conversation gets long, ask it to summarize the requirement once a while so that it can restart
+
 ### Model difference
 
 Cloude 4 seems the best.
