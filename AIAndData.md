@@ -858,6 +858,8 @@ Very painful when it takes decision without confirming, even the decision has be
 
 AI got dumb when the conversation gets long, ask it to summarize the requirement once a while so that it can restart
 
+- Can let AI compact the conversation
+
 ### Model difference
 
 Cloude 4 seems the best.
