@@ -539,6 +539,10 @@ Opus is stronger than Sonnet, but cost more. Still have illution.
 
 Using AI to install git and python
 
+### Gemini
+
+Cannot even access bookmarks, not sure what it can be used for.
+
 ### Agency
 
 <https://eng.ms/docs/coreai/devdiv/one-engineering-system-1es/1es-jacekcz/startrightgitops/agency>
