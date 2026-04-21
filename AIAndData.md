@@ -864,6 +864,8 @@ AI got dumb when the conversation gets long, ask it to summarize the requirement
 
 - Can let AI compact the conversation
 
+Opus 4.7 seems quite strong
+
 ### Model difference
 
 Cloude 4 seems the best.
