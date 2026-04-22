@@ -813,6 +813,31 @@ The page [Model Quota](https://ai.azure.com/resource/quota) can be used for requ
 
 Handling data for AI
 
+### Design patterns
+
+[AI Agent中6种常用的设计模式](https://zhuanlan.zhihu.com/p/2026610927135389386)
+
+Models:
+
+- Environment feedback
+- Perception
+- Memory: short term + long term vector DB
+- Reasoning & planning
+- Action: Tools & APIs
+- self-reflection
+
+ReAct Pattern: Reasoning + Acting
+
+Tool Use Pattern
+
+Reflection Pattern: use 2 agents
+
+Planning Pattern: multiple pre-defined agents. Need fallback when fail
+
+Multi-Agent Pattern: predefined agents work on the same task together, communicate with each other
+
+Human-in-the-Loop Pattern
+
 ## Models
 
 The model I can use: `curl -H "Authorization: Bearer $env:GITHUB_TOKEN" https://models.inference.ai.azure.com/models`
