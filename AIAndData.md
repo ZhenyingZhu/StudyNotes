@@ -554,6 +554,8 @@ Cannot even access bookmarks, not sure what it can be used for.
 
 Plugin is a set of skills as a package, can be un-official. What if there are conflicts in the skills? Can be manually overload.
 
+- Doesn't seem like there is an isolation between skills across different plugins, so conflicts might occur.
+
 How to prevent AI doing things wrong? Need feedback loop.
 
 ## Agent
