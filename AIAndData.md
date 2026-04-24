@@ -560,6 +560,8 @@ Plugin is a set of skills as a package, can be un-official. What if there are co
 
 How to prevent AI doing things wrong? Need feedback loop.
 
+Need to be mindful when asking AI to fix an issue. Need to explicitly call out don't revert changes actually are the goals.
+
 ## Agent
 
 An AI agent is an entity that observes its environment, reasons about what to do next, and takes actions to maximize a goal or utility over time.
