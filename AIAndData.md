@@ -447,7 +447,9 @@ Copilot memory: if prefer something, can say it in a prompty. THen it will say t
 
 Prompt lib: <https://learn.microsoft.com/en-us/microsoft-copilot-studio/prompt-library>
 
-Is it good at creating PPT?
+Is it good at creating PPT? Not really!
+
+Words keep deleting contents!
 
 ### Stable diffusion
 
