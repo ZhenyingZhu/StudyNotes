@@ -562,6 +562,8 @@ How to prevent AI doing things wrong? Need feedback loop.
 
 Need to be mindful when asking AI to fix an issue. Need to explicitly call out don't revert changes actually are the goals.
 
+Add `NEVER modify .env files without explicit approval`
+
 ## Agent
 
 An AI agent is an entity that observes its environment, reasons about what to do next, and takes actions to maximize a goal or utility over time.
