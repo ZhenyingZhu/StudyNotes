@@ -195,6 +195,10 @@ Prompt with 4 elements
 - accept AI code when it works
 - use `/techdebt` prompt
 
+Avoid AI go in loops.
+
+Accept not perfect. Don't review each line. Only check maintainance. Let testing validate it.
+
 ### Researcher
 
 <https://skilluplabforhackathon.azurewebsites.net/speedskills/researcher/performance>
@@ -543,7 +547,10 @@ Using AI to install git and python
 
 ### Gemini
 
-Cannot even access bookmarks, not sure what it can be used for.
+Use case:
+
+- Export bookmarks so that it is in a page, ask it to find bookmarks helpful.
+- Then on the page, summarize the page.
 
 ### Agency
 
