@@ -195,6 +195,10 @@ Prompt with 4 elements
 - accept AI code when it works
 - use `/techdebt` prompt
 
+Avoid AI go in loops.
+
+Accept not perfect. Don't review each line. Only check maintainance. Let testing validate it.
+
 ### Researcher
 
 <https://skilluplabforhackathon.azurewebsites.net/speedskills/researcher/performance>
@@ -447,7 +451,9 @@ Copilot memory: if prefer something, can say it in a prompty. THen it will say t
 
 Prompt lib: <https://learn.microsoft.com/en-us/microsoft-copilot-studio/prompt-library>
 
-Is it good at creating PPT?
+Is it good at creating PPT? Not really!
+
+Words keep deleting contents!
 
 ### Stable diffusion
 
@@ -541,7 +547,10 @@ Using AI to install git and python
 
 ### Gemini
 
-Cannot even access bookmarks, not sure what it can be used for.
+Use case:
+
+- Export bookmarks so that it is in a page, ask it to find bookmarks helpful.
+- Then on the page, summarize the page.
 
 ### Agency
 
@@ -554,7 +563,13 @@ Cannot even access bookmarks, not sure what it can be used for.
 
 Plugin is a set of skills as a package, can be un-official. What if there are conflicts in the skills? Can be manually overload.
 
+- Doesn't seem like there is an isolation between skills across different plugins, so conflicts might occur.
+
 How to prevent AI doing things wrong? Need feedback loop.
+
+Need to be mindful when asking AI to fix an issue. Need to explicitly call out don't revert changes actually are the goals.
+
+Add `NEVER modify .env files without explicit approval`
 
 ## Agent
 
@@ -812,6 +827,31 @@ The page [Model Quota](https://ai.azure.com/resource/quota) can be used for requ
 <https://learn.microsoft.com/en-us/fabric/real-time-intelligence/>
 
 Handling data for AI
+
+### Design patterns
+
+[AI Agent中6种常用的设计模式](https://zhuanlan.zhihu.com/p/2026610927135389386)
+
+Models:
+
+- Environment feedback
+- Perception
+- Memory: short term + long term vector DB
+- Reasoning & planning
+- Action: Tools & APIs
+- self-reflection
+
+ReAct Pattern: Reasoning + Acting
+
+Tool Use Pattern
+
+Reflection Pattern: use 2 agents
+
+Planning Pattern: multiple pre-defined agents. Need fallback when fail
+
+Multi-Agent Pattern: predefined agents work on the same task together, communicate with each other
+
+Human-in-the-Loop Pattern
 
 ## Models
 
