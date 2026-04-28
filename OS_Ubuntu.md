@@ -132,6 +132,8 @@ Zorin OS Lite: This distribution is specifically designed to be fast on older ha
 - Steam can add game and select Proton. It creates a folder with a windows drive.
 - On Ubuntu, if installed by snap, files are under `~/snap/steam/common/` instead of `~`, for example `~/snap/steam/common/.local/share` have saves
 
+Since Snap is using a sandbox, has a lot of compatability issues. Don't use.
+
 ## Cloud Drive
 
 rclone can be used for mounting OneDrive
