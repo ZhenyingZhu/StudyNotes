@@ -384,6 +384,7 @@ Need to see how AI can root cause unit tests
 Skills: wrap up common operations
 
 - Selecting skills can be messy
+- Let AI access UI is still not a success
 
 ### Cline
 
