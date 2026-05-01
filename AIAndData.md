@@ -385,6 +385,7 @@ Skills: wrap up common operations
 
 - Selecting skills can be messy
 - Let AI access UI is still not a success
+- Does it only cost $30 per day?
 
 ### Cline
 
