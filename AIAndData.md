@@ -550,6 +550,8 @@ Opus is stronger than Sonnet, but cost more. Still have illution.
 
 Using AI to install git and python
 
+Don't write openclaw in any place because Claude charge more.
+
 ### Gemini
 
 Use case:
