@@ -578,6 +578,8 @@ Need to be mindful when asking AI to fix an issue. Need to explicitly call out d
 
 Add `NEVER modify .env files without explicit approval`
 
+AI is able to try logging into Entra, but need to set Entra access for the tool it uses.
+
 ## Agent
 
 An AI agent is an entity that observes its environment, reasons about what to do next, and takes actions to maximize a goal or utility over time.
