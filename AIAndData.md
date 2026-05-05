@@ -580,6 +580,8 @@ Add `NEVER modify .env files without explicit approval`
 
 AI is able to try logging into Entra, but need to set Entra access for the tool it uses.
 
+Need to keep asking it why it makes changes and evaluate if it makes the right decision.
+
 ## Agent
 
 An AI agent is an entity that observes its environment, reasons about what to do next, and takes actions to maximize a goal or utility over time.
@@ -633,7 +635,7 @@ var client = provider.GetRequiredService<IAIClient>();
 - agentic workflows: 1. better performance, 2. paralyze some tasks, 3. modular with different tools and models
 - let LLM decide when to query database
 
-[Here](https://www.bilibili.com/video/BV1DfrdByE2H?vd_source=a5283ff66bce6d0309893182ed38d04a&spm_id_from=333.788.player.switch&p=5)
+[Latest Here](https://www.bilibili.com/video/BV1DfrdByE2H?vd_source=a5283ff66bce6d0309893182ed38d04a&spm_id_from=333.788.player.switch&p=5)
 
 ### Skills
 
