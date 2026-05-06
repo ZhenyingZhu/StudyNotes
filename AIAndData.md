@@ -582,6 +582,8 @@ AI is able to try logging into Entra, but need to set Entra access for the tool 
 
 Need to keep asking it why it makes changes and evaluate if it makes the right decision.
 
+Headless vs. Non headless: when able to use session with user or not.
+
 ## Agent
 
 An AI agent is an entity that observes its environment, reasons about what to do next, and takes actions to maximize a goal or utility over time.
