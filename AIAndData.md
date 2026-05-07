@@ -584,6 +584,8 @@ Need to keep asking it why it makes changes and evaluate if it makes the right d
 
 Headless vs. Non headless: when able to use session with user or not.
 
+Agent Id: used for letting AI agent access Azure resource.
+
 ## Agent
 
 An AI agent is an entity that observes its environment, reasons about what to do next, and takes actions to maximize a goal or utility over time.
