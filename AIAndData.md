@@ -586,6 +586,8 @@ Headless vs. Non headless: when able to use session with user or not.
 
 Agent Id: used for letting AI agent access Azure resource.
 
+How to create long running AI from a server?
+
 ### Id Forge
 
 A plan and execute mode
