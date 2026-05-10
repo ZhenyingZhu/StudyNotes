@@ -6,6 +6,8 @@
   "scripts": {
     "postinstall": "electron-rebuild",
     "build:ts": "tsc",
+    "test": "vitest run",
+    "test:watch": "vitest",
     "start": "npm run build:ts && electron .",
     "dist:linux": "npm run build:ts && electron-builder --linux",
     "dist:win": "npm run build:ts && electron-builder --win",
@@ -26,7 +28,8 @@
     "@electron/rebuild": "^4.0.3",
     "@types/better-sqlite3": "^7.6.13",
     "electron-builder": "^26.8.1",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "vitest": "^2.1.8"
   },
   "build": {
     "appId": "com.folderratingviewer.app",

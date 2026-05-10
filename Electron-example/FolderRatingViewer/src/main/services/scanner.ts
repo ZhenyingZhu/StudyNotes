@@ -35,7 +35,7 @@ export async function scanFolder(folderPath: string): Promise<void> {
 
     const flushBatch = (): void => {
       if (batch.length === 0) return;
-      upsertFiles(batch);
+      upsertFiles([...batch]);
       batch.length = 0;
     };
 

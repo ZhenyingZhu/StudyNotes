@@ -33,6 +33,16 @@ npm start
 
 It must run under the root folder of this app.
 
+### Run Unit Tests
+
+```bash
+# Run tests once
+npm test
+
+# Run in watch mode
+npm run test:watch
+```
+
 ### Package for Distribution
 
 ```bash
