@@ -71,13 +71,13 @@ async function loadFiles() {
 function renderTable(files) {
   if (files.length === 0) {
     tbody.innerHTML = `<tr class="empty-row"><td colspan="5">${
-      searchQuery ? 'No files match your search' : 'No files found in this folder'
+      searchQuery ? 'No items match your search' : 'No items found in this folder'
     }</td></tr>`;
     resultCount.textContent = '';
     return;
   }
 
-  resultCount.textContent = `${totalFiles.toLocaleString()} file${totalFiles !== 1 ? 's' : ''}`;
+  resultCount.textContent = `${totalFiles.toLocaleString()} item${totalFiles !== 1 ? 's' : ''}`;
 
   let html = '';
   for (const f of files) {
@@ -112,7 +112,7 @@ async function doScan() {
   // Poll scan status
   const pollId = setInterval(async () => {
     const status = await window.api.getScanStatus();
-    statusCount.textContent = `${status.scannedCount.toLocaleString()} files found`;
+    statusCount.textContent = `${status.scannedCount.toLocaleString()} items found`;
   }, 300);
 
   try {

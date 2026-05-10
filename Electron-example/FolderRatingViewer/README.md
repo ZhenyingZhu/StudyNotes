@@ -1,15 +1,15 @@
 # Folder Rating Viewer
 
-A cross-platform desktop app (Windows & Ubuntu) that indexes all files in a selected folder and lets you rate them.
+A cross-platform desktop app (Windows & Ubuntu) that indexes leaf folders and compressed files in a selected folder and lets you rate them.
 
 ## Features
 
-- **Folder scanning** — select any folder and scan it to index all files recursively
-- **File metadata** — shows file name, type, size, and full path
-- **Star ratings** — rate any file from 1–5 stars; ratings persist across sessions
-- **Search** — filter files by name, path, or type
+- **Folder scanning** — select any folder and scan recursively to index only leaf folders and compressed files
+- **Item metadata** — shows name, type, size, and full path
+- **Star ratings** — rate any indexed item from 1–5 stars; ratings persist across sessions
+- **Search** — filter indexed items by name, path, or type
 - **Sorting** — click column headers to sort by name, type, size, path, or rating
-- **Pagination** — handles large folders (10k–100k files) with paginated results
+- **Pagination** — handles large folders with paginated results
 - **SQLite database** — all data stored locally in your user data directory
 
 ## Getting Started
@@ -60,7 +60,7 @@ src/
 │   ├── ipc/
 │   │   └── handlers.ts   # IPC handler registration
 │   └── services/
-│       └── scanner.ts    # Recursive file scanner
+│       └── scanner.ts    # Leaf-folder and compressed-file scanner
 └── renderer/
     ├── index.html        # App shell
     ├── styles.css        # Dark-themed UI styles
