@@ -592,6 +592,8 @@ How to create long running AI from a server?
 
 A plan and execute mode
 
+What is the best way to make sure the AI makes code based on the expecation?
+
 ## Agent
 
 An AI agent is an entity that observes its environment, reasons about what to do next, and takes actions to maximize a goal or utility over time.
