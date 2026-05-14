@@ -596,6 +596,8 @@ What is the best way to make sure the AI makes code based on the expecation?
 
 AI Squads: a concept, let AI hook to multiple repos and Github issues, then let AI iterates on its own to maintain the repo, monitor teams, emails
 
+Use another agent to validate changes?
+
 ## Agent
 
 An AI agent is an entity that observes its environment, reasons about what to do next, and takes actions to maximize a goal or utility over time.
