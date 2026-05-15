@@ -28,6 +28,7 @@ export function getScanStatus(): { scanning: boolean; scannedCount: number } {
 export async function scanFolder(folderPath: string): Promise<void> {
   scanState = { scanning: true, scannedCount: 0 };
   const scanTime = new Date().toISOString();
+  console.log(`[scanner] Starting scan: ${folderPath}`);
 
   try {
     const batch: { filePath: string; fileName: string; fileType: string; fileSize: number; folderPath: string }[] = [];
