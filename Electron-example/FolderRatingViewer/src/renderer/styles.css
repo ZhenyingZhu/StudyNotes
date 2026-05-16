@@ -280,3 +280,23 @@ tr:hover td {
   background: var(--surface2);
   border: 1px solid var(--border);
 }
+
+.deleted-row td {
+  color: var(--text-dim);
+}
+
+.deleted-row td:first-child,
+.deleted-row td:nth-child(4) {
+  text-decoration: line-through;
+}
+
+.deleted-badge {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 2px 8px;
+  border-radius: 10px;
+  color: var(--danger);
+  font-size: 11px;
+  font-weight: 500;
+  border: 1px solid var(--danger);
+}

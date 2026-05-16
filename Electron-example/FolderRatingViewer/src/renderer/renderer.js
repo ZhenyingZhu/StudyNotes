@@ -1,7 +1,7 @@
 // @ts-check
 
 /**
- * @typedef {{ file_path: string; file_name: string; file_type: string; file_size: number; rating: number }} FileRecord
+ * @typedef {{ file_path: string; file_name: string; file_type: string; file_size: number; is_deleted: number; deleted_at: string | null; rating: number }} FileRecord
  */
 
 // ── State ──────────────────────────────────────────────────
@@ -81,9 +81,10 @@ function renderTable(files) {
 
   let html = '';
   for (const f of files) {
-    html += `<tr>
+    const deletedBadge = f.is_deleted ? ' <span class="deleted-badge">Deleted</span>' : '';
+    html += `<tr class="${f.is_deleted ? 'deleted-row' : ''}">
       <td title="${escapeHtml(f.file_name)}">${escapeHtml(f.file_name)}</td>
-      <td><span class="type-badge">${escapeHtml(f.file_type)}</span></td>
+      <td><span class="type-badge">${escapeHtml(f.file_type)}</span>${deletedBadge}</td>
       <td>${formatSize(f.file_size)}</td>
       <td title="${escapeHtml(f.file_path)}">${escapeHtml(f.file_path)}</td>
       <td>${renderStars(f.file_path, f.rating)}</td>

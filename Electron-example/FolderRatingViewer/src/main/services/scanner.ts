@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { upsertFiles, removeStaleFiles } from '../db/database';
+import { upsertFiles, markStaleFilesDeleted } from '../db/database';
 
 const DB_BATCH_SIZE = 1000;
 const STAT_CONCURRENCY = 32;
@@ -115,8 +115,8 @@ export async function scanFolder(folderPath: string): Promise<void> {
     // Flush remaining
     flushBatch();
 
-    // Remove files that no longer exist on disk
-    removeStaleFiles(folderPath, scanTime);
+    // Mark files that no longer exist on disk as deleted
+    markStaleFilesDeleted(folderPath, scanTime);
   } finally {
     scanState.scanning = false;
   }

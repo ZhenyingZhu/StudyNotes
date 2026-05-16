@@ -21,6 +21,8 @@ export function initDatabase(): void {
       file_size INTEGER NOT NULL DEFAULT 0,
       folder_path TEXT NOT NULL,
       last_seen TEXT NOT NULL,
+      is_deleted INTEGER NOT NULL DEFAULT 0 CHECK(is_deleted IN (0, 1)),
+      deleted_at TEXT,
       created_at TEXT NOT NULL DEFAULT (datetime('now'))
     );
 
@@ -37,6 +39,20 @@ export function initDatabase(): void {
 
     CREATE INDEX IF NOT EXISTS idx_ratings_path ON ratings(file_path);
   `);
+
+  ensureFilesColumn('is_deleted', 'INTEGER NOT NULL DEFAULT 0');
+  ensureFilesColumn('deleted_at', 'TEXT');
+
+  db.exec(`CREATE INDEX IF NOT EXISTS idx_files_deleted ON files(is_deleted);`);
+}
+
+function ensureFilesColumn(columnName: string, columnDefinition: string): void {
+  if (!db) throw new Error('Database not initialized');
+
+  const columns = db.prepare(`PRAGMA table_info(files)`).all() as { name: string }[];
+  if (!columns.some((column) => column.name === columnName)) {
+    db.prepare(`ALTER TABLE files ADD COLUMN ${columnName} ${columnDefinition}`).run();
+  }
 }
 
 export function getDatabase(): Database.Database | null {
@@ -50,6 +66,8 @@ export interface FileRecord {
   file_type: string;
   file_size: number;
   folder_path: string;
+  is_deleted: number;
+  deleted_at: string | null;
   rating: number;
 }
 
@@ -58,14 +76,16 @@ export function upsertFiles(files: { filePath: string; fileName: string; fileTyp
 
   const now = new Date().toISOString();
   const stmt = db.prepare(`
-    INSERT INTO files (file_path, file_name, file_type, file_size, folder_path, last_seen)
-    VALUES (?, ?, ?, ?, ?, ?)
+    INSERT INTO files (file_path, file_name, file_type, file_size, folder_path, last_seen, is_deleted, deleted_at)
+    VALUES (?, ?, ?, ?, ?, ?, 0, NULL)
     ON CONFLICT(file_path) DO UPDATE SET
       file_name = excluded.file_name,
       file_type = excluded.file_type,
       file_size = excluded.file_size,
       folder_path = excluded.folder_path,
-      last_seen = excluded.last_seen
+      last_seen = excluded.last_seen,
+      is_deleted = 0,
+      deleted_at = NULL
   `);
 
   const batchInsert = db.transaction((items: typeof files) => {
@@ -80,9 +100,17 @@ export function upsertFiles(files: { filePath: string; fileName: string; fileTyp
   }
 }
 
-export function removeStaleFiles(folderPath: string, currentScanTime: string): number {
+export function markStaleFilesDeleted(folderPath: string, currentScanTime: string): number {
   if (!db) throw new Error('Database not initialized');
-  const result = db.prepare(`DELETE FROM files WHERE folder_path = ? AND last_seen < ?`).run(folderPath, currentScanTime);
+  const deletedAt = new Date().toISOString();
+  const result = db.prepare(`
+    UPDATE files
+    SET is_deleted = 1,
+        deleted_at = ?
+    WHERE folder_path = ?
+      AND last_seen < ?
+      AND is_deleted = 0
+  `).run(deletedAt, folderPath, currentScanTime);
   return result.changes;
 }
 
@@ -124,6 +152,7 @@ export function getFiles(options: {
   const offset = (page - 1) * pageSize;
   const dataStmt = db.prepare(`
     SELECT f.id, f.file_path, f.file_name, f.file_type, f.file_size, f.folder_path,
+           f.is_deleted, f.deleted_at,
            COALESCE(r.rating, 0) as rating
     FROM files f
     LEFT JOIN ratings r ON f.file_path = r.file_path

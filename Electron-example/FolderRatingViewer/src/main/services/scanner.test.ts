@@ -4,7 +4,7 @@ import * as path from 'path';
 const readdirMock = vi.fn();
 const statMock = vi.fn();
 const upsertFilesMock = vi.fn();
-const removeStaleFilesMock = vi.fn();
+const markStaleFilesDeletedMock = vi.fn();
 
 vi.mock('fs', () => ({
   promises: {
@@ -15,7 +15,7 @@ vi.mock('fs', () => ({
 
 vi.mock('../db/database', () => ({
   upsertFiles: upsertFilesMock,
-  removeStaleFiles: removeStaleFilesMock,
+  markStaleFilesDeleted: markStaleFilesDeletedMock,
 }));
 
 type MockDirent = {
@@ -50,7 +50,7 @@ describe('scanFolder', () => {
     readdirMock.mockReset();
     statMock.mockReset();
     upsertFilesMock.mockReset();
-    removeStaleFilesMock.mockReset();
+    markStaleFilesDeletedMock.mockReset();
   });
 
   it('indexes only archive files and leaf folders', async () => {
@@ -106,8 +106,8 @@ describe('scanFolder', () => {
       },
     ]);
 
-    expect(removeStaleFilesMock).toHaveBeenCalledTimes(1);
-    expect(removeStaleFilesMock).toHaveBeenCalledWith(root, expect.any(String));
+    expect(markStaleFilesDeletedMock).toHaveBeenCalledTimes(1);
+    expect(markStaleFilesDeletedMock).toHaveBeenCalledWith(root, expect.any(String));
 
     expect(getScanStatus()).toEqual({ scanning: false, scannedCount: 3 });
   });
@@ -151,7 +151,7 @@ describe('scanFolder', () => {
       },
     ]);
 
-    expect(removeStaleFilesMock).toHaveBeenCalledWith(root, expect.any(String));
+    expect(markStaleFilesDeletedMock).toHaveBeenCalledWith(root, expect.any(String));
     expect(getScanStatus()).toEqual({ scanning: false, scannedCount: 1 });
   });
 });
