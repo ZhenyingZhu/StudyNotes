@@ -18,6 +18,10 @@ Windows defender: signture and agent versions are different.
 
 PCE/IE socket is a key to check.
 
+## Proc Mon
+
+Can use process monitor to find what files and regkeys r/w for a process. Use filter for a process name and do the operations, and then save the logs to a PML file. AI can parse the PML file to a csv.
+
 ## VMWare
 
 The vmx file can be updated. It records the file paths.
