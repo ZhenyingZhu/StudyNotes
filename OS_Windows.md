@@ -35,3 +35,8 @@ To allow remote desktop connection, `settings > Accounts > Sign-in options`, tur
 ## Group Policy
 
 `gpedit.msc` find configs. For example, `Computer Configuration > Administrative Templates > Windows Components > Remote Desktop Services > Remote Desktop Session Host > Device and Resource Redirection`
+
+## Manage right click menu
+
+1. Paste HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Shell Extensions\Blocked into the Path at the top and press the Enter-key.
+2. Select New > String value. Name it {1FA0E654-C9F2-4A1F-9800-B9A75D744B00}. Value to OneDrive.
