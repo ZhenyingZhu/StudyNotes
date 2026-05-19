@@ -673,6 +673,8 @@ Seems like Github Copilot Agent Mode can auto switch to different models.
 
 Under the skills folder, can have a reference folder containing more skills
 
+If let AI make complicate fixes, it keeps making mistakes. Need to define the skills for that.
+
 ### MCP
 
 <https://modelcontextprotocol.io/docs/getting-started/intro>
