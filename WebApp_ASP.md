@@ -4565,3 +4565,7 @@ Add logging
 
 - `Update-Database -Verbose` to see details
 - `sqllocaldb create <DB name>` to create a DB
+
+## Auth
+
+store the auth cookie, CSRF token and temp data on local disk using FileSystemXmlRepository
