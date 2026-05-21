@@ -935,6 +935,8 @@ AI got dumb when the conversation gets long, ask it to summarize the requirement
 
 Opus 4.7 seems quite strong
 
+- But it can go in circles
+
 ### Model difference
 
 Cloude 4 seems the best.
