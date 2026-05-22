@@ -936,6 +936,7 @@ AI got dumb when the conversation gets long, ask it to summarize the requirement
 Opus 4.7 seems quite strong
 
 - But it can go in circles
+- use Opus 4.6 can be better
 
 ### Model difference
 
