@@ -937,6 +937,7 @@ Opus 4.7 seems quite strong
 
 - But it can go in circles
 - use Opus 4.6 can be better
+- GPT 5.5 is also good
 
 ### Model difference
 
