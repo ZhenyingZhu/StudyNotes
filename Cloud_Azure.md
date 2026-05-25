@@ -1719,6 +1719,8 @@ Azure Doc is really a mess. Try just follow <https://learn.microsoft.com/en-us/e
 
 <https://www.howtogeek.com/192642/how-to-remotely-turn-on-your-pc-over-the-internet/>
 
+The VM size <https://learn.microsoft.com/en-us/azure/virtual-machines/sizes/gpu-accelerated/ng-family> is for gaming
+
 ## SQL
 
 <https://learn.microsoft.com/en-us/sql/connect/oledb/features/using-azure-active-directory?view=sql-server-ver17>
