@@ -653,6 +653,10 @@ var client = provider.GetRequiredService<IAIClient>();
 
 [Latest Here](https://www.bilibili.com/video/BV1DfrdByE2H?vd_source=a5283ff66bce6d0309893182ed38d04a&spm_id_from=333.788.player.switch&p=5)
 
+### Capabilities
+
+Agentic coding、Agentic terminal coding、Scaled tool use、Visual reasoning, Agentic search
+
 ### Skills
 
 <https://code.visualstudio.com/docs/copilot/customization/agent-skills>
