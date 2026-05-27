@@ -598,6 +598,10 @@ AI Squads: a concept, let AI hook to multiple repos and Github issues, then let 
 
 Use another agent to validate changes?
 
+### Codex
+
+<https://github.com/openai/codex>
+
 ## Agent
 
 An AI agent is an entity that observes its environment, reasons about what to do next, and takes actions to maximize a goal or utility over time.
