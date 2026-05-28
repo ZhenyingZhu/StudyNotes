@@ -61,6 +61,10 @@ RAG: Retrieval-Augmented Generation. a technique that provides large language mo
 - embeddings
 - Store to FAISS, Chroma, Pinecone etc.
 
+### Harness Engineering
+
+Let AI work stable.
+
 ## Ideas
 
 - Show the manual ops
