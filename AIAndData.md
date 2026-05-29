@@ -391,6 +391,8 @@ Skills: wrap up common operations
 - Let AI access UI is still not a success
 - Does it only cost $30 per day?
 - Switch models for different types of questions
+- Look through my recent sessions and identify repeated workflows or repeated asks
+
 
 ### Cline
 
