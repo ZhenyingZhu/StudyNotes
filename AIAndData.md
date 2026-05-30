@@ -942,6 +942,7 @@ Very painful when it takes decision without confirming, even the decision has be
 
 - Claude Sonnet 4.6 might be having the issue. 4.5 is better.
 - Claude Opus 4.6 is very slow
+- When Opus 4.8 arrives, 4.7 become dumb and go in circles
 
 AI got dumb when the conversation gets long, ask it to summarize the requirement once a while so that it can restart
 
