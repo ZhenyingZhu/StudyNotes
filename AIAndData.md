@@ -387,7 +387,7 @@ Need to see how AI can root cause unit tests
 
 Skills: wrap up common operations
 
-- Selecting skills can be messy
+- Selecting skills can be messy. Need to make it clear which skill can handle what and cannot handle what
 - Let AI access UI is still not a success
 - Does it only cost $30 per day?
 - Switch models for different types of questions
