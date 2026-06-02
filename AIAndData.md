@@ -954,6 +954,7 @@ Opus 4.7 seems quite strong
 - use Opus 4.6 can be better
 - GPT 5.5 is also good
 - How to prevent AI running in loops
+- Why Opus 4.8 keep questioning what I told it?!
 
 ### Model difference
 
