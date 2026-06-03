@@ -594,6 +594,8 @@ Agent Id: used for letting AI agent access Azure resource.
 
 How to create long running AI from a server?
 
+Agency now switch models. Even in the Claude Opus 4.8 session, it talks to gpt5.5
+
 ### Id Forge
 
 A plan and execute mode
