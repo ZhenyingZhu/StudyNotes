@@ -957,6 +957,7 @@ Opus 4.7 seems quite strong
 - GPT 5.5 is also good
 - How to prevent AI running in loops
 - Why Opus 4.8 keep questioning what I told it?!
+- surprisingly when I ask "Do you know why I am mad", it gives the correct answer!
 
 ### Model difference
 
