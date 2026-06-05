@@ -596,6 +596,8 @@ How to create long running AI from a server?
 
 Agency now switch models. Even in the Claude Opus 4.8 session, it talks to gpt5.5
 
+Seems like give AI too many data to look at and it will just make things up
+
 ### Id Forge
 
 A plan and execute mode
