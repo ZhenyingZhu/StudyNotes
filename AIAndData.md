@@ -960,6 +960,7 @@ Opus 4.7 seems quite strong
 - How to prevent AI running in loops
 - Why Opus 4.8 keep questioning what I told it?!
 - surprisingly when I ask "Do you know why I am mad", it gives the correct answer!
+- don't give it too much context. unrelated context can confuse it
 
 ### Model difference
 
