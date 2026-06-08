@@ -598,6 +598,8 @@ Agency now switch models. Even in the Claude Opus 4.8 session, it talks to gpt5.
 
 Seems like give AI too many data to look at and it will just make things up
 
+Seems like tool selection can be optimized.
+
 ### Id Forge
 
 A plan and execute mode
