@@ -393,6 +393,7 @@ Skills: wrap up common operations
 - Switch models for different types of questions
 - Look through my recent sessions and identify repeated workflows or repeated asks
 
+If it is not in the AI workspace, it can make code change without recording it, so undo doesn't make a difference.
 
 ### Cline
 
