@@ -570,6 +570,10 @@ Use case:
 - Export bookmarks so that it is in a page, ask it to find bookmarks helpful.
 - Then on the page, summarize the page.
 
+### Mythos/Fable
+
+Just so so
+
 ### Agency
 
 <https://eng.ms/docs/coreai/devdiv/one-engineering-system-1es/1es-jacekcz/startrightgitops/agency>
