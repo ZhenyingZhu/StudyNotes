@@ -574,6 +574,8 @@ Use case:
 
 Just so so
 
+<https://agents-last-exam.org/>: Fable 5 not even stronger than GPT 5.5
+
 ### Agency
 
 <https://eng.ms/docs/coreai/devdiv/one-engineering-system-1es/1es-jacekcz/startrightgitops/agency>
