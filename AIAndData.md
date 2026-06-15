@@ -194,6 +194,10 @@ Prompt with 4 elements
 3. Source
 4. Expectations
 
+If not clearly describe the requirement, AI might do things wrong. But if I am not clear about the terms, it becomes a chiken and eggs problem
+
+- For example when I ask AI to clean up a UI element, I cannot clearly name it, then AI just delete random things
+
 ### Code tips
 
 <https://ykdojo.github.io/claude-code-tips/content/boris-claude-code-tips>
