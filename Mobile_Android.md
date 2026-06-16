@@ -242,3 +242,9 @@ Show the current resolution: `adb shell dumpsys display`
 - Look for "real 1080 x 2400, largest app 1080 x 2400,"
 
 Change it: `adb shell wm size 1080x1920`
+
+## Winlator
+
+Can play windows games: <https://winlator.dev/games-list/>
+
+<gamehub.xiaoji.com> seems better
