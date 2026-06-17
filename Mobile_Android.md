@@ -247,4 +247,4 @@ Change it: `adb shell wm size 1080x1920`
 
 Can play windows games: <https://winlator.dev/games-list/>
 
-<gamehub.xiaoji.com> seems better
+<gamehub.xiaoji.com> seems better. It uses wine
