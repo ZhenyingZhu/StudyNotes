@@ -220,6 +220,8 @@ Accept not perfect. Don't review each line. Only check maintainance. Let testing
 
 ## Tools
 
+The end of AI is infra.
+
 ### ChatGPT
 
 <https://platform.openai.com/docs/quickstart>
