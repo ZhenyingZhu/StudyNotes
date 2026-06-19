@@ -100,7 +100,3 @@ to run as a user:
 ```bash
 * * * * * username command
 ```
-
-### List all files
-
-Get-ChildItem . -File -Recurse | Select-Object -ExpandProperty FullName > D:\Downloads\Files.txt

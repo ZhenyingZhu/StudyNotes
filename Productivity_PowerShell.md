@@ -155,3 +155,7 @@ Get-Command 'nssm' -errorAction SilentlyContinue
 `select-String -Path '*pattern*.txt' -Pattern 'string\\string' | Select-Object -First 1`
 
 `Get-Content -Path "large file" -Tail 10`
+
+## List all files
+
+Get-ChildItem . -File -Recurse | Select-Object -ExpandProperty FullName > D:\Downloads\Files.txt
