@@ -159,3 +159,7 @@ Get-Command 'nssm' -errorAction SilentlyContinue
 ## List all files
 
 Get-ChildItem . -File -Recurse | Select-Object -ExpandProperty FullName > D:\Downloads\Files.txt
+
+## Dos zone
+
+js-dos
