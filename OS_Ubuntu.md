@@ -104,6 +104,8 @@ Install Wine
 
 <https://phoenixnap.com/kb/how-to-install-wine-on-ubuntu>
 
+Proton: steam version of Wine. Use vulkan
+
 ## Gaming
 
 Linux Mint XFCE Edition
