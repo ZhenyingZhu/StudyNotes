@@ -691,6 +691,8 @@ var client = provider.GetRequiredService<IAIClient>();
 
 Agentic coding、Agentic terminal coding、Scaled tool use、Visual reasoning, Agentic search
 
+Seems like when context window filled, AI model will just be dumb.
+
 ### Skills
 
 <https://code.visualstudio.com/docs/copilot/customization/agent-skills>
@@ -981,6 +983,8 @@ Opus 4.7 seems quite strong
 - Why Opus 4.8 keep questioning what I told it?!
 - surprisingly when I ask "Do you know why I am mad", it gives the correct answer!
 - don't give it too much context. unrelated context can confuse it
+
+Seems like if some words triggered its defense mechanism, it just auto switch to a dumb model.
 
 ### Model difference
 
