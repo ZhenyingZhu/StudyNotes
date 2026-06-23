@@ -66,6 +66,8 @@ RAG: Retrieval-Augmented Generation. a technique that provides large language mo
 
 Let AI work stable.
 
+Should define the context and outcome clear. Don't give a too big task.
+
 ### Token caching
 
 How it can avoid giving wrong answers?
