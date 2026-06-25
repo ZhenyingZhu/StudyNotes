@@ -70,4 +70,8 @@ CrystalTile2
 
 ## GBA
 
-<https://www.bilibili.com/video/BV1mUsuetEsP?>
+<https://www.bilibili.com/video/BV1VZZQBmEp9/?>
+
+- <https://github.com/suhli/gba-narutorpg-chs?tab=readme-ov-file>
+- HexEdit: <https://imhex.werwolv.net/>
+
