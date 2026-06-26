@@ -634,6 +634,11 @@ Use another agent to validate changes?
 
 <https://github.com/openai/codex>
 
+It might run into errors
+
+- 3221225501: CPU instruction. Might uninstall Windows update in May 2026
+- Localhost refuse to connect: codex cli crashed
+
 ## Agent
 
 An AI agent is an entity that observes its environment, reasons about what to do next, and takes actions to maximize a goal or utility over time.
