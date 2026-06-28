@@ -480,6 +480,8 @@ Is it good at creating PPT? Not really!
 
 Words keep deleting contents!
 
+Need to be careful about the session. If use wrong session, the context really messed up
+
 ### Stable diffusion
 
 Torch cannot be installed. Maybe related to python version?
