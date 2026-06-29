@@ -146,6 +146,8 @@ rclone config
 rclone mount onedrive: ~/OneDrive --vfs-cache-mode writes &
 ```
 
+For andriod: <https://github.com/x0b/rcx>. But the config process cannot find my right storage.
+
 ## Startup Application
 
 Don't use `~`: `sh -c "sleep 10 && rclone mount onedrive: /home/USER_NAME/OneDrive --vfs-cache-mode writes"`
