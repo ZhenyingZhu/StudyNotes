@@ -700,6 +700,8 @@ var client = provider.GetRequiredService<IAIClient>();
 
 Need to ask AI to give prove for suggestion solutions.
 
+- But if it goes to some slow route, need to give more context.
+
 ### Capabilities
 
 Agentic coding、Agentic terminal coding、Scaled tool use、Visual reasoning, Agentic search
