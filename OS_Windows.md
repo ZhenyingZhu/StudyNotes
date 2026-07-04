@@ -44,3 +44,7 @@ To allow remote desktop connection, `settings > Accounts > Sign-in options`, tur
 ## Copy files
 
 robocopy is much faster when copying small files, because the default copy does extra things for each file.
+
+## Create Symlinks
+
+`New-Item -ItemType SymbolicLink -Path "D:\Games\Skyrim LE\Mod.Organizer\profiles\Default\saves" -Value "C:\OneDrive\Documents\My Games\Skyrim\MO2Saves"`
