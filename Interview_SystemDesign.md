@@ -5061,3 +5061,7 @@ The chip can be replaced with the metadata stored.
 The place of the disks matter.
 
 CMR is good. Don't buy SMR.
+
+### Brownout
+
+When a service is under high load, it can temporarily reduce application performance to prevent a complete system crash.
