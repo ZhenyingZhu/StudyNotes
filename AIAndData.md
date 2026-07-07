@@ -220,6 +220,12 @@ Accept not perfect. Don't review each line. Only check maintainance. Let testing
 
 - Researcher?
 
+### Gmail API
+
+<https://developers.google.com/gmail/api>
+
+- Use OAuth <https://www.googleapis.com/auth/gmail.readonly>
+
 ## Tools
 
 The end of AI is infra.
