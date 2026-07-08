@@ -414,6 +414,10 @@ Skills: wrap up common operations
 
 If it is not in the AI workspace, it can make code change without recording it, so undo doesn't make a difference.
 
+It send request to Github backend service, then the service connect to AI models.
+
+Do not call the model directly from the Android app if it needs a private API key.
+
 ### Cline
 
 <https://docs.cline.bot/getting-started/for-new-coders>
