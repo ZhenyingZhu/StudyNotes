@@ -1030,6 +1030,7 @@ Qwen3.5 9b can match year 24 top models, 27b can match 25 top models。35b-a3b i
 <https://ai.azure.com/>
 
 - GPT are models, Translate are services.
+- GPT-4o is the strongest model
 
 ### Azure Machine Learning
 
