@@ -72,7 +72,7 @@ Should define the context and outcome clear. Don't give a too big task.
 
 How it can avoid giving wrong answers?
 
-## Ideas
+## Concepts
 
 - Show the manual ops
 - Show the challenges
@@ -1172,6 +1172,19 @@ A ball start from s, every step it moves 1 cell down if the cell is a normal cel
 ### Dotnet Core Migration
 
 <https://dotnet.microsoft.com/en-us/platform/upgrade>
+
+### Orgnizer
+
+A DB, store
+
+1. containers
+2. item
+3. item photo
+4. item - container mapping
+
+An android app, taking photo, show containers and items. Allow updating item, linking container and item
+
+An Azure app, get the photo, find the item, store item and item photo in DB.
 
 ## Big Data
 
