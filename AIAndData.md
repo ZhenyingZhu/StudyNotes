@@ -655,6 +655,8 @@ It might run into errors
 
 ## Agent
 
+<https://github.com/caramaschiHG/awesome-ai-agents-2026>
+
 An AI agent is an entity that observes its environment, reasons about what to do next, and takes actions to maximize a goal or utility over time.
 
 - It maintains state & memory. Acts in multiple steps. Can call tools / APIs. Proactive. Goal-driven.
