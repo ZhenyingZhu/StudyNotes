@@ -977,6 +977,8 @@ when going through a big list, it can lie. Thinking mode seems much better.
 
 Claude Opus is better for large scale, Sonnet is for shorter.
 
+GPT 5.6 Sol is the strongest, Luna is cheaper.
+
 ### Claude Sonnet 4.5
 
 AI is very untrustworthy when dealing with complicate code base. It will make up stuff and go in circles when it is deeper.
