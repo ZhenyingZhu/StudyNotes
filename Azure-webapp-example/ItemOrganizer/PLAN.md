@@ -20,10 +20,10 @@ Plan an application that:
 - **Backend/API:** ASP.NET Core Web API on .NET 10
 - **Database:** Azure SQL with Entity Framework Core
 - **Photo storage:** Azure Blob Storage
-- **AI:** Azure OpenAI with a vision-capable model
+- **AI:** Azure OpenAI with `gpt-5.4-mini` for vision-based item identification and structured outputs
 - **Authentication:** Microsoft Entra ID
 - **API contract:** REST with OpenAPI/Swagger
-- **Hosting:** Azure Static Web Apps or Azure App Service for the frontend; Azure App Service for the API
+- **Hosting:** Azure Static Web Apps Standard for the frontend; Azure App Service for the API
 - **Testing:** xUnit for the backend; Vitest and Playwright for the frontend
 - **Infrastructure as code:** Bicep
 
@@ -91,6 +91,7 @@ The upload request contains a required `file` part and an optional `containerId`
 | Method | Route | Purpose |
 | --- | --- | --- |
 | `POST` | `/api/v1/photos/{photoId}/analyses` | Start analysis of an uploaded photo |
+| `POST` | `/api/v1/containers/{containerId}/photo-analyses` | Upload and analyze one photo, then assign every detected item to the specified container |
 | `GET` | `/api/v1/analyses/{analysisId}` | Poll analysis state and retrieve results when complete |
 | `POST` | `/api/v1/analyses/{analysisId}/cancel` | Request cancellation of queued or running analysis |
 
@@ -106,6 +107,8 @@ Starting analysis returns `202 Accepted`, a `Location` header for the analysis r
 ```
 
 Analysis states are `queued`, `running`, `completed`, `failed`, and `cancelled`. A completed analysis includes detected item IDs. A failed analysis includes a safe error code and message, but never provider credentials or raw internal exceptions.
+
+`POST /api/v1/containers/{containerId}/photo-analyses` is a convenience workflow using `multipart/form-data` with a required `file` part. It validates the container, stores the photo, creates an analysis, and returns `202 Accepted` with the analysis resource in the same form as the standard analysis endpoint. When analysis completes, all items detected in that photo are assigned to the specified container with `assignmentStatus` set to `confirmed`. The explicit container selection in this request constitutes user confirmation; it is not an AI suggestion. Creation of the detected items and their assignments is committed atomically. If upload or analysis fails, no detected items or assignments are created; a stored photo may remain available for retry or deletion.
 
 ### Items and assignments
 
@@ -177,12 +180,12 @@ Expected responses include:
 The following decisions are intentionally open:
 
 1. User experience and workflow
-2. Specific Azure OpenAI vision model and identification behavior
+2. Azure OpenAI item-identification behavior
 3. Container-association rules
 4. Data model and storage details
 5. Tenant boundaries, ownership, and detailed authorization rules
 6. Photo validation and retention requirements
-7. Hosting topology and deployment process
+7. Deployment process
 8. Testing and acceptance criteria
 
 ## Next step
