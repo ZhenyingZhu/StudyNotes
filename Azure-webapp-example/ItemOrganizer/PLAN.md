@@ -27,6 +27,82 @@ Plan an application that:
 - **Testing:** xUnit for the backend; Vitest and Playwright for the frontend
 - **Infrastructure as code:** Bicep
 
+## Local development environment
+
+Local development will use a VS Code Development Container to avoid installing project SDKs and tools directly on the host.
+
+The host requires only:
+
+- Docker Desktop
+- Visual Studio Code with the Dev Containers extension
+- Git, when Git operations are performed on the host
+
+The development container will include pinned versions of:
+
+- .NET 10 SDK
+- Node.js and the frontend package manager
+- EF Core CLI
+- Azure CLI and Bicep CLI
+- Git and required development utilities
+
+Docker Compose will coordinate:
+
+- The development container, with the repository mounted as its workspace
+- SQL Server for local Azure SQL-compatible development
+- Azurite for local Blob Storage emulation
+- A queue emulator if an Azure Storage Queue-based analysis worker is selected
+
+Named Docker volumes will be used where appropriate for NuGet packages, frontend packages, SQL data, and Azurite data. Builds, migrations, tests, debuggers, the API, and the frontend development server will run inside the development container. No .NET, Node.js, EF Core, SQL Server, Azurite, Azure CLI, or Bicep installation will be required on Windows.
+
+Routine development will use a deterministic mock implementation of Azure OpenAI. Explicit integration tests may use a shared Azure development deployment and credentials supplied through environment variables or a local secret store; credentials must never be committed.
+
+The development container is distinct from the production API image. It contains SDKs, debuggers, shells, and development tools and must not be deployed. If a production container is selected, it will use a separate multi-stage build containing only the published API and ASP.NET Core runtime, run as a non-root user, and be tested independently.
+
+## Local testing
+
+Local testing will use the following layers:
+
+- **Unit tests:** xUnit tests that do not require Docker services and cover validation, authorization policies, assignment rules, analysis state transitions, and AI-result mapping.
+- **API integration tests:** xUnit with `WebApplicationFactory`, a test authentication handler, SQL Server, and Azurite. Azure OpenAI responses will normally come from fixed structured-output fixtures.
+- **Contract tests:** Verify routes, OpenAPI 3.1, status codes, headers, RFC 9457 Problem Details, paging, ETags, idempotency, and upload behavior.
+- **Frontend tests:** Vitest for components and client logic; Playwright for end-to-end workflows against the local API.
+- **Live Azure integration tests:** An optional, separately invoked suite for Entra ID, Azure OpenAI, Azure SQL, and Blob Storage integration. It will not be part of the default local test run.
+- **Production artifact tests:** CI will build and start the production API image, when container deployment is selected, and verify Linux compatibility, configuration, health checks, upload limits, non-root execution, dependency connectivity, and graceful shutdown.
+
+The default local workflow is:
+
+1. Open the repository in the Development Container.
+2. Start SQL Server and Azurite through Docker Compose.
+3. Apply EF Core migrations to a dedicated local database and load representative test data.
+4. Run the API and frontend development server inside the Development Container.
+5. Use Swagger UI and Playwright to exercise container creation, photo upload, analysis polling, item review, assignment, and deletion.
+6. Test invalid files, missing scopes, stale ETags, retries, cancellation, conflicts, and unavailable dependencies.
+
+Swagger UI is enabled only in the Development environment. Local integration tests use test authentication; manual Entra ID testing uses dedicated development app registrations and access tokens.
+
+## Deployment approach
+
+Azure resources will be provisioned with Bicep and separated by environment. The deployment will include Azure Static Web Apps Standard, Azure App Service, Azure SQL, private Blob Storage, Azure OpenAI or a reference to an approved deployment, Application Insights, Log Analytics, Key Vault, managed identities, role assignments, health checks, CORS settings, and diagnostic settings.
+
+The API will use managed identity for Azure resources wherever supported. Secrets, storage keys, database passwords, and AI keys must not be committed or placed directly in ordinary deployment configuration. Entra application registrations, scopes, consent, and service principals will be handled through controlled Microsoft Graph automation or documented administrative steps where Bicep cannot manage them.
+
+The initial release pipeline will use GitHub Actions with workload identity federation and will:
+
+1. Restore, lint, build, and test the backend and frontend.
+2. Validate the OpenAPI document and Bicep templates.
+3. Run a Bicep what-if operation.
+4. Deploy or update infrastructure.
+5. Produce and apply an EF Core migration bundle as a controlled release step.
+6. Deploy the API to an App Service staging slot.
+7. Run readiness, API, and dependency smoke tests.
+8. Swap the validated staging slot into production.
+9. Deploy the frontend with environment-specific API and Entra configuration.
+10. Run post-deployment Playwright smoke tests.
+
+Whether App Service uses the managed .NET runtime or a custom production container remains a deployment decision. If a custom container is selected, CI will publish the tested image to Azure Container Registry and the same immutable image will be promoted through environments. The Development Container will never be used as a deployment artifact.
+
+App Service will use `/api/v1/health/ready` for health checks and enable Always On. Monitoring and alerts will cover HTTP failures and latency, dependency health, failed analyses, and Azure OpenAI throttling. Production Swagger access, data retention, SQL backup validation, rate limits, and upload limits must be finalized before release.
+
 ## Web API contract
 
 ### Conventions
@@ -185,8 +261,9 @@ The following decisions are intentionally open:
 4. Data model and storage details
 5. Tenant boundaries, ownership, and detailed authorization rules
 6. Photo validation and retention requirements
-7. Deployment process
-8. Testing and acceptance criteria
+7. Managed-runtime versus custom-container production deployment
+8. Detailed acceptance criteria and release thresholds
+9. Durable queue and worker design for asynchronous AI analyses
 
 ## Next step
 
