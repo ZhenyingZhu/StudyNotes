@@ -37,6 +37,19 @@ The host requires only:
 - Visual Studio Code with the Dev Containers extension
 - Git, when Git operations are performed on the host
 
+### Install Docker Desktop on Windows
+
+1. Confirm that hardware virtualization is enabled in UEFI/BIOS and that the Windows version supports WSL 2.
+2. Open PowerShell as Administrator and run `wsl --install`. Restart Windows if prompted, then run `wsl --update` to install the latest WSL components.
+3. Install Docker Desktop with `winget install --exact --id Docker.DockerDesktop`, or download the installer from the official Docker Desktop website when `winget` is unavailable.
+4. Start Docker Desktop, accept its license terms, and complete its initial setup.
+5. In Docker Desktop, open **Settings > General** and enable **Use the WSL 2 based engine**. Under **Settings > Resources > WSL Integration**, enable integration for the development Linux distribution if one will be used outside the Development Container.
+6. Keep Docker Desktop configured for Linux containers, which are required by this project.
+7. Open a new PowerShell window and verify the installation with `docker version` and `docker compose version`.
+8. Run `docker run --rm hello-world` to confirm that Docker can pull and start a Linux container.
+
+Docker Desktop must be running before opening the repository in its Development Container or starting the Docker Compose services. If installation is managed by an organization, its approved Docker Desktop licensing, sign-in, proxy, and resource-allocation policies take precedence.
+
 The development container will include pinned versions of:
 
 - .NET 10 SDK
