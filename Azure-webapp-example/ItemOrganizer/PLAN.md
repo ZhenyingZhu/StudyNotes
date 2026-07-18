@@ -37,6 +37,16 @@ The host requires only:
 - Visual Studio Code with the Dev Containers extension
 - Git, when Git operations are performed on the host
 
+### Why WSL 2 and Linux containers are used
+
+Docker Desktop uses WSL 2 to provide the Linux kernel needed to run this project's Linux containers on Windows. Developers do not need to work directly inside a user-installed Linux distribution; Docker Desktop can manage its own internal WSL distributions. Enabling Docker Desktop integration with a separate Linux distribution is optional and is needed only when Docker commands will be run from that distribution.
+
+Linux containers are the project default because the .NET SDK, Node.js, SQL Server, Azurite, Azure CLI, and Bicep support them well. They also provide a broad image ecosystem, generally use fewer resources than Windows containers, align with common GitHub Actions runners and possible Linux App Service deployment, and expose Linux-specific path, casing, permission, and shell issues during development. This is a development and testing choice; it does not require the production API to use a custom container. Production may still use either the App Service managed .NET runtime or a separate Linux production image.
+
+### Windows 10 compatibility
+
+WSL 2 is available on 64-bit Windows 10 version 2004 or later, build 19041 or later, when hardware virtualization is enabled. Use `winver` to check the installed version and build. Windows 10 reached the end of standard support on October 14, 2025, so a supported Windows 11 installation is preferred. A Windows 10 development machine should use an applicable Microsoft Extended Security Updates program and must satisfy the support requirements of the Docker Desktop version being installed.
+
 ### Install Docker Desktop on Windows
 
 1. Confirm that hardware virtualization is enabled in UEFI/BIOS and that the Windows version supports WSL 2.
