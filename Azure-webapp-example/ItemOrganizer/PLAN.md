@@ -60,6 +60,30 @@ WSL 2 is available on 64-bit Windows 10 version 2004 or later, build 19041 or la
 
 Docker Desktop must be running before opening the repository in its Development Container or starting the Docker Compose services. If installation is managed by an organization, its approved Docker Desktop licensing, sign-in, proxy, and resource-allocation policies take precedence.
 
+### Install and run Azurite locally
+
+Azurite will not be installed directly on Windows or inside the Development Container. It will run from Microsoft's official `mcr.microsoft.com/azure-storage/azurite` Linux container image as a Docker Compose service. The project configuration will pin the image to a tested version rather than relying on the `latest` tag.
+
+The planned Compose service will:
+
+- Start the Blob, Queue, and Table endpoints.
+- Publish ports `10000`, `10001`, and `10002` to the Windows host for host-based diagnostics when needed.
+- Listen on `0.0.0.0` inside its container so other Compose services can connect.
+- Store emulator data in a named Docker volume so it survives container recreation.
+- Use a service name such as `azurite`, which is also its hostname on the Compose network.
+
+No separate Azurite installation command is required. After the project Docker Compose configuration is created, start its services from the Development Container or repository directory with `docker compose up -d`, verify them with `docker compose ps`, and inspect Azurite startup failures with `docker compose logs azurite`. Docker Desktop must already be installed and running.
+
+The default host endpoints will be:
+
+- Blob: `http://127.0.0.1:10000`
+- Queue: `http://127.0.0.1:10001`
+- Table: `http://127.0.0.1:10002`
+
+Applications running directly on the Windows host may use `UseDevelopmentStorage=true`. Applications and tests running in the Development Container must not use `127.0.0.1` for Azurite because that address refers to the Development Container itself. They will use explicit development-storage endpoints whose hostname is the Compose service name, for example `azurite`, together with Azurite's well-known development account credentials. These emulator credentials are local-only and must never be reused for Azure resources.
+
+The API will create required local blob containers and queues idempotently during development startup or test setup. Azurite is only an emulator; live Azure integration tests will continue to validate behavior that the emulator cannot reproduce exactly.
+
 The development container will include pinned versions of:
 
 - .NET 10 SDK
