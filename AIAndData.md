@@ -1019,6 +1019,10 @@ Opus 4.7 seems quite strong
 
 Seems like if some words triggered its defense mechanism, it just auto switch to a dumb model.
 
+### Kimi K3
+
+Can I use it for analysis photo?
+
 ### Model difference
 
 Cloude 4 seems the best.
