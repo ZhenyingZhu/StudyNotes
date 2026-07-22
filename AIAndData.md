@@ -1198,6 +1198,32 @@ An android app, taking photo, show containers and items. Allow updating item, li
 
 An Azure app, get the photo, find the item, store item and item photo in DB.
 
+```python
+from openai import OpenAI
+import base64
+
+client = OpenAI()
+
+with open("graph.png", "rb") as f:
+    b64 = base64.b64encode(f.read()).decode("utf-8")
+
+response = client.responses.create(
+    model="gpt-4.1",
+    input=[{
+        "role": "user",
+        "content": [
+            {"type": "input_text", "text": "Analyze this graph."},
+            {
+                "type": "input_image",
+                "image_url": f"data:image/png;base64,{b64}"
+            }
+        ]
+    }]
+)
+
+print(response.output_text)
+```
+
 ## Big Data
 
 ### Map Reduce
