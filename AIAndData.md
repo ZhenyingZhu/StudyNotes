@@ -1224,6 +1224,8 @@ response = client.responses.create(
 print(response.output_text)
 ```
 
+But seems like GPT app can do the same as long as I have pre-defined prompt.
+
 ## Big Data
 
 ### Map Reduce
