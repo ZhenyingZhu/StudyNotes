@@ -1025,6 +1025,8 @@ Can I use it for analysis photo?
 
 ### Model difference
 
+Can use random numbers to identify the model
+
 Cloude 4 seems the best.
 
 Cloude 4.5 can follow each steps in a prompt, but GPT-5.1-Codex cannot.
