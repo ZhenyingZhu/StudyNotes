@@ -236,6 +236,8 @@ The end of AI is infra.
 
 <https://platform.openai.com/docs/guides/latest-model>
 
+Need an account: <https://platform.openai.com/login>
+
 ### Github Copilot
 
 <https://github.com/features/copilot>
