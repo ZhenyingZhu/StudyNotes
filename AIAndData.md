@@ -1025,6 +1025,10 @@ Seems like if some words triggered its defense mechanism, it just auto switch to
 
 Can I use it for analysis photo?
 
+### Cheap model for Object detection
+
+YOLO nano or small model, locally hosted
+
 ### Model difference
 
 Can use random numbers to identify the model
