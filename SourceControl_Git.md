@@ -139,3 +139,9 @@ Fix: <https://gist.github.com/daopk/0a95772d582cafb202142ff7871da2fc>
 - Need to be in a repo when running the command, but better to set the path to be outside the repo
 - `git worktree list`
 - `git worktree remove <path>`
+
+## The GitHub HTTPS certificate issue
+
+Git was using OpenSSL with its bundled CA bundle, which did not include the local issuer. I configured Git globally to use the Windows certificate store: `git config --global http.sslBackend schannel`
+
+I also removed the global CA-file override so SChannel can use Windows trust. git ls-remote --heads origin now succeeds, so git pull should work normally.
