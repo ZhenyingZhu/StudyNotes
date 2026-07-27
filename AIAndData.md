@@ -72,7 +72,7 @@ Should define the context and outcome clear. Don't give a too big task.
 
 How it can avoid giving wrong answers?
 
-## Ideas
+## Concepts
 
 - Show the manual ops
 - Show the challenges
@@ -220,6 +220,12 @@ Accept not perfect. Don't review each line. Only check maintainance. Let testing
 
 - Researcher?
 
+### Gmail API
+
+<https://developers.google.com/gmail/api>
+
+- Use OAuth <https://www.googleapis.com/auth/gmail.readonly>
+
 ## Tools
 
 The end of AI is infra.
@@ -229,6 +235,8 @@ The end of AI is infra.
 <https://platform.openai.com/docs/quickstart>
 
 <https://platform.openai.com/docs/guides/latest-model>
+
+Need an account: <https://platform.openai.com/login>
 
 ### Github Copilot
 
@@ -407,6 +415,10 @@ Skills: wrap up common operations
 - Look through my recent sessions and identify repeated workflows or repeated asks
 
 If it is not in the AI workspace, it can make code change without recording it, so undo doesn't make a difference.
+
+It send request to Github backend service, then the service connect to AI models.
+
+Do not call the model directly from the Android app if it needs a private API key.
 
 ### Cline
 
@@ -651,6 +663,8 @@ It might run into errors
 
 ## Agent
 
+<https://github.com/caramaschiHG/awesome-ai-agents-2026>
+
 An AI agent is an entity that observes its environment, reasons about what to do next, and takes actions to maximize a goal or utility over time.
 
 - It maintains state & memory. Acts in multiple steps. Can call tools / APIs. Proactive. Goal-driven.
@@ -703,6 +717,10 @@ var client = provider.GetRequiredService<IAIClient>();
 - let LLM decide when to query database
 
 [Latest Here](https://www.bilibili.com/video/BV1DfrdByE2H?vd_source=a5283ff66bce6d0309893182ed38d04a&spm_id_from=333.788.player.switch&p=5)
+
+Need to ask AI to give prove for suggestion solutions.
+
+- But if it goes to some slow route, need to give more context.
 
 ### Capabilities
 
@@ -969,6 +987,12 @@ when going through a big list, it can lie. Thinking mode seems much better.
 
 Claude Opus is better for large scale, Sonnet is for shorter.
 
+GPT 5.6 Sol is the strongest, Luna is cheaper.
+
+But when asking it for doing some researchs, it is extremely slow.
+
+GPT 5.6 can do things without ask, so need to be cautious
+
 ### Claude Sonnet 4.5
 
 AI is very untrustworthy when dealing with complicate code base. It will make up stuff and go in circles when it is deeper.
@@ -1003,7 +1027,17 @@ Opus 4.7 seems quite strong
 
 Seems like if some words triggered its defense mechanism, it just auto switch to a dumb model.
 
+### Kimi K3
+
+Can I use it for analysis photo?
+
+### Cheap model for Object detection
+
+YOLO nano or small model, locally hosted
+
 ### Model difference
+
+Can use random numbers to identify the model
 
 Cloude 4 seems the best.
 
@@ -1022,6 +1056,7 @@ Qwen3.5 9b can match year 24 top models, 27b can match 25 top models。35b-a3b i
 <https://ai.azure.com/>
 
 - GPT are models, Translate are services.
+- GPT-4o is the strongest model
 
 ### Azure Machine Learning
 
@@ -1163,6 +1198,47 @@ A ball start from s, every step it moves 1 cell down if the cell is a normal cel
 ### Dotnet Core Migration
 
 <https://dotnet.microsoft.com/en-us/platform/upgrade>
+
+### Orgnizer
+
+A DB, store
+
+1. containers
+2. item
+3. item photo
+4. item - container mapping
+
+An android app, taking photo, show containers and items. Allow updating item, linking container and item
+
+An Azure app, get the photo, find the item, store item and item photo in DB.
+
+```python
+from openai import OpenAI
+import base64
+
+client = OpenAI()
+
+with open("graph.png", "rb") as f:
+    b64 = base64.b64encode(f.read()).decode("utf-8")
+
+response = client.responses.create(
+    model="gpt-4.1",
+    input=[{
+        "role": "user",
+        "content": [
+            {"type": "input_text", "text": "Analyze this graph."},
+            {
+                "type": "input_image",
+                "image_url": f"data:image/png;base64,{b64}"
+            }
+        ]
+    }]
+)
+
+print(response.output_text)
+```
+
+But seems like GPT app can do the same as long as I have pre-defined prompt.
 
 ## Big Data
 

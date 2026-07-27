@@ -173,6 +173,11 @@ Don't use `~`: `sh -c "sleep 10 && rclone mount onedrive: /home/USER_NAME/OneDri
 - `ls /dev/input/js*` to see devices, `jstest /dev/input/js1` to run it
 - Actually don't use the app store version and it works
 
+xbox controller
+
+- Need to disable Bluetooth Enhanced Retransmission Mode (ERTM)
+- Install <https://github.com/atar-axis/xpadneo>
+
 ## AppImage
 
 - `chmod +x /path/to/your_app.AppImage`
