@@ -70,6 +70,8 @@ Should define the context and outcome clear. Don't give a too big task.
 
 Define the role, objection, fixed fast (don't derive for enforcing it to ask), success criterion, process
 
+Use 2 agents, 1 for validation
+
 ### Token caching
 
 How it can avoid giving wrong answers?
