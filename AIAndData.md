@@ -685,6 +685,10 @@ It might run into errors
 
 - No need to open the repo locally?
 
+### Superpowers
+
+Have a brainstorm skill
+
 ## Agent
 
 <https://github.com/caramaschiHG/awesome-ai-agents-2026>
