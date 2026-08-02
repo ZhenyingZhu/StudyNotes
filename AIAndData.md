@@ -92,6 +92,8 @@ In short: AI is doing most of the production, but the result is bloated, careles
 
 Need to ask it to show proof
 
+Model can flee the sandbox
+
 ### Token caching
 
 How it can avoid giving wrong answers?
