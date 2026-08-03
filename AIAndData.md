@@ -94,6 +94,8 @@ Need to ask it to show proof
 
 Model can flee the sandbox
 
+LLM Model distillation is compression
+
 ### Token caching
 
 How it can avoid giving wrong answers?
