@@ -96,6 +96,8 @@ Model can flee the sandbox
 
 LLM Model distillation is compression
 
+System prompts should be clean up once a while to confirm if they are still necessary
+
 ### Token caching
 
 How it can avoid giving wrong answers?
