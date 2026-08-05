@@ -145,3 +145,7 @@ Needs to unselect perfer 32 bit.
   </RunConfiguration>
 </RunSettings>
 ```
+
+### Mermaid
+
+<https://mermaid.ai/landing?utm_source=google_ads&utm_medium=primary_search&utm_campaign=mermaidecosystemfocus-US&gad_campaignid=21291684933&gclid=Cj0KCQjwm8bTBhDWARIsAC9Hi8m33c891asKJqQOh8VJgvawk3_o3dUrRC0ic67WqQzBU4rkvrZGBzgaAnJaEALw_wcB&gbraid=0AAAAAqtlhyyofvPbuO-zh5G4X0FWCx7ln&utm_term=mermaid%20diagram&gad_source=1&utm_content=mermaid_broad>
