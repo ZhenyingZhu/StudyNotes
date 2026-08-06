@@ -141,6 +141,14 @@ Weeks 4–6 — Deep Learning
 - Do fast.ai Practical Deep Learning for Coders (free, code-first). [Practical Deep Learning](https://course.fast.ai/?utm_source=chatgpt.com), [Getting started](https://course.fast.ai/Lessons/lesson1.html?utm_source=chatgpt.com)
 - Deliverable: train a small image classifier; write a short readme on overfitting fixes you used.
 
+Deep learning
+
+- Input layer: Takes in raw data like images, text, or sound.Hidden layers: Many middle steps process the data. Each layer finds small patterns.
+- Output layer: Gives the final answer or choice.
+- Training: The computer checks its work, finds mistakes, and fixes its internal settings to get better over time.
+
+<https://www.kaggle.com/code/jhoward/is-it-a-bird-creating-a-model-from-your-own-data>
+
 Weeks 7–8 — NLP basics
 
 - Skim Stanford CS224n lectures/notes for modern NLP intuition. [Stanford University](https://web.stanford.edu/class/cs224n/?utm_source=chatgpt.com), [YouTube](https://www.youtube.com/playlist?list=PLoROMvodv4rMFqRtEuo6SGjY4XbRIVRd4)
