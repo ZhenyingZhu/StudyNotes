@@ -149,6 +149,8 @@ Deep learning
 
 <https://www.kaggle.com/code/jhoward/is-it-a-bird-creating-a-model-from-your-own-data>
 
+- Fine-tune a pretrained neural network to recognise these two groups
+
 Weeks 7–8 — NLP basics
 
 - Skim Stanford CS224n lectures/notes for modern NLP intuition. [Stanford University](https://web.stanford.edu/class/cs224n/?utm_source=chatgpt.com), [YouTube](https://www.youtube.com/playlist?list=PLoROMvodv4rMFqRtEuo6SGjY4XbRIVRd4)
