@@ -150,6 +150,7 @@ Deep learning
 <https://www.kaggle.com/code/jhoward/is-it-a-bird-creating-a-model-from-your-own-data>
 
 - Fine-tune a pretrained neural network to recognise these two groups
+- `pip install -Uqq fastai 'duckduckgo_search>=6.2'`
 
 Weeks 7–8 — NLP basics
 
