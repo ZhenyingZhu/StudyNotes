@@ -151,7 +151,9 @@ Deep learning
 
 - Fine-tune a pretrained neural network to recognise these two groups
 - `pip install -Uqq fastai 'duckduckgo_search>=6.2'`, `pip install ddgs`
-- Duckduckgo keep ratelimit
+- Duckduckgo keeps throwing ratelimit if using duckduckgo_search
+- `from ddgs import DDGS`
+- `DDGS().images("bird photos", max_results=1)`
 
 Weeks 7–8 — NLP basics
 
