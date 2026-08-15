@@ -155,6 +155,7 @@ Deep learning
 - `from ddgs import DDGS`, then `DDGS().images("bird photos", max_results=1)`
 - `from fastcore.all import *`, `L(...)` converts iterable into a list-like object
 - DataLoaders: contains a training set and a validation set
+  - blocks=(ImageBlock, CategoryBlock): defines input and output type
 
 Weeks 7–8 — NLP basics
 
