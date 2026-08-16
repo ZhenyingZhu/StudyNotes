@@ -156,6 +156,7 @@ Deep learning
 - `from fastcore.all import *`, `L(...)` converts iterable into a list-like object
 - DataLoaders: contains a training set and a validation set
   - blocks=(ImageBlock, CategoryBlock): defines input and output type
+  - RandomSplitter: Split the data into training and validation sets randomly
 
 Weeks 7–8 — NLP basics
 
