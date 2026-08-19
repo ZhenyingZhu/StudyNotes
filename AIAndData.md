@@ -158,7 +158,7 @@ Deep learning
   - blocks=(ImageBlock, CategoryBlock): defines input and output type
   - RandomSplitter: Split the data into training and validation sets randomly
   - get_y=parent_label: where is the label
-  - squishing vs. cropping
+  - squishing (scaling or compressing without maintaining aspect ratio) vs. cropping (cuts away outer parts)
 
 Weeks 7–8 — NLP basics
 
