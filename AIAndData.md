@@ -159,6 +159,7 @@ Deep learning
   - RandomSplitter: Split the data into training and validation sets randomly
   - get_y=parent_label: where is the label
   - squishing (scaling or compressing without maintaining aspect ratio) vs. cropping (cuts away outer parts)
+- vision_learner
 
 Weeks 7–8 — NLP basics
 
