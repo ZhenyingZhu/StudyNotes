@@ -1011,6 +1011,21 @@ Multi-Agent Pattern: predefined agents work on the same task together, communica
 
 Human-in-the-Loop Pattern
 
+### Other Courses
+
+[Claude AI 技术运用分享](https://www.youtube.com/live/WfDJGuxSc7c)
+
+- 人生罗盘（Claude Cowork）：价值观梳理 → 目标规划 → 定期复盘，AI 变你的私人教练
+- 理财知识库（Claude Code）：投资分析、美股基础、财务决策，AI 调用你自己的方法论回答
+
+OSSInsight 显示 GitHub AI 热门方向仍集中在 Agent、MCP、RAG、Coding Agent 和本地推理。
+
+GitHub 上 AI Agent 资源合集持续增长，开发者正在把 Agent 框架、工具协议和工作流系统化整理。
+
+Qwen3.5 9b ~=24年的顶级大模型. 27b~=25千亿参数模型。35b-a3b很快，双5060ti 16g 80tokens/s
+
+cc的可运行版源码 <https://github.com/claude-code-best/claude-code>
+
 ## Models
 
 The model I can use: `curl -H "Authorization: Bearer $env:GITHUB_TOKEN" https://models.inference.ai.azure.com/models`
