@@ -160,6 +160,7 @@ Deep learning
   - get_y=parent_label: where is the label
   - squishing (scaling or compressing without maintaining aspect ratio) vs. cropping (cuts away outer parts)
 - vision_learner
+- fine tune: use data to train pretrained model
 
 Weeks 7–8 — NLP basics
 
