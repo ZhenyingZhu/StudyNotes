@@ -659,6 +659,15 @@ datetime.strptime("2018-12-06 04:35:31.6808615"[:-1], "%Y-%m-%d %H:%M:%S.%f")
 
 ## Virtual Env
 
+Env setup:
+
+1. Install python 3.12
+1. Go to the folder, `python -m venv .venv`
+1. `.\.venv\Scripts\Activate`
+1. Install packages
+1. `pip freeze > requirements.txt`
+1. Don't git commit the .venv folder. On a different machine, run `python -m pip install -r requirements.txt`
+
 [venv](https://docs.python.org/3/library/venv.html)
 
 - `python -m venv` or `python -m venv <envname>`
