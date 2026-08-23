@@ -150,8 +150,9 @@ Deep learning
 <https://www.kaggle.com/code/jhoward/is-it-a-bird-creating-a-model-from-your-own-data>
 
 - Fine-tune a pretrained neural network to recognise these two groups
-- `pip install -Uqq fastai 'duckduckgo_search>=6.2'`, `pip install ddgs`
-- Duckduckgo keeps throwing ratelimit if using duckduckgo_search
+- `pip install -U fastai ddgs`
+  - Duckduckgo keeps throwing ratelimit if using duckduckgo_search so replaced with ddgs
+- `U` is upgrade. `qq` is making it quite. Then it looks like stuck because fastai is big, so removed it.
 - `from ddgs import DDGS`, then `DDGS().images("bird photos", max_results=1)`
 - `from fastcore.all import *`, `L(...)` converts iterable into a list-like object
 - DataLoaders: contains a training set and a validation set
