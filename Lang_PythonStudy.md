@@ -698,6 +698,8 @@ workon venv
 - Install python debugger extention.
 - Create a launch.json file.
 
+The `.vscode` folder can be git committed
+
 ### install second python
 
 <https://github.com/yyuu/pyenv>
