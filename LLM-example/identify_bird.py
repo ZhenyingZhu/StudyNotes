@@ -14,3 +14,16 @@ download_url(urls[0], dest, show_progress=False)
 
 im = Image.open(dest)
 im.to_thumb(256,256)
+
+download_url(search_images('forest photos', max_images=1)[0], 'forest.jpg', show_progress=False)
+Image.open('forest.jpg').to_thumb(256,256)
+
+searches = 'forest','bird'
+path = Path('bird_or_not')
+
+for o in searches:
+    dest = (path/o)
+    dest.mkdir(exist_ok=True, parents=True)
+    download_images(dest, urls=search_images(f'{o} photo'))
+    time.sleep(5)
+    resize_images(path/o, max_size=400, dest=path/o)
