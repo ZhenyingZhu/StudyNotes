@@ -1,0 +1,6 @@
+# Python virtual environments
+.venv/
+
+# Python cache and build artifacts
+__pycache__/
+*.py[cod]
