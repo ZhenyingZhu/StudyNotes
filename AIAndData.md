@@ -152,16 +152,17 @@ Deep learning
 - Fine-tune a pretrained neural network to recognise these two groups
 - `pip install -U fastai ddgs`
   - Duckduckgo keeps throwing ratelimit if using duckduckgo_search so replaced with ddgs
-- `U` is upgrade. `qq` is making it quite. Then it looks like stuck because fastai is big, so removed it.
-- `from ddgs import DDGS`, then `DDGS().images("bird photos", max_results=1)`
+  - `U` is upgrade. `qq` is making it quite. Then it looks like stuck because fastai is big, so removed it.
+  - `from ddgs import DDGS`, then `DDGS().images("bird photos", max_results=1)`
 - `from fastcore.all import *`, `L(...)` converts iterable into a list-like object
 - DataLoaders: contains a training set and a validation set
   - blocks=(ImageBlock, CategoryBlock): defines input and output type
   - RandomSplitter: Split the data into training and validation sets randomly
   - get_y=parent_label: where is the label
   - squishing (scaling or compressing without maintaining aspect ratio) vs. cropping (cuts away outer parts)
-- vision_learner
 - fine tune: use data to train pretrained model
+  - vision_learner uses resnet18 model
+- 
 
 Weeks 7–8 — NLP basics
 

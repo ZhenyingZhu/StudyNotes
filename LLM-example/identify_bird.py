@@ -40,4 +40,7 @@ dls = DataBlock(
     item_tfms=[Resize(192, method='squish')]
 ).dataloaders(path, bs=32)
 
-dls.show_batch(max_n=6)
+# dls.show_batch(max_n=6)
+
+learn = vision_learner(dls, resnet18, metrics=error_rate)
+learn.fine_tune(3)
