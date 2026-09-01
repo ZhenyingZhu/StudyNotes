@@ -160,9 +160,9 @@ Deep learning
   - RandomSplitter: Split the data into training and validation sets randomly
   - get_y=parent_label: where is the label
   - squishing (scaling or compressing without maintaining aspect ratio) vs. cropping (cuts away outer parts)
-- fine tune: use data to train pretrained model
-  - vision_learner uses resnet18 model
-- 
+- vision_learner uses resnet18 model
+  - fine tune: use data to train pretrained model
+- Use the model: `is_bird,_,probs = learn.predict(PILImage.create('bird.jpg'))`
 
 Weeks 7–8 — NLP basics
 
