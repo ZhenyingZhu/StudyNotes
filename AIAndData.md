@@ -156,10 +156,11 @@ Deep learning
   - `from ddgs import DDGS`, then `DDGS().images("bird photos", max_results=1)`
 - `from fastcore.all import *`, `L(...)` converts iterable into a list-like object
 - DataLoaders: contains a training set and a validation set
-  - blocks=(ImageBlock, CategoryBlock): defines input and output type
-  - RandomSplitter: Split the data into training and validation sets randomly
-  - get_y=parent_label: where is the label
+  - blocks=(ImageBlock, CategoryBlock): defines input and output type. They are from Transformer
+  - RandomSplitter: Split the data into training and validation sets randomly. Seed is just to ensure the same inages are selected each time when the code run. Different num changes the split.
+  - get_y=parent_label: the label is the parent folder
   - squishing (scaling or compressing without maintaining aspect ratio) vs. cropping (cuts away outer parts)
+  - item_tfms: transformations applied to each image, so they are combined into one tensor
 - vision_learner uses resnet18 model
   - fine tune: use data to train pretrained model
 - Use the model: `is_bird,_,probs = learn.predict(PILImage.create('bird.jpg'))`
