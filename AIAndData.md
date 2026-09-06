@@ -170,7 +170,9 @@ Weeks 7–8 — NLP basics
 - Skim Stanford CS224n lectures/notes for modern NLP intuition. [Stanford University](https://web.stanford.edu/class/cs224n/?utm_source=chatgpt.com), [YouTube](https://www.youtube.com/playlist?list=PLoROMvodv4rMFqRtEuo6SGjY4XbRIVRd4)
 - Deliverable: train a tiny seq model (or use a pretrained one) for text classification.
 
-a tiny seq model: a lightweight machine learning architecture designed to analyze text order (sequences) and assign labels while using minimal computational resources
+a tiny seq model: a machine learning architecture designed to map variable-length input sequences to variable-length output sequences
+
+- Using torch seq
 
 Weeks 9–10 — LLMs in practice
 
