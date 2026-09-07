@@ -172,7 +172,7 @@ Weeks 7–8 — NLP basics
 
 a tiny seq model: a machine learning architecture designed to map variable-length input sequences to variable-length output sequences
 
-- Using torch seq
+- Using PyTorch neural network model: `, torch.nn.Module`
 
 Weeks 9–10 — LLMs in practice
 
