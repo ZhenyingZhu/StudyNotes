@@ -173,6 +173,7 @@ Weeks 7–8 — NLP basics
 a tiny seq model: a machine learning architecture designed to map variable-length input sequences to variable-length output sequences
 
 - Using PyTorch neural network model: `, torch.nn.Module`
+- GRU (Gated Recurrent Unit): a recurrent neural network layer designed to process sequential data
 
 Weeks 9–10 — LLMs in practice
 
