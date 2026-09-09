@@ -9,3 +9,5 @@
 - Associations: Curved lines connect related ideas, showing the flow from broad topics to specific "twigs" or sub-details. 
 
 <https://zhuanlan.zhihu.com/p/153535380>
+
+VSCode plugin use MarkMap, can draw mind map from md files
