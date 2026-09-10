@@ -66,6 +66,11 @@ RAG: Retrieval-Augmented Generation. a technique that provides large language mo
 
 Let AI work stable.
 
+- Execution loop: get input, call model, check what tool to use, use the tool, feed output as input
+- tool integration
+- sandboxing and guardrails
+- state and memory management
+
 Should define the context and outcome clear. Don't give a too big task.
 
 Define the role, objection, fixed fast (don't derive for enforcing it to ask), success criterion, process
@@ -97,6 +102,8 @@ Model can flee the sandbox
 LLM Model distillation is compression
 
 System prompts should be clean up once a while to confirm if they are still necessary
+
+
 
 ### Token caching
 
