@@ -2,7 +2,7 @@
 
 ## Status
 
-**Awaiting guidance. No implementation is authorized.**
+**Planning in progress. No implementation is authorized until this plan is explicitly accepted.**
 
 ## Goal
 
@@ -311,6 +311,174 @@ The following decisions are intentionally open:
 7. Managed-runtime versus custom-container production deployment
 8. Detailed acceptance criteria and release thresholds
 9. Durable queue and worker design for asynchronous AI analyses
+
+## Milestones and testable outcomes
+
+The milestones below are ordered so that each stage produces a demonstrable, testable result. A milestone is complete only when its outcome and exit criteria have been met; code, infrastructure, or configuration must not be created before the plan is explicitly accepted.
+
+### Milestone 0 — Confirm product and security decisions
+
+**Purpose:** Resolve the open decisions that affect the data model, API contract, user experience, and deployment design.
+
+**Testable outcomes:**
+
+- A written workflow describes photo upload, container creation, analysis polling, item review, assignment, correction, deletion, and retry behavior.
+- The approved AI output schema defines required fields, confidence handling, malformed-output handling, prompt/version tracking, and provider failure behavior.
+- Container-association rules distinguish explicit user confirmation from AI suggestions and define duplicate-item behavior.
+- Tenant, ownership, delegated-scope, and resource-authorization rules are documented with allow and deny examples.
+- Photo format, size, dimension, retention, deletion, and privacy requirements are documented.
+- The queue/worker model, cancellation semantics, retry policy, idempotency behavior, and deployment mode are selected.
+- Acceptance criteria are recorded for functional, security, performance, reliability, and accessibility requirements.
+
+**Exit criteria:** Product owner and technical owner approve the decisions, including all items in the open-guidance list.
+
+### Milestone 1 — Repository and development environment
+
+**Purpose:** Establish a reproducible development environment without deploying development tooling to production.
+
+**Testable outcomes:**
+
+- A new developer can open the repository in the Development Container and obtain the pinned .NET, Node.js, Azure CLI, Bicep, Git, and EF Core tooling versions.
+- Docker Compose starts the development container, SQL Server, and Azurite; service health and published ports are documented and verified.
+- Named volumes preserve SQL Server and Azurite data across service recreation.
+- Applications in the Development Container reach Azurite through the Compose service hostname rather than `127.0.0.1`.
+- A documented command sequence starts all local dependencies and a clean checkout passes the environment smoke test.
+- No secrets, production credentials, or generated application code are committed.
+
+**Exit criteria:** The environment smoke test passes on a clean checkout using only the documented host prerequisites.
+
+### Milestone 2 — Domain model and persistence foundation
+
+**Purpose:** Implement the approved inventory, photo, analysis, assignment, and idempotency persistence model.
+
+**Testable outcomes:**
+
+- EF Core migrations create the approved schema in a clean local SQL Server database.
+- Constraints and indexes enforce identifier, ownership, assignment, status, uniqueness, and timestamp rules.
+- Valid and invalid state transitions are covered by unit tests, including analysis cancellation, completion, failure, retry, and deletion conflicts.
+- Transaction tests demonstrate atomic item creation and assignment for completed analyses.
+- Concurrent update tests demonstrate stale `ETag` protection and prevent lost changes.
+- A reset-and-seed procedure produces representative data deterministically.
+
+**Exit criteria:** Persistence unit and integration tests pass against the local SQL Server service, including rollback and concurrency cases.
+
+### Milestone 3 — Read-only API and authorization
+
+**Purpose:** Expose secure read operations and system health endpoints using the approved API conventions.
+
+**Testable outcomes:**
+
+- Health, summary, container, photo, analysis, and item read routes use the `/api/v1` base path and documented response shapes.
+- OpenAPI 3.1 describes routes, schemas, security requirements, paging, `ETag`, and RFC 9457 Problem Details responses.
+- Requests without a token receive `401`; requests without the required read scope receive `403`.
+- A caller cannot read another tenant's or owner's resources under the approved authorization model.
+- Collection paging, filtering, UTC timestamps, correlation IDs, and cache/concurrency headers behave as documented.
+- Readiness reports dependency failure without exposing secrets or internal exception details.
+
+**Exit criteria:** Contract tests pass for successful reads, authorization failures, not-found behavior, paging, headers, and Problem Details.
+
+### Milestone 4 — Container, item, and assignment workflows
+
+**Purpose:** Deliver the manually managed inventory workflow before introducing AI processing.
+
+**Testable outcomes:**
+
+- Authorized clients can create, list, update, and delete containers according to validation and empty-container rules.
+- Authorized clients can create, list, update, and delete manually managed items.
+- Items can be assigned, moved, or unassigned atomically through the documented endpoints.
+- AI suggestions remain distinguishable from confirmed assignments and are not silently promoted.
+- Invalid fields, missing resources, duplicate requests, stale `ETag`s, and non-empty-container deletion return the documented status and Problem Details responses.
+- Frontend tests cover container creation, inventory search, item editing, assignment, and conflict messages.
+
+**Exit criteria:** Backend unit, API contract, and frontend component tests pass for the complete non-AI workflow.
+
+### Milestone 5 — Secure photo ingestion and storage
+
+**Purpose:** Accept, validate, store, retrieve, and delete private photos safely.
+
+**Testable outcomes:**
+
+- Valid multipart uploads create photo metadata and private blobs, returning `201 Created` and a `Location` header.
+- Unsupported media, oversized files, invalid dimensions, malformed multipart requests, and upload quota violations return the approved errors without persisting partial records.
+- Blob names and metadata do not expose tenant identifiers, credentials, or user-controlled path traversal.
+- Authorized content retrieval uses a short-lived protected read mechanism; unauthorized callers cannot read the blob.
+- Photo deletion is blocked while analysis is running and is idempotent where the contract requires it.
+- Upload, download, deletion, retention, and storage-failure tests pass against Azurite, with explicitly documented emulator limitations.
+
+**Exit criteria:** API integration and security tests pass for accepted and rejected uploads, authorization, cleanup, retry, and deletion behavior.
+
+### Milestone 6 — Deterministic asynchronous analysis pipeline
+
+**Purpose:** Process analyses asynchronously with a deterministic mock AI implementation before enabling live Azure OpenAI calls.
+
+**Testable outcomes:**
+
+- Starting an analysis returns `202 Accepted`, a `Location` header, and the documented queued resource.
+- The worker transitions analyses only through approved states and records safe failure information, retry count, timestamps, and correlation data.
+- Fixed structured-output fixtures produce deterministic items, confidence values, suggestions, and source links.
+- Invalid, incomplete, unsafe, or schema-incompatible AI output is rejected without creating partial inventory data.
+- Retries are bounded and idempotent; duplicate delivery does not duplicate items or assignments.
+- Cancellation works for queued and eligible running work, and cancellation races have deterministic results.
+- Polling returns the documented state and result shape, including failure and cancellation responses.
+
+**Exit criteria:** Worker, transaction, retry, cancellation, fixture, and API integration tests pass without network access to Azure OpenAI.
+
+### Milestone 7 — AI-assisted review and convenience workflow
+
+**Purpose:** Connect analysis results to user review and explicit container-assignment workflows.
+
+**Testable outcomes:**
+
+- Completed analyses display detected items with source photo, confidence, category, quantity, and assignment status.
+- Users can accept, change, or reject suggestions; explicit container selection produces confirmed assignments.
+- The convenience upload-and-analyze endpoint validates the container, stores the photo, queues analysis, and returns the same asynchronous contract.
+- Convenience workflow completion commits all detected items and confirmed assignments atomically, or creates none when the analysis fails.
+- Retry, refresh, duplicate submission, stale `ETag`, and partial dependency failure scenarios are covered by API and frontend tests.
+- Playwright verifies the end-to-end local workflow from upload through review and assignment.
+
+**Exit criteria:** The full local photo-to-inventory workflow passes with the deterministic mock AI and no orphaned or silently assigned items.
+
+### Milestone 8 — Entra ID, live Azure integrations, and observability
+
+**Purpose:** Validate cloud identity, managed-resource access, monitoring, and operational behavior separately from local development.
+
+**Testable outcomes:**
+
+- Entra ID tokens with each approved scope produce the documented allow/deny behavior.
+- The deployed API accesses Azure SQL, private Blob Storage, and Azure OpenAI through managed identity or the approved secret mechanism; no credentials are present in source or ordinary configuration.
+- Live integration tests are explicitly invoked, isolated from the default local test run, and clean up their test data.
+- Application Insights and Log Analytics capture correlation IDs, dependency failures, analysis failures, throttling, latency, and authorization failures without recording photo content or secrets.
+- Readiness and liveness checks, alerts, retention settings, rate limits, and upload limits are verified in a non-production environment.
+
+**Exit criteria:** The live integration and observability checklist passes in a dedicated Azure development environment with evidence retained for review.
+
+### Milestone 9 — Infrastructure, CI/CD, and production readiness
+
+**Purpose:** Provision and release the approved system safely and repeatably.
+
+**Testable outcomes:**
+
+- Bicep validation and what-if complete successfully for each environment without unintended resource changes.
+- CI restores, lints, builds, tests, validates OpenAPI and Bicep, and publishes versioned artifacts.
+- Workload identity federation deploys without long-lived deployment secrets.
+- Database migrations run as a controlled release step and are backward-compatible with the deployment sequence.
+- The API passes staging health, contract, dependency, upload, authorization, and smoke tests before promotion.
+- The frontend is deployed with environment-specific API and Entra settings and passes Playwright smoke tests.
+- Rollback, failed migration, failed slot swap, dependency outage, and graceful shutdown procedures are tested and documented.
+- Production decisions for managed runtime versus custom container, Swagger exposure, backup validation, data retention, and alert thresholds are approved.
+
+**Exit criteria:** A staging-to-production rehearsal succeeds, all release gates pass, and an owner signs the production readiness checklist.
+
+### Cross-milestone quality gates
+
+Every milestone must preserve these requirements:
+
+- No secrets, tokens, private blob URLs, raw provider errors, or sensitive photo content appear in source control, API errors, logs, or test artifacts.
+- Automated tests are repeatable and distinguish unit, local integration, contract, frontend, live Azure, and production-artifact suites.
+- API changes update the OpenAPI contract and corresponding contract tests.
+- Authorization is tested for both permitted and denied access, including cross-tenant or cross-owner cases where applicable.
+- Failures leave no unintended partial state, and asynchronous operations are safe to retry.
+- Accessibility, keyboard operation, responsive behavior, and useful error messages are included in frontend acceptance testing.
 
 ## Next step
 
