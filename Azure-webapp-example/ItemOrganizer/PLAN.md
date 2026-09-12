@@ -338,14 +338,19 @@ The milestones below are ordered so that each stage produces a demonstrable, tes
 
 **Testable outcomes:**
 
+- The repository contains the reusable environment recipe, including a Development Container definition, a development Dockerfile, Docker Compose configuration, an example environment file, and ignore rules for local secrets and generated state.
+- Development images and tools are pinned to tested versions rather than floating `latest` tags, including the .NET SDK, Node.js, SQL Server, Azurite, Azure CLI, Bicep, EF Core tooling, and package managers.
 - A new developer can open the repository in the Development Container and obtain the pinned .NET, Node.js, Azure CLI, Bicep, Git, and EF Core tooling versions.
 - Docker Compose starts the development container, SQL Server, and Azurite; service health and published ports are documented and verified.
 - Named volumes preserve SQL Server and Azurite data across service recreation.
+- Optional named cache volumes are defined for NuGet and frontend package caches without making builds depend on machine-specific paths.
+- Applications and tests running in containers use Compose service names such as `sqlserver` and `azurite` instead of machine-specific addresses or `127.0.0.1` for container-to-container dependencies.
 - Applications in the Development Container reach Azurite through the Compose service hostname rather than `127.0.0.1`.
 - A documented command sequence starts all local dependencies and a clean checkout passes the environment smoke test.
-- No secrets, production credentials, or generated application code are committed.
+- The committed environment files define the recipe only; real `.env` files, secrets, production credentials, database files, emulator data, and generated application code are not committed.
+- The environment can be recreated on another supported machine from a clean clone using only Docker Desktop, Visual Studio Code with the Dev Containers extension, and Git.
 
-**Exit criteria:** The environment smoke test passes on a clean checkout using only the documented host prerequisites.
+**Exit criteria:** The environment smoke test passes on a clean checkout using only the documented host prerequisites, and a second supported machine can rebuild the Development Container, start Docker Compose services, verify tool versions, connect to SQL Server and Azurite by service name, and run the documented smoke-test command sequence without any machine-specific configuration.
 
 ### Milestone 2 — Domain model and persistence foundation
 
