@@ -64,6 +64,16 @@ RAG: Retrieval-Augmented Generation. a technique that provides large language mo
 
 ### Harness Engineering
 
+should build codebase “maps” for large repos. Provide system-wide dependencies beyond local context windows.
+
+routing between combinations of models (critique, advisor, parallel execution) to optimize cost and quality.
+
+Should avoid large-scale log parsing when cheaper deterministic pipelines would be more efficient
+
+Agency Copilot was positioned as a key unified dev experience, especially for engineering workflows requiring Microsoft + GitHub ecosystem access. Other entries: GitHub Copilot, Agency, Scout, M365 Copilot, Super App, Hydro Fusion.
+
+Switch from “create + operate heavy” to “plan + validation heavy"
+
 Let AI work stable.
 
 - Execution loop: get input, call model, check what tool to use, use the tool, feed output as input
