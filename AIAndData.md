@@ -70,8 +70,6 @@ routing between combinations of models (critique, advisor, parallel execution) t
 
 Should avoid large-scale log parsing when cheaper deterministic pipelines would be more efficient
 
-Agency Copilot was positioned as a key unified dev experience, especially for engineering workflows requiring Microsoft + GitHub ecosystem access. Other entries: GitHub Copilot, Agency, Scout, M365 Copilot, Super App, Hydro Fusion.
-
 Switch from “create + operate heavy” to “plan + validation heavy"
 
 Let AI work stable.
