@@ -1,0 +1,34 @@
+# Local environment files
+.env
+.env.local
+.env.*.local
+
+# Editors and OS
+.DS_Store
+Thumbs.db
+.vscode/
+!.vscode/extensions.json
+
+# .NET
+bin/
+obj/
+TestResults/
+
+# Node
+node_modules/
+dist/
+coverage/
+playwright-report/
+
+# Local data and logs
+*.log
+*.db
+*.sqlite
+*.sqlite3
+.azurite/
+.storage/
+.tmp/
+artifacts/
+
+# Docker overrides
+docker-compose.override.yml

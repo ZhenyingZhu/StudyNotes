@@ -2,7 +2,7 @@
 
 ## Status
 
-**Planning in progress. No implementation is authorized until this plan is explicitly accepted.**
+**Accepted and implementation authorized. Milestones 0 and 1 have been captured in repository documentation and environment scaffolding.**
 
 ## Goal
 
@@ -487,4 +487,4 @@ Every milestone must preserve these requirements:
 
 ## Next step
 
-Revise this plan from the user's guidance. Do not create application code, configuration, dependencies, or additional files until the plan is explicitly accepted.
+Proceed with Milestone 2: implement the domain model and persistence foundation using the decisions documented in `docs/milestone-0-decisions.md` and the development environment defined in this repository.

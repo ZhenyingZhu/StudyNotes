@@ -1,0 +1,71 @@
+services:
+  workspace:
+    build:
+      context: .
+      dockerfile: .devcontainer/Dockerfile
+      args:
+        DOTNET_SDK_VERSION: ${DOTNET_SDK_VERSION}
+        DOTNET_EF_VERSION: ${DOTNET_EF_VERSION}
+        NODE_VERSION: ${NODE_VERSION}
+        PNPM_VERSION: ${PNPM_VERSION}
+        AZURE_CLI_VERSION: ${AZURE_CLI_VERSION}
+        BICEP_VERSION: ${BICEP_VERSION}
+    env_file:
+      - .env
+    environment:
+      ASPNETCORE_ENVIRONMENT: ${ASPNETCORE_ENVIRONMENT}
+      ITEMORGANIZER_SQL_CONNECTION: ${ITEMORGANIZER_SQL_CONNECTION}
+      ITEMORGANIZER_STORAGE_CONNECTION: ${ITEMORGANIZER_STORAGE_CONNECTION}
+    volumes:
+      - .:/workspace:cached
+      - nuget-cache:/home/vscode/.nuget/packages
+      - pnpm-store:/home/vscode/.local/share/pnpm/store
+    command: sleep infinity
+    depends_on:
+      sqlserver:
+        condition: service_healthy
+      azurite:
+        condition: service_started
+
+  sqlserver:
+    image: ${SQL_SERVER_IMAGE}
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: ${SQL_SA_PASSWORD}
+      MSSQL_PID: Developer
+    ports:
+      - "14333:1433"
+    volumes:
+      - sqlserver-data:/var/opt/mssql
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "/opt/mssql-tools18/bin/sqlcmd -C -S localhost -U sa -P \"$${MSSQL_SA_PASSWORD}\" -Q \"SELECT 1\" > /dev/null || exit 1"
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 30s
+
+  azurite:
+    image: ${AZURITE_IMAGE}
+    command: >
+      azurite
+      --blobHost 0.0.0.0
+      --queueHost 0.0.0.0
+      --tableHost 0.0.0.0
+      --location /data
+      --debug /data/debug.log
+    ports:
+      - "10000:10000"
+      - "10001:10001"
+      - "10002:10002"
+    volumes:
+      - azurite-data:/data
+
+volumes:
+  sqlserver-data:
+  azurite-data:
+  nuget-cache:
+  pnpm-store:
