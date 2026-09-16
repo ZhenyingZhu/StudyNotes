@@ -18,17 +18,18 @@ services:
       ITEMORGANIZER_STORAGE_CONNECTION: ${ITEMORGANIZER_STORAGE_CONNECTION}
     volumes:
       - .:/workspace:cached
-      - nuget-cache:/home/vscode/.nuget/packages
-      - pnpm-store:/home/vscode/.local/share/pnpm/store
+      - nuget-cache:/home/node/.nuget/packages
+      - pnpm-store:/home/node/.local/share/pnpm/store
     command: sleep infinity
     depends_on:
       sqlserver:
         condition: service_healthy
       azurite:
-        condition: service_started
+        condition: service_healthy
 
   sqlserver:
     image: ${SQL_SERVER_IMAGE}
+    platform: linux/amd64
     environment:
       ACCEPT_EULA: "Y"
       MSSQL_SA_PASSWORD: ${SQL_SA_PASSWORD}
@@ -63,6 +64,18 @@ services:
       - "10002:10002"
     volumes:
       - azurite-data:/data
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "node",
+          "-e",
+          "require('http').get('http://localhost:10000/devstoreaccount1?comp=list', response => process.exit(response.statusCode < 500 ? 0 : 1)).on('error', () => process.exit(1))"
+        ]
+      interval: 5s
+      timeout: 5s
+      retries: 12
+      start_period: 5s
 
 volumes:
   sqlserver-data:

@@ -4,7 +4,7 @@ This repository currently implements the planning outputs for Milestones 0 and 1
 
 Milestone 0 is captured in `docs/milestone-0-decisions.md`. It resolves the product, security, workflow, retention, authorization, queue/worker, and acceptance-criteria decisions that were intentionally left open during planning.
 
-Milestone 1 establishes a reproducible local development environment based on a VS Code Development Container and Docker Compose.
+Milestone 1 establishes a reproducible local development environment based on a VS Code Development Container and Docker Compose. Its workspace toolchain and Azurite services have been verified; final SQL Server and complete smoke-test verification remains pending on a supported x64 host.
 
 ## Repository layout
 
@@ -24,6 +24,12 @@ The only required host tools are:
 - Git
 
 No project SDKs need to be installed directly on the host.
+
+The workspace and Azurite images support x64 and ARM64. Microsoft's supported
+SQL Server Linux image is x64-only. Use an x64 host for the complete local
+stack; SQL Server 2022 is not reliable under Docker Desktop's Windows ARM64
+emulation, and the retired Azure SQL Edge image is intentionally not used as a
+fallback.
 
 ## Quick start
 
@@ -60,6 +66,14 @@ No project SDKs need to be installed directly on the host.
    ```powershell
    docker compose exec workspace bash scripts/smoke-test.sh
    ```
+
+If an organization intercepts HTTPS traffic, pass its trusted PEM certificate
+to BuildKit without copying it into the repository:
+
+```powershell
+docker build --secret id=custom_ca,src=C:\path\to\organization-ca.crt -t itemorganizer-workspace -f .devcontainer\Dockerfile .
+docker compose up -d --no-build
+```
 
 ## Local services
 
@@ -98,6 +112,22 @@ The smoke test passes when:
 - `azurite` is reachable by service name on ports `10000`, `10001`, and `10002`
 - the committed connection strings use `sqlserver` and `azurite` instead of `127.0.0.1`
 
+## Milestone 1 validation status
+
+Validation performed on September 15, 2026 confirmed:
+
+- the Development Container image builds on Windows ARM64
+- the pinned workspace tool versions are available
+- Azurite becomes healthy and is reachable by service name
+- Compose configuration and local-secret ignore rules are valid
+
+The complete smoke test cannot pass on the current Windows ARM64 validation
+machine because Microsoft's supported SQL Server 2022 Linux image is x64-only
+and terminates under Docker Desktop's emulation. Milestone 1 is not complete
+until the stack passes on a supported x64 host and a second supported machine
+reproduces the environment from a clean checkout.
+
 ## Next implementation milestone
 
-After this baseline is accepted, the next step is Milestone 2: the domain model and persistence foundation.
+After Milestone 1 completes its x64 and second-machine validation, the next
+step is Milestone 2: the domain model and persistence foundation.

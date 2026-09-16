@@ -6,7 +6,7 @@
   "service": "workspace",
   "workspaceFolder": "/workspace",
   "shutdownAction": "stopCompose",
-  "remoteUser": "vscode",
+  "remoteUser": "node",
   "customizations": {
     "vscode": {
       "settings": {

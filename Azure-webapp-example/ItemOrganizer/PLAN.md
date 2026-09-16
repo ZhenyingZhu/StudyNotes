@@ -2,7 +2,9 @@
 
 ## Status
 
-**Accepted and implementation authorized. Milestones 0 and 1 have been captured in repository documentation and environment scaffolding.**
+**Accepted and implementation authorized. Milestone 0 is complete. Milestone 1
+is implemented and partially verified; final SQL Server and end-to-end smoke
+validation requires a supported x64 host.**
 
 ## Goal
 
@@ -351,6 +353,15 @@ The milestones below are ordered so that each stage produces a demonstrable, tes
 - The environment can be recreated on another supported machine from a clean clone using only Docker Desktop, Visual Studio Code with the Dev Containers extension, and Git.
 
 **Exit criteria:** The environment smoke test passes on a clean checkout using only the documented host prerequisites, and a second supported machine can rebuild the Development Container, start Docker Compose services, verify tool versions, connect to SQL Server and Azurite by service name, and run the documented smoke-test command sequence without any machine-specific configuration.
+
+**Current validation status (September 15, 2026):**
+
+- The Development Container image builds successfully on Windows ARM64.
+- The pinned .NET SDK, EF Core CLI, Git, Node.js, pnpm, Azure CLI, and Bicep versions were verified inside the workspace image.
+- Azurite starts healthy and is reachable through its Compose service name on the Blob, Queue, and Table ports.
+- The supported SQL Server 2022 Linux image is x64-only and its process terminates under Docker Desktop's Windows ARM64 emulation on the validation machine.
+- Azure SQL Edge is not an acceptable ARM64 fallback because Microsoft retired it on September 30, 2025.
+- Milestone 1 remains incomplete until the complete Compose stack and smoke test pass on a supported x64 machine and the clean-checkout recreation is confirmed on a second supported machine.
 
 ### Milestone 2 — Domain model and persistence foundation
 
