@@ -14,40 +14,40 @@ services:
       - .env
     environment:
       ASPNETCORE_ENVIRONMENT: ${ASPNETCORE_ENVIRONMENT}
-      ITEMORGANIZER_SQL_CONNECTION: ${ITEMORGANIZER_SQL_CONNECTION}
+      ITEMORGANIZER_DATABASE_CONNECTION: ${ITEMORGANIZER_DATABASE_CONNECTION}
       ITEMORGANIZER_STORAGE_CONNECTION: ${ITEMORGANIZER_STORAGE_CONNECTION}
     volumes:
       - .:/workspace:cached
       - nuget-cache:/home/node/.nuget/packages
       - pnpm-store:/home/node/.local/share/pnpm/store
+    working_dir: /workspace
     command: sleep infinity
     depends_on:
-      sqlserver:
+      postgres:
         condition: service_healthy
       azurite:
         condition: service_healthy
 
-  sqlserver:
-    image: ${SQL_SERVER_IMAGE}
-    platform: linux/amd64
+  postgres:
+    image: ${POSTGRES_IMAGE}
     environment:
-      ACCEPT_EULA: "Y"
-      MSSQL_SA_PASSWORD: ${SQL_SA_PASSWORD}
-      MSSQL_PID: Developer
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DATABASE}
     ports:
-      - "14333:1433"
+      - "54320:5432"
     volumes:
-      - sqlserver-data:/var/opt/mssql
+      - postgres-data:/var/lib/postgresql
     healthcheck:
       test:
         [
           "CMD-SHELL",
-          "/opt/mssql-tools18/bin/sqlcmd -C -S localhost -U sa -P \"$${MSSQL_SA_PASSWORD}\" -Q \"SELECT 1\" > /dev/null || exit 1"
+          "pg_isready -U \"$${POSTGRES_USER}\" -d \"$${POSTGRES_DB}\""
         ]
-      interval: 10s
+      interval: 5s
       timeout: 5s
       retries: 12
-      start_period: 30s
+      start_period: 10s
 
   azurite:
     image: ${AZURITE_IMAGE}
@@ -78,7 +78,7 @@ services:
       start_period: 5s
 
 volumes:
-  sqlserver-data:
+  postgres-data:
   azurite-data:
   nuget-cache:
   pnpm-store:

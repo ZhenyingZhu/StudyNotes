@@ -36,7 +36,7 @@ assert_version "pnpm" "$(pnpm --version)" "${PNPM_VERSION}"
 assert_version "Azure CLI" "$(az version --output json | jq -r '.["azure-cli"]')" "${AZURE_CLI_VERSION}"
 assert_version "Bicep CLI" "$(bicep --version | awk '{print $4}')" "${BICEP_VERSION#v}"
 
-for host_port in "sqlserver:1433" "azurite:10000" "azurite:10001" "azurite:10002"; do
+for host_port in "postgres:5432" "azurite:10000" "azurite:10001" "azurite:10002"; do
   host="${host_port%%:*}"
   port="${host_port##*:}"
 
@@ -46,8 +46,8 @@ for host_port in "sqlserver:1433" "azurite:10000" "azurite:10001" "azurite:10002
   fi
 done
 
-if [[ "${ITEMORGANIZER_SQL_CONNECTION:-}" != *"sqlserver"* ]]; then
-  echo "ITEMORGANIZER_SQL_CONNECTION must use the sqlserver service name." >&2
+if [[ "${ITEMORGANIZER_DATABASE_CONNECTION:-}" != *"Host=postgres"* ]]; then
+  echo "ITEMORGANIZER_DATABASE_CONNECTION must use the postgres service name." >&2
   exit 1
 fi
 
@@ -56,7 +56,7 @@ if [[ "${ITEMORGANIZER_STORAGE_CONNECTION:-}" != *"azurite"* ]]; then
   exit 1
 fi
 
-if [[ "${ITEMORGANIZER_SQL_CONNECTION:-}" == *"127.0.0.1"* ]] || [[ "${ITEMORGANIZER_STORAGE_CONNECTION:-}" == *"127.0.0.1"* ]]; then
+if [[ "${ITEMORGANIZER_DATABASE_CONNECTION:-}" == *"127.0.0.1"* ]] || [[ "${ITEMORGANIZER_STORAGE_CONNECTION:-}" == *"127.0.0.1"* ]]; then
   echo "Container-side dependencies must not use 127.0.0.1." >&2
   exit 1
 fi

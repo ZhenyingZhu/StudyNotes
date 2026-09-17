@@ -3,8 +3,8 @@
 ## Status
 
 **Accepted and implementation authorized. Milestone 0 is complete. Milestone 1
-is implemented and partially verified; final SQL Server and end-to-end smoke
-validation requires a supported x64 host.**
+is implemented and verified on Windows ARM64; clean-checkout recreation on a
+second supported machine remains pending.**
 
 ## Goal
 
@@ -20,7 +20,7 @@ Plan an application that:
 
 - **Frontend:** React with TypeScript
 - **Backend/API:** ASP.NET Core Web API on .NET 10
-- **Database:** Azure SQL with Entity Framework Core
+- **Database:** Azure Database for PostgreSQL Flexible Server with Entity Framework Core and Npgsql
 - **Photo storage:** Azure Blob Storage
 - **AI:** Azure OpenAI with `gpt-5.4-mini` for vision-based item identification and structured outputs
 - **Authentication:** Microsoft Entra ID
@@ -43,7 +43,7 @@ The host requires only:
 
 Docker Desktop uses WSL 2 to provide the Linux kernel needed to run this project's Linux containers on Windows. Developers do not need to work directly inside a user-installed Linux distribution; Docker Desktop can manage its own internal WSL distributions. Enabling Docker Desktop integration with a separate Linux distribution is optional and is needed only when Docker commands will be run from that distribution.
 
-Linux containers are the project default because the .NET SDK, Node.js, SQL Server, Azurite, Azure CLI, and Bicep support them well. They also provide a broad image ecosystem, generally use fewer resources than Windows containers, align with common GitHub Actions runners and possible Linux App Service deployment, and expose Linux-specific path, casing, permission, and shell issues during development. This is a development and testing choice; it does not require the production API to use a custom container. Production may still use either the App Service managed .NET runtime or a separate Linux production image.
+Linux containers are the project default because the .NET SDK, Node.js, PostgreSQL, Azurite, Azure CLI, and Bicep support them well. They also provide a broad image ecosystem, generally use fewer resources than Windows containers, align with common GitHub Actions runners and possible Linux App Service deployment, and expose Linux-specific path, casing, permission, and shell issues during development. This is a development and testing choice; it does not require the production API to use a custom container. Production may still use either the App Service managed .NET runtime or a separate Linux production image.
 
 ### Windows 10 compatibility
 
@@ -97,11 +97,11 @@ The development container will include pinned versions of:
 Docker Compose will coordinate:
 
 - The development container, with the repository mounted as its workspace
-- SQL Server for local Azure SQL-compatible development
+- PostgreSQL matching the production database engine
 - Azurite for local Blob Storage emulation
 - A queue emulator if an Azure Storage Queue-based analysis worker is selected
 
-Named Docker volumes will be used where appropriate for NuGet packages, frontend packages, SQL data, and Azurite data. Builds, migrations, tests, debuggers, the API, and the frontend development server will run inside the development container. No .NET, Node.js, EF Core, SQL Server, Azurite, Azure CLI, or Bicep installation will be required on Windows.
+Named Docker volumes will be used where appropriate for NuGet packages, frontend packages, PostgreSQL data, and Azurite data. Builds, migrations, tests, debuggers, the API, and the frontend development server will run inside the development container. No .NET, Node.js, EF Core, PostgreSQL, Azurite, Azure CLI, or Bicep installation will be required on Windows.
 
 Routine development will use a deterministic mock implementation of Azure OpenAI. Explicit integration tests may use a shared Azure development deployment and credentials supplied through environment variables or a local secret store; credentials must never be committed.
 
@@ -112,16 +112,16 @@ The development container is distinct from the production API image. It contains
 Local testing will use the following layers:
 
 - **Unit tests:** xUnit tests that do not require Docker services and cover validation, authorization policies, assignment rules, analysis state transitions, and AI-result mapping.
-- **API integration tests:** xUnit with `WebApplicationFactory`, a test authentication handler, SQL Server, and Azurite. Azure OpenAI responses will normally come from fixed structured-output fixtures.
+- **API integration tests:** xUnit with `WebApplicationFactory`, a test authentication handler, PostgreSQL, and Azurite. Azure OpenAI responses will normally come from fixed structured-output fixtures.
 - **Contract tests:** Verify routes, OpenAPI 3.1, status codes, headers, RFC 9457 Problem Details, paging, ETags, idempotency, and upload behavior.
 - **Frontend tests:** Vitest for components and client logic; Playwright for end-to-end workflows against the local API.
-- **Live Azure integration tests:** An optional, separately invoked suite for Entra ID, Azure OpenAI, Azure SQL, and Blob Storage integration. It will not be part of the default local test run.
+- **Live Azure integration tests:** An optional, separately invoked suite for Entra ID, Azure OpenAI, Azure Database for PostgreSQL Flexible Server, and Blob Storage integration. It will not be part of the default local test run.
 - **Production artifact tests:** CI will build and start the production API image, when container deployment is selected, and verify Linux compatibility, configuration, health checks, upload limits, non-root execution, dependency connectivity, and graceful shutdown.
 
 The default local workflow is:
 
 1. Open the repository in the Development Container.
-2. Start SQL Server and Azurite through Docker Compose.
+2. Start PostgreSQL and Azurite through Docker Compose.
 3. Apply EF Core migrations to a dedicated local database and load representative test data.
 4. Run the API and frontend development server inside the Development Container.
 5. Use Swagger UI and Playwright to exercise container creation, photo upload, analysis polling, item review, assignment, and deletion.
@@ -131,7 +131,7 @@ Swagger UI is enabled only in the Development environment. Local integration tes
 
 ## Deployment approach
 
-Azure resources will be provisioned with Bicep and separated by environment. The deployment will include Azure Static Web Apps Standard, Azure App Service, Azure SQL, private Blob Storage, Azure OpenAI or a reference to an approved deployment, Application Insights, Log Analytics, Key Vault, managed identities, role assignments, health checks, CORS settings, and diagnostic settings.
+Azure resources will be provisioned with Bicep and separated by environment. The deployment will include Azure Static Web Apps Standard, Azure App Service, Azure Database for PostgreSQL Flexible Server, private Blob Storage, Azure OpenAI or a reference to an approved deployment, Application Insights, Log Analytics, Key Vault, managed identities, role assignments, health checks, CORS settings, and diagnostic settings.
 
 The API will use managed identity for Azure resources wherever supported. Secrets, storage keys, database passwords, and AI keys must not be committed or placed directly in ordinary deployment configuration. Entra application registrations, scopes, consent, and service principals will be handled through controlled Microsoft Graph automation or documented administrative steps where Bicep cannot manage them.
 
@@ -341,27 +341,27 @@ The milestones below are ordered so that each stage produces a demonstrable, tes
 **Testable outcomes:**
 
 - The repository contains the reusable environment recipe, including a Development Container definition, a development Dockerfile, Docker Compose configuration, an example environment file, and ignore rules for local secrets and generated state.
-- Development images and tools are pinned to tested versions rather than floating `latest` tags, including the .NET SDK, Node.js, SQL Server, Azurite, Azure CLI, Bicep, EF Core tooling, and package managers.
+- Development images and tools are pinned to tested versions rather than floating `latest` tags, including the .NET SDK, Node.js, PostgreSQL, Azurite, Azure CLI, Bicep, EF Core tooling, and package managers.
 - A new developer can open the repository in the Development Container and obtain the pinned .NET, Node.js, Azure CLI, Bicep, Git, and EF Core tooling versions.
-- Docker Compose starts the development container, SQL Server, and Azurite; service health and published ports are documented and verified.
-- Named volumes preserve SQL Server and Azurite data across service recreation.
+- Docker Compose starts the development container, PostgreSQL, and Azurite; service health and published ports are documented and verified.
+- Named volumes preserve PostgreSQL and Azurite data across service recreation.
 - Optional named cache volumes are defined for NuGet and frontend package caches without making builds depend on machine-specific paths.
-- Applications and tests running in containers use Compose service names such as `sqlserver` and `azurite` instead of machine-specific addresses or `127.0.0.1` for container-to-container dependencies.
+- Applications and tests running in containers use Compose service names such as `postgres` and `azurite` instead of machine-specific addresses or `127.0.0.1` for container-to-container dependencies.
 - Applications in the Development Container reach Azurite through the Compose service hostname rather than `127.0.0.1`.
 - A documented command sequence starts all local dependencies and a clean checkout passes the environment smoke test.
 - The committed environment files define the recipe only; real `.env` files, secrets, production credentials, database files, emulator data, and generated application code are not committed.
 - The environment can be recreated on another supported machine from a clean clone using only Docker Desktop, Visual Studio Code with the Dev Containers extension, and Git.
 
-**Exit criteria:** The environment smoke test passes on a clean checkout using only the documented host prerequisites, and a second supported machine can rebuild the Development Container, start Docker Compose services, verify tool versions, connect to SQL Server and Azurite by service name, and run the documented smoke-test command sequence without any machine-specific configuration.
+**Exit criteria:** The environment smoke test passes on a clean checkout using only the documented host prerequisites, and a second supported machine can rebuild the Development Container, start Docker Compose services, verify tool versions, connect to PostgreSQL and Azurite by service name, and run the documented smoke-test command sequence without any machine-specific configuration.
 
-**Current validation status (September 15, 2026):**
+**Current validation status (September 16, 2026):**
 
 - The Development Container image builds successfully on Windows ARM64.
 - The pinned .NET SDK, EF Core CLI, Git, Node.js, pnpm, Azure CLI, and Bicep versions were verified inside the workspace image.
+- PostgreSQL starts healthy and is reachable through its Compose service name.
 - Azurite starts healthy and is reachable through its Compose service name on the Blob, Queue, and Table ports.
-- The supported SQL Server 2022 Linux image is x64-only and its process terminates under Docker Desktop's Windows ARM64 emulation on the validation machine.
-- Azure SQL Edge is not an acceptable ARM64 fallback because Microsoft retired it on September 30, 2025.
-- Milestone 1 remains incomplete until the complete Compose stack and smoke test pass on a supported x64 machine and the clean-checkout recreation is confirmed on a second supported machine.
+- The complete environment smoke test passes on Windows ARM64.
+- Milestone 1 remains incomplete until clean-checkout recreation is confirmed on a second supported machine.
 
 ### Milestone 2 — Domain model and persistence foundation
 
@@ -369,14 +369,14 @@ The milestones below are ordered so that each stage produces a demonstrable, tes
 
 **Testable outcomes:**
 
-- EF Core migrations create the approved schema in a clean local SQL Server database.
+- EF Core migrations create the approved schema in a clean local PostgreSQL database.
 - Constraints and indexes enforce identifier, ownership, assignment, status, uniqueness, and timestamp rules.
 - Valid and invalid state transitions are covered by unit tests, including analysis cancellation, completion, failure, retry, and deletion conflicts.
 - Transaction tests demonstrate atomic item creation and assignment for completed analyses.
 - Concurrent update tests demonstrate stale `ETag` protection and prevent lost changes.
 - A reset-and-seed procedure produces representative data deterministically.
 
-**Exit criteria:** Persistence unit and integration tests pass against the local SQL Server service, including rollback and concurrency cases.
+**Exit criteria:** Persistence unit and integration tests pass against the local PostgreSQL service, including rollback and concurrency cases.
 
 ### Milestone 3 — Read-only API and authorization
 
@@ -461,7 +461,7 @@ The milestones below are ordered so that each stage produces a demonstrable, tes
 **Testable outcomes:**
 
 - Entra ID tokens with each approved scope produce the documented allow/deny behavior.
-- The deployed API accesses Azure SQL, private Blob Storage, and Azure OpenAI through managed identity or the approved secret mechanism; no credentials are present in source or ordinary configuration.
+- The deployed API accesses Azure Database for PostgreSQL Flexible Server, private Blob Storage, and Azure OpenAI through managed identity or the approved secret mechanism; no credentials are present in source or ordinary configuration.
 - Live integration tests are explicitly invoked, isolated from the default local test run, and clean up their test data.
 - Application Insights and Log Analytics capture correlation IDs, dependency failures, analysis failures, throttling, latency, and authorization failures without recording photo content or secrets.
 - Readiness and liveness checks, alerts, retention settings, rate limits, and upload limits are verified in a non-production environment.

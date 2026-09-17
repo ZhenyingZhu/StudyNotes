@@ -137,7 +137,7 @@ The initial persistence model uses these logical records:
 
 Storage choices:
 
-- Azure SQL stores metadata and relational state.
+- Azure Database for PostgreSQL Flexible Server stores metadata and relational state.
 - Azure Blob Storage stores original uploaded photos in a private container.
 - Azure Storage Queue carries asynchronous analysis work items.
 - Long-lived public blob URLs are not used.
