@@ -13,6 +13,7 @@ Milestone 1 establishes a reproducible local development environment based on a 
 - `.devcontainer/` - development container definition and Dockerfile
 - `docker-compose.yml` - local development services
 - `.env.example` - local environment template
+- `scripts/start-environment.ps1` - Windows environment bootstrap
 - `scripts/smoke-test.sh` - environment smoke test for use inside the workspace container
 
 ## Host prerequisites
@@ -29,39 +30,36 @@ The workspace, PostgreSQL, and Azurite images support x64 and ARM64.
 
 ## Quick start
 
-1. Copy the example environment file:
+On Windows, run the bootstrap from PowerShell:
 
-   ```powershell
-   Copy-Item .env.example .env
-   ```
+```powershell
+.\scripts\start-environment.ps1
+```
 
-2. Open the repository in Visual Studio Code.
+The script verifies Docker Desktop and Linux-container mode, creates `.env`
+from `.env.example` when needed, builds and starts the Compose stack, waits for
+healthy services, and runs the environment smoke test. It never overwrites an
+existing `.env`.
 
-3. Reopen the workspace in the Development Container.
+Use `-NoBuild` to start existing images without rebuilding or
+`-SkipSmokeTest` to omit validation:
 
-4. Start the local dependencies:
+```powershell
+.\scripts\start-environment.ps1 -NoBuild -SkipSmokeTest
+```
 
-   ```powershell
-   docker compose up -d --build
-   ```
+Then open the repository in Visual Studio Code and reopen it in the Development
+Container.
 
-5. Verify service status:
+The equivalent manual sequence is:
 
-   ```powershell
-   docker compose ps
-   ```
-
-6. Verify the pinned toolchain inside the workspace container:
-
-   ```powershell
-   docker compose exec workspace bash -lc "dotnet --version && dotnet ef --version && node --version && pnpm --version && az version --output json && bicep --version"
-   ```
-
-7. Run the environment smoke test:
-
-   ```powershell
-   docker compose exec workspace bash scripts/smoke-test.sh
-   ```
+```powershell
+Copy-Item .env.example .env
+docker compose config --quiet
+docker compose up -d --build --wait
+docker compose exec -T workspace bash scripts/smoke-test.sh
+docker compose ps
+```
 
 If an organization intercepts HTTPS traffic, pass its trusted PEM certificate
 to BuildKit without copying it into the repository:
