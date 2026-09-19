@@ -1,6 +1,8 @@
 # Item Organizer
 
-This repository currently implements the planning outputs for Milestones 0 and 1 of the accepted `PLAN.md`.
+This repository implements the planning and development-environment outputs for
+Milestones 0 and 1 and the domain and persistence foundation for Milestone 2 of
+the accepted `PLAN.md`.
 
 Milestone 0 is captured in `docs/milestone-0-decisions.md`. It resolves the product, security, workflow, retention, authorization, queue/worker, and acceptance-criteria decisions that were intentionally left open during planning.
 
@@ -14,7 +16,12 @@ Milestone 1 establishes a reproducible local development environment based on a 
 - `docker-compose.yml` - local development services
 - `.env.example` - local environment template
 - `scripts/start-environment.ps1` - Windows environment bootstrap
+- `scripts/reset-and-seed.ps1` - deterministic local database reset and seed
 - `scripts/smoke-test.sh` - environment smoke test for use inside the workspace container
+- `src/ItemOrganizer.Domain/` - inventory domain model and state transitions
+- `src/ItemOrganizer.Infrastructure/` - EF Core PostgreSQL mappings and migrations
+- `src/ItemOrganizer.Database/` - migration and seed command-line entry point
+- `tests/` - domain and PostgreSQL integration tests
 
 ## Host prerequisites
 
@@ -106,6 +113,33 @@ The smoke test passes when:
 - `azurite` is reachable by service name on ports `10000`, `10001`, and `10002`
 - the committed connection strings use `postgres` and `azurite` instead of `127.0.0.1`
 
+## Database development
+
+Apply pending EF Core migrations:
+
+```powershell
+docker compose exec -T workspace dotnet run --project src/ItemOrganizer.Database -- migrate
+```
+
+Reset the local database, apply all migrations, and load deterministic
+representative data:
+
+```powershell
+.\scripts\reset-and-seed.ps1
+```
+
+Run the Milestone 2 domain and PostgreSQL integration tests:
+
+```powershell
+docker compose exec -T workspace dotnet test ItemOrganizer.sln
+```
+
+Create a migration after changing the persistence model:
+
+```powershell
+docker compose exec -T workspace dotnet ef migrations add MigrationName --project src/ItemOrganizer.Infrastructure --startup-project src/ItemOrganizer.Database --output-dir Migrations
+```
+
 ## Milestone 1 validation status
 
 Validation performed on September 16, 2026 confirmed:
@@ -121,5 +155,9 @@ environment from a clean checkout.
 
 ## Next implementation milestone
 
-After Milestone 1 completes its second-machine validation, the next step is
-Milestone 2: the domain model and persistence foundation.
+Milestone 2 now provides the approved schema, state transitions, ownership
+constraints, optimistic concurrency, transactional analysis-result persistence,
+and deterministic seed data. Milestone 1 still requires clean-checkout
+validation on a second machine before its exit criteria are formally complete.
+
+The next implementation step is Milestone 3: read-only APIs and authorization.

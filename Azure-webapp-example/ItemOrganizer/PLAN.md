@@ -4,7 +4,8 @@
 
 **Accepted and implementation authorized. Milestone 0 is complete. Milestone 1
 is implemented and verified on Windows ARM64; clean-checkout recreation on a
-second supported machine remains pending.**
+second supported machine remains pending. Milestone 2 is implemented and
+verified against local PostgreSQL.**
 
 ## Goal
 
@@ -377,6 +378,14 @@ The milestones below are ordered so that each stage produces a demonstrable, tes
 - A reset-and-seed procedure produces representative data deterministically.
 
 **Exit criteria:** Persistence unit and integration tests pass against the local PostgreSQL service, including rollback and concurrency cases.
+
+**Current implementation status (September 18, 2026):**
+
+- The domain model covers containers, photos, analyses, items, assignments, outbox messages, and idempotency records.
+- The initial EF Core migration defines PostgreSQL ownership keys, foreign keys, checks, uniqueness rules, indexes, and optimistic concurrency tokens.
+- Domain tests cover analysis cancellation, completion conflicts, retries, assignment transitions, and deletion conflicts.
+- PostgreSQL integration tests cover migration creation, ownership enforcement, idempotency uniqueness, atomic result persistence, rollback, and stale-version rejection.
+- The database command and PowerShell wrapper provide deterministic reset, migration, and representative seed data.
 
 ### Milestone 3 — Read-only API and authorization
 
