@@ -15,6 +15,7 @@ Milestone 1 establishes a reproducible local development environment based on a 
 - `.devcontainer/` - development container definition and Dockerfile
 - `docker-compose.yml` - local development services
 - `.env.example` - local environment template
+- `scripts/install-prerequisites.ps1` - Windows host prerequisite installer
 - `scripts/start-environment.ps1` - Windows environment bootstrap
 - `scripts/reset-and-seed.ps1` - deterministic local database reset and seed
 - `scripts/smoke-test.sh` - environment smoke test for use inside the workspace container
@@ -27,6 +28,7 @@ Milestone 1 establishes a reproducible local development environment based on a 
 
 The only required host tools are:
 
+- WSL 2
 - Docker Desktop configured for Linux containers
 - Visual Studio Code with the Dev Containers extension
 - Git
@@ -37,7 +39,20 @@ The workspace, PostgreSQL, and Azurite images support x64 and ARM64.
 
 ## Quick start
 
-On Windows, run the bootstrap from PowerShell:
+On Windows, install or update the host prerequisites from PowerShell running
+as Administrator:
+
+```powershell
+.\scripts\install-prerequisites.ps1
+```
+
+The installer enables WSL 2 without installing a separate Linux distribution,
+then uses WinGet to install Git, Visual Studio Code, Docker Desktop, and the VS
+Code Dev Containers extension. It is safe to run more than once. Restart
+Windows when requested, complete any Docker Desktop first-run prompts, and wait
+until Docker Desktop reports that its Linux engine is running.
+
+Then run the environment bootstrap:
 
 ```powershell
 .\scripts\start-environment.ps1
