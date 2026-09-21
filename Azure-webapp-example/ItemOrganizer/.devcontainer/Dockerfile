@@ -1,5 +1,8 @@
 # syntax=docker/dockerfile:1
 
+FROM scratch AS dotnet-ef-package
+COPY .devcontainer/.build/ /
+
 FROM mcr.microsoft.com/devcontainers/javascript-node:1-22-bookworm@sha256:0d29e5fdc64f8397cd502223e0c4679f1e60877ca0fd2db4f2e2e0028e4271af
 
 ARG DOTNET_SDK_VERSION=10.0.100
@@ -59,9 +62,14 @@ RUN case "${TARGETARCH}" in \
     && curl -fsSL https://downloads.bicep.azure.com/${BICEP_VERSION}/bicep-linux-${BICEP_ARCH} -o /usr/local/bin/bicep \
     && chmod +x /usr/local/bin/bicep
 
-RUN mkdir -p /tmp/dotnet-tools \
-    && curl -fsSL "https://www.nuget.org/api/v2/package/dotnet-ef/${DOTNET_EF_VERSION}" \
-        -o "/tmp/dotnet-tools/dotnet-ef.${DOTNET_EF_VERSION}.nupkg" \
+RUN --mount=type=bind,from=dotnet-ef-package,source=/,target=/tmp/dotnet-ef-package \
+    mkdir -p /tmp/dotnet-tools \
+    && if [ -f /tmp/dotnet-ef-package/dotnet-ef.nupkg ]; then \
+        cp /tmp/dotnet-ef-package/dotnet-ef.nupkg "/tmp/dotnet-tools/dotnet-ef.${DOTNET_EF_VERSION}.nupkg"; \
+    else \
+        curl -fsSL "https://www.nuget.org/api/v2/package/dotnet-ef/${DOTNET_EF_VERSION}" \
+            -o "/tmp/dotnet-tools/dotnet-ef.${DOTNET_EF_VERSION}.nupkg"; \
+    fi \
     && dotnet tool install --tool-path /usr/local/bin dotnet-ef \
         --version ${DOTNET_EF_VERSION} \
         --source /tmp/dotnet-tools \

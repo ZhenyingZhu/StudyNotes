@@ -1,5 +1,6 @@
 services:
   workspace:
+    image: itemorganizer-workspace:local
     build:
       context: .
       dockerfile: .devcontainer/Dockerfile

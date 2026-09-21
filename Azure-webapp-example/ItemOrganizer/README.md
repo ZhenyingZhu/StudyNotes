@@ -83,13 +83,22 @@ docker compose exec -T workspace bash scripts/smoke-test.sh
 docker compose ps
 ```
 
-If an organization intercepts HTTPS traffic, pass its trusted PEM certificate
-to BuildKit without copying it into the repository:
+The bootstrap downloads the pinned EF Core CLI package using Windows
+certificate validation and passes it through an ignored, temporary build
+context file. A throwaway Docker stage supplies the package only while the CLI
+is installed, so the package is not retained in the final image. This avoids
+certificate-chain failures from NuGet's CDN without disabling TLS verification.
+
+If an organization intercepts other HTTPS traffic during the image build, pass
+its trusted PEM certificate to BuildKit without copying it into the repository:
 
 ```powershell
-docker build --secret id=custom_ca,src=C:\path\to\organization-ca.crt -t itemorganizer-workspace -f .devcontainer\Dockerfile .
-docker compose up -d --no-build
+.\scripts\start-environment.ps1 -CustomCaPath C:\path\to\organization-ca.crt
 ```
+
+The source file is mounted only while the image is built and is not copied into
+the repository or build context. The certificate is installed in the image's
+trust store so later HTTPS requests can use it.
 
 ## Local services
 
