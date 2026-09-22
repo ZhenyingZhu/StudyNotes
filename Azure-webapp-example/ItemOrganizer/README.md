@@ -152,6 +152,31 @@ representative data:
 .\scripts\reset-and-seed.ps1
 ```
 
+Query the local PostgreSQL database interactively:
+
+```powershell
+docker compose exec postgres psql -U itemorganizer -d itemorganizer
+```
+
+Useful commands within `psql` include:
+
+```sql
+\dt
+\d containers
+SELECT * FROM containers;
+SELECT * FROM photos;
+SELECT * FROM analyses;
+SELECT * FROM items;
+SELECT * FROM item_assignments;
+\q
+```
+
+Run a single query directly from PowerShell:
+
+```powershell
+docker compose exec -T postgres psql -U itemorganizer -d itemorganizer -c "SELECT name, location FROM containers;"
+```
+
 Run the Milestone 2 domain and PostgreSQL integration tests:
 
 ```powershell
