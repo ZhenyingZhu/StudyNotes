@@ -1,8 +1,8 @@
 # Item Organizer
 
 This repository implements the planning and development-environment outputs for
-Milestones 0 and 1 and the domain and persistence foundation for Milestone 2 of
-the accepted `PLAN.md`.
+Milestones 0 and 1, the domain and persistence foundation for Milestone 2, and
+the initial secure read API for Milestone 3 of the accepted `PLAN.md`.
 
 Milestone 0 is captured in `docs/milestone-0-decisions.md`. It resolves the product, security, workflow, retention, authorization, queue/worker, and acceptance-criteria decisions that were intentionally left open during planning.
 
@@ -22,6 +22,7 @@ Milestone 1 establishes a reproducible local development environment based on a 
 - `src/ItemOrganizer.Domain/` - inventory domain model and state transitions
 - `src/ItemOrganizer.Infrastructure/` - EF Core PostgreSQL mappings and migrations
 - `src/ItemOrganizer.Database/` - migration and seed command-line entry point
+- `src/ItemOrganizer.Api/` - versioned read API, authorization, health, and OpenAPI endpoints
 - `tests/` - domain and PostgreSQL integration tests
 
 ## Host prerequisites
@@ -182,6 +183,26 @@ Run the Milestone 2 domain and PostgreSQL integration tests:
 ```powershell
 docker compose exec -T workspace dotnet test ItemOrganizer.sln
 ```
+
+Run the API locally after configuring the database and Entra settings:
+
+```powershell
+docker compose exec -T workspace dotnet run --project src/ItemOrganizer.Api
+```
+
+The initial Milestone 3 slice exposes `/api/v1` health, summary, container,
+photo, analysis, and item reads. Resource reads require a delegated token with
+the `ItemOrganizer.Read` scope, the configured tenant ID, and valid `tid` and
+`oid` claims. Development OpenAPI is available at `/openapi/v1.json`.
+
+Configure these settings through local environment variables or user secrets:
+
+- `Authentication__Authority`
+- `Authentication__Audience`
+- `Authentication__AllowedTenantId`
+
+The photo content route intentionally returns `503` until private, short-lived
+Blob Storage access is implemented in Milestone 5.
 
 Create a migration after changing the persistence model:
 
