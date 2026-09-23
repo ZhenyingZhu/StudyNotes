@@ -216,7 +216,13 @@ public sealed class ItemOrganizerDbContext(DbContextOptions<ItemOrganizerDbConte
         builder.ToTable(table =>
         {
             table.HasCheckConstraint("ck_items_quantity", "quantity > 0");
-            table.HasCheckConstraint("ck_items_confidence", "confidence BETWEEN 0 AND 1");
+            table.HasCheckConstraint(
+                "ck_items_confidence",
+                "confidence IS NULL OR confidence BETWEEN 0 AND 1");
+            table.HasCheckConstraint(
+                "ck_items_source",
+                "(photo_id IS NULL AND analysis_id IS NULL AND confidence IS NULL) OR " +
+                "(photo_id IS NOT NULL AND analysis_id IS NOT NULL AND confidence IS NOT NULL)");
             table.HasCheckConstraint(
                 "ck_items_deleted_at",
                 "deleted_at IS NULL OR deleted_at >= created_at");

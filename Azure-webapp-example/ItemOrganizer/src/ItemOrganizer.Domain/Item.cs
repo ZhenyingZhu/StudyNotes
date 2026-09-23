@@ -30,9 +30,24 @@ public sealed class Item : OwnedEntity
             : throw new DomainException("Confidence must be between 0 and 1.");
     }
 
-    public Guid PhotoId { get; private set; }
+    private Item(
+        Guid id,
+        Guid tenantId,
+        Guid ownerObjectId,
+        string name,
+        string? description,
+        string? category,
+        int quantity,
+        DateTimeOffset createdAt)
+        : base(id, tenantId, ownerObjectId, createdAt)
+    {
+        DeduplicationKey = $"manual:{id:N}";
+        SetDetails(name, description, category, quantity);
+    }
 
-    public Guid AnalysisId { get; private set; }
+    public Guid? PhotoId { get; private set; }
+
+    public Guid? AnalysisId { get; private set; }
 
     public string Name { get; private set; } = string.Empty;
 
@@ -46,13 +61,34 @@ public sealed class Item : OwnedEntity
 
     public int Quantity { get; private set; }
 
-    public decimal Confidence { get; private set; }
+    public decimal? Confidence { get; private set; }
 
     public string DeduplicationKey { get; private set; } = string.Empty;
 
     public DateTimeOffset? DeletedAt { get; private set; }
 
     public ItemAssignment Assignment { get; private set; } = null!;
+
+    public static Item CreateManual(
+        Guid id,
+        Guid tenantId,
+        Guid ownerObjectId,
+        string name,
+        string? description,
+        string? category,
+        int quantity,
+        DateTimeOffset createdAt)
+    {
+        return new(
+            id,
+            tenantId,
+            ownerObjectId,
+            name,
+            description,
+            category,
+            quantity,
+            createdAt);
+    }
 
     public void SetAssignment(ItemAssignment assignment)
     {

@@ -57,11 +57,27 @@ public sealed record ItemResponse(
     string? Description,
     string? Category,
     int Quantity,
-    decimal Confidence,
-    Guid PhotoId,
-    Guid AnalysisId,
+    decimal? Confidence,
+    Guid? PhotoId,
+    Guid? AnalysisId,
     Guid? ContainerId,
     Guid? SuggestedContainerId,
     AssignmentStatus AssignmentStatus,
     DateTimeOffset CreatedAt,
     DateTimeOffset UpdatedAt);
+
+public sealed record ContainerRequest(
+    string Name,
+    string? Description,
+    string? Location,
+    IReadOnlyList<string>? Labels);
+
+public sealed record ItemRequest(
+    string Name,
+    string? Description,
+    string? Category,
+    int Quantity);
+
+public sealed record AssignmentRequest(
+    Guid ContainerId,
+    bool AcceptSuggestion);

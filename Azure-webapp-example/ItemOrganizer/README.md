@@ -23,6 +23,7 @@ Milestone 1 establishes a reproducible local development environment based on a 
 - `src/ItemOrganizer.Infrastructure/` - EF Core PostgreSQL mappings and migrations
 - `src/ItemOrganizer.Database/` - migration and seed command-line entry point
 - `src/ItemOrganizer.Api/` - versioned read API, authorization, health, and OpenAPI endpoints
+- `web/` - React and TypeScript inventory web application
 - `tests/` - domain and PostgreSQL integration tests
 
 ## Host prerequisites
@@ -203,6 +204,26 @@ Configure these settings through local environment variables or user secrets:
 
 The photo content route intentionally returns `503` until private, short-lived
 Blob Storage access is implemented in Milestone 5.
+
+Start the Milestone 4 frontend from the Development Container:
+
+```powershell
+Copy-Item .env.example .env
+docker compose exec -T workspace pnpm --dir web install
+docker compose exec workspace pnpm --dir web dev
+```
+
+The committed `web/.npmrc` reads the registry from
+`ITEMORGANIZER_NPM_REGISTRY`. `.env.example` selects the approved Azure DevOps
+`One_PublicPackages` feed by default, TLS verification remains enabled, and
+there is no public registry fallback. Registry credentials, when required,
+must be supplied through the approved local or organizational package-manager
+configuration and must not be committed.
+
+Copy `web/.env.example` to `web/.env.local` and configure the API URL, Entra
+client and tenant IDs, and the delegated API scope before signing in. The web
+application supports container and manual-item creation, editing, deletion,
+inventory search, assignment, unassignment, and conflict feedback.
 
 Create a migration after changing the persistence model:
 

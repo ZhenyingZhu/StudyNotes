@@ -417,6 +417,21 @@ The milestones below are ordered so that each stage produces a demonstrable, tes
 
 **Exit criteria:** Backend unit, API contract, and frontend component tests pass for the complete non-AI workflow.
 
+**Current implementation status (September 23, 2026):**
+
+- Container, manual-item, and assignment mutation routes enforce ownership,
+  delegated write scope, optimistic concurrency, validation, and conflict
+  responses.
+- Manual items now have explicit persistence support without fabricated photo,
+  analysis, or confidence values.
+- The React and TypeScript frontend covers container and item creation,
+  editing, deletion, inventory search, assignment, unassignment, and conflict
+  feedback.
+- Backend and PostgreSQL tests pass. Frontend dependency restore and Vitest
+  execution remain pending until `ITEMORGANIZER_NPM_REGISTRY` is configured
+  with an approved internal registry; public npm access is intentionally not
+  used.
+
 ### Milestone 5 — Secure photo ingestion and storage
 
 **Purpose:** Accept, validate, store, retrieve, and delete private photos safely.

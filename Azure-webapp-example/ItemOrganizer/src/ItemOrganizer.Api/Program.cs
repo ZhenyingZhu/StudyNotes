@@ -29,6 +29,19 @@ builder.Services.AddOpenApi(options =>
 });
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<CurrentUserAccessor>();
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(policy =>
+    {
+        var origins = builder.Configuration
+            .GetSection("Cors:AllowedOrigins")
+            .Get<string[]>()
+            ?? ["http://localhost:5173"];
+        policy.WithOrigins(origins)
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+    });
+});
 builder.Services.AddSingleton<
     Microsoft.AspNetCore.Authorization.IAuthorizationMiddlewareResultHandler,
     ProblemDetailsAuthorizationResultHandler>();
@@ -45,15 +58,25 @@ builder.Services.AddAuthorization(options =>
     options.AddPolicy(AuthorizationPolicies.Read, policy =>
     {
         policy.RequireAuthenticatedUser();
-        policy.AddRequirements(new ReadAccessRequirement());
+        policy.AddRequirements(
+            new ScopeAccessRequirement(AuthorizationPolicies.Read));
+    });
+    options.AddPolicy(AuthorizationPolicies.Write, policy =>
+    {
+        policy.RequireAuthenticatedUser();
+        policy.AddRequirements(
+            new ScopeAccessRequirement(AuthorizationPolicies.Write));
     });
 });
-builder.Services.AddSingleton<Microsoft.AspNetCore.Authorization.IAuthorizationHandler, ReadAccessHandler>();
+builder.Services.AddSingleton<
+    Microsoft.AspNetCore.Authorization.IAuthorizationHandler,
+    ScopeAccessHandler>();
 
 var app = builder.Build();
 
 app.UseExceptionHandler();
 app.UseMiddleware<CorrelationIdMiddleware>();
+app.UseCors();
 app.UseAuthentication();
 app.UseAuthorization();
 
@@ -63,6 +86,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.MapReadEndpoints();
+app.MapWriteEndpoints();
 
 app.Run();
 

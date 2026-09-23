@@ -8,6 +8,7 @@ namespace ItemOrganizer.Api;
 public static class AuthorizationPolicies
 {
     public const string Read = "ItemOrganizer.Read";
+    public const string Write = "ItemOrganizer.Write";
 }
 
 public sealed record CurrentUser(Guid TenantId, Guid OwnerObjectId);
@@ -34,14 +35,14 @@ public sealed class CurrentUserAccessor(IHttpContextAccessor httpContextAccessor
     }
 }
 
-public sealed class ReadAccessRequirement : IAuthorizationRequirement;
+public sealed record ScopeAccessRequirement(string Scope) : IAuthorizationRequirement;
 
-public sealed class ReadAccessHandler(IConfiguration configuration)
-    : AuthorizationHandler<ReadAccessRequirement>
+public sealed class ScopeAccessHandler(IConfiguration configuration)
+    : AuthorizationHandler<ScopeAccessRequirement>
 {
     protected override Task HandleRequirementAsync(
         AuthorizationHandlerContext context,
-        ReadAccessRequirement requirement)
+        ScopeAccessRequirement requirement)
     {
         var allowedTenantValue = configuration["Authentication:AllowedTenantId"];
         if (!Guid.TryParse(allowedTenantValue, out var allowedTenantId))
@@ -58,7 +59,7 @@ public sealed class ReadAccessHandler(IConfiguration configuration)
             && scopeValue?.Split(
                 ' ',
                 StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
-                .Contains(AuthorizationPolicies.Read, StringComparer.Ordinal) == true)
+                .Contains(requirement.Scope, StringComparer.Ordinal) == true)
         {
             context.Succeed(requirement);
         }

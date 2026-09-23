@@ -3,6 +3,7 @@ using System;
 using ItemOrganizer.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace ItemOrganizer.Infrastructure.Migrations
 {
     [DbContext(typeof(ItemOrganizerDbContext))]
-    partial class ItemOrganizerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260923163847_AddManualItems")]
+    partial class AddManualItems
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
