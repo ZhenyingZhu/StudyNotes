@@ -1,6 +1,6 @@
 import { render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { vi } from 'vitest'
+import { expect, test, vi } from 'vitest'
 import {
   Container,
   InventoryApi,
@@ -48,7 +48,12 @@ function createApi(): InventoryApi {
   return {
     getSummary: vi.fn().mockResolvedValue(summary),
     listContainers: vi.fn().mockResolvedValue([container]),
-    listItems: vi.fn().mockResolvedValue([item]),
+    listItems: vi
+      .fn()
+      .mockResolvedValue({ items: [item], continuationToken: null }),
+    listContainerItems: vi
+      .fn()
+      .mockResolvedValue({ items: [item], continuationToken: null }),
     createContainer: vi.fn().mockResolvedValue(container),
     updateContainer: vi.fn().mockResolvedValue(container),
     deleteContainer: vi.fn().mockResolvedValue(undefined),
@@ -67,7 +72,7 @@ test('creates a container from the webpage', async () => {
   const api = createApi()
   render(<InventoryApp api={api} />)
 
-  await screen.findByText('Office')
+  await screen.findByRole('heading', { name: 'Office' })
   const nameInputs = screen.getAllByLabelText('Name')
   await user.type(nameInputs[0], 'Garage shelf')
   await user.click(screen.getByRole('button', { name: 'Add container' }))
@@ -102,4 +107,23 @@ test('searches inventory and assigns an item', async () => {
   await waitFor(() =>
     expect(api.assignItem).toHaveBeenCalledWith('item-1', 'container-1'),
   )
+})
+
+test('opens a container-specific inventory view', async () => {
+  const user = userEvent.setup()
+  const api = createApi()
+  render(<InventoryApp api={api} />)
+
+  await screen.findByRole('heading', { name: 'Office' })
+  await user.click(screen.getByRole('button', { name: 'View items' }))
+
+  await waitFor(() =>
+    expect(api.listContainerItems).toHaveBeenCalledWith(
+      'container-1',
+      '',
+    ),
+  )
+  expect(
+    screen.getByRole('button', { name: 'View all inventory' }),
+  ).toBeInTheDocument()
 })

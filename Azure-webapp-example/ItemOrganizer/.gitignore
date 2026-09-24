@@ -19,6 +19,10 @@ node_modules/
 dist/
 coverage/
 playwright-report/
+*.tsbuildinfo
+vite.config.js
+vite.config.d.ts
+.pnpm-store/
 
 # Local data and logs
 *.log

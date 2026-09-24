@@ -27,6 +27,12 @@ export function InventoryApp({ api }: { api: InventoryApi }) {
   const [summary, setSummary] = useState<Summary | null>(null)
   const [containers, setContainers] = useState<Container[]>([])
   const [items, setItems] = useState<InventoryItem[]>([])
+  const [continuationToken, setContinuationToken] = useState<string | null>(
+    null,
+  )
+  const [selectedContainerId, setSelectedContainerId] = useState<string | null>(
+    null,
+  )
   const [search, setSearch] = useState('')
   const [containerForm, setContainerForm] = useState(emptyContainer)
   const [itemForm, setItemForm] = useState(emptyItem)
@@ -39,17 +45,23 @@ export function InventoryApp({ api }: { api: InventoryApi }) {
   const [loading, setLoading] = useState(true)
 
   const load = useCallback(
-    async (itemSearch: string) => {
+    async (
+      itemSearch: string,
+      containerId: string | null = selectedContainerId,
+    ) => {
       try {
         setLoading(true)
-        const [nextSummary, nextContainers, nextItems] = await Promise.all([
+        const [nextSummary, nextContainers, nextPage] = await Promise.all([
           api.getSummary(),
           api.listContainers(),
-          api.listItems(itemSearch),
+          containerId
+            ? api.listContainerItems(containerId, itemSearch)
+            : api.listItems(itemSearch),
         ])
         setSummary(nextSummary)
         setContainers(nextContainers)
-        setItems(nextItems)
+        setItems(nextPage.items)
+        setContinuationToken(nextPage.continuationToken)
         setError('')
       } catch (caught) {
         showError(caught, setError)
@@ -57,7 +69,7 @@ export function InventoryApp({ api }: { api: InventoryApi }) {
         setLoading(false)
       }
     },
-    [api],
+    [api, selectedContainerId],
   )
 
   useEffect(() => {
@@ -101,6 +113,30 @@ export function InventoryApp({ api }: { api: InventoryApi }) {
       await load(search)
     } catch (caught) {
       showError(caught, setError)
+    }
+  }
+
+  async function loadMore() {
+    if (!continuationToken) {
+      return
+    }
+
+    try {
+      setLoading(true)
+      const page = selectedContainerId
+        ? await api.listContainerItems(
+            selectedContainerId,
+            search,
+            continuationToken,
+          )
+        : await api.listItems(search, continuationToken)
+      setItems((current) => [...current, ...page.items])
+      setContinuationToken(page.continuationToken)
+      setError('')
+    } catch (caught) {
+      showError(caught, setError)
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -268,6 +304,16 @@ export function InventoryApp({ api }: { api: InventoryApi }) {
                     Edit
                   </button>
                   <button
+                    className="text-button"
+                    onClick={() => {
+                      setSelectedContainerId(container.id)
+                      setSearch('')
+                      void load('', container.id)
+                    }}
+                  >
+                    View items
+                  </button>
+                  <button
                     className="text-button danger"
                     onClick={() =>
                       void runMutation(async () => {
@@ -288,10 +334,29 @@ export function InventoryApp({ api }: { api: InventoryApi }) {
           <div className="section-heading">
             <div>
               <p className="eyebrow">CATALOG</p>
-              <h2>Inventory</h2>
+              <h2>
+                {selectedContainerId
+                  ? containers.find(
+                      (container) => container.id === selectedContainerId,
+                    )?.name ?? 'Container'
+                  : 'All inventory'}
+              </h2>
             </div>
             <span>{items.length} shown</span>
           </div>
+
+          {selectedContainerId && (
+            <button
+              className="secondary inventory-scope"
+              onClick={() => {
+                setSelectedContainerId(null)
+                setSearch('')
+                void load('', null)
+              }}
+            >
+              View all inventory
+            </button>
+          )}
 
           <form
             className="search"
@@ -439,6 +504,15 @@ export function InventoryApp({ api }: { api: InventoryApi }) {
               ))}
               {!items.length && (
                 <p className="empty-state">No inventory items found.</p>
+              )}
+              {continuationToken && (
+                <button
+                  className="secondary load-more"
+                  onClick={() => void loadMore()}
+                  disabled={loading}
+                >
+                  {loading ? 'Loading…' : 'Load 100 more'}
+                </button>
               )}
             </div>
           )}

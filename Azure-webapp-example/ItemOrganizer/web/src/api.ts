@@ -47,7 +47,7 @@ export type ItemInput = {
   quantity: number
 }
 
-type Page<T> = {
+export type Page<T> = {
   items: T[]
   continuationToken: string | null
 }
@@ -60,7 +60,15 @@ type Resource<T> = {
 export interface InventoryApi {
   getSummary(): Promise<Summary>
   listContainers(): Promise<Container[]>
-  listItems(search?: string): Promise<InventoryItem[]>
+  listItems(
+    search?: string,
+    continuationToken?: string | null,
+  ): Promise<Page<InventoryItem>>
+  listContainerItems(
+    containerId: string,
+    search?: string,
+    continuationToken?: string | null,
+  ): Promise<Page<InventoryItem>>
   createContainer(input: ContainerInput): Promise<Container>
   updateContainer(id: string, input: ContainerInput): Promise<Container>
   deleteContainer(id: string): Promise<void>
@@ -83,7 +91,7 @@ export class ApiError extends Error {
 export class HttpInventoryApi implements InventoryApi {
   constructor(
     private readonly baseUrl: string,
-    private readonly getAccessToken: () => Promise<string>,
+    private readonly getAccessToken: () => Promise<string | null>,
   ) {}
 
   getSummary() {
@@ -97,15 +105,32 @@ export class HttpInventoryApi implements InventoryApi {
     return page.items
   }
 
-  async listItems(search = '') {
+  listItems(search = '', continuationToken?: string | null) {
     const query = new URLSearchParams({ pageSize: '100' })
     if (search.trim()) {
       query.set('search', search.trim())
     }
-    const page = await this.request<Page<InventoryItem>>(
-      `/api/v1/items?${query}`,
+    if (continuationToken) {
+      query.set('continuationToken', continuationToken)
+    }
+    return this.request<Page<InventoryItem>>(`/api/v1/items?${query}`)
+  }
+
+  listContainerItems(
+    containerId: string,
+    search = '',
+    continuationToken?: string | null,
+  ) {
+    const query = new URLSearchParams({ pageSize: '100' })
+    if (search.trim()) {
+      query.set('search', search.trim())
+    }
+    if (continuationToken) {
+      query.set('continuationToken', continuationToken)
+    }
+    return this.request<Page<InventoryItem>>(
+      `/api/v1/containers/${containerId}/items?${query}`,
     )
-    return page.items
   }
 
   createContainer(input: ContainerInput) {
@@ -210,7 +235,9 @@ export class HttpInventoryApi implements InventoryApi {
   private async send(path: string, init?: RequestInit) {
     const token = await this.getAccessToken()
     const headers = new Headers(init?.headers)
-    headers.set('Authorization', `Bearer ${token}`)
+    if (token) {
+      headers.set('Authorization', `Bearer ${token}`)
+    }
     if (init?.body) {
       headers.set('Content-Type', 'application/json')
     }

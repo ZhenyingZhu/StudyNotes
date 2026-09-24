@@ -286,6 +286,15 @@ textarea {
   margin: 1.2rem 0 0;
 }
 
+.inventory-scope {
+  margin-top: 1rem;
+}
+
+.load-more {
+  align-self: center;
+  margin-top: 1rem;
+}
+
 .inventory-row {
   display: grid;
   grid-template-columns: minmax(150px, 1.3fr) minmax(145px, 0.8fr) auto;

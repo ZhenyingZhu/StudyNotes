@@ -39,20 +39,43 @@ builder.Services.AddCors(options =>
             ?? ["http://localhost:5173"];
         policy.WithOrigins(origins)
             .AllowAnyHeader()
-            .AllowAnyMethod();
+            .AllowAnyMethod()
+            .WithExposedHeaders(
+                "ETag",
+                "Location",
+                CorrelationIdMiddleware.HeaderName);
     });
 });
 builder.Services.AddSingleton<
     Microsoft.AspNetCore.Authorization.IAuthorizationMiddlewareResultHandler,
     ProblemDetailsAuthorizationResultHandler>();
 
-builder.Services
-    .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-    .AddJwtBearer(options =>
-    {
-        options.Authority = builder.Configuration["Authentication:Authority"];
-        options.Audience = builder.Configuration["Authentication:Audience"];
-    });
+var useDevelopmentAuthentication =
+    builder.Environment.IsDevelopment()
+    && builder.Configuration.GetValue<bool>(
+        "DevelopmentAuthentication:Enabled");
+if (useDevelopmentAuthentication)
+{
+    builder.Services
+        .AddAuthentication(DevelopmentAuthenticationHandler.SchemeName)
+        .AddScheme<
+            Microsoft.AspNetCore.Authentication.AuthenticationSchemeOptions,
+            DevelopmentAuthenticationHandler>(
+            DevelopmentAuthenticationHandler.SchemeName,
+            _ => { });
+}
+else
+{
+    builder.Services
+        .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+        .AddJwtBearer(options =>
+        {
+            options.Authority =
+                builder.Configuration["Authentication:Authority"];
+            options.Audience =
+                builder.Configuration["Authentication:Audience"];
+        });
+}
 builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy(AuthorizationPolicies.Read, policy =>

@@ -209,8 +209,20 @@ Start the Milestone 4 frontend from the Development Container:
 
 ```powershell
 Copy-Item .env.example .env
-docker compose exec -T workspace pnpm --dir web install
-docker compose exec workspace pnpm --dir web dev
+.\scripts\restore-frontend.ps1
+docker compose exec workspace pnpm -C web dev
+```
+
+The restore script securely prompts for an Azure DevOps PAT with Packaging Read
+permission. It sends the credential to the running Development Container over
+standard input, temporarily adds feed authentication to the container user's
+`.npmrc`, restores packages, and restores or removes that file before exiting.
+The PAT is not passed as a process argument or written into the repository.
+For unattended local use with an existing protected PAT file, pass its path
+with `-PatPath`; the file contents are not displayed:
+
+```powershell
+.\scripts\restore-frontend.ps1 -PatPath C:\secure\azure-devops-pat.txt
 ```
 
 The committed `web/.npmrc` reads the registry from
