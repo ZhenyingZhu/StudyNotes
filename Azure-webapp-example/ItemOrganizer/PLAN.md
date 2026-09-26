@@ -4,8 +4,9 @@
 
 **Accepted and implementation authorized. Milestone 0 is complete. Milestone 1
 is implemented and verified on Windows ARM64; clean-checkout recreation on a
-second supported machine remains pending. Milestone 2 is implemented and
-verified against local PostgreSQL.**
+second supported machine remains pending. Milestones 2 and 3 are implemented
+and verified. Milestone 4 is substantially implemented, with acceptance and
+test gaps remaining.**
 
 ## Goal
 
@@ -417,7 +418,7 @@ The milestones below are ordered so that each stage produces a demonstrable, tes
 
 **Exit criteria:** Backend unit, API contract, and frontend component tests pass for the complete non-AI workflow.
 
-**Current implementation status (September 23, 2026):**
+**Current implementation status (September 25, 2026):**
 
 - Container, manual-item, and assignment mutation routes enforce ownership,
   delegated write scope, optimistic concurrency, validation, and conflict
@@ -427,10 +428,15 @@ The milestones below are ordered so that each stage produces a demonstrable, tes
 - The React and TypeScript frontend covers container and item creation,
   editing, deletion, inventory search, assignment, unassignment, and conflict
   feedback.
-- Backend and PostgreSQL tests pass. Frontend dependency restore and Vitest
-  execution remain pending until `ITEMORGANIZER_NPM_REGISTRY` is configured
-  with an approved internal registry; public npm access is intentionally not
-  used.
+- Domain and API contract tests pass, and PostgreSQL integration tests passed
+  during the September 23 validation. Frontend component tests exist for
+  container creation, inventory search, assignment, and container inventory
+  views, but coverage for item editing and conflict messages is still missing.
+- Duplicate-request handling is represented in the persistence model but is not
+  yet applied by the Milestone 4 write endpoints.
+- Frontend dependency restoration must continue to use
+  `ITEMORGANIZER_NPM_REGISTRY` with an approved internal registry; public npm
+  access is intentionally not used.
 
 ### Milestone 5 — Secure photo ingestion and storage
 
@@ -522,4 +528,6 @@ Every milestone must preserve these requirements:
 
 ## Next step
 
-Proceed with Milestone 2: implement the domain model and persistence foundation using the decisions documented in `docs/milestone-0-decisions.md` and the development environment defined in this repository.
+Complete the remaining Milestone 4 duplicate-request behavior and frontend
+component test coverage, then run the full backend, PostgreSQL integration, and
+frontend test suites before proceeding to Milestone 5.

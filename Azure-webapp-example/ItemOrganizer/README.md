@@ -1,8 +1,9 @@
 # Item Organizer
 
 This repository implements the planning and development-environment outputs for
-Milestones 0 and 1, the domain and persistence foundation for Milestone 2, and
-the initial secure read API for Milestone 3 of the accepted `PLAN.md`.
+Milestones 0 and 1, the domain and persistence foundation for Milestone 2, the
+secure read API and authorization requirements for Milestone 3, and most of the
+manual inventory workflows planned for Milestone 4 of the accepted `PLAN.md`.
 
 Milestone 0 is captured in `docs/milestone-0-decisions.md`. It resolves the product, security, workflow, retention, authorization, queue/worker, and acceptance-criteria decisions that were intentionally left open during planning.
 
@@ -22,7 +23,7 @@ Milestone 1 establishes a reproducible local development environment based on a 
 - `src/ItemOrganizer.Domain/` - inventory domain model and state transitions
 - `src/ItemOrganizer.Infrastructure/` - EF Core PostgreSQL mappings and migrations
 - `src/ItemOrganizer.Database/` - migration and seed command-line entry point
-- `src/ItemOrganizer.Api/` - versioned read API, authorization, health, and OpenAPI endpoints
+- `src/ItemOrganizer.Api/` - versioned read/write API, authorization, health, and OpenAPI endpoints
 - `web/` - React and TypeScript inventory web application
 - `tests/` - domain and PostgreSQL integration tests
 
@@ -179,7 +180,7 @@ Run a single query directly from PowerShell:
 docker compose exec -T postgres psql -U itemorganizer -d itemorganizer -c "SELECT name, location FROM containers;"
 ```
 
-Run the Milestone 2 domain and PostgreSQL integration tests:
+Run the backend unit, PostgreSQL integration, and API contract tests:
 
 ```powershell
 docker compose exec -T workspace dotnet test ItemOrganizer.sln
@@ -191,10 +192,10 @@ Run the API locally after configuring the database and Entra settings:
 docker compose exec -T workspace dotnet run --project src/ItemOrganizer.Api
 ```
 
-The initial Milestone 3 slice exposes `/api/v1` health, summary, container,
-photo, analysis, and item reads. Resource reads require a delegated token with
-the `ItemOrganizer.Read` scope, the configured tenant ID, and valid `tid` and
-`oid` claims. Development OpenAPI is available at `/openapi/v1.json`.
+Milestone 3 exposes `/api/v1` health, summary, container, photo, analysis, and
+item reads. Resource reads require a delegated token with the
+`ItemOrganizer.Read` scope, the configured tenant ID, and valid `tid` and `oid`
+claims. Development OpenAPI is available at `/openapi/v1.json`.
 
 Configure these settings through local environment variables or user secrets:
 
@@ -256,11 +257,21 @@ Validation performed on September 16, 2026 confirmed:
 Milestone 1 remains incomplete until a second supported machine reproduces the
 environment from a clean checkout.
 
-## Next implementation milestone
+## Implementation status
 
-Milestone 2 now provides the approved schema, state transitions, ownership
-constraints, optimistic concurrency, transactional analysis-result persistence,
-and deterministic seed data. Milestone 1 still requires clean-checkout
-validation on a second machine before its exit criteria are formally complete.
+- Milestone 2 provides the approved schema, state transitions, ownership
+  constraints, optimistic concurrency, transactional analysis-result
+  persistence, and deterministic seed data.
+- Milestone 3 is implemented. Its read routes, authorization, ownership
+  isolation, paging, headers, health endpoints, and Problem Details behavior
+  are covered by the passing API contract tests.
+- Milestone 4 is substantially implemented. The API and web application support
+  container and manual-item creation, editing, deletion, inventory search,
+  assignment, unassignment, optimistic concurrency, and conflict feedback.
+  Formal completion still requires duplicate-request handling and frontend
+  component coverage for item editing and conflict messages.
+- Milestone 1 still requires clean-checkout validation on a second supported
+  machine before its exit criteria are formally complete.
 
-The next implementation step is Milestone 3: read-only APIs and authorization.
+The next implementation work is to close the remaining Milestone 4 acceptance
+and test gaps before starting Milestone 5 photo ingestion.
