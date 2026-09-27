@@ -739,6 +739,15 @@ It might run into errors
 
 Have a brainstorm skill
 
+### Muse
+
+Secure credential store: a "containment-first" security perimeter. Divided into layers:
+
+1. Task executes within an isolated container, runtime cell (a systemd-nspawn runtime). The secure store lives outside this cell, on the host domain. The LLM-powered agent does not have root privileges to read the secure storage.
+2. When input credentials through Muse's secure UI, they are written straight to the host-side storage. The agent is only given surrogate tokens (placeholders) to reference those credentials internally. Real secrets are swapped for these surrogate tokens only at the network boundary after a transaction or request has been formally authorized.
+3. Outside the runtime cell sits the Sentinel, a host-side tracking process that monitors all outbound network traffic and connector actions.When Muse attempts an action requiring credentials, the Sentinel cross-references the request, maps the surrogate token to the actual credential, and enforces human-in-the-loop approval before allowing sensitive data to pass through the egress filter.
+4. For retail checkouts, Muse doesn't store or read primary credit card numbers. Payments are routed through Link by Stripe, which dynamically generates one-time-use virtual card numbers at the exact moment of checkout.
+
 ## Agent
 
 <https://github.com/caramaschiHG/awesome-ai-agents-2026>
