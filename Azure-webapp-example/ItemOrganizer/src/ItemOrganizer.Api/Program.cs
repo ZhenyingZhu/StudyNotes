@@ -1,8 +1,10 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Azure.Storage.Blobs;
 using ItemOrganizer.Api;
 using ItemOrganizer.Infrastructure;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,6 +18,24 @@ if (string.IsNullOrWhiteSpace(connectionString))
 
 builder.Services.AddDbContext<ItemOrganizerDbContext>(options =>
     options.UseNpgsql(connectionString).UseSnakeCaseNamingConvention());
+var storageConnectionString =
+    builder.Configuration["ITEMORGANIZER_STORAGE_CONNECTION"];
+if (string.IsNullOrWhiteSpace(storageConnectionString))
+{
+    throw new InvalidOperationException(
+        "ITEMORGANIZER_STORAGE_CONNECTION is required.");
+}
+builder.Services.AddSingleton(new BlobServiceClient(
+    storageConnectionString,
+    new BlobClientOptions(
+        BlobClientOptions.ServiceVersion.V2024_11_04)));
+builder.Services.AddSingleton<IPhotoStorage, AzureBlobPhotoStorage>();
+builder.Services.AddScoped<PhotoRetentionCleanup>();
+builder.Services.AddHostedService<PhotoRetentionWorker>();
+builder.Services.Configure<FormOptions>(options =>
+{
+    options.MultipartBodyLengthLimit = 11 * 1024 * 1024;
+});
 builder.Services.AddProblemDetails();
 builder.Services.ConfigureHttpJsonOptions(options =>
 {
@@ -110,6 +130,7 @@ if (app.Environment.IsDevelopment())
 
 app.MapReadEndpoints();
 app.MapWriteEndpoints();
+app.MapPhotoEndpoints();
 
 app.Run();
 

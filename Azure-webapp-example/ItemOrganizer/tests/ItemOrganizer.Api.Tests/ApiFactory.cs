@@ -26,12 +26,18 @@ public sealed class ApiFactory : WebApplicationFactory<Program>
     public static readonly Guid OtherContainerId =
         Guid.Parse("30000000-0000-0000-0000-000000000002");
 
+    public FakePhotoStorage PhotoStorage { get; } = new();
+
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
         builder.UseEnvironment("Testing");
         builder.UseSetting(
             "ITEMORGANIZER_DATABASE_CONNECTION",
             "Host=localhost;Database=itemorganizer_api_tests");
+        builder.UseSetting(
+            "ITEMORGANIZER_STORAGE_CONNECTION",
+            "UseDevelopmentStorage=true");
+        builder.UseSetting("PhotoStorage:CleanupEnabled", "false");
         builder.UseSetting("Authentication:AllowedTenantId", TenantId.ToString());
         builder.ConfigureServices(services =>
         {
@@ -41,6 +47,8 @@ public sealed class ApiFactory : WebApplicationFactory<Program>
             services.RemoveAll<ItemOrganizerDbContext>();
             services.AddDbContext<ItemOrganizerDbContext>(options =>
                 options.UseInMemoryDatabase(_databaseName));
+            services.RemoveAll<IPhotoStorage>();
+            services.AddSingleton<IPhotoStorage>(PhotoStorage);
 
             services.AddAuthentication(options =>
                 {

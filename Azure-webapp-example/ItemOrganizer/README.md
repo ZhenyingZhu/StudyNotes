@@ -2,8 +2,9 @@
 
 This repository implements the planning and development-environment outputs for
 Milestones 0 and 1, the domain and persistence foundation for Milestone 2, the
-secure read API and authorization requirements for Milestone 3, and most of the
-manual inventory workflows planned for Milestone 4 of the accepted `PLAN.md`.
+secure read API and authorization requirements for Milestone 3, the manual
+inventory workflows for Milestone 4, and secure photo ingestion and storage for
+Milestone 5 of the accepted `PLAN.md`.
 
 Milestone 0 is captured in `docs/milestone-0-decisions.md`. It resolves the product, security, workflow, retention, authorization, queue/worker, and acceptance-criteria decisions that were intentionally left open during planning.
 
@@ -203,8 +204,20 @@ Configure these settings through local environment variables or user secrets:
 - `Authentication__Audience`
 - `Authentication__AllowedTenantId`
 
-The photo content route intentionally returns `503` until private, short-lived
-Blob Storage access is implemented in Milestone 5.
+Milestone 5 adds `POST /api/v1/photos` multipart uploads, authorized short-lived
+photo content URLs, and retryable `DELETE /api/v1/photos/{photoId}` deletion.
+Uploads accept one `file` part in JPEG, PNG, or WebP format, enforce the 10 MiB
+and 512-8000 pixel limits, reject animated or malformed images, and support an
+optional `Idempotency-Key` header. Blob names are server-generated and the
+storage container is created without public access.
+
+Photo storage behavior can be configured with:
+
+- `PhotoStorage__ContainerName` - private blob container name
+- `PhotoStorage__ReadUrlMinutes` - read URL lifetime, clamped to 1-15 minutes
+- `PhotoStorage__MaximumPhotosPerOwner` - active-photo upload quota
+- `PhotoStorage__CleanupEnabled` - enable expired/pending photo cleanup
+- `PhotoStorage__CleanupIntervalMinutes` - cleanup cadence, clamped to 1-15 minutes
 
 Start the Milestone 4 frontend from the Development Container:
 
@@ -265,13 +278,21 @@ environment from a clean checkout.
 - Milestone 3 is implemented. Its read routes, authorization, ownership
   isolation, paging, headers, health endpoints, and Problem Details behavior
   are covered by the passing API contract tests.
-- Milestone 4 is substantially implemented. The API and web application support
+- Milestone 4 is complete. The API and web application support
   container and manual-item creation, editing, deletion, inventory search,
   assignment, unassignment, optimistic concurrency, and conflict feedback.
-  Formal completion still requires duplicate-request handling and frontend
-  component coverage for item editing and conflict messages.
+  Frontend component coverage includes container creation, inventory search,
+  item editing, assignment, conflict feedback, and stale-record feedback.
+- Milestone 5 is complete. Photo APIs provide bounded format and dimension
+  validation, private blob storage, idempotent upload replay, per-owner quota
+  enforcement, short-lived authorized reads, retryable deletion, and retention
+  cleanup.
 - Milestone 1 still requires clean-checkout validation on a second supported
   machine before its exit criteria are formally complete.
 
-The next implementation work is to close the remaining Milestone 4 acceptance
-and test gaps before starting Milestone 5 photo ingestion.
+Validation on September 27, 2026 passed the Development Container smoke test,
+9 domain tests, 7 PostgreSQL/Azurite integration tests, 26 API tests, 6
+frontend component tests, and the frontend type-check and production build.
+
+The next implementation milestone is Milestone 6: the deterministic
+asynchronous analysis pipeline.

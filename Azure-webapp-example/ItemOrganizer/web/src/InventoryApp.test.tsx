@@ -1,7 +1,8 @@
-import { render, screen, waitFor } from '@testing-library/react'
+import { render, screen, waitFor, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { expect, test, vi } from 'vitest'
 import {
+  ApiError,
   Container,
   InventoryApi,
   InventoryItem,
@@ -126,4 +127,61 @@ test('opens a container-specific inventory view', async () => {
   expect(
     screen.getByRole('button', { name: 'View all inventory' }),
   ).toBeInTheDocument()
+})
+
+test('edits an inventory item', async () => {
+  const user = userEvent.setup()
+  const api = createApi()
+  render(<InventoryApp api={api} />)
+
+  const itemRow = (await screen.findByText('Tape')).closest('article')
+  expect(itemRow).not.toBeNull()
+  await user.click(within(itemRow!).getByRole('button', { name: 'Edit' }))
+  const nameInputs = screen.getAllByLabelText('Name')
+  await user.clear(nameInputs[1])
+  await user.type(nameInputs[1], 'Packing tape')
+  await user.click(screen.getByRole('button', { name: 'Save item' }))
+
+  await waitFor(() =>
+    expect(api.updateItem).toHaveBeenCalledWith(
+      'item-1',
+      expect.objectContaining({ name: 'Packing tape' }),
+    ),
+  )
+  expect(await screen.findByRole('status')).toHaveTextContent('Item updated.')
+})
+
+test('shows a conflict message from a failed mutation', async () => {
+  const user = userEvent.setup()
+  const api = createApi()
+  vi.mocked(api.deleteItem).mockRejectedValue(
+    new ApiError('The item is still referenced.', 409),
+  )
+  render(<InventoryApp api={api} />)
+
+  const itemRow = (await screen.findByText('Tape')).closest('article')
+  expect(itemRow).not.toBeNull()
+  await user.click(within(itemRow!).getByRole('button', { name: 'Delete' }))
+
+  expect(await screen.findByRole('alert')).toHaveTextContent(
+    'Conflict: The item is still referenced.',
+  )
+})
+
+test('shows a stale-record message', async () => {
+  const user = userEvent.setup()
+  const api = createApi()
+  vi.mocked(api.updateItem).mockRejectedValue(
+    new ApiError('The resource changed.', 412),
+  )
+  render(<InventoryApp api={api} />)
+
+  const itemRow = (await screen.findByText('Tape')).closest('article')
+  expect(itemRow).not.toBeNull()
+  await user.click(within(itemRow!).getByRole('button', { name: 'Edit' }))
+  await user.click(screen.getByRole('button', { name: 'Save item' }))
+
+  expect(await screen.findByRole('alert')).toHaveTextContent(
+    'This record changed elsewhere. Refresh and try again.',
+  )
 })

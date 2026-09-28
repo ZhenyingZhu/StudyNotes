@@ -5,8 +5,8 @@
 **Accepted and implementation authorized. Milestone 0 is complete. Milestone 1
 is implemented and verified on Windows ARM64; clean-checkout recreation on a
 second supported machine remains pending. Milestones 2 and 3 are implemented
-and verified. Milestone 4 is substantially implemented, with acceptance and
-test gaps remaining.**
+and verified. Milestones 4 and 5 are complete and verified in the Development
+Container.**
 
 ## Goal
 
@@ -429,14 +429,15 @@ The milestones below are ordered so that each stage produces a demonstrable, tes
   editing, deletion, inventory search, assignment, unassignment, and conflict
   feedback.
 - Domain and API contract tests pass, and PostgreSQL integration tests passed
-  during the September 23 validation. Frontend component tests exist for
-  container creation, inventory search, assignment, and container inventory
-  views, but coverage for item editing and conflict messages is still missing.
-- Duplicate-request handling is represented in the persistence model but is not
-  yet applied by the Milestone 4 write endpoints.
+  during the September 23 validation. Frontend component tests cover container
+  creation, inventory search, item editing, assignment, container inventory
+  views, conflict feedback, and stale-record feedback.
 - Frontend dependency restoration must continue to use
   `ITEMORGANIZER_NPM_REGISTRY` with an approved internal registry; public npm
   access is intentionally not used.
+- Validation on September 27, 2026 passed 9 domain tests, 7 PostgreSQL/Azurite
+  integration tests, 26 API tests, 6 frontend component tests, the frontend
+  type-check and production build, and the environment smoke test.
 
 ### Milestone 5 — Secure photo ingestion and storage
 
@@ -452,6 +453,27 @@ The milestones below are ordered so that each stage produces a demonstrable, tes
 - Upload, download, deletion, retention, and storage-failure tests pass against Azurite, with explicitly documented emulator limitations.
 
 **Exit criteria:** API integration and security tests pass for accepted and rejected uploads, authorization, cleanup, retry, and deletion behavior.
+
+**Current implementation status (September 25, 2026):**
+
+- Multipart photo uploads validate the declared and decoded JPEG, PNG, or WebP
+  format, the 10 MiB limit, 512-8000 pixel dimensions, malformed content, and
+  multi-frame images before persistence.
+- Uploads use server-generated blob names, private Blob Storage, per-owner
+  quotas, and optional owner-scoped `Idempotency-Key` replay without persisting
+  partial metadata after storage failure.
+- Authorized content requests return short-lived read-only SAS URLs. Photo
+  deletion blocks active analyses and referenced items, records pending
+  deletion before touching storage, and safely retries failed or repeated
+  deletion attempts.
+- A background retention worker processes expired and pending deletions at a
+  configurable interval of no more than 15 minutes.
+- API and security tests pass against an in-memory storage test double. A
+  dedicated integration test verifies private upload, SAS download, and
+  idempotent deletion against Azurite.
+- Validation on September 27, 2026 passed the complete backend,
+  PostgreSQL/Azurite, frontend component, type-check, build, and environment
+  smoke-test gates.
 
 ### Milestone 6 — Deterministic asynchronous analysis pipeline
 
@@ -528,6 +550,5 @@ Every milestone must preserve these requirements:
 
 ## Next step
 
-Complete the remaining Milestone 4 duplicate-request behavior and frontend
-component test coverage, then run the full backend, PostgreSQL integration, and
-frontend test suites before proceeding to Milestone 5.
+Proceed to Milestone 6: implement the deterministic asynchronous analysis
+pipeline.

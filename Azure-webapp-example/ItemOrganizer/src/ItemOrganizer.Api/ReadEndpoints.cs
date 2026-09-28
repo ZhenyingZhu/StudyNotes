@@ -25,7 +25,9 @@ public static class ReadEndpoints
         reads.MapGet("/containers/{containerId:guid}/items", ListContainerItemsAsync);
         reads.MapGet("/photos", ListPhotosAsync);
         reads.MapGet("/photos/{photoId:guid}", GetPhotoAsync);
-        reads.MapGet("/photos/{photoId:guid}/content", PhotoContentUnavailable);
+        reads.MapGet(
+            "/photos/{photoId:guid}/content",
+            PhotoEndpoints.GetContentAsync);
         reads.MapGet("/analyses/{analysisId:guid}", GetAnalysisAsync);
         reads.MapGet("/items", ListItemsAsync);
         reads.MapGet("/items/{itemId:guid}", GetItemAsync);
@@ -518,14 +520,6 @@ public static class ReadEndpoints
 
         SetEtag(context, entity.ConcurrencyToken);
         return Results.Ok(entity.Response);
-    }
-
-    private static IResult PhotoContentUnavailable(HttpContext context)
-    {
-        return Problem(
-            context,
-            StatusCodes.Status503ServiceUnavailable,
-            "Private photo content access is not configured.");
     }
 
     private static System.Linq.Expressions.Expression<Func<Item, ItemResponse>>

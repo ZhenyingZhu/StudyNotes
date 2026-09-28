@@ -20,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\ItemOrganizer.Api\ItemOrganizer.Api.csproj" />
     <ProjectReference Include="..\..\src\ItemOrganizer.Domain\ItemOrganizer.Domain.csproj" />
     <ProjectReference Include="..\..\src\ItemOrganizer.Infrastructure\ItemOrganizer.Infrastructure.csproj" />
   </ItemGroup>
