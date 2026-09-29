@@ -64,11 +64,18 @@ public static class AnalysisEndpoints
                 "Idempotency-Key cannot exceed 200 characters.");
         }
 
-        var promptVersion = configuration[
-            "Analysis:PromptVersion"] ?? "2026-09-15.m1";
-        var schemaVersion = configuration[
-            "Analysis:SchemaVersion"] ?? "item-organizer.analysis-result.v1";
-        var model = configuration["Analysis:Model"] ?? "deterministic-mock";
+        var promptVersion = GetConfiguredValue(
+            configuration,
+            "Analysis:PromptVersion",
+            "2026-09-15.m1");
+        var schemaVersion = GetConfiguredValue(
+            configuration,
+            "Analysis:SchemaVersion",
+            "item-organizer.analysis-result.v1");
+        var model = GetConfiguredValue(
+            configuration,
+            "Analysis:Model",
+            "deterministic-mock");
         var applicationVersion = typeof(Program).Assembly
             .GetName().Version?.ToString() ?? "development";
         var requestHash = Convert.ToHexString(
@@ -320,6 +327,15 @@ public static class AnalysisEndpoints
             context,
             StatusCodes.Status404NotFound,
             "The requested resource does not exist or is not visible to the caller.");
+    }
+
+    private static string GetConfiguredValue(
+        IConfiguration configuration,
+        string key,
+        string fallback)
+    {
+        var value = configuration[key];
+        return string.IsNullOrWhiteSpace(value) ? fallback : value.Trim();
     }
 
     private static IResult Problem(

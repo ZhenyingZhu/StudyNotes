@@ -136,6 +136,7 @@ public sealed class PersistenceTests(PostgreSqlFixture fixture)
                     new(" cable ", "Second", "electronics", 2, 0.95m, setup.ContainerId),
                     new("Unknown", null, null, 1, 0.20m, null)
                 ],
+                [],
                 Now.AddMinutes(2));
         }
 
@@ -166,6 +167,7 @@ public sealed class PersistenceTests(PostgreSqlFixture fixture)
                 () => persistence.PersistCompletedAnalysisAsync(
                     setup.AnalysisId,
                     [new("Invalid", null, null, 0, 0.9m, null)],
+                    [],
                     Now.AddMinutes(2)));
         }
 

@@ -491,6 +491,27 @@ The milestones below are ordered so that each stage produces a demonstrable, tes
 
 **Exit criteria:** Worker, transaction, retry, cancellation, fixture, and API integration tests pass without network access to Azure OpenAI.
 
+**Current implementation status (September 28, 2026):**
+
+- Analysis creation requires `ItemOrganizer.Analyze`, supports owner-scoped
+  idempotency, and atomically persists the queued analysis and SQL outbox
+  record before returning `202 Accepted`, `Location`, and `ETag`.
+- A hosted dispatcher forwards analysis IDs to Azure Storage Queue. The worker
+  processes deterministic structured results, validates schema and version
+  metadata, persists items atomically, and handles cancellation before commit.
+- Temporary failures use exponential retry through the sixth delivery attempt;
+  permanent or exhausted failures use safe error details and dead-letter
+  handling. Duplicate delivery does not recreate completed items.
+- End-to-end validation on September 29, 2026 passed against the Docker Compose
+  PostgreSQL and Azurite services. A real HTTP photo upload created a queued
+  analysis and SQL outbox entry; the hosted dispatcher delivered it through
+  Azure Storage Queue; the worker completed one delivery and atomically
+  persisted two detected items with `suggested` and `unassigned` states.
+- The analysis polling resource reached `completed`, PostgreSQL recorded the
+  outbox as `dispatched`, the main queue drained, no dead-letter message was
+  created, and all 8 PostgreSQL/Azurite integration tests passed. Milestone 6
+  therefore satisfies its exit criteria and is complete.
+
 ### Milestone 7 — AI-assisted review and convenience workflow
 
 **Purpose:** Connect analysis results to user review and explicit container-assignment workflows.
@@ -541,6 +562,12 @@ The milestones below are ordered so that each stage produces a demonstrable, tes
 
 Every milestone must preserve these requirements:
 
+- A milestone may be described as `code-complete` when its planned code and
+  automated isolated tests are present, but it must not be described as
+  `implemented`, `complete`, or `done` until its documented exit criteria have
+  passed through the required end-to-end environment. Any blocked or unrun
+  integration gate must be stated explicitly and keeps the milestone
+  incomplete.
 - No secrets, tokens, private blob URLs, raw provider errors, or sensitive photo content appear in source control, API errors, logs, or test artifacts.
 - Automated tests are repeatable and distinguish unit, local integration, contract, frontend, live Azure, and production-artifact suites.
 - API changes update the OpenAPI contract and corresponding contract tests.
@@ -550,5 +577,5 @@ Every milestone must preserve these requirements:
 
 ## Next step
 
-Proceed to Milestone 6: implement the deterministic asynchronous analysis
-pipeline.
+Complete Milestone 6 end-to-end validation against PostgreSQL and Azurite
+before beginning Milestone 7 product work.

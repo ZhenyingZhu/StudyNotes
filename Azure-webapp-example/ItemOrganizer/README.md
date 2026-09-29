@@ -4,7 +4,8 @@ This repository implements the planning and development-environment outputs for
 Milestones 0 and 1, the domain and persistence foundation for Milestone 2, the
 secure read API and authorization requirements for Milestone 3, the manual
 inventory workflows for Milestone 4, and secure photo ingestion and storage for
-Milestone 5 of the accepted `PLAN.md`.
+Milestone 5. It also implements the deterministic asynchronous analysis
+pipeline for Milestone 6 of the accepted `PLAN.md`.
 
 Milestone 0 is captured in `docs/milestone-0-decisions.md`. It resolves the product, security, workflow, retention, authorization, queue/worker, and acceptance-criteria decisions that were intentionally left open during planning.
 
@@ -219,6 +220,31 @@ Photo storage behavior can be configured with:
 - `PhotoStorage__CleanupEnabled` - enable expired/pending photo cleanup
 - `PhotoStorage__CleanupIntervalMinutes` - cleanup cadence, clamped to 1-15 minutes
 
+Start an analysis with a token containing the `ItemOrganizer.Analyze` scope:
+
+```http
+POST /api/v1/photos/{photoId}/analyses
+Idempotency-Key: optional-owner-scoped-key
+```
+
+The API atomically creates the queued analysis and SQL outbox record, then
+returns `202 Accepted` with `Location` and `ETag` headers. The background
+pipeline dispatches the analysis ID to Azure Storage Queue, processes it with
+the deterministic mock provider, and persists detected items transactionally.
+Poll `GET /api/v1/analyses/{analysisId}` with `ItemOrganizer.Read`. Cancel with
+`POST /api/v1/analyses/{analysisId}/cancel`, `ItemOrganizer.Analyze`, and the
+current `If-Match` value.
+
+Analysis pipeline settings:
+
+- `Analysis__WorkerEnabled` - enable outbox dispatch and queue processing
+- `Analysis__PollingSeconds` - idle polling interval, clamped to 1-30 seconds
+- `Analysis__QueueName` - Azure Storage Queue containing analysis IDs
+- `Analysis__DeadLetterQueueName` - queue for permanently failed work
+- `Analysis__PromptVersion` - application-owned prompt version
+- `Analysis__SchemaVersion` - required structured-output schema version
+- `Analysis__Model` - provider/model identifier stored with each analysis
+
 Start the Milestone 4 frontend from the Development Container:
 
 ```powershell
@@ -272,6 +298,12 @@ environment from a clean checkout.
 
 ## Implementation status
 
+Milestone status follows the exit criteria in `PLAN.md`. `Code-complete` means
+the planned code and isolated automated tests exist. A milestone is called
+`implemented`, `complete`, or `done` only after its required end-to-end
+validation has passed. A blocked or unrun integration gate keeps the milestone
+incomplete.
+
 - Milestone 2 provides the approved schema, state transitions, ownership
   constraints, optimistic concurrency, transactional analysis-result
   persistence, and deterministic seed data.
@@ -287,6 +319,12 @@ environment from a clean checkout.
   validation, private blob storage, idempotent upload replay, per-owner quota
   enforcement, short-lived authorized reads, retryable deletion, and retention
   cleanup.
+- Milestone 6 is complete. Analysis creation uses owner-scoped idempotency
+  and a transactional SQL outbox. A hosted dispatcher and worker use Azure
+  Storage Queue, deterministic structured results, bounded retries,
+  dead-letter handling, cancellation checks, and atomic item persistence.
+  Its complete HTTP photo-to-analysis flow passed against PostgreSQL and
+  Azurite on September 29, 2026.
 - Milestone 1 still requires clean-checkout validation on a second supported
   machine before its exit criteria are formally complete.
 
@@ -294,5 +332,14 @@ Validation on September 27, 2026 passed the Development Container smoke test,
 9 domain tests, 7 PostgreSQL/Azurite integration tests, 26 API tests, 6
 frontend component tests, and the frontend type-check and production build.
 
-The next implementation milestone is Milestone 6: the deterministic
-asynchronous analysis pipeline.
+Validation completed on September 29, 2026:
+
+- 9 domain tests and 36 API/analysis-pipeline tests passed.
+- All 8 PostgreSQL/Azurite integration tests passed, including private Blob
+  Storage and Azure Queue delivery/dead-letter behavior.
+- A real HTTP upload started an analysis through the SQL outbox and Azurite
+  queue, reached `completed`, and persisted two detected items atomically.
+- The complete .NET solution build passed.
+
+The next product milestone is Milestone 7: AI-assisted review and the
+upload-to-container convenience workflow.

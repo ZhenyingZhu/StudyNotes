@@ -99,6 +99,7 @@ public static class DatabaseSeeder
                     0.73m,
                     null)
             ],
+            [],
             createdAt.AddMinutes(2),
             cancellationToken);
     }

@@ -16,11 +16,13 @@ public sealed class AnalysisResultPersistence(ItemOrganizerDbContext dbContext)
     public async Task<IReadOnlyList<Item>> PersistCompletedAnalysisAsync(
         Guid analysisId,
         IReadOnlyCollection<DetectedItemDraft> detections,
+        IReadOnlyCollection<string>? providerWarnings,
         DateTimeOffset completedAt,
         CancellationToken cancellationToken = default)
     {
-        await using var transaction = await dbContext.Database.BeginTransactionAsync(
-            cancellationToken);
+        await using var transaction = dbContext.Database.IsRelational()
+            ? await dbContext.Database.BeginTransactionAsync(cancellationToken)
+            : null;
 
         var analysis = await dbContext.Analyses.SingleOrDefaultAsync(
             candidate => candidate.Id == analysisId,
@@ -39,7 +41,9 @@ public sealed class AnalysisResultPersistence(ItemOrganizerDbContext dbContext)
             throw new DomainException("Only a running analysis can persist results.");
         }
 
-        var warnings = new List<string>();
+        var warnings = providerWarnings?
+            .Where(warning => !string.IsNullOrWhiteSpace(warning))
+            .ToList() ?? [];
         var accepted = new List<NormalizedDetection>();
 
         foreach (var detection in detections)
@@ -183,7 +187,10 @@ public sealed class AnalysisResultPersistence(ItemOrganizerDbContext dbContext)
         dbContext.Items.AddRange(items);
         analysis.Complete(warnings, completedAt);
         await dbContext.SaveChangesAsync(cancellationToken);
-        await transaction.CommitAsync(cancellationToken);
+        if (transaction is not null)
+        {
+            await transaction.CommitAsync(cancellationToken);
+        }
 
         return items;
     }

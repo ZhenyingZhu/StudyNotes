@@ -38,6 +38,7 @@ public sealed class ApiFactory : WebApplicationFactory<Program>
             "ITEMORGANIZER_STORAGE_CONNECTION",
             "UseDevelopmentStorage=true");
         builder.UseSetting("PhotoStorage:CleanupEnabled", "false");
+        builder.UseSetting("Analysis:WorkerEnabled", "false");
         builder.UseSetting("Authentication:AllowedTenantId", TenantId.ToString());
         builder.ConfigureServices(services =>
         {
