@@ -32,6 +32,7 @@ builder.Services.AddSingleton(new BlobServiceClient(
 builder.Services.AddSingleton<IPhotoStorage, AzureBlobPhotoStorage>();
 builder.Services.AddScoped<PhotoRetentionCleanup>();
 builder.Services.AddHostedService<PhotoRetentionWorker>();
+builder.Services.AddAnalysisPipeline(builder.Configuration);
 builder.Services.Configure<FormOptions>(options =>
 {
     options.MultipartBodyLengthLimit = 11 * 1024 * 1024;
@@ -110,6 +111,12 @@ builder.Services.AddAuthorization(options =>
         policy.AddRequirements(
             new ScopeAccessRequirement(AuthorizationPolicies.Write));
     });
+    options.AddPolicy(AuthorizationPolicies.Analyze, policy =>
+    {
+        policy.RequireAuthenticatedUser();
+        policy.AddRequirements(
+            new ScopeAccessRequirement(AuthorizationPolicies.Analyze));
+    });
 });
 builder.Services.AddSingleton<
     Microsoft.AspNetCore.Authorization.IAuthorizationHandler,
@@ -131,6 +138,7 @@ if (app.Environment.IsDevelopment())
 app.MapReadEndpoints();
 app.MapWriteEndpoints();
 app.MapPhotoEndpoints();
+app.MapAnalysisEndpoints();
 
 app.Run();
 

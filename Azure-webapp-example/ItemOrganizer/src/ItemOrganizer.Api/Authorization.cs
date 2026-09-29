@@ -9,6 +9,7 @@ public static class AuthorizationPolicies
 {
     public const string Read = "ItemOrganizer.Read";
     public const string Write = "ItemOrganizer.Write";
+    public const string Analyze = "ItemOrganizer.Analyze";
 }
 
 public sealed record CurrentUser(Guid TenantId, Guid OwnerObjectId);
