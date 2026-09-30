@@ -1,5 +1,6 @@
 import { FormEvent, useCallback, useEffect, useState } from 'react'
 import {
+  Analysis,
   ApiError,
   Container,
   ContainerInput,
@@ -43,6 +44,13 @@ export function InventoryApp({ api }: { api: InventoryApi }) {
   const [error, setError] = useState('')
   const [notice, setNotice] = useState('')
   const [loading, setLoading] = useState(true)
+  const [selectedPhoto, setSelectedPhoto] = useState<File | null>(null)
+  const [photoPreviewUrl, setPhotoPreviewUrl] = useState('')
+  const [targetContainerId, setTargetContainerId] = useState('')
+  const [photoRequestKey, setPhotoRequestKey] = useState('')
+  const [analysis, setAnalysis] = useState<Analysis | null>(null)
+  const [analysisItems, setAnalysisItems] = useState<InventoryItem[]>([])
+  const [analysisBusy, setAnalysisBusy] = useState(false)
 
   const load = useCallback(
     async (
@@ -75,6 +83,40 @@ export function InventoryApp({ api }: { api: InventoryApi }) {
   useEffect(() => {
     void load('')
   }, [load])
+
+  useEffect(() => {
+    if (!selectedPhoto) {
+      setPhotoPreviewUrl('')
+      return
+    }
+    if (typeof URL.createObjectURL !== 'function') {
+      return
+    }
+
+    const url = URL.createObjectURL(selectedPhoto)
+    setPhotoPreviewUrl(url)
+    return () => URL.revokeObjectURL(url)
+  }, [selectedPhoto])
+
+  useEffect(() => {
+    if (!analysis || !['queued', 'running'].includes(analysis.status)) {
+      return
+    }
+
+    const timer = window.setTimeout(async () => {
+      try {
+        const next = await api.getAnalysis(analysis.id)
+        setAnalysis(next)
+        if (next.status === 'completed') {
+          setAnalysisItems(await api.getItems(next.itemIds))
+          await load(search)
+        }
+      } catch (caught) {
+        showError(caught, setError)
+      }
+    }, 750)
+    return () => window.clearTimeout(timer)
+  }, [analysis, api, load, search])
 
   async function submitContainer(event: FormEvent) {
     event.preventDefault()
@@ -110,6 +152,78 @@ export function InventoryApp({ api }: { api: InventoryApi }) {
     try {
       setError('')
       await action()
+      await load(search)
+    } catch (caught) {
+      showError(caught, setError)
+    }
+  }
+
+  async function submitPhoto(event: FormEvent) {
+      event.preventDefault()
+      if (!selectedPhoto) {
+        setError('Choose a photo before starting analysis.')
+        return
+      }
+
+      try {
+        setAnalysisBusy(true)
+        setError('')
+        setNotice('')
+        setAnalysisItems([])
+        const key = photoRequestKey || createIdempotencyKey()
+        setPhotoRequestKey(key)
+        const started = targetContainerId
+          ? await api.uploadAndAnalyze(
+              targetContainerId,
+              selectedPhoto,
+              key,
+            )
+          : await api.startAnalysis(
+              (await api.uploadPhoto(selectedPhoto, key)).id,
+              key,
+            )
+        setAnalysis(started)
+        if (started.status === 'completed') {
+          setAnalysisItems(await api.getItems(started.itemIds))
+          await load(search)
+        }
+        setNotice('Photo uploaded and analysis queued.')
+      } catch (caught) {
+        showError(caught, setError)
+      } finally {
+        setAnalysisBusy(false)
+      }
+  }
+
+  async function cancelAnalysis() {
+      if (!analysis) {
+        return
+      }
+
+      try {
+        setAnalysisBusy(true)
+        setError('')
+        setAnalysis(await api.cancelAnalysis(analysis.id))
+        setNotice('Analysis cancelled.')
+      } catch (caught) {
+        showError(caught, setError)
+      } finally {
+        setAnalysisBusy(false)
+      }
+  }
+
+  async function reviewItem(
+    itemId: string,
+    action: () => Promise<InventoryItem>,
+    message: string,
+  ) {
+    try {
+      setError('')
+      const updated = await action()
+      setAnalysisItems((current) =>
+        current.map((item) => (item.id === itemId ? updated : item)),
+      )
+      setNotice(message)
       await load(search)
     } catch (caught) {
       showError(caught, setError)
@@ -195,6 +309,196 @@ export function InventoryApp({ api }: { api: InventoryApi }) {
           label="Analyses running"
           value={summary?.analysesInProgress}
         />
+      </section>
+
+      <section className="panel analysis-workbench">
+        <div className="section-heading">
+          <div>
+            <p className="eyebrow">PHOTO ANALYSIS</p>
+            <h2>Turn a photo into inventory</h2>
+          </div>
+          {analysis && (
+            <span className={`status ${analysis.status}`}>
+              {analysis.status}
+            </span>
+          )}
+        </div>
+
+        <div className="analysis-layout">
+          <form className="photo-editor" onSubmit={submitPhoto}>
+            <label>
+              Photo
+              <input
+                type="file"
+                accept="image/jpeg,image/png,image/webp"
+                onChange={(event) => {
+                  setSelectedPhoto(event.target.files?.[0] ?? null)
+                  setPhotoRequestKey(createIdempotencyKey())
+                  setAnalysis(null)
+                  setAnalysisItems([])
+                }}
+              />
+            </label>
+            <label>
+              Assign all detected items to a container (optional)
+              <select
+                value={targetContainerId}
+                onChange={(event) =>
+                  setTargetContainerId(event.target.value)
+                }
+              >
+                <option value="">Review suggestions after analysis</option>
+                {containers.map((container) => (
+                  <option value={container.id} key={container.id}>
+                    {container.name}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <p className="field-help">
+              JPEG, PNG, or WebP; 512-8000 pixels; up to 10 MiB.
+            </p>
+            <div className="form-actions">
+              <button type="submit" disabled={analysisBusy}>
+                {analysisBusy ? 'Starting…' : 'Upload and analyze'}
+              </button>
+              {analysis &&
+                ['queued', 'running'].includes(analysis.status) && (
+                  <button
+                    type="button"
+                    className="secondary"
+                    disabled={analysisBusy}
+                    onClick={() => void cancelAnalysis()}
+                  >
+                    Cancel analysis
+                  </button>
+                )}
+            </div>
+          </form>
+
+          <div className="photo-preview">
+            {photoPreviewUrl ? (
+              <img src={photoPreviewUrl} alt="Selected source" />
+            ) : (
+              <p className="empty-state">Choose a photo to preview it.</p>
+            )}
+          </div>
+        </div>
+
+        {analysis && (
+          <div className="analysis-results" aria-live="polite">
+            <h3>Analysis {analysis.status}</h3>
+            {['queued', 'running'].includes(analysis.status) && (
+              <p>Detection is running. This page refreshes automatically.</p>
+            )}
+            {analysis.status === 'failed' && (
+              <p className="message error">
+                {analysis.errorMessage || 'Analysis failed.'}
+              </p>
+            )}
+            {analysis.status === 'cancelled' && (
+              <p>The analysis was cancelled without creating items.</p>
+            )}
+            {analysis.warnings.map((warning) => (
+              <p className="analysis-warning" key={warning}>
+                {warning}
+              </p>
+            ))}
+            {analysis.status === 'completed' &&
+              analysisItems.map((item) => {
+                const suggested = containers.find(
+                  (container) =>
+                    container.id === item.suggestedContainerId,
+                )
+                return (
+                  <article className="detection-card" key={item.id}>
+                    <div>
+                      <h4>{item.name}</h4>
+                      <p>
+                        {item.category || 'Uncategorized'} · Quantity{' '}
+                        {item.quantity} · Confidence{' '}
+                        {formatConfidence(item.confidence)}
+                      </p>
+                      <p>
+                        Source: selected photo · Assignment:{' '}
+                        {item.assignmentStatus}
+                      </p>
+                      {suggested && (
+                        <p>Suggested container: {suggested.name}</p>
+                      )}
+                    </div>
+                    <div className="review-actions">
+                      {item.assignmentStatus === 'suggested' &&
+                        item.suggestedContainerId && (
+                          <>
+                            <button
+                              onClick={() =>
+                                void reviewItem(
+                                  item.id,
+                                  () =>
+                                    api.acceptSuggestion(
+                                      item.id,
+                                      item.suggestedContainerId!,
+                                    ),
+                                  'Suggestion accepted.',
+                                )
+                              }
+                            >
+                              Accept suggestion
+                            </button>
+                            <button
+                              className="secondary"
+                              onClick={() =>
+                                void reviewItem(
+                                  item.id,
+                                  () => api.unassignItem(item.id),
+                                  'Suggestion rejected.',
+                                )
+                              }
+                            >
+                              Reject suggestion
+                            </button>
+                          </>
+                        )}
+                      <label>
+                        Change container
+                        <select
+                          aria-label={`Change container for ${item.name}`}
+                          value={item.containerId ?? ''}
+                          onChange={(event) => {
+                            if (!event.target.value) {
+                              return
+                            }
+                            void reviewItem(
+                              item.id,
+                              () =>
+                                api.assignItem(
+                                  item.id,
+                                  event.target.value,
+                                ),
+                              'Container changed.',
+                            )
+                          }}
+                        >
+                          <option value="">Choose a container</option>
+                          {containers.map((container) => (
+                            <option value={container.id} key={container.id}>
+                              {container.name}
+                            </option>
+                          ))}
+                        </select>
+                      </label>
+                    </div>
+                  </article>
+                )
+              })}
+            {analysis.status === 'completed' && !analysisItems.length && (
+              <p className="empty-state">
+                Analysis completed without detected inventory items.
+              </p>
+            )}
+          </div>
+        )}
       </section>
 
       <section className="workspace">
@@ -550,4 +854,13 @@ function showError(
     return
   }
   setError(caught instanceof Error ? caught.message : 'Something went wrong.')
+}
+
+function createIdempotencyKey() {
+  return globalThis.crypto?.randomUUID?.() ??
+    `${Date.now()}-${Math.random().toString(16).slice(2)}`
+}
+
+function formatConfidence(confidence: number | null) {
+  return confidence === null ? 'not provided' : `${Math.round(confidence * 100)}%`
 }

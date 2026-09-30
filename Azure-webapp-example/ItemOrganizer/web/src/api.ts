@@ -33,6 +33,43 @@ export type InventoryItem = {
   updatedAt: string
 }
 
+export type Photo = {
+  id: string
+  contentType: string
+  contentLength: number
+  width: number
+  height: number
+  retentionState: 'active' | 'pendingDeletion' | 'deleted'
+  analysisStatus: AnalysisStatus | null
+  retainUntil: string
+  createdAt: string
+  updatedAt: string
+}
+
+export type AnalysisStatus =
+  | 'queued'
+  | 'running'
+  | 'completed'
+  | 'failed'
+  | 'cancelled'
+
+export type Analysis = {
+  id: string
+  photoId: string
+  status: AnalysisStatus
+  itemIds: string[]
+  warnings: string[]
+  errorCode: string | null
+  errorMessage: string | null
+  correlationId: string | null
+  startedAt: string | null
+  completedAt: string | null
+  cancellationRequestedAt: string | null
+  cancelledAt: string | null
+  createdAt: string
+  updatedAt: string
+}
+
 export type ContainerInput = {
   name: string
   description: string
@@ -76,7 +113,24 @@ export interface InventoryApi {
   updateItem(id: string, input: ItemInput): Promise<InventoryItem>
   deleteItem(id: string): Promise<void>
   assignItem(itemId: string, containerId: string): Promise<InventoryItem>
+  acceptSuggestion(
+    itemId: string,
+    containerId: string,
+  ): Promise<InventoryItem>
   unassignItem(itemId: string): Promise<InventoryItem>
+  uploadPhoto(file: File, idempotencyKey: string): Promise<Photo>
+  startAnalysis(
+    photoId: string,
+    idempotencyKey: string,
+  ): Promise<Analysis>
+  uploadAndAnalyze(
+    containerId: string,
+    file: File,
+    idempotencyKey: string,
+  ): Promise<Analysis>
+  getAnalysis(analysisId: string): Promise<Analysis>
+  cancelAnalysis(analysisId: string): Promise<Analysis>
+  getItems(itemIds: string[]): Promise<InventoryItem[]>
 }
 
 export class ApiError extends Error {
@@ -190,17 +244,11 @@ export class HttpInventoryApi implements InventoryApi {
   }
 
   async assignItem(itemId: string, containerId: string) {
-    const current = await this.getResource<InventoryItem>(
-      `/api/v1/items/${itemId}`,
-    )
-    return this.request<InventoryItem>(
-      `/api/v1/items/${itemId}/container`,
-      {
-        method: 'PUT',
-        headers: { 'If-Match': current.etag },
-        body: JSON.stringify({ containerId, acceptSuggestion: false }),
-      },
-    )
+    return this.setItemContainer(itemId, containerId, false)
+  }
+
+  async acceptSuggestion(itemId: string, containerId: string) {
+    return this.setItemContainer(itemId, containerId, true)
   }
 
   async unassignItem(itemId: string) {
@@ -212,6 +260,86 @@ export class HttpInventoryApi implements InventoryApi {
       {
         method: 'DELETE',
         headers: { 'If-Match': current.etag },
+      },
+    )
+  }
+
+  uploadPhoto(file: File, idempotencyKey: string) {
+    const body = new FormData()
+    body.append('file', file)
+    return this.request<Photo>('/api/v1/photos', {
+      method: 'POST',
+      headers: { 'Idempotency-Key': idempotencyKey },
+      body,
+    })
+  }
+
+  startAnalysis(photoId: string, idempotencyKey: string) {
+    return this.request<Analysis>(`/api/v1/photos/${photoId}/analyses`, {
+      method: 'POST',
+      headers: { 'Idempotency-Key': idempotencyKey },
+    })
+  }
+
+  uploadAndAnalyze(
+    containerId: string,
+    file: File,
+    idempotencyKey: string,
+  ) {
+    const body = new FormData()
+    body.append('file', file)
+    return this.request<Analysis>(
+      `/api/v1/containers/${containerId}/photo-analyses`,
+      {
+        method: 'POST',
+        headers: { 'Idempotency-Key': idempotencyKey },
+        body,
+      },
+    )
+  }
+
+  getAnalysis(analysisId: string) {
+    return this.request<Analysis>(`/api/v1/analyses/${analysisId}`)
+  }
+
+  async cancelAnalysis(analysisId: string) {
+    const current = await this.getResource<Analysis>(
+      `/api/v1/analyses/${analysisId}`,
+    )
+    return this.request<Analysis>(
+      `/api/v1/analyses/${analysisId}/cancel`,
+      {
+        method: 'POST',
+        headers: { 'If-Match': current.etag },
+      },
+    )
+  }
+
+  async getItems(itemIds: string[]) {
+    return Promise.all(
+      itemIds.map(async (itemId) => {
+        const resource = await this.getResource<InventoryItem>(
+          `/api/v1/items/${itemId}`,
+        )
+        return resource.value
+      }),
+    )
+  }
+
+  private async setItemContainer(
+    itemId: string,
+    containerId: string,
+    acceptSuggestion: boolean,
+  ) {
+    const current = await this.getResource<InventoryItem>(
+      `/api/v1/items/${itemId}`,
+    )
+    return this.request<InventoryItem>(
+      `/api/v1/items/${itemId}/container`,
+      {
+        method: 'PUT',
+        headers: { 'If-Match': current.etag },
+        body: JSON.stringify({ containerId, acceptSuggestion }),
       },
     )
   }
@@ -238,7 +366,7 @@ export class HttpInventoryApi implements InventoryApi {
     if (token) {
       headers.set('Authorization', `Bearer ${token}`)
     }
-    if (init?.body) {
+    if (init?.body && !(init.body instanceof FormData)) {
       headers.set('Content-Type', 'application/json')
     }
 

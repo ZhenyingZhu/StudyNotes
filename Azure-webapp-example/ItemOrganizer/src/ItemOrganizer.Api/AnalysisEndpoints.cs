@@ -30,10 +30,89 @@ public static class AnalysisEndpoints
             .ProducesProblem(StatusCodes.Status409Conflict)
             .ProducesProblem(StatusCodes.Status412PreconditionFailed)
             .ProducesProblem(StatusCodes.Status428PreconditionRequired);
+        analyses.MapPost(
+                "/containers/{containerId:guid}/photo-analyses",
+                CreateForContainerAsync)
+            .RequireAuthorization(AuthorizationPolicies.Write)
+            .Accepts<IFormFile>("multipart/form-data")
+            .Produces<AnalysisResponse>(StatusCodes.Status202Accepted)
+            .ProducesProblem(StatusCodes.Status400BadRequest)
+            .ProducesProblem(StatusCodes.Status404NotFound)
+            .ProducesProblem(StatusCodes.Status409Conflict)
+            .ProducesProblem(StatusCodes.Status413PayloadTooLarge)
+            .ProducesProblem(StatusCodes.Status415UnsupportedMediaType)
+            .ProducesProblem(StatusCodes.Status422UnprocessableEntity)
+            .ProducesProblem(StatusCodes.Status429TooManyRequests)
+            .ProducesProblem(StatusCodes.Status503ServiceUnavailable);
     }
 
     private static async Task<IResult> CreateAsync(
         Guid photoId,
+        ItemOrganizerDbContext dbContext,
+        CurrentUserAccessor currentUserAccessor,
+        IConfiguration configuration,
+        HttpContext context,
+        CancellationToken cancellationToken)
+    {
+        return await CreateAnalysisAsync(
+            photoId,
+            null,
+            dbContext,
+            currentUserAccessor,
+            configuration,
+            context,
+            cancellationToken);
+    }
+
+    private static async Task<IResult> CreateForContainerAsync(
+        Guid containerId,
+        ItemOrganizerDbContext dbContext,
+        CurrentUserAccessor currentUserAccessor,
+        IPhotoStorage storage,
+        IConfiguration configuration,
+        ILoggerFactory loggerFactory,
+        HttpContext context,
+        CancellationToken cancellationToken)
+    {
+        var user = currentUserAccessor.GetRequired();
+        var containerExists = await dbContext.Containers.AnyAsync(
+            container =>
+                container.Id == containerId
+                && container.TenantId == user.TenantId
+                && container.OwnerObjectId == user.OwnerObjectId
+                && container.DeletedAt == null,
+            cancellationToken);
+        if (!containerExists)
+        {
+            return NotFound(context);
+        }
+
+        var upload = await PhotoEndpoints.UploadForWorkflowAsync(
+            dbContext,
+            currentUserAccessor,
+            storage,
+            configuration,
+            loggerFactory,
+            context,
+            cancellationToken);
+        if (upload.Error is not null)
+        {
+            return upload.Error;
+        }
+
+        return await CreateAnalysisAsync(
+            upload.Photo!.Id,
+            containerId,
+            dbContext,
+            currentUserAccessor,
+            configuration,
+            context,
+            cancellationToken);
+    }
+
+    private static async Task<IResult> CreateAnalysisAsync(
+        Guid photoId,
+        Guid? confirmedContainerId,
         ItemOrganizerDbContext dbContext,
         CurrentUserAccessor currentUserAccessor,
         IConfiguration configuration,
@@ -80,7 +159,7 @@ public static class AnalysisEndpoints
             .GetName().Version?.ToString() ?? "development";
         var requestHash = Convert.ToHexString(
                 SHA256.HashData(Encoding.UTF8.GetBytes(
-                    $"{photoId:D}|{promptVersion}|{schemaVersion}|{model}")))
+                    $"{photoId:D}|{confirmedContainerId:D}|{promptVersion}|{schemaVersion}|{model}")))
             .ToLowerInvariant();
 
         if (!string.IsNullOrEmpty(idempotencyKey))
@@ -108,7 +187,7 @@ public static class AnalysisEndpoints
             schemaVersion,
             model,
             applicationVersion,
-            null,
+            confirmedContainerId,
             now);
         var outboxMessage = new OutboxMessage(
             Guid.NewGuid(),

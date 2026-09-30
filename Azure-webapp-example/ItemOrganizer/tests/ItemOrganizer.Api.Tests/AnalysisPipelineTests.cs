@@ -49,6 +49,40 @@ public sealed class AnalysisPipelineTests
     }
 
     [Fact]
+    public async Task Convenience_result_confirms_every_item_in_target_container()
+    {
+        await using var dbContext = CreateContext();
+        var setup = await SeedQueuedAnalysisAsync(
+            dbContext,
+            useConfirmedContainer: true);
+        var processor = CreateProcessor(
+            dbContext,
+            new DeterministicAnalysisProvider());
+
+        var result = await processor.ProcessAsync(
+            setup.AnalysisId,
+            "correlation-confirmed",
+            CancellationToken.None);
+
+        Assert.Equal(
+            AnalysisProcessingDisposition.Complete,
+            result.Disposition);
+        var items = await dbContext.Items
+            .Include(item => item.Assignment)
+            .Where(item => item.AnalysisId == setup.AnalysisId)
+            .ToListAsync();
+        Assert.NotEmpty(items);
+        Assert.All(items, item =>
+        {
+            Assert.Equal(AssignmentStatus.Confirmed, item.Assignment.Status);
+            Assert.Equal(setup.ContainerId, item.Assignment.ContainerId);
+            Assert.Equal(
+                AssignmentSource.ConvenienceWorkflow,
+                item.Assignment.Source);
+        });
+    }
+
+    [Fact]
     public async Task Invalid_provider_output_fails_without_creating_items()
     {
         await using var dbContext = CreateContext();
@@ -197,7 +231,9 @@ public sealed class AnalysisPipelineTests
     }
 
     private static async Task<(Guid AnalysisId, Guid ContainerId)>
-        SeedQueuedAnalysisAsync(ItemOrganizerDbContext dbContext)
+        SeedQueuedAnalysisAsync(
+            ItemOrganizerDbContext dbContext,
+            bool useConfirmedContainer = false)
     {
         var now = DateTimeOffset.UtcNow;
         var photo = new Photo(
@@ -230,7 +266,7 @@ public sealed class AnalysisPipelineTests
             "schema-v1",
             "mock-v1",
             "tests",
-            null,
+            useConfirmedContainer ? container.Id : null,
             now);
         var outbox = new OutboxMessage(
             Guid.NewGuid(),

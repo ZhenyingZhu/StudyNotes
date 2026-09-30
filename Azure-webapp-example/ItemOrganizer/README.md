@@ -275,7 +275,10 @@ configuration and must not be committed.
 Copy `web/.env.example` to `web/.env.local` and configure the API URL, Entra
 client and tenant IDs, and the delegated API scope before signing in. The web
 application supports container and manual-item creation, editing, deletion,
-inventory search, assignment, unassignment, and conflict feedback.
+inventory search, assignment, unassignment, and conflict feedback. It also
+supports photo preview and upload, standard or container-targeted analysis,
+automatic status polling, cancellation, detected-item review, suggestion
+acceptance or rejection, and explicit reassignment.
 
 Create a migration after changing the persistence model:
 
@@ -325,6 +328,13 @@ incomplete.
   dead-letter handling, cancellation checks, and atomic item persistence.
   Its complete HTTP photo-to-analysis flow passed against PostgreSQL and
   Azurite on September 29, 2026.
+- Milestone 7 is in progress. The convenience upload-and-analyze API, photo
+  analysis frontend, polling, cancellation, detected-item review, and explicit
+  suggestion decisions are implemented and covered by API and component
+  tests. A real PostgreSQL/Azurite convenience upload completed through the
+  queue worker and confirmed both detected items in the selected container.
+  The milestone remains incomplete because the required Playwright
+  upload-through-review workflow has not been configured or run.
 - Milestone 1 still requires clean-checkout validation on a second supported
   machine before its exit criteria are formally complete.
 
@@ -334,12 +344,16 @@ frontend component tests, and the frontend type-check and production build.
 
 Validation completed on September 29, 2026:
 
-- 9 domain tests and 36 API/analysis-pipeline tests passed.
+- 9 domain tests, 41 API/analysis-pipeline tests, and 11 frontend component
+  tests passed.
 - All 8 PostgreSQL/Azurite integration tests passed, including private Blob
   Storage and Azure Queue delivery/dead-letter behavior.
 - A real HTTP upload started an analysis through the SQL outbox and Azurite
   queue, reached `completed`, and persisted two detected items atomically.
-- The complete .NET solution build passed.
+- A real convenience upload reached `completed` and persisted two confirmed
+  assignments in the explicitly selected container.
+- The complete .NET solution tests and frontend type-check and production
+  build passed.
 
-The next product milestone is Milestone 7: AI-assisted review and the
-upload-to-container convenience workflow.
+The next gate is the Milestone 7 Playwright workflow from photo upload through
+analysis polling, review, and assignment.

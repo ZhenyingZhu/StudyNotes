@@ -40,6 +40,11 @@ button:hover {
   background: #17392b;
 }
 
+button:disabled {
+  cursor: wait;
+  opacity: 0.65;
+}
+
 button.secondary {
   color: #234f3d;
   background: #e5ebe2;
@@ -120,6 +125,96 @@ main {
   display: grid;
   grid-template-columns: minmax(320px, 0.85fr) minmax(500px, 1.4fr);
   gap: 1rem;
+}
+
+.analysis-workbench {
+  margin-bottom: 1rem;
+}
+
+.analysis-layout {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.8fr) minmax(320px, 1.2fr);
+  gap: 1rem;
+  margin-top: 1.2rem;
+}
+
+.photo-editor {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  padding: 1rem;
+  border-radius: 0.8rem;
+  background: #edf0e8;
+}
+
+.field-help {
+  margin: 0;
+  color: #69736e;
+  font-size: 0.8rem;
+}
+
+.photo-preview {
+  display: grid;
+  min-height: 280px;
+  overflow: hidden;
+  align-items: center;
+  border: 1px dashed #aeb7ad;
+  border-radius: 0.8rem;
+  background: #f7f7f2;
+}
+
+.photo-preview img {
+  display: block;
+  width: 100%;
+  max-height: 460px;
+  object-fit: contain;
+}
+
+.analysis-results {
+  margin-top: 1.2rem;
+  border-top: 1px solid #d8d9d1;
+  padding-top: 1rem;
+}
+
+.analysis-results > h3 {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.5rem;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.analysis-warning {
+  color: #745207;
+}
+
+.detection-card {
+  display: grid;
+  grid-template-columns: minmax(220px, 1fr) minmax(220px, 0.7fr);
+  gap: 1rem;
+  border-top: 1px solid #d8d9d1;
+  padding: 1rem 0;
+}
+
+.detection-card h4,
+.detection-card p {
+  margin: 0 0 0.35rem;
+}
+
+.detection-card p {
+  color: #69736e;
+}
+
+.review-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  justify-content: flex-end;
+  gap: 0.6rem;
+}
+
+.review-actions label {
+  min-width: 190px;
 }
 
 .panel {
@@ -263,6 +358,23 @@ textarea {
   background: #ede0dc;
 }
 
+.status.queued,
+.status.running {
+  color: #174f68;
+  background: #dcecf2;
+}
+
+.status.completed {
+  color: #185a3a;
+  background: #d9eee1;
+}
+
+.status.failed,
+.status.cancelled {
+  color: #742719;
+  background: #f6ddd6;
+}
+
 .text-button {
   padding: 0.2rem 0;
   color: #234f3d;
@@ -344,6 +456,10 @@ textarea {
   .workspace {
     grid-template-columns: 1fr;
   }
+
+  .analysis-layout {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 600px) {
@@ -367,6 +483,14 @@ textarea {
   .inventory-row {
     grid-template-columns: 1fr;
     align-items: stretch;
+  }
+
+  .detection-card {
+    grid-template-columns: 1fr;
+  }
+
+  .review-actions {
+    justify-content: flex-start;
   }
 
   .row-actions {

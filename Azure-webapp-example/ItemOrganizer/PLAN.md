@@ -527,6 +527,30 @@ The milestones below are ordered so that each stage produces a demonstrable, tes
 
 **Exit criteria:** The full local photo-to-inventory workflow passes with the deterministic mock AI and no orphaned or silently assigned items.
 
+**Current implementation status (September 29, 2026):**
+
+- The web application uploads or captures JPEG, PNG, and WebP files, previews
+  the selected source photo, starts standard or container-targeted analyses,
+  polls queued and running work, displays failures and warnings, and permits
+  cancellation.
+- Completed analyses display detected names, categories, quantities,
+  confidence, assignment status, and container suggestions. Users can accept
+  or reject a suggestion or explicitly select a different container.
+- `POST /api/v1/containers/{containerId}/photo-analyses` reuses the secure
+  upload pipeline, validates owner-visible containers before storage, supports
+  idempotent replay, creates the queued analysis and outbox record, and marks
+  all completed detections as confirmed convenience-workflow assignments.
+- API tests cover successful creation, invalid containers, duplicate
+  submission, storage failure without analysis creation, and atomic confirmed
+  result persistence. Frontend component tests cover standard upload,
+  convenience upload, cancellation, and explicit suggestion acceptance and
+  rejection.
+- Live validation against PostgreSQL and Azurite completed a real convenience
+  upload through the SQL outbox and queue worker, then returned two items
+  confirmed in the selected container.
+- Milestone 7 remains incomplete because its required Playwright
+  upload-through-review browser workflow has not been configured or run.
+
 ### Milestone 8 — Entra ID, live Azure integrations, and observability
 
 **Purpose:** Validate cloud identity, managed-resource access, monitoring, and operational behavior separately from local development.
@@ -577,5 +601,6 @@ Every milestone must preserve these requirements:
 
 ## Next step
 
-Complete Milestone 6 end-to-end validation against PostgreSQL and Azurite
-before beginning Milestone 7 product work.
+Add and run the Milestone 7 Playwright workflow against the local API and web
+application, covering upload, polling, review, and assignment before calling
+the milestone complete.

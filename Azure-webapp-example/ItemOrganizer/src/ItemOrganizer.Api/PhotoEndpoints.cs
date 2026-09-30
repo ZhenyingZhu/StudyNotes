@@ -96,12 +96,43 @@ public static class PhotoEndpoints
         HttpContext context,
         CancellationToken cancellationToken)
     {
+        var outcome = await UploadForWorkflowAsync(
+            dbContext,
+            currentUserAccessor,
+            storage,
+            configuration,
+            loggerFactory,
+            context,
+            cancellationToken);
+        if (outcome.Error is not null)
+        {
+            return outcome.Error;
+        }
+
+        var photo = outcome.Photo!;
+        SetPhotoHeaders(context, photo);
+        return outcome.Replayed
+            ? Results.Ok(ToPhotoResponse(photo))
+            : Results.Created(
+                $"/api/v1/photos/{photo.Id}",
+                ToPhotoResponse(photo));
+    }
+
+    internal static async Task<PhotoUploadOutcome> UploadForWorkflowAsync(
+        ItemOrganizerDbContext dbContext,
+        CurrentUserAccessor currentUserAccessor,
+        IPhotoStorage storage,
+        IConfiguration configuration,
+        ILoggerFactory loggerFactory,
+        HttpContext context,
+        CancellationToken cancellationToken)
+    {
         if (!context.Request.HasFormContentType)
         {
-            return Problem(
+            return PhotoUploadOutcome.Failed(Problem(
                 context,
                 StatusCodes.Status400BadRequest,
-                "A multipart/form-data request with one file part is required.");
+                "A multipart/form-data request with one file part is required."));
         }
 
         IFormCollection form;
@@ -111,10 +142,10 @@ public static class PhotoEndpoints
         }
         catch (InvalidDataException)
         {
-            return Problem(
+            return PhotoUploadOutcome.Failed(Problem(
                 context,
                 StatusCodes.Status400BadRequest,
-                "The multipart request is malformed.");
+                "The multipart request is malformed."));
         }
 
         if (form.Files.Count != 1
@@ -123,23 +154,24 @@ public static class PhotoEndpoints
                 "file",
                 StringComparison.Ordinal))
         {
-            return Problem(
+            return PhotoUploadOutcome.Failed(Problem(
                 context,
                 StatusCodes.Status400BadRequest,
-                "Exactly one file part named 'file' is required.");
+                "Exactly one file part named 'file' is required."));
         }
 
         var file = form.Files[0];
         if (file.Length > MaximumPhotoBytes)
         {
-            return Problem(
+            return PhotoUploadOutcome.Failed(Problem(
                 context,
                 StatusCodes.Status413PayloadTooLarge,
-                "Photo size cannot exceed 10 MiB.");
+                "Photo size cannot exceed 10 MiB."));
         }
         if (file.Length <= 0)
         {
-            return Unprocessable(context, "The photo file is empty.");
+            return PhotoUploadOutcome.Failed(
+                Unprocessable(context, "The photo file is empty."));
         }
 
         ValidatedPhoto validated;
@@ -149,14 +181,15 @@ public static class PhotoEndpoints
         }
         catch (UnsupportedPhotoException exception)
         {
-            return Problem(
+            return PhotoUploadOutcome.Failed(Problem(
                 context,
                 StatusCodes.Status415UnsupportedMediaType,
-                exception.Message);
+                exception.Message));
         }
         catch (InvalidPhotoException exception)
         {
-            return Unprocessable(context, exception.Message);
+            return PhotoUploadOutcome.Failed(
+                Unprocessable(context, exception.Message));
         }
 
         await using var content = validated.Content;
@@ -165,10 +198,10 @@ public static class PhotoEndpoints
             .FirstOrDefault()?.Trim();
         if (idempotencyKey?.Length > 200)
         {
-            return Problem(
+            return PhotoUploadOutcome.Failed(Problem(
                 context,
                 StatusCodes.Status400BadRequest,
-                "Idempotency-Key cannot exceed 200 characters.");
+                "Idempotency-Key cannot exceed 200 characters."));
         }
 
         var requestHash = $"{validated.Sha256}:{validated.ContentType}";
@@ -199,10 +232,10 @@ public static class PhotoEndpoints
         if (activePhotoCount >= maximumPhotos)
         {
             context.Response.Headers.RetryAfter = "3600";
-            return Problem(
+            return PhotoUploadOutcome.Failed(Problem(
                 context,
                 StatusCodes.Status429TooManyRequests,
-                "The active photo quota has been reached.");
+                "The active photo quota has been reached."));
         }
 
         var now = DateTimeOffset.UtcNow;
@@ -278,7 +311,8 @@ public static class PhotoEndpoints
                     return replay;
                 }
             }
-            return DependencyUnavailable(context);
+            return PhotoUploadOutcome.Failed(
+                DependencyUnavailable(context));
         }
         catch (RequestFailedException exception)
         {
@@ -286,16 +320,14 @@ public static class PhotoEndpoints
                 exception,
                 "Photo blob upload failed. Correlation ID: {CorrelationId}",
                 context.TraceIdentifier);
-            return DependencyUnavailable(context);
+            return PhotoUploadOutcome.Failed(
+                DependencyUnavailable(context));
         }
 
-        SetPhotoHeaders(context, photo);
-        return Results.Created(
-            $"/api/v1/photos/{photo.Id}",
-            ToPhotoResponse(photo));
+        return PhotoUploadOutcome.Created(photo);
     }
 
-    private static async Task<IResult?> FindReplayAsync(
+    private static async Task<PhotoUploadOutcome?> FindReplayAsync(
         ItemOrganizerDbContext dbContext,
         CurrentUser user,
         string key,
@@ -321,18 +353,18 @@ public static class PhotoEndpoints
             requestHash,
             StringComparison.Ordinal))
         {
-            return Problem(
+            return PhotoUploadOutcome.Failed(Problem(
                 context,
                 StatusCodes.Status409Conflict,
-                "Idempotency-Key was already used for a different request.");
+                "Idempotency-Key was already used for a different request."));
         }
         if (record.Status != IdempotencyStatus.Completed
             || record.ResourceId is null)
         {
-            return Problem(
+            return PhotoUploadOutcome.Failed(Problem(
                 context,
                 StatusCodes.Status409Conflict,
-                "The matching request is still being processed.");
+                "The matching request is still being processed."));
         }
 
         var photo = await dbContext.Photos.AsNoTracking().SingleOrDefaultAsync(
@@ -344,15 +376,13 @@ public static class PhotoEndpoints
             cancellationToken);
         if (photo is null)
         {
-            return Problem(
+            return PhotoUploadOutcome.Failed(Problem(
                 context,
                 StatusCodes.Status409Conflict,
-                "The result of the matching request is no longer available.");
+                "The result of the matching request is no longer available."));
         }
 
-        SetPhotoHeaders(context, photo);
-        context.Response.Headers.Location = $"/api/v1/photos/{photo.Id}";
-        return Results.Ok(ToPhotoResponse(photo));
+        return PhotoUploadOutcome.Replay(photo);
     }
 
     private static async Task<IResult> DeleteAsync(
@@ -623,6 +653,21 @@ public static class PhotoEndpoints
         int Width,
         int Height,
         string Sha256);
+
+    internal sealed record PhotoUploadOutcome(
+        Photo? Photo,
+        bool Replayed,
+        IResult? Error)
+    {
+        public static PhotoUploadOutcome Created(Photo photo) =>
+            new(photo, false, null);
+
+        public static PhotoUploadOutcome Replay(Photo photo) =>
+            new(photo, true, null);
+
+        public static PhotoUploadOutcome Failed(IResult error) =>
+            new(null, false, error);
+    }
 
     private sealed class UnsupportedPhotoException(string message)
         : Exception(message);

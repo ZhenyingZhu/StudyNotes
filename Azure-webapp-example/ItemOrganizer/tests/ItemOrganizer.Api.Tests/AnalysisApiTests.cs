@@ -90,6 +90,126 @@ public sealed class AnalysisApiTests(ApiFactory factory) : IClassFixture<ApiFact
     }
 
     [Fact]
+    public async Task Convenience_workflow_uploads_photo_and_targets_container()
+    {
+        using var client = CreateAuthenticatedClient(
+            "ItemOrganizer.Read ItemOrganizer.Write ItemOrganizer.Analyze");
+        using var content = CreatePhotoContent();
+
+        var response = await client.PostAsync(
+            $"/api/v1/containers/{ApiFactory.ContainerId}/photo-analyses",
+            content);
+
+        Assert.Equal(HttpStatusCode.Accepted, response.StatusCode);
+        Assert.NotNull(response.Headers.Location);
+        Assert.NotNull(response.Headers.ETag);
+        var document = await response.Content.ReadFromJsonAsync<JsonDocument>();
+        var analysisId = document!.RootElement.GetProperty("id").GetGuid();
+        var photoId = document.RootElement.GetProperty("photoId").GetGuid();
+
+        using var scope = factory.Services.CreateScope();
+        var dbContext = scope.ServiceProvider.GetRequiredService<
+            ItemOrganizer.Infrastructure.ItemOrganizerDbContext>();
+        var analysis = await dbContext.Analyses.SingleAsync(
+            entity => entity.Id == analysisId);
+        Assert.Equal(ApiFactory.ContainerId, analysis.ConfirmedContainerId);
+        Assert.True(await dbContext.Photos.AnyAsync(
+            photo => photo.Id == photoId));
+        Assert.True(await dbContext.OutboxMessages.AnyAsync(
+            message => message.AnalysisId == analysisId));
+    }
+
+    [Fact]
+    public async Task Convenience_workflow_validates_container_before_upload()
+    {
+        using var client = CreateAuthenticatedClient(
+            "ItemOrganizer.Write ItemOrganizer.Analyze");
+        var before = factory.PhotoStorage.Photos.Count;
+        using var content = CreatePhotoContent();
+
+        var response = await client.PostAsync(
+            $"/api/v1/containers/{Guid.NewGuid()}/photo-analyses",
+            content);
+
+        Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
+        Assert.Equal(before, factory.PhotoStorage.Photos.Count);
+    }
+
+    [Fact]
+    public async Task Convenience_workflow_is_idempotent_as_one_operation()
+    {
+        using var client = CreateAuthenticatedClient(
+            "ItemOrganizer.Write ItemOrganizer.Analyze");
+        var key = Guid.NewGuid().ToString("N");
+
+        using var firstRequest = new HttpRequestMessage(
+            HttpMethod.Post,
+            $"/api/v1/containers/{ApiFactory.ContainerId}/photo-analyses")
+        {
+            Content = CreatePhotoContent()
+        };
+        firstRequest.Headers.Add("Idempotency-Key", key);
+        var first = await client.SendAsync(firstRequest);
+        var firstDocument =
+            await first.Content.ReadFromJsonAsync<JsonDocument>();
+
+        using var replayRequest = new HttpRequestMessage(
+            HttpMethod.Post,
+            $"/api/v1/containers/{ApiFactory.ContainerId}/photo-analyses")
+        {
+            Content = CreatePhotoContent()
+        };
+        replayRequest.Headers.Add("Idempotency-Key", key);
+        var replay = await client.SendAsync(replayRequest);
+        var replayDocument =
+            await replay.Content.ReadFromJsonAsync<JsonDocument>();
+
+        Assert.Equal(HttpStatusCode.Accepted, first.StatusCode);
+        Assert.Equal(HttpStatusCode.Accepted, replay.StatusCode);
+        Assert.Equal(
+            firstDocument!.RootElement.GetProperty("id").GetGuid(),
+            replayDocument!.RootElement.GetProperty("id").GetGuid());
+        Assert.Equal(
+            firstDocument.RootElement.GetProperty("photoId").GetGuid(),
+            replayDocument.RootElement.GetProperty("photoId").GetGuid());
+    }
+
+    [Fact]
+    public async Task Convenience_storage_failure_creates_no_analysis()
+    {
+        using var client = CreateAuthenticatedClient(
+            "ItemOrganizer.Write ItemOrganizer.Analyze");
+        int before;
+        using (var scope = factory.Services.CreateScope())
+        {
+            var dbContext = scope.ServiceProvider.GetRequiredService<
+                ItemOrganizer.Infrastructure.ItemOrganizerDbContext>();
+            before = await dbContext.Analyses.CountAsync();
+        }
+
+        factory.PhotoStorage.FailUploads = true;
+        try
+        {
+            using var content = CreatePhotoContent();
+            var response = await client.PostAsync(
+                $"/api/v1/containers/{ApiFactory.ContainerId}/photo-analyses",
+                content);
+
+            Assert.Equal(
+                HttpStatusCode.ServiceUnavailable,
+                response.StatusCode);
+            using var scope = factory.Services.CreateScope();
+            var dbContext = scope.ServiceProvider.GetRequiredService<
+                ItemOrganizer.Infrastructure.ItemOrganizerDbContext>();
+            Assert.Equal(before, await dbContext.Analyses.CountAsync());
+        }
+        finally
+        {
+            factory.PhotoStorage.FailUploads = false;
+        }
+    }
+
+    [Fact]
     public async Task Queued_analysis_can_be_cancelled_with_current_etag()
     {
         using var client = CreateAuthenticatedClient(
@@ -125,19 +245,24 @@ public sealed class AnalysisApiTests(ApiFactory factory) : IClassFixture<ApiFact
 
     private async Task<Guid> UploadPhotoAsync(HttpClient client)
     {
-        using var bitmap = new SKBitmap(512, 512);
-        bitmap.Erase(SKColors.Green);
-        using var image = SKImage.FromBitmap(bitmap);
-        using var data = image.Encode(SKEncodedImageFormat.Png, 90);
-        using var content = new MultipartFormDataContent();
-        var file = new ByteArrayContent(data.ToArray());
-        file.Headers.ContentType = new MediaTypeHeaderValue("image/png");
-        content.Add(file, "file", "analysis.png");
-
+        using var content = CreatePhotoContent();
         var response = await client.PostAsync("/api/v1/photos", content);
         response.EnsureSuccessStatusCode();
         var document = await response.Content.ReadFromJsonAsync<JsonDocument>();
         return document!.RootElement.GetProperty("id").GetGuid();
+    }
+
+    private static MultipartFormDataContent CreatePhotoContent()
+    {
+        using var bitmap = new SKBitmap(512, 512);
+        bitmap.Erase(SKColors.Green);
+        using var image = SKImage.FromBitmap(bitmap);
+        using var data = image.Encode(SKEncodedImageFormat.Png, 90);
+        var content = new MultipartFormDataContent();
+        var file = new ByteArrayContent(data.ToArray());
+        file.Headers.ContentType = new MediaTypeHeaderValue("image/png");
+        content.Add(file, "file", "analysis.png");
+        return content;
     }
 
     private HttpClient CreateAuthenticatedClient(
