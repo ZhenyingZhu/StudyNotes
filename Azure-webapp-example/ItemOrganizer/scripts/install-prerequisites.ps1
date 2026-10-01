@@ -85,6 +85,27 @@ function Find-VsCodeCommand {
     throw "Visual Studio Code was installed, but its command-line launcher could not be found."
 }
 
+function Install-VsCodeExtension {
+    param(
+        [Parameter(Mandatory)]
+        [string]$CodeCommand,
+
+        [Parameter(Mandatory)]
+        [string]$Id,
+
+        [Parameter(Mandatory)]
+        [string]$Name
+    )
+
+    Write-Host ""
+    Write-Host "Installing the $Name extension..." -ForegroundColor Green
+    Invoke-CheckedCommand $CodeCommand @(
+        "--install-extension",
+        $Id,
+        "--force"
+    )
+}
+
 if ($env:OS -ne "Windows_NT") {
     throw "This prerequisite installer supports Windows only."
 }
@@ -124,13 +145,14 @@ Install-WinGetPackage -Id "Docker.DockerDesktop" -Name "Docker Desktop"
 Update-ProcessPath
 
 $codeCommand = Find-VsCodeCommand
-Write-Host ""
-Write-Host "Installing the VS Code Dev Containers extension..." -ForegroundColor Green
-Invoke-CheckedCommand $codeCommand @(
-    "--install-extension",
-    "ms-vscode-remote.remote-containers",
-    "--force"
-)
+Install-VsCodeExtension `
+    -CodeCommand $codeCommand `
+    -Id "ms-vscode-remote.remote-containers" `
+    -Name "VS Code Dev Containers"
+Install-VsCodeExtension `
+    -CodeCommand $codeCommand `
+    -Id "ms-playwright.playwright" `
+    -Name "Playwright Test for VS Code"
 
 $dockerDesktopPath = Join-Path $env:ProgramFiles "Docker\Docker\Docker Desktop.exe"
 if (-not $SkipDockerLaunch -and -not $restartRequired) {

@@ -53,9 +53,12 @@ as Administrator:
 
 The installer enables WSL 2 without installing a separate Linux distribution,
 then uses WinGet to install Git, Visual Studio Code, Docker Desktop, and the VS
-Code Dev Containers extension. It is safe to run more than once. Restart
-Windows when requested, complete any Docker Desktop first-run prompts, and wait
-until Docker Desktop reports that its Linux engine is running.
+Code Dev Containers and Playwright Test extensions. It is safe to run more
+than once. Restart Windows when requested, complete any Docker Desktop
+first-run prompts, and wait until Docker Desktop reports that its Linux engine
+is running. The Playwright package and browser binaries remain project-scoped
+inside the Development Container rather than being installed globally on the
+Windows host.
 
 Then run the environment bootstrap:
 
