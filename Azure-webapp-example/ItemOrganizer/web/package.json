@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite --host 0.0.0.0",
     "build": "tsc -b && vite build",
-    "test": "vitest run"
+    "test": "vitest run",
+    "test:e2e": "playwright install --with-deps chromium && dotnet run --project ../src/ItemOrganizer.Database --no-restore -- reset-and-seed && playwright test"
   },
   "dependencies": {
     "@azure/msal-browser": "^4.23.0",
@@ -18,6 +19,7 @@
     "@testing-library/jest-dom": "6.9.1",
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^14.6.1",
+    "@playwright/test": "^1.55.0",
     "@types/react": "^19.1.16",
     "@types/react-dom": "^19.1.9",
     "@vitejs/plugin-react": "^5.0.4",

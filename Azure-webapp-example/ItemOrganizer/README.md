@@ -268,6 +268,18 @@ with `-PatPath`; the file contents are not displayed:
 .\scripts\restore-frontend.ps1 -PatPath C:\secure\azure-devops-pat.txt
 ```
 
+Run the complete local browser workflow from the Development Container:
+
+```powershell
+docker compose exec -T workspace pnpm -C web test:e2e
+```
+
+The command installs the matching Chromium runtime and Linux dependencies,
+resets and seeds PostgreSQL, starts the development-authenticated API and Vite
+frontend, and runs the Playwright upload, polling, review, assignment, and
+container-targeted convenience workflows. Failure traces, screenshots, and
+the HTML report are ignored by Git.
+
 The committed `web/.npmrc` reads the registry from
 `ITEMORGANIZER_NPM_REGISTRY`. `.env.example` selects the approved Azure DevOps
 `One_PublicPackages` feed by default, TLS verification remains enabled, and
@@ -331,13 +343,14 @@ incomplete.
   dead-letter handling, cancellation checks, and atomic item persistence.
   Its complete HTTP photo-to-analysis flow passed against PostgreSQL and
   Azurite on September 29, 2026.
-- Milestone 7 is in progress. The convenience upload-and-analyze API, photo
+- Milestone 7 is complete. The convenience upload-and-analyze API, photo
   analysis frontend, polling, cancellation, detected-item review, and explicit
   suggestion decisions are implemented and covered by API and component
   tests. A real PostgreSQL/Azurite convenience upload completed through the
   queue worker and confirmed both detected items in the selected container.
-  The milestone remains incomplete because the required Playwright
-  upload-through-review workflow has not been configured or run.
+  Playwright verifies standard photo upload, queue-worker polling, AI
+  suggestion acceptance, explicit reassignment, refresh behavior, and the
+  container-targeted workflow in Chromium against the full local stack.
 - Milestone 1 still requires clean-checkout validation on a second supported
   machine before its exit criteria are formally complete.
 
@@ -358,5 +371,19 @@ Validation completed on September 29, 2026:
 - The complete .NET solution tests and frontend type-check and production
   build passed.
 
-The next gate is the Milestone 7 Playwright workflow from photo upload through
-analysis polling, review, and assignment.
+Validation completed on October 1, 2026:
+
+- All 9 domain, 8 PostgreSQL/Azurite integration, 41 API/pipeline, and 11
+  frontend component tests passed.
+- The frontend type-check and production build passed.
+- Both Playwright Chromium workflows passed against the real local frontend,
+  API, PostgreSQL database, private Azurite Blob Storage, SQL outbox, Azurite
+  Queue, and deterministic analysis worker.
+- The standard workflow uploaded a generated valid PNG, reached completed
+  analysis, accepted the suggested container for one item, explicitly assigned
+  the unassigned item, refreshed, and retained both confirmed assignments.
+- The convenience workflow completed with both detected items confirmed in the
+  explicitly selected container.
+
+The next product milestone is Milestone 8: Entra ID, live Azure integrations,
+and observability.

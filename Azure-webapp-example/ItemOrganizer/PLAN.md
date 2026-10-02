@@ -527,7 +527,7 @@ The milestones below are ordered so that each stage produces a demonstrable, tes
 
 **Exit criteria:** The full local photo-to-inventory workflow passes with the deterministic mock AI and no orphaned or silently assigned items.
 
-**Current implementation status (September 29, 2026):**
+**Current implementation status (October 1, 2026):**
 
 - The web application uploads or captures JPEG, PNG, and WebP files, previews
   the selected source photo, starts standard or container-targeted analyses,
@@ -548,8 +548,16 @@ The milestones below are ordered so that each stage produces a demonstrable, tes
 - Live validation against PostgreSQL and Azurite completed a real convenience
   upload through the SQL outbox and queue worker, then returned two items
   confirmed in the selected container.
-- Milestone 7 remains incomplete because its required Playwright
-  upload-through-review browser workflow has not been configured or run.
+- Playwright Chromium validation resets the deterministic database, starts the
+  development-authenticated API and Vite frontend, generates and uploads a
+  valid 512-pixel PNG, polls through queue-worker completion, accepts an AI
+  suggestion, explicitly assigns an unassigned item, refreshes the inventory,
+  and verifies the container-targeted convenience workflow confirms every
+  detected item.
+- On October 1, 2026, both Playwright workflows, all 41 API tests, all 8
+  PostgreSQL/Azurite integration tests, all 9 domain tests, all 11 frontend
+  component tests, and the frontend production build passed. Milestone 7
+  therefore satisfies its exit criteria and is complete.
 
 ### Milestone 8 — Entra ID, live Azure integrations, and observability
 
@@ -601,6 +609,5 @@ Every milestone must preserve these requirements:
 
 ## Next step
 
-Add and run the Milestone 7 Playwright workflow against the local API and web
-application, covering upload, polling, review, and assignment before calling
-the milestone complete.
+Begin Milestone 8 by configuring Entra ID validation, live Azure dependencies,
+and observability in a dedicated Azure development environment.
