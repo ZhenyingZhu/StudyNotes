@@ -2,6 +2,8 @@
 param(
     [switch]$NoBuild,
     [switch]$SkipSmokeTest,
+    [switch]$SkipApplicationStart,
+    [string]$FrontendPatPath,
     [string]$CustomCaPath
 )
 
@@ -164,8 +166,74 @@ try {
         )
     }
 
+    if (-not $SkipApplicationStart) {
+        Invoke-CheckedCommand "docker" @(
+            "compose",
+            "exec",
+            "-T",
+            "workspace",
+            "dotnet",
+            "restore",
+            "ItemOrganizer.sln"
+        )
+
+        Invoke-CheckedCommand "docker" @(
+            "compose",
+            "exec",
+            "-T",
+            "workspace",
+            "dotnet",
+            "run",
+            "--project",
+            "src/ItemOrganizer.Database",
+            "--no-restore",
+            "--",
+            "migrate"
+        )
+
+        & docker compose exec -T workspace test -x web/node_modules/.bin/vite
+        if ($LASTEXITCODE -ne 0) {
+            Write-Host "Frontend packages are not restored." -ForegroundColor Yellow
+            $restoreArguments = @{}
+            if (-not [string]::IsNullOrWhiteSpace($FrontendPatPath)) {
+                $restoreArguments.PatPath = $FrontendPatPath
+            }
+
+            & (Join-Path $PSScriptRoot "restore-frontend.ps1") @restoreArguments
+            if ($LASTEXITCODE -ne 0) {
+                throw "Frontend package restore failed."
+            }
+        }
+
+        $webEnvironmentPath = Join-Path $projectRoot "web\.env.local"
+        $webEnvironmentExamplePath = Join-Path $projectRoot "web\.env.example"
+        if (-not (Test-Path -LiteralPath $webEnvironmentPath -PathType Leaf)) {
+            Copy-Item `
+                -LiteralPath $webEnvironmentExamplePath `
+                -Destination $webEnvironmentPath
+            Write-Host "Created web\.env.local from web\.env.example." `
+                -ForegroundColor Green
+        }
+
+        Invoke-CheckedCommand "docker" @(
+            "compose",
+            "exec",
+            "-T",
+            "workspace",
+            "bash",
+            "-c",
+            "tr -d '\r' < scripts/start-application.sh | bash"
+        )
+    }
+
     Write-Host ""
-    Write-Host "Item Organizer environment is ready." -ForegroundColor Green
+    if ($SkipApplicationStart) {
+        Write-Host "Item Organizer environment is ready." -ForegroundColor Green
+    }
+    else {
+        Write-Host "Item Organizer is ready at http://localhost:5173." `
+            -ForegroundColor Green
+    }
     Invoke-CheckedCommand "docker" @("compose", "ps")
 }
 catch {

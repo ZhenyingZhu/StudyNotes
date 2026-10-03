@@ -68,8 +68,11 @@ Then run the environment bootstrap:
 
 The script verifies Docker Desktop and Linux-container mode, creates `.env`
 from `.env.example` when needed, builds and starts the Compose stack, waits for
-healthy services, and runs the environment smoke test. It never overwrites an
-existing `.env`.
+healthy services, runs the environment smoke test, restores .NET dependencies,
+applies pending database migrations, restores missing frontend dependencies,
+and starts the API and Vite frontend. It never overwrites an existing `.env` or
+`web/.env.local`. On the first frontend restore, it securely prompts for an
+Azure DevOps PAT with Packaging Read permission.
 
 Use `-NoBuild` to start existing images without rebuilding or
 `-SkipSmokeTest` to omit validation:
@@ -78,10 +81,20 @@ Use `-NoBuild` to start existing images without rebuilding or
 .\scripts\start-environment.ps1 -NoBuild -SkipSmokeTest
 ```
 
-Then open the repository in Visual Studio Code and reopen it in the Development
-Container.
+When startup completes, open `http://localhost:5173`. To prepare only the
+containers and toolchain without restoring, migrating, or starting the
+application, use `-SkipApplicationStart`. For unattended first-time frontend
+restore, pass the protected PAT file with `-FrontendPatPath`:
 
-The equivalent manual sequence is:
+```powershell
+.\scripts\start-environment.ps1 -FrontendPatPath C:\secure\azure-devops-pat.txt
+```
+
+You can also open the repository in Visual Studio Code and reopen it in the
+Development Container.
+
+The equivalent environment-only manual sequence, matching
+`-SkipApplicationStart`, is:
 
 ```powershell
 Copy-Item .env.example .env
@@ -311,8 +324,9 @@ Validation performed on September 16, 2026 confirmed:
 - the complete environment smoke test passes on Windows ARM64
 - Compose configuration and local-secret ignore rules are valid
 
-Milestone 1 remains incomplete until a second supported machine reproduces the
-environment from a clean checkout.
+This is single-machine validation only. Milestone 1 has not been validated from
+a clean checkout on a different supported machine or environment, so it remains
+incomplete until that independent reproduction passes.
 
 ## Implementation status
 
