@@ -324,9 +324,13 @@ Validation performed on September 16, 2026 confirmed:
 - the complete environment smoke test passes on Windows ARM64
 - Compose configuration and local-secret ignore rules are valid
 
-This is single-machine validation only. Milestone 1 has not been validated from
-a clean checkout on a different supported machine or environment, so it remains
-incomplete until that independent reproduction passes.
+Independent validation performed on October 3, 2026 on a second Windows AMD64
+machine removed all ignored files, containers, data, and cache volumes before
+running the documented bootstrap. The Development Container rebuilt, PostgreSQL
+and Azurite became healthy, pinned tool and service-name smoke checks passed,
+dependencies restored, migrations applied, and the API and frontend both
+returned HTTP 200. Milestone 1 therefore satisfies its exit criteria and is
+complete.
 
 ## Implementation status
 
