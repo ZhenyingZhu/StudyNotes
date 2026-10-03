@@ -580,6 +580,9 @@ The milestones below are ordered so that each stage produces a demonstrable, tes
   structured output, private blob download, managed identity or an explicitly
   supplied development API key, and safe transient, rejected, and malformed
   output classifications.
+- A development `gpt-5.4-mini` deployment was provisioned with GlobalStandard
+  capacity and passed an Entra-authenticated Responses API test using real
+  image input and strict JSON-schema output.
 - The default remains the deterministic provider so ordinary local and CI
   suites do not consume Azure resources.
 - The representative dataset, acceptance thresholds, live measurements, and

@@ -397,3 +397,30 @@ endpoint. Authentication uses `DefaultAzureCredential`; an
 `AzureOpenAI__ApiKey` may be supplied only through an approved local secret
 source. The default configuration remains deterministic and makes no live AI
 calls.
+
+The development deployment `gpt-5.4-mini-itemorganizer-dev` has been verified
+against the Azure OpenAI Responses API with image input and strict structured
+output. This verifies connectivity and protocol compatibility only; it does
+not satisfy the Milestone 8 recognition-quality gate.
+
+Run the complete local application against that live deployment:
+
+```powershell
+.\scripts\start-live-ai.ps1
+```
+
+The script starts the Docker Compose development services, verifies the current
+Azure CLI login and model deployment, checks that frontend packages are
+installed, applies database migrations, and starts the development-authenticated
+API and frontend. Open `http://localhost:5173`, choose **Photo analysis**,
+select a JPEG, PNG, or WebP photo between 512 and 8000 pixels and no larger
+than 10 MiB, then select **Upload and analyze**. The page polls until the live
+analysis completes and displays detected names, categories, quantities,
+confidence values, warnings, and container suggestions. Press `Ctrl+C` in the
+script terminal to stop both development servers.
+
+To check prerequisites without starting the servers:
+
+```powershell
+.\scripts\start-live-ai.ps1 -ValidateOnly
+```
