@@ -55,6 +55,18 @@ public sealed class FakePhotoStorage : IPhotoStorage
                 $"https://storage.example.invalid/photos/{Uri.EscapeDataString(blobName)}?expires={lifetime.TotalMinutes:0}"));
     }
 
+    public Task<byte[]> DownloadAsync(
+        string blobName,
+        CancellationToken cancellationToken)
+    {
+        if (!_photos.TryGetValue(blobName, out var photo))
+        {
+            throw new FileNotFoundException();
+        }
+
+        return Task.FromResult(photo.Content.ToArray());
+    }
+
     public Task DeleteIfExistsAsync(
         string blobName,
         CancellationToken cancellationToken)

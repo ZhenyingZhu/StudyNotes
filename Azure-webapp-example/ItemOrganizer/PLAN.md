@@ -559,21 +559,48 @@ The milestones below are ordered so that each stage produces a demonstrable, tes
   component tests, and the frontend production build passed. Milestone 7
   therefore satisfies its exit criteria and is complete.
 
-### Milestone 8 — Entra ID, live Azure integrations, and observability
+### Milestone 8 — Live AI feasibility gate
 
-**Purpose:** Validate cloud identity, managed-resource access, monitoring, and operational behavior separately from local development.
+**Purpose:** Prove that reliable automatic photo identification meets the mandatory product value proposition before further production-infrastructure investment.
+
+**Testable outcomes:**
+
+- A representative, versioned evaluation dataset covers ordinary inventory photos plus clutter, occlusion, poor lighting, visually similar objects, and multiple quantities.
+- The live Azure OpenAI provider reads the private source photo, uses strict structured output, records model and prompt versions, and does not persist raw provider payloads.
+- Evaluation reports item precision and recall, quantity accuracy, false detections, schema-valid response rate, latency percentiles, and estimated cost per analysis.
+- Acceptance thresholds are documented before evaluation and distinguish model errors from workflow correction behavior.
+- The model abstains through omitted or low-confidence detections rather than inventing items, and unsafe or malformed output creates no inventory records.
+- Prompt or model changes can be compared against the same dataset without changing the default deterministic test suite.
+
+**Exit criteria:** Stakeholders approve measured acceptance thresholds, the live evaluation meets every mandatory threshold, and the result is recorded as an explicit go decision. Failure is a no-go requiring model, workflow, or product redesign before Milestone 9.
+
+**Current implementation status (October 1, 2026):**
+
+- The API includes a configurable Azure OpenAI Responses provider using strict
+  structured output, private blob download, managed identity or an explicitly
+  supplied development API key, and safe transient, rejected, and malformed
+  output classifications.
+- The default remains the deterministic provider so ordinary local and CI
+  suites do not consume Azure resources.
+- The representative dataset, acceptance thresholds, live measurements, and
+  stakeholder go/no-go decision are not yet complete. Milestone 8 is therefore
+  in progress and must not be called complete.
+
+### Milestone 9 — Entra ID, remaining live Azure integrations, and observability
+
+**Purpose:** After AI feasibility passes, validate cloud identity, remaining managed-resource access, monitoring, and operational behavior.
 
 **Testable outcomes:**
 
 - Entra ID tokens with each approved scope produce the documented allow/deny behavior.
-- The deployed API accesses Azure Database for PostgreSQL Flexible Server, private Blob Storage, and Azure OpenAI through managed identity or the approved secret mechanism; no credentials are present in source or ordinary configuration.
+- The deployed API accesses Azure Database for PostgreSQL Flexible Server, private Blob Storage, and the proven Azure OpenAI deployment through managed identity or the approved secret mechanism; no credentials are present in source or ordinary configuration.
 - Live integration tests are explicitly invoked, isolated from the default local test run, and clean up their test data.
 - Application Insights and Log Analytics capture correlation IDs, dependency failures, analysis failures, throttling, latency, and authorization failures without recording photo content or secrets.
 - Readiness and liveness checks, alerts, retention settings, rate limits, and upload limits are verified in a non-production environment.
 
 **Exit criteria:** The live integration and observability checklist passes in a dedicated Azure development environment with evidence retained for review.
 
-### Milestone 9 — Infrastructure, CI/CD, and production readiness
+### Milestone 10 — Infrastructure, CI/CD, and production readiness
 
 **Purpose:** Provision and release the approved system safely and repeatably.
 
@@ -609,5 +636,6 @@ Every milestone must preserve these requirements:
 
 ## Next step
 
-Begin Milestone 8 by configuring Entra ID validation, live Azure dependencies,
-and observability in a dedicated Azure development environment.
+Complete Milestone 8 by defining the mandatory recognition thresholds,
+building the representative evaluation dataset, and running the live Azure
+OpenAI evaluation before beginning identity or production infrastructure work.

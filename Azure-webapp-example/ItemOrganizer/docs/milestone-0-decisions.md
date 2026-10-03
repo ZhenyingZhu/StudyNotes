@@ -95,6 +95,9 @@ The worker expects Azure OpenAI structured output that matches the application s
 - Every analysis stores `promptVersion`, `schemaVersion`, `model`, and the application build version.
 - Schema changes require a new `schemaVersion`; prompt changes that preserve the same schema require a new `promptVersion`.
 - Reprocessing a photo under a new prompt or schema creates a new analysis record; prior completed analyses remain immutable.
+- The application selects `deterministic` or `azure-openai` through `Analysis:Provider`. The deterministic provider remains the default for local and CI tests.
+- The live provider sends the private photo directly from Blob Storage to the Azure OpenAI Responses API and requires `Analysis:Model` to identify the deployment.
+- Live authentication uses managed identity through `DefaultAzureCredential` by default. A development API key may be injected through an approved secret source but must not be committed.
 
 ### Provider failure behavior
 

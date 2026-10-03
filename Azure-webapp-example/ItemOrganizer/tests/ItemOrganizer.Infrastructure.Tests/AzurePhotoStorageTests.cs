@@ -59,6 +59,11 @@ public sealed class AzurePhotoStorageTests
             Assert.Equal(
                 content,
                 await httpClient.GetByteArrayAsync(readUri));
+            Assert.Equal(
+                content,
+                await storage.DownloadAsync(
+                    blobName,
+                    CancellationToken.None));
 
             await storage.DeleteIfExistsAsync(
                 blobName,

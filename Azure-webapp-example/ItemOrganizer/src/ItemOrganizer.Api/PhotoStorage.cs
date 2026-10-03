@@ -17,6 +17,10 @@ public interface IPhotoStorage
         TimeSpan lifetime,
         CancellationToken cancellationToken);
 
+    Task<byte[]> DownloadAsync(
+        string blobName,
+        CancellationToken cancellationToken);
+
     Task DeleteIfExistsAsync(
         string blobName,
         CancellationToken cancellationToken);
@@ -78,6 +82,17 @@ public sealed class AzureBlobPhotoStorage(
             StartsOn = now.AddMinutes(-1)
         };
         return blob.GenerateSasUri(sas);
+    }
+
+    public async Task<byte[]> DownloadAsync(
+        string blobName,
+        CancellationToken cancellationToken)
+    {
+        await EnsureContainerAsync(cancellationToken);
+        var response = await _container
+            .GetBlobClient(blobName)
+            .DownloadContentAsync(cancellationToken);
+        return response.Value.Content.ToArray();
     }
 
     public async Task DeleteIfExistsAsync(

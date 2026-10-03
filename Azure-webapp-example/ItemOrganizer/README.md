@@ -385,5 +385,15 @@ Validation completed on October 1, 2026:
 - The convenience workflow completed with both detected items confirmed in the
   explicitly selected container.
 
-The next product milestone is Milestone 8: Entra ID, live Azure integrations,
-and observability.
+The next product milestone is Milestone 8: the live Azure OpenAI feasibility
+gate. Reliable automatic photo identification is mandatory, so representative
+dataset evaluation and an explicit go/no-go decision must pass before Entra ID
+and production infrastructure work begins.
+
+To invoke the live provider in an explicitly selected development environment,
+set `Analysis__Provider=azure-openai`, set `Analysis__Model` to the Azure
+OpenAI deployment name, and set `AzureOpenAI__Endpoint` to the resource HTTPS
+endpoint. Authentication uses `DefaultAzureCredential`; an
+`AzureOpenAI__ApiKey` may be supplied only through an approved local secret
+source. The default configuration remains deterministic and makes no live AI
+calls.

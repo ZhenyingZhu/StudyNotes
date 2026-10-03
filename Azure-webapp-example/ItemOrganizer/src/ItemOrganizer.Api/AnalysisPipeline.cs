@@ -10,6 +10,8 @@ namespace ItemOrganizer.Api;
 public sealed record AnalysisProviderRequest(
     Guid AnalysisId,
     Guid PhotoId,
+    string PhotoBlobName,
+    string PhotoContentType,
     string PromptVersion,
     string SchemaVersion,
     string Model,
@@ -93,6 +95,10 @@ public sealed class AnalysisProviderTransientException(
     Exception? innerException = null) : Exception(message, innerException);
 
 public sealed class AnalysisProviderRejectedException(
+    string message,
+    Exception? innerException = null) : Exception(message, innerException);
+
+public sealed class AnalysisProviderInvalidOutputException(
     string message,
     Exception? innerException = null) : Exception(message, innerException);
 
@@ -406,10 +412,30 @@ public sealed class AnalysisProcessor(
                     container.Location,
                     container.Labels))
                 .ToListAsync(cancellationToken);
+            var photo = await dbContext.Photos
+                .AsNoTracking()
+                .Where(entity =>
+                    entity.Id == analysis.PhotoId
+                    && entity.TenantId == analysis.TenantId
+                    && entity.OwnerObjectId == analysis.OwnerObjectId
+                    && entity.DeletedAt == null)
+                .Select(entity => new
+                {
+                    entity.BlobName,
+                    entity.ContentType
+                })
+                .SingleOrDefaultAsync(cancellationToken);
+            if (photo is null)
+            {
+                throw new AnalysisProviderRejectedException(
+                    "The analysis photo is unavailable.");
+            }
             var result = await provider.AnalyzeAsync(
                 new(
                     analysis.Id,
                     analysis.PhotoId,
+                    photo.BlobName,
+                    photo.ContentType,
                     analysis.PromptVersion,
                     analysis.SchemaVersion,
                     analysis.Model,
@@ -478,6 +504,20 @@ public sealed class AnalysisProcessor(
                 analysisId,
                 "AI_PROVIDER_REJECTED_REQUEST",
                 "The analysis request could not be processed.",
+                correlationId,
+                cancellationToken);
+            return AnalysisProcessingResult.DeadLetter();
+        }
+        catch (AnalysisProviderInvalidOutputException exception)
+        {
+            logger.LogWarning(
+                exception,
+                "Invalid AI output for analysis {AnalysisId}.",
+                analysisId);
+            await FailAsync(
+                analysisId,
+                "AI_OUTPUT_INVALID",
+                "The analysis provider returned an invalid result.",
                 correlationId,
                 cancellationToken);
             return AnalysisProcessingResult.DeadLetter();
@@ -749,7 +789,36 @@ public static class AnalysisPipelineServiceCollectionExtensions
                 "ITEMORGANIZER_STORAGE_CONNECTION is required.");
         }
 
-        services.AddSingleton<IAnalysisProvider, DeterministicAnalysisProvider>();
+        var providerName = configuration["Analysis:Provider"]
+            ?.Trim()
+            .ToLowerInvariant()
+            ?? "deterministic";
+        if (providerName == "azure-openai")
+        {
+            var model = configuration["Analysis:Model"]?.Trim();
+            if (string.IsNullOrWhiteSpace(model)
+                || model == "deterministic-mock")
+            {
+                throw new InvalidOperationException(
+                    "Analysis:Model must name an Azure OpenAI deployment when Analysis:Provider is azure-openai.");
+            }
+            services.AddSingleton<Azure.Core.TokenCredential>(
+                new Azure.Identity.DefaultAzureCredential());
+            services.AddHttpClient<AzureOpenAiAnalysisProvider>();
+            services.AddScoped<IAnalysisProvider>(provider =>
+                provider.GetRequiredService<AzureOpenAiAnalysisProvider>());
+        }
+        else if (providerName == "deterministic")
+        {
+            services.AddSingleton<
+                IAnalysisProvider,
+                DeterministicAnalysisProvider>();
+        }
+        else
+        {
+            throw new InvalidOperationException(
+                "Analysis:Provider must be deterministic or azure-openai.");
+        }
         services.AddSingleton<IAnalysisQueue>(provider =>
             new AzureStorageAnalysisQueue(
                 connectionString,
