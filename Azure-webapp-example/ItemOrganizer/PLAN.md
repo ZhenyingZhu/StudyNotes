@@ -2,11 +2,10 @@
 
 ## Status
 
-**Accepted and implementation authorized. Milestone 0 is complete. Milestone 1
-is implemented and verified on Windows ARM64; clean-checkout recreation on a
-second supported machine remains pending. Milestones 2 and 3 are implemented
-and verified. Milestones 4 and 5 are complete and verified in the Development
-Container.**
+**Accepted and implementation authorized. Milestones 0 and 1 are complete.
+Milestone 1 is independently verified on Windows ARM64 and Windows AMD64.
+Milestones 2 and 3 are implemented and verified. Milestones 4 and 5 are
+complete and verified in the Development Container.**
 
 ## Goal
 
@@ -356,14 +355,23 @@ The milestones below are ordered so that each stage produces a demonstrable, tes
 
 **Exit criteria:** The environment smoke test passes on a clean checkout using only the documented host prerequisites, and a second supported machine can rebuild the Development Container, start Docker Compose services, verify tool versions, connect to PostgreSQL and Azurite by service name, and run the documented smoke-test command sequence without any machine-specific configuration.
 
-**Current validation status (September 16, 2026):**
+**Current validation status (October 3, 2026):**
 
 - The Development Container image builds successfully on Windows ARM64.
 - The pinned .NET SDK, EF Core CLI, Git, Node.js, pnpm, Azure CLI, and Bicep versions were verified inside the workspace image.
 - PostgreSQL starts healthy and is reachable through its Compose service name.
 - Azurite starts healthy and is reachable through its Compose service name on the Blob, Queue, and Table ports.
 - The complete environment smoke test passes on Windows ARM64.
-- Milestone 1 remains incomplete until clean-checkout recreation is confirmed on a second supported machine.
+- On October 3, 2026, a second Windows AMD64 machine removed ignored files,
+  containers, PostgreSQL and Azurite data, and package-cache volumes before
+  running the documented bootstrap from the committed clean worktree.
+- The second machine rebuilt the Development Container, verified the pinned
+  tools, started healthy PostgreSQL and Azurite services, reached both by
+  Compose service name, passed the smoke test, restored dependencies, applied
+  migrations, and started the API and frontend successfully.
+- Host requests returned HTTP 200 from the frontend, API readiness endpoint,
+  and authenticated API summary endpoint. Milestone 1 therefore satisfies its
+  exit criteria and is complete.
 
 ### Milestone 2 — Domain model and persistence foundation
 
