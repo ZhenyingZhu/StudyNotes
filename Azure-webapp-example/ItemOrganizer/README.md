@@ -419,7 +419,7 @@ calls.
 The development deployment `gpt-5.4-mini-itemorganizer-dev` has been verified
 against the Azure OpenAI Responses API with image input and strict structured
 output. This verifies connectivity and protocol compatibility only; it does
-not satisfy the Milestone 8 recognition-quality gate.
+not satisfy the Milestone 8 recognition-quality gate. It costs $2.5 per day when running but not accepting requests.
 
 Run the complete local application against that live deployment:
 
