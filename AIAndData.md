@@ -111,7 +111,7 @@ LLM Model distillation is compression
 
 System prompts should be clean up once a while to confirm if they are still necessary
 
-
+Can change the workflow to auto having each dev cycle steps
 
 ### Token caching
 
