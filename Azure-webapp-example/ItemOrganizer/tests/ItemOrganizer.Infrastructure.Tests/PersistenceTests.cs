@@ -122,7 +122,7 @@ public sealed class PersistenceTests(PostgreSqlFixture fixture)
     }
 
     [Fact]
-    public async Task CompletedAnalysis_PersistsMergedItemsAndAssignmentsAtomically()
+    public async Task CompletedAnalysis_PersistsMergedReviewDraftsOnly()
     {
         var setup = await CreateRunningAnalysisAsync();
 
@@ -143,16 +143,17 @@ public sealed class PersistenceTests(PostgreSqlFixture fixture)
         await using var assertContext = fixture.CreateContext();
         var analysis = await assertContext.Analyses.SingleAsync(
             candidate => candidate.Id == setup.AnalysisId);
-        var item = await assertContext.Items
-            .Include(candidate => candidate.Assignment)
+        var detection = await assertContext.AnalysisDetections
             .SingleAsync(candidate => candidate.AnalysisId == setup.AnalysisId);
 
         Assert.Equal(AnalysisStatus.Completed, analysis.Status);
         Assert.Single(analysis.Warnings);
-        Assert.Equal(3, item.Quantity);
-        Assert.Equal(0.95m, item.Confidence);
-        Assert.Equal(AssignmentStatus.Suggested, item.Assignment.Status);
-        Assert.Equal(setup.ContainerId, item.Assignment.SuggestedContainerId);
+        Assert.Equal(3, detection.Quantity);
+        Assert.Equal(0.95m, detection.Confidence);
+        Assert.Equal(DetectionReviewStatus.Pending, detection.ReviewStatus);
+        Assert.Equal(setup.ContainerId, detection.SuggestedContainerId);
+        Assert.False(await assertContext.Items.AnyAsync(
+            item => item.AnalysisId == setup.AnalysisId));
     }
 
     [Fact]
@@ -175,6 +176,8 @@ public sealed class PersistenceTests(PostgreSqlFixture fixture)
         var analysis = await assertContext.Analyses.SingleAsync(
             candidate => candidate.Id == setup.AnalysisId);
         Assert.Equal(AnalysisStatus.Running, analysis.Status);
+        Assert.False(await assertContext.AnalysisDetections.AnyAsync(
+            detection => detection.AnalysisId == setup.AnalysisId));
         Assert.False(await assertContext.Items.AnyAsync(
             item => item.AnalysisId == setup.AnalysisId));
     }

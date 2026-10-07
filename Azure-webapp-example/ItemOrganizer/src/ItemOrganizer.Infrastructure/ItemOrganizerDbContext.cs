@@ -13,6 +13,8 @@ public sealed class ItemOrganizerDbContext(DbContextOptions<ItemOrganizerDbConte
 
     public DbSet<Analysis> Analyses => Set<Analysis>();
 
+    public DbSet<AnalysisDetection> AnalysisDetections => Set<AnalysisDetection>();
+
     public DbSet<Item> Items => Set<Item>();
 
     public DbSet<ItemAssignment> ItemAssignments => Set<ItemAssignment>();
@@ -40,6 +42,7 @@ public sealed class ItemOrganizerDbContext(DbContextOptions<ItemOrganizerDbConte
         ConfigureContainer(modelBuilder.Entity<StorageContainer>());
         ConfigurePhoto(modelBuilder.Entity<Photo>());
         ConfigureAnalysis(modelBuilder.Entity<Analysis>());
+        ConfigureAnalysisDetection(modelBuilder.Entity<AnalysisDetection>());
         ConfigureItem(modelBuilder.Entity<Item>());
         ConfigureAssignment(modelBuilder.Entity<ItemAssignment>());
         ConfigureOutbox(modelBuilder.Entity<OutboxMessage>());
@@ -163,6 +166,67 @@ public sealed class ItemOrganizerDbContext(DbContextOptions<ItemOrganizerDbConte
                 "(status IN ('Completed', 'Failed') AND completed_at IS NOT NULL) OR " +
                 "(status = 'Cancelled' AND cancelled_at IS NOT NULL) OR " +
                 "(status IN ('Queued', 'Running') AND completed_at IS NULL AND cancelled_at IS NULL)");
+        });
+    }
+
+    private static void ConfigureAnalysisDetection(
+        EntityTypeBuilder<AnalysisDetection> builder)
+    {
+        ConfigureOwnedEntity(builder, "analysis_detections");
+        builder.Property(entity => entity.Name).HasMaxLength(300).IsRequired();
+        builder.Property(entity => entity.Description).HasMaxLength(2_000);
+        builder.Property(entity => entity.Category).HasMaxLength(200);
+        builder.Property(entity => entity.Confidence).HasPrecision(5, 4);
+        builder.Property(entity => entity.ReviewStatus)
+            .HasConversion<string>()
+            .HasMaxLength(50);
+        builder.Property(entity => entity.ReviewedName).HasMaxLength(300);
+        builder.Property(entity => entity.ReviewedDescription).HasMaxLength(2_000);
+        builder.Property(entity => entity.ReviewedCategory).HasMaxLength(200);
+        builder.HasOne<Analysis>()
+            .WithMany()
+            .HasForeignKey(entity => new
+            {
+                entity.AnalysisId,
+                entity.TenantId,
+                entity.OwnerObjectId
+            })
+            .HasPrincipalKey(entity => new
+            {
+                entity.Id,
+                entity.TenantId,
+                entity.OwnerObjectId
+            })
+            .OnDelete(DeleteBehavior.Cascade);
+        builder.HasOne<StorageContainer>()
+            .WithMany()
+            .HasForeignKey(entity => new
+            {
+                entity.SuggestedContainerId,
+                entity.TenantId,
+                entity.OwnerObjectId
+            })
+            .HasPrincipalKey(entity => new
+            {
+                entity.Id,
+                entity.TenantId,
+                entity.OwnerObjectId
+            })
+            .OnDelete(DeleteBehavior.Restrict);
+        builder.HasIndex(entity => new { entity.AnalysisId, entity.ReviewStatus });
+        builder.ToTable(table =>
+        {
+            table.HasCheckConstraint(
+                "ck_analysis_detections_quantity",
+                "quantity > 0");
+            table.HasCheckConstraint(
+                "ck_analysis_detections_confidence",
+                "confidence BETWEEN 0 AND 1");
+            table.HasCheckConstraint(
+                "ck_analysis_detections_review",
+                "(review_status = 'Pending' AND reviewed_at IS NULL AND resulting_item_id IS NULL) OR " +
+                "(review_status = 'Rejected' AND reviewed_at IS NOT NULL AND resulting_item_id IS NULL) OR " +
+                "(review_status = 'Accepted' AND reviewed_at IS NOT NULL AND resulting_item_id IS NOT NULL)");
         });
     }
 

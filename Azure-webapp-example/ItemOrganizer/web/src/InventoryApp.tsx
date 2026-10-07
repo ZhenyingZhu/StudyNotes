@@ -1,12 +1,14 @@
 import { FormEvent, useCallback, useEffect, useState } from 'react'
 import {
   Analysis,
+  AnalysisDetection,
   ApiError,
   Container,
   ContainerInput,
   InventoryApi,
   InventoryItem,
   ItemInput,
+  DetectionReviewInput,
   Summary,
 } from './api'
 
@@ -22,6 +24,12 @@ const emptyItem: ItemInput = {
   description: '',
   category: '',
   quantity: 1,
+}
+
+type DetectionReview = DetectionReviewInput & {
+  confidence: number
+  suggestedContainerId: string | null
+  reviewStatus: AnalysisDetection['reviewStatus']
 }
 
 export function InventoryApp({ api }: { api: InventoryApi }) {
@@ -49,7 +57,9 @@ export function InventoryApp({ api }: { api: InventoryApi }) {
   const [targetContainerId, setTargetContainerId] = useState('')
   const [photoRequestKey, setPhotoRequestKey] = useState('')
   const [analysis, setAnalysis] = useState<Analysis | null>(null)
-  const [analysisItems, setAnalysisItems] = useState<InventoryItem[]>([])
+  const [analysisDetections, setAnalysisDetections] = useState<
+    DetectionReview[]
+  >([])
   const [analysisBusy, setAnalysisBusy] = useState(false)
 
   const load = useCallback(
@@ -108,8 +118,7 @@ export function InventoryApp({ api }: { api: InventoryApi }) {
         const next = await api.getAnalysis(analysis.id)
         setAnalysis(next)
         if (next.status === 'completed') {
-          setAnalysisItems(await api.getItems(next.itemIds))
-          await load(search)
+          setAnalysisDetections(toDetectionReviews(next))
         }
       } catch (caught) {
         showError(caught, setError)
@@ -169,7 +178,7 @@ export function InventoryApp({ api }: { api: InventoryApi }) {
         setAnalysisBusy(true)
         setError('')
         setNotice('')
-        setAnalysisItems([])
+        setAnalysisDetections([])
         const key = photoRequestKey || createIdempotencyKey()
         setPhotoRequestKey(key)
         const started = targetContainerId
@@ -184,8 +193,7 @@ export function InventoryApp({ api }: { api: InventoryApi }) {
             )
         setAnalysis(started)
         if (started.status === 'completed') {
-          setAnalysisItems(await api.getItems(started.itemIds))
-          await load(search)
+          setAnalysisDetections(toDetectionReviews(started))
         }
         setNotice('Photo uploaded and analysis queued.')
       } catch (caught) {
@@ -212,22 +220,48 @@ export function InventoryApp({ api }: { api: InventoryApi }) {
       }
   }
 
-  async function reviewItem(
-    itemId: string,
-    action: () => Promise<InventoryItem>,
-    message: string,
-  ) {
+  async function confirmDetections() {
+    if (!analysis) {
+      return
+    }
+
     try {
+      setAnalysisBusy(true)
       setError('')
-      const updated = await action()
-      setAnalysisItems((current) =>
-        current.map((item) => (item.id === itemId ? updated : item)),
+      const confirmed = await api.confirmAnalysis(
+        analysis.id,
+        analysisDetections.map((detection) => ({
+          id: detection.id,
+          accepted: detection.accepted,
+          name: detection.name,
+          description: detection.description,
+          category: detection.category,
+          quantity: detection.quantity,
+          containerId: detection.containerId,
+        })),
       )
-      setNotice(message)
+      setAnalysis(confirmed)
+      setAnalysisDetections(toDetectionReviews(confirmed))
+      setNotice('Confirmed detections were added to inventory.')
       await load(search)
     } catch (caught) {
       showError(caught, setError)
+    } finally {
+      setAnalysisBusy(false)
     }
+  }
+
+  function updateDetection(
+    detectionId: string,
+    update: Partial<DetectionReview>,
+  ) {
+    setAnalysisDetections((current) =>
+      current.map((detection) =>
+        detection.id === detectionId
+          ? { ...detection, ...update }
+          : detection,
+      ),
+    )
   }
 
   async function loadMore() {
@@ -335,19 +369,19 @@ export function InventoryApp({ api }: { api: InventoryApi }) {
                   setSelectedPhoto(event.target.files?.[0] ?? null)
                   setPhotoRequestKey(createIdempotencyKey())
                   setAnalysis(null)
-                  setAnalysisItems([])
+                  setAnalysisDetections([])
                 }}
               />
             </label>
             <label>
-              Assign all detected items to a container (optional)
+              Preselect a container for review (optional)
               <select
                 value={targetContainerId}
                 onChange={(event) =>
                   setTargetContainerId(event.target.value)
                 }
               >
-                <option value="">Review suggestions after analysis</option>
+                <option value="">Use AI suggestions during review</option>
                 {containers.map((container) => (
                   <option value={container.id} key={container.id}>
                     {container.name}
@@ -405,82 +439,90 @@ export function InventoryApp({ api }: { api: InventoryApi }) {
               </p>
             ))}
             {analysis.status === 'completed' &&
-              analysisItems.map((item) => {
+              analysisDetections.map((detection) => {
                 const suggested = containers.find(
                   (container) =>
-                    container.id === item.suggestedContainerId,
+                    container.id === detection.suggestedContainerId,
                 )
                 return (
-                  <article className="detection-card" key={item.id}>
-                    <div>
-                      <h4>{item.name}</h4>
-                      <p>
-                        {item.category || 'Uncategorized'} · Quantity{' '}
-                        {item.quantity} · Confidence{' '}
-                        {formatConfidence(item.confidence)}
-                      </p>
-                      <p>
-                        Source: selected photo · Assignment:{' '}
-                        {item.assignmentStatus}
-                      </p>
-                      {suggested && (
-                        <p>Suggested container: {suggested.name}</p>
-                      )}
-                    </div>
+                  <article className="detection-card" key={detection.id}>
                     <div className="review-actions">
-                      {item.assignmentStatus === 'suggested' &&
-                        item.suggestedContainerId && (
-                          <>
-                            <button
-                              onClick={() =>
-                                void reviewItem(
-                                  item.id,
-                                  () =>
-                                    api.acceptSuggestion(
-                                      item.id,
-                                      item.suggestedContainerId!,
-                                    ),
-                                  'Suggestion accepted.',
-                                )
-                              }
-                            >
-                              Accept suggestion
-                            </button>
-                            <button
-                              className="secondary"
-                              onClick={() =>
-                                void reviewItem(
-                                  item.id,
-                                  () => api.unassignItem(item.id),
-                                  'Suggestion rejected.',
-                                )
-                              }
-                            >
-                              Reject suggestion
-                            </button>
-                          </>
-                        )}
                       <label>
-                        Change container
+                        <input
+                          type="checkbox"
+                          checked={detection.accepted}
+                          disabled={detection.reviewStatus !== 'pending'}
+                          onChange={(event) =>
+                            updateDetection(detection.id, {
+                              accepted: event.target.checked,
+                            })
+                          }
+                        />
+                        Add to inventory
+                      </label>
+                      <label>
+                        Name
+                        <input
+                          value={detection.name}
+                          disabled={!detection.accepted}
+                          onChange={(event) =>
+                            updateDetection(detection.id, {
+                              name: event.target.value,
+                            })
+                          }
+                        />
+                      </label>
+                      <label>
+                        Category
+                        <input
+                          value={detection.category}
+                          disabled={!detection.accepted}
+                          onChange={(event) =>
+                            updateDetection(detection.id, {
+                              category: event.target.value,
+                            })
+                          }
+                        />
+                      </label>
+                      <label>
+                        Quantity
+                        <input
+                          type="number"
+                          min="1"
+                          value={detection.quantity}
+                          disabled={!detection.accepted}
+                          onChange={(event) =>
+                            updateDetection(detection.id, {
+                              quantity: Number(event.target.value),
+                            })
+                          }
+                        />
+                      </label>
+                      <label>
+                        Description
+                        <input
+                          value={detection.description}
+                          disabled={!detection.accepted}
+                          onChange={(event) =>
+                            updateDetection(detection.id, {
+                              description: event.target.value,
+                            })
+                          }
+                        />
+                      </label>
+                      <label>
+                        Container
                         <select
-                          aria-label={`Change container for ${item.name}`}
-                          value={item.containerId ?? ''}
-                          onChange={(event) => {
-                            if (!event.target.value) {
-                              return
-                            }
-                            void reviewItem(
-                              item.id,
-                              () =>
-                                api.assignItem(
-                                  item.id,
-                                  event.target.value,
-                                ),
-                              'Container changed.',
-                            )
-                          }}
+                          aria-label={`Container for ${detection.name}`}
+                          value={detection.containerId ?? ''}
+                          disabled={!detection.accepted}
+                          onChange={(event) =>
+                            updateDetection(detection.id, {
+                              containerId: event.target.value || null,
+                            })
+                          }
                         >
-                          <option value="">Choose a container</option>
+                          <option value="">Unassigned</option>
                           {containers.map((container) => (
                             <option value={container.id} key={container.id}>
                               {container.name}
@@ -488,11 +530,28 @@ export function InventoryApp({ api }: { api: InventoryApi }) {
                           ))}
                         </select>
                       </label>
+                      <p>
+                        Confidence {formatConfidence(detection.confidence)}
+                        {suggested
+                          ? ` · Suggested container: ${suggested.name}`
+                          : ''}
+                      </p>
                     </div>
                   </article>
                 )
               })}
-            {analysis.status === 'completed' && !analysisItems.length && (
+            {analysis.status === 'completed' &&
+              analysisDetections.some(
+                (detection) => detection.reviewStatus === 'pending',
+              ) && (
+                <button
+                  disabled={analysisBusy}
+                  onClick={() => void confirmDetections()}
+                >
+                  {analysisBusy ? 'Confirming…' : 'Confirm inventory'}
+                </button>
+              )}
+            {analysis.status === 'completed' && !analysisDetections.length && (
               <p className="empty-state">
                 Analysis completed without detected inventory items.
               </p>
@@ -863,4 +922,22 @@ function createIdempotencyKey() {
 
 function formatConfidence(confidence: number | null) {
   return confidence === null ? 'not provided' : `${Math.round(confidence * 100)}%`
+}
+
+function toDetectionReviews(analysis: Analysis): DetectionReview[] {
+  return analysis.detections.map((detection) => ({
+    id: detection.id,
+    accepted: detection.reviewStatus !== 'rejected',
+    name: detection.reviewedName ?? detection.name,
+    description: detection.reviewedDescription ?? detection.description ?? '',
+    category: detection.reviewedCategory ?? detection.category ?? '',
+    quantity: detection.reviewedQuantity ?? detection.quantity,
+    containerId:
+      detection.selectedContainerId ??
+      analysis.defaultContainerId ??
+      detection.suggestedContainerId,
+    confidence: detection.confidence,
+    suggestedContainerId: detection.suggestedContainerId,
+    reviewStatus: detection.reviewStatus,
+  }))
 }

@@ -102,5 +102,54 @@ public static class DatabaseSeeder
             [],
             createdAt.AddMinutes(2),
             cancellationToken);
+
+        var detections = await dbContext.AnalysisDetections
+            .Where(detection => detection.AnalysisId == analysis.Id)
+            .OrderBy(detection => detection.CreatedAt)
+            .ThenBy(detection => detection.Id)
+            .ToListAsync(cancellationToken);
+        foreach (var detection in detections)
+        {
+            var item = new Item(
+                Guid.NewGuid(),
+                TenantId,
+                OwnerObjectId,
+                photo.Id,
+                analysis.Id,
+                detection.Name,
+                detection.Description,
+                detection.Category,
+                detection.Quantity,
+                detection.Confidence,
+                $"detection:{detection.Id:N}",
+                createdAt.AddMinutes(3));
+            var assignment = detection.SuggestedContainerId is Guid containerId
+                ? ItemAssignment.Confirmed(
+                    Guid.NewGuid(),
+                    TenantId,
+                    OwnerObjectId,
+                    item.Id,
+                    containerId,
+                    AssignmentSource.User,
+                    createdAt.AddMinutes(3))
+                : ItemAssignment.Unassigned(
+                    Guid.NewGuid(),
+                    TenantId,
+                    OwnerObjectId,
+                    item.Id,
+                    createdAt.AddMinutes(3));
+            item.SetAssignment(assignment);
+            detection.Accept(
+                detection.Name,
+                detection.Description,
+                detection.Category,
+                detection.Quantity,
+                assignment.ContainerId,
+                item.Id,
+                createdAt.AddMinutes(3));
+            dbContext.Items.Add(item);
+        }
+
+        await dbContext.SaveChangesAsync(cancellationToken);
     }
 }

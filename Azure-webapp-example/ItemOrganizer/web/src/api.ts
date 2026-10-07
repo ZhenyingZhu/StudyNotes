@@ -58,6 +58,8 @@ export type Analysis = {
   photoId: string
   status: AnalysisStatus
   itemIds: string[]
+  detections: AnalysisDetection[]
+  defaultContainerId: string | null
   warnings: string[]
   errorCode: string | null
   errorMessage: string | null
@@ -68,6 +70,33 @@ export type Analysis = {
   cancelledAt: string | null
   createdAt: string
   updatedAt: string
+}
+
+export type AnalysisDetection = {
+  id: string
+  name: string
+  description: string | null
+  category: string | null
+  quantity: number
+  confidence: number
+  suggestedContainerId: string | null
+  reviewStatus: 'pending' | 'accepted' | 'rejected'
+  reviewedName: string | null
+  reviewedDescription: string | null
+  reviewedCategory: string | null
+  reviewedQuantity: number | null
+  selectedContainerId: string | null
+  resultingItemId: string | null
+}
+
+export type DetectionReviewInput = {
+  id: string
+  accepted: boolean
+  name: string
+  description: string
+  category: string
+  quantity: number
+  containerId: string | null
 }
 
 export type ContainerInput = {
@@ -130,6 +159,10 @@ export interface InventoryApi {
   ): Promise<Analysis>
   getAnalysis(analysisId: string): Promise<Analysis>
   cancelAnalysis(analysisId: string): Promise<Analysis>
+  confirmAnalysis(
+    analysisId: string,
+    detections: DetectionReviewInput[],
+  ): Promise<Analysis>
   getItems(itemIds: string[]): Promise<InventoryItem[]>
 }
 
@@ -311,6 +344,19 @@ export class HttpInventoryApi implements InventoryApi {
       {
         method: 'POST',
         headers: { 'If-Match': current.etag },
+      },
+    )
+  }
+
+  confirmAnalysis(
+    analysisId: string,
+    detections: DetectionReviewInput[],
+  ) {
+    return this.request<Analysis>(
+      `/api/v1/analyses/${analysisId}/confirm`,
+      {
+        method: 'POST',
+        body: JSON.stringify({ detections }),
       },
     )
   }

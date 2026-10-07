@@ -13,7 +13,7 @@ public sealed record DetectedItemDraft(
 
 public sealed class AnalysisResultPersistence(ItemOrganizerDbContext dbContext)
 {
-    public async Task<IReadOnlyList<Item>> PersistCompletedAnalysisAsync(
+    public async Task<IReadOnlyList<AnalysisDetection>> PersistCompletedAnalysisAsync(
         Guid analysisId,
         IReadOnlyCollection<DetectedItemDraft> detections,
         IReadOnlyCollection<string>? providerWarnings,
@@ -30,9 +30,8 @@ public sealed class AnalysisResultPersistence(ItemOrganizerDbContext dbContext)
 
         if (analysis.Status == AnalysisStatus.Completed)
         {
-            return await dbContext.Items
-                .Where(item => item.AnalysisId == analysisId)
-                .Include(item => item.Assignment)
+            return await dbContext.AnalysisDetections
+                .Where(detection => detection.AnalysisId == analysisId)
                 .ToListAsync(cancellationToken);
         }
 
@@ -104,11 +103,6 @@ public sealed class AnalysisResultPersistence(ItemOrganizerDbContext dbContext)
             .Select(detection => detection.SuggestedContainerId!.Value)
             .ToHashSet();
 
-        if (analysis.ConfirmedContainerId is not null)
-        {
-            containerIds.Add(analysis.ConfirmedContainerId.Value);
-        }
-
         var visibleContainerIds = await dbContext.Containers
             .Where(container =>
                 container.TenantId == analysis.TenantId &&
@@ -118,73 +112,36 @@ public sealed class AnalysisResultPersistence(ItemOrganizerDbContext dbContext)
             .Select(container => container.Id)
             .ToHashSetAsync(cancellationToken);
 
-        if (analysis.ConfirmedContainerId is Guid confirmedContainerId &&
-            !visibleContainerIds.Contains(confirmedContainerId))
-        {
-            throw new DomainException("The confirmed target container is not visible to the owner.");
-        }
-
-        var items = new List<Item>(merged.Length);
+        var drafts = new List<AnalysisDetection>(merged.Length);
         foreach (var detection in merged)
         {
-            var item = new Item(
+            var suggestedContainerId =
+                detection.SuggestedContainerId is Guid suggestion &&
+                visibleContainerIds.Contains(suggestion)
+                    ? (Guid?)suggestion
+                    : null;
+            if (detection.SuggestedContainerId is not null &&
+                suggestedContainerId is null)
+            {
+                warnings.Add(
+                    $"Ignored inaccessible container suggestion for {detection.Draft.Name.Trim()}.");
+            }
+
+            drafts.Add(new AnalysisDetection(
                 Guid.NewGuid(),
                 analysis.TenantId,
                 analysis.OwnerObjectId,
-                analysis.PhotoId,
                 analysis.Id,
                 detection.Draft.Name,
                 detection.Draft.Description,
                 detection.Draft.Category,
                 detection.Draft.Quantity,
                 detection.Draft.Confidence,
-                detection.Key,
-                completedAt);
-
-            ItemAssignment assignment;
-            if (analysis.ConfirmedContainerId is Guid targetContainerId)
-            {
-                assignment = ItemAssignment.Confirmed(
-                    Guid.NewGuid(),
-                    analysis.TenantId,
-                    analysis.OwnerObjectId,
-                    item.Id,
-                    targetContainerId,
-                    AssignmentSource.ConvenienceWorkflow,
-                    completedAt);
-            }
-            else if (detection.SuggestedContainerId is Guid suggestedContainerId &&
-                     visibleContainerIds.Contains(suggestedContainerId))
-            {
-                assignment = ItemAssignment.Suggested(
-                    Guid.NewGuid(),
-                    analysis.TenantId,
-                    analysis.OwnerObjectId,
-                    item.Id,
-                    suggestedContainerId,
-                    completedAt);
-            }
-            else
-            {
-                if (detection.SuggestedContainerId is not null)
-                {
-                    warnings.Add(
-                        $"Ignored inaccessible container suggestion for {detection.Draft.Name.Trim()}.");
-                }
-
-                assignment = ItemAssignment.Unassigned(
-                    Guid.NewGuid(),
-                    analysis.TenantId,
-                    analysis.OwnerObjectId,
-                    item.Id,
-                    completedAt);
-            }
-
-            item.SetAssignment(assignment);
-            items.Add(item);
+                suggestedContainerId,
+                completedAt));
         }
 
-        dbContext.Items.AddRange(items);
+        dbContext.AnalysisDetections.AddRange(drafts);
         analysis.Complete(warnings, completedAt);
         await dbContext.SaveChangesAsync(cancellationToken);
         if (transaction is not null)
@@ -192,7 +149,7 @@ public sealed class AnalysisResultPersistence(ItemOrganizerDbContext dbContext)
             await transaction.CommitAsync(cancellationToken);
         }
 
-        return items;
+        return drafts;
     }
 
     private static string NormalizeRequired(string value, string name)

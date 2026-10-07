@@ -2,6 +2,7 @@ using System.Net;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Text.Json;
+using ItemOrganizer.Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using SkiaSharp;
@@ -241,6 +242,61 @@ public sealed class AnalysisApiTests(ApiFactory factory) : IClassFixture<ApiFact
         Assert.Equal(
             "cancelled",
             polled!.RootElement.GetProperty("status").GetString());
+    }
+
+    [Fact]
+    public async Task Confirmation_creates_inventory_only_for_accepted_detections()
+    {
+        using var client = CreateAuthenticatedClient(
+            "ItemOrganizer.Read ItemOrganizer.Write ItemOrganizer.Analyze");
+        var analysisId =
+            Guid.Parse("50000000-0000-0000-0000-000000000001");
+
+        using (var beforeScope = factory.Services.CreateScope())
+        {
+            var beforeContext = beforeScope.ServiceProvider.GetRequiredService<
+                ItemOrganizer.Infrastructure.ItemOrganizerDbContext>();
+            Assert.False(await beforeContext.Items.AnyAsync(
+                item => item.DeduplicationKey ==
+                    $"detection:{ApiFactory.DetectionId:N}"));
+        }
+
+        var response = await client.PostAsJsonAsync(
+            $"/api/v1/analyses/{analysisId}/confirm",
+            new
+            {
+                detections = new[]
+                {
+                    new
+                    {
+                        id = ApiFactory.DetectionId,
+                        accepted = true,
+                        name = "Packing tape",
+                        description = "Corrected by the user",
+                        category = "Supplies",
+                        quantity = 2,
+                        containerId = ApiFactory.ContainerId
+                    }
+                }
+            });
+
+        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+        using var scope = factory.Services.CreateScope();
+        var dbContext = scope.ServiceProvider.GetRequiredService<
+            ItemOrganizer.Infrastructure.ItemOrganizerDbContext>();
+        var item = await dbContext.Items
+            .Include(candidate => candidate.Assignment)
+            .SingleAsync(candidate =>
+                candidate.DeduplicationKey ==
+                $"detection:{ApiFactory.DetectionId:N}");
+        Assert.Equal("Packing tape", item.Name);
+        Assert.Equal(2, item.Quantity);
+        Assert.Equal(AssignmentStatus.Confirmed, item.Assignment.Status);
+        Assert.Equal(ApiFactory.ContainerId, item.Assignment.ContainerId);
+        var detection = await dbContext.AnalysisDetections.SingleAsync(
+            candidate => candidate.Id == ApiFactory.DetectionId);
+        Assert.Equal(DetectionReviewStatus.Accepted, detection.ReviewStatus);
+        Assert.Equal(item.Id, detection.ResultingItemId);
     }
 
     private async Task<Guid> UploadPhotoAsync(HttpClient client)

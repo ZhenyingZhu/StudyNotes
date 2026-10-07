@@ -9,7 +9,7 @@ namespace ItemOrganizer.Api.Tests;
 public sealed class AnalysisPipelineTests
 {
     [Fact]
-    public async Task Deterministic_result_creates_items_and_is_idempotent()
+    public async Task Deterministic_result_creates_review_drafts_and_is_idempotent()
     {
         await using var dbContext = CreateContext();
         var setup = await SeedQueuedAnalysisAsync(dbContext);
@@ -34,22 +34,22 @@ public sealed class AnalysisPipelineTests
             second.Disposition);
         var analysis = await dbContext.Analyses.SingleAsync(
             entity => entity.Id == setup.AnalysisId);
-        var items = await dbContext.Items
-            .Include(item => item.Assignment)
-            .Where(item => item.AnalysisId == setup.AnalysisId)
+        var detections = await dbContext.AnalysisDetections
+            .Where(detection => detection.AnalysisId == setup.AnalysisId)
             .ToListAsync();
         Assert.Equal(AnalysisStatus.Completed, analysis.Status);
-        Assert.Equal(2, items.Count);
-        Assert.Single(
-            items,
-            item => item.Assignment.Status == AssignmentStatus.Suggested);
-        Assert.Single(
-            items,
-            item => item.Assignment.Status == AssignmentStatus.Unassigned);
+        Assert.Equal(2, detections.Count);
+        Assert.All(
+            detections,
+            detection => Assert.Equal(
+                DetectionReviewStatus.Pending,
+                detection.ReviewStatus));
+        Assert.False(await dbContext.Items.AnyAsync(
+            item => item.AnalysisId == setup.AnalysisId));
     }
 
     [Fact]
-    public async Task Convenience_result_confirms_every_item_in_target_container()
+    public async Task Convenience_result_keeps_detections_out_of_inventory()
     {
         await using var dbContext = CreateContext();
         var setup = await SeedQueuedAnalysisAsync(
@@ -67,19 +67,15 @@ public sealed class AnalysisPipelineTests
         Assert.Equal(
             AnalysisProcessingDisposition.Complete,
             result.Disposition);
-        var items = await dbContext.Items
-            .Include(item => item.Assignment)
-            .Where(item => item.AnalysisId == setup.AnalysisId)
+        var detections = await dbContext.AnalysisDetections
+            .Where(detection => detection.AnalysisId == setup.AnalysisId)
             .ToListAsync();
-        Assert.NotEmpty(items);
-        Assert.All(items, item =>
-        {
-            Assert.Equal(AssignmentStatus.Confirmed, item.Assignment.Status);
-            Assert.Equal(setup.ContainerId, item.Assignment.ContainerId);
-            Assert.Equal(
-                AssignmentSource.ConvenienceWorkflow,
-                item.Assignment.Source);
-        });
+        Assert.NotEmpty(detections);
+        Assert.False(await dbContext.Items.AnyAsync(
+            item => item.AnalysisId == setup.AnalysisId));
+        var analysis = await dbContext.Analyses.SingleAsync(
+            entity => entity.Id == setup.AnalysisId);
+        Assert.Equal(setup.ContainerId, analysis.ConfirmedContainerId);
     }
 
     [Fact]

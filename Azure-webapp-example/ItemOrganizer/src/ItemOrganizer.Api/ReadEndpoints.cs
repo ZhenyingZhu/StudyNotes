@@ -370,6 +370,27 @@ public static class ReadEndpoints
                         .OrderBy(item => item.CreatedAt)
                         .Select(item => item.Id)
                         .ToArray(),
+                    dbContext.AnalysisDetections
+                        .Where(detection => detection.AnalysisId == analysis.Id)
+                        .OrderBy(detection => detection.CreatedAt)
+                        .ThenBy(detection => detection.Id)
+                        .Select(detection => new AnalysisDetectionResponse(
+                            detection.Id,
+                            detection.Name,
+                            detection.Description,
+                            detection.Category,
+                            detection.Quantity,
+                            detection.Confidence,
+                            detection.SuggestedContainerId,
+                            detection.ReviewStatus,
+                            detection.ReviewedName,
+                            detection.ReviewedDescription,
+                            detection.ReviewedCategory,
+                            detection.ReviewedQuantity,
+                            detection.SelectedContainerId,
+                            detection.ResultingItemId))
+                        .ToArray(),
+                    analysis.ConfirmedContainerId,
                     analysis.Warnings,
                     analysis.ErrorCode,
                     analysis.ErrorMessage,

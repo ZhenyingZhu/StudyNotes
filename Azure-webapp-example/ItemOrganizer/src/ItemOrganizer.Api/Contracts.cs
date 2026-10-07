@@ -40,6 +40,8 @@ public sealed record AnalysisResponse(
     Guid PhotoId,
     AnalysisStatus Status,
     IReadOnlyList<Guid> ItemIds,
+    IReadOnlyList<AnalysisDetectionResponse> Detections,
+    Guid? DefaultContainerId,
     IReadOnlyList<string> Warnings,
     string? ErrorCode,
     string? ErrorMessage,
@@ -50,6 +52,34 @@ public sealed record AnalysisResponse(
     DateTimeOffset? CancelledAt,
     DateTimeOffset CreatedAt,
     DateTimeOffset UpdatedAt);
+
+public sealed record AnalysisDetectionResponse(
+    Guid Id,
+    string Name,
+    string? Description,
+    string? Category,
+    int Quantity,
+    decimal Confidence,
+    Guid? SuggestedContainerId,
+    DetectionReviewStatus ReviewStatus,
+    string? ReviewedName,
+    string? ReviewedDescription,
+    string? ReviewedCategory,
+    int? ReviewedQuantity,
+    Guid? SelectedContainerId,
+    Guid? ResultingItemId);
+
+public sealed record ConfirmAnalysisRequest(
+    IReadOnlyList<DetectionReviewRequest> Detections);
+
+public sealed record DetectionReviewRequest(
+    Guid Id,
+    bool Accepted,
+    string? Name,
+    string? Description,
+    string? Category,
+    int? Quantity,
+    Guid? ContainerId);
 
 public sealed record ItemResponse(
     Guid Id,

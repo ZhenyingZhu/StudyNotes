@@ -31,6 +31,14 @@ public static class AnalysisEndpoints
             .ProducesProblem(StatusCodes.Status412PreconditionFailed)
             .ProducesProblem(StatusCodes.Status428PreconditionRequired);
         analyses.MapPost(
+                "/analyses/{analysisId:guid}/confirm",
+                ConfirmAsync)
+            .RequireAuthorization(AuthorizationPolicies.Write)
+            .Produces<AnalysisResponse>()
+            .ProducesProblem(StatusCodes.Status400BadRequest)
+            .ProducesProblem(StatusCodes.Status404NotFound)
+            .ProducesProblem(StatusCodes.Status409Conflict);
+        analyses.MapPost(
                 "/containers/{containerId:guid}/photo-analyses",
                 CreateForContainerAsync)
             .RequireAuthorization(AuthorizationPolicies.Write)
@@ -337,6 +345,173 @@ public static class AnalysisEndpoints
         return Results.Ok(ToResponse(analysis));
     }
 
+    private static async Task<IResult> ConfirmAsync(
+        Guid analysisId,
+        ConfirmAnalysisRequest request,
+        ItemOrganizerDbContext dbContext,
+        CurrentUserAccessor currentUserAccessor,
+        HttpContext context,
+        CancellationToken cancellationToken)
+    {
+        var user = currentUserAccessor.GetRequired();
+        var analysis = await dbContext.Analyses.SingleOrDefaultAsync(
+            entity =>
+                entity.Id == analysisId
+                && entity.TenantId == user.TenantId
+                && entity.OwnerObjectId == user.OwnerObjectId,
+            cancellationToken);
+        if (analysis is null)
+        {
+            return NotFound(context);
+        }
+        if (analysis.Status != AnalysisStatus.Completed)
+        {
+            return Problem(
+                context,
+                StatusCodes.Status409Conflict,
+                "Only a completed analysis can be confirmed.");
+        }
+
+        var detections = await dbContext.AnalysisDetections
+            .Where(detection =>
+                detection.AnalysisId == analysis.Id
+                && detection.TenantId == user.TenantId
+                && detection.OwnerObjectId == user.OwnerObjectId)
+            .OrderBy(detection => detection.CreatedAt)
+            .ThenBy(detection => detection.Id)
+            .ToListAsync(cancellationToken);
+        var existingItemIds = detections
+            .Where(detection => detection.ResultingItemId is not null)
+            .Select(detection => detection.ResultingItemId!.Value)
+            .ToArray();
+        if (detections.All(detection =>
+                detection.ReviewStatus != DetectionReviewStatus.Pending))
+        {
+            SetHeaders(context, analysis);
+            return Results.Ok(ToResponse(
+                analysis,
+                existingItemIds,
+                detections.Select(ToResponse).ToArray()));
+        }
+
+        var decisions = request.Detections ?? [];
+        if (decisions.Count != detections.Count
+            || decisions.Select(decision => decision.Id).Distinct().Count()
+                != detections.Count)
+        {
+            return Problem(
+                context,
+                StatusCodes.Status400BadRequest,
+                "A review decision is required for every detection.");
+        }
+
+        var decisionsById = decisions.ToDictionary(decision => decision.Id);
+        if (detections.Any(detection => !decisionsById.ContainsKey(detection.Id)))
+        {
+            return Problem(
+                context,
+                StatusCodes.Status400BadRequest,
+                "The review contains an unknown or missing detection.");
+        }
+
+        var containerIds = decisions
+            .Where(decision => decision.Accepted && decision.ContainerId is not null)
+            .Select(decision => decision.ContainerId!.Value)
+            .ToHashSet();
+        var visibleContainerIds = await dbContext.Containers
+            .Where(container =>
+                container.TenantId == user.TenantId
+                && container.OwnerObjectId == user.OwnerObjectId
+                && container.DeletedAt == null
+                && containerIds.Contains(container.Id))
+            .Select(container => container.Id)
+            .ToHashSetAsync(cancellationToken);
+        if (!containerIds.SetEquals(visibleContainerIds))
+        {
+            return Problem(
+                context,
+                StatusCodes.Status400BadRequest,
+                "A selected container is unavailable.");
+        }
+
+        await using var transaction = dbContext.Database.IsRelational()
+            ? await dbContext.Database.BeginTransactionAsync(cancellationToken)
+            : null;
+        var now = DateTimeOffset.UtcNow;
+        var createdItems = new List<Item>();
+        try
+        {
+            foreach (var detection in detections)
+            {
+                var decision = decisionsById[detection.Id];
+                if (!decision.Accepted)
+                {
+                    detection.Reject(now);
+                    continue;
+                }
+
+                var item = new Item(
+                    Guid.NewGuid(),
+                    user.TenantId,
+                    user.OwnerObjectId,
+                    analysis.PhotoId,
+                    analysis.Id,
+                    decision.Name ?? string.Empty,
+                    decision.Description,
+                    decision.Category,
+                    decision.Quantity ?? 0,
+                    detection.Confidence,
+                    $"detection:{detection.Id:N}",
+                    now);
+                var assignment = decision.ContainerId is Guid containerId
+                    ? ItemAssignment.Confirmed(
+                        Guid.NewGuid(),
+                        user.TenantId,
+                        user.OwnerObjectId,
+                        item.Id,
+                        containerId,
+                        AssignmentSource.User,
+                        now)
+                    : ItemAssignment.Unassigned(
+                        Guid.NewGuid(),
+                        user.TenantId,
+                        user.OwnerObjectId,
+                        item.Id,
+                        now);
+                item.SetAssignment(assignment);
+                detection.Accept(
+                    decision.Name ?? string.Empty,
+                    decision.Description,
+                    decision.Category,
+                    decision.Quantity ?? 0,
+                    decision.ContainerId,
+                    item.Id,
+                    now);
+                createdItems.Add(item);
+            }
+
+            dbContext.Items.AddRange(createdItems);
+            await dbContext.SaveChangesAsync(cancellationToken);
+            if (transaction is not null)
+            {
+                await transaction.CommitAsync(cancellationToken);
+            }
+        }
+        catch (DomainException exception)
+        {
+            return Problem(
+                context,
+                StatusCodes.Status422UnprocessableEntity,
+                exception.Message);
+        }
+
+        SetHeaders(context, analysis);
+        return Results.Ok(ToResponse(
+            analysis,
+            createdItems.Select(item => item.Id).ToArray(),
+            detections.Select(ToResponse).ToArray()));
+    }
+
     private static IResult Accepted(HttpContext context, Analysis analysis)
     {
         SetHeaders(context, analysis);
@@ -347,13 +522,16 @@ public static class AnalysisEndpoints
 
     internal static AnalysisResponse ToResponse(
         Analysis analysis,
-        IReadOnlyList<Guid>? itemIds = null)
+        IReadOnlyList<Guid>? itemIds = null,
+        IReadOnlyList<AnalysisDetectionResponse>? detections = null)
     {
         return new(
             analysis.Id,
             analysis.PhotoId,
             analysis.Status,
             itemIds ?? [],
+            detections ?? [],
+            analysis.ConfirmedContainerId,
             analysis.Warnings,
             analysis.ErrorCode,
             analysis.ErrorMessage,
@@ -364,6 +542,26 @@ public static class AnalysisEndpoints
             analysis.CancelledAt,
             analysis.CreatedAt,
             analysis.UpdatedAt);
+    }
+
+    internal static AnalysisDetectionResponse ToResponse(
+        AnalysisDetection detection)
+    {
+        return new(
+            detection.Id,
+            detection.Name,
+            detection.Description,
+            detection.Category,
+            detection.Quantity,
+            detection.Confidence,
+            detection.SuggestedContainerId,
+            detection.ReviewStatus,
+            detection.ReviewedName,
+            detection.ReviewedDescription,
+            detection.ReviewedCategory,
+            detection.ReviewedQuantity,
+            detection.SelectedContainerId,
+            detection.ResultingItemId);
     }
 
     private static bool MatchesEtag(

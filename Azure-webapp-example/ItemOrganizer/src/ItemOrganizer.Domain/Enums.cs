@@ -9,6 +9,13 @@ public enum AnalysisStatus
     Cancelled
 }
 
+public enum DetectionReviewStatus
+{
+    Pending,
+    Accepted,
+    Rejected
+}
+
 public enum AssignmentStatus
 {
     Unassigned,

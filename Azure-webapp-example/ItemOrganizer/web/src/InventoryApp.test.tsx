@@ -50,7 +50,26 @@ const completedAnalysis: Analysis = {
   id: 'analysis-1',
   photoId: 'photo-1',
   status: 'completed',
-  itemIds: ['item-1'],
+  itemIds: [],
+  detections: [
+    {
+      id: 'detection-1',
+      name: 'Tape',
+      description: null,
+      category: 'Supplies',
+      quantity: 1,
+      confidence: 0.9,
+      suggestedContainerId: 'container-1',
+      reviewStatus: 'pending',
+      reviewedName: null,
+      reviewedDescription: null,
+      reviewedCategory: null,
+      reviewedQuantity: null,
+      selectedContainerId: null,
+      resultingItemId: null,
+    },
+  ],
+  defaultContainerId: null,
   warnings: [],
   errorCode: null,
   errorMessage: null,
@@ -105,6 +124,20 @@ function createApi(): InventoryApi {
       ...completedAnalysis,
       status: 'cancelled',
       itemIds: [],
+    }),
+    confirmAnalysis: vi.fn().mockResolvedValue({
+      ...completedAnalysis,
+      itemIds: ['item-1'],
+      detections: completedAnalysis.detections.map((detection) => ({
+        ...detection,
+        reviewStatus: 'accepted',
+        reviewedName: detection.name,
+        reviewedDescription: detection.description,
+        reviewedCategory: detection.category,
+        reviewedQuantity: detection.quantity,
+        selectedContainerId: detection.suggestedContainerId,
+        resultingItemId: 'item-1',
+      })),
     }),
     getItems: vi.fn().mockResolvedValue([item]),
   }
@@ -251,7 +284,8 @@ test('uploads a photo and starts analysis for later review', async () => {
     expect.any(String),
   )
   expect(await screen.findByText('Analysis completed')).toBeInTheDocument()
-  expect(api.getItems).toHaveBeenCalledWith(['item-1'])
+  expect(screen.getByRole('button', { name: 'Confirm inventory' }))
+    .toBeInTheDocument()
 })
 
 test('uses convenience workflow for an explicitly selected container', async () => {
@@ -266,7 +300,7 @@ test('uses convenience workflow for an explicitly selected container', async () 
   await user.upload(screen.getByLabelText('Photo'), file)
   await user.selectOptions(
     screen.getByLabelText(
-      'Assign all detected items to a container (optional)',
+      'Preselect a container for review (optional)',
     ),
     'container-1',
   )
@@ -313,21 +347,9 @@ test('cancels a queued analysis from the webpage', async () => {
   expect(await screen.findByText('Analysis cancelled')).toBeInTheDocument()
 })
 
-test('accepts an analysis suggestion explicitly', async () => {
+test('corrects and confirms a detection before inventory creation', async () => {
   const user = userEvent.setup()
-  const suggestedItem: InventoryItem = {
-    ...item,
-    suggestedContainerId: 'container-1',
-    assignmentStatus: 'suggested',
-  }
   const api = createApi()
-  vi.mocked(api.getItems).mockResolvedValue([suggestedItem])
-  vi.mocked(api.acceptSuggestion).mockResolvedValue({
-    ...suggestedItem,
-    suggestedContainerId: null,
-    containerId: 'container-1',
-    assignmentStatus: 'confirmed',
-  })
   render(<InventoryApp api={api} />)
 
   await screen.findByRole('heading', { name: 'Office' })
@@ -338,27 +360,29 @@ test('accepts an analysis suggestion explicitly', async () => {
   await user.click(
     screen.getByRole('button', { name: 'Upload and analyze' }),
   )
-  await user.click(
-    await screen.findByRole('button', { name: 'Accept suggestion' }),
-  )
+  const detectionName = await screen.findByDisplayValue('Tape')
+  await user.clear(detectionName)
+  await user.type(detectionName, 'Packing tape')
+  await user.click(screen.getByRole('button', { name: 'Confirm inventory' }))
 
   await waitFor(() =>
-    expect(api.acceptSuggestion).toHaveBeenCalledWith(
-      'item-1',
-      'container-1',
-    ),
+    expect(api.confirmAnalysis).toHaveBeenCalledWith(
+      'analysis-1',
+      [
+        expect.objectContaining({
+          id: 'detection-1',
+          accepted: true,
+          name: 'Packing tape',
+          containerId: 'container-1',
+        }),
+      ],
+    )
   )
 })
 
-test('rejects an analysis suggestion explicitly', async () => {
+test('rejects a false-positive detection before inventory creation', async () => {
   const user = userEvent.setup()
-  const suggestedItem: InventoryItem = {
-    ...item,
-    suggestedContainerId: 'container-1',
-    assignmentStatus: 'suggested',
-  }
   const api = createApi()
-  vi.mocked(api.getItems).mockResolvedValue([suggestedItem])
   render(<InventoryApp api={api} />)
 
   await screen.findByRole('heading', { name: 'Office' })
@@ -369,11 +393,20 @@ test('rejects an analysis suggestion explicitly', async () => {
   await user.click(
     screen.getByRole('button', { name: 'Upload and analyze' }),
   )
-  await user.click(
-    await screen.findByRole('button', { name: 'Reject suggestion' }),
-  )
+  await user.click(await screen.findByRole('checkbox', {
+    name: 'Add to inventory',
+  }))
+  await user.click(screen.getByRole('button', { name: 'Confirm inventory' }))
 
   await waitFor(() =>
-    expect(api.unassignItem).toHaveBeenCalledWith('item-1'),
+    expect(api.confirmAnalysis).toHaveBeenCalledWith(
+      'analysis-1',
+      [
+        expect.objectContaining({
+          id: 'detection-1',
+          accepted: false,
+        }),
+      ],
+    ),
   )
 })

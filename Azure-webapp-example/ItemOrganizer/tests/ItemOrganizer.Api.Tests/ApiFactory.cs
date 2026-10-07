@@ -25,6 +25,8 @@ public sealed class ApiFactory : WebApplicationFactory<Program>
         Guid.Parse("30000000-0000-0000-0000-000000000001");
     public static readonly Guid OtherContainerId =
         Guid.Parse("30000000-0000-0000-0000-000000000002");
+    public static readonly Guid DetectionId =
+        Guid.Parse("55000000-0000-0000-0000-000000000001");
 
     public FakePhotoStorage PhotoStorage { get; } = new();
 
@@ -123,6 +125,18 @@ public sealed class ApiFactory : WebApplicationFactory<Program>
             createdAt);
         analysis.Start(createdAt.AddSeconds(1));
         analysis.Complete([], createdAt.AddSeconds(2));
+        var detection = new AnalysisDetection(
+            DetectionId,
+            TenantId,
+            OwnerId,
+            analysis.Id,
+            "Packing tap",
+            "AI prediction",
+            "Supplies",
+            1,
+            0.91m,
+            container.Id,
+            createdAt.AddSeconds(2));
         var item = new Item(
             Guid.Parse("60000000-0000-0000-0000-000000000001"),
             TenantId,
@@ -152,6 +166,7 @@ public sealed class ApiFactory : WebApplicationFactory<Program>
             otherContainer,
             photo,
             analysis,
+            detection,
             item);
         dbContext.SaveChanges();
     }

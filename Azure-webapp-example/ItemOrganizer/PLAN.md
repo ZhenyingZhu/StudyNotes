@@ -217,9 +217,10 @@ The upload request contains a required `file` part and an optional `containerId`
 | Method | Route | Purpose |
 | --- | --- | --- |
 | `POST` | `/api/v1/photos/{photoId}/analyses` | Start analysis of an uploaded photo |
-| `POST` | `/api/v1/containers/{containerId}/photo-analyses` | Upload and analyze one photo, then assign every detected item to the specified container |
+| `POST` | `/api/v1/containers/{containerId}/photo-analyses` | Upload and analyze one photo with the specified container preselected for review |
 | `GET` | `/api/v1/analyses/{analysisId}` | Poll analysis state and retrieve results when complete |
 | `POST` | `/api/v1/analyses/{analysisId}/cancel` | Request cancellation of queued or running analysis |
+| `POST` | `/api/v1/analyses/{analysisId}/confirm` | Confirm reviewed detections and atomically create canonical inventory items |
 
 Starting analysis returns `202 Accepted`, a `Location` header for the analysis resource, and:
 
@@ -232,9 +233,26 @@ Starting analysis returns `202 Accepted`, a `Location` header for the analysis r
 }
 ```
 
-Analysis states are `queued`, `running`, `completed`, `failed`, and `cancelled`. A completed analysis includes detected item IDs. A failed analysis includes a safe error code and message, but never provider credentials or raw internal exceptions.
+Analysis states are `queued`, `running`, `completed`, `failed`, and `cancelled`. A completed analysis contains persisted review drafts, not inventory item IDs. Drafts preserve the original AI prediction and remain excluded from inventory search, summaries, container counts, and assignment workflows until a user explicitly confirms them. A failed analysis includes a safe error code and message, but never provider credentials or raw internal exceptions.
 
-`POST /api/v1/containers/{containerId}/photo-analyses` is a convenience workflow using `multipart/form-data` with a required `file` part. It validates the container, stores the photo, creates an analysis, and returns `202 Accepted` with the analysis resource in the same form as the standard analysis endpoint. When analysis completes, all items detected in that photo are assigned to the specified container with `assignmentStatus` set to `confirmed`. The explicit container selection in this request constitutes user confirmation; it is not an AI suggestion. Creation of the detected items and their assignments is committed atomically. If upload or analysis fails, no detected items or assignments are created; a stored photo may remain available for retry or deletion.
+`POST /api/v1/containers/{containerId}/photo-analyses` is a convenience workflow using `multipart/form-data` with a required `file` part. It validates the container, stores the photo, creates an analysis, and returns `202 Accepted` with the analysis resource in the same form as the standard analysis endpoint. The selected container is only a review default because the user has not yet seen or confirmed the detected identities. Analysis completion creates review drafts only.
+
+During review, the user may correct a draft's name, description, category, quantity, and container; reject false positives; and leave valid items unassigned. `POST /api/v1/analyses/{analysisId}/confirm` accepts the complete review decision. In one transaction it creates inventory items and assignments only for accepted drafts, records rejected drafts without creating items, and marks the analysis review complete. Confirmation is idempotent and cannot partially promote a review. If analysis or confirmation fails, no unconfirmed detection appears in inventory.
+
+Each AI detection may also include a proposed normalized bounding box:
+
+```json
+{
+	"x": 0.18,
+	"y": 0.32,
+	"width": 0.41,
+	"height": 0.12
+}
+```
+
+`x` and `y` identify the top-left corner, and all four values are decimal fractions of the decoded source-photo width and height in the inclusive range `0` to `1`. `x + width` and `y + height` must not exceed `1`. The provider is instructed to return the smallest axis-aligned rectangle containing the visible portion of the item. Missing or uncertain localization is represented by `null`, not fabricated coordinates. Invalid, non-finite, zero-area, or out-of-bounds boxes reject the provider output before drafts are committed.
+
+Bounding boxes are AI proposals rather than authoritative geometry. The review UI overlays each proposed box on the source photo and allows the user to move, resize, remove, or create a box before confirmation. The original predicted box and the reviewed box are stored separately. Only the reviewed box may be used to generate an item crop.
 
 ### Items and assignments
 
@@ -243,12 +261,13 @@ Analysis states are `queued`, `running`, `completed`, `failed`, and `cancelled`.
 | `GET` | `/api/v1/items` | Search inventory; filter by `search`, `category`, `containerId`, `photoId`, or assignment state |
 | `POST` | `/api/v1/items` | Manually create an item not detected from a photo |
 | `GET` | `/api/v1/items/{itemId}` | Get an item, its source photo, and assignment details |
+| `GET` | `/api/v1/items/{itemId}/crop` | Return a short-lived authorized URL for the confirmed item crop, when present |
 | `PATCH` | `/api/v1/items/{itemId}` | Correct an item's editable properties |
 | `DELETE` | `/api/v1/items/{itemId}` | Remove an item from the catalog |
 | `PUT` | `/api/v1/items/{itemId}/container` | Assign or move an item to a container |
 | `DELETE` | `/api/v1/items/{itemId}/container` | Mark an item as unassigned |
 
-An AI-detected item contains:
+An AI detection review draft contains:
 
 - `name`
 - `description`
@@ -257,11 +276,15 @@ An AI-detected item contains:
 - `confidence` from `0` to `1`
 - `photoId`
 - `analysisId`
-- `containerId`, when confirmed or assigned
 - `suggestedContainerId`, when AI finds a likely match
-- `assignmentStatus`: `unassigned`, `suggested`, or `confirmed`
+- `predictedBoundingBox`, when the provider can localize the item
+- `reviewedBoundingBox`, after the user accepts or adjusts the proposal
+- `reviewStatus`: `pending`, `accepted`, or `rejected`
+- `resultingItemId`, only after an accepted draft has been promoted
 
-AI suggestions do not silently become confirmed assignments. A client or user confirms them through `PUT /api/v1/items/{itemId}/container`.
+Only manually created items and explicitly accepted detection drafts are inventory items. AI suggestions never appear in `GET /api/v1/items`, summary counts, search results, or container contents before confirmation. Container assignment remains explicit; an accepted detection may be confirmed as unassigned.
+
+When an accepted draft has a reviewed bounding box, confirmation crops the decoded source image using validated pixel coordinates, encodes the derivative in an approved non-animated format, and writes it to private Blob Storage under a server-generated name. PostgreSQL stores only crop metadata and the private blob reference, including source photo ID, reviewed normalized coordinates, pixel dimensions, content type, length, and hash. Crop creation and inventory promotion must have deterministic compensation behavior: a database failure removes the newly written crop, while a storage failure creates no item. Crop authorization, retention, and deletion follow the source item and photo ownership rules; deleting an item schedules its crop for deletion without silently deleting the source photo.
 
 ### Assignment request
 
@@ -375,14 +398,14 @@ The milestones below are ordered so that each stage produces a demonstrable, tes
 
 ### Milestone 2 — Domain model and persistence foundation
 
-**Purpose:** Implement the approved inventory, photo, analysis, assignment, and idempotency persistence model.
+**Purpose:** Implement the approved inventory, photo, analysis-review, assignment, and idempotency persistence model.
 
 **Testable outcomes:**
 
 - EF Core migrations create the approved schema in a clean local PostgreSQL database.
 - Constraints and indexes enforce identifier, ownership, assignment, status, uniqueness, and timestamp rules.
 - Valid and invalid state transitions are covered by unit tests, including analysis cancellation, completion, failure, retry, and deletion conflicts.
-- Transaction tests demonstrate atomic item creation and assignment for completed analyses.
+- Transaction tests demonstrate atomic review-draft persistence at analysis completion and atomic inventory creation only after explicit confirmation.
 - Concurrent update tests demonstrate stale `ETag` protection and prevent lost changes.
 - A reset-and-seed procedure produces representative data deterministically.
 
@@ -390,11 +413,16 @@ The milestones below are ordered so that each stage produces a demonstrable, tes
 
 **Current implementation status (September 18, 2026):**
 
-- The domain model covers containers, photos, analyses, items, assignments, outbox messages, and idempotency records.
+- The current domain model covers containers, photos, analyses, items, assignments, outbox messages, and idempotency records.
 - The initial EF Core migration defines PostgreSQL ownership keys, foreign keys, checks, uniqueness rules, indexes, and optimistic concurrency tokens.
 - Domain tests cover analysis cancellation, completion conflicts, retries, assignment transitions, and deletion conflicts.
 - PostgreSQL integration tests cover migration creation, ownership enforcement, idempotency uniqueness, atomic result persistence, rollback, and stale-version rejection.
 - The database command and PowerShell wrapper provide deterministic reset, migration, and representative seed data.
+- **Plan revision (October 6, 2026):** analysis detection drafts are now
+  persisted separately, existing unreviewed AI items are migrated back to
+  pending review, and confirmation transaction tests pass. This milestone
+  remains reopened for reviewed bounding-box and private crop metadata,
+  constraints, lineage, and cleanup persistence.
 
 ### Milestone 3 — Read-only API and authorization
 
@@ -457,6 +485,8 @@ The milestones below are ordered so that each stage produces a demonstrable, tes
 - Unsupported media, oversized files, invalid dimensions, malformed multipart requests, and upload quota violations return the approved errors without persisting partial records.
 - Blob names and metadata do not expose tenant identifiers, credentials, or user-controlled path traversal.
 - Authorized content retrieval uses a short-lived protected read mechanism; unauthorized callers cannot read the blob.
+- Confirmed item crops use separate server-generated private blobs, retain source-photo lineage and reviewed coordinates, and cannot be created from an unreviewed AI box.
+- Crop encoding, hash, dimensions, cleanup, storage-failure compensation, and authorization are covered by storage tests.
 - Photo deletion is blocked while analysis is running and is idempotent where the contract requires it.
 - Upload, download, deletion, retention, and storage-failure tests pass against Azurite, with explicitly documented emulator limitations.
 
@@ -491,9 +521,10 @@ The milestones below are ordered so that each stage produces a demonstrable, tes
 
 - Starting an analysis returns `202 Accepted`, a `Location` header, and the documented queued resource.
 - The worker transitions analyses only through approved states and records safe failure information, retry count, timestamps, and correlation data.
-- Fixed structured-output fixtures produce deterministic items, confidence values, suggestions, and source links.
+- Fixed structured-output fixtures produce deterministic review drafts, confidence values, suggestions, source links, and optional normalized bounding boxes.
+- Bounding-box validation rejects non-finite values, non-positive areas, values outside `0` to `1`, and boxes whose right or bottom edge exceeds the image boundary.
 - Invalid, incomplete, unsafe, or schema-incompatible AI output is rejected without creating partial inventory data.
-- Retries are bounded and idempotent; duplicate delivery does not duplicate items or assignments.
+- Retries are bounded and idempotent; duplicate delivery does not duplicate review drafts.
 - Cancellation works for queued and eligible running work, and cancellation races have deterministic results.
 - Polling returns the documented state and result shape, including failure and cancellation responses.
 
@@ -519,21 +550,28 @@ The milestones below are ordered so that each stage produces a demonstrable, tes
   outbox as `dispatched`, the main queue drained, no dead-letter message was
   created, and all 8 PostgreSQL/Azurite integration tests passed. Milestone 6
   therefore satisfies its exit criteria and is complete.
+- **Plan revision (October 6, 2026):** the pipeline now persists review drafts
+  without creating inventory. This milestone remains reopened until the
+  structured-output contract, deterministic fixtures, and validation cover
+  optional normalized bounding boxes.
 
 ### Milestone 7 — AI-assisted review and convenience workflow
 
-**Purpose:** Connect analysis results to user review and explicit container-assignment workflows.
+**Purpose:** Require explicit human confirmation before any AI detection becomes canonical inventory.
 
 **Testable outcomes:**
 
-- Completed analyses display detected items with source photo, confidence, category, quantity, and assignment status.
-- Users can accept, change, or reject suggestions; explicit container selection produces confirmed assignments.
+- Completed analyses display pending review drafts with source photo, confidence, category, quantity, and container suggestions.
+- Completed analyses overlay proposed bounding boxes on the source photo and remain usable when a provider returns no box.
+- Users can correct draft fields, accept valid detections, reject false positives, choose or remove container assignments, and create, move, resize, or remove bounding boxes before confirmation.
+- Pending and rejected detections never appear in inventory search, summaries, container counts, or item routes.
+- One explicit confirmation operation creates inventory items and private crops only for accepted drafts and preserves original predictions plus reviewed values and geometry for evaluation.
 - The convenience upload-and-analyze endpoint validates the container, stores the photo, queues analysis, and returns the same asynchronous contract.
-- Convenience workflow completion commits all detected items and confirmed assignments atomically, or creates none when the analysis fails.
-- Retry, refresh, duplicate submission, stale `ETag`, and partial dependency failure scenarios are covered by API and frontend tests.
-- Playwright verifies the end-to-end local workflow from upload through review and assignment.
+- The convenience workflow preselects the requested container for review but does not bypass item confirmation.
+- Retry, refresh, duplicate submission, stale `ETag`, invalid geometry, crop-storage failure, and partial dependency failure scenarios are covered by API and frontend tests.
+- Playwright verifies upload, bounding-box review, rejection, correction, confirmation, crop display, and inventory persistence.
 
-**Exit criteria:** The full local photo-to-inventory workflow passes with the deterministic mock AI and no orphaned or silently assigned items.
+**Exit criteria:** The full local photo-to-review-to-inventory workflow passes with the deterministic mock AI, tests prove that no AI detection or crop enters canonical inventory before explicit confirmation, and confirmed crop lifecycle tests pass against Azurite.
 
 **Current implementation status (October 1, 2026):**
 
@@ -566,6 +604,11 @@ The milestones below are ordered so that each stage produces a demonstrable, tes
   PostgreSQL/Azurite integration tests, all 9 domain tests, all 11 frontend
   component tests, and the frontend production build passed. Milestone 7
   therefore satisfies its exit criteria and is complete.
+- **Plan revision (October 6, 2026):** pending detections are now editable and
+  only accepted detections are promoted to inventory through explicit
+  confirmation. Milestone 7 remains reopened for the requirements below.
+- **Plan revision (October 6, 2026):** editable bounding-box review and
+  confirmed derivative-crop storage are required but not yet implemented.
 
 ### Milestone 8 — Live AI feasibility gate
 
@@ -575,9 +618,10 @@ The milestones below are ordered so that each stage produces a demonstrable, tes
 
 - A representative, versioned evaluation dataset covers ordinary inventory photos plus clutter, occlusion, poor lighting, visually similar objects, and multiple quantities.
 - The live Azure OpenAI provider reads the private source photo, uses strict structured output, records model and prompt versions, and does not persist raw provider payloads.
-- Evaluation reports item precision and recall, quantity accuracy, false detections, schema-valid response rate, latency percentiles, and estimated cost per analysis.
+- Evaluation reports item precision and recall, quantity accuracy, false detections, schema-valid response rate, bounding-box coverage, localization Intersection over Union against reviewed ground truth, user box-adjustment rate, latency percentiles, and estimated cost per analysis.
 - Acceptance thresholds are documented before evaluation and distinguish model errors from workflow correction behavior.
 - The model abstains through omitted or low-confidence detections rather than inventing items, and unsafe or malformed output creates no inventory records.
+- The feasibility decision evaluates whether Azure OpenAI localization is sufficiently accurate for editable proposals. If localization misses the approved threshold, the plan must use a dedicated object-detection model for geometry while retaining Azure OpenAI only for labeling and descriptions.
 - Prompt or model changes can be compared against the same dataset without changing the default deterministic test suite.
 
 **Exit criteria:** Stakeholders approve measured acceptance thresholds, the live evaluation meets every mandatory threshold, and the result is recorded as an explicit go decision. Failure is a no-go requiring model, workflow, or product redesign before Milestone 9.
