@@ -9,7 +9,8 @@ public sealed record DetectedItemDraft(
     string? Category,
     int Quantity,
     decimal Confidence,
-    Guid? SuggestedContainerId);
+    Guid? SuggestedContainerId,
+    NormalizedBoundingBox? PredictedBoundingBox = null);
 
 public sealed class AnalysisResultPersistence(ItemOrganizerDbContext dbContext)
 {
@@ -138,6 +139,7 @@ public sealed class AnalysisResultPersistence(ItemOrganizerDbContext dbContext)
                 detection.Draft.Quantity,
                 detection.Draft.Confidence,
                 suggestedContainerId,
+                detection.Draft.PredictedBoundingBox,
                 completedAt));
         }
 

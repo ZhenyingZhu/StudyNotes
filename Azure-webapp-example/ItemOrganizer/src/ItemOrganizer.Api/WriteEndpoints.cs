@@ -471,6 +471,7 @@ public static class WriteEndpoints
             entity.Assignment.ContainerId,
             entity.Assignment.SuggestedContainerId,
             entity.Assignment.Status,
+            entity.CropBlobName != null,
             entity.CreatedAt,
             entity.UpdatedAt);
     }

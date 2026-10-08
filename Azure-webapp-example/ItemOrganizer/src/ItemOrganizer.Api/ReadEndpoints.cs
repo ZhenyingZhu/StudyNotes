@@ -1,3 +1,4 @@
+using Azure;
 using ItemOrganizer.Domain;
 using ItemOrganizer.Infrastructure;
 using Microsoft.AspNetCore.Http.HttpResults;
@@ -31,6 +32,7 @@ public static class ReadEndpoints
         reads.MapGet("/analyses/{analysisId:guid}", GetAnalysisAsync);
         reads.MapGet("/items", ListItemsAsync);
         reads.MapGet("/items/{itemId:guid}", GetItemAsync);
+        reads.MapGet("/items/{itemId:guid}/crop", GetItemCropAsync);
     }
 
     private static async Task<IResult> ReadyAsync(
@@ -382,6 +384,26 @@ public static class ReadEndpoints
                             detection.Quantity,
                             detection.Confidence,
                             detection.SuggestedContainerId,
+                            detection.PredictedBoundingBoxX == null
+                                || detection.PredictedBoundingBoxY == null
+                                || detection.PredictedBoundingBoxWidth == null
+                                || detection.PredictedBoundingBoxHeight == null
+                                    ? null
+                                    : new BoundingBoxResponse(
+                                        detection.PredictedBoundingBoxX.Value,
+                                        detection.PredictedBoundingBoxY.Value,
+                                        detection.PredictedBoundingBoxWidth.Value,
+                                        detection.PredictedBoundingBoxHeight.Value),
+                            detection.ReviewedBoundingBoxX == null
+                                || detection.ReviewedBoundingBoxY == null
+                                || detection.ReviewedBoundingBoxWidth == null
+                                || detection.ReviewedBoundingBoxHeight == null
+                                    ? null
+                                    : new BoundingBoxResponse(
+                                        detection.ReviewedBoundingBoxX.Value,
+                                        detection.ReviewedBoundingBoxY.Value,
+                                        detection.ReviewedBoundingBoxWidth.Value,
+                                        detection.ReviewedBoundingBoxHeight.Value),
                             detection.ReviewStatus,
                             detection.ReviewedName,
                             detection.ReviewedDescription,
@@ -529,6 +551,7 @@ public static class ReadEndpoints
                     item.Assignment.ContainerId,
                     item.Assignment.SuggestedContainerId,
                     item.Assignment.Status,
+                    item.CropBlobName != null,
                     item.CreatedAt,
                     item.UpdatedAt),
                 item.ConcurrencyToken
@@ -558,8 +581,83 @@ public static class ReadEndpoints
             item.Assignment.ContainerId,
             item.Assignment.SuggestedContainerId,
             item.Assignment.Status,
+            item.CropBlobName != null,
             item.CreatedAt,
             item.UpdatedAt);
+    }
+
+    private static async Task<IResult> GetItemCropAsync(
+        Guid itemId,
+        bool? content,
+        ItemOrganizerDbContext dbContext,
+        CurrentUserAccessor currentUserAccessor,
+        IPhotoStorage storage,
+        IConfiguration configuration,
+        ILoggerFactory loggerFactory,
+        HttpContext context,
+        CancellationToken cancellationToken)
+    {
+        var user = currentUserAccessor.GetRequired();
+        var crop = await dbContext.Items
+            .Where(item =>
+                item.Id == itemId
+                && item.TenantId == user.TenantId
+                && item.OwnerObjectId == user.OwnerObjectId
+                && item.DeletedAt == null)
+            .Select(item => new
+            {
+                item.CropBlobName,
+                item.CropContentType
+            })
+            .SingleOrDefaultAsync(cancellationToken);
+        if (crop?.CropBlobName is null || crop.CropContentType is null)
+        {
+            return NotFound(context);
+        }
+
+        try
+        {
+            context.Response.Headers.CacheControl = "private, no-store";
+            if (content == true)
+            {
+                var bytes = await storage.DownloadAsync(
+                    crop.CropBlobName,
+                    cancellationToken);
+                return Results.File(bytes, crop.CropContentType);
+            }
+
+            var configuredMinutes = configuration.GetValue(
+                "PhotoStorage:ReadUrlMinutes",
+                5);
+            var uri = await storage.CreateReadUriAsync(
+                crop.CropBlobName,
+                TimeSpan.FromMinutes(Math.Clamp(configuredMinutes, 1, 15)),
+                cancellationToken);
+            return Results.Redirect(uri.ToString());
+        }
+        catch (FileNotFoundException exception)
+        {
+            loggerFactory.CreateLogger("Items.Crop").LogWarning(
+                exception,
+                "Item crop blob was not found. Correlation ID: {CorrelationId}",
+                context.TraceIdentifier);
+            return Problem(
+                context,
+                StatusCodes.Status503ServiceUnavailable,
+                "A required dependency is unavailable.");
+        }
+        catch (Exception exception) when (
+            exception is RequestFailedException or InvalidOperationException)
+        {
+            loggerFactory.CreateLogger("Items.Crop").LogError(
+                exception,
+                "Item crop read access failed. Correlation ID: {CorrelationId}",
+                context.TraceIdentifier);
+            return Problem(
+                context,
+                StatusCodes.Status503ServiceUnavailable,
+                "A required dependency is unavailable.");
+        }
     }
 
     private static PageResponse<T> ToPage<T>(List<T> rows, PageRequest page)

@@ -14,6 +14,33 @@ public sealed class PhotoRetentionCleanup(
         DateTimeOffset now,
         CancellationToken cancellationToken)
     {
+        var deletedItemsWithCrops = await dbContext.Items
+            .Where(item =>
+                item.DeletedAt != null
+                && item.CropDeletionPendingAt != null
+                && item.CropBlobName != null)
+            .OrderBy(item => item.CropDeletionPendingAt)
+            .Take(100)
+            .ToListAsync(cancellationToken);
+        foreach (var item in deletedItemsWithCrops)
+        {
+            try
+            {
+                await storage.DeleteIfExistsAsync(
+                    item.CropBlobName!,
+                    cancellationToken);
+                item.MarkCropDeleted(now);
+                await dbContext.SaveChangesAsync(cancellationToken);
+            }
+            catch (RequestFailedException exception)
+            {
+                logger.LogError(
+                    exception,
+                    "Retention cleanup could not delete crop for item {ItemId}.",
+                    item.Id);
+            }
+        }
+
         var photos = await dbContext.Photos
             .Where(photo =>
                 photo.DeletedAt == null

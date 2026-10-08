@@ -67,6 +67,28 @@ public sealed class Item : OwnedEntity
 
     public DateTimeOffset? DeletedAt { get; private set; }
 
+    public string? CropBlobName { get; private set; }
+
+    public decimal? CropX { get; private set; }
+
+    public decimal? CropY { get; private set; }
+
+    public decimal? CropWidth { get; private set; }
+
+    public decimal? CropHeight { get; private set; }
+
+    public int? CropPixelWidth { get; private set; }
+
+    public int? CropPixelHeight { get; private set; }
+
+    public string? CropContentType { get; private set; }
+
+    public long? CropContentLength { get; private set; }
+
+    public string? CropSha256 { get; private set; }
+
+    public DateTimeOffset? CropDeletionPendingAt { get; private set; }
+
     public ItemAssignment Assignment { get; private set; } = null!;
 
     public static Item CreateManual(
@@ -116,6 +138,52 @@ public sealed class Item : OwnedEntity
     {
         EnsureNotDeleted();
         DeletedAt = deletedAt;
+        CropDeletionPendingAt = CropBlobName is null ? null : deletedAt;
+        Touch(deletedAt);
+    }
+
+    public void AttachCrop(
+        string blobName,
+        NormalizedBoundingBox boundingBox,
+        int pixelWidth,
+        int pixelHeight,
+        string contentType,
+        long contentLength,
+        string sha256)
+    {
+        EnsureNotDeleted();
+        CropBlobName = RequireText(blobName, nameof(blobName), 1_024);
+        CropX = boundingBox.X;
+        CropY = boundingBox.Y;
+        CropWidth = boundingBox.Width;
+        CropHeight = boundingBox.Height;
+        CropPixelWidth = pixelWidth > 0
+            ? pixelWidth
+            : throw new DomainException("Crop pixel width must be positive.");
+        CropPixelHeight = pixelHeight > 0
+            ? pixelHeight
+            : throw new DomainException("Crop pixel height must be positive.");
+        CropContentType = RequireText(contentType, nameof(contentType), 100);
+        CropContentLength = contentLength > 0
+            ? contentLength
+            : throw new DomainException("Crop content length must be positive.");
+        CropSha256 = RequireText(sha256, nameof(sha256), 64);
+        CropDeletionPendingAt = null;
+    }
+
+    public void MarkCropDeleted(DateTimeOffset deletedAt)
+    {
+        CropBlobName = null;
+        CropX = null;
+        CropY = null;
+        CropWidth = null;
+        CropHeight = null;
+        CropPixelWidth = null;
+        CropPixelHeight = null;
+        CropContentType = null;
+        CropContentLength = null;
+        CropSha256 = null;
+        CropDeletionPendingAt = null;
         Touch(deletedAt);
     }
 

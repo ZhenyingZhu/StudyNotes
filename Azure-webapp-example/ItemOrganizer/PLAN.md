@@ -34,6 +34,12 @@ Plan an application that:
 
 Local development will use a VS Code Development Container to avoid installing project SDKs and tools directly on the host.
 
+The host environment must not be modified for project development or
+validation. Do not install, uninstall, upgrade, or reconfigure project tooling
+on the host to complete repository work. If the Development Container or
+Docker services are unavailable, stop and restore those existing services or
+report the blocked validation; do not fall back to changing the host.
+
 The host requires only:
 
 - Docker Desktop

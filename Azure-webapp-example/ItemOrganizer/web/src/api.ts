@@ -29,6 +29,7 @@ export type InventoryItem = {
   containerId: string | null
   suggestedContainerId: string | null
   assignmentStatus: 'unassigned' | 'suggested' | 'confirmed'
+  hasCrop: boolean
   createdAt: string
   updatedAt: string
 }
@@ -80,6 +81,8 @@ export type AnalysisDetection = {
   quantity: number
   confidence: number
   suggestedContainerId: string | null
+  predictedBoundingBox: BoundingBox | null
+  reviewedBoundingBox: BoundingBox | null
   reviewStatus: 'pending' | 'accepted' | 'rejected'
   reviewedName: string | null
   reviewedDescription: string | null
@@ -87,6 +90,13 @@ export type AnalysisDetection = {
   reviewedQuantity: number | null
   selectedContainerId: string | null
   resultingItemId: string | null
+}
+
+export type BoundingBox = {
+  x: number
+  y: number
+  width: number
+  height: number
 }
 
 export type DetectionReviewInput = {
@@ -97,6 +107,7 @@ export type DetectionReviewInput = {
   category: string
   quantity: number
   containerId: string | null
+  boundingBox: BoundingBox | null
 }
 
 export type ContainerInput = {
@@ -164,6 +175,8 @@ export interface InventoryApi {
     detections: DetectionReviewInput[],
   ): Promise<Analysis>
   getItems(itemIds: string[]): Promise<InventoryItem[]>
+  getPhotoContent(photoId: string): Promise<Blob>
+  getItemCrop(itemId: string): Promise<Blob>
 }
 
 export class ApiError extends Error {
@@ -370,6 +383,18 @@ export class HttpInventoryApi implements InventoryApi {
         return resource.value
       }),
     )
+  }
+
+  async getPhotoContent(photoId: string) {
+    const response = await this.send(`/api/v1/photos/${photoId}/content`)
+    return response.blob()
+  }
+
+  async getItemCrop(itemId: string) {
+    const response = await this.send(
+      `/api/v1/items/${itemId}/crop?content=true`,
+    )
+    return response.blob()
   }
 
   private async setItemContainer(

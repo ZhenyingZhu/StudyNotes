@@ -1,5 +1,6 @@
 using System.Security.Cryptography;
 using System.Text;
+using Azure;
 using ItemOrganizer.Domain;
 using ItemOrganizer.Infrastructure;
 using Microsoft.EntityFrameworkCore;
@@ -350,6 +351,7 @@ public static class AnalysisEndpoints
         ConfirmAnalysisRequest request,
         ItemOrganizerDbContext dbContext,
         CurrentUserAccessor currentUserAccessor,
+        ItemCropService cropService,
         HttpContext context,
         CancellationToken cancellationToken)
     {
@@ -434,13 +436,68 @@ public static class AnalysisEndpoints
                 "A selected container is unavailable.");
         }
 
+        Dictionary<Guid, NormalizedBoundingBox?> reviewedBoundingBoxes;
+        try
+        {
+            reviewedBoundingBoxes = decisions.ToDictionary(
+                decision => decision.Id,
+                decision => decision.Accepted
+                    ? ToBoundingBox(decision.BoundingBox)
+                    : null);
+        }
+        catch (DomainException exception)
+        {
+            return Problem(
+                context,
+                StatusCodes.Status422UnprocessableEntity,
+                exception.Message);
+        }
+
+        var itemIds = decisions
+            .Where(decision => decision.Accepted)
+            .ToDictionary(decision => decision.Id, _ => Guid.NewGuid());
+        var cropRequests = itemIds
+            .Where(entry => reviewedBoundingBoxes[entry.Key] is not null)
+            .Select(entry => new ItemCropRequest(
+                entry.Value,
+                reviewedBoundingBoxes[entry.Key]!))
+            .ToArray();
+        Photo? sourcePhoto = null;
+        if (cropRequests.Length > 0)
+        {
+            sourcePhoto = await dbContext.Photos.SingleOrDefaultAsync(
+                photo =>
+                    photo.Id == analysis.PhotoId
+                    && photo.TenantId == user.TenantId
+                    && photo.OwnerObjectId == user.OwnerObjectId
+                    && photo.DeletedAt == null,
+                cancellationToken);
+            if (sourcePhoto is null)
+            {
+                return Problem(
+                    context,
+                    StatusCodes.Status409Conflict,
+                    "The source photo is unavailable.");
+            }
+        }
+
         await using var transaction = dbContext.Database.IsRelational()
             ? await dbContext.Database.BeginTransactionAsync(cancellationToken)
             : null;
         var now = DateTimeOffset.UtcNow;
         var createdItems = new List<Item>();
+        IReadOnlyList<ItemCropResult> createdCrops = [];
         try
         {
+            if (sourcePhoto is not null)
+            {
+                createdCrops = await cropService.CreateAsync(
+                    sourcePhoto,
+                    cropRequests,
+                    cancellationToken);
+            }
+            var cropsByItemId = createdCrops.ToDictionary(crop => crop.ItemId);
+
             foreach (var detection in detections)
             {
                 var decision = decisionsById[detection.Id];
@@ -451,7 +508,7 @@ public static class AnalysisEndpoints
                 }
 
                 var item = new Item(
-                    Guid.NewGuid(),
+                    itemIds[detection.Id],
                     user.TenantId,
                     user.OwnerObjectId,
                     analysis.PhotoId,
@@ -463,6 +520,17 @@ public static class AnalysisEndpoints
                     detection.Confidence,
                     $"detection:{detection.Id:N}",
                     now);
+                if (cropsByItemId.TryGetValue(item.Id, out var crop))
+                {
+                    item.AttachCrop(
+                        crop.BlobName,
+                        crop.BoundingBox,
+                        crop.PixelWidth,
+                        crop.PixelHeight,
+                        crop.ContentType,
+                        crop.ContentLength,
+                        crop.Sha256);
+                }
                 var assignment = decision.ContainerId is Guid containerId
                     ? ItemAssignment.Confirmed(
                         Guid.NewGuid(),
@@ -485,6 +553,7 @@ public static class AnalysisEndpoints
                     decision.Category,
                     decision.Quantity ?? 0,
                     decision.ContainerId,
+                    reviewedBoundingBoxes[detection.Id],
                     item.Id,
                     now);
                 createdItems.Add(item);
@@ -499,10 +568,27 @@ public static class AnalysisEndpoints
         }
         catch (DomainException exception)
         {
+            await cropService.DeleteCreatedAsync(
+                createdCrops,
+                CancellationToken.None);
             return Problem(
                 context,
                 StatusCodes.Status422UnprocessableEntity,
                 exception.Message);
+        }
+        catch (Exception exception) when (
+            exception is RequestFailedException
+                or FileNotFoundException
+                or InvalidOperationException
+                or DbUpdateException)
+        {
+            await cropService.DeleteCreatedAsync(
+                createdCrops,
+                CancellationToken.None);
+            return Problem(
+                context,
+                StatusCodes.Status503ServiceUnavailable,
+                "The confirmed inventory could not be persisted.");
         }
 
         SetHeaders(context, analysis);
@@ -555,6 +641,8 @@ public static class AnalysisEndpoints
             detection.Quantity,
             detection.Confidence,
             detection.SuggestedContainerId,
+            ToResponse(detection.GetPredictedBoundingBox()),
+            ToResponse(detection.GetReviewedBoundingBox()),
             detection.ReviewStatus,
             detection.ReviewedName,
             detection.ReviewedDescription,
@@ -563,6 +651,26 @@ public static class AnalysisEndpoints
             detection.SelectedContainerId,
             detection.ResultingItemId);
     }
+
+    private static NormalizedBoundingBox? ToBoundingBox(
+        BoundingBoxRequest? boundingBox) =>
+        boundingBox is null
+            ? null
+            : new(
+                boundingBox.X,
+                boundingBox.Y,
+                boundingBox.Width,
+                boundingBox.Height);
+
+    private static BoundingBoxResponse? ToResponse(
+        NormalizedBoundingBox? boundingBox) =>
+        boundingBox is null
+            ? null
+            : new(
+                boundingBox.X,
+                boundingBox.Y,
+                boundingBox.Width,
+                boundingBox.Height);
 
     private static bool MatchesEtag(
         HttpContext context,

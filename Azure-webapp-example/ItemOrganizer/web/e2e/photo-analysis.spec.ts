@@ -1,4 +1,20 @@
 import { expect, Page, test } from '@playwright/test'
+import { execFileSync } from 'node:child_process'
+
+test.beforeEach(() => {
+  execFileSync(
+    'dotnet',
+    [
+      'run',
+      '--project',
+      '../src/ItemOrganizer.Database',
+      '--no-restore',
+      '--',
+      'reset-and-seed',
+    ],
+    { stdio: 'inherit' },
+  )
+})
 
 async function createPhoto(page: Page) {
   const fixturePage = await page.context().newPage()
@@ -27,7 +43,9 @@ async function uploadPhoto(page: Page) {
   })
 }
 
-test('uploads, reviews, and assigns detected inventory', async ({ page }) => {
+test('reviews geometry, confirms a crop, and displays it in inventory', async ({
+  page,
+}) => {
   await page.goto('/')
   await expect(
     page.getByRole('heading', { name: 'Know where everything lives.' }),
@@ -37,32 +55,41 @@ test('uploads, reviews, and assigns detected inventory', async ({ page }) => {
 
   const results = page.locator('.analysis-results')
   const cable = results.locator('.detection-card').filter({
-    hasText: 'USB-C cable',
+    hasText: 'Confidence 92%',
   })
   const notes = results.locator('.detection-card').filter({
-    hasText: 'Sticky notes',
+    hasText: 'Confidence 73%',
   })
   await expect(cable).toContainText('Confidence 92%')
   await expect(cable).toContainText('Suggested container: Office supplies')
-  await expect(notes).toContainText('Assignment: unassigned')
+  await expect(page.getByLabel('Bounding box for USB-C cable')).toBeVisible()
+  await cable.getByRole('spinbutton', { name: 'x for USB-C cable' }).fill('0.12')
+  await notes.getByRole('checkbox', { name: 'Add to inventory' }).uncheck()
 
-  await cable.getByRole('button', { name: 'Accept suggestion' }).click()
-  await expect(cable).toContainText('Assignment: confirmed')
+  await page.getByRole('button', { name: 'Confirm inventory' }).click()
 
-  await notes
-    .getByRole('combobox', { name: 'Change container for Sticky notes' })
-    .selectOption({ label: 'Office supplies' })
-  await expect(notes).toContainText('Assignment: confirmed')
-
-  await page.getByRole('button', { name: 'Refresh' }).click()
-  await expect(cable).toContainText('Assignment: confirmed')
-  await expect(notes).toContainText('Assignment: confirmed')
+  await expect(
+    page.getByRole('status').filter({
+      hasText: 'Confirmed detections were added to inventory.',
+    }),
+  ).toBeVisible()
+  const inventory = page.locator('.inventory-table')
+  const cableRow = inventory.locator('.inventory-row').filter({
+    hasText: 'USB-C cable',
+  })
+  await expect(cableRow).toBeVisible()
+  await expect(cableRow.getByAltText('USB-C cable crop')).toBeVisible()
+  await expect(
+    inventory.getByAltText('Sticky notes crop'),
+  ).toHaveCount(0)
 })
 
-test('convenience workflow confirms all detected items', async ({ page }) => {
+test('container-targeted review still requires confirmation', async ({
+  page,
+}) => {
   await page.goto('/')
   await page
-    .getByLabel('Assign all detected items to a container (optional)')
+    .getByLabel('Preselect a container for review (optional)')
     .selectOption({ label: 'Office supplies' })
 
   await uploadPhoto(page)
@@ -70,9 +97,16 @@ test('convenience workflow confirms all detected items', async ({ page }) => {
   const results = page.locator('.analysis-results')
   const cards = results.locator('.detection-card')
   await expect(cards).toHaveCount(2)
-  await expect(cards.nth(0)).toContainText('Assignment: confirmed')
-  await expect(cards.nth(1)).toContainText('Assignment: confirmed')
   await expect(
-    results.getByRole('button', { name: 'Accept suggestion' }),
-  ).toHaveCount(0)
+    results.getByRole('combobox', { name: 'Container for USB-C cable' }),
+  ).toHaveValue('30000000-0000-0000-0000-000000000001')
+  await expect(
+    results.getByRole('combobox', { name: 'Container for Sticky notes' }),
+  ).toHaveValue('30000000-0000-0000-0000-000000000001')
+
+  await page.getByRole('button', { name: 'Confirm inventory' }).click()
+
+  await expect(
+    page.locator('.inventory-table img[alt$=" crop"]'),
+  ).toHaveCount(2)
 })

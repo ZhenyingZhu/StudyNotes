@@ -39,7 +39,8 @@ public sealed record AnalysisProviderItem(
     int Quantity,
     decimal Confidence,
     Guid? SuggestedContainerId,
-    string? SuggestedContainerReason);
+    string? SuggestedContainerReason,
+    NormalizedBoundingBox? BoundingBox = null);
 
 public interface IAnalysisProvider
 {
@@ -76,7 +77,8 @@ public sealed class DeterministicAnalysisProvider : IAnalysisProvider
                     suggestedContainerId,
                     suggestedContainerId is null
                         ? null
-                        : "The container metadata is compatible with electronics."),
+                        : "The container metadata is compatible with electronics.",
+                    new(0.08m, 0.15m, 0.40m, 0.22m)),
                 new(
                     "Sticky notes",
                     "Yellow note pad",
@@ -84,7 +86,8 @@ public sealed class DeterministicAnalysisProvider : IAnalysisProvider
                     1,
                     0.73m,
                     null,
-                    null)
+                    null,
+                    new(0.56m, 0.42m, 0.30m, 0.28m))
             ],
             []));
     }
@@ -622,7 +625,8 @@ public sealed class AnalysisProcessor(
                 item.Category,
                 item.Quantity,
                 item.Confidence,
-                item.SuggestedContainerId));
+                item.SuggestedContainerId,
+                item.BoundingBox));
         }
 
         if (result.Warnings.Any(warning =>

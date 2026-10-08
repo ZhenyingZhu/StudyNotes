@@ -170,6 +170,36 @@ main {
   object-fit: contain;
 }
 
+.photo-canvas {
+  position: relative;
+  width: fit-content;
+  max-width: 100%;
+  margin: auto;
+}
+
+.bounding-box {
+  position: absolute;
+  border: 3px solid #db5d34;
+  background: rgba(219, 93, 52, 0.12);
+  pointer-events: none;
+}
+
+.bounding-box-editor {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(70px, 1fr)) auto;
+  gap: 0.5rem;
+  width: 100%;
+  border: 1px solid #cbd0c9;
+  border-radius: 0.6rem;
+  padding: 0.7rem;
+}
+
+.bounding-box-editor legend {
+  color: #58635e;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
 .analysis-results {
   margin-top: 1.2rem;
   border-top: 1px solid #d8d9d1;
@@ -409,7 +439,26 @@ textarea {
 
 .inventory-row {
   display: grid;
-  grid-template-columns: minmax(150px, 1.3fr) minmax(145px, 0.8fr) auto;
+  grid-template-columns: 72px minmax(150px, 1.3fr) minmax(145px, 0.8fr) auto;
+}
+
+.inventory-photo {
+  display: grid;
+  width: 64px;
+  height: 64px;
+  overflow: hidden;
+  place-items: center;
+  border-radius: 0.6rem;
+  color: #69736e;
+  background: #e7e9e2;
+  font-size: 0.7rem;
+  text-align: center;
+}
+
+.inventory-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .message {
@@ -487,6 +536,10 @@ textarea {
 
   .detection-card {
     grid-template-columns: 1fr;
+  }
+
+  .bounding-box-editor {
+    grid-template-columns: 1fr 1fr;
   }
 
   .review-actions {

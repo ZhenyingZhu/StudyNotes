@@ -275,7 +275,14 @@ public sealed class AnalysisApiTests(ApiFactory factory) : IClassFixture<ApiFact
                         description = "Corrected by the user",
                         category = "Supplies",
                         quantity = 2,
-                        containerId = ApiFactory.ContainerId
+                        containerId = ApiFactory.ContainerId,
+                        boundingBox = new
+                        {
+                            x = 0.2m,
+                            y = 0.25m,
+                            width = 0.3m,
+                            height = 0.4m
+                        }
                     }
                 }
             });
@@ -293,10 +300,139 @@ public sealed class AnalysisApiTests(ApiFactory factory) : IClassFixture<ApiFact
         Assert.Equal(2, item.Quantity);
         Assert.Equal(AssignmentStatus.Confirmed, item.Assignment.Status);
         Assert.Equal(ApiFactory.ContainerId, item.Assignment.ContainerId);
+        Assert.NotNull(item.CropBlobName);
+        Assert.Equal(0.2m, item.CropX);
+        Assert.True(factory.PhotoStorage.Photos.ContainsKey(item.CropBlobName!));
         var detection = await dbContext.AnalysisDetections.SingleAsync(
             candidate => candidate.Id == ApiFactory.DetectionId);
         Assert.Equal(DetectionReviewStatus.Accepted, detection.ReviewStatus);
         Assert.Equal(item.Id, detection.ResultingItemId);
+        Assert.Equal(0.2m, detection.ReviewedBoundingBoxX);
+
+        using var cropClient = CreateAuthenticatedClient(
+            "ItemOrganizer.Read",
+            allowAutoRedirect: false);
+        var cropResponse = await cropClient.GetAsync(
+            $"/api/v1/items/{item.Id}/crop");
+        Assert.Equal(HttpStatusCode.Redirect, cropResponse.StatusCode);
+        Assert.Contains(
+            Uri.EscapeDataString(item.CropBlobName!),
+            cropResponse.Headers.Location!.ToString(),
+            StringComparison.Ordinal);
+        var cropContent = await client.GetAsync(
+            $"/api/v1/items/{item.Id}/crop?content=true");
+        Assert.Equal(HttpStatusCode.OK, cropContent.StatusCode);
+        Assert.Equal(
+            "image/png",
+            cropContent.Content.Headers.ContentType?.MediaType);
+        Assert.NotEmpty(await cropContent.Content.ReadAsByteArrayAsync());
+    }
+
+    [Fact]
+    public async Task Crop_storage_failure_creates_no_inventory()
+    {
+        var photoId = Guid.NewGuid();
+        var analysisId = Guid.NewGuid();
+        var detectionId = Guid.NewGuid();
+        var createdAt = DateTimeOffset.UtcNow.AddMinutes(-1);
+        var blobName = $"tests/{photoId:N}.png";
+        using (var scope = factory.Services.CreateScope())
+        {
+            var dbContext = scope.ServiceProvider.GetRequiredService<
+                ItemOrganizer.Infrastructure.ItemOrganizerDbContext>();
+            var photo = new Photo(
+                photoId,
+                ApiFactory.TenantId,
+                ApiFactory.OwnerId,
+                blobName,
+                "image/png",
+                1024,
+                512,
+                512,
+                new string('d', 64),
+                createdAt.AddDays(30),
+                createdAt);
+            var analysis = new Analysis(
+                analysisId,
+                ApiFactory.TenantId,
+                ApiFactory.OwnerId,
+                photoId,
+                "prompt-v1",
+                "schema-v1",
+                "mock",
+                "tests",
+                null,
+                createdAt);
+            analysis.Start(createdAt.AddSeconds(1));
+            analysis.Complete([], createdAt.AddSeconds(2));
+            var detection = new AnalysisDetection(
+                detectionId,
+                ApiFactory.TenantId,
+                ApiFactory.OwnerId,
+                analysisId,
+                "Storage box",
+                null,
+                "Tests",
+                1,
+                0.9m,
+                null,
+                new NormalizedBoundingBox(0.1m, 0.1m, 0.5m, 0.5m),
+                createdAt.AddSeconds(2));
+            dbContext.AddRange(photo, analysis, detection);
+            await dbContext.SaveChangesAsync();
+        }
+        factory.PhotoStorage.Seed(
+            blobName,
+            CreatePhotoBytes(),
+            "image/png");
+        factory.PhotoStorage.FailUploads = true;
+        try
+        {
+            using var client = CreateAuthenticatedClient(
+                "ItemOrganizer.Read ItemOrganizer.Write ItemOrganizer.Analyze");
+            var response = await client.PostAsJsonAsync(
+                $"/api/v1/analyses/{analysisId}/confirm",
+                new
+                {
+                    detections = new[]
+                    {
+                        new
+                        {
+                            id = detectionId,
+                            accepted = true,
+                            name = "Storage box",
+                            description = (string?)null,
+                            category = "Tests",
+                            quantity = 1,
+                            containerId = (Guid?)null,
+                            boundingBox = new
+                            {
+                                x = 0.1m,
+                                y = 0.1m,
+                                width = 0.5m,
+                                height = 0.5m
+                            }
+                        }
+                    }
+                });
+
+            Assert.Equal(
+                HttpStatusCode.ServiceUnavailable,
+                response.StatusCode);
+            using var scope = factory.Services.CreateScope();
+            var dbContext = scope.ServiceProvider.GetRequiredService<
+                ItemOrganizer.Infrastructure.ItemOrganizerDbContext>();
+            Assert.False(await dbContext.Items.AnyAsync(
+                item => item.AnalysisId == analysisId));
+            Assert.Equal(
+                DetectionReviewStatus.Pending,
+                (await dbContext.AnalysisDetections.SingleAsync(
+                    detection => detection.Id == detectionId)).ReviewStatus);
+        }
+        finally
+        {
+            factory.PhotoStorage.FailUploads = false;
+        }
     }
 
     private async Task<Guid> UploadPhotoAsync(HttpClient client)
@@ -310,22 +446,32 @@ public sealed class AnalysisApiTests(ApiFactory factory) : IClassFixture<ApiFact
 
     private static MultipartFormDataContent CreatePhotoContent()
     {
-        using var bitmap = new SKBitmap(512, 512);
-        bitmap.Erase(SKColors.Green);
-        using var image = SKImage.FromBitmap(bitmap);
-        using var data = image.Encode(SKEncodedImageFormat.Png, 90);
         var content = new MultipartFormDataContent();
-        var file = new ByteArrayContent(data.ToArray());
+        var file = new ByteArrayContent(CreatePhotoBytes());
         file.Headers.ContentType = new MediaTypeHeaderValue("image/png");
         content.Add(file, "file", "analysis.png");
         return content;
     }
 
+    private static byte[] CreatePhotoBytes()
+    {
+        using var bitmap = new SKBitmap(512, 512);
+        bitmap.Erase(SKColors.Green);
+        using var image = SKImage.FromBitmap(bitmap);
+        using var data = image.Encode(SKEncodedImageFormat.Png, 90);
+        return data.ToArray();
+    }
+
     private HttpClient CreateAuthenticatedClient(
         string scope,
-        Guid? ownerId = null)
+        Guid? ownerId = null,
+        bool allowAutoRedirect = true)
     {
-        var client = factory.CreateClient();
+        var client = factory.CreateClient(
+            new Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactoryClientOptions
+            {
+                AllowAutoRedirect = allowAutoRedirect
+            });
         client.DefaultRequestHeaders.Add(
             "X-Test-Tenant",
             ApiFactory.TenantId.ToString());

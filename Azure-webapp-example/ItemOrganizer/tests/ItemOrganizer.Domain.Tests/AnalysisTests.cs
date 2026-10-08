@@ -78,6 +78,19 @@ public sealed class AnalysisTests
             () => analysis.RequestCancellation(Now.AddMinutes(3)));
     }
 
+    [Fact]
+    public void BoundingBox_MustRemainInsidePhoto()
+    {
+        Assert.Throws<DomainException>(
+            () => new NormalizedBoundingBox(0.8m, 0.2m, 0.3m, 0.4m));
+        Assert.Throws<DomainException>(
+            () => new NormalizedBoundingBox(0.1m, 0.1m, 0m, 0.4m));
+
+        var box = new NormalizedBoundingBox(0.1m, 0.2m, 0.3m, 0.4m);
+
+        Assert.Equal(0.3m, box.Width);
+    }
+
     private static Analysis CreateAnalysis()
     {
         return new Analysis(

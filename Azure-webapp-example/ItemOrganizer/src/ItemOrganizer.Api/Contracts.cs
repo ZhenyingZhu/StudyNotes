@@ -61,6 +61,8 @@ public sealed record AnalysisDetectionResponse(
     int Quantity,
     decimal Confidence,
     Guid? SuggestedContainerId,
+    BoundingBoxResponse? PredictedBoundingBox,
+    BoundingBoxResponse? ReviewedBoundingBox,
     DetectionReviewStatus ReviewStatus,
     string? ReviewedName,
     string? ReviewedDescription,
@@ -79,7 +81,20 @@ public sealed record DetectionReviewRequest(
     string? Description,
     string? Category,
     int? Quantity,
-    Guid? ContainerId);
+    Guid? ContainerId,
+    BoundingBoxRequest? BoundingBox);
+
+public sealed record BoundingBoxRequest(
+    decimal X,
+    decimal Y,
+    decimal Width,
+    decimal Height);
+
+public sealed record BoundingBoxResponse(
+    decimal X,
+    decimal Y,
+    decimal Width,
+    decimal Height);
 
 public sealed record ItemResponse(
     Guid Id,
@@ -93,6 +108,7 @@ public sealed record ItemResponse(
     Guid? ContainerId,
     Guid? SuggestedContainerId,
     AssignmentStatus AssignmentStatus,
+    bool HasCrop,
     DateTimeOffset CreatedAt,
     DateTimeOffset UpdatedAt);
 

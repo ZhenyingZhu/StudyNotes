@@ -42,6 +42,7 @@ const item: InventoryItem = {
   containerId: null,
   suggestedContainerId: null,
   assignmentStatus: 'unassigned',
+  hasCrop: false,
   createdAt: '2026-01-01T00:00:00Z',
   updatedAt: '2026-01-01T00:00:00Z',
 }
@@ -60,6 +61,18 @@ const completedAnalysis: Analysis = {
       quantity: 1,
       confidence: 0.9,
       suggestedContainerId: 'container-1',
+      predictedBoundingBox: {
+        x: 0.1,
+        y: 0.2,
+        width: 0.4,
+        height: 0.3,
+      },
+      reviewedBoundingBox: {
+        x: 0.1,
+        y: 0.2,
+        width: 0.4,
+        height: 0.3,
+      },
       reviewStatus: 'pending',
       reviewedName: null,
       reviewedDescription: null,
@@ -140,6 +153,8 @@ function createApi(): InventoryApi {
       })),
     }),
     getItems: vi.fn().mockResolvedValue([item]),
+    getPhotoContent: vi.fn().mockResolvedValue(new Blob(['photo'])),
+    getItemCrop: vi.fn().mockResolvedValue(new Blob(['crop'])),
   }
 }
 
@@ -374,10 +389,69 @@ test('corrects and confirms a detection before inventory creation', async () => 
           accepted: true,
           name: 'Packing tape',
           containerId: 'container-1',
+          boundingBox: completedAnalysis.detections[0].reviewedBoundingBox,
         }),
       ],
     )
   )
+})
+
+test('edits a reviewed bounding box before confirmation', async () => {
+  const user = userEvent.setup()
+  const api = createApi()
+  render(<InventoryApp api={api} />)
+
+  await screen.findByRole('heading', { name: 'Office' })
+  await user.upload(
+    screen.getByLabelText('Photo'),
+    new File(['image'], 'inventory.png', { type: 'image/png' }),
+  )
+  await user.click(
+    screen.getByRole('button', { name: 'Upload and analyze' }),
+  )
+  const xInput = await screen.findByRole('spinbutton', {
+    name: 'x for Tape',
+  })
+  await user.clear(xInput)
+  await user.type(xInput, '0.25')
+  await user.click(screen.getByRole('button', { name: 'Confirm inventory' }))
+
+  await waitFor(() =>
+    expect(api.confirmAnalysis).toHaveBeenCalledWith(
+      'analysis-1',
+      [
+        expect.objectContaining({
+          boundingBox: expect.objectContaining({ x: 0.25 }),
+        }),
+      ],
+    ),
+  )
+})
+
+test('displays a confirmed crop in inventory', async () => {
+  const api = createApi()
+  vi.mocked(api.listItems).mockResolvedValue({
+    items: [{ ...item, hasCrop: true }],
+    continuationToken: null,
+  })
+  const createObjectUrl = vi.fn().mockReturnValue('blob:crop')
+  Object.defineProperty(URL, 'createObjectURL', {
+    configurable: true,
+    value: createObjectUrl,
+  })
+  Object.defineProperty(URL, 'revokeObjectURL', {
+    configurable: true,
+    value: vi.fn(),
+  })
+
+  render(<InventoryApp api={api} />)
+
+  expect(await screen.findByAltText('Tape crop')).toHaveAttribute(
+    'src',
+    'blob:crop',
+  )
+  expect(api.getItemCrop).toHaveBeenCalledWith('item-1')
+  expect(createObjectUrl).toHaveBeenCalled()
 })
 
 test('rejects a false-positive detection before inventory creation', async () => {

@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using SkiaSharp;
 
 namespace ItemOrganizer.Api.Tests;
 
@@ -67,7 +68,20 @@ public sealed class ApiFactory : WebApplicationFactory<Program>
             using var provider = services.BuildServiceProvider();
             using var scope = provider.CreateScope();
             Seed(scope.ServiceProvider.GetRequiredService<ItemOrganizerDbContext>());
+            SeedSourcePhoto();
         });
+    }
+
+    private void SeedSourcePhoto()
+    {
+        using var bitmap = new SKBitmap(1024, 768);
+        bitmap.Erase(SKColors.CornflowerBlue);
+        using var image = SKImage.FromBitmap(bitmap);
+        using var data = image.Encode(SKEncodedImageFormat.Png, 100);
+        PhotoStorage.Seed(
+            "private/photo.webp",
+            data.ToArray(),
+            "image/png");
     }
 
     private static void Seed(ItemOrganizerDbContext dbContext)
@@ -136,6 +150,7 @@ public sealed class ApiFactory : WebApplicationFactory<Program>
             1,
             0.91m,
             container.Id,
+            new NormalizedBoundingBox(0.1m, 0.2m, 0.4m, 0.3m),
             createdAt.AddSeconds(2));
         var item = new Item(
             Guid.Parse("60000000-0000-0000-0000-000000000001"),

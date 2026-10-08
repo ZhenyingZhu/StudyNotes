@@ -30,6 +30,7 @@ builder.Services.AddSingleton(new BlobServiceClient(
     new BlobClientOptions(
         BlobClientOptions.ServiceVersion.V2024_11_04)));
 builder.Services.AddSingleton<IPhotoStorage, AzureBlobPhotoStorage>();
+builder.Services.AddScoped<ItemCropService>();
 builder.Services.AddScoped<PhotoRetentionCleanup>();
 builder.Services.AddHostedService<PhotoRetentionWorker>();
 builder.Services.AddAnalysisPipeline(builder.Configuration);

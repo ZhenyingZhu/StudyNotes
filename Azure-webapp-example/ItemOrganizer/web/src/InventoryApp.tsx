@@ -9,6 +9,7 @@ import {
   InventoryItem,
   ItemInput,
   DetectionReviewInput,
+  BoundingBox,
   Summary,
 } from './api'
 
@@ -30,6 +31,7 @@ type DetectionReview = DetectionReviewInput & {
   confidence: number
   suggestedContainerId: string | null
   reviewStatus: AnalysisDetection['reviewStatus']
+  predictedBoundingBox: BoundingBox | null
 }
 
 export function InventoryApp({ api }: { api: InventoryApi }) {
@@ -61,6 +63,7 @@ export function InventoryApp({ api }: { api: InventoryApi }) {
     DetectionReview[]
   >([])
   const [analysisBusy, setAnalysisBusy] = useState(false)
+  const [cropUrls, setCropUrls] = useState<Record<string, string>>({})
 
   const load = useCallback(
     async (
@@ -107,6 +110,49 @@ export function InventoryApp({ api }: { api: InventoryApi }) {
     setPhotoPreviewUrl(url)
     return () => URL.revokeObjectURL(url)
   }, [selectedPhoto])
+
+  useEffect(() => {
+    let cancelled = false
+    const createdUrls: string[] = []
+
+    async function loadCrops() {
+      const entries = await Promise.all(
+        items
+          .filter((item) => item.hasCrop)
+          .map(async (item) => {
+            try {
+              const blob = await api.getItemCrop(item.id)
+              if (cancelled || typeof URL.createObjectURL !== 'function') {
+                return null
+              }
+              const url = URL.createObjectURL(blob)
+              createdUrls.push(url)
+              return [item.id, url] as const
+            } catch (caught) {
+              if (!cancelled) {
+                showError(caught, setError)
+              }
+              return null
+            }
+          }),
+      )
+      if (!cancelled) {
+        setCropUrls(
+          Object.fromEntries(
+            entries.filter(
+              (entry): entry is readonly [string, string] => entry !== null,
+            ),
+          ),
+        )
+      }
+    }
+
+    void loadCrops()
+    return () => {
+      cancelled = true
+      createdUrls.forEach((url) => URL.revokeObjectURL(url))
+    }
+  }, [api, items])
 
   useEffect(() => {
     if (!analysis || !['queued', 'running'].includes(analysis.status)) {
@@ -238,6 +284,7 @@ export function InventoryApp({ api }: { api: InventoryApi }) {
           category: detection.category,
           quantity: detection.quantity,
           containerId: detection.containerId,
+          boundingBox: detection.boundingBox,
         })),
       )
       setAnalysis(confirmed)
@@ -412,7 +459,25 @@ export function InventoryApp({ api }: { api: InventoryApi }) {
 
           <div className="photo-preview">
             {photoPreviewUrl ? (
-              <img src={photoPreviewUrl} alt="Selected source" />
+              <div className="photo-canvas">
+                <img src={photoPreviewUrl} alt="Selected source" />
+                {analysisDetections.map(
+                  (detection) =>
+                    detection.boundingBox && (
+                      <div
+                        className="bounding-box"
+                        key={detection.id}
+                        aria-label={`Bounding box for ${detection.name}`}
+                        style={{
+                          left: `${detection.boundingBox.x * 100}%`,
+                          top: `${detection.boundingBox.y * 100}%`,
+                          width: `${detection.boundingBox.width * 100}%`,
+                          height: `${detection.boundingBox.height * 100}%`,
+                        }}
+                      />
+                    ),
+                )}
+              </div>
             ) : (
               <p className="empty-state">Choose a photo to preview it.</p>
             )}
@@ -536,6 +601,65 @@ export function InventoryApp({ api }: { api: InventoryApi }) {
                           ? ` · Suggested container: ${suggested.name}`
                           : ''}
                       </p>
+                      {detection.boundingBox ? (
+                        <fieldset className="bounding-box-editor">
+                          <legend>Item crop</legend>
+                          {(['x', 'y', 'width', 'height'] as const).map(
+                            (field) => (
+                              <label key={field}>
+                                {field.toUpperCase()}
+                                <input
+                                  aria-label={`${field} for ${detection.name}`}
+                                  type="number"
+                                  min={field === 'width' || field === 'height' ? 0.01 : 0}
+                                  max="1"
+                                  step="0.01"
+                                  value={detection.boundingBox![field]}
+                                  disabled={!detection.accepted}
+                                  onChange={(event) =>
+                                    updateDetection(detection.id, {
+                                      boundingBox: {
+                                        ...detection.boundingBox!,
+                                        [field]: Number(event.target.value),
+                                      },
+                                    })
+                                  }
+                                />
+                              </label>
+                            ),
+                          )}
+                          <button
+                            type="button"
+                            className="text-button danger"
+                            disabled={!detection.accepted}
+                            onClick={() =>
+                              updateDetection(detection.id, {
+                                boundingBox: null,
+                              })
+                            }
+                          >
+                            Remove crop
+                          </button>
+                        </fieldset>
+                      ) : (
+                        <button
+                          type="button"
+                          className="secondary"
+                          disabled={!detection.accepted}
+                          onClick={() =>
+                            updateDetection(detection.id, {
+                              boundingBox: {
+                                x: 0.1,
+                                y: 0.1,
+                                width: 0.25,
+                                height: 0.25,
+                              },
+                            })
+                          }
+                        >
+                          Add crop
+                        </button>
+                      )}
                     </div>
                   </article>
                 )
@@ -809,6 +933,16 @@ export function InventoryApp({ api }: { api: InventoryApi }) {
             <div className="inventory-table">
               {items.map((item) => (
                 <article className="inventory-row" key={item.id}>
+                  <div className="inventory-photo">
+                    {cropUrls[item.id] ? (
+                      <img
+                        src={cropUrls[item.id]}
+                        alt={`${item.name} crop`}
+                      />
+                    ) : (
+                      <span aria-hidden="true">No photo</span>
+                    )}
+                  </div>
                   <div>
                     <h3>{item.name}</h3>
                     <p>
@@ -939,5 +1073,8 @@ function toDetectionReviews(analysis: Analysis): DetectionReview[] {
     confidence: detection.confidence,
     suggestedContainerId: detection.suggestedContainerId,
     reviewStatus: detection.reviewStatus,
+    predictedBoundingBox: detection.predictedBoundingBox,
+    boundingBox:
+      detection.reviewedBoundingBox ?? detection.predictedBoundingBox,
   }))
 }

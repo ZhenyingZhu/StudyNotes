@@ -183,6 +183,14 @@ public sealed class ItemOrganizerDbContext(DbContextOptions<ItemOrganizerDbConte
         builder.Property(entity => entity.ReviewedName).HasMaxLength(300);
         builder.Property(entity => entity.ReviewedDescription).HasMaxLength(2_000);
         builder.Property(entity => entity.ReviewedCategory).HasMaxLength(200);
+        builder.Property(entity => entity.PredictedBoundingBoxX).HasPrecision(7, 6);
+        builder.Property(entity => entity.PredictedBoundingBoxY).HasPrecision(7, 6);
+        builder.Property(entity => entity.PredictedBoundingBoxWidth).HasPrecision(7, 6);
+        builder.Property(entity => entity.PredictedBoundingBoxHeight).HasPrecision(7, 6);
+        builder.Property(entity => entity.ReviewedBoundingBoxX).HasPrecision(7, 6);
+        builder.Property(entity => entity.ReviewedBoundingBoxY).HasPrecision(7, 6);
+        builder.Property(entity => entity.ReviewedBoundingBoxWidth).HasPrecision(7, 6);
+        builder.Property(entity => entity.ReviewedBoundingBoxHeight).HasPrecision(7, 6);
         builder.HasOne<Analysis>()
             .WithMany()
             .HasForeignKey(entity => new
@@ -227,6 +235,12 @@ public sealed class ItemOrganizerDbContext(DbContextOptions<ItemOrganizerDbConte
                 "(review_status = 'Pending' AND reviewed_at IS NULL AND resulting_item_id IS NULL) OR " +
                 "(review_status = 'Rejected' AND reviewed_at IS NOT NULL AND resulting_item_id IS NULL) OR " +
                 "(review_status = 'Accepted' AND reviewed_at IS NOT NULL AND resulting_item_id IS NOT NULL)");
+            table.HasCheckConstraint(
+                "ck_analysis_detections_predicted_box",
+                BoundingBoxConstraint("predicted_bounding_box"));
+            table.HasCheckConstraint(
+                "ck_analysis_detections_reviewed_box",
+                BoundingBoxConstraint("reviewed_bounding_box"));
         });
     }
 
@@ -240,6 +254,13 @@ public sealed class ItemOrganizerDbContext(DbContextOptions<ItemOrganizerDbConte
         builder.Property(entity => entity.NormalizedCategory).HasMaxLength(200);
         builder.Property(entity => entity.Confidence).HasPrecision(5, 4);
         builder.Property(entity => entity.DeduplicationKey).HasMaxLength(600).IsRequired();
+        builder.Property(entity => entity.CropBlobName).HasMaxLength(1_024);
+        builder.Property(entity => entity.CropX).HasPrecision(7, 6);
+        builder.Property(entity => entity.CropY).HasPrecision(7, 6);
+        builder.Property(entity => entity.CropWidth).HasPrecision(7, 6);
+        builder.Property(entity => entity.CropHeight).HasPrecision(7, 6);
+        builder.Property(entity => entity.CropContentType).HasMaxLength(100);
+        builder.Property(entity => entity.CropSha256).HasMaxLength(64).IsFixedLength();
         builder.HasOne<Photo>()
             .WithMany()
             .HasForeignKey(entity => new
@@ -290,8 +311,36 @@ public sealed class ItemOrganizerDbContext(DbContextOptions<ItemOrganizerDbConte
             table.HasCheckConstraint(
                 "ck_items_deleted_at",
                 "deleted_at IS NULL OR deleted_at >= created_at");
+            table.HasCheckConstraint(
+                "ck_items_crop",
+                "(crop_blob_name IS NULL AND crop_x IS NULL AND crop_y IS NULL " +
+                "AND crop_width IS NULL AND crop_height IS NULL " +
+                "AND crop_pixel_width IS NULL AND crop_pixel_height IS NULL " +
+                "AND crop_content_type IS NULL AND crop_content_length IS NULL " +
+                "AND crop_sha256 IS NULL AND crop_deletion_pending_at IS NULL) OR " +
+                "(crop_blob_name IS NOT NULL AND crop_x IS NOT NULL " +
+                "AND crop_y IS NOT NULL AND crop_width IS NOT NULL " +
+                "AND crop_height IS NOT NULL AND crop_pixel_width IS NOT NULL " +
+                "AND crop_pixel_height IS NOT NULL AND crop_content_type IS NOT NULL " +
+                "AND crop_content_length IS NOT NULL AND crop_sha256 IS NOT NULL " +
+                "AND crop_x >= 0 AND crop_y >= 0 " +
+                "AND crop_width > 0 AND crop_height > 0 " +
+                "AND crop_x + crop_width <= 1 AND crop_y + crop_height <= 1 " +
+                "AND crop_pixel_width > 0 AND crop_pixel_height > 0 " +
+                "AND crop_content_length > 0 " +
+                "AND crop_sha256 ~ '^[0-9a-f]{64}$')");
         });
     }
+
+    private static string BoundingBoxConstraint(string prefix) =>
+        $"({prefix}_x IS NULL AND {prefix}_y IS NULL " +
+        $"AND {prefix}_width IS NULL AND {prefix}_height IS NULL) OR " +
+        $"({prefix}_x IS NOT NULL AND {prefix}_y IS NOT NULL " +
+        $"AND {prefix}_width IS NOT NULL AND {prefix}_height IS NOT NULL " +
+        $"AND {prefix}_x >= 0 AND {prefix}_y >= 0 " +
+        $"AND {prefix}_width > 0 AND {prefix}_height > 0 " +
+        $"AND {prefix}_x + {prefix}_width <= 1 " +
+        $"AND {prefix}_y + {prefix}_height <= 1)";
 
     private static void ConfigureAssignment(EntityTypeBuilder<ItemAssignment> builder)
     {

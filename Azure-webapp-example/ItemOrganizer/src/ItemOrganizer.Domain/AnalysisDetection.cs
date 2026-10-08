@@ -18,6 +18,35 @@ public sealed class AnalysisDetection : OwnedEntity
         decimal confidence,
         Guid? suggestedContainerId,
         DateTimeOffset createdAt)
+        : this(
+            id,
+            tenantId,
+            ownerObjectId,
+            analysisId,
+            name,
+            description,
+            category,
+            quantity,
+            confidence,
+            suggestedContainerId,
+            null,
+            createdAt)
+    {
+    }
+
+    public AnalysisDetection(
+        Guid id,
+        Guid tenantId,
+        Guid ownerObjectId,
+        Guid analysisId,
+        string name,
+        string? description,
+        string? category,
+        int quantity,
+        decimal confidence,
+        Guid? suggestedContainerId,
+        NormalizedBoundingBox? predictedBoundingBox,
+        DateTimeOffset createdAt)
         : base(id, tenantId, ownerObjectId, createdAt)
     {
         AnalysisId = RequireId(analysisId, nameof(analysisId));
@@ -31,6 +60,8 @@ public sealed class AnalysisDetection : OwnedEntity
             ? confidence
             : throw new DomainException("Detection confidence must be between 0 and 1.");
         SuggestedContainerId = suggestedContainerId;
+        SetPredictedBoundingBox(predictedBoundingBox);
+        SetReviewedBoundingBox(predictedBoundingBox);
         ReviewStatus = DetectionReviewStatus.Pending;
     }
 
@@ -48,6 +79,22 @@ public sealed class AnalysisDetection : OwnedEntity
 
     public Guid? SuggestedContainerId { get; private set; }
 
+    public decimal? PredictedBoundingBoxX { get; private set; }
+
+    public decimal? PredictedBoundingBoxY { get; private set; }
+
+    public decimal? PredictedBoundingBoxWidth { get; private set; }
+
+    public decimal? PredictedBoundingBoxHeight { get; private set; }
+
+    public decimal? ReviewedBoundingBoxX { get; private set; }
+
+    public decimal? ReviewedBoundingBoxY { get; private set; }
+
+    public decimal? ReviewedBoundingBoxWidth { get; private set; }
+
+    public decimal? ReviewedBoundingBoxHeight { get; private set; }
+
     public DetectionReviewStatus ReviewStatus { get; private set; }
 
     public string? ReviewedName { get; private set; }
@@ -64,12 +111,47 @@ public sealed class AnalysisDetection : OwnedEntity
 
     public DateTimeOffset? ReviewedAt { get; private set; }
 
+    public NormalizedBoundingBox? GetPredictedBoundingBox() =>
+        CreateBoundingBox(
+            PredictedBoundingBoxX,
+            PredictedBoundingBoxY,
+            PredictedBoundingBoxWidth,
+            PredictedBoundingBoxHeight);
+
+    public NormalizedBoundingBox? GetReviewedBoundingBox() =>
+        CreateBoundingBox(
+            ReviewedBoundingBoxX,
+            ReviewedBoundingBoxY,
+            ReviewedBoundingBoxWidth,
+            ReviewedBoundingBoxHeight);
+
     public void Accept(
         string name,
         string? description,
         string? category,
         int quantity,
         Guid? selectedContainerId,
+        Guid resultingItemId,
+        DateTimeOffset reviewedAt)
+    {
+        Accept(
+            name,
+            description,
+            category,
+            quantity,
+            selectedContainerId,
+            GetReviewedBoundingBox(),
+            resultingItemId,
+            reviewedAt);
+    }
+
+    public void Accept(
+        string name,
+        string? description,
+        string? category,
+        int quantity,
+        Guid? selectedContainerId,
+        NormalizedBoundingBox? reviewedBoundingBox,
         Guid resultingItemId,
         DateTimeOffset reviewedAt)
     {
@@ -81,6 +163,7 @@ public sealed class AnalysisDetection : OwnedEntity
             ? quantity
             : throw new DomainException("Reviewed quantity must be positive.");
         SelectedContainerId = selectedContainerId;
+        SetReviewedBoundingBox(reviewedBoundingBox);
         ResultingItemId = RequireId(resultingItemId, nameof(resultingItemId));
         ReviewStatus = DetectionReviewStatus.Accepted;
         ReviewedAt = reviewedAt;
@@ -101,5 +184,40 @@ public sealed class AnalysisDetection : OwnedEntity
         {
             throw new DomainException("Only pending detections can be reviewed.");
         }
+    }
+
+    private void SetPredictedBoundingBox(NormalizedBoundingBox? boundingBox)
+    {
+        PredictedBoundingBoxX = boundingBox?.X;
+        PredictedBoundingBoxY = boundingBox?.Y;
+        PredictedBoundingBoxWidth = boundingBox?.Width;
+        PredictedBoundingBoxHeight = boundingBox?.Height;
+    }
+
+    private void SetReviewedBoundingBox(NormalizedBoundingBox? boundingBox)
+    {
+        ReviewedBoundingBoxX = boundingBox?.X;
+        ReviewedBoundingBoxY = boundingBox?.Y;
+        ReviewedBoundingBoxWidth = boundingBox?.Width;
+        ReviewedBoundingBoxHeight = boundingBox?.Height;
+    }
+
+    private static NormalizedBoundingBox? CreateBoundingBox(
+        decimal? x,
+        decimal? y,
+        decimal? width,
+        decimal? height)
+    {
+        if (x is null && y is null && width is null && height is null)
+        {
+            return null;
+        }
+
+        if (x is null || y is null || width is null || height is null)
+        {
+            throw new DomainException("Bounding box coordinates are incomplete.");
+        }
+
+        return new(x.Value, y.Value, width.Value, height.Value);
     }
 }
