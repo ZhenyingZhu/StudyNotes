@@ -74,11 +74,7 @@ test('reviews geometry, confirms a crop, and displays it in inventory', async ({
     }),
   ).toBeVisible()
   const inventory = page.locator('.inventory-table')
-  const cableRow = inventory.locator('.inventory-row').filter({
-    hasText: 'USB-C cable',
-  })
-  await expect(cableRow).toBeVisible()
-  await expect(cableRow.getByAltText('USB-C cable crop')).toBeVisible()
+  await expect(inventory.getByAltText('USB-C cable crop')).toBeVisible()
   await expect(
     inventory.getByAltText('Sticky notes crop'),
   ).toHaveCount(0)

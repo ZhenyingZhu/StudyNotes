@@ -306,7 +306,10 @@ application supports container and manual-item creation, editing, deletion,
 inventory search, assignment, unassignment, and conflict feedback. It also
 supports photo preview and upload, standard or container-targeted analysis,
 automatic status polling, cancellation, detected-item review, suggestion
-acceptance or rejection, and explicit reassignment.
+acceptance or rejection, explicit reassignment, editable normalized bounding
+boxes, and confirmed item-crop display in inventory. Confirmed crops remain
+private; `GET /api/v1/items/{itemId}/crop` returns short-lived authorized
+access, while the web client uses the authorized streamed-content mode.
 
 Create a migration after changing the persistence model:
 
@@ -361,14 +364,14 @@ incomplete.
   dead-letter handling, cancellation checks, and atomic item persistence.
   Its complete HTTP photo-to-analysis flow passed against PostgreSQL and
   Azurite on September 29, 2026.
-- Milestone 7 is complete. The convenience upload-and-analyze API, photo
-  analysis frontend, polling, cancellation, detected-item review, and explicit
-  suggestion decisions are implemented and covered by API and component
-  tests. A real PostgreSQL/Azurite convenience upload completed through the
-  queue worker and confirmed both detected items in the selected container.
-  Playwright verifies standard photo upload, queue-worker polling, AI
-  suggestion acceptance, explicit reassignment, refresh behavior, and the
-  container-targeted workflow in Chromium against the full local stack.
+- Milestone 7 is complete. The convenience upload-and-analyze API, editable
+  detection review, normalized bounding-box overlays, transactional private
+  crop generation, storage-failure compensation, crop cleanup, and inventory
+  thumbnails are implemented. The complete Docker validation passed 10 domain
+  tests, 48 API tests, 8 PostgreSQL/Azurite integration tests, 13 frontend
+  component tests, the frontend production build, and 2 Playwright Chromium
+  workflows covering crop adjustment, rejection, confirmation, display, and
+  container-targeted review.
 - Milestone 1 still requires clean-checkout validation on a second supported
   machine before its exit criteria are formally complete.
 

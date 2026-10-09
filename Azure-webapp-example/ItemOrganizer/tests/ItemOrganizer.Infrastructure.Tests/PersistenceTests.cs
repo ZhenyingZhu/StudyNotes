@@ -133,7 +133,14 @@ public sealed class PersistenceTests(PostgreSqlFixture fixture)
                 setup.AnalysisId,
                 [
                     new("Cable", "First", "Electronics", 1, 0.91m, setup.ContainerId),
-                    new(" cable ", "Second", "electronics", 2, 0.95m, setup.ContainerId),
+                    new(
+                        " cable ",
+                        "Second",
+                        "electronics",
+                        2,
+                        0.95m,
+                        setup.ContainerId,
+                        new NormalizedBoundingBox(0.1m, 0.2m, 0.3m, 0.4m)),
                     new("Unknown", null, null, 1, 0.20m, null)
                 ],
                 [],
@@ -152,6 +159,8 @@ public sealed class PersistenceTests(PostgreSqlFixture fixture)
         Assert.Equal(0.95m, detection.Confidence);
         Assert.Equal(DetectionReviewStatus.Pending, detection.ReviewStatus);
         Assert.Equal(setup.ContainerId, detection.SuggestedContainerId);
+        Assert.Equal(0.1m, detection.PredictedBoundingBoxX);
+        Assert.Equal(0.1m, detection.ReviewedBoundingBoxX);
         Assert.False(await assertContext.Items.AnyAsync(
             item => item.AnalysisId == setup.AnalysisId));
     }

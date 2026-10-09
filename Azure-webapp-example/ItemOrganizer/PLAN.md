@@ -612,9 +612,19 @@ The milestones below are ordered so that each stage produces a demonstrable, tes
   therefore satisfies its exit criteria and is complete.
 - **Plan revision (October 6, 2026):** pending detections are now editable and
   only accepted detections are promoted to inventory through explicit
-  confirmation. Milestone 7 remains reopened for the requirements below.
+  confirmation.
 - **Plan revision (October 6, 2026):** editable bounding-box review and
-  confirmed derivative-crop storage are required but not yet implemented.
+  confirmed derivative-crop storage were added to the milestone.
+- **Completion validation (October 7, 2026):** the review UI overlays
+  predicted boxes and permits numeric move, resize, creation, and removal;
+  confirmation persists reviewed geometry and creates private PNG crops only
+  for accepted detections. Crop upload or database failure creates no
+  inventory, item deletion schedules crop cleanup, authorized inventory
+  thumbnails load through the API, and manual items remain photo-free.
+  All 10 domain tests, 48 API tests, 8 PostgreSQL/Azurite integration tests,
+  13 frontend component tests, the frontend production build, and both
+  Playwright Chromium workflows passed in the Docker Development Container.
+  Milestone 7 therefore satisfies its reopened exit criteria and is complete.
 
 ### Milestone 8 — Live AI feasibility gate
 
