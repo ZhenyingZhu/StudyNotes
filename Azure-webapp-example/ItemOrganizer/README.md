@@ -1,15 +1,41 @@
 # Item Organizer
 
-This repository implements the planning and development-environment outputs for
-Milestones 0 and 1, the domain and persistence foundation for Milestone 2, the
-secure read API and authorization requirements for Milestone 3, the manual
-inventory workflows for Milestone 4, and secure photo ingestion and storage for
-Milestone 5. It also implements the deterministic asynchronous analysis
-pipeline for Milestone 6 of the accepted `PLAN.md`.
+Item Organizer is a web application for keeping track of your belongings and
+the containers where you store them. Instead of remembering which box contains
+an item, you can record your containers, add items manually or identify them
+from photos, and search your inventory later.
 
-Milestone 0 is captured in `docs/milestone-0-decisions.md`. It resolves the product, security, workflow, retention, authorization, queue/worker, and acceptance-criteria decisions that were intentionally left open during planning.
+## What you can do
 
-Milestone 1 establishes a reproducible local development environment based on a VS Code Development Container and Docker Compose. The stack uses PostgreSQL so the complete local environment can run on both x64 and ARM64 hosts.
+- Create containers with names and locations, such as "Tool box" in "Garage".
+- Add, edit, search, and delete inventory items, and assign or move them between
+  containers.
+- Upload a photo and ask AI to suggest item names, categories, quantities, and
+  container assignments.
+- Review the suggestions, correct details and bounding boxes, and reject false
+  detections before confirming items into your inventory.
+- See private photo crops next to confirmed items that have reviewed bounding
+  boxes.
+- Use the REST API to access inventory from other tools.
+
+For example, create a "Camping gear" container, upload a photo of its contents,
+review the detected items, and confirm their assignments. Later, search for
+"flashlight" to find its recorded container.
+
+## Choose how to run it
+
+The local application runs in Docker on x64 or ARM64 machines. Open
+`http://localhost:5173` after starting it with one of these scripts:
+
+| Command | Photo analysis behavior |
+|---|---|
+| `.\scripts\start-environment.ps1` | Uses predictable mock results by default, for trying the workflow without paid AI calls. It does not identify the actual objects in your photo. |
+| `.\scripts\start-live-ai.ps1` | Uses the configured Azure OpenAI deployment to analyze the actual photo. Requires Azure access and incurs usage charges. |
+
+AI suggestions require your review; do not treat them as guaranteed accurate.
+See [Live AI photo analysis](#live-ai-photo-analysis) for the live setup.
+Project progress, milestone completion, validation history, and the
+recognition-quality acceptance gate are tracked in [PLAN.md](PLAN.md).
 
 ## Repository layout
 
@@ -210,7 +236,7 @@ Run the API locally after configuring the database and Entra settings:
 docker compose exec -T workspace dotnet run --project src/ItemOrganizer.Api
 ```
 
-Milestone 3 exposes `/api/v1` health, summary, container, photo, analysis, and
+The API exposes `/api/v1` health, summary, container, photo, analysis, and
 item reads. Resource reads require a delegated token with the
 `ItemOrganizer.Read` scope, the configured tenant ID, and valid `tid` and `oid`
 claims. Development OpenAPI is available at `/openapi/v1.json`.
@@ -221,8 +247,9 @@ Configure these settings through local environment variables or user secrets:
 - `Authentication__Audience`
 - `Authentication__AllowedTenantId`
 
-Milestone 5 adds `POST /api/v1/photos` multipart uploads, authorized short-lived
-photo content URLs, and retryable `DELETE /api/v1/photos/{photoId}` deletion.
+Photo endpoints provide `POST /api/v1/photos` multipart uploads, authorized
+short-lived photo content URLs, and retryable `DELETE /api/v1/photos/{photoId}`
+deletion.
 Uploads accept one `file` part in JPEG, PNG, or WebP format, enforce the 10 MiB
 and 512-8000 pixel limits, reject animated or malformed images, and support an
 optional `Idempotency-Key` header. Blob names are server-generated and the
@@ -246,7 +273,8 @@ Idempotency-Key: optional-owner-scoped-key
 The API atomically creates the queued analysis and SQL outbox record, then
 returns `202 Accepted` with `Location` and `ETag` headers. The background
 pipeline dispatches the analysis ID to Azure Storage Queue, processes it with
-the deterministic mock provider, and persists detected items transactionally.
+the configured provider, and persists detection drafts transactionally.
+Detections become inventory items only after explicit review and confirmation.
 Poll `GET /api/v1/analyses/{analysisId}` with `ItemOrganizer.Read`. Cancel with
 `POST /api/v1/analyses/{analysisId}/cancel`, `ItemOrganizer.Analyze`, and the
 current `If-Match` value.
@@ -261,7 +289,7 @@ Analysis pipeline settings:
 - `Analysis__SchemaVersion` - required structured-output schema version
 - `Analysis__Model` - provider/model identifier stored with each analysis
 
-Start the Milestone 4 frontend from the Development Container:
+Start the frontend from the Development Container:
 
 ```powershell
 Copy-Item .env.example .env
@@ -317,99 +345,7 @@ Create a migration after changing the persistence model:
 docker compose exec -T workspace dotnet ef migrations add MigrationName --project src/ItemOrganizer.Infrastructure --startup-project src/ItemOrganizer.Database --output-dir Migrations
 ```
 
-## Milestone 1 validation status
-
-Validation performed on September 16, 2026 confirmed:
-
-- the Development Container image builds on Windows ARM64
-- the pinned workspace tool versions are available
-- PostgreSQL and Azurite become healthy and are reachable by service name
-- the complete environment smoke test passes on Windows ARM64
-- Compose configuration and local-secret ignore rules are valid
-
-Independent validation performed on October 3, 2026 on a second Windows AMD64
-machine removed all ignored files, containers, data, and cache volumes before
-running the documented bootstrap. The Development Container rebuilt, PostgreSQL
-and Azurite became healthy, pinned tool and service-name smoke checks passed,
-dependencies restored, migrations applied, and the API and frontend both
-returned HTTP 200. Milestone 1 therefore satisfies its exit criteria and is
-complete.
-
-## Implementation status
-
-Milestone status follows the exit criteria in `PLAN.md`. `Code-complete` means
-the planned code and isolated automated tests exist. A milestone is called
-`implemented`, `complete`, or `done` only after its required end-to-end
-validation has passed. A blocked or unrun integration gate keeps the milestone
-incomplete.
-
-- Milestone 2 provides the approved schema, state transitions, ownership
-  constraints, optimistic concurrency, transactional analysis-result
-  persistence, and deterministic seed data.
-- Milestone 3 is implemented. Its read routes, authorization, ownership
-  isolation, paging, headers, health endpoints, and Problem Details behavior
-  are covered by the passing API contract tests.
-- Milestone 4 is complete. The API and web application support
-  container and manual-item creation, editing, deletion, inventory search,
-  assignment, unassignment, optimistic concurrency, and conflict feedback.
-  Frontend component coverage includes container creation, inventory search,
-  item editing, assignment, conflict feedback, and stale-record feedback.
-- Milestone 5 is complete. Photo APIs provide bounded format and dimension
-  validation, private blob storage, idempotent upload replay, per-owner quota
-  enforcement, short-lived authorized reads, retryable deletion, and retention
-  cleanup.
-- Milestone 6 is complete. Analysis creation uses owner-scoped idempotency
-  and a transactional SQL outbox. A hosted dispatcher and worker use Azure
-  Storage Queue, deterministic structured results, bounded retries,
-  dead-letter handling, cancellation checks, and atomic item persistence.
-  Its complete HTTP photo-to-analysis flow passed against PostgreSQL and
-  Azurite on September 29, 2026.
-- Milestone 7 is complete. The convenience upload-and-analyze API, editable
-  detection review, normalized bounding-box overlays, transactional private
-  crop generation, storage-failure compensation, crop cleanup, and inventory
-  thumbnails are implemented. The complete Docker validation passed 10 domain
-  tests, 48 API tests, 8 PostgreSQL/Azurite integration tests, 13 frontend
-  component tests, the frontend production build, and 2 Playwright Chromium
-  workflows covering crop adjustment, rejection, confirmation, display, and
-  container-targeted review.
-- Milestone 1 still requires clean-checkout validation on a second supported
-  machine before its exit criteria are formally complete.
-
-Validation on September 27, 2026 passed the Development Container smoke test,
-9 domain tests, 7 PostgreSQL/Azurite integration tests, 26 API tests, 6
-frontend component tests, and the frontend type-check and production build.
-
-Validation completed on September 29, 2026:
-
-- 9 domain tests, 41 API/analysis-pipeline tests, and 11 frontend component
-  tests passed.
-- All 8 PostgreSQL/Azurite integration tests passed, including private Blob
-  Storage and Azure Queue delivery/dead-letter behavior.
-- A real HTTP upload started an analysis through the SQL outbox and Azurite
-  queue, reached `completed`, and persisted two detected items atomically.
-- A real convenience upload reached `completed` and persisted two confirmed
-  assignments in the explicitly selected container.
-- The complete .NET solution tests and frontend type-check and production
-  build passed.
-
-Validation completed on October 1, 2026:
-
-- All 9 domain, 8 PostgreSQL/Azurite integration, 41 API/pipeline, and 11
-  frontend component tests passed.
-- The frontend type-check and production build passed.
-- Both Playwright Chromium workflows passed against the real local frontend,
-  API, PostgreSQL database, private Azurite Blob Storage, SQL outbox, Azurite
-  Queue, and deterministic analysis worker.
-- The standard workflow uploaded a generated valid PNG, reached completed
-  analysis, accepted the suggested container for one item, explicitly assigned
-  the unassigned item, refreshed, and retained both confirmed assignments.
-- The convenience workflow completed with both detected items confirmed in the
-  explicitly selected container.
-
-The next product milestone is Milestone 8: the live Azure OpenAI feasibility
-gate. Reliable automatic photo identification is mandatory, so representative
-dataset evaluation and an explicit go/no-go decision must pass before Entra ID
-and production infrastructure work begins.
+## Live AI photo analysis
 
 To invoke the live provider in an explicitly selected development environment,
 set `Analysis__Provider=azure-openai`, set `Analysis__Model` to the Azure
@@ -419,10 +355,9 @@ endpoint. Authentication uses `DefaultAzureCredential`; an
 source. The default configuration remains deterministic and makes no live AI
 calls.
 
-The development deployment `gpt-5.4-mini-itemorganizer-dev` has been verified
-against the Azure OpenAI Responses API with image input and strict structured
-output. This verifies connectivity and protocol compatibility only; it does
-not satisfy the Milestone 8 recognition-quality gate. It costs $2.5 per day when running but not accepting requests.
+The development deployment is `gpt-5.4-mini-itemorganizer-dev`. Live analysis
+sends your uploaded photo to Azure OpenAI and uses strict structured output for
+the detection suggestions. Azure usage is billed to the configured subscription.
 
 Run the complete local application against that live deployment:
 
@@ -437,8 +372,10 @@ API and frontend. Open `http://localhost:5173`, choose **Photo analysis**,
 select a JPEG, PNG, or WebP photo between 512 and 8000 pixels and no larger
 than 10 MiB, then select **Upload and analyze**. The page polls until the live
 analysis completes and displays detected names, categories, quantities,
-confidence values, warnings, and container suggestions. Press `Ctrl+C` in the
-script terminal to stop both development servers.
+confidence values, warnings, and container suggestions. Review and correct the
+detections, adjust bounding boxes when needed, choose container assignments,
+and explicitly confirm accepted items to add them to inventory. Press `Ctrl+C`
+in the script terminal to stop both development servers.
 
 To check prerequisites without starting the servers:
 

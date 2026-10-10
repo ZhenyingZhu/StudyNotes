@@ -705,6 +705,55 @@ Every milestone must preserve these requirements:
 - Failures leave no unintended partial state, and asynchronous operations are safe to retry.
 - Accessibility, keyboard operation, responsive behavior, and useful error messages are included in frontend acceptance testing.
 
+## Recorded validation history
+
+These records describe the behavior at the time of each validation, not the
+current review contract. The October 6 review revisions and October 7
+completion validation are recorded under Milestone 7. Environment validation
+on Windows ARM64 and the October 3 clean-checkout Windows AMD64 validation are
+recorded under Milestone 1.
+
+**September 16, 2026:**
+
+- The Development Container image built on Windows ARM64, pinned workspace
+  tool versions were available, and PostgreSQL and Azurite became healthy and
+  were reachable by service name.
+- The complete environment smoke test passed on Windows ARM64.
+- Compose configuration and local-secret ignore rules were valid.
+
+**September 27, 2026:**
+
+- The Development Container smoke test, 9 domain tests, 7 PostgreSQL/Azurite
+  integration tests, 26 API tests, 6 frontend component tests, and the frontend
+  type-check and production build passed.
+
+**September 29, 2026:**
+
+- 9 domain tests, 41 API/analysis-pipeline tests, and 11 frontend component
+  tests passed.
+- All 8 PostgreSQL/Azurite integration tests passed, including private Blob
+  Storage and Azure Queue delivery/dead-letter behavior.
+- A real HTTP upload started an analysis through the SQL outbox and Azurite
+  queue, reached `completed`, and persisted two detected items atomically.
+- A real convenience upload reached `completed` and persisted two confirmed
+  assignments in the explicitly selected container.
+- The complete .NET solution tests and frontend type-check and production
+  build passed.
+
+**October 1, 2026:**
+
+- All 9 domain, 8 PostgreSQL/Azurite integration, 41 API/pipeline, and 11
+  frontend component tests passed.
+- The frontend type-check and production build passed.
+- Both Playwright Chromium workflows passed against the real local frontend,
+  API, PostgreSQL database, private Azurite Blob Storage, SQL outbox, Azurite
+  Queue, and deterministic analysis worker.
+- The standard workflow uploaded a generated valid PNG, reached completed
+  analysis, accepted the suggested container for one item, explicitly assigned
+  the unassigned item, refreshed, and retained both confirmed assignments.
+- The convenience workflow completed with both detected items confirmed in the
+  explicitly selected container.
+
 ## Next step
 
 Complete Milestone 8 by defining the mandatory recognition thresholds,
