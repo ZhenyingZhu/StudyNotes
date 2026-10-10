@@ -51,6 +51,8 @@ If the library will be generally accessible, you can distribute it as a NuGet pa
 
 `where dotnet.exe`
 
+Note: ARM machine has ARM version of the dotnet SDK.
+
 Create package from CLI: [src](https://docs.microsoft.com/en-us/dotnet/articles/csharp/tutorials/console-teleprompter)
 
 1. `dotnet new console`
