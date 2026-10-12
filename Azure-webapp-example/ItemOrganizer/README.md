@@ -362,6 +362,7 @@ the detection suggestions. Azure usage is billed to the configured subscription.
 Run the complete local application against that live deployment:
 
 ```powershell
+az login
 .\scripts\start-live-ai.ps1
 ```
 
