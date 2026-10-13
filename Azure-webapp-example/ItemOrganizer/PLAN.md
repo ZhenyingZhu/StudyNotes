@@ -5,7 +5,12 @@
 **Accepted and implementation authorized. Milestones 0 and 1 are complete.
 Milestone 1 is independently verified on Windows ARM64 and Windows AMD64.
 Milestones 2 and 3 are implemented and verified. Milestones 4 and 5 are
-complete and verified in the Development Container.**
+complete and verified in the Development Container. Milestone 7 is complete,
+including its reopened bounding-box review and private-crop scope, with
+completion validation recorded on October 7, 2026. Milestone 6 remains
+reopened for its revised structured-output and bounding-box validation gate.
+Milestone 8 is in progress; its live AI feasibility gate has not passed.
+Milestones 9 and 10 remain planned.**
 
 ## Goal
 
@@ -563,6 +568,9 @@ The milestones below are ordered so that each stage produces a demonstrable, tes
 
 ### Milestone 7 — AI-assisted review and convenience workflow
 
+**Status: Complete, including the reopened scope; exit criteria passed on
+October 7, 2026.**
+
 **Purpose:** Require explicit human confirmation before any AI detection becomes canonical inventory.
 
 **Testable outcomes:**
@@ -579,7 +587,7 @@ The milestones below are ordered so that each stage produces a demonstrable, tes
 
 **Exit criteria:** The full local photo-to-review-to-inventory workflow passes with the deterministic mock AI, tests prove that no AI detection or crop enters canonical inventory before explicit confirmation, and confirmed crop lifecycle tests pass against Azurite.
 
-**Current implementation status (October 1, 2026):**
+**Implementation and validation history (October 1-7, 2026):**
 
 - The web application uploads or captures JPEG, PNG, and WebP files, previews
   the selected source photo, starts standard or container-targeted analyses,
