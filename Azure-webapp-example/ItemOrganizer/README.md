@@ -39,8 +39,7 @@ recognition-quality acceptance gate are tracked in [PLAN.md](PLAN.md).
 
 ## Repository layout
 
-- `PLAN.md` - accepted milestone plan
-- `docs/milestone-0-decisions.md` - approved product and security decisions
+- `PLAN.md` - approved product and security decisions, milestone plan, and validation history
 - `.devcontainer/` - development container definition and Dockerfile
 - `docker-compose.yml` - local development services
 - `.env.example` - local environment template
