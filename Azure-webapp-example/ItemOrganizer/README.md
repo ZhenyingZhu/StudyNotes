@@ -358,15 +358,25 @@ The development deployment is `gpt-5.4-mini-itemorganizer-dev`. Live analysis
 sends your uploaded photo to Azure OpenAI and uses strict structured output for
 the detection suggestions. Azure usage is billed to the configured subscription.
 
-Run the complete local application against that live deployment:
+Before starting live AI, complete the [Quick start](#quick-start) setup,
+including frontend package restore. Start Docker Desktop in Linux-container
+mode and wait until its engine is running.
+
+Sign in to Azure **inside the Docker workspace**, then start the application.
+Run these commands from the Item Organizer project directory:
 
 ```powershell
-az login --tenant <your-tenant-id>
+docker compose up -d --wait workspace
+docker compose exec -T workspace az login --use-device-code --tenant <your-tenant-id>
 .\scripts\start-live-ai.ps1
 ```
 
+Replace `<your-tenant-id>` with the tenant that owns the Azure OpenAI resource.
+A Windows-host `az login` does not sign in the workspace container. The
+container login is also used by the API's `DefaultAzureCredential`.
+
 The script starts the Docker Compose development services, verifies the current
-Azure CLI login and model deployment, checks that frontend packages are
+workspace Azure CLI login and model deployment, checks that frontend packages are
 installed, applies database migrations, and starts the development-authenticated
 API and frontend. Open `http://localhost:5173`, choose **Photo analysis**,
 select a JPEG, PNG, or WebP photo between 512 and 8000 pixels and no larger
@@ -382,3 +392,40 @@ To check prerequisites without starting the servers:
 ```powershell
 .\scripts\start-live-ai.ps1 -ValidateOnly
 ```
+
+### Troubleshooting live AI startup
+
+The script suppresses output from its initial Docker startup and Azure login
+checks, so `docker failed with exit code 1` alone does not identify the cause.
+Run these checks individually to see the underlying error:
+
+```powershell
+docker info
+docker compose up -d --wait workspace
+docker compose exec -T workspace az account show --only-show-errors --output none
+```
+
+If Docker reports that `dockerDesktopLinuxEngine` cannot be found or that it
+cannot connect to the Docker API, start Docker Desktop, ensure Linux-container
+mode is selected, and wait for the engine to be ready before retrying.
+
+If the Azure check reports `Please run 'az login' to setup account`, repeat
+the container login command above. If the deployment cannot be read, verify
+that the container is using the subscription containing the resource and
+that your account has permission to read the deployment:
+
+```powershell
+docker compose exec -T workspace az account show --query "{subscription:name,subscriptionId:id,tenantId:tenantId}" --output table
+docker compose exec -T workspace az account set --subscription <your-subscription-id>
+```
+
+If startup reports missing frontend packages, restore them using the existing
+Docker-based helper:
+
+```powershell
+.\scripts\restore-frontend.ps1
+```
+
+After resolving the prerequisite error, rerun
+`.\scripts\start-live-ai.ps1 -ValidateOnly`, then start the application with
+`.\scripts\start-live-ai.ps1`.
