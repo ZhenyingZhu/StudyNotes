@@ -92,3 +92,7 @@ docker build --build-arg ip=$ip --build-arg host=$host -t ${tag} $TargetPath
 ### Run a docker on Ubuntu
 
 <https://github.com/WWBN/AVideo/wiki/Running-AVideo-with-Docker>
+
+## Aspire
+
+<https://aspire.dev/get-started/what-is-aspire/>
