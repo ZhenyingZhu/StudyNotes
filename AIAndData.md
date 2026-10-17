@@ -356,6 +356,7 @@ WorkIQ: Provides engineering leaders aggregated, privacy-preserving analytics ab
 <https://code.visualstudio.com/blogs/2025/02/24/introducing-copilot-agent-mode>
 
 - `.github/copilot-instructions.md` file to let AI understand about the project
+- LLM cannot see the agent details until running it
 
 <https://developer.microsoft.com/blog/spec-driven-development-spec-kit>
 
