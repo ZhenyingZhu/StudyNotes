@@ -1013,6 +1013,27 @@ recorded under Milestone 1.
 - The convenience workflow completed with both detected items confirmed in the
   explicitly selected container.
 
+**October 17, 2026 startup diagnostics validation:**
+
+- The live AI launcher now retains failed command output, identifies the
+  failed prerequisite, and provides recovery instructions. Prerequisite
+  failures and `-ValidateOnly` no longer stop existing development servers.
+- Normal startup now runs device-code Azure login in the Docker workspace
+  when its session check fails, streams the sign-in instructions, and
+  rechecks the session before continuing. Optional `-TenantId` targets a
+  specific tenant. `-ValidateOnly` remains non-interactive.
+- All 17 isolated launcher regression cases passed using
+  `.\tests\Scripts\start-live-ai.Tests.ps1`, covering Docker, Compose,
+  workspace Azure login, deployment readiness, frontend packages, backend
+  restore, database migrations, successful prerequisite validation, automatic
+  login continuation, tenant forwarding, login failure, non-interactive
+  validation, and post-login session verification.
+- A real `.\scripts\start-live-ai.ps1 -ValidateOnly` run reached the workspace
+  Azure login check and reported the underlying `Please run 'az login'`
+  error with the container device-login command. Actual browser sign-in,
+  deployment access, and end-to-end live analysis were not validated; the
+  user must complete browser authentication when prompted during startup.
+
 ## Next step
 
 Complete Milestone 8 by defining the mandatory recognition thresholds,

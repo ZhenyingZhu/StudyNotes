@@ -362,16 +362,22 @@ Before starting live AI, complete the [Quick start](#quick-start) setup,
 including frontend package restore. Start Docker Desktop in Linux-container
 mode and wait until its engine is running.
 
-Sign in to Azure **inside the Docker workspace**, then start the application.
-Run these commands from the Item Organizer project directory:
+Start the application from the Item Organizer project directory:
 
 ```powershell
-docker compose up -d --wait workspace
-docker compose exec -T workspace az login --use-device-code --tenant <your-tenant-id>
 .\scripts\start-live-ai.ps1
 ```
 
-Replace `<your-tenant-id>` with the tenant that owns the Azure OpenAI resource.
+If the Docker workspace has no Azure CLI session, the script automatically
+runs device-code login **inside the Docker workspace**. Follow the displayed
+URL and code to complete browser sign-in; startup then continues. Existing
+sessions are reused without prompting. To target the tenant that owns the
+Azure OpenAI resource, use:
+
+```powershell
+.\scripts\start-live-ai.ps1 -TenantId <your-tenant-id>
+```
+
 A Windows-host `az login` does not sign in the workspace container. The
 container login is also used by the API's `DefaultAzureCredential`.
 
@@ -387,7 +393,8 @@ detections, adjust bounding boxes when needed, choose container assignments,
 and explicitly confirm accepted items to add them to inventory. Press `Ctrl+C`
 in the script terminal to stop both development servers.
 
-To check prerequisites without starting the servers:
+To check prerequisites without starting the servers or prompting for Azure
+login (a missing session is reported as an error):
 
 ```powershell
 .\scripts\start-live-ai.ps1 -ValidateOnly
@@ -395,9 +402,13 @@ To check prerequisites without starting the servers:
 
 ### Troubleshooting live AI startup
 
-The script suppresses output from its initial Docker startup and Azure login
-checks, so `docker failed with exit code 1` alone does not identify the cause.
-Run these checks individually to see the underlying error:
+Startup errors identify the failed prerequisite, full command, exit code,
+underlying Docker or Azure CLI output, and recovery steps. Successful
+prerequisite checks stay quiet. The script checks the Linux Docker engine and
+Compose configuration before starting services. A failed prerequisite check
+or `-ValidateOnly` does not stop existing API or frontend processes.
+
+For additional diagnostics, run:
 
 ```powershell
 docker info
@@ -409,8 +420,16 @@ If Docker reports that `dockerDesktopLinuxEngine` cannot be found or that it
 cannot connect to the Docker API, start Docker Desktop, ensure Linux-container
 mode is selected, and wait for the engine to be ready before retrying.
 
-If the Azure check reports `Please run 'az login' to setup account`, repeat
-the container login command above. If the deployment cannot be read, verify
+Normal startup automatically attempts device-code login when the Azure
+session check fails. If login fails, resolve the displayed Azure error and
+retry with `-TenantId <your-tenant-id>` if needed. For `-ValidateOnly`, sign
+in manually first:
+
+```powershell
+docker compose exec -T workspace az login --use-device-code --tenant <your-tenant-id>
+```
+
+If the deployment cannot be read, verify
 that the container is using the subscription containing the resource and
 that your account has permission to read the deployment:
 
