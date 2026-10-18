@@ -358,6 +358,8 @@ WorkIQ: Provides engineering leaders aggregated, privacy-preserving analytics ab
 - `.github/copilot-instructions.md` file to let AI understand about the project
 - LLM cannot see the agent details until running it
 
+The {userdata}/.copilot/.mcp-writer.lock causing VS Code cannot use Copilot. Rename them can work
+
 <https://developer.microsoft.com/blog/spec-driven-development-spec-kit>
 
 <https://github.com/modelcontextprotocol/servers>
