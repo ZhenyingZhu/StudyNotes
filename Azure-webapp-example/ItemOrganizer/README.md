@@ -296,8 +296,18 @@ Copy-Item .env.example .env
 docker compose exec workspace pnpm -C web dev
 ```
 
-The restore script securely prompts for an Azure DevOps PAT with Packaging Read
-permission. It sends the credential to the running Development Container over
+The frontend restores npm packages from the approved Azure DevOps
+`One_PublicPackages` feed, not directly from the public npm registry. Access to
+that feed requires authentication, even when the packages themselves are public.
+An Azure DevOps personal access token (PAT) lets `pnpm` authenticate to the feed
+during dependency restore. Use a PAT with **Packaging: Read** scope from an
+account that has read access to the feed; write permissions are not needed.
+This token is for downloading development dependencies, not for signing in to
+ItemOrganizer or accessing its API. Starting Docker or signing in to Azure does
+not supply npm feed credentials.
+
+The restore script securely prompts for this PAT.
+It sends the credential to the running Development Container over
 standard input, temporarily adds feed authentication to the container user's
 `.npmrc`, restores packages, and restores or removes that file before exiting.
 The PAT is not passed as a process argument or written into the repository.
