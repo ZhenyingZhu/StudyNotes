@@ -382,6 +382,7 @@ Github Copilot CLI: <https://github.com/features/copilot/cli/>, <https://docs.gi
 - `copilot` then `/login` It can reuse the token from Github CLI
 - Simple: `copilot --model gpt-4o -p -s`
 - `$promptText = Get-Content -Path '{promptFilePath}' -Raw; copilot --model claude-sonnet-4.5 --allow-all-paths --allow-all-tools -p $promptText`
+- can ask AI to send email for approval
 
 MCP:
 
