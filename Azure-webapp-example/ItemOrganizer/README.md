@@ -1,392 +1,144 @@
 # Item Organizer
 
-Item Organizer helps you remember what you own and where you put it. Create
-containers such as "Tool box" or "Camping gear", add items, and search your
-inventory to find their recorded locations.
+Item Organizer helps you remember what you own and where you put it. Group
+items into containers such as "Tool box" or "Camping gear", record their
+locations, and search your inventory when you need something.
 
-You can enter items manually or upload a photo for AI-assisted identification.
-Review and correct the AI suggestions before confirming them into inventory.
-Confirmed items can include private photo crops to help you recognize them.
+Add items manually or upload a photo for AI-assisted identification. Review
+and correct the suggestions before confirming them into inventory; confirmed
+items can include private photo crops to help you recognize them.
 
-**There are two separate setup choices:** where your environment downloads
-development packages, and whether photo analysis uses mock results or live AI.
-Using an internal package feed does not require live AI, and using live AI
-does not determine which package feed you should use.
+## How to use it
 
-Project progress, milestone status, validation history, and recognition-quality
-acceptance criteria belong in [PLAN.md](PLAN.md).
+For example, record a tent and a headlamp in "Camping gear", with the
+container's location set to "Garage, top shelf". Search for the headlamp later
+to find its recorded container and location.
 
-## Before you start
+1. **Create containers.** Give each one a name and location; add descriptions
+   and labels when useful.
+2. **Add items.** Enter names, quantities, and categories manually, or use
+   **Photo analysis** to upload a photo.
+3. **Review photo suggestions.** Correct names, quantities, categories, bounding
+   boxes, and container assignments, then explicitly confirm the items.
+4. **Find your belongings.** Search the inventory or browse a container's items.
+   Keep records up to date when you move things.
 
-### Choose the package sources for your environment
+AI suggestions are not guaranteed accurate and never become inventory items
+automatically. The default development setup uses **mock detections**, not
+actual photo recognition. Use live Azure OpenAI analysis to identify real
+objects.
 
-This project is developed in multiple environments. A network restriction in
-one environment is **not** a project-wide ban on a package source.
+## Quick start: try the workflow with mock analysis
 
-| Environment | Where to get packages | Authentication |
-|---|---|---|
-| Public package access is permitted | nuget.org may be used for .NET packages. Use the npm registry permitted by that environment. | Ordinary public nuget.org downloads do not require an Azure DevOps PAT. Other registries have their own requirements. |
-| Direct public package access is restricted | Use that environment's approved internal feeds, such as Azure DevOps `One_PublicPackages`. | Authenticated Azure DevOps feeds require feed read access and package credentials, such as a PAT with **Packaging: Read** scope. |
+### Requirements
 
-Check the configuration in your checkout **before starting a build or restore**:
+Use an existing Windows setup with Git, WSL 2, Docker Desktop running Linux
+containers, and VS Code with the Dev Containers extension. The development
+images support x64 and ARM64. Project SDKs, builds, and servers run in the
+workspace container; do not install or reconfigure host tooling for project work.
 
-| Download | Configuration to check |
-|---|---|
-| Backend .NET dependencies | `NuGet.config` currently selects public nuget.org. Its `<clear />` removes inherited package sources; do not assume a host-level NuGet setting will override it. |
-| EF Core command-line tool used to build the workspace image | `scripts\start-environment.ps1` currently downloads it from public nuget.org using Windows certificate validation. `.devcontainer\Dockerfile` also has a public-download fallback. This is separate from backend restore. |
-| Frontend npm dependencies | `web\.npmrc` reads `ITEMORGANIZER_NPM_REGISTRY` from the container environment. `.env.example` supplies an Azure DevOps default. |
-| Frontend feed credentials | `scripts\restore-frontend.ps1` supplies credentials for the `One_PublicPackages` npm endpoint. It is not a general-purpose login helper for every registry. |
+**Check package access before starting.** The checked-in setup downloads backend
+packages and the EF tool from public nuget.org, and frontend packages from an
+authenticated Azure DevOps npm feed. For that feed, you need account read access
+and a PAT with **Packaging: Read** scope.
 
-For environments using Azure DevOps, `One_PublicPackages` has separate
-endpoints. The npm endpoint is the frontend default; listing the NuGet endpoint
-here does not configure backend restore to use it:
+If these sources are unavailable or prohibited in your environment, read
+[package-source setup](docs/DEVELOPMENT.md#choose-the-package-sources-for-your-environment)
+first. Restricted-network bootstrap is not fully documented or automatically
+configured; do not run it unchanged or bypass your environment's restrictions.
 
-```text
-NuGet: https://pkgs.dev.azure.com/msazure/one/_packaging/one_PublicPackages/nuget/v3/index.json
-npm:   https://pkgs.dev.azure.com/msazure/one/_packaging/one_PublicPackages/npm/registry/
-```
+### Start and explore
 
-**The startup scripts are not automatic environment selectors.** There is no
-single switch that changes all package sources. Changing the npm registry does
-not change NuGet or the EF-tool download. The frontend feed-authentication
-helper targets `One_PublicPackages`; it does not supply NuGet credentials.
-In a restricted environment, the current public NuGet and EF-tool download
-paths need appropriate environment-specific configuration before the bootstrap
-can be used. A frontend PAT alone does not make that setup ready.
-
-Do not switch feeds just to bypass a network restriction. Conversely, do not
-assume nuget.org is forbidden in an environment where it is permitted.
-
-### Understand the three kinds of authentication
-
-| What you are doing | Credential | What it does not do |
-|---|---|---|
-| Downloading packages from an authenticated Azure DevOps feed | Azure DevOps PAT with **Packaging: Read**, from an account with feed read access | Does not sign you in to Azure resources or Item Organizer |
-| Calling the live Azure OpenAI deployment | Azure identity, normally an Azure CLI session **inside the workspace container** during development | Does not authenticate npm or NuGet to Azure DevOps |
-| Using Item Organizer | Local development identity, or Microsoft Entra sign-in when configured | Does not authenticate development package downloads |
-
-A PAT is needed because the **feed requires authentication**, even if it
-contains public upstream packages. It is not an inherent requirement of .NET,
-npm, Docker, or photo analysis. Write permissions are not needed for downloads.
-
-Keep tokens out of source control, `.env`, command arguments, and screenshots.
-The frontend restore helper prompts securely or accepts the path to an
-existing protected PAT file. Supplying that file does not grant feed access
-your account lacks. NuGet feed authentication must be configured separately
-when your environment uses an authenticated NuGet source.
-
-### Understand where commands run
-
-Run the PowerShell commands in this README from the Item Organizer directory
-on the Windows host. Commands beginning with `docker compose exec` execute
-the following program **inside** the named container.
-
-The `workspace` container contains the project SDKs and tools. Builds, tests,
-migrations, and application servers run there, not directly on Windows.
-Host and container Azure sessions and certificate trust stores are separate.
-A successful host login or download does not prove the container can do it.
-
-## Start the application
-
-### Prerequisites
-
-Use an existing Windows setup with Git, WSL 2, Docker Desktop in
-Linux-container mode, and Visual Studio Code with the Dev Containers extension.
-The development images support x64 and ARM64.
-
-Do not install or reconfigure host tooling as part of normal project work.
-For a **new host only**, and only when host provisioning is explicitly
-permitted, `scripts\install-prerequisites.ps1` is an Administrator-level
-installer for the host prerequisites. It is not a package-restore fix.
-
-Before continuing, start Docker Desktop and confirm that your checkout's
-package sources and feed credentials match the environment described above.
-**Do not run the bootstrap unchanged where public NuGet access is prohibited:**
-both backend restore and the EF-tool download currently use public NuGet.
-
-### Start with mock photo analysis
+Run this in PowerShell from the Item Organizer directory on the Windows host:
 
 ```powershell
 .\scripts\start-environment.ps1
 ```
 
-With the default `.env.example` settings, this starts the application using
-**predictable mock detections**. Mock mode exercises upload, review, and
-inventory workflows; it does not identify the actual objects in your photo
-and makes no paid AI calls.
+The bootstrap creates missing local configuration files without overwriting
+existing ones, starts the Docker services, restores dependencies, applies
+database migrations, and starts the API and frontend. It securely prompts for
+the feed PAT if frontend dependencies are missing. Keep tokens out of source
+control, `.env`, command arguments, and screenshots.
 
-The bootstrap creates missing `.env` and `web\.env.local` files without
-overwriting existing ones. It builds and starts the Docker services, checks
-the environment, restores dependencies, applies database migrations, and
-starts the API and frontend.
+With the default example configuration, photo analysis returns predictable
+mock suggestions and makes no paid AI calls. Existing configuration is
+preserved, so a previously configured checkout may use a different provider.
 
-When frontend dependencies are missing, the bootstrap prompts for the
-Packaging Read PAT for the default Azure DevOps npm feed. This token is not
-used for backend NuGet restore. To supply an existing protected file instead:
+Open **http://localhost:5173**. Create a container and add an item, then search
+for it. To explore photo review, open **Photo analysis**, choose a photo, and
+select **Upload and analyze**. Review the suggestions, assign containers, and
+confirm. In mock mode, the suggestions do not describe the actual photo.
 
-```powershell
-.\scripts\start-environment.ps1 -FrontendPatPath C:\secure\azure-devops-pat.txt
-```
+Photos must be JPEG, PNG, or WebP, no larger than 10 MiB, and 512-8000 pixels
+on each side.
 
-The PAT file is a local secret; do not add it to the repository.
+### Stop and restart
 
-Open **http://localhost:5173**. Create a container, add an item, and search for
-it. For the photo workflow, upload a photo, review the suggestions, choose
-container assignments, and explicitly confirm the items.
-
-Useful bootstrap options:
-
-| Option | Effect |
-|---|---|
-| `-NoBuild` | Reuse the existing workspace image. Application package restore still runs unless application startup is skipped. |
-| `-SkipApplicationStart` | Prepare the containers and toolchain without restoring application packages, migrating, or starting the application. Building the image can still download the EF tool. |
-| `-SkipSmokeTest` | Skip the environment smoke test. It does not fix an environment problem. |
-| `-CustomCaPath C:\path\to\organization-ca.crt` | Include an approved PEM CA certificate in the workspace image trust store during a build. Cannot be combined with `-NoBuild`. |
-
-After the workspace image is prepared, you can also use VS Code's **Reopen in
-Container** command. The bootstrap stages the pinned EF-tool package for the
-image build and removes the temporary package file afterward.
-
-### Start with real photo identification
-
-First complete the environment setup and frontend package restore. You also
-need access to an Azure OpenAI resource and a ready model deployment.
+Stop the local services without deleting stored data:
 
 ```powershell
-.\scripts\start-live-ai.ps1 -TenantId <your-tenant-id>
+docker compose stop
 ```
 
-Replace `<your-tenant-id>` with the tenant that owns the Azure OpenAI resource.
-If the workspace lacks an Azure CLI session, the script starts device-code
-login. Follow the displayed URL and enter the displayed code in your browser.
-**This signs in the container, not the Windows host.**
+To start again with the existing workspace image:
 
-The script verifies the deployment and frontend dependencies, restores backend
-packages, applies migrations, and starts the API and frontend. Backend restore
-uses `NuGet.config`, which currently points to public nuget.org. Azure login
-does not change that source or configure credentials for a private NuGet feed.
-The live-startup script does not accept a package PAT; restore frontend
-packages separately with the frontend helper when needed.
+```powershell
+.\scripts\start-environment.ps1 -NoBuild
+```
 
-The script defaults to the development deployment
-`gpt-5.4-mini-itemorganizer-dev`. To use another resource, supply
-`-Endpoint`, `-DeploymentName`, `-ResourceGroup`, and `-ResourceName`.
-The deployment name is the name assigned in Azure, not just the model family.
+If startup fails, use the [troubleshooting guide](docs/DEVELOPMENT.md#troubleshooting-identify-the-failing-step-first)
+to identify the failing step before changing credentials or configuration.
 
-**Live analysis sends the uploaded photo to Azure OpenAI and incurs Azure
-usage charges.** At http://localhost:5173, open **Photo analysis**, choose a
-JPEG, PNG, or WebP image, and select **Upload and analyze**. Images must be
-512-8000 pixels on each side and no larger than 10 MiB.
+## Enable real photo identification
 
-The page polls for results. Correct detected names, quantities, categories,
-bounding boxes, and container assignments before confirming. AI suggestions
-are not guaranteed accurate and do not become inventory items automatically.
+Complete the quick-start setup and package restore first. Stop the mock
+services with `docker compose stop` before starting live mode.
+
+You need access to an Azure OpenAI resource and a ready vision-capable model
+deployment. Supply your resource details in PowerShell:
+
+```powershell
+.\scripts\start-live-ai.ps1 `
+    -TenantId <your-tenant-id> `
+    -Endpoint https://<your-resource-name>.cognitiveservices.azure.com/ `
+    -DeploymentName <your-deployment-name> `
+    -ResourceGroup <your-resource-group> `
+    -ResourceName <your-resource-name>
+```
+
+Use the deployment name assigned in Azure, not just the model family. If the
+workspace container needs an Azure session, the script starts device-code
+login: follow the displayed URL and enter the code in your browser. This
+authenticates the container, separately from host login and package-feed access.
+
+The script checks the deployment, restores backend packages, applies migrations,
+and starts the application at **http://localhost:5173**. Use the same photo
+upload and review workflow described above.
+
+**Live analysis sends uploaded photos to Azure OpenAI and incurs Azure usage
+charges.** Photos and crops remain private within the application's storage
+and access controls; review the contents before sending them to the AI service.
+
 Press **Ctrl+C** in the live-startup terminal to stop its API and frontend.
+Run `docker compose stop` to stop the remaining local services.
+See [live startup details](docs/DEVELOPMENT.md#start-with-real-photo-identification)
+for validation-only mode and script defaults.
 
-To check live prerequisites without restoring packages, prompting for login,
-or starting the application servers:
+## Development and reference
 
-```powershell
-.\scripts\start-live-ai.ps1 -ValidateOnly
-```
+The frontend is React with TypeScript; the API is ASP.NET Core with PostgreSQL.
+Local photo and queue storage uses Azurite. The example configuration enables a
+local development identity; it is not suitable for a deployed environment.
+Microsoft Entra sign-in requires additional configuration.
 
-This check can start the Compose services. It reports a missing Azure session
-as an error rather than starting device-code login.
-
-## Troubleshooting: identify the failing step first
-
-| Symptom | What to check |
+| Need | Documentation |
 |---|---|
-| Docker engine unavailable or `dockerDesktopLinuxEngine` not found | Start Docker Desktop, select Linux containers, and wait for the engine to be ready. |
-| Package request goes to a source not permitted **in this environment** | Check the actual URL and the source settings listed above, including the separate EF-tool download. Do not infer a repository-wide rule from the local restriction. |
-| Azure DevOps feed returns HTTP 401 or 403 | Check PAT validity, **Packaging: Read** scope, and the account's read access to that feed. Azure resource login is separate. |
-| `SSL connection could not be established` or certificate-chain error | Inspect the underlying TLS error and requested host. The container may lack an organization-approved CA. A PAT does not fix certificate trust. |
-| Azure CLI session missing or expired | Sign in inside `workspace`, using the resource's tenant. Host sign-in is not sufficient. |
-| Azure OpenAI deployment cannot be read | Check subscription, tenant, resource group, resource name, deployment name, and Azure permissions. |
-| Frontend dependencies missing | Restore from the environment's configured npm feed before retrying startup. |
-| Live prerequisites pass but startup fails at backend restore | The Azure check succeeded; diagnose package source, feed authentication, and TLS separately. Do not repeat Azure login merely because restore failed. |
-
-For Docker service status:
-
-```powershell
-docker compose ps
-docker compose logs --tail 50 workspace postgres azurite
-```
-
-For container-side Azure sign-in and subscription selection:
-
-```powershell
-docker compose exec -T workspace az login --use-device-code --tenant <your-tenant-id>
-docker compose exec -T workspace az account show --output table
-docker compose exec -T workspace az account set --subscription <your-subscription-id>
-```
-
-If your organization requires a custom CA, obtain its approved PEM certificate
-and rebuild using the existing bootstrap:
-
-```powershell
-.\scripts\start-environment.ps1 -CustomCaPath C:\path\to\organization-ca.crt -SkipApplicationStart
-```
-
-The certificate is supplied to BuildKit as a secret and installed in the
-image's trust store. Its source file is not copied into the repository.
-Do not disable TLS verification. Container recreation may require Azure login
-again. A certificate fix does not authorize access to a prohibited source.
-
-## Everyday development
-
-Run these commands after the environment and dependencies are ready.
-`--no-restore` prevents these .NET commands from implicitly attempting another
-package restore.
-
-### Restore dependencies
-
-For backend packages, first ensure `NuGet.config` and any container-side
-credentials match your environment. With the checked-in configuration, this
-command contacts **public nuget.org**:
-
-```powershell
-docker compose exec -T workspace dotnet restore ItemOrganizer.sln
-```
-
-Run it only where the configured source is permitted. For an authenticated
-internal NuGet feed, use your environment's approved credential configuration.
-The frontend PAT helper does not configure NuGet.
-
-For the supplied Azure DevOps npm feed:
-
-```powershell
-.\scripts\restore-frontend.ps1
-```
-
-This helper temporarily adds feed credentials to the container user's
-`.npmrc`, runs `pnpm install`, then restores or removes that user-level file.
-The token is not included in process arguments or committed files.
-
-The frontend helper accepts
-`-PatPath C:\secure\azure-devops-pat.txt`. This is authentication for its Azure
-DevOps npm feed, not an instruction to use a PAT for public nuget.org.
-
-### Run the API or frontend separately
-
-```powershell
-docker compose exec -T workspace dotnet run --project src/ItemOrganizer.Api --no-restore
-docker compose exec workspace pnpm -C web dev
-```
-
-Run these in separate terminals if both servers are needed.
-
-### Work with the database
-
-Apply migrations, or reset the local database and seed representative data:
-
-```powershell
-docker compose exec -T workspace dotnet run --project src/ItemOrganizer.Database --no-restore -- migrate
-.\scripts\reset-and-seed.ps1
-```
-
-**Resetting removes existing local data.** Use only the first command if you
-want to apply migrations without resetting it.
-
-Open a PostgreSQL shell with
-`docker compose exec postgres psql -U itemorganizer -d itemorganizer`.
-Use `\dt` to list tables, `\d containers` to inspect a table, and `\q` to exit.
-
-After changing the persistence model, create an EF migration:
-
-```powershell
-docker compose exec -T workspace dotnet ef migrations add MigrationName --project src/ItemOrganizer.Infrastructure --startup-project src/ItemOrganizer.Database --output-dir Migrations
-```
-
-EF tooling builds the project and may restore packages, so its configured
-sources and credentials must also be appropriate for your environment.
-
-### Run tests
-
-Backend unit, PostgreSQL integration, and API contract tests:
-
-```powershell
-docker compose exec -T workspace dotnet test ItemOrganizer.sln --no-restore
-```
-
-Browser workflows:
-
-```powershell
-docker compose exec -T workspace pnpm -C web test:e2e
-```
-
-The browser command downloads the matching Chromium runtime and Linux
-dependencies, resets and seeds the local database, starts the test servers,
-and exercises upload, analysis polling, review, assignment, and convenience
-workflows. Ensure those additional downloads are permitted in your environment.
-Failure traces, screenshots, and the HTML report are ignored by Git.
-
-## Configuration and API reference
-
-### Local services and files
-
-| Service | Purpose | Host address |
-|---|---|---|
-| `workspace` | Development tools, API, and frontend | API: http://localhost:5000; frontend: http://localhost:5173 |
-| `postgres` | Local PostgreSQL database | `localhost:54320` |
-| `azurite` | Local Azure Blob, Queue, and Table Storage emulator | Ports `10000`, `10001`, and `10002` respectively |
-
-Inside Compose, connect to `postgres` and `azurite` by service name, not
-`127.0.0.1`. Named volumes `postgres-data` and `azurite-data` preserve local
-state across container recreation; `nuget-cache` and `pnpm-store` cache packages.
-
-`.env` configures the Compose environment and backend settings.
-`web\.env.local` configures the frontend. The example files enable a local
-development identity; configure Entra settings before using real application
-sign-in. Never use the local development identity in a deployed environment.
-
-| Area | Settings |
-|---|---|
-| Frontend | `VITE_API_BASE_URL`, `VITE_DEVELOPMENT_AUTHENTICATION`, `VITE_ENTRA_CLIENT_ID`, `VITE_ENTRA_TENANT_ID`, `VITE_API_SCOPE` |
-| API authentication | `Authentication__Authority`, `Authentication__Audience`, `Authentication__AllowedTenantId` |
-| Private photo storage | `PhotoStorage__ContainerName`, `PhotoStorage__ReadUrlMinutes`, `PhotoStorage__MaximumPhotosPerOwner`, `PhotoStorage__CleanupEnabled`, `PhotoStorage__CleanupIntervalMinutes` |
-| Analysis worker | `Analysis__WorkerEnabled`, `Analysis__PollingSeconds`, `Analysis__QueueName`, `Analysis__DeadLetterQueueName` |
-| Analysis provider and result metadata | `Analysis__Provider`, `Analysis__Model`, `Analysis__PromptVersion`, `Analysis__SchemaVersion` |
-| Live Azure OpenAI | `AzureOpenAI__Endpoint`; optional `AzureOpenAI__ApiKey` only through an approved local secret source |
-
-For manually configured live analysis, use `Analysis__Provider=azure-openai`,
-set `Analysis__Model` to the deployment name, and set `AzureOpenAI__Endpoint`
-to the resource's HTTPS endpoint. Authentication uses `DefaultAzureCredential`
-unless an approved API-key configuration is supplied. The live-startup script
-sets the provider, model, and endpoint for its API process.
-
-### API behavior
-
-The API is under `/api/v1`. Development OpenAPI is at `/openapi/v1.json`.
-Outside local development authentication, resource reads require a delegated
-token with `ItemOrganizer.Read`, the configured tenant, and valid `tid` and
-`oid` claims.
-
-| Operation | Endpoint and behavior |
-|---|---|
-| Upload a photo | `POST /api/v1/photos`, multipart field `file`; accepts JPEG, PNG, or WebP, up to 10 MiB and 512-8000 pixels per side. Animated or malformed images are rejected. Optional `Idempotency-Key`. |
-| Delete a photo | `DELETE /api/v1/photos/{photoId}`; retryable deletion |
-| Start analysis | `POST /api/v1/photos/{photoId}/analyses`, with `ItemOrganizer.Analyze`; optional `Idempotency-Key`; returns `202 Accepted`, `Location`, and `ETag` |
-| Poll analysis | `GET /api/v1/analyses/{analysisId}`, with `ItemOrganizer.Read` |
-| Cancel analysis | `POST /api/v1/analyses/{analysisId}/cancel`, with `ItemOrganizer.Analyze` and current `If-Match` |
-| Read a confirmed item crop | `GET /api/v1/items/{itemId}/crop`; authorized, short-lived access; the web client uses streamed content |
-
-Photos and crops remain private. The background analysis pipeline uses a SQL
-outbox and Azure Storage Queue, then saves detection drafts. Explicit review
-and confirmation are required to create inventory items from those drafts.
-
-## Repository map
-
-| Path | Contents |
-|---|---|
-| `PLAN.md` | Product decisions, milestones, exit criteria, and validation history |
-| `.devcontainer\`, `docker-compose.yml` | Workspace image and local services |
-| `.env.example`, `web\.env.example` | Backend/Compose and frontend configuration templates |
-| `NuGet.config`, `web\.npmrc` | Package-source configuration |
-| `scripts\` | Startup, package restore, environment checks, and database helpers |
-| `src\ItemOrganizer.Domain\` | Domain model and state transitions |
-| `src\ItemOrganizer.Infrastructure\` | EF Core mappings and migrations |
-| `src\ItemOrganizer.Database\` | Migration and seed entry point |
-| `src\ItemOrganizer.Api\` | REST API, authorization, health, and OpenAPI |
-| `web\` | React and TypeScript application |
-| `tests\` | Backend, integration, and script tests |
+| Package sources, feed credentials, and container setup | [Environment setup](docs/DEVELOPMENT.md#before-you-start) |
+| Startup options and certificate configuration | [Startup details](docs/DEVELOPMENT.md#start-the-application) |
+| Diagnose Docker, restore, TLS, or Azure failures | [Troubleshooting](docs/DEVELOPMENT.md#troubleshooting-identify-the-failing-step-first) |
+| Restore packages, run servers, manage migrations, or run tests | [Everyday development](docs/DEVELOPMENT.md#everyday-development) |
+| Service addresses and environment settings | [Configuration](docs/DEVELOPMENT.md#configuration) |
+| Photo-analysis endpoints | [Photo-analysis API](docs/DEVELOPMENT.md#photo-analysis-api); full development OpenAPI at http://localhost:5000/openapi/v1.json |
+| Find source code and scripts | [Repository map](docs/DEVELOPMENT.md#repository-map) |
+| Product decisions, milestone status, recognition-quality gates, and validation history | [PLAN.md](PLAN.md) |
