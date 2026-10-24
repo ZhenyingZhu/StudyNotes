@@ -192,6 +192,9 @@ JPEG, PNG, or WebP image, and select **Upload and analyze**. Images must be
 The page polls for results. Correct detected names, quantities, categories,
 bounding boxes, and container assignments before confirming. AI suggestions
 are not guaranteed accurate and do not become inventory items automatically.
+If the model returns a bounding box outside the photo or with nonpositive
+dimensions, the app keeps the detection without that box and adds a warning.
+Review and draw its box manually before confirming if a photo crop is needed.
 Press **Ctrl+C** in the live-startup terminal to stop its API and frontend.
 Use `docker compose stop` afterward if you also want to stop the local services.
 

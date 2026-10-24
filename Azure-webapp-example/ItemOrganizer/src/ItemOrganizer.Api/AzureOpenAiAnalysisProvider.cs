@@ -6,6 +6,7 @@ using System.Text.Json.Nodes;
 using Azure;
 using Azure.Core;
 using Azure.Identity;
+using ItemOrganizer.Domain;
 
 namespace ItemOrganizer.Api;
 
@@ -359,8 +360,11 @@ public sealed class AzureOpenAiAnalysisProvider(
                     "The response did not contain structured output.");
             }
 
-            var result = JsonSerializer.Deserialize<AnalysisProviderResult>(
-                outputText,
+            var structuredOutput = JsonNode.Parse(outputText) as JsonObject
+                ?? throw new JsonException(
+                    "The structured output must be an object.");
+            RemoveInvalidBoundingBoxes(structuredOutput);
+            var result = structuredOutput.Deserialize<AnalysisProviderResult>(
                 JsonOptions);
             if (result is null
                 || result.Items is null
@@ -377,6 +381,38 @@ public sealed class AzureOpenAiAnalysisProvider(
             throw new AnalysisProviderInvalidOutputException(
                 "Azure OpenAI returned malformed structured output.",
                 exception);
+        }
+    }
+
+    private static void RemoveInvalidBoundingBoxes(JsonObject output)
+    {
+        if (output["items"] is not JsonArray items
+            || output["warnings"] is not JsonArray warnings)
+        {
+            throw new JsonException("The structured output was incomplete.");
+        }
+
+        for (var index = 0; index < items.Count; index++)
+        {
+            if (items[index] is not JsonObject item)
+            {
+                throw new JsonException("A detection must be an object.");
+            }
+            if (item["boundingBox"] is not JsonNode boundingBox)
+            {
+                continue;
+            }
+
+            try
+            {
+                _ = boundingBox.Deserialize<NormalizedBoundingBox>(JsonOptions);
+            }
+            catch (DomainException)
+            {
+                item["boundingBox"] = null;
+                warnings.Add(
+                    $"Discarded an invalid bounding box for detection {index + 1}; review its location manually.");
+            }
         }
     }
 

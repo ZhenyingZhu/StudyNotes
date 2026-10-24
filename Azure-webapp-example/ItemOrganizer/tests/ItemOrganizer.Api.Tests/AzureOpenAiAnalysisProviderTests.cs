@@ -1,6 +1,7 @@
 using System.Net;
 using System.Text;
 using System.Text.Json;
+using System.Text.Json.Nodes;
 using Azure.Core;
 using ItemOrganizer.Api;
 using Microsoft.Extensions.Configuration;
@@ -108,6 +109,89 @@ public sealed class AzureOpenAiAnalysisProviderTests
                     CancellationToken.None));
 
         Assert.DoesNotContain("not-json", exception.Message);
+    }
+
+    [Theory]
+    [InlineData(0.1, 0.2, 0.3, 0.4)]
+    [InlineData(0.25, 0.5, 0.75, 0.5)]
+    public async Task Valid_bounding_boxes_are_preserved(
+        decimal x, decimal y, decimal width, decimal height)
+    {
+        var result = await AnalyzeBoundingBoxAsync(new
+        {
+            x, y, width, height
+        });
+
+        var box = Assert.Single(result.Items).BoundingBox;
+        Assert.NotNull(box);
+        Assert.Equal(x, box.X);
+        Assert.Equal(y, box.Y);
+        Assert.Equal(width, box.Width);
+        Assert.Equal(height, box.Height);
+        Assert.Empty(result.Warnings);
+    }
+
+    [Theory]
+    [InlineData(0.8, 0.2, 0.3, 0.4)]
+    [InlineData(0.1, 0.8, 0.3, 0.4)]
+    [InlineData(-0.1, 0.2, 0.3, 0.4)]
+    [InlineData(0.1, 0.2, 0, 0.4)]
+    [InlineData(0.1, 0.2, 0.3, -0.4)]
+    public async Task Invalid_bounding_boxes_preserve_detections_with_a_warning(
+        decimal x, decimal y, decimal width, decimal height)
+    {
+        var result = await AnalyzeBoundingBoxAsync(new
+        {
+            x, y, width, height
+        });
+
+        var item = Assert.Single(result.Items);
+        Assert.Equal("USB-C cable", item.Name);
+        Assert.Null(item.BoundingBox);
+        Assert.Contains("invalid bounding box", Assert.Single(result.Warnings));
+    }
+
+    [Fact]
+    public async Task Null_bounding_box_does_not_add_a_warning()
+    {
+        var result = await AnalyzeBoundingBoxAsync(null);
+
+        Assert.Null(Assert.Single(result.Items).BoundingBox);
+        Assert.Empty(result.Warnings);
+    }
+
+    [Fact]
+    public async Task Malformed_bounding_box_is_still_rejected()
+    {
+        await Assert.ThrowsAsync<AnalysisProviderInvalidOutputException>(
+            () => AnalyzeBoundingBoxAsync(new
+            {
+                x = "not-a-number",
+                y = 0.2m,
+                width = 0.3m,
+                height = 0.4m
+            }));
+    }
+
+    private static async Task<AnalysisProviderResult> AnalyzeBoundingBoxAsync(
+        object? boundingBox)
+    {
+        var envelope = JsonNode.Parse(CreateResponsePayload())!.AsObject();
+        var output = JsonNode.Parse(
+            envelope["output_text"]!.GetValue<string>())!.AsObject();
+        output["items"]![0]!["boundingBox"] =
+            JsonSerializer.SerializeToNode(boundingBox);
+        envelope["output_text"] = output.ToJsonString();
+        var storage = new FakePhotoStorage();
+        storage.Seed("photos/test", [1, 2, 3], "image/png");
+        var provider = CreateProvider(
+            storage,
+            new RecordingHandler(HttpStatusCode.OK, envelope.ToJsonString()),
+            includeApiKey: true);
+
+        return await provider.AnalyzeAsync(
+            CreateRequest(),
+            CancellationToken.None);
     }
 
     private static AzureOpenAiAnalysisProvider CreateProvider(

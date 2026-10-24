@@ -433,6 +433,9 @@ schema. An illustrative result is:
 - Raw provider payloads are not persisted in ordinary logs or client-visible errors.
 - Malformed structured output commits no partial review drafts or inventory records.
 - Discarding low-confidence detections from otherwise valid output may still produce a completed analysis with warnings.
+- Invalid optional bounding-box geometry from the live provider is discarded
+  with a review warning, preserving the detection without a crop. Nonnumeric
+  geometry and invalid required fields still fail analysis validation.
 
 **Prompt and model version tracking:**
 
@@ -1033,6 +1036,20 @@ recorded under Milestone 1.
   error with the container device-login command. Actual browser sign-in,
   deployment access, and end-to-end live analysis were not validated; the
   user must complete browser authentication when prompted during startup.
+
+**October 23, 2026 live bounding-box validation fix:**
+
+- Reproduced an intermittent live-analysis failure caused by model-generated
+  bounding boxes extending beyond the photo. The live provider now removes
+  invalid optional geometry and records a review warning instead of discarding
+  otherwise valid detections. Required-field validation remains unchanged.
+- All 20 targeted Azure OpenAI provider and analysis-pipeline tests passed
+  inside the Development Container, including valid edge-aligned boxes,
+  out-of-bounds and nonpositive geometry, null boxes, and malformed geometry.
+- Restarted the live API and reanalyzed the same uploaded photo through the
+  real HTTP API, SQL outbox, Azurite queue, and Azure OpenAI deployment. The
+  analysis completed with nine review detections; the API and frontend were
+  responsive. This does not establish the Milestone 8 recognition thresholds.
 
 ## Next step
 
