@@ -1051,6 +1051,22 @@ recorded under Milestone 1.
   analysis completed with nine review detections; the API and frontend were
   responsive. This does not establish the Milestone 8 recognition thresholds.
 
+**October 24, 2026 graphical crop review:**
+
+- Replaced numeric crop-coordinate fields with a source-photo editor for each
+  detected item. Labeled boxes can be dragged to move them and resized with a
+  corner handle; keyboard arrow controls, crop creation, and removal are
+  available without entering coordinates.
+- Movement and resizing keep geometry inside the photo. Rejected and confirmed
+  detections cannot edit crop geometry. Photo canvases match the rendered
+  image dimensions, including portrait images limited by preview height.
+- All 17 frontend component tests, the frontend production build, and all
+  three Playwright Chromium workflows passed in the Development Container.
+  Browser coverage includes dragging, resizing, submitted review geometry,
+  confirmed private-crop display, mobile portrait alignment, and adding and
+  removing boxes. Missing Chromium and browser system dependencies were
+  installed only inside the existing workspace container.
+
 ## Next step
 
 Complete Milestone 8 by defining the mandatory recognition thresholds,

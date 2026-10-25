@@ -1,12 +1,8 @@
 # Item Organizer
 
-Item Organizer helps you remember what you own and where you put it. Group
-items into containers such as "Tool box" or "Camping gear", record their
-locations, and search your inventory when you need something.
+Item Organizer helps you remember what you own and where you put it. Place items into containers, record their locations, and search your inventory when you need something.
 
-Add items manually or upload a photo for AI-assisted identification. Review
-and correct the suggestions before confirming them into inventory; confirmed
-items can include private photo crops to help you recognize them.
+Add items manually or upload a photo for AI-assisted identification. Review and correct the suggestions before confirming them into inventory; confirmed items can include private photo crops to help you recognize them.
 
 ## How to use it
 
@@ -18,8 +14,11 @@ to find its recorded container and location.
    and labels when useful.
 2. **Add items.** Enter names, quantities, and categories manually, or use
    **Photo analysis** to upload a photo.
-3. **Review photo suggestions.** Correct names, quantities, categories, bounding
-   boxes, and container assignments, then explicitly confirm the items.
+3. **Review photo suggestions.** Correct names, quantities, categories, and
+   container assignments. Each item shows a labeled box on the source photo:
+   drag the box to move it or its corner to resize it, rather than entering
+   crop coordinates. You can also focus the box or corner and use arrow keys,
+   or add or remove a crop. Then explicitly confirm the items.
 4. **Find your belongings.** Search the inventory or browse a container's items.
    Keep records up to date when you move things.
 

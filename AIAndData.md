@@ -498,6 +498,10 @@ It send request to Github backend service, then the service connect to AI models
 
 Do not call the model directly from the Android app if it needs a private API key.
 
+Session history: `~\.copilot\session-state`
+
+Copilot memory: Scope to a repo, record repo facts and personal coding preferences
+
 ### Cline
 
 <https://docs.cline.bot/getting-started/for-new-coders>

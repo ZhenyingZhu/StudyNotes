@@ -165,9 +165,10 @@ main {
 
 .photo-preview img {
   display: block;
-  width: 100%;
+  width: auto;
+  max-width: 100%;
+  height: auto;
   max-height: 460px;
-  object-fit: contain;
 }
 
 .photo-canvas {
@@ -184,20 +185,72 @@ main {
   pointer-events: none;
 }
 
-.bounding-box-editor {
+.photo-box-editor {
   display: grid;
-  grid-template-columns: repeat(4, minmax(70px, 1fr)) auto;
-  gap: 0.5rem;
+  align-content: start;
+  gap: 0.7rem;
+  min-width: 0;
   width: 100%;
+  margin: 0;
   border: 1px solid #cbd0c9;
   border-radius: 0.6rem;
   padding: 0.7rem;
 }
 
-.bounding-box-editor legend {
+.photo-box-editor legend {
   color: #58635e;
   font-size: 0.8rem;
   font-weight: 700;
+}
+
+.box-label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  max-width: 100%;
+  overflow: hidden;
+  padding: 0.15rem 0.3rem;
+  color: white;
+  background: #80351d;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.editable-box {
+  padding: 0;
+  border-radius: 0;
+  pointer-events: auto;
+  touch-action: none;
+  cursor: move;
+}
+
+.editable-box:hover {
+  background: rgba(219, 93, 52, 0.22);
+}
+
+.box-resize-handle {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 2px solid white;
+  border-radius: 0.2rem;
+  background: #80351d;
+  transform: translate(-100%, -100%);
+  touch-action: none;
+  cursor: nwse-resize;
+}
+
+.editable-box:focus-visible,
+.box-resize-handle:focus-visible {
+  outline: 3px solid #17201d;
+  outline-offset: 2px;
+}
+
+.photo-box-editor:disabled .editable-box,
+.photo-box-editor:disabled .box-resize-handle {
+  cursor: default;
 }
 
 .analysis-results {
@@ -536,10 +589,6 @@ textarea {
 
   .detection-card {
     grid-template-columns: 1fr;
-  }
-
-  .bounding-box-editor {
-    grid-template-columns: 1fr 1fr;
   }
 
   .review-actions {

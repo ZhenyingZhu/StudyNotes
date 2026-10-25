@@ -1,4 +1,5 @@
 import { FormEvent, useCallback, useEffect, useState } from 'react'
+import { PhotoBoxEditor } from './PhotoBoxEditor'
 import {
   Analysis,
   AnalysisDetection,
@@ -474,7 +475,9 @@ export function InventoryApp({ api }: { api: InventoryApi }) {
                           width: `${detection.boundingBox.width * 100}%`,
                           height: `${detection.boundingBox.height * 100}%`,
                         }}
-                      />
+                      >
+                        <span className="box-label">{detection.name}</span>
+                      </div>
                     ),
                 )}
               </div>
@@ -511,6 +514,21 @@ export function InventoryApp({ api }: { api: InventoryApi }) {
                 )
                 return (
                   <article className="detection-card" key={detection.id}>
+                    {photoPreviewUrl && (
+                      <PhotoBoxEditor
+                        photoUrl={photoPreviewUrl}
+                        name={detection.name}
+                        box={detection.boundingBox}
+                        disabled={
+                          !detection.accepted ||
+                          detection.reviewStatus !== 'pending' ||
+                          analysisBusy
+                        }
+                        onChange={(boundingBox) =>
+                          updateDetection(detection.id, { boundingBox })
+                        }
+                      />
+                    )}
                     <div className="review-actions">
                       <label>
                         <input
@@ -601,65 +619,6 @@ export function InventoryApp({ api }: { api: InventoryApi }) {
                           ? ` · Suggested container: ${suggested.name}`
                           : ''}
                       </p>
-                      {detection.boundingBox ? (
-                        <fieldset className="bounding-box-editor">
-                          <legend>Item crop</legend>
-                          {(['x', 'y', 'width', 'height'] as const).map(
-                            (field) => (
-                              <label key={field}>
-                                {field.toUpperCase()}
-                                <input
-                                  aria-label={`${field} for ${detection.name}`}
-                                  type="number"
-                                  min={field === 'width' || field === 'height' ? 0.01 : 0}
-                                  max="1"
-                                  step="0.01"
-                                  value={detection.boundingBox![field]}
-                                  disabled={!detection.accepted}
-                                  onChange={(event) =>
-                                    updateDetection(detection.id, {
-                                      boundingBox: {
-                                        ...detection.boundingBox!,
-                                        [field]: Number(event.target.value),
-                                      },
-                                    })
-                                  }
-                                />
-                              </label>
-                            ),
-                          )}
-                          <button
-                            type="button"
-                            className="text-button danger"
-                            disabled={!detection.accepted}
-                            onClick={() =>
-                              updateDetection(detection.id, {
-                                boundingBox: null,
-                              })
-                            }
-                          >
-                            Remove crop
-                          </button>
-                        </fieldset>
-                      ) : (
-                        <button
-                          type="button"
-                          className="secondary"
-                          disabled={!detection.accepted}
-                          onClick={() =>
-                            updateDetection(detection.id, {
-                              boundingBox: {
-                                x: 0.1,
-                                y: 0.1,
-                                width: 0.25,
-                                height: 0.25,
-                              },
-                            })
-                          }
-                        >
-                          Add crop
-                        </button>
-                      )}
                     </div>
                   </article>
                 )

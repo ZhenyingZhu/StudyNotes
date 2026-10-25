@@ -1,6 +1,6 @@
 import { render, screen, waitFor, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { expect, test, vi } from 'vitest'
+import { beforeEach, expect, test, vi } from 'vitest'
 import {
   Analysis,
   ApiError,
@@ -10,6 +10,17 @@ import {
   Summary,
 } from './api'
 import { InventoryApp } from './InventoryApp'
+
+beforeEach(() => {
+  Object.defineProperty(URL, 'createObjectURL', {
+    configurable: true,
+    value: vi.fn().mockReturnValue('blob:photo'),
+  })
+  Object.defineProperty(URL, 'revokeObjectURL', {
+    configurable: true,
+    value: vi.fn(),
+  })
+})
 
 const summary: Summary = {
   containers: 1,
@@ -409,11 +420,17 @@ test('edits a reviewed bounding box before confirmation', async () => {
   await user.click(
     screen.getByRole('button', { name: 'Upload and analyze' }),
   )
-  const xInput = await screen.findByRole('spinbutton', {
-    name: 'x for Tape',
+  const box = await screen.findByRole('button', {
+    name: 'Move crop for Tape',
   })
-  await user.clear(xInput)
-  await user.type(xInput, '0.25')
+  expect(box).toHaveStyle({ left: '10%', top: '20%', width: '40%', height: '30%' })
+  expect(screen.queryByRole('spinbutton', { name: 'x for Tape' })).not.toBeInTheDocument()
+  box.focus()
+  await user.keyboard('{ArrowRight}')
+  expect(box).toHaveStyle({ left: '11%' })
+  screen.getByRole('button', { name: 'Resize crop for Tape' }).focus()
+  await user.keyboard('{ArrowDown}')
+  expect(box).toHaveStyle({ height: '31%' })
   await user.click(screen.getByRole('button', { name: 'Confirm inventory' }))
 
   await waitFor(() =>
@@ -421,7 +438,7 @@ test('edits a reviewed bounding box before confirmation', async () => {
       'analysis-1',
       [
         expect.objectContaining({
-          boundingBox: expect.objectContaining({ x: 0.25 }),
+          boundingBox: expect.objectContaining({ x: 0.11, height: 0.31 }),
         }),
       ],
     ),
