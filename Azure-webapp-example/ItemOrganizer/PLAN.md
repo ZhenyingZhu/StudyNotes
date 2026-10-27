@@ -9,7 +9,8 @@ complete and verified in the Development Container. Milestone 7 is complete,
 including its reopened bounding-box review and private-crop scope, with
 completion validation recorded on October 7, 2026. Milestone 6 remains
 reopened for its revised structured-output and bounding-box validation gate.
-Milestone 8 is in progress; its live AI feasibility gate has not passed.
+Milestone 8's remaining live AI feasibility requirements are not needed,
+as directed on October 26, 2026; the gate is waived, not validated.
 Milestone 8A (hybrid semantic inventory search) and Milestones 9 and 10 remain
 planned. Semantic search is not implemented.**
 
@@ -358,8 +359,9 @@ These decisions resolve the original open guidance so implementation can
 proceed without revisiting core product and security questions. They include
 the October 6 review revisions: selecting a container during upload does not
 confirm unseen detections, and analysis completion creates review drafts,
-not canonical inventory. Milestone 8's measured live AI acceptance thresholds
-and go/no-go decision remain separate, unfinished gates.
+not canonical inventory. Milestone 8's remaining measured live AI acceptance
+requirements and go/no-go gate were waived on October 26, 2026; this does not
+establish measured recognition quality or remove runtime safety requirements.
 
 ### Decision summary
 
@@ -907,19 +909,29 @@ October 7, 2026.**
 
 ### Milestone 8 — Live AI feasibility gate
 
-**Purpose:** Prove that reliable automatic photo identification meets the mandatory product value proposition before further production-infrastructure investment.
+**Status (October 26, 2026):** The remaining feasibility work is **not needed**
+by user direction. The gate is waived, not passed or validated, and no longer
+blocks Milestone 8A, Milestone 9, or production-infrastructure work.
 
-**Testable outcomes:**
+**Requirements marked not needed:**
 
-- A representative, versioned evaluation dataset covers ordinary inventory photos plus clutter, occlusion, poor lighting, visually similar objects, and multiple quantities.
-- The live Azure OpenAI provider reads the private source photo, uses strict structured output, records model and prompt versions, and does not persist raw provider payloads.
-- Evaluation reports item precision and recall, quantity accuracy, false detections, schema-valid response rate, bounding-box coverage, localization Intersection over Union against reviewed ground truth, user box-adjustment rate, latency percentiles, and estimated cost per analysis.
-- Acceptance thresholds are documented before evaluation and distinguish model errors from workflow correction behavior.
-- The model abstains through omitted or low-confidence detections rather than inventing items, and unsafe or malformed output creates no inventory records.
-- The feasibility decision evaluates whether Azure OpenAI localization is sufficiently accurate for editable proposals. If localization misses the approved threshold, the plan must use a dedicated object-detection model for geometry while retaining Azure OpenAI only for labeling and descriptions.
-- Prompt or model changes can be compared against the same dataset without changing the default deterministic test suite.
+- Building a representative, versioned, human-labeled photo and bounding-box dataset.
+- Defining and approving numeric recognition, localization, correction-rate,
+  latency, and cost acceptance thresholds.
+- Running and reporting the live benchmark against those thresholds.
+- Requiring a dedicated object-detection model evaluation or geometry-model
+  redesign based on benchmark results.
+- Building same-dataset prompt/model comparison tooling for this feasibility gate.
+- Obtaining a formal stakeholder go/no-go decision before later milestones.
 
-**Exit criteria:** Stakeholders approve measured acceptance thresholds, the live evaluation meets every mandatory threshold, and the result is recorded as an explicit go decision. Failure is a no-go requiring model, workflow, or product redesign before Milestone 9.
+**Retained requirements:** Private-photo access, strict structured output,
+model/prompt version tracking, no raw provider-payload persistence, safe
+malformed-output handling, and explicit review before inventory promotion
+remain in force. The waiver does not establish recognition or localization
+accuracy and does not waive other milestones' tests or exit criteria.
+
+**Exit criteria:** No additional feasibility exit gate is required. Record this
+milestone as waived rather than complete through measured validation.
 
 **Current implementation status (October 1, 2026):**
 
@@ -933,8 +945,8 @@ October 7, 2026.**
 - The default remains the deterministic provider so ordinary local and CI
   suites do not consume Azure resources.
 - The representative dataset, acceptance thresholds, live measurements, and
-  stakeholder go/no-go decision are not yet complete. Milestone 8 is therefore
-  in progress and must not be called complete.
+  stakeholder go/no-go decision were not completed. These remaining requirements
+  were subsequently marked not needed on October 26, 2026.
 
 ### Milestone 8A — Hybrid semantic inventory search
 
@@ -946,9 +958,9 @@ For example, "something to light up a tent" should retrieve a camping lantern
 even when that exact phrase is absent from its name and description. Search
 retrieves real inventory records; it does not generate answers or invent items.
 
-**Sequence and scope:** Design can proceed now, but implementation and live
-embedding-resource work follow the mandatory Milestone 8 photo-identification
-go decision. Complete this search gate before Milestone 9 and include its
+**Sequence and scope:** Implementation can proceed without the waived
+Milestone 8 photo-identification gate. Complete this search gate before
+Milestone 9 and include its
 infrastructure and release requirements in Milestone 10. Initial scope is
 text-to-item search, not image similarity, conversational search, or automatic
 container assignment.
@@ -1038,7 +1050,9 @@ default; until then, retain keyword search as the default.
 
 ### Milestone 9 — Entra ID, remaining live Azure integrations, and observability
 
-**Purpose:** After AI feasibility passes, validate cloud identity, remaining managed-resource access, monitoring, and operational behavior.
+**Purpose:** Validate cloud identity, remaining managed-resource access,
+monitoring, and operational behavior after Milestone 8A. The waived
+Milestone 8 feasibility gate is not a prerequisite.
 
 **Testable outcomes:**
 
@@ -1189,8 +1203,7 @@ recorded under Milestone 1.
 
 ## Next step
 
-Complete Milestone 8 by defining the mandatory recognition thresholds,
-building the representative evaluation dataset, and running the live Azure
-OpenAI evaluation. After its go decision, implement and evaluate Milestone 8A
-hybrid semantic inventory search before beginning Milestone 9 identity and
-remaining live integrations or production infrastructure work.
+Implement and evaluate Milestone 8A hybrid semantic inventory search before
+beginning Milestone 9 identity and remaining live integrations or production
+infrastructure work. Milestone 8's remaining feasibility requirements are not
+needed and do not block this work.
