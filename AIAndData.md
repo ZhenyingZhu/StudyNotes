@@ -502,6 +502,8 @@ Session history: `~\.copilot\session-state`
 
 Copilot memory: Scope to a repo, record repo facts and personal coding preferences
 
+Under agent mode: `Copilot has been working on this problem for a while. It can continue to iterate, or you can send a new message to refine your prompt.` is not working well. Set to -1 just cause it kept prompting. Set it to 1000 can delay the time hitting it
+
 ### Cline
 
 <https://docs.cline.bot/getting-started/for-new-coders>
