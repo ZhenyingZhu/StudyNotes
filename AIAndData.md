@@ -504,6 +504,8 @@ Copilot memory: Scope to a repo, record repo facts and personal coding preferenc
 
 Under agent mode: `Copilot has been working on this problem for a while. It can continue to iterate, or you can send a new message to refine your prompt.` is not working well. Set to -1 just cause it kept prompting. Set it to 1000 can delay the time hitting it
 
+STEERING means it can be interacted, but if the prompt is not responding, I can click the Up arrow to make it response soon.
+
 ### Cline
 
 <https://docs.cline.bot/getting-started/for-new-coders>
