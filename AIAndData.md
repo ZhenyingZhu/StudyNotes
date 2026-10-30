@@ -506,6 +506,8 @@ Under agent mode: `Copilot has been working on this problem for a while. It can 
 
 STEERING means it can be interacted, but if the prompt is not responding, I can click the Up arrow to make it response soon.
 
+The tools AI selected can be cjs which is commonJS module.
+
 ### Cline
 
 <https://docs.cline.bot/getting-started/for-new-coders>
