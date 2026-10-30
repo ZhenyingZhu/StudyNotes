@@ -35,6 +35,10 @@ To run from a terminal:
 ./sync-pcsx2-memcards.sh
 ```
 
+You can also use `bash sync-pcsx2-memcards.sh`. If invoked with
+`sh sync-pcsx2-memcards.sh`, the script automatically restarts under Bash,
+preserving all arguments; Bash must still be installed.
+
 For testing against other existing folders:
 
 ```bash
