@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Sync PCSX2 Memory Cards
+Comment=Sync OneDrive and local PCSX2 memory cards, keeping newer files
+Exec=/home/zhu91/github/StudyNotes/shell-example/sync-pcsx2-memcards.sh --pause
+Path=/home/zhu91/github/StudyNotes/shell-example
+Icon=folder-sync
+Terminal=true
+Categories=Utility;
