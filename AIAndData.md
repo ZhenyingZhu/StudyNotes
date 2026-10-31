@@ -724,6 +724,8 @@ Seems like give AI too many data to look at and it will just make things up
 
 Seems like tool selection can be optimized.
 
+Agency hub: controlling all the sessions
+
 ### Id Forge
 
 A plan and execute mode
