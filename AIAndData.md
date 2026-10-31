@@ -508,6 +508,11 @@ STEERING means it can be interacted, but if the prompt is not responding, I can 
 
 The tools AI selected can be cjs which is commonJS module.
 
+Why it stopped in the middle?
+
+- <https://github.com/orgs/community/discussions/184524>
+- <https://github.com/orgs/community/discussions/169714>
+
 ### Cline
 
 <https://docs.cline.bot/getting-started/for-new-coders>
