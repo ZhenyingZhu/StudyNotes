@@ -731,6 +731,8 @@ Seems like tool selection can be optimized.
 
 Agency hub: controlling all the sessions
 
+Software Factory: Only moved to cloud. The knowledge base is not yet collaborated.
+
 ### Id Forge
 
 A plan and execute mode
