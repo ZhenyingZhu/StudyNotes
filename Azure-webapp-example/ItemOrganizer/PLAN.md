@@ -47,34 +47,77 @@ on the host to complete repository work. If the Development Container or
 Docker services are unavailable, stop and restore those existing services or
 report the blocked validation; do not fall back to changing the host.
 
-The host requires only:
+The host requires only the container-platform and editor prerequisites below;
+application SDKs and tools remain inside the Development Container:
 
-- Docker Desktop
-- Visual Studio Code with the Dev Containers extension
-- Git, when Git operations are performed on the host
+- On Windows, WSL 2 with a supported Linux distribution and systemd enabled
+- Docker Engine, including the `dockerd` daemon, Docker CLI, containerd,
+  Docker Buildx plugin, and Docker Compose v2 plugin, installed inside that
+  Linux distribution (or directly on a supported Linux host)
+- Visual Studio Code with the Dev Containers extension and, on Windows, the
+  WSL extension
+- Git in the environment where checkout and Git operations are performed
+
+Docker Desktop is not a prerequisite and must not be installed as part of
+project setup. These are platform setup requirements, not authorization for
+repository tasks to install or reconfigure host software.
 
 ### Why WSL 2 and Linux containers are used
 
-Docker Desktop uses WSL 2 to provide the Linux kernel needed to run this project's Linux containers on Windows. Developers do not need to work directly inside a user-installed Linux distribution; Docker Desktop can manage its own internal WSL distributions. Enabling Docker Desktop integration with a separate Linux distribution is optional and is needed only when Docker commands will be run from that distribution.
+On Windows, WSL 2 provides the Linux kernel needed to run this project's Linux
+containers. Docker Engine runs directly inside a developer-managed WSL 2 Linux
+distribution, with `dockerd` managed by systemd. The Docker CLI and Compose
+plugin run in that same distribution and connect to its local Unix socket.
+Docker Engine is the container runtime; `dockerd` is its daemon, not a separate
+replacement product. A native Windows `dockerd` installation is not the runtime
+for this project's Linux containers.
+
+Open the repository through VS Code's WSL connection before reopening it in
+the Development Container. Run bootstrap and Compose commands from that WSL
+environment, not from a Windows Docker Desktop context. Existing Windows-only
+launcher assumptions must be reviewed and validated for this workflow; prior
+Windows validation does not establish that the revised setup has passed.
 
 Linux containers are the project default because the .NET SDK, Node.js, PostgreSQL, Azurite, Azure CLI, and Bicep support them well. They also provide a broad image ecosystem, generally use fewer resources than Windows containers, align with common GitHub Actions runners and possible Linux App Service deployment, and expose Linux-specific path, casing, permission, and shell issues during development. This is a development and testing choice; it does not require the production API to use a custom container. Production may still use either the App Service managed .NET runtime or a separate Linux production image.
 
 ### Windows 10 compatibility
 
-WSL 2 is available on 64-bit Windows 10 version 2004 or later, build 19041 or later, when hardware virtualization is enabled. Use `winver` to check the installed version and build. Windows 10 reached the end of standard support on October 14, 2025, so a supported Windows 11 installation is preferred. A Windows 10 development machine should use an applicable Microsoft Extended Security Updates program and must satisfy the support requirements of the Docker Desktop version being installed.
+WSL 2 is available on 64-bit Windows 10 version 2004 or later, build 19041 or later, when hardware virtualization is enabled. Use `winver` to check the installed version and build. Windows 10 reached the end of standard support on October 14, 2025, so a supported Windows 11 installation is preferred. A Windows 10 development machine should use an applicable Microsoft Extended Security Updates program and must support a current WSL release with systemd and a Linux distribution supported by Docker Engine. WSL 2 availability alone does not establish compatibility with the complete development setup.
 
-### Install Docker Desktop on Windows
+### Set up Docker Engine and dockerd on Windows through WSL 2
 
 1. Confirm that hardware virtualization is enabled in UEFI/BIOS and that the Windows version supports WSL 2.
-2. Open PowerShell as Administrator and run `wsl --install`. Restart Windows if prompted, then run `wsl --update` to install the latest WSL components.
-3. Install Docker Desktop with `winget install --exact --id Docker.DockerDesktop`, or download the installer from the official Docker Desktop website when `winget` is unavailable.
-4. Start Docker Desktop, accept its license terms, and complete its initial setup.
-5. In Docker Desktop, open **Settings > General** and enable **Use the WSL 2 based engine**. Under **Settings > Resources > WSL Integration**, enable integration for the development Linux distribution if one will be used outside the Development Container.
-6. Keep Docker Desktop configured for Linux containers, which are required by this project.
-7. Open a new PowerShell window and verify the installation with `docker version` and `docker compose version`.
-8. Run `docker run --rm hello-world` to confirm that Docker can pull and start a Linux container.
+2. During administrator-managed prerequisite setup, install or update WSL and
+  a supported Linux distribution, such as Ubuntu, and verify that the
+  distribution uses WSL 2. Restart Windows if required.
+3. Enable systemd in that distribution following Microsoft's WSL guidance,
+  restart the distribution if required, and verify systemd is running.
+4. Inside the distribution, follow Docker's official distribution-specific
+  installation instructions using its signed package repository. Install
+  Docker Engine and CLI, containerd, the Buildx plugin, and the Compose v2
+  plugin. For Ubuntu, the official packages are `docker-ce`, `docker-ce-cli`,
+  `containerd.io`, `docker-buildx-plugin`, and `docker-compose-plugin`.
+  Do not install Docker Desktop or a second competing daemon.
+5. Enable and start the systemd `docker` service, which runs `dockerd`. Ensure
+  the developer account can access Docker using an organization-approved
+  configuration. Membership in the `docker` group grants root-equivalent
+  privileges; do not make the socket world-writable or expose an unsecured
+  TCP daemon endpoint.
+6. From a WSL terminal, verify the daemon with `systemctl status docker` and
+  `docker info`, the client/server connection with `docker version`, and the
+  plugins with `docker compose version` and `docker buildx version`.
+7. Run `docker run --rm hello-world` from WSL to confirm that Docker can pull
+  and start a Linux container.
+8. Open the repository in VS Code through the WSL extension, then reopen it
+  in the Development Container. Verify Compose services and the environment
+  smoke test using this Docker Engine setup before recording it as validated.
 
-Docker Desktop must be running before opening the repository in its Development Container or starting the Docker Compose services. If installation is managed by an organization, its approved Docker Desktop licensing, sign-in, proxy, and resource-allocation policies take precedence.
+The WSL distribution and its `dockerd` service must be running before opening
+the Development Container or starting Docker Compose services. Published ports
+belong to the WSL host; verify Windows localhost forwarding and firewall policy
+before relying on Windows-browser access. Organization-approved installation,
+proxy, network, and resource-allocation policies take precedence. On a native
+Linux host, use the same Docker Engine prerequisites without the WSL steps.
 
 ### Install and run Azurite locally
 
@@ -88,7 +131,7 @@ The planned Compose service will:
 - Store emulator data in a named Docker volume so it survives container recreation.
 - Use a service name such as `azurite`, which is also its hostname on the Compose network.
 
-No separate Azurite installation command is required. After the project Docker Compose configuration is created, start its services from the Development Container or repository directory with `docker compose up -d`, verify them with `docker compose ps`, and inspect Azurite startup failures with `docker compose logs azurite`. Docker Desktop must already be installed and running.
+No separate Azurite installation command is required. After the project Docker Compose configuration is created, start its services from the Development Container or repository directory in WSL with `docker compose up -d`, verify them with `docker compose ps`, and inspect Azurite startup failures with `docker compose logs azurite`. Docker Engine's `dockerd` service must already be running.
 
 The default host endpoints will be:
 
@@ -658,11 +701,17 @@ The milestones below are ordered so that each stage produces a demonstrable, tes
 - Applications in the Development Container reach Azurite through the Compose service hostname rather than `127.0.0.1`.
 - A documented command sequence starts all local dependencies and a clean checkout passes the environment smoke test.
 - The committed environment files define the recipe only; real `.env` files, secrets, production credentials, database files, emulator data, and generated application code are not committed.
-- The environment can be recreated on another supported machine from a clean clone using only Docker Desktop, Visual Studio Code with the Dev Containers extension, and Git.
+- The environment can be recreated on another supported machine from a clean clone using Docker Engine with a running `dockerd` daemon, the Docker CLI and Buildx/Compose plugins, Visual Studio Code with the Dev Containers extension, and Git; Windows additionally requires WSL 2 and the VS Code WSL extension, not Docker Desktop.
 
 **Exit criteria:** The environment smoke test passes on a clean checkout using only the documented host prerequisites, and a second supported machine can rebuild the Development Container, start Docker Compose services, verify tool versions, connect to PostgreSQL and Azurite by service name, and run the documented smoke-test command sequence without any machine-specific configuration.
 
 **Current validation status (October 3, 2026):**
+
+- **Prerequisite revision (November 4, 2026):** Docker Engine with `dockerd`
+  replaces Docker Desktop in the planned setup. The historical results below
+  are retained, but do not validate this revised prerequisite workflow.
+  Clean-checkout bootstrap, launcher compatibility, port access, and the
+  environment smoke test must be revalidated with Docker Engine in WSL 2.
 
 - The Development Container image builds successfully on Windows ARM64.
 - The pinned .NET SDK, EF Core CLI, Git, Node.js, pnpm, Azure CLI, and Bicep versions were verified inside the workspace image.
