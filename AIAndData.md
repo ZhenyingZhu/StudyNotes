@@ -274,6 +274,25 @@ If not clearly describe the requirement, AI might do things wrong. But if I am n
 
 - For example when I ask AI to clean up a UI element, I cannot clearly name it, then AI just delete random things
 
+[How to be more ambitious: A tutorial for humans with models](https://felixrieseberg.com/how-to-be-more-ambitious-a-tutorial-for-humans-with-models/)
+
+- Speed
+- Altitude: considering the outcome.
+  - We should ask ourselves, what do you want to happen next? AI doesn't work well for creative endeavors.
+  - find durable workflows that take the human out of the loop, making it less necessary for you to constantly update the model with task after task. But need to change the workflow so that AI able to access necessary info and take actions
+- Depth: a field-leading expert would
+  - Insist on the same instruments used by the best in the industry, instead of just asking AI to do so.
+  - Pick unreasonable goals and tell the model that they’re very reasonable
+  - Don't limit AI to what you know, let AI be data driven
+  - Let AI produce new knowledge
+  - Use an outside judge
+  - prompt: `I want a deeper version of this task, not a bigger one. Before rewriting it: (1) say what a top professional in this field would do here that I’m not asking for; (2) name the rawest material they would start from instead of what has already been digested for me; (3) name the specific methods and tools they would use; (4) say what, other than you or me, would show the result is right. Then rewrite my prompt to ask for exactly that.`
+- Range: consider our work from the perspective of different fields
+  - Try to replace the nouns with verbs. E.g., a PPT is "getting busy people to believe a story about cause and effect, and to decide under uncertainty, in 30 minutes"
+  - Don't ask AI to act as a role, but ask AI to do what a role do
+
+
+
 ### Code tips
 
 <https://ykdojo.github.io/claude-code-tips/content/boris-claude-code-tips>
