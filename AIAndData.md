@@ -790,6 +790,12 @@ Secure credential store: a "containment-first" security perimeter. Divided into 
 3. Outside the runtime cell sits the Sentinel, a host-side tracking process that monitors all outbound network traffic and connector actions.When Muse attempts an action requiring credentials, the Sentinel cross-references the request, maps the surrogate token to the actual credential, and enforces human-in-the-loop approval before allowing sensitive data to pass through the egress filter.
 4. For retail checkouts, Muse doesn't store or read primary credit card numbers. Payments are routed through Link by Stripe, which dynamically generates one-time-use virtual card numbers at the exact moment of checkout.
 
+### Software Factory
+
+[A guide to cloud software factories for engineering leaders](https://www.warp.dev/blog/a-guide-to-cloud-software-factories-for-engineering-leaders)
+
+- 
+
 ## Agent
 
 <https://github.com/caramaschiHG/awesome-ai-agents-2026>
