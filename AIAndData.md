@@ -794,7 +794,7 @@ Secure credential store: a "containment-first" security perimeter. Divided into 
 
 [A guide to cloud software factories for engineering leaders](https://www.warp.dev/blog/a-guide-to-cloud-software-factories-for-engineering-leaders)
 
-- 
+- old stages: triage, spec, implement, review, verify, ship, monitor
 
 ## Agent
 
