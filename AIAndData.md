@@ -795,6 +795,42 @@ Secure credential store: a "containment-first" security perimeter. Divided into 
 [A guide to cloud software factories for engineering leaders](https://www.warp.dev/blog/a-guide-to-cloud-software-factories-for-engineering-leaders)
 
 - old stages: triage, spec, implement, review, verify, ship, monitor
+- set up a system that minimizes human variability and maximizes output, with controls that ensure security and compliance. Can measure the ROI of agents and tie them to business value
+- create control by moving all development to a centralized cloud factory
+
+factory automation loop
+- new issue: human report, system monitor
+- Triage agent: understand, repro
+  - task automatable: send to implement agent
+  - big scope: spec agent
+  - ambigous: get human input to retry, or park the issue
+- Spec agent
+- Implementation agent
+- Code review agent
+- Verification agent: has computer-use ability to do other verification
+- Human reviews code and output
+- CI/CD
+- Ship
+- Monitor agent
+
+components
+
+- Cloud runtimes and sandboxes: environment, host, coding agent, access to tools, agent authN/Z
+- Orchestration layer: 
+  - flexible enough to handle additional agents/flows, e.g., canarying, dead code cleanup
+  - a global view of all agents (able to join the session) and the stage of every issue.
+- Integrations
+  - interface: no need to add new interaction methods
+  - Need a way to let a human change agent future behavior
+- Human-in-the-loop: can steering, handoff to local env, notification
+- Multi-harness and multi-model
+  - harness flexibility: run different AI coding agents
+  - model routing: even with in a task, choose an open weight or frontier model which is least expensive, fastest model that meets the required quality bar
+- Measurement, evals and continual improvement: software development switch from R&D to COGS.
+  - tune the factory and improve efficiency: evals and experiments with different inputs (models, harness mix, MCP, skill availbility, context) and see how output changes
+  - self-improvement loops: agent suggests how to improve
+  - memory: interactions and prior conversations, explicit (human ask) and implicit (agent takes itself)
+- Factory-as-code: infra configs need to be in files and version controlled
 
 ## Agent
 
