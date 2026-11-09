@@ -750,7 +750,14 @@ Seems like tool selection can be optimized.
 
 Agency hub: controlling all the sessions
 
-Software Factory: Only moved to cloud. The knowledge base is not yet collaborated.
+Agent Factory: Only moved to cloud. The knowledge base is not yet collaborated.
+
+- AI readiness
+  - Favor outcome measures
+  - Define readiness per scenario: review, bug fix, document, tests, security, dep man
+  - Prioritize deterministic validation
+  - Make learnings binding: earliest, durable
+  - Customize per repository
 
 ### Id Forge
 
