@@ -759,6 +759,13 @@ Agent Factory: Only moved to cloud. The knowledge base is not yet collaborated.
   - Make learnings binding: earliest, durable
   - Customize per repository
 
+- Running agent
+  - Write agent in yml
+  - Call agency API to trigger it/use a scheduler/trigger
+  - Give Agency API a Service Principal
+  - cx the compute with managed pool
+
+
 ### Id Forge
 
 A plan and execute mode
