@@ -846,6 +846,11 @@ components
   - memory: interactions and prior conversations, explicit (human ask) and implicit (agent takes itself)
 - Factory-as-code: infra configs need to be in files and version controlled
 
+Service Principals
+
+- For user, use Azure.Identity to get a token
+- For workload, use MI
+
 ## Agent
 
 <https://github.com/caramaschiHG/awesome-ai-agents-2026>
