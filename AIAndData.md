@@ -858,6 +858,7 @@ Service Principals
 - Harness: sandbox, tool, memory lifecycle, gate defining exit criteria. Without harness, loop cannot be useful.
 - flow: intent, queue, harness, validation, review, deploy, monitor, signals back to the queue
 - review gate is the most expensive because it is judgement. While other steps have low costs.
+- Comprehension Debt (?)
 
 ## Agent
 
