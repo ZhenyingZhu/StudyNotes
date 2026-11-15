@@ -859,6 +859,7 @@ Service Principals
 - flow: intent, queue, harness, validation, review, deploy, monitor, signals back to the queue
 - review gate is the most expensive because it is judgement. While other steps have low costs.
 - Comprehension Debt: gaps between how much code exists and how much any human still understands
+- Brownfield system: Old system that need to adapt
 
 ## Agent
 
