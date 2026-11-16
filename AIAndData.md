@@ -532,6 +532,12 @@ Why it stopped in the middle?
 - <https://github.com/orgs/community/discussions/184524>
 - <https://github.com/orgs/community/discussions/169714>
 
+Load marketplace plugin (can include agent):
+
+- `/plugin marketplace add microsoft/upgrade-agent-plugins`
+- `/plugin install upgrade-agent@upgrade-agent-plugins`
+- `/agent`
+
 ### Cline
 
 <https://docs.cline.bot/getting-started/for-new-coders>
