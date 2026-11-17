@@ -866,6 +866,7 @@ Service Principals
 - review gate is the most expensive because it is judgement. While other steps have low costs.
 - Comprehension Debt: gaps between how much code exists and how much any human still understands
 - Brownfield system: Old system that need to adapt
+- Light factory: after queue, have a design review. After implementation, have a human review.
 
 ## Agent
 
