@@ -871,7 +871,10 @@ Service Principals
 [How we build evals for Deep Agents](https://www.langchain.com/blog/how-we-build-evals-for-deep-agents)
 
 - Eval: test agent's E2E behavior.
-- Build targeted 
+- Build targeted eval
+- data from: internal use, external benchmarks, custom unit tests
+- When choosing a model for our agent, we start with correctness. Most internal evals use custom assertions such as "did the agent parallelize tool calls?". Then Efficiency Metrics
+- ideal trajectory
 
 
 ## Agent
