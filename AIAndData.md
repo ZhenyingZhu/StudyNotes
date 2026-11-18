@@ -868,6 +868,12 @@ Service Principals
 - Brownfield system: Old system that need to adapt
 - Light factory: after queue, have a design review. After implementation, have a human review.
 
+[How we build evals for Deep Agents](https://www.langchain.com/blog/how-we-build-evals-for-deep-agents)
+
+- Eval: test agent's E2E behavior.
+- Build targeted 
+
+
 ## Agent
 
 <https://github.com/caramaschiHG/awesome-ai-agents-2026>
