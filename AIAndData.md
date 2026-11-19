@@ -874,7 +874,7 @@ Service Principals
 - Build targeted eval
 - data from: internal use, external benchmarks, custom unit tests
 - When choosing a model for our agent, we start with correctness. Most internal evals use custom assertions such as "did the agent parallelize tool calls?". Then Efficiency Metrics
-- ideal trajectory
+- ideal trajectory: most idea situation
 
 
 ## Agent
