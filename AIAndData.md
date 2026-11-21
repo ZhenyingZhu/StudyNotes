@@ -867,7 +867,8 @@ Service Principals
 - Comprehension Debt: gaps between how much code exists and how much any human still understands
 - Brownfield system: Old system that need to adapt
 - bottleneck is how quickly we can verify it
-- Light factory: after queue, have a design review. After implementation, have a human review.
+- Light factory: moves the point of human judgment upstream. After queue, have a design review. After implementation, have a human review.
+
 
 [How we build evals for Deep Agents](https://www.langchain.com/blog/how-we-build-evals-for-deep-agents)
 
