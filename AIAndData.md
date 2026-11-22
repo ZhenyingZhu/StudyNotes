@@ -881,7 +881,8 @@ Service Principals
 Agent Factory
 
 - Plugin: in a marketplace. Reusable component that extends agent capabilities, but seems like agent is created in a plugin folder?
-- a pipeline can pull in a different repo
+- a pipeline can pull in a different repo. Also has the nuget auth.
+- The pipeline has pre, post steps.
 - Harness: manages the lifecycle of agent interactions, including tool usage, memory, and validation
 - Queue: holds tasks or intents for agents to process
 - Review Gate: human judgment step to ensure correctness and quality before deployment
