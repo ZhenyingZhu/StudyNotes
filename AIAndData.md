@@ -878,6 +878,13 @@ Service Principals
 - When choosing a model for our agent, we start with correctness. Most internal evals use custom assertions such as "did the agent parallelize tool calls?". Then Efficiency Metrics
 - ideal trajectory: most idea situation
 
+Agent Factory
+
+- Plugin: in a marketplace. Reusable component that extends agent capabilities, but seems like agent is created in a plugin folder?
+- a pipeline can pull in a different repo
+- Harness: manages the lifecycle of agent interactions, including tool usage, memory, and validation
+- Queue: holds tasks or intents for agents to process
+- Review Gate: human judgment step to ensure correctness and quality before deployment
 
 ## Agent
 
