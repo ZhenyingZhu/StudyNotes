@@ -331,6 +331,14 @@ The end of AI is infra.
 
 Need an account: <https://platform.openai.com/login>
 
+<https://developers.openai.com/api/docs/guides/latest-model#gpt-6.2-astra-prompting-best-practices>
+
+```
+Avoid stopping to end the turn while the task is incomplete or if there is an authorized next step you can take, and instead take the next steps within task scope to progress the user's request. If your final response before ending the turn is a suggested next step, a plan, a request to the user for a routine decision, instructions for a task to execute, or similar handoff to the user, take these steps yourself to make progress towards what the user asked for. Make sure that you have authorization to do so, and flag any assumptions or decisions you maketo the user.
+
+Only stop to clarify with the user if there is significant change in task scope, you are concretely blocked, have a decision that the user needs to resolve, or before irreversible or destructive actions.
+```text
+
 ### Github Copilot
 
 <https://github.com/features/copilot>
