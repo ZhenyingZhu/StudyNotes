@@ -876,7 +876,7 @@ Service Principals
 - Brownfield system: Old system that need to adapt
 - bottleneck is how quickly we can verify it
 - Light factory: moves the point of human judgment upstream. After queue, have a design review. After implementation, have a human review.
-
+- It turns a long, frustrating code review into a quick read of a two-hundred-line plan
 
 [How we build evals for Deep Agents](https://www.langchain.com/blog/how-we-build-evals-for-deep-agents)
 
