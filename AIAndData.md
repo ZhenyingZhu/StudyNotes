@@ -841,6 +841,8 @@ factory automation loop
 - Ship
 - Monitor agent
 
+It can run in async mode.
+
 components
 
 - Cloud runtimes and sandboxes: environment, host, coding agent, access to tools, agent authN/Z
