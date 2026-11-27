@@ -290,8 +290,7 @@ If not clearly describe the requirement, AI might do things wrong. But if I am n
 - Range: consider our work from the perspective of different fields
   - Try to replace the nouns with verbs. E.g., a PPT is "getting busy people to believe a story about cause and effect, and to decide under uncertainty, in 30 minutes"
   - Don't ask AI to act as a role, but ask AI to do what a role do
-
-
+- Can ask it to confirm the actions, break down by multiple questions and ask one by one.
 
 ### Code tips
 
