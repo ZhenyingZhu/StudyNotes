@@ -1,4 +1,6 @@
 import { defineConfig, devices } from '@playwright/test'
+import { homedir } from 'node:os'
+import { join } from 'node:path'
 
 const developmentEnvironment = {
   ASPNETCORE_ENVIRONMENT: 'Development',
@@ -17,6 +19,9 @@ export default defineConfig({
   workers: 1,
   reporter: [['list'], ['html', { open: 'never' }]],
   use: {
+    launchOptions: {
+      executablePath: join(homedir(), '.cache', 'itemorganizer', 'chromium', 'chrome'),
+    },
     baseURL: 'http://localhost:5173',
     screenshot: 'only-on-failure',
     trace: 'retain-on-failure',

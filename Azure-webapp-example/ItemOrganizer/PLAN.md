@@ -15,9 +15,11 @@ Milestone 8A (hybrid semantic inventory search) and Milestones 9 and 10 remain
 planned. Semantic search is not implemented.**
 
 **November 27, 2026 environment revision:** The Docker Engine, unified startup,
-and external download-source requirements below are approved for implementation.
-They are not implemented or validated yet; historical milestone validation does
-not establish that this revised workflow works.
+and external download-source migration is **code-complete, not end-to-end
+validated**. Script regressions pass with mocked Docker/Azure; native Ubuntu
+and Windows/Ubuntu WSL 2 runtime gates remain blocked by the unavailable
+supported Docker Engine environment. Historical milestone validation does not
+establish that this revised workflow works.
 
 ## Goal
 
@@ -71,8 +73,8 @@ repository tasks to install or reconfigure host software.
 
 **Decision status:** Confirmed with the user and approved for implementation.
 This section supersedes earlier Windows-only launcher and package-source
-assumptions. The existing scripts and checked-in source settings have not yet
-been migrated.
+assumptions. The scripts and checked-in source settings have been migrated;
+implementation evidence and blocked runtime gates are recorded below.
 
 #### Supported platforms and container boundaries
 
@@ -198,6 +200,83 @@ Ubuntu Docker Engine development environment. The discovered WSL distributions
 belong to Docker Desktop. Do not provision or reconfigure this host to bypass
 that limitation. Script-only/mocked checks cannot establish the end-to-end exit
 criteria; record remaining gates explicitly until they pass.
+
+#### Implementation progress and validation (November 27, 2026)
+
+**Code-complete; environment acceptance remains blocked.**
+
+The four-script workflow is implemented. Startup integrates backend/frontend
+restore, mock/live selection, migrations, bounded readiness checks, foreground
+ownership and signal cleanup, and explicit detached operation. Reset requires
+`--confirm` and remains separate from non-destructive smoke testing. The
+opt-in installer uses administrator-approved Ubuntu/Docker sources, starts
+standard Engine, and does not grant user access or install project SDKs.
+Legacy PowerShell launchers and the separate application launcher are removed.
+
+`download-sources.example.conf` is the only checked-in source example and
+contains public endpoints only. Startup/installer require an explicitly passed
+external source file and reject in-repository files, unknown/duplicate/empty
+entries, credential-bearing URLs, implicit image registries, and floating
+`latest` tags. Source files are data, not executable shell configuration.
+Pinned versions remain intact. The checked-in NuGet source configuration and
+registry environment-variable mechanism are removed.
+
+Docker builds receive source and download/apt credentials through secret
+mounts; only the file-derived base-image identifier and non-secret source hash
+are build arguments. The Dockerfile uses the built-in build frontend and
+isolated configured apt indexes, removes inherited active apt source lists,
+and does not retain secret inputs in image layers. Third-party service images
+receive local aliases; Compose prohibits image pulls and uses the locally
+built workspace image. No project-image publishing workflow was added.
+
+Workspace runs as the existing `node` development user. NuGet/npm user
+configuration is generated from the external source file; temporary package
+credentials are removed on restore success/failure, and transferred inputs are
+deleted before application startup. Explicit external netrc, apt auth and
+Docker client configuration paths support other authenticated downloads.
+Unix credential mode checks are enforced, not bypassed for Windows-mounted
+files. Azure login remains container-local without an authentication volume.
+
+Frontend install lifecycle scripts are disabled to prevent dependency-owned
+unconfigured downloads. Browser binaries are prepared only with
+`--prepare-browser`, from configured architecture-specific archives, and their
+version is checked against the locked Playwright metadata. Chromium libraries
+are installed during the configured image build; the browser test command no
+longer performs automatic Playwright/browser/apt downloads. The existing
+locked Playwright version is unchanged. Automatic editor-extension downloads
+were removed from the container recipe; approved editor provisioning is
+documented separately.
+
+**Checks performed:**
+
+- All 42 cases in `tests\Scripts\start-environment.Tests.sh` passed using
+  existing Git Bash. Docker and Azure were mocked; the suite covers source
+  validation, external-file boundaries, permission rejection, paired
+  credentials, engine/plugin/image/restore/migration failures, Azure session
+  rechecking, login failure and tenant forwarding, foreground/detached mode, interruption
+  cleanup, source-environment override rejection, credential cleanup on
+  success/failure, stdin container dispatch, readiness diagnostics, ownership
+  isolation, opt-in installation, and explicit reset confirmation.
+- Bash syntax checks passed for all four scripts and the Dockerfile build
+  shell. On this Windows/NTFS test host, credential mode bits are simulated
+  in the test fixture; this is not real Unix permission validation.
+- Dev Container/package JSON parsing passed using PowerShell's native JSON
+  parser, and `git diff --check` passed. Application type-check/build and real
+  backend/frontend/browser tests require the supported container environment.
+
+**Blocker:** Only Docker Desktop-owned WSL distributions are available; no
+developer Ubuntu distribution with standalone Docker Engine is available.
+No host software was installed, uninstalled, or reconfigured to work around it.
+
+**Remaining acceptance gates:** Administrator-provided native Ubuntu and
+Windows/Ubuntu WSL 2 environments must validate real image/package downloads
+from approved sources, clean-checkout builds, Unix permissions, bind-mount/cache
+ownership, smoke checks, migrations, mock end-to-end application/browser tests,
+foreground signal/process-group cleanup, detached operation, and Windows
+localhost forwarding. Validate real Azure login/deployment checks and
+stop/restart versus recreation authentication behavior with authorized access.
+The frontend build/type-check and existing backend/frontend suites have not
+been run for this revision. These gates are blocked, not waived or passed.
 
 ### Why WSL 2 and Linux containers are used
 
@@ -855,8 +934,9 @@ The milestones below are ordered so that each stage produces a demonstrable, tes
 - **Confirmed revision (November 27, 2026):** The approved environment and
   download-source revision above also requires native Ubuntu support, external
   file-only source selection and credentials, and the unified Linux startup
-  lifecycle. Implementation and both-platform end-to-end validation remain
-  pending. The historical completion below is not validation of this revision.
+  lifecycle. Implementation and 42 mocked script regressions are complete;
+  both-platform end-to-end validation remains blocked as documented above.
+  The historical completion below is not validation of this revision.
 
 - The Development Container image builds successfully on Windows ARM64.
 - The pinned .NET SDK, EF Core CLI, Git, Node.js, pnpm, Azure CLI, and Bicep versions were verified inside the workspace image.
@@ -946,9 +1026,10 @@ The milestones below are ordered so that each stage produces a demonstrable, tes
   during the September 23 validation. Frontend component tests cover container
   creation, inventory search, item editing, assignment, container inventory
   views, conflict feedback, and stale-record feedback.
-- Frontend dependency restoration must continue to use
-  `ITEMORGANIZER_NPM_REGISTRY` with an approved internal registry; public npm
-  access is intentionally not used.
+- This historical validation used environment-specific frontend registry
+  settings. The November 27 revision replaces source-selection environment
+  variables with externally supplied source files; it does not change the
+  package-access restrictions of any development environment.
 - Validation on September 27, 2026 passed 9 domain tests, 7 PostgreSQL/Azurite
   integration tests, 26 API tests, 6 frontend component tests, the frontend
   type-check and production build, and the environment smoke test.

@@ -7,7 +7,7 @@
     "dev": "vite --host 0.0.0.0",
     "build": "tsc -b && vite build",
     "test": "vitest run",
-    "test:e2e": "playwright install --with-deps chromium && dotnet run --project ../src/ItemOrganizer.Database --no-restore -- reset-and-seed && playwright test"
+    "test:e2e": "dotnet run --project ../src/ItemOrganizer.Database --no-restore -- reset-and-seed && playwright test"
   },
   "dependencies": {
     "@azure/msal-browser": "^4.23.0",

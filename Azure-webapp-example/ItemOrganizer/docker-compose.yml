@@ -1,16 +1,7 @@
 services:
   workspace:
     image: itemorganizer-workspace:local
-    build:
-      context: .
-      dockerfile: .devcontainer/Dockerfile
-      args:
-        DOTNET_SDK_VERSION: ${DOTNET_SDK_VERSION}
-        DOTNET_EF_VERSION: ${DOTNET_EF_VERSION}
-        NODE_VERSION: ${NODE_VERSION}
-        PNPM_VERSION: ${PNPM_VERSION}
-        AZURE_CLI_VERSION: ${AZURE_CLI_VERSION}
-        BICEP_VERSION: ${BICEP_VERSION}
+    pull_policy: never
     env_file:
       - .env
     environment:
@@ -33,7 +24,8 @@ services:
         condition: service_healthy
 
   postgres:
-    image: ${POSTGRES_IMAGE}
+    image: itemorganizer-postgres:local
+    pull_policy: never
     environment:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
@@ -54,7 +46,8 @@ services:
       start_period: 10s
 
   azurite:
-    image: ${AZURITE_IMAGE}
+    image: itemorganizer-azurite:local
+    pull_policy: never
     command: >
       azurite
       --blobHost 0.0.0.0
