@@ -14,6 +14,11 @@ as directed on October 26, 2026; the gate is waived, not validated.
 Milestone 8A (hybrid semantic inventory search) and Milestones 9 and 10 remain
 planned. Semantic search is not implemented.**
 
+**November 27, 2026 environment revision:** The Docker Engine, unified startup,
+and external download-source requirements below are approved for implementation.
+They are not implemented or validated yet; historical milestone validation does
+not establish that this revised workflow works.
+
 ## Goal
 
 Plan an application that:
@@ -50,10 +55,10 @@ report the blocked validation; do not fall back to changing the host.
 The host requires only the container-platform and editor prerequisites below;
 application SDKs and tools remain inside the Development Container:
 
-- On Windows, WSL 2 with a supported Linux distribution and systemd enabled
+- On Windows, WSL 2 with Ubuntu and systemd enabled
 - Docker Engine, including the `dockerd` daemon, Docker CLI, containerd,
   Docker Buildx plugin, and Docker Compose v2 plugin, installed inside that
-  Linux distribution (or directly on a supported Linux host)
+  Ubuntu distribution (or directly on a native Ubuntu host)
 - Visual Studio Code with the Dev Containers extension and, on Windows, the
   WSL extension
 - Git in the environment where checkout and Git operations are performed
@@ -61,6 +66,138 @@ application SDKs and tools remain inside the Development Container:
 Docker Desktop is not a prerequisite and must not be installed as part of
 project setup. These are platform setup requirements, not authorization for
 repository tasks to install or reconfigure host software.
+
+### Approved environment and download-source revision (November 27, 2026)
+
+**Decision status:** Confirmed with the user and approved for implementation.
+This section supersedes earlier Windows-only launcher and package-source
+assumptions. The existing scripts and checked-in source settings have not yet
+been migrated.
+
+#### Supported platforms and container boundaries
+
+Support Windows with Ubuntu inside WSL 2, and native Ubuntu. Run the same Linux
+scripts in either environment. Keep the existing Debian-based workspace and
+PostgreSQL containers; the host and container distributions need not match.
+Continue running Azurite as a separate container. Project SDKs, builds, tests,
+migrations, and application servers remain inside the workspace container.
+
+Use standard Docker Engine, the Docker CLI, containerd, Buildx, and Compose v2,
+not Docker Desktop. A separate, explicitly invoked installer targets Ubuntu;
+Windows WSL 2 provisioning is documented separately. Installation and Docker
+access permissions are administrator-managed. Normal project startup must not
+install host software, use sudo, add users to groups, or alter permissions.
+Rootless Docker is not required.
+
+Access to the standard Docker daemon is root-equivalent on its Linux host.
+Mounting only the project directory in this Compose recipe does not restrict
+a daemon-authorized user to that directory. Keep the existing published-port
+bindings rather than making them localhost-only; firewall and network policy
+determine reachability. Not publishing an image does not make running services
+private. Verify Windows-browser access through WSL separately.
+
+#### Final script responsibilities
+
+| Script | Approved responsibility |
+|---|---|
+| `scripts\install-prerequisites.sh` | Opt-in, administrator-approved Ubuntu Docker Engine prerequisite installation using externally configured sources. Never install or launch Docker Desktop or automatically grant daemon access. |
+| `scripts\start-environment.sh` | Single startup entry point: check prerequisites, prepare configuration, build or reuse the local workspace image, start containers, check the environment, restore backend and frontend packages, apply migrations, launch the API/frontend, and verify readiness. Explicit mock/live modes; live additionally checks Azure authentication and deployment readiness. |
+| `scripts\reset-and-seed.sh` | Explicitly reset the application database and create representative seed data. Keep this destructive action separate from startup and smoke testing. |
+| `scripts\smoke-test.sh` | Check workspace tool versions, dependency connectivity, and container connection settings without resetting application data. |
+
+Replace the PowerShell workflow with the shared Linux scripts. Incorporate
+`restore-frontend.ps1`, `start-live-ai.ps1`, and `start-application.sh` into
+`start-environment.sh`, rather than retaining separate restore, live-startup,
+or application-launcher scripts. Preserve useful diagnostics, readiness checks,
+logging, and credential cleanup while removing duplicated startup paths.
+
+Both mock and live startup run in the foreground by default. Ctrl+C stops the
+API and frontend while leaving PostgreSQL/Azurite running. An explicit
+`--detach` option leaves application servers running after startup exits.
+Startup failures must be reported and must clean up newly started servers.
+Routine startup applies migrations, not a reset. Existing data is seed-only
+and disposable for this migration; no backup procedure is required, but this
+does not authorize silently resetting data during normal startup.
+
+#### External sources and credentials
+
+Every download source must be defined in a local configuration file outside
+the repository, whose path is explicitly supplied to setup/startup. Source
+selection must not come from environment variables, tracked runtime defaults,
+or hard-coded public or internal endpoints. This includes NuGet configuration,
+npm registry configuration, the EF-tool download, third-party container images,
+the Dockerfile build frontend if downloaded, Ubuntu/Debian installation
+repositories and signing-key downloads, Docker installation sources, SDK/tool
+archives and repositories, and test-browser binaries and dependencies.
+
+Commit an example configuration containing public sources only. Developers
+must explicitly copy and configure it outside the checkout before use; it is
+not an automatic runtime fallback. Do not commit internal feed URLs or
+organization/project names. Remove existing internal references and hard-coded
+runtime sources as part of implementation. Keep tool/image versions pinned;
+changing where an input is downloaded must not silently change its version.
+The external file format and package-manager adapters remain implementation
+details, not additional approved source defaults.
+
+Credentials for authenticated downloads come only from protected files outside
+the repository. Accept credential-file paths, never tokens in command arguments,
+and do not prompt interactively for package-feed tokens. Do not put credentials
+in source control, `.env`, logs, image layers, or build arguments. Supply
+package-manager configuration and credentials inside builds/containers through
+appropriate file-based secret handling, with temporary credential cleanup.
+NuGet and npm authentication are separate from Azure resource authentication.
+
+Use only explicitly configured sources. Missing configuration, authentication
+failure, or an unavailable source is an error; do not switch to an unconfigured
+public or internal source. Environments must provide reachable approved network
+sources or mirrors for all required inputs. Fully offline first-time setup and
+offline dependency bundles are not required.
+
+#### Image reuse, Azure login, and deployment
+
+Build this project's workspace image locally and reuse it locally when
+appropriate. Do not add an image-publishing workflow, public or private, or a
+prebuilt project-image registry dependency. Third-party images, SDKs, tools,
+Linux packages, application dependencies, and browser binaries are still
+downloaded from configured sources when not already cached.
+
+Preserve container-side Azure CLI device-code login for live mode when its
+session is unavailable. Authentication may remain in the writable filesystem
+of the same stopped or paused container, subject to expiry/revocation. Never
+bake authentication into the image. Do not add Azure-login persistence across
+container removal/recreation; that remains distinct from stopping/restarting
+the same container. Package credentials remain non-interactive external files.
+
+Docker is the local development platform, not a new production requirement.
+The planned deployment remains Azure App Service for the API, Azure Static Web
+Apps for the built frontend, managed PostgreSQL, Azure Storage, and Azure
+OpenAI. Align runtime/database compatibility and application behavior; local
+emulators and mock AI do not replace real Azure integration validation.
+
+#### Implementation sequence and acceptance gates
+
+1. Implement the external source-file contract and public-only example, remove
+   tracked internal/default source settings, and route every required download
+   through that contract with protected external credential files.
+2. Implement the four-script Ubuntu/WSL Docker Engine workflow, including local
+   image reuse, integrated restores, foreground/detached lifecycle, live login
+   checks, and separate non-destructive smoke/destructive reset commands.
+3. Update README/development instructions and directly dependent test commands;
+   replace launcher regressions for the removed PowerShell scripts.
+4. Validate missing/invalid sources and credentials, unavailable feeds, absence
+   of unconfigured fallback, secret cleanup, mode selection, readiness failure,
+   Ctrl+C cleanup, detached startup, database migration/reset separation, and
+   container stop/restart versus recreation authentication behavior.
+5. On both native Ubuntu and Windows/Ubuntu WSL 2, verify a clean-checkout image
+   build, tool versions, healthy Compose dependencies, backend/frontend restore,
+   migrations, mock end-to-end startup, and host-browser access. Verify live
+   authentication/deployment checks with authorized Azure access separately.
+
+**Current validation limitation:** This session has no available supported
+Ubuntu Docker Engine development environment. The discovered WSL distributions
+belong to Docker Desktop. Do not provision or reconfigure this host to bypass
+that limitation. Script-only/mocked checks cannot establish the end-to-end exit
+criteria; record remaining gates explicitly until they pass.
 
 ### Why WSL 2 and Linux containers are used
 
@@ -74,9 +211,9 @@ for this project's Linux containers.
 
 Open the repository through VS Code's WSL connection before reopening it in
 the Development Container. Run bootstrap and Compose commands from that WSL
-environment, not from a Windows Docker Desktop context. Existing Windows-only
-launcher assumptions must be reviewed and validated for this workflow; prior
-Windows validation does not establish that the revised setup has passed.
+environment, not from a Windows Docker Desktop context. Replace the existing
+Windows-only launchers with the approved shared Linux workflow; prior Windows
+validation does not establish that the revised setup has passed.
 
 Linux containers are the project default because the .NET SDK, Node.js, PostgreSQL, Azurite, Azure CLI, and Bicep support them well. They also provide a broad image ecosystem, generally use fewer resources than Windows containers, align with common GitHub Actions runners and possible Linux App Service deployment, and expose Linux-specific path, casing, permission, and shell issues during development. This is a development and testing choice; it does not require the production API to use a custom container. Production may still use either the App Service managed .NET runtime or a separate Linux production image.
 
@@ -88,12 +225,13 @@ WSL 2 is available on 64-bit Windows 10 version 2004 or later, build 19041 or la
 
 1. Confirm that hardware virtualization is enabled in UEFI/BIOS and that the Windows version supports WSL 2.
 2. During administrator-managed prerequisite setup, install or update WSL and
-  a supported Linux distribution, such as Ubuntu, and verify that the
+  Ubuntu, and verify that the
   distribution uses WSL 2. Restart Windows if required.
 3. Enable systemd in that distribution following Microsoft's WSL guidance,
   restart the distribution if required, and verify systemd is running.
-4. Inside the distribution, follow Docker's official distribution-specific
-  installation instructions using its signed package repository. Install
+4. Inside Ubuntu, use the approved opt-in prerequisite installer once it is
+  implemented, or administrator-managed installation using the externally
+  configured signed package repository. Install
   Docker Engine and CLI, containerd, the Buildx plugin, and the Compose v2
   plugin. For Ubuntu, the official packages are `docker-ce`, `docker-ce-cli`,
   `containerd.io`, `docker-buildx-plugin`, and `docker-compose-plugin`.
@@ -106,8 +244,9 @@ WSL 2 is available on 64-bit Windows 10 version 2004 or later, build 19041 or la
 6. From a WSL terminal, verify the daemon with `systemctl status docker` and
   `docker info`, the client/server connection with `docker version`, and the
   plugins with `docker compose version` and `docker buildx version`.
-7. Run `docker run --rm hello-world` from WSL to confirm that Docker can pull
-  and start a Linux container.
+7. Use the external source configuration to confirm Docker can pull and start
+  an explicitly configured Linux image; do not rely on an implicit public
+  test-image source.
 8. Open the repository in VS Code through the WSL extension, then reopen it
   in the Development Container. Verify Compose services and the environment
   smoke test using this Docker Engine setup before recording it as validated.
@@ -117,11 +256,11 @@ the Development Container or starting Docker Compose services. Published ports
 belong to the WSL host; verify Windows localhost forwarding and firewall policy
 before relying on Windows-browser access. Organization-approved installation,
 proxy, network, and resource-allocation policies take precedence. On a native
-Linux host, use the same Docker Engine prerequisites without the WSL steps.
+Ubuntu host, use the same Docker Engine prerequisites without the WSL steps.
 
 ### Install and run Azurite locally
 
-Azurite will not be installed directly on Windows or inside the Development Container. It will run from Microsoft's official `mcr.microsoft.com/azure-storage/azurite` Linux container image as a Docker Compose service. The project configuration will pin the image to a tested version rather than relying on the `latest` tag.
+Azurite will not be installed directly on Windows or inside the Development Container. It will run from an externally configured Azurite Linux container image as a Docker Compose service. The public-source example will identify Microsoft's official image. Pin the image to a tested version rather than relying on the `latest` tag.
 
 The planned Compose service will:
 
@@ -131,7 +270,7 @@ The planned Compose service will:
 - Store emulator data in a named Docker volume so it survives container recreation.
 - Use a service name such as `azurite`, which is also its hostname on the Compose network.
 
-No separate Azurite installation command is required. After the project Docker Compose configuration is created, start its services from the Development Container or repository directory in WSL with `docker compose up -d`, verify them with `docker compose ps`, and inspect Azurite startup failures with `docker compose logs azurite`. Docker Engine's `dockerd` service must already be running.
+No separate Azurite installation command is required. The unified startup script will resolve the external image configuration and start the Compose services from the repository directory in WSL or native Ubuntu. Verify them with `docker compose ps` and inspect Azurite startup failures with `docker compose logs azurite`. Docker Engine's `dockerd` service must already be running.
 
 The default host endpoints will be:
 
@@ -712,6 +851,12 @@ The milestones below are ordered so that each stage produces a demonstrable, tes
   are retained, but do not validate this revised prerequisite workflow.
   Clean-checkout bootstrap, launcher compatibility, port access, and the
   environment smoke test must be revalidated with Docker Engine in WSL 2.
+
+- **Confirmed revision (November 27, 2026):** The approved environment and
+  download-source revision above also requires native Ubuntu support, external
+  file-only source selection and credentials, and the unified Linux startup
+  lifecycle. Implementation and both-platform end-to-end validation remain
+  pending. The historical completion below is not validation of this revision.
 
 - The Development Container image builds successfully on Windows ARM64.
 - The pinned .NET SDK, EF Core CLI, Git, Node.js, pnpm, Azure CLI, and Bicep versions were verified inside the workspace image.
