@@ -55,7 +55,8 @@ and validation evidence live in `docs/history`, not in the designs.
 
 - [Confirmed Windows/Ubuntu setup and native source configuration](docs/design/development-environment.md):
   installer responsibilities, automatic Windows dispatch, external
-  configurations, credentials, lifecycle and command examples.
+  NuGet/npm configurations, credential-helper provisioning, lifecycle and
+  command examples.
 - [API contract](docs/design/api-contract.md): routes, representations,
   authorization, concurrency and errors.
 - [Milestone status and revision records](docs/history/milestone-status.md).

@@ -6,8 +6,9 @@
 
 Provide the same containerized development workflow from Windows PowerShell
 and native Ubuntu. Four commands cover prerequisite installation, application
-startup, environment checks and explicit database reset. Source configuration
-is external; package managers perform their own downloads.
+startup, environment checks and explicit database reset. The project manifest
+references external NuGet/npm files and directly selects other sources;
+package managers perform their own downloads.
 
 ## Runtime architecture
 
@@ -61,6 +62,8 @@ host or Docker context silently.
 Only the prerequisite installer may provision a missing WSL/Ubuntu
 environment. Other commands reject missing prerequisites before performing
 application work.
+The prerequisite `.ps1` entry also owns Windows npm-helper provisioning;
+the shared Linux installer provisions Docker and the workspace NuGet provider.
 
 ## Prerequisite installation
 
@@ -80,9 +83,18 @@ On Windows, the opt-in installer:
 - Reports Windows elevation, Ubuntu account initialization, systemd, Docker
   service/access and source failures explicitly. It does not silently grant
   daemon access or make sockets world-writable.
+- Provisions the Windows-only `vsts-npm-auth` executable for npm feed
+  authentication. This is an explicit host authentication-tool exception;
+  it does not install host Node.js, npm, pnpm or the .NET SDK. Provision the
+  packaged executable and its dependencies from approved installation
+  inputs, and report unsupported Windows runtime prerequisites explicitly.
 
 On native Ubuntu, the opt-in installer installs Docker Engine directly.
 Installing or reconfiguring project SDKs on the host is not part of setup.
+On both platforms, it provisions the Azure Artifacts Credential Provider
+inside the Debian workspace, where NuGet restores and EF-tool installation
+run. Installing the provider only on Windows or the WSL host is insufficient.
+Native Ubuntu does not install or attempt to run `vsts-npm-auth`.
 Normal startup uses the selected, already provisioned environment and reports
 missing prerequisites without invoking the installer.
 
@@ -101,17 +113,44 @@ The installation flow is:
    Docker Engine, CLI, containerd, Compose and Buildx; start the Docker service.
 5. Verify the Engine connection and plugins. Report any remaining
    administrator-managed Docker access requirements.
+6. On Windows, provision and verify the npm authentication helper. On both
+   platforms, build or prepare the workspace tool environment with the
+   NuGet credential provider available before any authenticated package
+   installation. Verify provider discovery as the workspace development user.
+7. Report helper installation and feed authorization separately. If sign-in
+   or token refresh is required, report the explicit authentication steps;
+   do not claim private feeds are accessible merely because tools exist.
 
 Rerunning after a restart or partial installation inspects existing state and
 continues without recreating distributions or deleting data. Installation
 inputs are explicit; a native installer's unconfigured download defaults are
 not a fallback.
 
+### Credential-helper provisioning
+
+| Component | Installation location | Responsibility |
+|---|---|---|
+| Azure Artifacts Credential Provider | Workspace development user's NuGet plugin/tool discovery location | Acquire/cache credentials for workspace NuGet operations |
+| `vsts-npm-auth` | Windows user-accessible tool location | Acquire/refresh npm credentials in the external file referenced by `NPM_CONFIG` |
+
+Helper versions and integrity checks are repository-owned pins. Bootstrap
+download inputs belong directly in `sources.conf`, not another external
+source file. Helper provisioning must work before private-feed authorization;
+do not require an unauthenticated private feed to install its own
+authentication helper or silently switch to an unconfigured public feed.
+Validate installation inputs, expected executable packaging and runtime
+requirements before provisioning.
+
+The installer prepares tools, not application startup or database changes.
+Rerunning reuses compatible helper installations and preserves user-edited
+NuGet/npm files and credential caches. Authentication runs as the normal
+Windows/workspace development user, not the elevated installer account.
+
 ## Four script responsibilities
 
 | Script pair | Responsibility |
 |---|---|
-| `install-prerequisites.ps1` / `.sh` | Explicit `--install` prerequisite provisioning; Windows additionally provisions missing WSL/Ubuntu |
+| `install-prerequisites.ps1` / `.sh` | Explicit `--install` Docker/platform and workspace NuGet-provider provisioning; Windows additionally provisions missing WSL/Ubuntu and the npm authentication helper |
 | `start-environment.ps1` / `.sh` | Complete non-destructive startup: check prerequisites, prepare configuration, build/reuse images, start services, restore packages, apply migrations, start API/frontend, verify readiness |
 | `smoke-test.ps1` / `.sh` | Check existing workspace tools and dependency connectivity; no installation, service startup or database reset |
 | `reset-and-seed.ps1` / `.sh` | Separate destructive database reset and representative seeding; requires `--confirm` |
@@ -133,7 +172,7 @@ applies migrations; it never silently resets data.
    produce an error directing the user to the separate installer.
 3. Create missing local application configuration without overwriting
    existing files. Resolve repository-pinned image/tool versions and the
-   externally configured sources.
+   manifest-selected sources.
 4. Build or reuse the local workspace image and start workspace, PostgreSQL
    and Azurite. Wait for service health before continuing.
 5. Run workspace smoke checks. Restore backend packages through NuGet and
@@ -162,7 +201,7 @@ launcher to the shared Linux command so the same cleanup runs on both hosts.
 Detached success releases the launcher while retaining the application
 servers; detached startup failure still performs cleanup.
 
-## External source configuration
+## Source configuration
 
 The manifest selects configuration; the native tools interpret sources and
 download packages. NuGet restores application packages and installs the pinned
@@ -275,6 +314,47 @@ Remove transferred temporary credential inputs on success and failure.
 Windows source paths must be translated without weakening Linux credential
 permission checks; Linux-native credential paths remain usable from Windows.
 
+### Package-feed authentication
+
+NuGet uses the workspace-installed Azure Artifacts Credential Provider.
+Initial authorization is an explicit interactive NuGet operation using the
+mounted external `NuGet.Config`. Browser/device-code sign-in must work with
+the host browser and the account authorized for the feed; Windows sign-in
+and Windows credential caches do not automatically authenticate Linux.
+Subsequent operations use the provider's cache until authorization expires.
+Protect caches under the workspace development user, outside image layers;
+do not rely on an unprotected Linux MSAL cache fallback.
+
+On Windows, explicitly acquire or refresh npm credentials with the installed
+helper, using the same external file for source selection and token output:
+
+```powershell
+vsts-npm-auth -Config D:\ItemOrganizerConfig\.npmrc -TargetConfig D:\ItemOrganizerConfig\.npmrc -ReadOnly
+```
+
+Use the actual `NPM_CONFIG` path when it differs from this example. Preserve
+existing source settings; do not silently write tokens into an unrelated
+Windows user `.npmrc`. The generated file contains credentials, not merely
+registry settings; protect it and transfer it to workspace through secret
+handling. Linux npm/pnpm reads these credentials without running the Windows
+helper. Refresh on Windows when tokens expire. Do not treat base64 encoding
+as encryption.
+
+Native Ubuntu uses feed-authorized credentials in a protected external
+`.npmrc`, following the Azure Artifacts npm setup. The Windows helper is not
+a Linux credential provider, and NuGet's provider does not automatically
+authenticate npm. Normal startup does not install helpers or prompt for
+package tokens; missing/expired authorization produces an actionable error.
+
+Validate authentication with real native NuGet and npm/pnpm package metadata
+requests or restores inside workspace. Check reported feed errors as well
+as process exit status: a package search can exit zero while reporting a
+source failure. HTTP 401/403, token expiry, insufficient feed permissions
+and TLS/proxy failures must be distinguished. Neither login nor helper
+installation bypasses certificate validation or grants feed permissions.
+
+### Azure resource authentication
+
 Azure resource sign-in is separate from package/download authentication.
 Live startup may use container-side Azure device-code browser login.
 Authentication may survive stop/start of the same container, subject to
@@ -323,6 +403,13 @@ the local workspace image and `--detach` for explicit background operation.
   host changes during normal startup.
 - Verify native source configuration, credentials, pinned versions, missing
   inputs, unavailable sources and absence of unconfigured fallback.
+- Verify pinned helper installation and rerun behavior, Windows executable
+  provisioning without host SDK/npm installation, workspace NuGet provider
+  discovery, and native Ubuntu's absence of the Windows helper.
+- Validate authorized private-feed access from workspace, first sign-in,
+  expired-token refresh, Windows npm-file transfer and protected cache/file
+  handling. Test denied permissions, HTTP 401/403 and TLS/proxy failures
+  without exposing credentials or treating a zero exit code as sufficient.
 - On both supported platforms, verify clean-checkout builds, healthy services,
   restores, migrations, non-destructive startup and browser access.
 - Verify real Ctrl+C/process cleanup, detached operation, ownership and

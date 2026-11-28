@@ -14,7 +14,8 @@ workspace, PostgreSQL and Azurite containers.
 |---|---|
 | Windows entry scripts | Invoke the selected WSL 2 Ubuntu distribution, translate paths and supervise the shared Linux command |
 | Linux entry scripts | Check/install prerequisites when explicitly requested, coordinate containers and application processes |
-| Workspace image | Pinned .NET SDK, Node.js, pnpm, EF CLI, Azure CLI, Bicep and development utilities |
+| Workspace image | Pinned .NET SDK, Node.js, pnpm, EF CLI, Azure CLI, Bicep, Azure Artifacts Credential Provider and development utilities |
+| Windows npm authentication helper | Installer-provisioned `vsts-npm-auth`; acquire/refresh credentials in the external `.npmrc` consumed by workspace |
 | PostgreSQL | Relational inventory, ownership, operation state and outbox |
 | Azurite | Private photo/crop storage and asynchronous analysis queues |
 | Project source manifest | Reference only external NuGet/npm source files; store all other source values directly |
@@ -50,6 +51,17 @@ version pins. Native tools handle downloads and authentication; build secrets
 and temporary container files carry credentials without retaining them in
 image layers.
 
+The opt-in prerequisite installer provisions the NuGet credential provider
+inside workspace on both platforms and the Windows npm authentication helper
+on Windows only. The latter is a narrowly scoped host-tool exception, not
+host SDK/Node/npm installation. Helper bootstrap sources are explicit
+manifest values with repository-owned version/integrity pins.
+Provisioning tools does not establish feed authorization: sign in explicitly
+through the NuGet provider and obtain npm credentials in the protected
+external `.npmrc`. Native Ubuntu supplies npm credentials without installing
+the Windows-only helper. Normal startup never installs authentication tools
+or silently falls back to another feed.
+
 Normal startup creates only missing application configuration, starts healthy
 dependencies, restores packages, applies migrations and launches API/frontend.
 Readiness checks precede success. Foreground interruption cleans up owned
@@ -82,5 +94,8 @@ machine-specific source defaults.
 Verify data persistence, cache ownership, external configuration, credentials,
 no unconfigured fallback, all four command entry points, prerequisite
 installation/restart handling, foreground interruption and detached operation.
+Verify helper installation/reuse, workspace provider discovery, authorized
+private NuGet/npm access, token refresh, Windows-to-container npm credential
+transfer, and denied authorization/TLS failures without secret leakage.
 Live login and deployment checks require separately authorized Azure
 validation. Mocked commands alone do not satisfy these criteria.
