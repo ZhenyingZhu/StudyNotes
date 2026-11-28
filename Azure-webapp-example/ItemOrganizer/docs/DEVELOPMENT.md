@@ -1,7 +1,14 @@
 # Development guide
 
-For the product overview, see [README](../README.md). Decisions, progress,
-validation history, and remaining gates belong in [PLAN.md](../PLAN.md).
+For the product overview, see [README](../README.md). The high-level roadmap
+and milestone design links are in [PLAN.md](../PLAN.md). Technical
+specifications are in `docs/design`; dated progress and validation records
+are in `docs/history`.
+
+This guide describes the current Linux workflow. The revised
+[Windows/Ubuntu and native source design](design/development-environment.md)
+is approved, not implemented or validated; it supersedes conflicting design
+decisions here without establishing that the new commands work.
 
 ## Contents
 
@@ -331,7 +338,9 @@ explicit user review and confirmation are required before inventory creation.
 | Path | Contents |
 |---|---|
 | `README.md` | Purpose, usage, quick start |
-| `PLAN.md` | Decisions, milestones, progress and validation |
+| `PLAN.md` | High-level roadmap and milestone design links |
+| `docs/design/` | Technical milestone specifications and shared designs |
+| `docs/history/` | Dated milestone status, revisions and validation evidence |
 | `.devcontainer/`, `docker-compose.yml` | Workspace recipe and local-only service images |
 | `download-sources.example.conf` | Public-only external-source format example |
 | `.env.example`, `web/.env.example` | Application/version configuration templates |

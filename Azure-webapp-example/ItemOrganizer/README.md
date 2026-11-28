@@ -37,6 +37,11 @@ Docker Desktop is not used. The existing containers remain Debian-based and
 support x64 and ARM64. Project SDKs, builds, and servers run in the workspace
 container; normal startup never installs or reconfigures host tooling.
 
+The revised Windows launchers, prerequisite provisioning and native source
+configuration design is approved but not implemented or validated. See the
+[confirmed environment design](docs/design/development-environment.md).
+The commands below describe the existing Linux startup workflow.
+
 **Configure download access before starting.** All image, operating-system,
 SDK/tool, package, and browser sources come from an external local file, not
 environment variables or runtime defaults. Copy `download-sources.example.conf`
@@ -151,4 +156,4 @@ Microsoft Entra sign-in requires additional configuration.
 | Service addresses and environment settings | [Configuration](docs/DEVELOPMENT.md#configuration) |
 | Photo-analysis endpoints | [Photo-analysis API](docs/DEVELOPMENT.md#photo-analysis-api); full development OpenAPI at http://localhost:5000/openapi/v1.json |
 | Find source code and scripts | [Repository map](docs/DEVELOPMENT.md#repository-map) |
-| Product decisions, milestone status, recognition-quality gates, and validation history | [PLAN.md](PLAN.md) |
+| High-level roadmap and links to milestone designs and validation evidence | [PLAN.md](PLAN.md) |
