@@ -42,13 +42,15 @@ configuration design is approved but not implemented or validated. See the
 [confirmed environment design](docs/design/development-environment.md).
 The commands below describe the existing Linux startup workflow.
 
-**Configure download access before starting.** All image, operating-system,
-SDK/tool, package, and browser sources come from an external local file, not
-environment variables or runtime defaults. Copy `download-sources.example.conf`
-outside the Git checkout and configure your environment's approved sources.
-The example contains public sources only; do not use it unchanged where those
-sources are prohibited. Authenticated sources require protected external
-credential files, not interactive token prompts.
+**Configure download access before starting.** The checked-in
+[sources.conf](sources.conf) is the active manifest. It references external
+native NuGet/npm configurations by absolute path. All other source values,
+including apt, signing keys, registries, installers and archives, are stored
+directly in the manifest. Public NuGet/npm examples are in
+[docs/source-examples](docs/source-examples/README.md); copy and configure
+them outside the checkout without overwriting your existing files.
+Keep private feed details and credentials out of Git. Examples are never
+loaded automatically. Startup integration with this revised format is pending.
 
 If these sources are unavailable or prohibited in your environment, read
 [package-source setup](docs/DEVELOPMENT.md#choose-the-package-sources-for-your-environment)

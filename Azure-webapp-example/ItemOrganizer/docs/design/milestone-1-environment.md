@@ -17,7 +17,7 @@ workspace, PostgreSQL and Azurite containers.
 | Workspace image | Pinned .NET SDK, Node.js, pnpm, EF CLI, Azure CLI, Bicep and development utilities |
 | PostgreSQL | Relational inventory, ownership, operation state and outbox |
 | Azurite | Private photo/crop storage and asynchronous analysis queues |
-| External source manifest | Reference native package-manager configuration and explicit installation inputs |
+| Project source manifest | Reference only external NuGet/npm source files; store all other source values directly |
 
 The detailed dispatch, installer, configuration and lifecycle contracts are
 defined in the [environment design](development-environment.md). All four
@@ -44,7 +44,7 @@ credentials, database files, emulator data and generated outputs out of Git.
 
 ## Configuration and startup
 
-The external manifest and native source files are required inputs, not
+The checked-in project manifest and external native source files are required inputs, not
 automatic defaults. Feed/image selection is independent of repository-owned
 version pins. Native tools handle downloads and authentication; build secrets
 and temporary container files carry credentials without retaining them in

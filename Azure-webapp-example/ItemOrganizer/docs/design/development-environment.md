@@ -88,15 +88,16 @@ missing prerequisites without invoking the installer.
 
 The installation flow is:
 
-1. Require `--install`; validate the external configuration and administrative
-   prerequisites before changing the host.
+1. Require `--install`; validate the project manifest, referenced NuGet/npm
+   files and administrative prerequisites before changing the host.
 2. On Windows, inspect WSL and Ubuntu. Reuse the selected distribution, or
    provision the missing platform/distribution from configured installation
    inputs. If a Windows restart is required, stop and report that installation
    must resume after the user restarts.
 3. Inside the selected Ubuntu environment, check systemd and existing Docker
    packages. Report incompatible installations rather than uninstalling them.
-4. Use apt with the external native repository configuration to install
+4. Generate native apt repository configuration from the project manifest,
+   provision the configured signing keys, and use apt to install
    Docker Engine, CLI, containerd, Compose and Buildx; start the Docker service.
 5. Verify the Engine connection and plugins. Report any remaining
    administrator-managed Docker access requirements.
@@ -126,7 +127,7 @@ applies migrations; it never silently resets data.
 
 ## Application startup sequence
 
-1. Load the external manifest and validate the inputs needed for the selected
+1. Load the project manifest and validate the inputs needed for the selected
    mode. On Windows, dispatch to the selected existing WSL 2 distribution.
 2. Check Ubuntu, Docker Engine, Compose and Buildx. Missing prerequisites
    produce an error directing the user to the separate installer.
@@ -169,40 +170,60 @@ EF tool through the same external `NuGet.Config`. pnpm reads the external
 `.npmrc`. Scripts do not derive NuGet endpoints or retrieve EF packages
 through a custom HTTP implementation.
 
-A single external `sources.conf` manifest references native configuration
-files and other required installation inputs. There are no required separate
-`--nuget-config` or `--npm-config` parameters. File references are resolved
-relative to the external manifest, or supplied as explicit absolute paths.
-All referenced inputs remain outside the repository.
+The checked-in project `sources.conf` is the active manifest. It references
+only external `NuGet.Config` and `.npmrc` files by absolute path. All other
+source values are stored directly in the manifest. There are no required
+separate `--nuget-config` or `--npm-config` parameters. The manifest is checked
+into the repository;
+actual native configuration files and credentials remain outside it.
 
 Manifest entries for package managers and image registries:
 
 ```text
-NUGET_CONFIG=NuGet.Config
-NPM_CONFIG=.npmrc
-UBUNTU_APT_SOURCES=ubuntu.sources
-WORKSPACE_APT_SOURCES=workspace.sources
+NUGET_CONFIG=D:\ItemOrganizerConfig\NuGet.Config
+NPM_CONFIG=D:\ItemOrganizerConfig\.npmrc
+UBUNTU_APT_ARCHIVE_URI=https://archive.ubuntu.com/ubuntu/
+UBUNTU_APT_SECURITY_URI=https://security.ubuntu.com/ubuntu/
+UBUNTU_APT_PORTS_URI=https://ports.ubuntu.com/ubuntu-ports/
+WORKSPACE_APT_URI=https://deb.debian.org/debian
+WORKSPACE_APT_SECURITY_URI=https://deb.debian.org/debian-security
+DOCKER_APT_URI=https://download.docker.com/linux/ubuntu
+AZURE_CLI_APT_URI=https://packages.microsoft.com/repos/azure-cli/
+DOCKER_SIGNING_KEY_URI=https://download.docker.com/linux/ubuntu/gpg
+AZURE_CLI_SIGNING_KEY_URI=https://packages.microsoft.com/keys/microsoft.asc
 WORKSPACE_REGISTRY=mcr.microsoft.com
 POSTGRES_REGISTRY=docker.io
 AZURITE_REGISTRY=mcr.microsoft.com
 ```
 
 This is an excerpt. Installation and standalone archive inputs are also
-explicit entries in the external manifest. Each operation validates its
+explicit entries in the project manifest. Each operation validates its
 required inputs before performing downloads or host/application changes.
 
 Native configuration references point to files, not endpoint names. Registry
 entries identify Docker registry hosts; repository-owned image names and
-versions determine which images Docker pulls. URLs needed by package managers
-belong in their native configuration files.
+versions determine which images Docker pulls. NuGet/npm feed URLs belong in
+their external native files. apt repository URIs, signing-key URIs and all
+installer/archive sources belong directly in the manifest. No other external
+source configuration files are accepted.
+
+The installer/build generates native apt configuration from the manifest.
+Suites, components, architectures and local signing-key paths follow the
+host release or pinned workspace image; source changes do not change these
+platform selections. Use Ubuntu archive/security sources for amd64 and the
+ports source for arm64. Provision Docker/Microsoft keys from their configured
+URIs before apt uses the corresponding local `Signed-By` paths.
+Only configured apt repositories participate in project installation; do not
+fall back to inherited feeds. Generating apt configuration does not replace
+apt's metadata, dependency, authentication or download handling.
 
 | Input | Source/download mechanism |
 |---|---|
 | Application NuGet packages and EF tool | Native external `NuGet.Config`; `dotnet restore` and `dotnet tool install` select/download packages |
 | Frontend packages | Native external `.npmrc`; pnpm handles registry metadata and packages |
-| Ubuntu/Debian packages, Docker installation, Azure CLI | Native external apt repository/signature configuration; apt handles packages |
+| Ubuntu/Debian packages, Docker installation, Azure CLI | Manifest repository/key URIs generate native apt configuration; apt handles packages |
 | Container images | Docker handles pulls from configured registries using repository-pinned image names/versions |
-| WSL/Ubuntu setup | Supported native installation mechanisms using explicit external inputs |
+| WSL/Ubuntu setup | Supported native installation mechanisms using explicit manifest inputs |
 | Standalone SDK/Bicep/browser inputs | Supported installers with configurable sources when available; otherwise a simple pinned-file download, not a custom package resolver |
 
 For example, the external `NuGet.Config` could contain this public-only source:
@@ -226,9 +247,10 @@ strict-ssl=true
 These examples contain no credentials. Developers configure their environment's
 approved sources in the external files.
 
-Checked-in examples contain public sources only and must be explicitly copied
-and configured outside the checkout. Runtime source selection never falls
-back to an example, hardcoded service, inherited environment override or
+NuGet/npm examples in [docs/source-examples](../source-examples/README.md)
+contain public sources only and must be explicitly copied and configured
+outside the checkout. There is no separate manifest example. Runtime selection
+never falls back to an example, hardcoded service, inherited environment override or
 unconfigured source after a download/authentication failure.
 
 Keep artifact versions pinned in the repository. Changing source configuration
@@ -242,7 +264,9 @@ allowlisting.
 Public feeds normally need no credentials. Private feeds may use credentials
 in their native configuration or a supported external credential mechanism.
 Any credential-bearing file must be protected and outside the repository.
-The manifest contains paths, not passwords or tokens. Package-token prompts
+The manifest contains source values and NuGet/npm paths, never passwords or
+tokens. Credentials for other sources use supported external authentication
+files, separate from source selection. Package-token prompts
 and secret command arguments are not part of setup.
 
 Use appropriate file-based secret handling for builds and containers.
@@ -268,8 +292,8 @@ review remains mandatory in either mode.
 From Windows PowerShell:
 
 ```powershell
-.\scripts\install-prerequisites.ps1 --install --sources C:\ItemOrganizerConfig\sources.conf
-.\scripts\start-environment.ps1 --sources C:\ItemOrganizerConfig\sources.conf --mode mock
+.\scripts\install-prerequisites.ps1 --install --sources .\sources.conf
+.\scripts\start-environment.ps1 --sources .\sources.conf --mode mock
 .\scripts\smoke-test.ps1
 .\scripts\reset-and-seed.ps1 --confirm
 ```
@@ -277,8 +301,8 @@ From Windows PowerShell:
 From native Ubuntu:
 
 ```bash
-sudo bash scripts/install-prerequisites.sh --install --sources /external/sources.conf
-bash scripts/start-environment.sh --sources /external/sources.conf --mode mock
+sudo bash scripts/install-prerequisites.sh --install --sources ./sources.conf
+bash scripts/start-environment.sh --sources ./sources.conf --mode mock
 bash scripts/smoke-test.sh --host
 bash scripts/reset-and-seed.sh --confirm
 ```

@@ -51,56 +51,49 @@ firewall/network policy determines access. No project image is published.
 
 ### Choose the package sources for your environment
 
-Copy `download-sources.example.conf` **outside the entire Git checkout** and
-pass its path with `--sources`. Configure approved public sources or internal
-mirrors/feeds for every required input. Only the example contains public source
-defaults; it is never loaded automatically. Do not commit internal endpoint,
-organization/project information, or credentials.
+The checked-in [sources.conf](../sources.conf) is the actual source manifest.
+Native configuration examples live in
+[source-examples](source-examples/README.md), not in a second manifest.
+The startup/installer migration to this format is pending; configuration
+preparation does not establish that bootstrap can consume it yet.
 
-The format is unquoted `KEY=value`, one entry per line. Blank lines and full-line
-`#` comments are accepted, including CRLF files. There is no shell evaluation,
-variable substitution, inline-comment syntax, or environment-based source
-selection. URLs must use HTTPS without credentials or query strings. Image
-references need an explicit registry and a pinned tag/digest, not `latest`.
-Required keys are validated; missing/unavailable sources fail without fallback.
+Copy missing NuGet/npm example files outside the checkout, configure your approved
+feeds and set their absolute paths in `sources.conf`. The checked-in Windows
+paths point to `D:\ItemOrganizerConfig`; Ubuntu developers supply absolute
+Linux paths. Do not overwrite native files you have already edited.
+Only `NUGET_CONFIG` and `NPM_CONFIG` reference source configuration files.
+Configure all other source values directly in the manifest.
 
-| Input | External keys |
+The manifest uses unquoted `KEY=value` data. Native configuration paths,
+registry hosts and explicit installer/archive URIs are different input types;
+there is no universal hostname-to-endpoint mapper. Examples contain public
+sources only and are not runtime defaults or fallbacks.
+
+| Input | Manifest keys |
 |---|---|
-| Third-party images | `WORKSPACE_BASE_IMAGE`, `POSTGRES_IMAGE`, `AZURITE_IMAGE` |
-| Ubuntu Docker installation | Architecture-specific `UBUNTU_APT_URI_*`, `UBUNTU_SECURITY_URI_*`, `DOCKER_APT_URI`, `DOCKER_APT_KEY_URL` |
-| Workspace Debian packages | `DEBIAN_APT_URI`, `DEBIAN_SECURITY_URI` |
-| Azure CLI packages and key | `AZURE_CLI_APT_URI`, `AZURE_CLI_KEY_URL` |
-| SDK, EF tool, Bicep | Architecture-specific `DOTNET_SDK_URL_*`, `BICEP_URL_*`, and `DOTNET_EF_PACKAGE_URL` |
-| Backend/frontend packages | `NUGET_SOURCE`, `NPM_REGISTRY` |
-| Optional test browser | Architecture-specific `PLAYWRIGHT_CHROMIUM_URL_*` |
+| NuGet packages and EF tool | `NUGET_CONFIG` |
+| npm/pnpm packages | `NPM_CONFIG` |
+| Ubuntu host apt | `UBUNTU_APT_ARCHIVE_URI`, `UBUNTU_APT_SECURITY_URI`, `UBUNTU_APT_PORTS_URI` |
+| Debian workspace apt | `WORKSPACE_APT_URI`, `WORKSPACE_APT_SECURITY_URI` |
+| Docker/Azure CLI apt and signing keys | `DOCKER_APT_URI`, `AZURE_CLI_APT_URI`, `DOCKER_SIGNING_KEY_URI`, `AZURE_CLI_SIGNING_KEY_URI` |
+| Image registries | `WORKSPACE_REGISTRY`, `POSTGRES_REGISTRY`, `AZURITE_REGISTRY` |
+| Windows/Ubuntu setup | `WSL_RELEASE_BASE_URI`, `UBUNTU_WSL_BASE_URI` |
+| .NET installer | `DOTNET_INSTALL_SCRIPT_URI`, `DOTNET_INSTALL_FEED_URI` |
+| Bicep/browser | `BICEP_RELEASE_BASE_URI`, `PLAYWRIGHT_DOWNLOAD_HOST` |
 
-Use `AMD64` or `ARM64` suffixes. Tool/archive versions must match the pins in
-`.env`; the browser must match the locked Playwright version. Repository paths
-and signed package formats must remain compatible with Ubuntu/Debian and the
-requested tools. An internal npm feed does not configure NuGet or EF downloads.
-Feed metadata may reference artifact/CDN endpoints: configure a proxying feed
-and network policy that keep those artifact requests within approved sources.
-The project does not rewrite feed metadata or administrator-managed proxies.
+NuGet/npm read the external native files. The installer/build generates native
+apt configuration from the manifest's explicit URIs, using suites, components,
+architectures and signing-key paths appropriate to the host or pinned image.
+Only configured repositories are enabled for project installation; inherited
+apt feeds are not fallbacks. apt handles metadata, dependencies and downloads.
+Artifact versions stay pinned in the repository; feed changes must
+not silently change versions. Missing inputs and source/authentication failure
+are errors, not a reason to use an unconfigured source.
 
-Sources are parsed from the external file. The base-image reference is passed
-to Docker as a file-derived build argument; the remaining source file and
-download credentials use BuildKit secret mounts. The Dockerfile uses Engine's
-built-in frontend, not a separately downloaded syntax image. No secret file is
-copied into an image. Source-file changes invalidate the tool-install build
-cache through a non-secret hash.
-Workspace apt indexes use isolated configured repositories; inherited active
-apt source lists are removed from the final image. Further OS package additions
-belong in the configured image build, not an unconfigured runtime apt install.
-
-Startup builds the workspace locally. It pulls configured third-party images
-when uncached and gives PostgreSQL/Azurite local aliases. Compose uses local
-images with `pull_policy: never`; it cannot fall back to public project image
-names. Run startup once before VS Code's **Reopen in Container**. Dev Containers
-reuses that prepared image. Editor extensions are installed separately through
-your approved editor setup, not downloaded automatically by this recipe.
-
-Network downloads are required when inputs are uncached. There is no offline
-bundle or project-image publishing/prebuilt-registry workflow.
+Keep actual native files, private endpoints and credentials outside Git.
+Protect credential-bearing files and transfer them using file-based build/
+container secrets rather than image layers, build arguments or `.env`.
+Native feed metadata/redirects still require approved proxy and network policy.
 
 ### Credential files and certificate trust
 
@@ -342,7 +335,8 @@ explicit user review and confirmation are required before inventory creation.
 | `docs/design/` | Technical milestone specifications and shared designs |
 | `docs/history/` | Dated milestone status, revisions and validation evidence |
 | `.devcontainer/`, `docker-compose.yml` | Workspace recipe and local-only service images |
-| `download-sources.example.conf` | Public-only external-source format example |
+| `sources.conf` | Checked-in active manifest and absolute native configuration paths |
+| `docs/source-examples/` | Public native NuGet/npm configuration examples |
 | `.env.example`, `web/.env.example` | Application/version configuration templates |
 | `scripts/` | Installer, unified startup, explicit reset and smoke test |
 | `src/ItemOrganizer.Domain/` | Domain model/state transitions |
